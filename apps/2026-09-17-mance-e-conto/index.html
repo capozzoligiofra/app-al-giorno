@@ -50,22 +50,20 @@
     body {
       margin: 0;
       font: 16px/1.5 ui-monospace, "Cascadia Mono", Consolas, "SF Mono", Menlo, "Liberation Mono", monospace;
-      background: linear-gradient(180deg, var(--bg-2), var(--bg) 40%);
-      background-attachment: fixed;
+      background: linear-gradient(180deg, var(--bg-2), var(--bg) 40%) fixed;
       color: var(--text);
-      overflow-x: hidden;
       min-height: 100dvh;
     }
     button, input { font: inherit; color: inherit; }
-    button { cursor: pointer; }
+    button { cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
     :focus-visible { outline: 3px solid var(--accent-2); outline-offset: 2px; }
 
     .app {
       min-height: 100dvh;
       display: flex;
       flex-direction: column;
-      /* spazio per la barra azioni fissa in basso */
-      padding-bottom: calc(84px + env(safe-area-inset-bottom));
+      /* spazio per la barra risultato fissa in basso (telefono) */
+      padding-bottom: calc(96px + env(safe-area-inset-bottom));
     }
 
     /* ---- testata ---- */
@@ -75,31 +73,29 @@
       max-width: 1000px; width: 100%; margin: 0 auto;
     }
     .back {
-      display: inline-flex; align-items: center; min-height: 44px; padding: 0 8px 0 0;
+      display: inline-flex; align-items: center; min-height: 44px; padding: 0 8px 0 0; flex: none;
       color: var(--muted); text-decoration: none; font-size: .9rem;
     }
     .back:hover, .back:focus-visible { color: var(--accent); }
-    .brand { font-size: .85rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
-
-    /* ---- pannello input: fisso in alto (layout split) ---- */
-    .panel {
-      position: sticky; top: 0; z-index: 5;
-      background: color-mix(in srgb, var(--bg) 88%, transparent);
-      -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--line);
-      padding: 8px 16px 14px;
+    .brand {
+      font-size: .85rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
+      min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
     }
-    .panel-in { max-width: 1000px; margin: 0 auto; display: grid; gap: 14px; }
 
-    .step {
-      display: grid; gap: 6px;
-    }
+    /* ---- pannello input: in alto, sotto scorre lo scontrino (layout split) ---- */
+    .panel { padding: 8px 16px 18px; }
+    .panel-in { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+
+    /* Le righe di input sono flex dentro una griglia: min-width 0 evita che la larghezza
+       intrinseca di input e bottoni allarghi la pagina oltre lo schermo del telefono. */
+    .step { display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px; }
+    .step > * { min-width: 0; }
     .step-label {
       display: flex; align-items: center; gap: 8px;
-      font-size: .85rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+      font-size: .875rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
     }
     .step-n {
-      display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%;
+      display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; flex: none;
       background: var(--accent); color: var(--accent-ink); font-size: .8rem; font-weight: 700; letter-spacing: 0;
     }
 
@@ -107,40 +103,41 @@
     .amount {
       display: flex; align-items: center; gap: 10px;
       background: var(--surface); border: 2px solid var(--line); border-radius: var(--r);
-      padding: 6px 14px; min-height: 64px; transition: border-color .15s;
+      padding: 6px 10px 6px 14px; min-height: 64px; transition: border-color .15s;
     }
     .amount:focus-within { border-color: var(--accent-2); }
     .amount input {
-      flex: 1; min-width: 0; border: 0; background: transparent; padding: 0;
+      flex: 1 1 0; width: 0; min-width: 0; border: 0; background: transparent; padding: 0;
       font-size: 2rem; font-weight: 700; letter-spacing: -.02em; text-align: right;
     }
     .amount input::placeholder { color: var(--line); }
     .amount input:focus { outline: none; }
-    .amount .cur { font-size: 1.4rem; color: var(--muted); }
+    .amount .cur { font-size: 1.4rem; color: var(--muted); flex: none; }
     .clear {
-      width: 44px; height: 44px; border-radius: 50%; border: 0; background: transparent; color: var(--muted);
+      width: 44px; height: 44px; flex: none; border-radius: 50%; border: 0; background: transparent; color: var(--muted);
       display: grid; place-items: center; font-size: 1.3rem; line-height: 1;
     }
     .clear:hover { background: var(--accent-soft); color: var(--accent); }
     .clear[hidden] { display: none; }
 
-    /* chip mancia */
-    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    /* chip mancia: griglia a 3 colonne (due righe ordinate sul telefono) */
+    .chips { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
     .chip {
-      flex: 1 1 0; min-width: 52px; min-height: 46px; padding: 0 10px;
+      min-width: 0; min-height: 46px; padding: 0 6px;
       border: 2px solid var(--line); border-radius: var(--r); background: var(--surface);
-      font-weight: 600; letter-spacing: .02em; transition: background .12s, border-color .12s, color .12s;
+      font-weight: 600; letter-spacing: .02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      transition: background .12s, border-color .12s, color .12s;
     }
     .chip:hover { border-color: var(--accent-2); }
     .chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
     .custom { display: none; gap: 8px; margin-top: 8px; }
     .custom.open { display: flex; }
     .custom input {
-      flex: 1; min-width: 0; min-height: 46px; padding: 0 12px; text-align: right;
+      flex: 1 1 0; width: 0; min-width: 0; min-height: 46px; padding: 0 12px; text-align: right;
       border: 2px solid var(--line); border-radius: var(--r); background: var(--surface); font-size: 1.1rem; font-weight: 600;
     }
     .custom input:focus { border-color: var(--accent-2); outline: none; }
-    .seg { display: inline-flex; border: 2px solid var(--line); border-radius: var(--r); overflow: hidden; }
+    .seg { display: inline-flex; flex: none; border: 2px solid var(--line); border-radius: var(--r); overflow: hidden; }
     .seg button { min-width: 48px; min-height: 42px; border: 0; background: var(--surface); font-weight: 700; }
     .seg button + button { border-left: 2px solid var(--line); }
     .seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
@@ -148,14 +145,14 @@
     /* stepper persone */
     .stepper { display: flex; align-items: stretch; gap: 8px; }
     .stepper button {
-      width: 64px; min-height: 52px; border: 2px solid var(--line); border-radius: var(--r);
+      width: 64px; flex: none; min-height: 52px; border: 2px solid var(--line); border-radius: var(--r);
       background: var(--surface); font-size: 1.6rem; font-weight: 700; line-height: 1;
     }
     .stepper button:hover:not(:disabled) { border-color: var(--accent-2); color: var(--accent); }
     .stepper button:active:not(:disabled) { background: var(--accent-soft); }
     .stepper button:disabled { opacity: .4; cursor: not-allowed; }
     .stepper input {
-      flex: 1; min-width: 0; text-align: center; border: 2px solid var(--line); border-radius: var(--r);
+      flex: 1 1 0; width: 0; min-width: 0; text-align: center; border: 2px solid var(--line); border-radius: var(--r);
       background: var(--surface); font-size: 1.5rem; font-weight: 700;
       -moz-appearance: textfield; appearance: textfield;
     }
@@ -163,12 +160,16 @@
     .stepper input:focus { border-color: var(--accent-2); outline: none; }
 
     /* ---- risultato: scontrino scorrevole ---- */
-    .results { padding: 20px 16px 16px; max-width: 1000px; width: 100%; margin: 0 auto; display: grid; gap: 18px; align-content: start; }
+    .results {
+      padding: 4px 16px 16px; max-width: 1000px; width: 100%; margin: 0 auto;
+      display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; align-content: start;
+    }
+    .results > * { min-width: 0; }
 
     .receipt {
       position: relative;
       background: var(--paper); color: var(--paper-ink);
-      padding: 22px 20px 30px;
+      padding: 22px 18px 30px;
       box-shadow: 0 10px 30px rgba(10, 18, 36, .18);
       max-width: 420px; width: 100%; margin: 0 auto;
     }
@@ -190,11 +191,11 @@
     .row.sub-row .k { text-transform: none; letter-spacing: 0; font-size: .85rem; }
     .rule { border: 0; border-top: 2px dashed var(--paper-2); margin: 8px 0; }
     .rule.strong { border-top-style: solid; border-top-color: var(--paper-ink); }
-    .row.big { align-items: center; padding: 8px 0 2px; }
+    .row.big { align-items: center; flex-wrap: wrap; padding: 8px 0 2px; }
     .row.big .k { font-weight: 700; font-size: 1rem; }
-    .row.big .v { font-size: 2.2rem; font-weight: 800; letter-spacing: -.03em; line-height: 1.1; }
+    .row.big .v { margin-left: auto; font-size: clamp(1.7rem, 7.5vw, 2.2rem); font-weight: 800; letter-spacing: -.03em; line-height: 1.1; }
     .note {
-      margin: 12px 0 0; padding: 8px 10px; font-size: .85rem; line-height: 1.4;
+      margin: 12px 0 0; padding: 8px 10px; font-size: .875rem; line-height: 1.4;
       background: var(--paper-2); color: var(--paper-muted); border-left: 3px solid var(--paper-muted);
     }
     .note[hidden] { display: none; }
@@ -205,41 +206,57 @@
     }
 
     /* opzioni sotto lo scontrino */
-    .options { max-width: 420px; width: 100%; margin: 0 auto; display: grid; gap: 8px; }
-    .options .step-label { justify-content: space-between; }
-    .options .chips .chip { flex: 1 1 0; }
-    .hint { color: var(--muted); font-size: .85rem; margin: 0; }
+    .options { max-width: 420px; width: 100%; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
+    .options .chips { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .hint { color: var(--muted); font-size: .875rem; margin: 0; }
 
-    /* ---- barra azioni fissa (pollice) ---- */
-    .actions {
+    /* ---- barra fissa in basso (pollice): quota a testa + azioni ---- */
+    .bar {
       position: fixed; left: 0; right: 0; bottom: 0; z-index: 6;
-      display: flex; gap: 10px; padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
-      background: color-mix(in srgb, var(--bg) 90%, transparent);
+      padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+      background: color-mix(in srgb, var(--bg) 92%, transparent);
       -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
       border-top: 1px solid var(--line);
     }
-    .actions-in { max-width: 1000px; width: 100%; margin: 0 auto; display: flex; gap: 10px; align-items: center; }
-    .btn {
-      min-height: 52px; padding: 0 18px; border-radius: var(--r); border: 2px solid var(--line);
-      background: var(--surface); font-weight: 700; letter-spacing: .04em; text-transform: uppercase; font-size: .95rem;
+    .bar-in { max-width: 1000px; width: 100%; margin: 0 auto; display: flex; gap: 8px; align-items: center; }
+    .bar-result { flex: 1 1 0; min-width: 0; display: grid; gap: 0; line-height: 1.2; }
+    .bar-k { font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .bar-v {
+      font-size: clamp(1.35rem, 6vw, 1.7rem); font-weight: 800; letter-spacing: -.02em; color: var(--accent);
+      font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
-    .btn.primary { flex: 1; background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+    .bar-v.is-empty { color: var(--muted); }
+    .btn {
+      min-height: 52px; padding: 0 16px; flex: none; border-radius: var(--r); border: 2px solid var(--line);
+      background: var(--surface); font-weight: 700; letter-spacing: .04em; text-transform: uppercase; font-size: .95rem;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .btn svg { width: 22px; height: 22px; flex: none; }
+    .btn.ghost { width: 52px; padding: 0; color: var(--muted); }
+    .btn.ghost .lbl { display: none; }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
     .btn.primary:disabled { opacity: .45; cursor: not-allowed; }
     .btn:not(:disabled):hover { filter: brightness(1.08); }
     .toast {
-      position: fixed; left: 50%; bottom: calc(90px + env(safe-area-inset-bottom)); transform: translateX(-50%) translateY(8px);
+      position: fixed; left: 50%; bottom: calc(100px + env(safe-area-inset-bottom)); transform: translateX(-50%) translateY(8px);
       background: var(--text); color: var(--bg); padding: 10px 16px; border-radius: var(--r); font-size: .9rem;
-      opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; z-index: 7; white-space: nowrap;
+      max-width: calc(100% - 32px); text-align: center;
+      opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; z-index: 7;
     }
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-    /* ---- desktop: due colonne affiancate ---- */
+    /* ---- desktop: due colonne affiancate, pannello che resta in vista ---- */
     @media (min-width: 700px) {
       .app { padding-bottom: 24px; }
-      .split { display: grid; grid-template-columns: minmax(300px, 420px) 1fr; gap: 32px; max-width: 1000px; width: 100%; margin: 0 auto; padding: 8px 16px 0; align-items: start; }
-      .panel { position: sticky; top: 16px; border: 1px solid var(--line); border-radius: 10px; padding: 18px; background: var(--surface); backdrop-filter: none; -webkit-backdrop-filter: none; }
+      .split { display: grid; grid-template-columns: minmax(300px, 420px) minmax(0, 1fr); gap: 32px; max-width: 1000px; width: 100%; margin: 0 auto; padding: 8px 16px 0; align-items: start; }
+      .panel { position: sticky; top: 16px; border: 1px solid var(--line); border-radius: 10px; padding: 18px; background: var(--surface); }
       .results { padding: 0; }
-      .actions { position: static; background: transparent; border: 0; padding: 0; backdrop-filter: none; -webkit-backdrop-filter: none; max-width: 420px; width: 100%; margin: 0 auto; }
+      .row.big .v { font-size: 2.2rem; }
+      .bar { position: static; background: transparent; border: 0; padding: 0; backdrop-filter: none; -webkit-backdrop-filter: none; max-width: 420px; width: 100%; margin: 0 auto; }
+      .bar-result { display: none; }
+      .btn.ghost { width: auto; padding: 0 16px; }
+      .btn.ghost .lbl { display: inline; }
+      .btn.primary { flex: 1; }
       .toast { bottom: 24px; }
     }
   </style>
@@ -322,10 +339,17 @@
           <p class="hint">Arrotonda per eccesso, così si pagano cifre tonde: la differenza va in mancia.</p>
         </div>
 
-        <div class="actions">
-          <div class="actions-in">
-            <button class="btn" type="button" id="reset">Azzera</button>
-            <button class="btn primary" type="button" id="copia" disabled>Copia riepilogo</button>
+        <div class="bar">
+          <div class="bar-in">
+            <div class="bar-result" aria-live="polite">
+              <span class="bar-k" id="b-k">A testa</span>
+              <span class="bar-v is-empty" id="b-testa">—</span>
+            </div>
+            <button class="btn ghost" type="button" id="reset" aria-label="Azzera il conto" title="Azzera il conto">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+              <span class="lbl">Azzera</span>
+            </button>
+            <button class="btn primary" type="button" id="copia" aria-label="Copia riepilogo" disabled>Copia</button>
           </div>
         </div>
       </section>
@@ -353,6 +377,7 @@
         rConto: $("r-conto"), rManciaK: $("r-mancia-k"), rMancia: $("r-mancia"),
         rTotale: $("r-totale"), rPersone: $("r-persone"), rTesta: $("r-testa"), rTestaMancia: $("r-testa-mancia"),
         nota: $("nota"), empty: $("empty"),
+        bK: $("b-k"), bTesta: $("b-testa"),
         chipsArr: $("chips-arr"), reset: $("reset"), copia: $("copia"), toast: $("toast"),
       };
 
@@ -455,9 +480,13 @@
         el.receipt.classList.toggle("is-empty", !r);
         el.empty.hidden = !!r;
         el.copia.disabled = !r;
+        // barra in basso (telefono): la quota a testa è sempre in vista mentre si compila
+        el.bTesta.classList.toggle("is-empty", !r);
         if (!r) {
           el.sub.textContent = "— inserisci il conto —";
           for (const k of ["rConto", "rMancia", "rTotale", "rTesta", "rTestaMancia"]) el[k].textContent = "—";
+          el.bK.textContent = "A testa";
+          el.bTesta.textContent = "—";
           el.nota.hidden = true;
           return;
         }
@@ -467,6 +496,8 @@
         el.rTotale.textContent = eur.format(r.totale);
         el.rTesta.textContent = eur.format(r.aTesta);
         el.rTestaMancia.textContent = eur.format(r.manciaTesta);
+        el.bK.textContent = r.n > 1 ? `A testa · ${r.n} persone` : "Una persona";
+        el.bTesta.textContent = eur.format(r.aTesta);
         if (r.arrotondato) {
           el.nota.textContent = `Quota arrotondata a ${eur.format(stato.arrotonda)}: il totale sale a ${eur.format(r.totale)} e la mancia effettiva è ${eur.format(r.mancia)} (${pctFmt.format(r.pctEff)}%).`;
           el.nota.hidden = false;

@@ -115,14 +115,16 @@ window.__APPS__ = {
       "source": "richiesta",
       "request": "Mance e Conto — calcola mancia e divisione del conto al ristorante in tre tocchi",
       "status": "pronta",
-      "version": 1,
-      "changelog": [],
+      "version": 2,
+      "changelog": [
+        "v2 (2026-09-17): layout telefono rifatto — eliminato l'overflow orizzontale (input e chip allargavano la pagina), pannello input non più fisso, quota a testa sempre in vista nella barra in basso con Copia e Azzera, chip mancia su griglia a 3 colonne."
+      ],
       "design": {
         "layout": "split",
         "palette": "blu-notte",
         "font": "mono-tecnico"
       },
-      "size": 28854
+      "size": 31407
     },
     {
       "title": "Dividi il Conto",
