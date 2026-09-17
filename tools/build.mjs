@@ -88,7 +88,6 @@ export function build() {
   }
   apps.sort((a, b) => (b.slug > a.slug ? 1 : b.slug < a.slug ? -1 : 0));
   const catalog = {
-    generated: new Date().toISOString(),
     repo: gitRemoteUrl(),
     count: apps.length,
     categories: CATEGORIES,

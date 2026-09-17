@@ -1,6 +1,5 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
-  "generated": "2026-09-17T15:02:27.405Z",
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
   "count": 2,
   "categories": [
