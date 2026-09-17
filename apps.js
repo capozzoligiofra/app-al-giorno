@@ -1,7 +1,7 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 2,
+  "count": 3,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -50,6 +50,30 @@ window.__APPS__ = {
     ]
   },
   "apps": [
+    {
+      "title": "Timer Pasta",
+      "slug": "2026-09-17-timer-pasta",
+      "date": "2026-09-17",
+      "description": "Tempi di cottura di 24 formati di pasta, timer a tutto schermo con avviso sonoro e dosi di acqua e sale.",
+      "category": "casa-cucina",
+      "tags": [
+        "cucina",
+        "timer",
+        "pasta",
+        "cottura"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "fullscreen-tool",
+        "palette": "giallo-senape",
+        "font": "rounded"
+      },
+      "size": 31574
+    },
     {
       "title": "Piano dei Pasti",
       "slug": "2026-09-17-piano-dei-pasti",
