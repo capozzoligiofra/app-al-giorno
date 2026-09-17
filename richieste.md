@@ -7,6 +7,7 @@ Puoi aggiungere righe dal sito locale (sezione Richieste) oppure editando questo
 
 ## Coda
 
+- [x] Bozza Rapida — appunti veloci a schede con ricerca istantanea, salvati sul telefono → apps/2026-09-17-bozza-rapida
 - [x] migliora apps/2026-09-17-mance-e-conto: non è responsive per telefono → apps/2026-09-17-mance-e-conto v2
 - [x] Mance e Conto — calcola mancia e divisione del conto al ristorante in tre tocchi → apps/2026-09-17-mance-e-conto
 - [x] Un'app per pianificare i pasti della settimana con lista della spesa generata automaticamente → apps/2026-09-17-piano-dei-pasti

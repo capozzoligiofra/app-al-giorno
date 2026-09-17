@@ -1,7 +1,7 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 4,
+  "count": 5,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -151,6 +151,30 @@ window.__APPS__ = {
         "font": "sans-geometrico"
       },
       "size": 18407
+    },
+    {
+      "title": "Bozza Rapida",
+      "slug": "2026-09-17-bozza-rapida",
+      "date": "2026-09-17",
+      "description": "Appunti veloci a schede con ricerca istantanea (anche senza accenti), fissa in cima, copia, condividi, backup: tutto salvato sul telefono.",
+      "category": "produttivita",
+      "tags": [
+        "appunti",
+        "note",
+        "ricerca",
+        "testo"
+      ],
+      "source": "richiesta",
+      "request": "Bozza Rapida — appunti veloci a schede con ricerca istantanea, salvati sul telefono",
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "list-detail",
+        "palette": "grigio-carta",
+        "font": "serif-editoriale"
+      },
+      "size": 31326
     }
   ]
 };

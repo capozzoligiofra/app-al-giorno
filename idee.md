@@ -8,4 +8,4 @@ Formato: `- [ ] Titolo — una frase che spiega a cosa serve`.
 - [ ] Tabelline Sfida — allenamento tabelline a tempo con punteggio e progressi salvati
 - [ ] Conta Parole — parole, caratteri e minuti di lettura di un testo, mentre lo scrivi
 - [ ] Formatta JSON — incolla del JSON, lo controlla, lo indenta e ne mostra la struttura
-- [ ] Bozza Rapida — appunti veloci a schede con ricerca istantanea, salvati sul telefono
+- [ ] Tavolozza Colori — scegli un colore e ottieni palette armoniche (complementari, triadi) con codici HEX da copiare

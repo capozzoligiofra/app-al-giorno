@@ -1,0 +1,14 @@
+{
+  "title": "Bozza Rapida",
+  "slug": "2026-09-17-bozza-rapida",
+  "date": "2026-09-17",
+  "description": "Appunti veloci a schede con ricerca istantanea (anche senza accenti), fissa in cima, copia, condividi, backup: tutto salvato sul telefono.",
+  "category": "produttivita",
+  "tags": ["appunti", "note", "ricerca", "testo"],
+  "source": "richiesta",
+  "request": "Bozza Rapida — appunti veloci a schede con ricerca istantanea, salvati sul telefono",
+  "status": "pronta",
+  "version": 1,
+  "changelog": [],
+  "design": { "layout": "list-detail", "palette": "grigio-carta", "font": "serif-editoriale" }
+}

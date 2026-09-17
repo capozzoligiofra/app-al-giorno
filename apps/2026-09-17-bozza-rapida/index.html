@@ -1,0 +1,778 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f1efe9" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#161615" media="(prefers-color-scheme: dark)">
+  <title>Bozza Rapida — appunti veloci con ricerca istantanea</title>
+  <meta name="description" content="Appunti veloci a schede, ricerca istantanea mentre scrivi, tutto salvato sul telefono senza account.">
+  <style>
+    :root {
+      --carta: #f1efe9;
+      --foglio: #fffdf8;
+      --inchiostro: #1c1b18;
+      --grigio: #6f6d66;
+      --linea: #d9d6cd;
+      --accento: #1a56db;
+      --accento-tinta: rgba(26, 86, 219, .14);
+      --ombra: 0 1px 2px rgba(0, 0, 0, .06);
+      --raggio: 6px;
+      --serif: Georgia, "Times New Roman", Times, serif;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --carta: #161615;
+        --foglio: #222220;
+        --inchiostro: #ecebe6;
+        --grigio: #9b9990;
+        --linea: #36352f;
+        --accento: #7aa2ff;
+        --accento-tinta: rgba(122, 162, 255, .22);
+        --ombra: none;
+        color-scheme: dark;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; overflow: hidden; }
+    body {
+      font-family: var(--serif);
+      font-size: 17px;
+      line-height: 1.5;
+      color: var(--inchiostro);
+      background: var(--carta);
+      -webkit-text-size-adjust: 100%;
+    }
+    button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+    button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid var(--accento); outline-offset: 2px; }
+    svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* Due pannelli: la lista e il dettaglio. Su telefono il dettaglio scorre sopra la lista da destra. */
+    .app { position: relative; height: 100dvh; overflow: hidden; }
+    .pannello { position: absolute; inset: 0; display: flex; flex-direction: column; min-height: 0; }
+    .lista { background: var(--carta); z-index: 1; }
+    .dettaglio {
+      background: var(--foglio);
+      z-index: 2;
+      transform: translateX(100%);
+      visibility: hidden;
+      transition: transform .25s ease, visibility 0s linear .25s;
+    }
+    body.in-dettaglio .dettaglio { transform: none; visibility: visible; transition: transform .25s ease, visibility 0s; }
+    @media (prefers-reduced-motion: reduce) {
+      .dettaglio, body.in-dettaglio .dettaglio { transition: none; }
+    }
+
+    /* Testata della lista */
+    .testata {
+      padding: env(safe-area-inset-top) 16px 12px;
+      border-bottom: 1px solid var(--linea);
+    }
+    .tutte {
+      display: inline-block;
+      padding: 8px 0;
+      line-height: 28px;
+      font-size: 15px;
+      color: var(--grigio);
+      text-decoration: none;
+    }
+    .tutte:hover { color: var(--inchiostro); text-decoration: underline; }
+    .titolo-riga { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 10px; }
+    h1 { margin: 0; font-size: 32px; line-height: 1.15; font-weight: 700; letter-spacing: -.01em; }
+    h1 em { font-style: italic; font-weight: 400; color: var(--grigio); }
+
+    .cerca {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 48px;
+      padding: 0 4px 0 12px;
+      background: var(--foglio);
+      border: 1px solid var(--linea);
+      border-radius: var(--raggio);
+      color: var(--grigio);
+    }
+    .cerca:focus-within { border-color: var(--accento); }
+    .cerca input {
+      flex: 1;
+      min-width: 0;
+      border: 0;
+      background: none;
+      outline: none;
+      color: var(--inchiostro);
+      font: inherit;
+      font-size: 17px;
+      padding: 10px 0;
+    }
+    .cerca input::-webkit-search-cancel-button { display: none; }
+
+    .strumenti { margin-top: 12px; padding: 12px; border: 1px dashed var(--linea); border-radius: var(--raggio); }
+    .strumenti p { margin: 0 0 10px; font-size: 15px; color: var(--grigio); }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      min-height: 44px;
+      padding: 0 16px;
+      border: 1px solid var(--linea);
+      border-radius: 999px;
+      background: var(--foglio);
+      font-size: 16px;
+    }
+    .chip:hover { border-color: var(--inchiostro); }
+    .chip.pericolo { background: var(--inchiostro); color: var(--carta); border-color: transparent; }
+
+    .icona {
+      flex: none;
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: var(--raggio);
+      color: var(--grigio);
+    }
+    .icona:hover, .icona:focus-visible { background: var(--accento-tinta); color: var(--inchiostro); }
+    .icona[aria-pressed="true"] { color: var(--accento); }
+    .icona[aria-pressed="true"] svg { fill: currentColor; }
+
+    /* Elenco degli appunti */
+    .conteggio {
+      margin: 0;
+      padding: 12px 16px 0;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--grigio);
+    }
+    .note {
+      list-style: none;
+      margin: 0;
+      padding: 10px 16px calc(100px + env(safe-area-inset-bottom));
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .nota {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 12px 14px;
+      background: var(--foglio);
+      border: 1px solid var(--linea);
+      border-radius: var(--raggio);
+      box-shadow: var(--ombra);
+      min-height: 44px;
+    }
+    .nota:active { background: var(--accento-tinta); }
+    .nota.attiva { border-color: var(--accento); box-shadow: inset 3px 0 0 var(--accento); }
+    .nota-testa { display: flex; align-items: baseline; gap: 8px; }
+    .nota .titolo { flex: 1; font-size: 18px; font-weight: 700; line-height: 1.3; overflow-wrap: anywhere; }
+    .nota .titolo.muto { font-weight: 400; font-style: italic; color: var(--grigio); }
+    .nota .spillo { flex: none; width: 16px; height: 16px; color: var(--accento); fill: currentColor; position: relative; top: 1px; }
+    .nota .anteprima { margin-top: 4px; font-size: 16px; line-height: 1.4; color: var(--grigio); overflow-wrap: anywhere; }
+    .nota .meta { margin-top: 6px; font-size: 14px; color: var(--grigio); }
+    mark { background: var(--accento-tinta); color: inherit; border-radius: 2px; padding: 0 1px; box-shadow: 0 1px 0 var(--accento); }
+
+    .vuoto {
+      margin: 40px 24px;
+      text-align: center;
+      color: var(--grigio);
+      font-style: italic;
+      font-size: 18px;
+      line-height: 1.5;
+    }
+    .vuoto strong { display: block; font-style: normal; font-weight: 700; color: var(--inchiostro); margin-bottom: 6px; }
+
+    .fab {
+      position: absolute;
+      right: 20px;
+      bottom: calc(20px + env(safe-area-inset-bottom));
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--accento);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, .25);
+      z-index: 3;
+    }
+    .fab svg { width: 28px; height: 28px; stroke-width: 2.2; }
+    .fab:active { transform: scale(.94); }
+
+    /* Dettaglio: barra azioni, foglio, piè di pagina */
+    .barra {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      padding: env(safe-area-inset-top) 8px 4px;
+      border-bottom: 1px solid var(--linea);
+    }
+    .barra .spazio { flex: 1; }
+    #testo {
+      flex: 1;
+      min-height: 0;
+      width: 100%;
+      resize: none;
+      border: 0;
+      outline: none;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      font-size: 18px;
+      line-height: 1.6;
+      padding: 18px 20px;
+      -webkit-text-size-adjust: 100%;
+    }
+    #testo::placeholder { color: var(--grigio); font-style: italic; }
+    .segnaposto {
+      display: none;
+      flex: 1;
+      place-items: center;
+      padding: 32px;
+      text-align: center;
+      color: var(--grigio);
+      font-style: italic;
+      font-size: 18px;
+    }
+    body.senza-nota .segnaposto { display: grid; }
+    body.senza-nota #testo, body.senza-nota .pie, body.senza-nota .barra .azione { display: none; }
+    .pie {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      min-height: 44px;
+      padding: 8px 20px calc(8px + env(safe-area-inset-bottom));
+      border-top: 1px solid var(--linea);
+      font-size: 14px;
+      color: var(--grigio);
+    }
+    .conferma { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; width: 100%; color: var(--inchiostro); font-size: 16px; }
+    .conferma span { flex: 1; }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: calc(96px + env(safe-area-inset-bottom));
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      max-width: calc(100% - 32px);
+      padding: 10px 16px;
+      background: var(--inchiostro);
+      color: var(--carta);
+      border-radius: var(--raggio);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, .3);
+      font-size: 16px;
+    }
+    .toast button { min-height: 44px; padding: 0 6px; font-weight: 700; text-decoration: underline; color: inherit; }
+
+    /* Desktop: i due pannelli affiancati, entrambi sempre visibili */
+    @media (min-width: 700px) {
+      .app { display: grid; grid-template-columns: 360px 1fr; }
+      .pannello { position: relative; inset: auto; height: 100dvh; }
+      .lista { border-right: 1px solid var(--linea); }
+      .dettaglio { transform: none; visibility: visible; transition: none; }
+      #indietro { display: none; }
+      .barra { padding-left: 16px; padding-right: 16px; }
+      #testo { padding: 32px max(24px, calc((100% - 72ch) / 2)); font-size: 19px; }
+      .pie { padding-left: max(24px, calc((100% - 72ch) / 2)); padding-right: max(24px, calc((100% - 72ch) / 2)); }
+      .fab { right: 16px; bottom: 16px; width: 56px; height: 56px; }
+      .toast { bottom: 24px; }
+    }
+  </style>
+</head>
+<body class="senza-nota">
+  <div class="app">
+
+    <section class="pannello lista" aria-label="Elenco appunti">
+      <header class="testata">
+        <a class="tutte" href="../../index.html">← Tutte le app</a>
+        <div class="titolo-riga">
+          <h1>Bozza <em>Rapida</em></h1>
+          <button class="icona" id="altro" type="button" aria-label="Backup e informazioni" aria-expanded="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1.4" fill="currentColor"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/><circle cx="19" cy="12" r="1.4" fill="currentColor"/></svg>
+          </button>
+        </div>
+        <div class="cerca">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+          <input id="cerca" type="search" placeholder="Cerca negli appunti" aria-label="Cerca negli appunti" autocomplete="off" autocapitalize="off" enterkeyhint="search">
+          <button class="icona" id="cerca-x" type="button" aria-label="Cancella la ricerca" hidden>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          </button>
+        </div>
+        <div class="strumenti" id="strumenti" hidden>
+          <p id="info"></p>
+          <div class="chips">
+            <button class="chip" id="esporta" type="button">Esporta backup</button>
+            <button class="chip" id="importa" type="button">Importa backup</button>
+          </div>
+          <input type="file" id="file" accept=".json,application/json" hidden>
+        </div>
+      </header>
+
+      <p class="conteggio" id="conteggio"></p>
+      <ul class="note" id="note"></ul>
+      <div class="vuoto" id="vuoto" hidden></div>
+
+      <button class="fab" id="nuova" type="button" aria-label="Nuovo appunto">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+      </button>
+    </section>
+
+    <section class="pannello dettaglio" aria-label="Appunto">
+      <header class="barra">
+        <button class="icona" id="indietro" type="button" aria-label="Torna agli appunti">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+        </button>
+        <span class="spazio"></span>
+        <button class="icona azione" id="fissa" type="button" aria-label="Fissa in alto" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16v6M8 16h8l-1.5-4V6.5A1.5 1.5 0 0 0 13 5h-2a1.5 1.5 0 0 0-1.5 1.5V12z"/></svg>
+        </button>
+        <button class="icona azione" id="copia" type="button" aria-label="Copia il testo">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+        </button>
+        <button class="icona azione" id="condividi" type="button" aria-label="Condividi" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v13M7 8l5-5 5 5M5 14v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/></svg>
+        </button>
+        <button class="icona azione" id="elimina" type="button" aria-label="Elimina appunto">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg>
+        </button>
+      </header>
+
+      <div class="segnaposto">Scegli un appunto dall'elenco oppure creane uno nuovo con il tasto +.</div>
+      <textarea id="testo" placeholder="Scrivi qui. La prima riga diventa il titolo." aria-label="Testo dell'appunto" spellcheck="true" enterkeyhint="enter"></textarea>
+
+      <footer class="pie">
+        <span id="stato"></span>
+        <div class="conferma" id="conferma" hidden>
+          <span>Eliminare questo appunto?</span>
+          <button class="chip pericolo" id="conferma-si" type="button">Elimina</button>
+          <button class="chip" id="conferma-no" type="button">Annulla</button>
+        </div>
+      </footer>
+    </section>
+
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden>
+    <span id="toast-testo"></span>
+    <button id="toast-azione" type="button" hidden></button>
+  </div>
+
+  <script>
+    // Modello dati, in localStorage "bozza-rapida:v1": { note: [ { id, testo, fissata, creato, modificato } ] }.
+    // Il titolo di un appunto è la prima riga non vuota del testo. Ordine: prima le fissate, poi per
+    // data di modifica decrescente. La ricerca ignora maiuscole e accenti; gli appunti vuoti si cancellano da soli.
+    const CHIAVE = 'bozza-rapida:v1';
+    const $ = id => document.getElementById(id);
+    const el = {
+      note: $('note'), vuoto: $('vuoto'), conteggio: $('conteggio'), cerca: $('cerca'), cercaX: $('cerca-x'),
+      altro: $('altro'), strumenti: $('strumenti'), info: $('info'), esporta: $('esporta'), importa: $('importa'), file: $('file'),
+      nuova: $('nuova'), indietro: $('indietro'), fissa: $('fissa'), copia: $('copia'), condividi: $('condividi'), elimina: $('elimina'),
+      testo: $('testo'), stato: $('stato'), conferma: $('conferma'), confermaSi: $('conferma-si'), confermaNo: $('conferma-no'),
+      toast: $('toast'), toastTesto: $('toast-testo'), toastAzione: $('toast-azione'),
+    };
+    const SPILLO = '<svg class="spillo" viewBox="0 0 24 24" aria-label="Fissato"><path d="M12 16v6M8 16h8l-1.5-4V6.5A1.5 1.5 0 0 0 13 5h-2a1.5 1.5 0 0 0-1.5 1.5V12z"/></svg>';
+
+    let stato = carica();
+    let corrente = null;      // id dell'appunto aperto
+    let query = '';
+    let timerSalva = null;
+    let storiaSpinta = false; // su telefono l'apertura aggiunge una voce alla cronologia (tasto Indietro)
+    let timerToast = null, azioneToast = null;
+
+    const desktop = () => matchMedia('(min-width: 700px)').matches;
+
+    /* ---------- persistenza ---------- */
+    function carica() {
+      try {
+        const d = JSON.parse(localStorage.getItem(CHIAVE));
+        if (d && Array.isArray(d.note)) return d;
+      } catch (e) { /* dati assenti o corrotti: si riparte da zero */ }
+      return { note: [] };
+    }
+    function salva() {
+      try { localStorage.setItem(CHIAVE, JSON.stringify(stato)); }
+      catch (e) { toast('Impossibile salvare: memoria del browser piena'); }
+    }
+    function salvaSubito() {
+      if (!timerSalva) return;
+      clearTimeout(timerSalva); timerSalva = null;
+      salva(); disegnaLista();
+    }
+    const nuovoId = () => (crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).slice(2));
+    const trova = id => stato.note.find(n => n.id === id);
+
+    /* ---------- testo ---------- */
+    const righeDi = n => n.testo.split('\n').map(s => s.trim()).filter(Boolean);
+    const titoloDi = n => (righeDi(n)[0] || '').slice(0, 80);
+    const corpoDi = n => righeDi(n).slice(1).join(' ');
+    const parole = t => { const m = t.trim().match(/\S+/g); return m ? m.length : 0; };
+
+    // Restituisce il testo senza accenti e in minuscolo, con la mappa da ogni carattere normalizzato all'indice originale.
+    function normalizza(s) {
+      const pos = []; let out = '';
+      for (let i = 0; i < s.length; i++) {
+        const c = s[i].normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+        for (const ch of c) { out += ch; pos.push(i); }
+      }
+      return { testo: out, pos };
+    }
+    function occorrenze(s, q) { // q già normalizzata → [[inizio, fine]] sull'originale
+      if (!q) return [];
+      const n = normalizza(s), res = [];
+      let i = n.testo.indexOf(q);
+      while (i !== -1) {
+        res.push([n.pos[i], n.pos[i + q.length - 1] + 1]);
+        i = n.testo.indexOf(q, i + q.length);
+      }
+      return res;
+    }
+    function evidenzia(nodo, s, q) {
+      nodo.textContent = '';
+      let ultimo = 0;
+      for (const [a, b] of occorrenze(s, q)) {
+        if (a < ultimo) continue;
+        nodo.append(s.slice(ultimo, a));
+        const m = document.createElement('mark');
+        m.textContent = s.slice(a, b);
+        nodo.append(m);
+        ultimo = b;
+      }
+      nodo.append(s.slice(ultimo));
+    }
+    function anteprima(n, q) {
+      const corpo = corpoDi(n);
+      if (q) {
+        const occ = occorrenze(corpo, q);
+        if (occ.length) {
+          const a = Math.max(0, occ[0][0] - 30);
+          return (a > 0 ? '…' : '') + corpo.slice(a, a + 120);
+        }
+      }
+      return corpo.slice(0, 120);
+    }
+    function tempoRelativo(ts) {
+      const m = Math.floor((Date.now() - ts) / 60000);
+      if (m < 1) return 'adesso';
+      if (m < 60) return m + ' min fa';
+      const h = Math.floor(m / 60);
+      if (h < 24) return h + (h === 1 ? ' ora fa' : ' ore fa');
+      const g = Math.floor(h / 24);
+      if (g === 1) return 'ieri';
+      if (g < 7) return g + ' giorni fa';
+      return new Date(ts).toLocaleDateString('it-IT', { day: 'numeric', month: 'short' });
+    }
+
+    /* ---------- lista ---------- */
+    function noteVisibili() {
+      const q = normalizza(query.trim()).testo;
+      const lista = q ? stato.note.filter(n => normalizza(n.testo).testo.includes(q)) : stato.note.slice();
+      return lista.sort((a, b) => ((b.fissata ? 1 : 0) - (a.fissata ? 1 : 0)) || (b.modificato - a.modificato));
+    }
+    function disegnaLista() {
+      const q = normalizza(query.trim()).testo;
+      const visibili = noteVisibili();
+      const totale = stato.note.length;
+      el.note.textContent = '';
+      for (const n of visibili) {
+        const li = document.createElement('li');
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'nota' + (n.id === corrente ? ' attiva' : '');
+        b.dataset.id = n.id;
+
+        const testa = document.createElement('div');
+        testa.className = 'nota-testa';
+        const t = document.createElement('span');
+        t.className = 'titolo';
+        const tit = titoloDi(n);
+        if (tit) evidenzia(t, tit, q); else { t.textContent = 'Appunto vuoto'; t.classList.add('muto'); }
+        testa.append(t);
+        if (n.fissata) testa.insertAdjacentHTML('beforeend', SPILLO);
+        b.append(testa);
+
+        const ant = anteprima(n, q);
+        if (ant) {
+          const a = document.createElement('div');
+          a.className = 'anteprima';
+          evidenzia(a, ant, q);
+          b.append(a);
+        }
+        const meta = document.createElement('div');
+        meta.className = 'meta';
+        const p = parole(n.testo);
+        meta.textContent = tempoRelativo(n.modificato) + ' · ' + p + (p === 1 ? ' parola' : ' parole');
+        b.append(meta);
+        li.append(b);
+        el.note.append(li);
+      }
+
+      if (!totale) {
+        el.conteggio.textContent = '';
+        el.vuoto.innerHTML = '<strong>Nessun appunto, per ora.</strong>Tocca + per scrivere il primo: resta salvato su questo dispositivo.';
+        el.vuoto.hidden = false;
+      } else if (!visibili.length) {
+        el.conteggio.textContent = '0 su ' + totale;
+        el.vuoto.innerHTML = '<strong>Nessun risultato.</strong>';
+        el.vuoto.append('Nessun appunto contiene «' + query.trim() + '».');
+        el.vuoto.hidden = false;
+      } else {
+        el.vuoto.hidden = true;
+        el.conteggio.textContent = q
+          ? visibili.length + ' su ' + totale
+          : totale + (totale === 1 ? ' appunto' : ' appunti');
+      }
+      el.info.textContent = totale + (totale === 1 ? ' appunto salvato' : ' appunti salvati') + ' su questo dispositivo'
+        + ' (' + Math.max(1, Math.round((localStorage.getItem(CHIAVE) || '').length / 1024)) + ' KB).';
+    }
+
+    /* ---------- dettaglio ---------- */
+    function pulisciVuota(eccetto) {
+      if (!corrente || corrente === eccetto) return;
+      const n = trova(corrente);
+      if (n && !n.testo.trim()) { stato.note = stato.note.filter(x => x.id !== corrente); salva(); }
+    }
+    function aggiornaStato() {
+      const n = trova(corrente);
+      if (!n) { el.stato.textContent = ''; return; }
+      const p = parole(n.testo);
+      el.stato.textContent = p + (p === 1 ? ' parola' : ' parole') + ' · modificato ' + tempoRelativo(n.modificato);
+    }
+    function apri(id, opzioni = {}) {
+      const n = trova(id);
+      if (!n) return;
+      salvaSubito();
+      pulisciVuota(id);
+      corrente = id;
+      el.testo.value = n.testo;
+      document.body.classList.remove('senza-nota');
+      el.fissa.setAttribute('aria-pressed', String(!!n.fissata));
+      el.fissa.setAttribute('aria-label', n.fissata ? 'Togli dall\'alto' : 'Fissa in alto');
+      nascondiConferma();
+      aggiornaStato();
+      mostraDettaglio();
+      if (opzioni.focus) el.testo.focus();
+      disegnaLista();
+    }
+    function mostraDettaglio() {
+      if (document.body.classList.contains('in-dettaglio')) return;
+      document.body.classList.add('in-dettaglio');
+      if (!desktop()) {
+        try { history.pushState({ dettaglio: true }, ''); storiaSpinta = true; }
+        catch (e) { storiaSpinta = false; }
+      }
+    }
+    function chiudiDettaglio() {
+      salvaSubito();
+      pulisciVuota(null);
+      corrente = null;
+      storiaSpinta = false;
+      document.body.classList.remove('in-dettaglio');
+      document.body.classList.add('senza-nota');
+      el.testo.value = '';
+      nascondiConferma();
+      disegnaLista();
+    }
+    function tornaAllaLista() {
+      if (storiaSpinta) history.back(); else chiudiDettaglio();
+    }
+    function mostraConferma() { el.conferma.hidden = false; el.stato.hidden = true; el.confermaNo.focus(); }
+    function nascondiConferma() { el.conferma.hidden = true; el.stato.hidden = false; }
+
+    function toast(msg, etichetta, azione) {
+      clearTimeout(timerToast);
+      el.toastTesto.textContent = msg;
+      azioneToast = azione || null;
+      el.toastAzione.hidden = !etichetta;
+      if (etichetta) el.toastAzione.textContent = etichetta;
+      el.toast.hidden = false;
+      timerToast = setTimeout(() => { el.toast.hidden = true; azioneToast = null; }, etichetta ? 6000 : 2500);
+    }
+    el.toastAzione.addEventListener('click', () => {
+      clearTimeout(timerToast);
+      if (azioneToast) azioneToast();
+      azioneToast = null;
+      el.toast.hidden = true;
+    });
+
+    /* ---------- eventi: lista e ricerca ---------- */
+    el.note.addEventListener('click', e => {
+      const b = e.target.closest('.nota');
+      if (b) apri(b.dataset.id);
+    });
+    el.nuova.addEventListener('click', () => {
+      salvaSubito();
+      pulisciVuota(null);
+      const n = { id: nuovoId(), testo: '', fissata: false, creato: Date.now(), modificato: Date.now() };
+      stato.note.unshift(n);
+      salva();
+      if (query) { query = ''; el.cerca.value = ''; aggiornaCercaX(); }
+      apri(n.id, { focus: true });
+    });
+    function aggiornaCercaX() { el.cercaX.hidden = !el.cerca.value; }
+    el.cerca.addEventListener('input', () => { query = el.cerca.value; aggiornaCercaX(); disegnaLista(); });
+    el.cercaX.addEventListener('click', () => {
+      el.cerca.value = ''; query = ''; aggiornaCercaX(); disegnaLista(); el.cerca.focus();
+    });
+    el.cerca.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        if (el.cerca.value) el.cercaX.click(); else el.cerca.blur();
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        const primo = el.note.querySelector('.nota');
+        if (primo) apri(primo.dataset.id);
+      }
+    });
+    el.altro.addEventListener('click', () => {
+      const aperto = el.strumenti.hidden;
+      el.strumenti.hidden = !aperto;
+      el.altro.setAttribute('aria-expanded', String(aperto));
+    });
+
+    /* ---------- eventi: editor ---------- */
+    el.testo.addEventListener('input', () => {
+      const n = trova(corrente);
+      if (!n) return;
+      n.testo = el.testo.value;
+      n.modificato = Date.now();
+      aggiornaStato();
+      clearTimeout(timerSalva);
+      timerSalva = setTimeout(() => { timerSalva = null; salva(); disegnaLista(); }, 300);
+    });
+    el.testo.addEventListener('keydown', e => {
+      if (e.key === 'Escape') { e.preventDefault(); if (desktop()) el.testo.blur(); else tornaAllaLista(); }
+    });
+    el.indietro.addEventListener('click', tornaAllaLista);
+    window.addEventListener('popstate', () => {
+      if (document.body.classList.contains('in-dettaglio')) { storiaSpinta = false; chiudiDettaglio(); }
+    });
+
+    el.fissa.addEventListener('click', () => {
+      const n = trova(corrente);
+      if (!n) return;
+      n.fissata = !n.fissata;
+      salva();
+      apri(corrente);
+      toast(n.fissata ? 'Fissato in cima all\'elenco' : 'Tolto dalla cima');
+    });
+    el.copia.addEventListener('click', async () => {
+      const t = el.testo.value;
+      if (!t.trim()) { toast('Niente da copiare'); return; }
+      try {
+        await navigator.clipboard.writeText(t);
+        toast('Testo copiato');
+      } catch (e) {
+        el.testo.select();
+        const ok = document.execCommand && document.execCommand('copy');
+        toast(ok ? 'Testo copiato' : 'Copia non riuscita');
+      }
+    });
+    if (navigator.share) {
+      el.condividi.hidden = false;
+      el.condividi.addEventListener('click', () => {
+        const n = trova(corrente);
+        if (!n || !n.testo.trim()) { toast('Niente da condividere'); return; }
+        navigator.share({ title: titoloDi(n) || 'Appunto', text: n.testo }).catch(() => { /* annullato dall'utente */ });
+      });
+    }
+    el.elimina.addEventListener('click', () => {
+      const n = trova(corrente);
+      if (!n) return;
+      if (!n.testo.trim()) { corrente = null; stato.note = stato.note.filter(x => x.id !== n.id); salva(); tornaAllaLista(); return; }
+      mostraConferma();
+    });
+    el.confermaNo.addEventListener('click', () => { nascondiConferma(); el.testo.focus(); });
+    el.confermaSi.addEventListener('click', () => {
+      const n = trova(corrente);
+      if (!n) return;
+      salvaSubito();
+      const indice = stato.note.indexOf(n);
+      stato.note.splice(indice, 1);
+      salva();
+      corrente = null;
+      tornaAllaLista();
+      toast('Appunto eliminato', 'Annulla', () => {
+        stato.note.splice(Math.min(indice, stato.note.length), 0, n);
+        salva();
+        disegnaLista();
+      });
+    });
+
+    /* ---------- backup ---------- */
+    el.esporta.addEventListener('click', () => {
+      salvaSubito();
+      if (!stato.note.length) { toast('Nessun appunto da esportare'); return; }
+      const contenuto = JSON.stringify({ app: 'bozza-rapida', versione: 1, esportato: new Date().toISOString(), note: stato.note }, null, 2);
+      const blob = new Blob([contenuto], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'bozza-rapida-' + new Date().toISOString().slice(0, 10) + '.json';
+      document.body.append(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+      toast('Backup scaricato');
+    });
+    el.importa.addEventListener('click', () => el.file.click());
+    el.file.addEventListener('change', () => {
+      const f = el.file.files[0];
+      if (!f) return;
+      const lettore = new FileReader();
+      lettore.onload = () => {
+        try {
+          const d = JSON.parse(lettore.result);
+          const note = Array.isArray(d) ? d : d && d.note;
+          if (!Array.isArray(note)) throw new Error('formato');
+          let nuove = 0, aggiornate = 0;
+          for (const x of note) {
+            if (!x || typeof x.testo !== 'string') continue;
+            const n = {
+              id: typeof x.id === 'string' && x.id ? x.id : nuovoId(),
+              testo: x.testo, fissata: !!x.fissata,
+              creato: Number(x.creato) || Date.now(), modificato: Number(x.modificato) || Date.now(),
+            };
+            const esistente = trova(n.id);
+            if (!esistente) { stato.note.push(n); nuove++; }
+            else if (n.modificato > esistente.modificato) { Object.assign(esistente, n); aggiornate++; }
+          }
+          salva();
+          disegnaLista();
+          if (corrente) apri(corrente);
+          toast('Importati: ' + nuove + (nuove === 1 ? ' nuovo' : ' nuovi') + ', ' + aggiornate + (aggiornate === 1 ? ' aggiornato' : ' aggiornati'));
+        } catch (e) {
+          toast('File non valido: serve un backup di Bozza Rapida');
+        }
+        el.file.value = '';
+      };
+      lettore.onerror = () => toast('Impossibile leggere il file');
+      lettore.readAsText(f);
+    });
+
+    /* ---------- globali ---------- */
+    document.addEventListener('keydown', e => {
+      const inCampo = /^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName);
+      if (e.key === '/' && !inCampo) { e.preventDefault(); el.cerca.focus(); }
+    });
+    document.addEventListener('visibilitychange', () => { if (document.hidden) salvaSubito(); });
+    window.addEventListener('pagehide', salvaSubito);
+    setInterval(() => {
+      if (document.hidden || el.note.contains(document.activeElement)) return;
+      disegnaLista();
+      aggiornaStato();
+    }, 60000);
+
+    disegnaLista();
+  </script>
+</body>
+</html>
