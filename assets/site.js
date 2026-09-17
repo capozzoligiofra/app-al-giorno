@@ -61,7 +61,7 @@
   function matches(app) {
     if (state.category && app.category !== state.category) return false;
     if (!state.query) return true;
-    const hay = [app.title, app.description, app.tags.join(" "), CATEGORY_LABELS[app.category] || app.category, app.request || ""].join(" ").toLowerCase();
+    const hay = [app.title, app.description, app.tags.join(" "), CATEGORY_LABELS[app.category] || app.category, app.request || "", app.business?.keyword || "", (app.business?.keywords || []).join(" ")].join(" ").toLowerCase();
     return state.query.split(/\s+/).every(w => hay.includes(w));
   }
 
@@ -72,6 +72,7 @@
     const badges = [el("span", { class: "badge cat" }, CATEGORY_LABELS[app.category] || app.category)];
     if (app.source === "richiesta") badges.push(el("span", { class: "badge req", title: app.request || "" }, "su richiesta"));
     if (app.status === "bozza") badges.push(el("span", { class: "badge draft" }, "bozza"));
+    if (app.business?.keyword) badges.push(el("span", { class: "badge kw", title: "Ricerca a cui risponde" }, `🔎 ${app.business.keyword}`));
     if (app.version > 1) badges.push(el("span", { class: "badge", title: (app.changelog || []).join("\n") }, `v${app.version}`));
     if (d.layout) badges.push(el("span", { class: "badge design", title: `layout ${d.layout} · palette ${d.palette} · font ${d.font}` }, `${d.layout} · ${d.palette}`));
     for (const t of app.tags) badges.push(el("span", { class: "badge" }, t));

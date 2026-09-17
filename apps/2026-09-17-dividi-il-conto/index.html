@@ -4,8 +4,38 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#2f7d5a">
-  <title>Dividi il Conto — spese di gruppo</title>
-  <meta name="description" content="Registra le spese di un gruppo (cena, viaggio, casa) e scopri chi deve dare quanto a chi, con il minimo numero di pagamenti.">
+  <title>Dividi il Conto: dividere le spese tra amici online gratis</title>
+  <meta name="description" content="Dividere le spese tra amici senza registrazione: inserisci chi ha pagato cosa e scopri subito chi deve dare quanto a chi, con il minimo di pagamenti.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-17-dividi-il-conto/">
+  <meta property="og:title" content="Dividi il Conto: dividere le spese tra amici online gratis">
+  <meta property="og:description" content="Chi ha pagato cosa, chi deve dare quanto a chi: calcolo immediato, senza account, funziona anche offline.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-17-dividi-il-conto/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Dividi il Conto",
+    "description": "Calcolatore gratuito per dividere le spese tra amici: registra chi ha pagato e ottieni chi deve dare quanto a chi con il minimo numero di pagamenti.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-17-dividi-il-conto/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Come si dividono le spese tra amici in modo equo?", "acceptedAnswer": { "@type": "Answer", "text": "Si sommano tutte le spese, si calcola la quota di ciascuno in base alle spese a cui ha partecipato e si confronta con quanto ha effettivamente pagato: chi ha pagato più della sua quota è in credito, chi meno è in debito. Il calcolatore fa questo automaticamente." } },
+      { "@type": "Question", "name": "Serve registrarsi o installare un'app?", "acceptedAnswer": { "@type": "Answer", "text": "No. Dividi il Conto funziona nel browser, anche offline, e salva i dati solo sul tuo dispositivo." } },
+      { "@type": "Question", "name": "Cosa succede se una spesa riguarda solo alcune persone?", "acceptedAnswer": { "@type": "Answer", "text": "Quando aggiungi la spesa puoi scegliere tra chi dividerla: solo quelle persone ne pagano la quota." } }
+    ]
+  }
+  </script>
   <style>
     :root {
       --bg: #f6f7f4; --surface: #fff; --text: #1c1f1a; --muted: #67705f; --line: #dfe3d9;
@@ -61,6 +91,13 @@
     .toolbar { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: flex-end; margin-top: .5rem; }
     .toast { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); background: var(--text); color: var(--bg); padding: .6rem 1rem; border-radius: 999px; font-size: .9rem; opacity: 0; transition: opacity .2s; pointer-events: none; }
     .toast.show { opacity: 1; }
+    .guida { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--line); }
+    .guida h2 { font-size: 1.4rem; margin: 0 0 .75rem; }
+    .guida h3 { font-size: 1.15rem; margin: 1.5rem 0 .5rem; }
+    .guida h4 { font-size: 1rem; margin: 1rem 0 .25rem; }
+    .guida p, .guida li { line-height: 1.6; }
+    .small { font-size: .85rem; }
+    @media print { .card:not(.settle):not([data-pro]), .guida, .toolbar, .back, .lead, [data-ad], [data-support], .mz-lock { display: none !important; } [data-pro] > :not(.mz-lock) { filter: none !important; } }
     /* mobile-first: su telefono la colonna "diviso tra" è nascosta; il desktop la mostra */
     th:nth-child(4), td:nth-child(4) { display: none; }
     @media (min-width: 700px) {
@@ -72,7 +109,7 @@
 <body>
   <div class="wrap">
     <a class="back" href="../../index.html">← Tutte le app</a>
-    <h1>Dividi il Conto</h1>
+    <h1>Dividi il Conto <small class="muted" style="font-size:.55em;font-weight:500;display:block">dividere le spese tra amici, senza registrazione</small></h1>
     <p class="lead">Aggiungi le persone, registra chi ha pagato cosa, e scopri chi deve dare quanto a chi con il minimo numero di pagamenti. Tutto resta salvato nel tuo browser.</p>
 
     <section class="card">
@@ -121,9 +158,54 @@
       </div>
       <p id="reset-confirm" class="err" hidden>Cancellare tutto? <button class="btn" type="button" id="reset-yes" style="padding:.3rem .7rem">Sì, cancella</button> <button class="btn btn-ghost" type="button" id="reset-no" style="padding:.3rem .7rem">No</button></p>
     </section>
+
+    <section class="card" data-pro="Esporta e stampa">
+      <h2>Esporta e stampa</h2>
+      <p class="muted">Scarica il conto in CSV (si apre con Excel e Fogli Google) o stampa un riepilogo pulito da condividere.</p>
+      <div class="toolbar" style="justify-content:flex-start">
+        <button class="btn" type="button" id="export-csv">Scarica CSV</button>
+        <button class="btn btn-ghost" type="button" id="print">Stampa riepilogo</button>
+      </div>
+    </section>
+
+    <div data-ad="top"></div>
+
+    <section id="guida" class="guida">
+      <h2>Come dividere le spese tra amici senza litigare</h2>
+      <p>Una cena, un weekend, una casa in affitto per le vacanze: quando si è in tanti, qualcuno anticipa la pizzeria, qualcun altro la benzina, un terzo la spesa al supermercato. A fine viaggio nessuno ricorda chi ha pagato cosa, e la conta a mente finisce in una catena di messaggi. Questo calcolatore risolve il problema in un minuto: registri ogni spesa con chi l'ha pagata e tra chi va divisa, e ottieni l'elenco esatto dei pagamenti da fare per mettere tutti in pari.</p>
+
+      <h3>Come funziona il calcolo</h3>
+      <p>Per ogni persona il calcolatore somma due cose: quanto ha <strong>pagato</strong> in totale e quanto avrebbe <strong>dovuto pagare</strong> (la sua quota di ciascuna spesa a cui ha partecipato). La differenza è il suo saldo: positivo se ha anticipato più della sua parte, negativo se deve ancora qualcosa. I saldi di tutto il gruppo sommano sempre zero.</p>
+      <p>A quel punto entra in gioco la parte utile: invece di far pagare tutti a tutti, il calcolatore abbina il debitore più grande al creditore più grande e ripete finché ogni saldo è azzerato. Il risultato è un numero di pagamenti molto inferiore a quello che verrebbe "a occhio", e ogni pagamento è tra due persone soltanto.</p>
+
+      <h3>Un esempio con i numeri</h3>
+      <p>Anna, Luca e Sara passano un weekend insieme. Anna paga la casa: 180 €. Luca paga la cena: 60 €. Sara paga la benzina: 30 €, ma solo per lei e Luca, perché Anna è arrivata in treno. Totale 270 €. Le quote: la casa vale 60 € a testa, la cena 20 € a testa, la benzina 15 € a testa per Luca e Sara. Anna doveva 80 € e ha pagato 180 €: è in credito di 100 €. Luca doveva 95 € e ha pagato 60 €: deve 35 €. Sara doveva 95 € e ha pagato 30 €: deve 65 €. Risultato: Luca dà 35 € ad Anna, Sara dà 65 € ad Anna. Due pagamenti, e tutti in pari.</p>
+
+      <h3>Errori comuni</h3>
+      <ul>
+        <li><strong>Dimenticare le spese piccole.</strong> Caffè, parcheggi e biglietti sommati cambiano i saldi: registrali subito dal telefono.</li>
+        <li><strong>Dividere tutto tra tutti.</strong> Se qualcuno non ha partecipato a una spesa, togli la spunta dal suo nome: la quota si ricalcola.</li>
+        <li><strong>Arrotondare a mano.</strong> I centesimi che non si dividono vengono assegnati automaticamente, così il totale torna sempre.</li>
+      </ul>
+
+      <h3>Domande frequenti</h3>
+      <h4>Serve registrarsi o installare un'app?</h4>
+      <p>No. Funziona nel browser, anche senza connessione, e i dati restano solo sul tuo dispositivo. Nessun account, nessuna email.</p>
+      <h4>Posso condividere il risultato con il gruppo?</h4>
+      <p>Sì: il bottone "Copia riepilogo" prepara un testo pronto per WhatsApp con tutte le spese e i pagamenti da fare.</p>
+      <h4>E se una persona ha pagato in una valuta diversa?</h4>
+      <p>Converti l'importo in euro prima di inserirlo, usando il cambio del giorno del pagamento: il calcolatore lavora in una sola valuta per evitare ambiguità.</p>
+      <h4>Quante persone e quante spese posso inserire?</h4>
+      <p>Non c'è un limite pratico: gruppi di 10–15 persone con decine di spese si gestiscono senza problemi.</p>
+
+      <div data-ad="bottom"></div>
+      <div data-support></div>
+      <p class="muted small">Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a> · Vedi anche <a href="../2026-09-17-mance-e-conto/">Mance e Conto</a> per dividere il conto al ristorante.</p>
+    </section>
   </div>
   <div id="toast" class="toast" role="status"></div>
 
+  <script src="../../assets/monetize.js"></script>
   <script>
     // Modello dati (localStorage "dividi-il-conto:v1"):
     //   { people: [{id, name}], expenses: [{id, desc, amount(cent), payer(id), among:[id...]}] }
@@ -305,6 +387,27 @@
           ...(s.length ? s.map(x => `- ${nameOf(x.from)} → ${nameOf(x.to)}: ${fmt(x.amount)}`) : ["- tutti in pari"])];
         try { await navigator.clipboard.writeText(lines.join("\n")); toast("Riepilogo copiato"); }
         catch (_) { toast("Impossibile copiare: seleziona e copia a mano"); }
+      });
+
+      // ---- Pro: esporta e stampa ----
+      function csvEscape(v) { const s = String(v); return /[";\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; }
+      $("#export-csv").addEventListener("click", () => {
+        if (!window.Monetize?.isPro()) { window.Monetize?.unlock(); return; }
+        const b = balances(), s = settlements(b);
+        const rows = [["Sezione", "Descrizione", "Pagato da", "Importo", "Diviso tra"]];
+        for (const e of state.expenses) rows.push(["Spesa", e.desc, nameOf(e.payer), (e.amount / 100).toFixed(2).replace(".", ","), e.among.map(nameOf).join(" + ")]);
+        for (const p of state.people) rows.push(["Saldo", p.name, "", ((b[p.id] || 0) / 100).toFixed(2).replace(".", ","), ""]);
+        for (const x of s) rows.push(["Pagamento", `${nameOf(x.from)} → ${nameOf(x.to)}`, "", (x.amount / 100).toFixed(2).replace(".", ","), ""]);
+        const csv = "\uFEFF" + rows.map(r => r.map(csvEscape).join(";")).join("\r\n");
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+        a.download = "dividi-il-conto.csv"; a.click();
+        setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+        toast("CSV scaricato");
+      });
+      $("#print").addEventListener("click", () => {
+        if (!window.Monetize?.isPro()) { window.Monetize?.unlock(); return; }
+        window.print();
       });
 
       $("#reset").addEventListener("click", () => { $("#reset-confirm").hidden = false; });

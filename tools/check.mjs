@@ -15,7 +15,7 @@ const ALLOWED_FILES = new Set(["index.html", "app.json", "README.md"]);
 // Pattern che indicano dipendenze o traffico verso l'esterno. Ognuno: [regex, messaggio].
 const FORBIDDEN = [
   [/<script[^>]+src\s*=\s*["']?\s*(https?:)?\/\//i, "<script src> verso URL esterno"],
-  [/<link[^>]+href\s*=\s*["']?\s*(https?:)?\/\//i, "<link href> verso URL esterno"],
+  [/<link(?![^>]+rel\s*=\s*["'](canonical|alternate|license|me)["'])[^>]+href\s*=\s*["']?\s*(https?:)?\/\//i, "<link href> verso URL esterno (ammesso solo rel=canonical/alternate)"],
   [/@import\s+(url\()?\s*["']?(https?:)?\/\//i, "@import CSS remoto"],
   [/url\(\s*["']?(https?:)?\/\/[^)]*\)/i, "url() CSS verso risorsa remota"],
   [/<(img|iframe|video|audio|source|embed|object)[^>]+(src|data)\s*=\s*["']?\s*(https?:)?\/\//i, "media/iframe remoto"],
@@ -45,6 +45,54 @@ const MOBILE = [
   [/@media[^{]*max-width\s*:\s*(1[0-9]{3}|[5-9][0-9]{2})px/i, "media query max-width per desktop: progetta mobile-first e usa min-width"],
   [/font-size\s*:\s*(1[0-3]|[0-9])px/i, "font-size sotto i 14px: illeggibile su telefono"],
 ];
+
+// SEO e monetizzazione (vedi CLAUDE.md): obbligatori per le app con blocco `business`.
+const BUSINESS = [
+  [/<meta[^>]+name\s*=\s*["']description["'][^>]+content\s*=\s*["'][^"']{120,170}["']/i, "meta description mancante o fuori misura (120–160 caratteri)"],
+  [/<link[^>]+rel\s*=\s*["']canonical["'][^>]+href\s*=\s*["']https:\/\/[^"']+\/apps\/[a-z0-9-]+\/?["']/i, "manca <link rel=\"canonical\"> con l'URL pubblico dell'app"],
+  [/<meta[^>]+property\s*=\s*["']og:title["']/i, "manca og:title"],
+  [/<meta[^>]+property\s*=\s*["']og:description["']/i, "manca og:description"],
+  [/<script[^>]+type\s*=\s*["']application\/ld\+json["'][^>]*>[\s\S]*?"@type"\s*:\s*"WebApplication"/i, "manca il JSON-LD WebApplication"],
+  [/<h1[\s>]/i, "manca un <h1>"],
+  [/<section[^>]+id\s*=\s*["']guida["']/i, 'manca <section id="guida"> con la guida testuale'],
+  [/<script[^>]+src\s*=\s*["']\.\.\/\.\.\/assets\/monetize\.js["']/i, "manca <script src=\"../../assets/monetize.js\">"],
+  [/data-ad=/i, "manca almeno un segnaposto data-ad"],
+  [/data-support/i, "manca il segnaposto data-support"],
+  [/data-pro=/i, "manca almeno una funzione Pro (data-pro)"],
+  [/\.\.\/\.\.\/privacy\.html/, "manca il link alla privacy (../../privacy.html)"],
+];
+const MIN_GUIDE_WORDS = 350;
+
+function visibleWords(html) {
+  const text = html
+    .replace(/<script[\s\S]*?<\/script>/gi, " ").replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, " ").replace(/&[a-z]+;/gi, " ");
+  return text.split(/\s+/).filter(w => /[a-zà-ú]{2,}/i.test(w)).length;
+}
+
+function businessProblems(meta, html) {
+  if (!meta?.business) return [];
+  const problems = [];
+  for (const [re, msg] of BUSINESS) if (!re.test(html)) problems.push(msg);
+  const words = visibleWords(html);
+  if (words < MIN_GUIDE_WORDS) problems.push(`testo visibile troppo scarso: ${words} parole (minimo ${MIN_GUIDE_WORDS}: guida, esempi, FAQ)`);
+  const kw = meta.business.keyword?.toLowerCase();
+  if (kw) {
+    const title = (html.match(/<title>([^<]*)<\/title>/i) || [])[1] || "";
+    const h1 = (html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i) || [])[1] || "";
+    const strip = (t) => t.replace(/<[^>]+>/g, "").toLowerCase();
+    const first = kw.split(/\s+/)[0];
+    if (!strip(title).includes(first)) problems.push(`il <title> non contiene la keyword ("${kw}")`);
+    if (!strip(h1).includes(first)) problems.push(`l'<h1> non contiene la keyword ("${kw}")`);
+    if (title.length > 65) problems.push(`<title> troppo lungo (${title.length} caratteri, max 60–65)`);
+  }
+  // Ogni funzione Pro dichiarata deve avere il suo data-pro
+  for (const f of meta.business.pro || []) {
+    const re = new RegExp(`data-pro\\s*=\\s*["']${f.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}["']`, "i");
+    if (!re.test(html)) problems.push(`funzione Pro dichiarata ma senza <section data-pro="${f}">`);
+  }
+  return problems;
+}
 
 // Design: le scelte devono differire da quelle delle app precedenti (vedi CLAUDE.md, DESIGN).
 function designProblems(meta, folder) {
@@ -84,6 +132,7 @@ export function checkApp(dir) {
     catch (e) { problems.push(`app.json non è JSON valido: ${e.message}`); }
   }
   problems.push(...designProblems(meta, folder));
+  if (meta && !meta.business) console.warn(`  (avviso) ${folder}: app senza blocco "business" — modello precedente; va convertita (vedi CLAUDE.md, MERCATO)`);
 
   const htmlPath = join(dir, "index.html");
   if (!existsSync(htmlPath)) { problems.push("index.html mancante"); return problems; }
@@ -92,6 +141,7 @@ export function checkApp(dir) {
   const html = readFileSync(htmlPath, "utf8");
 
   for (const [re, msg] of REQUIRED) if (!re.test(html)) problems.push(msg);
+  problems.push(...businessProblems(meta, html));
   for (const [re, msg] of MOBILE) {
     const m = html.match(re);
     if (m) problems.push(`${msg} (riga ${html.slice(0, m.index).split("\n").length})`);

@@ -17,6 +17,31 @@ export const CATEGORIES = [
   "calcolatori-convertitori", "testo-scrittura",
 ];
 const SOURCES = ["richiesta", "autonoma"];
+const MONETIZATION = ["adsense", "affiliate", "pro", "support"];
+const OUT_SITEMAP = join(ROOT, "sitemap.xml");
+const OUT_ROBOTS = join(ROOT, "robots.txt");
+
+function readConfig() {
+  try { return JSON.parse(readFileSync(join(ROOT, "config.json"), "utf8")); } catch { return {}; }
+}
+
+// Valida il blocco business (obbligatorio per le app create dopo il cambio di modello).
+export function validateBusiness(b) {
+  const errors = [];
+  if (!b || typeof b !== "object") return [`"business" mancante: serve keyword, intent, target, edge, monetization, pro (vedi CLAUDE.md, MERCATO)`];
+  const str = (k, max) => {
+    if (typeof b[k] !== "string" || !b[k].trim()) errors.push(`"business.${k}" mancante`);
+    else if (max && b[k].length > max) errors.push(`"business.${k}" supera ${max} caratteri`);
+  };
+  str("keyword", 80); str("intent", 300); str("target", 200); str("edge", 300);
+  if (typeof b.keyword === "string" && b.keyword !== b.keyword.toLowerCase()) errors.push(`"business.keyword" deve essere in minuscolo`);
+  if (!Array.isArray(b.keywords) || b.keywords.length < 2 || b.keywords.length > 5 || !b.keywords.every(k => typeof k === "string")) errors.push(`"business.keywords" deve avere 2–5 varianti`);
+  if (!Array.isArray(b.competitors) || b.competitors.length < 1 || b.competitors.length > 4) errors.push(`"business.competitors" deve avere 1–4 voci`);
+  if (!Array.isArray(b.monetization) || !b.monetization.length || !b.monetization.every(m => MONETIZATION.includes(m))) errors.push(`"business.monetization" deve essere un sottoinsieme non vuoto di ${MONETIZATION.join(", ")}`);
+  if (!Array.isArray(b.pro) || b.pro.length < 1 || b.pro.length > 4 || !b.pro.every(k => typeof k === "string")) errors.push(`"business.pro" deve elencare 1–4 funzioni Pro implementate`);
+  if (b.affiliate !== undefined && !(Array.isArray(b.affiliate) && b.affiliate.every(a => a && typeof a.t === "string" && typeof a.q === "string"))) errors.push(`"business.affiliate" deve essere un array di { t, q }`);
+  return errors;
+}
 const STATUSES = ["pronta", "bozza"];
 const SLUG_RE = /^\d{4}-\d{2}-\d{2}-[a-z0-9]+(?:-[a-z0-9]+)*$/;
 export const DESIGN = {
@@ -50,6 +75,7 @@ export function validateMeta(meta, folderName) {
   if (meta.status !== undefined && !STATUSES.includes(meta.status)) errors.push(`"status" deve essere ${STATUSES.join(" | ")}`);
   if (meta.version !== undefined && !(Number.isInteger(meta.version) && meta.version >= 1)) errors.push(`"version" deve essere un intero >= 1`);
   if (meta.changelog !== undefined && !(Array.isArray(meta.changelog) && meta.changelog.every(c => typeof c === "string"))) errors.push(`"changelog" deve essere un array di stringhe`);
+  if (meta.business !== undefined) errors.push(...validateBusiness(meta.business));
   if (!meta.design || typeof meta.design !== "object") errors.push(`"design" mancante: serve { layout, palette, font } (vedi CLAUDE.md, sezione DESIGN)`);
   else for (const k of Object.keys(DESIGN)) {
     if (!DESIGN[k].includes(meta.design[k])) errors.push(`"design.${k}" non valido: ${meta.design[k]} (ammessi: ${DESIGN[k].join(", ")})`);
@@ -92,6 +118,11 @@ export function build() {
       version: meta.version ?? 1,
       changelog: meta.changelog ?? [],
       design: { layout: meta.design.layout, palette: meta.design.palette, font: meta.design.font },
+      business: meta.business ? {
+        keyword: meta.business.keyword, keywords: meta.business.keywords, intent: meta.business.intent,
+        target: meta.business.target, edge: meta.business.edge, monetization: meta.business.monetization,
+        pro: meta.business.pro, affiliate: meta.business.affiliate || [],
+      } : null,
       size: statSync(htmlPath).size,
     });
   }
@@ -110,8 +141,21 @@ export function build() {
   };
   const text = JSON.stringify(catalog, null, 2);
   writeFileSync(OUT, text + "\n");
+  writeSeoFiles(apps);
   writeFileSync(OUT_JS, "// GENERATO da tools/build.mjs — non modificare a mano.\nwindow.__APPS__ = " + text + ";\n");
   return catalog;
+}
+
+// sitemap.xml e robots.txt per il sito pubblico (base URL in config.json → site_url).
+function writeSeoFiles(apps) {
+  const base = (readConfig().site_url || "").replace(/\/+$/, "");
+  if (!base) return;
+  const urls = [`${base}/`, `${base}/privacy.html`, ...apps.filter(a => a.status !== "bozza").map(a => `${base}/apps/${a.slug}/`)];
+  const lastmod = (a) => a ? a.date : new Date().toISOString().slice(0, 10);
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
+    urls.map((u, i) => `  <url><loc>${u}</loc><lastmod>${lastmod(i >= 2 ? apps[i - 2] : null)}</lastmod></url>`).join("\n") + `\n</urlset>\n`;
+  writeFileSync(OUT_SITEMAP, xml);
+  writeFileSync(OUT_ROBOTS, `User-agent: *\nAllow: /\nDisallow: /tools/\nSitemap: ${base}/sitemap.xml\n`);
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

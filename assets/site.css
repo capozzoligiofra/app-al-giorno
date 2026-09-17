@@ -167,6 +167,9 @@ main { padding: 0 16px; }
 .request-list .done { color: var(--muted); }
 .request-list .none { color: var(--muted); font-style: italic; }
 
+.foot { padding: 2rem 16px 0; text-align: center; }
+.badge.kw { color: var(--text); background: color-mix(in srgb, var(--accent) 18%, transparent); border-color: transparent; }
+
 /* barra in basso */
 .bottom-nav {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 5;

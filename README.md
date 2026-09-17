@@ -42,6 +42,31 @@ un solo file) e `tools/build.mjs` (rigenera `apps.json`), poi committa e pusha.
 Per generare un'app a mano: apri Claude Code in questa cartella e scrivi
 "esegui la PROCEDURA GENERAZIONE di CLAUDE.md".
 
+## Monetizzazione (dal 17/09/2026 ogni app nasce per guadagnare)
+
+Il modello è in `CLAUDE.md` (sezioni MERCATO, SEO, MONETIZZAZIONE): ogni app risponde a una
+ricerca reale su Google, ha una guida testuale indicizzabile e gli agganci di guadagno. Gli
+agganci sono tutti in **`assets/monetize.js`**: finché i campi di `CONFIG` sono vuoti non
+compare nulla. Da fare una volta sola, quando hai gli account:
+
+| Canale | Cosa serve | Dove metterlo |
+|---|---|---|
+| Pubblicità | Account [Google AdSense](https://adsense.google.com) approvato per `capozzoligiofra.github.io` (serve traffico e contenuti: aspetta di avere 10–15 app). Attiva in AdSense la "Privacy & messaging" per il consenso UE. | `CONFIG.adsense.client` = `ca-pub-…` |
+| Affiliazione | [Amazon Associates](https://programma-affiliazione.amazon.it) (gratis; richiede 3 vendite nei primi 180 giorni) | `CONFIG.affiliate.amazonTag` = `tuotag-21` |
+| Donazioni | Pagina [Ko-fi](https://ko-fi.com) o link PayPal.me | `CONFIG.support.url` |
+| Pass Pro | Un prodotto su [Gumroad](https://gumroad.com) o Ko-fi Shop con consegna delle chiavi | `CONFIG.pro.buyUrl`, `CONFIG.pro.price` |
+
+**Chiavi Pass Pro**: `node tools/chiavi.mjs 20` genera 20 chiavi (formato `AAG-XXXX-XXXX-XXXX`),
+le salva in `chiavi-pro.txt` (ignorato da git: conservale nel gestore password) e aggiunge i
+loro hash a `assets/monetize.js`. Carica le chiavi su Gumroad come "license keys" o consegnale
+a mano; una chiave sblocca le funzioni Pro di tutte le app su quel dispositivo. La verifica è
+lato client: è onesta ma non inviolabile, adatta a un prodotto da pochi euro.
+
+`privacy.html` è l'informativa richiesta da AdSense e dal programma Amazon; `sitemap.xml` e
+`robots.txt` vengono rigenerati da `tools/build.mjs`. Registra il sito su
+[Google Search Console](https://search.google.com/search-console) e invia la sitemap: è gratis
+ed è l'unico modo per vedere quali ricerche portano visite.
+
 ## Se `git push` fallisce con "SSL certificate problem"
 
 Su alcuni PC Windows con antivirus/proxy che ispezionano HTTPS, git non trova il certificato.

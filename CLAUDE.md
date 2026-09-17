@@ -7,6 +7,12 @@ Questo repository è una fabbrica automatica di piccole applicazioni web. Ogni e
 Principi: zero dipendenze esterne, zero servizi a pagamento, codice genuino e leggibile,
 UI in italiano, app **davvero utili** (non demo vistose).
 
+**Obiettivo (dal 2026-09-17): ogni app è pensata per monetizzare.** Non "un'app carina", ma un
+tool che risponde a una ricerca reale che le persone fanno su Google in italiano, che si posiziona,
+che tiene l'utente sulla pagina e che ha agganci di guadagno (pubblicità, affiliazione, Pass Pro,
+donazioni). Vedi MERCATO, SEO e MONETIZZAZIONE. Un'app senza una keyword con domanda reale
+non va costruita.
+
 ## PROCEDURA GENERAZIONE
 
 Esegui i passi in ordine. Non saltarne nessuno.
@@ -24,13 +30,16 @@ Esegui i passi in ordine. Non saltarne nessuno.
    Se non ci sono richieste aperte, inventa tu (`source: "autonoma"`).
    Leggi sempre anche `preferenze.md`: sono indicazioni permanenti dell'utente e prevalgono
    su questo file in caso di conflitto.
-3. **Inventa (solo se serve)**: guarda prima `idee.md`: se contiene idee, prendi la **prima**
-   e rimuovila dal file. Altrimenti leggi `apps.json`, conta le app per categoria, scegli la
-   categoria **meno popolata** tra quelle in CATEGORIE, proponi 5 idee, scarta quelle simili a
-   titoli/tag già presenti, scegli la più utile nella vita quotidiana. Varia anche il tipo di
-   interazione (form, canvas, tabella, timer, editor, quiz, calcolo...).
-   In ogni caso, **a fine esecuzione** `idee.md` deve contenere 5 idee aperte: aggiungine di
-   nuove (una riga `- [ ] Titolo — una frase`) finché non sono 5. L'utente le approva dal sito.
+3. **Ricerca di mercato (sempre, anche con una richiesta)**: vedi MERCATO. Se non c'è una
+   richiesta, guarda prima `idee.md`: prendi la **prima** idea e rimuovila dal file. Altrimenti
+   individua tu una nicchia. In entrambi i casi, prima di scrivere codice, definisci il blocco
+   `business` (keyword principale, intento, target, concorrenti, perché il nostro tool vince,
+   canali di guadagno, funzioni Pro). Se hai WebSearch/WebFetch disponibili, usali per verificare
+   che la ricerca esista davvero e per guardare i primi 3 risultati concorrenti; se non li hai,
+   ragiona su ricerche che conosci essere frequenti (fisco, casa, salute, soldi, burocrazia,
+   scuola, auto, viaggi) e scegli la più specifica possibile.
+   **A fine esecuzione** `idee.md` deve contenere 5 idee aperte, ognuna già con la keyword:
+   `- [ ] Titolo — keyword: "ricerca esatta" — perché conviene (una frase)`.
 3b. **Scegli il design** (obbligatorio, vedi DESIGN): leggi il campo `design` delle ultime 4
    app in `apps.json` e scegli `layout`, `palette` e `font` in modo che **nessuno dei tre**
    coincida con l'app precedente e che `layout` e `palette` non compaiano nelle ultime 4.
@@ -53,7 +62,11 @@ Esegui i passi in ordine. Non saltarne nessuno.
    - usabile davvero: stato vuoto gestito, validazione input, tastiera (Enter/Esc),
      nessun `alert()`/`confirm()`/`prompt()`, nessun errore in console;
    - un breve link "← Tutte le app" in alto che punta a `../../index.html`;
-   - dimensione massima 300 KB.
+   - dimensione massima 300 KB;
+   - **SEO e monetizzazione** (vedi le sezioni): meta description, canonical, Open Graph,
+     JSON-LD `WebApplication`, guida testuale sotto il tool (≥ 350 parole), FAQ, e i segnaposto
+     `data-ad`, `data-support`, `data-affiliate` (se pertinente) e almeno una funzione `data-pro`,
+     con `<script src="../../assets/monetize.js"></script>` in fondo al body, prima dello script dell'app.
 6. **Verifica**: `node tools/check.mjs apps/YYYY-MM-DD-slug` poi `node tools/build.mjs`.
    Se uno dei due fallisce, correggi e ripeti finché entrambi terminano con exit code 0.
 7. **Chiudi la richiesta**: se hai usato una riga di `richieste.md`, trasformala da
@@ -79,7 +92,18 @@ Esegui i passi in ordine. Non saltarne nessuno.
   "status": "pronta",
   "version": 1,
   "changelog": [],
-  "design": { "layout": "card-stack", "palette": "verde-bosco", "font": "sans-geometrico" }
+  "design": { "layout": "card-stack", "palette": "verde-bosco", "font": "sans-geometrico" },
+  "business": {
+    "keyword": "dividere le spese tra amici",
+    "keywords": ["calcolo spese di gruppo", "chi deve dare quanto a chi", "dividere il conto della vacanza"],
+    "intent": "Chi torna da una vacanza/cena di gruppo e vuole sapere subito chi paga chi, senza registrarsi a Splitwise.",
+    "target": "Gruppi di amici e coinquilini, 20-45 anni, da telefono.",
+    "competitors": ["Splitwise (richiede account)", "Tricount", "calcolatori generici sui blog"],
+    "edge": "Zero registrazione, funziona offline, risultato in 30 secondi, copia-riepilogo per WhatsApp.",
+    "monetization": ["adsense", "pro", "support"],
+    "pro": ["Esporta in PDF/CSV", "Più gruppi salvati", "Valute diverse"],
+    "affiliate": []
+  }
 }
 ```
 
@@ -93,6 +117,76 @@ Esegui i passi in ordine. Non saltarne nessuno.
 - `version`: intero, parte da 1; si incrementa a ogni "migliora".
 - `changelog`: array di stringhe `"v2 (YYYY-MM-DD): cosa è cambiato"`; vuoto alla nascita.
 - `design`: obbligatorio, con `layout`, `palette`, `font` scelti dalle liste in DESIGN.
+- `business`: obbligatorio per le app nuove (vedi MERCATO). `keyword` = la ricerca principale,
+  in minuscolo, come la digiterebbe una persona; `keywords` = 2–5 varianti; `intent`, `target`,
+  `edge` = frasi brevi e concrete; `competitors` = 1–4 voci; `monetization` = sottoinsieme di
+  `adsense`, `affiliate`, `pro`, `support`; `pro` = 1–4 funzioni Pro davvero implementate;
+  `affiliate` = elenco `{ "t": "nome prodotto", "q": "ricerca amazon" }` (può essere vuoto).
+
+## MERCATO — come si sceglie cosa costruire
+
+Una app viene costruita solo se risponde a una **ricerca reale in italiano** con domanda
+ricorrente. Ordine di preferenza delle nicchie (alto valore per la pubblicità e intento chiaro):
+1. **Soldi e fisco**: calcolo TFR, netto da lordo, tassazione affitti, mutuo/rata, interessi
+   conto deposito, IMU, bollo auto, partita IVA forfettario, pensione stimata.
+2. **Casa e famiglia**: costi di un figlio/animale, consumi elettrodomestici in bolletta,
+   calcolo metri quadri/vernice/piastrelle, ISEE semplificato, scadenze e bonus.
+3. **Salute e forma**: calorie/macro, peso forma, giorni fertili, dosaggio per peso,
+   sonno, idratazione, allenamento.
+4. **Lavoro e burocrazia**: ferie/permessi, giorni lavorativi tra date, preavviso dimissioni,
+   calcolo straordinari, calendario turni, scadenze fiscali.
+5. **Auto e viaggi**: costo viaggio (carburante+pedaggi), rimborso chilometrico, fuso orario,
+   bagaglio a mano compagnie, budget vacanza.
+6. **Studio e testi**: media voti, crediti, conta parole, generatori (password, nomi, lorem),
+   convertitori.
+Evita: giochi, demo estetiche, tool troppo generici ("calcolatrice"), tutto ciò che richiede dati
+in tempo reale (cambi, meteo, prezzi) perché non possiamo chiamare API.
+
+Criteri di scelta (rispondi per iscritto nel blocco `business`): la ricerca esiste ed è
+ricorrente? l'intento è "voglio un risultato ora"? i primi risultati attuali sono articoli
+prolissi o tool con registrazione/pubblicità invasiva (→ spazio per noi)? il tool si finisce in
+una pagina, offline, senza API? ci sono almeno 1–2 funzioni Pro sensate?
+Non ripetere una keyword già coperta da un'app esistente (controlla `business.keyword` in
+`apps.json`); una keyword vicina va bene solo se l'intento è diverso.
+
+## SEO — ogni app è una pagina che deve posizionarsi
+
+- `<title>`: "{Nome tool}: {keyword con iniziale maiuscola} online gratis" (max 60 caratteri).
+- `<meta name="description">`: 120–160 caratteri, con la keyword, che promette il risultato.
+- `<link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/<slug>/">`.
+- Open Graph: `og:title`, `og:description`, `og:type=website`, `og:url` (= canonical), `og:locale=it_IT`.
+- JSON-LD `application/ld+json` con `@type: "WebApplication"`, `name`, `description`, `url`,
+  `applicationCategory`, `operatingSystem: "Any"`, `offers: { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }`,
+  `inLanguage: "it"`. Se c'è una FAQ, aggiungi anche un blocco `FAQPage`.
+- Struttura della pagina: `<h1>` con la keyword; il tool **subito** (above the fold su telefono);
+  poi `<section id="guida">` con `<h2>`: come funziona, come si calcola/legge il risultato,
+  esempi concreti con numeri, errori comuni, e una FAQ con 3–5 domande reali (`<h3>`).
+  Minimo **350 parole** di testo utile, in italiano naturale, niente riempitivo: è ciò che
+  Google e AdSense valutano.
+- Link interno "← Tutte le app" e, in fondo, link a `../../privacy.html` e a 1–2 app correlate
+  (se esistono) con anchor descrittive.
+- Niente testi nascosti, niente keyword stuffing: la keyword compare in title, h1, description,
+  primo paragrafo e 1–2 volte nella guida, poi si scrive per persone.
+
+## MONETIZZAZIONE — gli agganci nella pagina
+
+Tutto passa da `assets/monetize.js` (unico file condiviso, già scritto: non modificarlo dalle
+app). L'app mette solo segnaposto; finché l'utente non compila gli ID, non compare nulla.
+- `<div data-ad="top"></div>` subito sotto il risultato del tool (mai sopra il tool su telefono)
+  e `<div data-ad="bottom"></div>` in fondo alla guida. Non più di 2 per pagina.
+- `<div data-support></div>` in fondo alla pagina (bottone "Offrimi un caffè").
+- `<div data-affiliate data-title="Prodotti utili" data-items='[{"t":"…","q":"…"}]'></div>`
+  solo se esistono prodotti davvero pertinenti (es. Timer Pasta → pentola; calcolo vernice →
+  rullo). Mai prodotti a caso. `t` = nome mostrato, `q` = ricerca Amazon.
+- **Pro**: la versione gratuita deve essere completa e utile da sola; le funzioni Pro sono
+  extra di valore (export PDF/CSV, salvataggio di più profili/scenari, confronto tra scenari,
+  stampa, grafici avanzati, senza limiti dove il free ne ha uno ragionevole). Ogni funzione Pro
+  va **implementata davvero** e racchiusa in `<section data-pro="Nome funzione">…</section>`;
+  monetize.js la oscura finché non c'è un Pass Pro valido. Per logica JS usa
+  `window.Monetize.isPro()` o `Monetize.onPro(fn)`. Il blocco Pro deve essere visibile (oscurato)
+  vicino al risultato, così l'utente sa cosa ottiene.
+- In fondo alla pagina una riga: "Questa pagina può contenere annunci e link di affiliazione.
+  <a href="../../privacy.html">Privacy</a>".
 
 ## CATEGORIE
 
@@ -149,6 +243,8 @@ slider, toggle, stepper) e micro-interazioni. Il design deve servire il contenut
 - `richieste.md` — coda delle richieste dell'utente (nuove app, "migliora", indicazioni).
 - `idee.md` — 5 idee proposte dall'agente; l'utente le approva dal sito (diventano richieste).
 - `preferenze.md` — indicazioni permanenti dell'utente, accumulate nel tempo.
+- `assets/monetize.js` — agganci di monetizzazione condivisi (ID, Pass Pro); `privacy.html`.
+- `sitemap.xml`, `robots.txt` — GENERATI da `tools/build.mjs`.
 - `tools/` — `build.mjs` (catalogo), `check.mjs` (quality gate), `serve.mjs` (server locale).
 
 ## Stile del codice nelle app

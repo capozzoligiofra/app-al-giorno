@@ -72,6 +72,7 @@ window.__APPS__ = {
         "palette": "giallo-senape",
         "font": "rounded"
       },
+      "business": null,
       "size": 31574
     },
     {
@@ -98,6 +99,7 @@ window.__APPS__ = {
         "palette": "terracotta",
         "font": "serif-editoriale"
       },
+      "business": null,
       "size": 25244
     },
     {
@@ -124,6 +126,7 @@ window.__APPS__ = {
         "palette": "blu-notte",
         "font": "mono-tecnico"
       },
+      "business": null,
       "size": 31407
     },
     {
@@ -141,16 +144,38 @@ window.__APPS__ = {
       "source": "autonoma",
       "request": null,
       "status": "pronta",
-      "version": 2,
+      "version": 3,
       "changelog": [
-        "v2 (2026-09-17): adeguata alle regole mobile (target 44px, input 16px, safe-area, CSS mobile-first)"
+        "v2 (2026-09-17): adeguata alle regole mobile (target 44px, input 16px, safe-area, CSS mobile-first)",
+        "v3 (2026-09-17): modello business — SEO (title, description, canonical, OG, JSON-LD), guida con esempio e FAQ, agganci monetizzazione, funzione Pro Esporta e stampa"
       ],
       "design": {
         "layout": "card-stack",
         "palette": "verde-bosco",
         "font": "sans-geometrico"
       },
-      "size": 18407
+      "business": {
+        "keyword": "dividere le spese tra amici",
+        "keywords": [
+          "dividere le spese tra amici",
+          "calcolo spese di gruppo",
+          "chi deve dare quanto a chi",
+          "dividere spese vacanza"
+        ],
+        "intent": "Chi torna da una cena o vacanza di gruppo e vuole sapere subito chi paga chi, senza registrarsi a un'app.",
+        "target": "Gruppi di amici, coinquilini, famiglie in vacanza; 20-45 anni; da telefono.",
+        "edge": "Zero registrazione, funziona offline, risultato in 30 secondi con il minimo numero di pagamenti, riepilogo pronto per WhatsApp.",
+        "monetization": [
+          "adsense",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Esporta e stampa"
+        ],
+        "affiliate": []
+      },
+      "size": 26959
     },
     {
       "title": "Bozza Rapida",
@@ -174,6 +199,7 @@ window.__APPS__ = {
         "palette": "grigio-carta",
         "font": "serif-editoriale"
       },
+      "business": null,
       "size": 31326
     }
   ]
