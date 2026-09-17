@@ -8,3 +8,4 @@ Formato: `- [ ] Titolo — una frase che spiega a cosa serve`.
 - [ ] Mance e Conto — calcola mancia e divisione del conto al ristorante in tre tocchi
 - [ ] Tabelline Sfida — allenamento tabelline a tempo con punteggio e progressi salvati
 - [ ] Conta Parole — parole, caratteri e minuti di lettura di un testo, mentre lo scrivi
+- [ ] Formatta JSON — incolla del JSON, lo controlla, lo indenta e ne mostra la struttura
