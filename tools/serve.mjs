@@ -196,10 +196,11 @@ async function startGeneration(text, idea) {
   const prompt = `Sei nel repository app-al-giorno (branch main). Esecuzione MANUALE avviata dall'utente dal sito locale: ` +
     `esegui la PROCEDURA GENERAZIONE di CLAUDE.md per intero, esattamente come farebbe la routine cloud. ` +
     (brief ? `La prima riga aperta di richieste.md è il brief appena scelto dall'utente: usa quella. ` : "") +
-    `Leggi CLAUDE.md e preferenze.md, rispetta DESIGN e MOBILE (design diverso dalle app precedenti, progettata prima per telefono), ` +
+    `Leggi CLAUDE.md e preferenze.md. Fai la RICERCA DI MERCATO (MERCATO: WebSearch per verificare la keyword, WebFetch sui concorrenti) e definisci il blocco business prima del codice; ` +
+    `rispetta SEO e MONETIZZAZIONE (guida >=350 parole, segnaposto data-ad/data-support, funzione Pro implementata; riferimento apps/2026-09-17-dividi-il-conto), DESIGN e MOBILE (design diverso dalle app precedenti, progettata prima per telefono), ` +
     `lancia node tools/check.mjs e node tools/build.mjs finché passano, marca la richiesta, mantieni 5 idee in idee.md, ` +
     `poi git add -A, commit e git push origin main. Qualità prima della velocità. Alla fine riporta in una riga titolo, cartella, design e hash del commit.`;
-  const args = ["--model", "opus", "--allowedTools", "Bash", "Read", "Write", "Edit", "Glob", "Grep", "--permission-mode", "acceptEdits", "--output-format", "stream-json", "--verbose"];
+  const args = ["--model", "opus", "--allowedTools", "Bash", "Read", "Write", "Edit", "Glob", "Grep", "WebSearch", "WebFetch", "--permission-mode", "acceptEdits", "--output-format", "stream-json", "--verbose"];
   runClaude(prompt, args, (l) => { const d = describeEvent(l); if (d) logLine(d); }).then(({ code }) => {
     gen.running = false; gen.finishedAt = new Date().toISOString(); gen.ok = code === 0;
     logLine(code === 0 ? "Generazione completata" : `claude terminato con codice ${code}`);
