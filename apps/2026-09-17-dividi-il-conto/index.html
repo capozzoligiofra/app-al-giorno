@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dividi il Conto — spese di gruppo</title>
+  <meta name="description" content="Registra le spese di un gruppo (cena, viaggio, casa) e scopri chi deve dare quanto a chi, con il minimo numero di pagamenti.">
+  <style>
+    :root {
+      --bg: #f6f7f4; --surface: #fff; --text: #1c1f1a; --muted: #67705f; --line: #dfe3d9;
+      --accent: #2f7d5a; --accent-ink: #fff; --danger: #b3403a; --chip: #eaeee6; --radius: 12px;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #14171a; --surface: #1d2126; --text: #e9ece6; --muted: #9aa393; --line: #2f353b;
+        --accent: #5ec695; --accent-ink: #0d2318; --danger: #ff7b73; --chip: #272d33;
+        color-scheme: dark;
+      }
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); }
+    .wrap { max-width: 860px; margin: 0 auto; padding: 16px 20px 60px; }
+    .back { font-size: .9rem; color: var(--muted); text-decoration: none; }
+    .back:hover { color: var(--text); }
+    h1 { margin: .5rem 0 .2rem; font-size: 1.8rem; letter-spacing: -.02em; }
+    h2 { font-size: 1.1rem; margin: 0 0 .75rem; }
+    .lead { color: var(--muted); margin: 0 0 1.5rem; }
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.1rem; margin-bottom: 1rem; }
+    .row { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+    input, select, button { font: inherit; color: inherit; }
+    input[type=text], input[type=number], select {
+      padding: .55rem .75rem; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); min-width: 0;
+    }
+    input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+    .grow { flex: 1 1 140px; }
+    .btn { border: 0; cursor: pointer; padding: .55rem .9rem; border-radius: 8px; background: var(--accent); color: var(--accent-ink); font-weight: 600; }
+    .btn:disabled { opacity: .5; cursor: default; }
+    .btn-ghost { background: var(--chip); color: var(--text); font-weight: 500; }
+    .btn-icon { background: none; border: 0; cursor: pointer; color: var(--muted); padding: .2rem .4rem; border-radius: 6px; font-size: 1rem; }
+    .btn-icon:hover { color: var(--danger); background: var(--chip); }
+    .chips { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .chip { display: inline-flex; align-items: center; gap: .3rem; background: var(--chip); padding: .3rem .4rem .3rem .7rem; border-radius: 999px; font-size: .9rem; }
+    .chip .btn-icon { padding: 0 .3rem; }
+    .split { display: flex; flex-wrap: wrap; gap: .5rem 1rem; font-size: .9rem; margin-top: .5rem; }
+    .split label { display: inline-flex; align-items: center; gap: .3rem; }
+    .err { color: var(--danger); font-size: .9rem; margin: .4rem 0 0; min-height: 1.2em; }
+    .muted { color: var(--muted); }
+    .empty { color: var(--muted); font-style: italic; }
+    table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+    th, td { text-align: left; padding: .5rem .4rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { font-weight: 600; color: var(--muted); font-size: .8rem; text-transform: uppercase; letter-spacing: .04em; }
+    td.num, th.num { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .pos { color: var(--accent); font-weight: 600; }
+    .neg { color: var(--danger); font-weight: 600; }
+    .settle li { padding: .4rem 0; border-bottom: 1px solid var(--line); }
+    .settle ul { list-style: none; padding: 0; margin: 0; }
+    .settle b { font-variant-numeric: tabular-nums; }
+    .total { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; font-size: .95rem; color: var(--muted); margin-top: .75rem; }
+    .toolbar { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: flex-end; margin-top: .5rem; }
+    .toast { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); background: var(--text); color: var(--bg); padding: .6rem 1rem; border-radius: 999px; font-size: .9rem; opacity: 0; transition: opacity .2s; pointer-events: none; }
+    .toast.show { opacity: 1; }
+    @media (max-width: 480px) { .wrap { padding-inline: 14px; } th:nth-child(4), td:nth-child(4) { display: none; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="../../index.html">← Tutte le app</a>
+    <h1>Dividi il Conto</h1>
+    <p class="lead">Aggiungi le persone, registra chi ha pagato cosa, e scopri chi deve dare quanto a chi con il minimo numero di pagamenti. Tutto resta salvato nel tuo browser.</p>
+
+    <section class="card">
+      <h2>Persone</h2>
+      <form id="person-form" class="row" autocomplete="off">
+        <input id="person-name" type="text" class="grow" placeholder="Nome (es. Anna)" maxlength="30" required>
+        <button class="btn" type="submit">Aggiungi</button>
+      </form>
+      <p id="person-err" class="err"></p>
+      <div id="people" class="chips"></div>
+    </section>
+
+    <section class="card">
+      <h2>Nuova spesa</h2>
+      <form id="expense-form" autocomplete="off">
+        <div class="row">
+          <input id="exp-desc" type="text" class="grow" placeholder="Descrizione (es. Cena pizzeria)" maxlength="60" required>
+          <input id="exp-amount" type="number" inputmode="decimal" step="0.01" min="0.01" placeholder="Importo €" style="width:130px" required>
+          <select id="exp-payer" aria-label="Chi ha pagato"></select>
+        </div>
+        <div class="split" id="exp-split" aria-label="Diviso tra"></div>
+        <div class="row" style="margin-top:.6rem">
+          <button class="btn" type="submit" id="exp-submit">Aggiungi spesa</button>
+          <span id="exp-err" class="err"></span>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Spese</h2>
+      <div id="expenses"></div>
+      <div class="total"><span id="total"></span><span id="perhead"></span></div>
+    </section>
+
+    <section class="card">
+      <h2>Saldi</h2>
+      <div id="balances"></div>
+    </section>
+
+    <section class="card settle">
+      <h2>Chi paga chi</h2>
+      <div id="settlements"></div>
+      <div class="toolbar">
+        <button class="btn btn-ghost" type="button" id="copy">Copia riepilogo</button>
+        <button class="btn btn-ghost" type="button" id="reset">Nuovo conto</button>
+      </div>
+      <p id="reset-confirm" class="err" hidden>Cancellare tutto? <button class="btn" type="button" id="reset-yes" style="padding:.3rem .7rem">Sì, cancella</button> <button class="btn btn-ghost" type="button" id="reset-no" style="padding:.3rem .7rem">No</button></p>
+    </section>
+  </div>
+  <div id="toast" class="toast" role="status"></div>
+
+  <script>
+    // Modello dati (localStorage "dividi-il-conto:v1"):
+    //   { people: [{id, name}], expenses: [{id, desc, amount(cent), payer(id), among:[id...]}] }
+    // Gli importi sono in centesimi (interi) per evitare errori di arrotondamento.
+    (() => {
+      "use strict";
+      const KEY = "dividi-il-conto:v1";
+      const $ = (s) => document.querySelector(s);
+      const fmt = (cents) => (cents / 100).toLocaleString("it-IT", { style: "currency", currency: "EUR" });
+      const uid = () => (crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2));
+
+      let state = load();
+      function load() {
+        try { const s = JSON.parse(localStorage.getItem(KEY)); if (s && Array.isArray(s.people) && Array.isArray(s.expenses)) return s; } catch (_) {}
+        return { people: [], expenses: [] };
+      }
+      function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (_) {} }
+      const nameOf = (id) => (state.people.find(p => p.id === id) || { name: "?" }).name;
+
+      // ---- calcoli ----
+      function balances() {
+        const b = Object.fromEntries(state.people.map(p => [p.id, 0]));
+        for (const e of state.expenses) {
+          const among = e.among.filter(id => id in b);
+          if (!among.length) continue;
+          if (e.payer in b) b[e.payer] += e.amount;
+          // divisione equa dei centesimi: i primi `resto` partecipanti pagano 1 cent in più
+          const share = Math.floor(e.amount / among.length), rest = e.amount - share * among.length;
+          among.forEach((id, i) => { b[id] -= share + (i < rest ? 1 : 0); });
+        }
+        return b;
+      }
+      // Regolamento greedy: il maggior debitore paga il maggior creditore, finché tutto è a zero.
+      function settlements(b) {
+        const debtors = [], creditors = [];
+        for (const [id, v] of Object.entries(b)) { if (v < 0) debtors.push({ id, v: -v }); else if (v > 0) creditors.push({ id, v }); }
+        debtors.sort((a, c) => c.v - a.v); creditors.sort((a, c) => c.v - a.v);
+        const out = [];
+        let i = 0, j = 0;
+        while (i < debtors.length && j < creditors.length) {
+          const amt = Math.min(debtors[i].v, creditors[j].v);
+          out.push({ from: debtors[i].id, to: creditors[j].id, amount: amt });
+          debtors[i].v -= amt; creditors[j].v -= amt;
+          if (debtors[i].v === 0) i++;
+          if (creditors[j].v === 0) j++;
+        }
+        return out;
+      }
+
+      // ---- render ----
+      function renderPeople() {
+        const box = $("#people");
+        box.replaceChildren();
+        if (!state.people.length) { box.innerHTML = '<span class="empty">Nessuna persona ancora: aggiungi almeno due nomi.</span>'; }
+        for (const p of state.people) {
+          const chip = document.createElement("span"); chip.className = "chip";
+          chip.append(p.name);
+          const del = document.createElement("button"); del.className = "btn-icon"; del.type = "button"; del.title = "Rimuovi " + p.name; del.setAttribute("aria-label", del.title); del.textContent = "×";
+          del.onclick = () => removePerson(p.id);
+          chip.append(del); box.append(chip);
+        }
+        const sel = $("#exp-payer"); const prev = sel.value;
+        sel.replaceChildren(...state.people.map(p => new Option("Ha pagato: " + p.name, p.id)));
+        if ([...sel.options].some(o => o.value === prev)) sel.value = prev;
+        const split = $("#exp-split");
+        split.replaceChildren();
+        if (state.people.length) {
+          const lbl = document.createElement("span"); lbl.className = "muted"; lbl.textContent = "Diviso tra:"; split.append(lbl);
+          for (const p of state.people) {
+            const l = document.createElement("label");
+            const c = document.createElement("input"); c.type = "checkbox"; c.value = p.id; c.checked = true;
+            l.append(c, p.name); split.append(l);
+          }
+        }
+        $("#exp-submit").disabled = state.people.length < 2;
+      }
+
+      function renderExpenses() {
+        const box = $("#expenses");
+        if (!state.expenses.length) { box.innerHTML = '<p class="empty">Nessuna spesa registrata.</p>'; $("#total").textContent = ""; $("#perhead").textContent = ""; return; }
+        const t = document.createElement("table");
+        t.innerHTML = "<thead><tr><th>Descrizione</th><th>Pagato da</th><th class='num'>Importo</th><th>Diviso tra</th><th></th></tr></thead>";
+        const tb = document.createElement("tbody");
+        for (const e of state.expenses) {
+          const tr = document.createElement("tr");
+          const among = e.among.length === state.people.length ? "tutti" : e.among.map(nameOf).join(", ");
+          tr.innerHTML = `<td></td><td></td><td class="num"></td><td class="muted"></td><td></td>`;
+          tr.children[0].textContent = e.desc; tr.children[1].textContent = nameOf(e.payer);
+          tr.children[2].textContent = fmt(e.amount); tr.children[3].textContent = among;
+          const del = document.createElement("button"); del.className = "btn-icon"; del.type = "button"; del.textContent = "×"; del.title = "Elimina spesa"; del.setAttribute("aria-label", del.title);
+          del.onclick = () => { state.expenses = state.expenses.filter(x => x.id !== e.id); save(); renderAll(); };
+          tr.children[4].append(del); tb.append(tr);
+        }
+        t.append(tb); box.replaceChildren(t);
+        const total = state.expenses.reduce((s, e) => s + e.amount, 0);
+        $("#total").textContent = `Totale: ${fmt(total)}`;
+        $("#perhead").textContent = state.people.length ? `Media a testa: ${fmt(Math.round(total / state.people.length))}` : "";
+      }
+
+      function renderBalances(b) {
+        const box = $("#balances");
+        if (!state.people.length) { box.innerHTML = '<p class="empty">Aggiungi persone e spese per vedere i saldi.</p>'; return; }
+        const t = document.createElement("table");
+        t.innerHTML = "<thead><tr><th>Persona</th><th class='num'>Saldo</th><th>Situazione</th></tr></thead>";
+        const tb = document.createElement("tbody");
+        for (const p of state.people) {
+          const v = b[p.id] || 0;
+          const tr = document.createElement("tr");
+          tr.innerHTML = `<td></td><td class="num ${v > 0 ? "pos" : v < 0 ? "neg" : ""}"></td><td class="muted"></td>`;
+          tr.children[0].textContent = p.name;
+          tr.children[1].textContent = (v > 0 ? "+" : "") + fmt(v);
+          tr.children[2].textContent = v > 0 ? "deve ricevere" : v < 0 ? "deve dare" : "in pari";
+          tb.append(tr);
+        }
+        t.append(tb); box.replaceChildren(t);
+      }
+
+      function renderSettlements(s) {
+        const box = $("#settlements");
+        if (!state.expenses.length) { box.innerHTML = '<p class="empty">Quando ci saranno spese, qui compaiono i pagamenti da fare.</p>'; return; }
+        if (!s.length) { box.innerHTML = '<p class="empty">Siete tutti in pari 🎉</p>'; return; }
+        const ul = document.createElement("ul");
+        for (const x of s) {
+          const li = document.createElement("li");
+          li.innerHTML = `<span></span> → <span></span>: <b></b>`;
+          li.children[0].textContent = nameOf(x.from); li.children[1].textContent = nameOf(x.to); li.children[2].textContent = fmt(x.amount);
+          ul.append(li);
+        }
+        box.replaceChildren(ul);
+      }
+
+      function renderAll() {
+        renderPeople(); renderExpenses();
+        const b = balances(); renderBalances(b); renderSettlements(settlements(b));
+      }
+
+      // ---- azioni ----
+      function removePerson(id) {
+        const used = state.expenses.some(e => e.payer === id);
+        if (used) { showErr("#person-err", `${nameOf(id)} ha pagato delle spese: elimina prima quelle.`); return; }
+        state.people = state.people.filter(p => p.id !== id);
+        state.expenses.forEach(e => { e.among = e.among.filter(x => x !== id); });
+        state.expenses = state.expenses.filter(e => e.among.length);
+        showErr("#person-err", ""); save(); renderAll();
+      }
+      function showErr(sel, msg) { $(sel).textContent = msg; }
+      function toast(msg) { const t = $("#toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(toast.h); toast.h = setTimeout(() => t.classList.remove("show"), 1800); }
+
+      $("#person-form").addEventListener("submit", (ev) => {
+        ev.preventDefault();
+        const inp = $("#person-name"); const name = inp.value.trim().replace(/\s+/g, " ");
+        if (!name) return;
+        if (state.people.some(p => p.name.toLowerCase() === name.toLowerCase())) { showErr("#person-err", "C'è già una persona con questo nome."); return; }
+        state.people.push({ id: uid(), name }); showErr("#person-err", ""); save(); renderAll();
+        inp.value = ""; inp.focus();
+      });
+
+      $("#expense-form").addEventListener("submit", (ev) => {
+        ev.preventDefault();
+        const desc = $("#exp-desc").value.trim(), raw = $("#exp-amount").value.replace(",", ".");
+        const amount = Math.round(parseFloat(raw) * 100);
+        const among = [...$("#exp-split").querySelectorAll("input:checked")].map(c => c.value);
+        if (!desc) return showErr("#exp-err", "Scrivi una descrizione.");
+        if (!(amount > 0)) return showErr("#exp-err", "Inserisci un importo maggiore di zero.");
+        if (!among.length) return showErr("#exp-err", "Seleziona almeno una persona tra cui dividere.");
+        state.expenses.push({ id: uid(), desc, amount, payer: $("#exp-payer").value, among });
+        showErr("#exp-err", ""); save(); renderAll();
+        $("#exp-desc").value = ""; $("#exp-amount").value = "";
+        $("#exp-split").querySelectorAll("input").forEach(c => { c.checked = true; });
+        $("#exp-desc").focus();
+      });
+
+      $("#copy").addEventListener("click", async () => {
+        const b = balances(), s = settlements(b);
+        const total = state.expenses.reduce((x, e) => x + e.amount, 0);
+        const lines = ["Dividi il Conto — riepilogo", `Totale: ${fmt(total)}`, "", "Spese:",
+          ...state.expenses.map(e => `- ${e.desc}: ${fmt(e.amount)} (pagato da ${nameOf(e.payer)})`),
+          "", "Pagamenti da fare:",
+          ...(s.length ? s.map(x => `- ${nameOf(x.from)} → ${nameOf(x.to)}: ${fmt(x.amount)}`) : ["- tutti in pari"])];
+        try { await navigator.clipboard.writeText(lines.join("\n")); toast("Riepilogo copiato"); }
+        catch (_) { toast("Impossibile copiare: seleziona e copia a mano"); }
+      });
+
+      $("#reset").addEventListener("click", () => { $("#reset-confirm").hidden = false; });
+      $("#reset-no").addEventListener("click", () => { $("#reset-confirm").hidden = true; });
+      $("#reset-yes").addEventListener("click", () => {
+        state = { people: [], expenses: [] }; save(); renderAll(); $("#reset-confirm").hidden = true; toast("Conto azzerato");
+      });
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape") $("#reset-confirm").hidden = true; });
+
+      renderAll();
+    })();
+  </script>
+</body>
+</html>

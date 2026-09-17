@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Un'App al Giorno</title>
+  <meta name="description" content="Una nuova piccola app web ogni giorno, creata automaticamente. Sfoglia, prova, chiedi la prossima.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23e4572e'/%3E%3Ctext x='16' y='22' font-size='18' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'%3E1%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-inner">
+      <a class="brand" href="./">
+        <span class="brand-mark">1</span>
+        <span>Un'App al Giorno</span>
+      </a>
+      <nav class="top-nav">
+        <a href="#catalogo">Catalogo</a>
+        <a href="#richieste">Richieste</a>
+        <a id="repo-link" href="#" hidden target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1>Ogni giorno, un'app nuova.</h1>
+      <p class="lead">Piccole applicazioni web utili, create automaticamente da un agente AI. Un solo file ciascuna, nessuna dipendenza, nessun server. <span id="stats" class="stats"></span></p>
+    </section>
+
+    <section id="catalogo" class="catalog">
+      <div class="toolbar">
+        <label class="search">
+          <span class="sr-only">Cerca</span>
+          <input id="search" type="search" placeholder="Cerca per titolo, descrizione o tag…" autocomplete="off">
+        </label>
+        <div id="categories" class="chips" role="group" aria-label="Filtra per categoria"></div>
+        <button id="refresh" class="btn btn-ghost" type="button" title="git pull" hidden>↻ Aggiorna</button>
+      </div>
+      <p id="catalog-msg" class="msg" hidden></p>
+      <div id="grid" class="grid" aria-live="polite"></div>
+    </section>
+
+    <section id="richieste" class="requests">
+      <h2>Richieste per le prossime app</h2>
+      <p class="muted">Descrivi un'app che ti servirebbe, o un'indicazione generale ("più app per la cucina", "usa colori più vivaci"). L'agente prende la prima richiesta aperta a ogni esecuzione, ogni 5 ore.</p>
+
+      <form id="request-form" class="request-form" hidden>
+        <label for="request-text" class="sr-only">La tua richiesta</label>
+        <textarea id="request-text" rows="3" maxlength="500" placeholder="Es. Un timer per la cottura della pasta con i tempi dei formati più comuni" required></textarea>
+        <div class="form-row">
+          <span id="request-count" class="muted small">0 / 500</span>
+          <button class="btn" type="submit">Invia richiesta</button>
+        </div>
+        <p id="request-msg" class="msg" hidden></p>
+      </form>
+      <p id="request-offline" class="msg" hidden>Il sito è aperto senza il server locale: puoi aggiungere richieste modificando <a id="richieste-link" href="richieste.md">richieste.md</a> (una riga <code>- [ ] la tua idea</code>).</p>
+
+      <div class="request-lists">
+        <div>
+          <h3>In coda <span id="open-count" class="count"></span></h3>
+          <ul id="open-list" class="request-list"></ul>
+        </div>
+        <div>
+          <h3>Completate <span id="done-count" class="count"></span></h3>
+          <ul id="done-list" class="request-list"></ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap foot">
+    <p>Fatto con HTML, CSS e JavaScript e basta. Regole del gioco in <code>CLAUDE.md</code>.</p>
+  </footer>
+
+  <script src="apps.js"></script>
+  <script src="assets/site.js"></script>
+</body>
+</html>
