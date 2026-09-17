@@ -29,6 +29,11 @@ un solo file) e `tools/build.mjs` (rigenera `apps.json`), poi committa e pusha.
 Per generare un'app a mano: apri Claude Code in questa cartella e scrivi
 "esegui la PROCEDURA GENERAZIONE di CLAUDE.md".
 
+## Se `git push` fallisce con "SSL certificate problem"
+
+Su alcuni PC Windows con antivirus/proxy che ispezionano HTTPS, git non trova il certificato.
+Soluzione (una volta sola, per questo repo): `git config http.sslBackend schannel`.
+
 ## Script
 
 | Comando | Cosa fa |

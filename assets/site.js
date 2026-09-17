@@ -36,11 +36,23 @@
   const state = { catalog: null, query: "", category: null, api: false };
 
   // ---- catalogo ----------------------------------------------------------
+  // La routine cloud gira al minuto 57 delle ore 0,5,10,15,20 UTC (cron "57 */5 * * *").
+  function nextRun() {
+    const now = new Date();
+    for (let h = 0; h <= 30; h++) {
+      const d = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), h, 57));
+      if (d.getUTCHours() % 5 === 0 && d > now) return d;
+    }
+    return null;
+  }
+
   function renderStats() {
     const { apps, count } = state.catalog;
     const s = $("#stats");
-    if (!count) { s.textContent = "Il catalogo è ancora vuoto: la prima app arriva a breve."; return; }
-    s.textContent = `${count} app finora, l'ultima il ${fmtDate(apps[0].date)}.`;
+    const next = nextRun();
+    const nextText = next ? ` Prossima generazione alle ${next.toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit" })}.` : "";
+    if (!count) { s.textContent = "Il catalogo è ancora vuoto." + nextText; return; }
+    s.textContent = `${count} app finora, l'ultima il ${fmtDate(apps[0].date)}.` + nextText;
   }
 
   function renderCategories() {
