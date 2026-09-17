@@ -2,79 +2,116 @@
 <html lang="it">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#b5552b">
   <title>Piano dei Pasti — pianificazione settimanale e lista della spesa</title>
   <meta name="description" content="Pianifica pranzi e cene della settimana con le tue ricette e genera automaticamente la lista della spesa.">
   <style>
+    /* Design: layout "tabs" (barra in basso), palette "terracotta", font "serif-editoriale" per i titoli. */
     :root {
-      --bg: #f8f6f2; --surface: #fff; --text: #221d17; --muted: #6f6457; --line: #e6ded2;
-      --accent: #c4622d; --accent-ink: #fff; --danger: #b3403a; --chip: #efe8dc; --radius: 12px;
+      --bg: #fbf3ec; --surface: #fff8f2; --text: #2b1c14; --muted: #7d5f4e; --line: #ead6c6;
+      --accent: #b5552b; --accent-ink: #fff; --accent-soft: #f3d9c8; --danger: #a63a2f; --radius: 18px;
+      --nav-h: 64px;
       color-scheme: light;
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg: #17130f; --surface: #211b15; --text: #f1ebe1; --muted: #ab9d8a; --line: #362d23;
-        --accent: #e88a52; --accent-ink: #241206; --danger: #ff7b73; --chip: #2b241c;
+        --bg: #1b120d; --surface: #26190f; --text: #f5e9df; --muted: #b8977f; --line: #3d2a1e;
+        --accent: #e07a4a; --accent-ink: #1b0c05; --accent-soft: #3d2416; --danger: #ff8a7a;
         color-scheme: dark;
       }
     }
     * { box-sizing: border-box; }
-    body { margin: 0; font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); }
-    .wrap { max-width: 900px; margin: 0 auto; padding: 16px 20px 60px; }
-    .back { font-size: .9rem; color: var(--muted); text-decoration: none; }
-    .back:hover { color: var(--text); }
-    h1 { margin: .5rem 0 .2rem; font-size: 1.8rem; letter-spacing: -.02em; }
-    h2 { font-size: 1.1rem; margin: 0 0 .5rem; }
-    .lead { color: var(--muted); margin: 0 0 1.5rem; }
-    .lead-small { font-size: .9rem; margin: 0 0 .9rem; }
-    .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.1rem; margin-bottom: 1rem; }
+    body { margin: 0; min-height: 100dvh; font: 17px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); }
+    h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; font-weight: 700; letter-spacing: -.01em; }
+    .top { padding: max(12px, env(safe-area-inset-top)) 20px 0; }
+    .back { font-size: .95rem; color: var(--muted); text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
+    h1 { margin: 0 20px .25rem; font-size: 2rem; }
+    .lead { color: var(--muted); margin: 0 20px 1.25rem; font-size: 1rem; }
+    .lead-small { font-size: .95rem; margin: 0 0 .9rem; }
+    main { padding: 0 16px calc(var(--nav-h) + env(safe-area-inset-bottom) + 24px); }
+    .panel { display: none; }
+    .panel.active { display: block; }
+    .card { background: var(--surface); border-radius: var(--radius); padding: 1.15rem 1.1rem; margin-bottom: 1rem; box-shadow: 0 1px 0 var(--line), 0 10px 30px -22px rgba(60, 30, 10, .5); }
+    h2 { font-size: 1.35rem; margin: 0 0 .6rem; }
     .row { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
     input, select, button { font: inherit; color: inherit; }
     input[type=text], input[type=number], select {
-      padding: .55rem .75rem; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); min-width: 0;
+      padding: .7rem .85rem; min-height: 46px; border: 1.5px solid var(--line); border-radius: 12px; background: var(--bg); min-width: 0; font-size: 16px;
     }
     input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
     .grow { flex: 1 1 160px; }
-    .btn { border: 0; cursor: pointer; padding: .55rem .9rem; border-radius: 8px; background: var(--accent); color: var(--accent-ink); font-weight: 600; }
+    .btn { border: 0; cursor: pointer; min-height: 46px; padding: .6rem 1.1rem; border-radius: 999px; background: var(--accent); color: var(--accent-ink); font-weight: 700; }
     .btn:disabled { opacity: .5; cursor: default; }
-    .btn-ghost { background: var(--chip); color: var(--text); font-weight: 500; }
-    .btn-icon { background: none; border: 0; cursor: pointer; color: var(--muted); padding: .2rem .5rem; border-radius: 6px; font-size: 1rem; line-height: 1; }
-    .btn-icon:hover { color: var(--danger); background: var(--chip); }
-    .btn-icon.edit:hover { color: var(--accent); }
-    .ingredient-row { margin-bottom: .4rem; }
+    .btn-ghost { background: var(--accent-soft); color: var(--text); font-weight: 600; }
+    .btn-icon { background: none; border: 0; cursor: pointer; color: var(--muted); min-width: 44px; min-height: 44px; border-radius: 12px; font-size: 1.15rem; line-height: 1; }
+    .btn-icon:active { background: var(--accent-soft); }
+    .btn-icon.edit { color: var(--accent); }
+    .ingredient-row { margin-bottom: .5rem; }
     .ingredient-row input[type=text].ing-nome { flex: 2 1 160px; }
-    .ingredient-row input.ing-qta { width: 90px; }
-    .ingredient-row input.ing-unita { width: 90px; }
-    .err { color: var(--danger); font-size: .9rem; margin: .4rem 0 0; min-height: 1.2em; }
+    .ingredient-row input.ing-qta { width: 84px; }
+    .ingredient-row input.ing-unita { width: 84px; }
+    .err { color: var(--danger); font-size: .95rem; margin: .4rem 0 0; min-height: 1.2em; }
     .muted { color: var(--muted); }
     .empty { color: var(--muted); font-style: italic; margin: 0; }
     .dish-list { display: flex; flex-direction: column; gap: .6rem; }
-    .dish { border: 1px solid var(--line); border-radius: 10px; padding: .7rem .9rem; }
-    .dish-head { display: flex; justify-content: space-between; align-items: center; gap: .5rem; }
-    .dish-head b { font-size: 1rem; }
-    .dish-ing { color: var(--muted); font-size: .9rem; margin: .3rem 0 0; }
-    .table-wrap { overflow-x: auto; }
-    table { width: 100%; border-collapse: collapse; font-size: .95rem; }
-    th, td { text-align: left; padding: .45rem .4rem; border-bottom: 1px solid var(--line); vertical-align: middle; }
-    th { font-weight: 600; color: var(--muted); font-size: .78rem; text-transform: uppercase; letter-spacing: .04em; }
-    td select { width: 100%; }
+    .dish { border: 1.5px solid var(--line); border-radius: 14px; padding: .6rem .4rem .6rem .9rem; }
+    .dish-head { display: flex; justify-content: space-between; align-items: center; gap: .25rem; }
+    .dish-head b { font-size: 1.05rem; font-family: Georgia, serif; }
+    .dish-ing { color: var(--muted); font-size: .95rem; margin: .3rem 0 0; }
+    .days { display: grid; gap: .75rem; }
+    .day { border-radius: 14px; background: var(--bg); padding: .8rem .9rem; border: 1.5px solid var(--line); }
+    .day h3 { margin: 0 0 .5rem; font-size: 1.15rem; color: var(--accent); }
+    .meal { display: grid; grid-template-columns: 72px 1fr; align-items: center; gap: .5rem; margin-top: .4rem; }
+    .meal label { font-size: .85rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+    .meal select { width: 100%; }
     .toolbar { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: flex-end; margin-top: .75rem; }
-    .shop-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .35rem; }
-    .shop-list li { display: flex; align-items: baseline; gap: .5rem; padding: .3rem 0; border-bottom: 1px solid var(--line); }
+    .shop-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; }
+    .shop-list li { display: flex; align-items: center; gap: .75rem; min-height: 48px; padding: .25rem 0; border-bottom: 1px solid var(--line); }
+    .shop-list li label { flex: 1; display: flex; align-items: center; gap: .75rem; min-height: 44px; cursor: pointer; }
     .shop-list li.done span.name { text-decoration: line-through; color: var(--muted); }
-    .shop-list li input[type=checkbox] { margin-top: .2rem; accent-color: var(--accent); }
-    .shop-list .qty { color: var(--muted); font-size: .9rem; white-space: nowrap; }
-    .toast { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); background: var(--text); color: var(--bg); padding: .6rem 1rem; border-radius: 999px; font-size: .9rem; opacity: 0; transition: opacity .2s; pointer-events: none; }
+    .shop-list li input[type=checkbox] { width: 22px; height: 22px; accent-color: var(--accent); flex: none; }
+    .shop-list .qty { color: var(--muted); font-size: .95rem; white-space: nowrap; margin-left: auto; }
+    .tabbar { position: fixed; left: 0; right: 0; bottom: 0; display: grid; grid-template-columns: repeat(3, 1fr); background: var(--surface); border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom); z-index: 5; }
+    .tab { border: 0; background: none; min-height: var(--nav-h); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: var(--muted); font-size: .8rem; font-weight: 600; cursor: pointer; position: relative; }
+    .tab svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .tab[aria-selected="true"] { color: var(--accent); }
+    .tab .n { position: absolute; top: 8px; left: calc(50% + 8px); background: var(--accent); color: var(--accent-ink); font-size: .7rem; border-radius: 999px; padding: 0 6px; }
+    .toast { position: fixed; left: 50%; bottom: calc(var(--nav-h) + env(safe-area-inset-bottom) + 12px); transform: translateX(-50%); background: var(--text); color: var(--bg); padding: .6rem 1rem; border-radius: 999px; font-size: .95rem; opacity: 0; transition: opacity .2s; pointer-events: none; }
     .toast.show { opacity: 1; }
-    @media (max-width: 480px) { .wrap { padding-inline: 14px; } .ingredient-row input.ing-unita { width: 70px; } .ingredient-row input.ing-qta { width: 70px; } }
+    @media (min-width: 700px) {
+      .top, h1, .lead { margin-inline: auto; max-width: 900px; padding-inline: 24px; }
+      h1 { font-size: 2.4rem; }
+      main { max-width: 948px; margin: 0 auto; padding-inline: 24px; }
+      .days { grid-template-columns: repeat(2, 1fr); }
+      .tabbar { position: sticky; top: 0; bottom: auto; border-top: 0; border-bottom: 1px solid var(--line); margin: 0 auto 1rem; max-width: 900px; border-radius: 0 0 var(--radius) var(--radius); }
+      .tab { flex-direction: row; gap: .5rem; font-size: 1rem; min-height: 56px; }
+      .tab .n { position: static; }
+      .toast { bottom: 20px; }
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
+  <header class="top">
     <a class="back" href="../../index.html">← Tutte le app</a>
-    <h1>Piano dei Pasti</h1>
-    <p class="lead">Salva le tue ricette con gli ingredienti, componi il piano dei pranzi e delle cene della settimana e ottieni subito la lista della spesa, con le quantità già sommate. Tutto resta salvato nel tuo browser.</p>
+  </header>
+  <h1>Piano dei Pasti</h1>
+  <p class="lead">Le tue ricette, il piano della settimana e la lista della spesa già sommata. Tutto resta nel tuo browser.</p>
 
+  <nav class="tabbar" role="tablist" aria-label="Sezioni">
+    <button class="tab" role="tab" id="tab-ricette" aria-controls="panel-ricette" aria-selected="true" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4z M8 4v16 M12 8h5 M12 12h5"/></svg>Ricette
+    </button>
+    <button class="tab" role="tab" id="tab-piano" aria-controls="panel-piano" aria-selected="false" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18 M8 3v4 M16 3v4"/></svg>Piano
+    </button>
+    <button class="tab" role="tab" id="tab-spesa" aria-controls="panel-spesa" aria-selected="false" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.5 11h11L21 7H7"/><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/></svg>Spesa <span class="n" id="spesa-n" hidden></span>
+    </button>
+  </nav>
+
+  <main>
+  <div class="panel active" id="panel-ricette" role="tabpanel" aria-labelledby="tab-ricette">
     <section class="card">
       <h2>Aggiungi un piatto</h2>
       <p class="lead-small muted">Inserisci nome e ingredienti di una ricetta: potrai poi usarla nel piano settimanale. Premi Invio in un campo ingrediente per aggiungerne subito un altro.</p>
@@ -98,22 +135,22 @@
       <h2>Ricettario</h2>
       <div id="dishes"></div>
     </section>
+  </div>
 
+  <div class="panel" id="panel-piano" role="tabpanel" aria-labelledby="tab-piano">
     <section class="card">
       <h2>Piano settimanale</h2>
-      <p class="lead-small muted">Scegli un piatto per ogni pranzo e cena della settimana.</p>
-      <div class="table-wrap">
-        <table id="plan-table">
-          <thead><tr><th>Giorno</th><th>Pranzo</th><th>Cena</th></tr></thead>
-          <tbody id="plan-body"></tbody>
-        </table>
-      </div>
+      <p class="lead-small muted">Scegli un piatto per ogni pranzo e cena.</p>
+      <div class="days" id="plan-body"></div>
       <div class="toolbar">
         <button class="btn btn-ghost" type="button" id="clear-plan">Svuota piano</button>
       </div>
       <p id="clear-plan-confirm" class="err" hidden>Svuotare tutto il piano settimanale? <button class="btn" type="button" id="clear-plan-yes" style="padding:.3rem .7rem">Sì, svuota</button> <button class="btn btn-ghost" type="button" id="clear-plan-no" style="padding:.3rem .7rem">No</button></p>
     </section>
 
+  </div>
+
+  <div class="panel" id="panel-spesa" role="tabpanel" aria-labelledby="tab-spesa">
     <section class="card">
       <h2>Lista della spesa</h2>
       <p class="lead-small muted">Generata automaticamente dai piatti pianificati, con le quantità sommate. Spunta ciò che hai già preso.</p>
@@ -123,6 +160,7 @@
       </div>
     </section>
   </div>
+  </main>
   <div id="toast" class="toast" role="status"></div>
 
   <script>
@@ -173,9 +211,9 @@
           const nome = document.createElement("input");
           nome.type = "text"; nome.className = "ing-nome"; nome.placeholder = "Ingrediente (es. Pomodori)"; nome.maxLength = 40; nome.value = ing.nome;
           const qta = document.createElement("input");
-          qta.type = "number"; qta.className = "ing-qta"; qta.placeholder = "Quantità"; qta.min = "0"; qta.step = "any"; qta.value = ing.quantita;
+          qta.type = "number"; qta.className = "ing-qta"; qta.placeholder = "Qtà"; qta.min = "0"; qta.step = "any"; qta.value = ing.quantita;
           const unita = document.createElement("input");
-          unita.type = "text"; unita.className = "ing-unita"; unita.placeholder = "Unità (g, pz…)"; unita.maxLength = 10; unita.value = ing.unita;
+          unita.type = "text"; unita.className = "ing-unita"; unita.placeholder = "Unità"; unita.maxLength = 10; unita.value = ing.unita;
           const del = document.createElement("button");
           del.type = "button"; del.className = "btn-icon"; del.title = "Rimuovi ingrediente"; del.setAttribute("aria-label", del.title); del.textContent = "×";
 
@@ -275,41 +313,57 @@
       }
 
       function renderPlan() {
-        const tbody = $("#plan-body");
-        tbody.replaceChildren();
+        const box = $("#plan-body");
+        box.replaceChildren();
         for (const g of GIORNI) {
-          const tr = document.createElement("tr");
-          const th = document.createElement("th"); th.scope = "row"; th.style.color = "var(--text)"; th.style.textTransform = "none"; th.style.fontSize = "1rem"; th.style.fontWeight = "600"; th.textContent = g.label;
-          tr.append(th);
+          const day = document.createElement("section"); day.className = "day";
+          const h = document.createElement("h3"); h.textContent = g.label; day.append(h);
           for (const p of PASTI) {
-            const td = document.createElement("td");
-            const sel = document.createElement("select");
-            sel.setAttribute("aria-label", `${p.label} di ${g.label}`);
+            const meal = document.createElement("div"); meal.className = "meal";
+            const id = `sel-${g.key}-${p.key}`;
+            const lab = document.createElement("label"); lab.htmlFor = id; lab.textContent = p.label;
+            const sel = document.createElement("select"); sel.id = id;
             sel.disabled = !state.piatti.length;
             sel.append(new Option(state.piatti.length ? "— nessuno —" : "Aggiungi prima un piatto", ""));
             for (const piatto of state.piatti) sel.append(new Option(piatto.nome, piatto.id));
             sel.value = state.piano[g.key][p.key] || "";
             sel.onchange = () => { state.piano[g.key][p.key] = sel.value || null; save(); renderShoppingList(); };
-            td.append(sel); tr.append(td);
+            meal.append(lab, sel); day.append(meal);
           }
-          tbody.append(tr);
+          box.append(day);
         }
       }
+
+      // ---- tab (barra in basso su mobile) ----
+      const TABS = ["ricette", "piano", "spesa"];
+      function showTab(name) {
+        for (const t of TABS) {
+          $(`#tab-${t}`).setAttribute("aria-selected", String(t === name));
+          $(`#panel-${t}`).classList.toggle("active", t === name);
+        }
+        try { localStorage.setItem(KEY + ":tab", name); } catch (_) {}
+        window.scrollTo({ top: 0 });
+      }
+      for (const t of TABS) $(`#tab-${t}`).addEventListener("click", () => showTab(t));
+      try { const t = localStorage.getItem(KEY + ":tab"); if (TABS.includes(t)) showTab(t); } catch (_) {}
 
       function renderShoppingList() {
         const box = $("#shopping-list");
         const lista = listaSpesa();
-        if (!lista.length) { box.innerHTML = '<p class="empty">Pianifica almeno un pasto qui sopra per generare la lista della spesa.</p>'; return; }
+        const daPrendere = lista.filter(v => !state.spesaFatta[v.chiave]).length;
+        const badge = $("#spesa-n"); badge.textContent = daPrendere; badge.hidden = !daPrendere;
+        if (!lista.length) { box.innerHTML = '<p class="empty">Pianifica almeno un pasto nella sezione Piano per generare la lista della spesa.</p>'; return; }
         const ul = document.createElement("ul"); ul.className = "shop-list";
         for (const v of lista) {
           const li = document.createElement("li");
           const fatto = !!state.spesaFatta[v.chiave];
           if (fatto) li.classList.add("done");
           const cb = document.createElement("input"); cb.type = "checkbox"; cb.checked = fatto;
-          cb.onchange = () => { state.spesaFatta[v.chiave] = cb.checked; save(); li.classList.toggle("done", cb.checked); };
+          cb.onchange = () => { state.spesaFatta[v.chiave] = cb.checked; save(); renderShoppingList(); };
           const name = document.createElement("span"); name.className = "name"; name.textContent = v.nome;
           const qty = document.createElement("span"); qty.className = "qty"; qty.textContent = fmtQta(v);
-          li.append(cb, name, qty); ul.append(li);
+          const lab = document.createElement("label"); lab.append(cb, name, qty);
+          li.append(lab); ul.append(li);
         }
         box.replaceChildren(ul);
       }

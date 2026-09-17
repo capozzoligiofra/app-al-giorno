@@ -4,8 +4,22 @@
   "date": "2026-09-17",
   "description": "Registra le spese di un gruppo e scopri chi deve dare quanto a chi, con il minimo numero di pagamenti.",
   "category": "finanza-personale",
-  "tags": ["spese", "gruppo", "viaggio", "cena"],
+  "tags": [
+    "spese",
+    "gruppo",
+    "viaggio",
+    "cena"
+  ],
   "source": "autonoma",
   "request": null,
-  "status": "pronta"
+  "status": "pronta",
+  "version": 2,
+  "changelog": [
+    "v2 (2026-09-17): adeguata alle regole mobile (target 44px, input 16px, safe-area, CSS mobile-first)"
+  ],
+  "design": {
+    "layout": "card-stack",
+    "palette": "verde-bosco",
+    "font": "sans-geometrico"
+  }
 }

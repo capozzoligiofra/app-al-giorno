@@ -3,8 +3,11 @@
 // Verifica che l'app sia un unico index.html autosufficiente, senza risorse o chiamate esterne,
 // con i metadati validi. Exit code 1 e lista delle violazioni se qualcosa non va.
 import { readdirSync, readFileSync, existsSync, statSync } from "node:fs";
-import { join, basename, resolve } from "node:path";
+import { join, basename, resolve, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 import { validateMeta } from "./build.mjs";
+
+const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 
 const MAX_BYTES = 300 * 1024;
 const ALLOWED_FILES = new Set(["index.html", "app.json", "README.md"]);
@@ -31,7 +34,38 @@ const REQUIRED = [
   [/<meta[^>]+name\s*=\s*["']viewport["']/i, 'manca <meta name="viewport">'],
   [/<title>\s*[^<\s][^<]*<\/title>/i, "manca un <title> non vuoto"],
   [/\.\.\/\.\.\/index\.html/, 'manca il link "← Tutte le app" verso ../../index.html'],
+  [/<meta[^>]+name\s*=\s*["']viewport["'][^>]*viewport-fit\s*=\s*cover/i, 'il viewport deve includere viewport-fit=cover (mobile)'],
+  [/<meta[^>]+name\s*=\s*["']theme-color["']/i, 'manca <meta name="theme-color"> coerente con la palette (mobile)'],
+  [/@media[^{]*min-width/i, "manca una media query min-width: il CSS deve essere mobile-first (desktop come miglioramento progressivo)"],
 ];
+
+// Regole mobile verificate sul CSS/HTML (euristiche: segnalano pattern che su telefono fanno male).
+const MOBILE = [
+  [/100vh/i, "usa 100dvh al posto di 100vh (barre del browser mobile)"],
+  [/@media[^{]*max-width\s*:\s*(1[0-9]{3}|[5-9][0-9]{2})px/i, "media query max-width per desktop: progetta mobile-first e usa min-width"],
+  [/font-size\s*:\s*(1[0-3]|[0-9])px/i, "font-size sotto i 14px: illeggibile su telefono"],
+];
+
+// Design: le scelte devono differire da quelle delle app precedenti (vedi CLAUDE.md, DESIGN).
+function designProblems(meta, folder) {
+  const problems = [];
+  const catalogPath = join(ROOT, "apps.json");
+  if (!existsSync(catalogPath) || !meta?.design) return problems;
+  let apps;
+  try { apps = JSON.parse(readFileSync(catalogPath, "utf8")).apps || []; } catch { return problems; }
+  const previous = apps.filter(a => a.slug !== folder && a.design).sort((a, b) => (a.slug < b.slug ? 1 : -1));
+  const isImprovement = apps.some(a => a.slug === folder); // app già esistente: le regole di novità non si applicano
+  if (isImprovement || !previous.length) return problems;
+  const last = previous[0], last4 = previous.slice(0, 4);
+  for (const k of ["layout", "palette", "font"]) {
+    if (last.design[k] === meta.design[k]) problems.push(`design.${k} "${meta.design[k]}" è uguale all'app precedente (${last.slug}): scegline un altro`);
+  }
+  for (const k of ["layout", "palette"]) {
+    const hit = last4.find(a => a.design[k] === meta.design[k]);
+    if (hit && hit !== last) problems.push(`design.${k} "${meta.design[k]}" già usato di recente (${hit.slug}): deve differire dalle ultime 4 app`);
+  }
+  return problems;
+}
 
 export function checkApp(dir) {
   const problems = [];
@@ -43,11 +77,13 @@ export function checkApp(dir) {
   }
 
   const metaPath = join(dir, "app.json");
+  let meta = null;
   if (!existsSync(metaPath)) problems.push("app.json mancante");
   else {
-    try { problems.push(...validateMeta(JSON.parse(readFileSync(metaPath, "utf8")), folder)); }
+    try { meta = JSON.parse(readFileSync(metaPath, "utf8")); problems.push(...validateMeta(meta, folder)); }
     catch (e) { problems.push(`app.json non è JSON valido: ${e.message}`); }
   }
+  problems.push(...designProblems(meta, folder));
 
   const htmlPath = join(dir, "index.html");
   if (!existsSync(htmlPath)) { problems.push("index.html mancante"); return problems; }
@@ -56,6 +92,10 @@ export function checkApp(dir) {
   const html = readFileSync(htmlPath, "utf8");
 
   for (const [re, msg] of REQUIRED) if (!re.test(html)) problems.push(msg);
+  for (const [re, msg] of MOBILE) {
+    const m = html.match(re);
+    if (m) problems.push(`${msg} (riga ${html.slice(0, m.index).split("\n").length})`);
+  }
   for (const [re, msg] of FORBIDDEN) {
     const m = html.match(re);
     if (m) {

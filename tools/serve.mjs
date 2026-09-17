@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 // Server locale zero-dipendenze: serve il sito e le app, espone le API per le richieste.
 //   GET  /api/richieste      → { open: [...], done: [...] }
-//   POST /api/richieste      → { text } → append in richieste.md + commit + push
+//   POST /api/richieste      → { text, idea? } → append in richieste.md (+ rimuove la riga da idee.md) + commit + push
 //   POST /api/pull           → git pull --ff-only
 // All'avvio fa un git pull (non blocca se offline). Porta: env PORT o 8787.
 import { createServer } from "node:http";
-import { readFileSync, appendFileSync, existsSync, statSync } from "node:fs";
+import { readFileSync, writeFileSync, appendFileSync, existsSync, statSync } from "node:fs";
 import { join, dirname, resolve, extname, normalize, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
@@ -13,6 +13,7 @@ import { execFileSync } from "node:child_process";
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const PORT = Number(process.env.PORT) || 8787;
 const RICHIESTE = join(ROOT, "richieste.md");
+const IDEE = join(ROOT, "idee.md");
 
 const MIME = {
   ".html": "text/html; charset=utf-8", ".css": "text/css; charset=utf-8",
@@ -48,15 +49,28 @@ function parseRichieste() {
   return { open, done };
 }
 
-function addRichiesta(text) {
+// Rimuove da idee.md la riga approvata; ritorna true se l'ha trovata.
+function removeIdea(line) {
+  if (!existsSync(IDEE)) return false;
+  const lines = readFileSync(IDEE, "utf8").split("\n");
+  const i = lines.findIndex(l => l.trim() === `- [ ] ${line}`.trim());
+  if (i < 0) return false;
+  lines.splice(i, 1);
+  writeFileSync(IDEE, lines.join("\n"));
+  return true;
+}
+
+function addRichiesta(text, idea) {
   const clean = text.replace(/\s+/g, " ").trim();
   if (clean.length < 3 || clean.length > 500) throw new Error("la richiesta deve avere tra 3 e 500 caratteri");
   const content = existsSync(RICHIESTE) ? readFileSync(RICHIESTE, "utf8") : "# Richieste\n\n## Coda\n";
   appendFileSync(RICHIESTE, (content.endsWith("\n") ? "" : "\n") + `- [ ] ${clean}\n`);
+  const ideaRemoved = idea ? removeIdea(idea) : false;
   const result = { saved: true, committed: false, pushed: false, message: "" };
   try {
     git("add", "richieste.md");
-    git("commit", "-m", `richiesta: ${clean.slice(0, 60)}`);
+    if (ideaRemoved) git("add", "idee.md");
+    git("commit", "-m", `${ideaRemoved ? "idea approvata" : "richiesta"}: ${clean.slice(0, 60)}`);
     result.committed = true;
   } catch (e) { result.message = "salvata, ma commit fallito: " + (e.stderr || e.message).toString().trim(); return result; }
   if (!hasRemote()) { result.message = "salvata e committata (nessun remote: push saltato)"; return result; }
@@ -99,7 +113,7 @@ const server = createServer(async (req, res) => {
       let body;
       try { body = JSON.parse(await readBody(req) || "{}"); } catch { return json(res, 400, { error: "JSON non valido" }); }
       if (typeof body.text !== "string") return json(res, 400, { error: "campo 'text' mancante" });
-      try { const r = addRichiesta(body.text); return json(res, r.pushed ? 201 : 202, r); }
+      try { const r = addRichiesta(body.text, typeof body.idea === "string" ? body.idea : null); return json(res, r.pushed ? 201 : 202, r); }
       catch (e) { return json(res, 400, { error: e.message }); }
     }
     if (url.pathname === "/api/pull" && req.method === "POST") return json(res, 200, pull());

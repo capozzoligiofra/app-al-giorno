@@ -19,6 +19,11 @@ export const CATEGORIES = [
 const SOURCES = ["richiesta", "autonoma"];
 const STATUSES = ["pronta", "bozza"];
 const SLUG_RE = /^\d{4}-\d{2}-\d{2}-[a-z0-9]+(?:-[a-z0-9]+)*$/;
+export const DESIGN = {
+  layout: ["card-stack", "single-column", "tabs", "wizard", "dashboard", "split", "canvas", "list-detail", "fullscreen-tool", "sheet"],
+  palette: ["verde-bosco", "arancio-caldo", "blu-notte", "viola-elettrico", "rosso-mattone", "giallo-senape", "grigio-carta", "azzurro-cielo", "rosa-cipria", "nero-neon", "terracotta", "verde-menta"],
+  font: ["sans-geometrico", "serif-editoriale", "mono-tecnico", "rounded", "condensed"],
+};
 
 // Valida un app.json e restituisce l'elenco degli errori (vuoto = ok).
 export function validateMeta(meta, folderName) {
@@ -43,6 +48,12 @@ export function validateMeta(meta, folderName) {
   if (meta.source === "richiesta" && (typeof meta.request !== "string" || !meta.request.trim()))
     errors.push(`"request" obbligatorio quando source = "richiesta"`);
   if (meta.status !== undefined && !STATUSES.includes(meta.status)) errors.push(`"status" deve essere ${STATUSES.join(" | ")}`);
+  if (meta.version !== undefined && !(Number.isInteger(meta.version) && meta.version >= 1)) errors.push(`"version" deve essere un intero >= 1`);
+  if (meta.changelog !== undefined && !(Array.isArray(meta.changelog) && meta.changelog.every(c => typeof c === "string"))) errors.push(`"changelog" deve essere un array di stringhe`);
+  if (!meta.design || typeof meta.design !== "object") errors.push(`"design" mancante: serve { layout, palette, font } (vedi CLAUDE.md, sezione DESIGN)`);
+  else for (const k of Object.keys(DESIGN)) {
+    if (!DESIGN[k].includes(meta.design[k])) errors.push(`"design.${k}" non valido: ${meta.design[k]} (ammessi: ${DESIGN[k].join(", ")})`);
+  }
   return errors;
 }
 
@@ -78,6 +89,9 @@ export function build() {
       source: meta.source,
       request: meta.source === "richiesta" ? meta.request.trim() : null,
       status: meta.status ?? "pronta",
+      version: meta.version ?? 1,
+      changelog: meta.changelog ?? [],
+      design: { layout: meta.design.layout, palette: meta.design.palette, font: meta.design.font },
       size: statSync(htmlPath).size,
     });
   }
@@ -91,6 +105,7 @@ export function build() {
     repo: gitRemoteUrl(),
     count: apps.length,
     categories: CATEGORIES,
+    design: DESIGN,
     apps,
   };
   const text = JSON.stringify(catalog, null, 2);

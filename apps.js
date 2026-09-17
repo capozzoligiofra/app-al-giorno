@@ -14,6 +14,41 @@ window.__APPS__ = {
     "calcolatori-convertitori",
     "testo-scrittura"
   ],
+  "design": {
+    "layout": [
+      "card-stack",
+      "single-column",
+      "tabs",
+      "wizard",
+      "dashboard",
+      "split",
+      "canvas",
+      "list-detail",
+      "fullscreen-tool",
+      "sheet"
+    ],
+    "palette": [
+      "verde-bosco",
+      "arancio-caldo",
+      "blu-notte",
+      "viola-elettrico",
+      "rosso-mattone",
+      "giallo-senape",
+      "grigio-carta",
+      "azzurro-cielo",
+      "rosa-cipria",
+      "nero-neon",
+      "terracotta",
+      "verde-menta"
+    ],
+    "font": [
+      "sans-geometrico",
+      "serif-editoriale",
+      "mono-tecnico",
+      "rounded",
+      "condensed"
+    ]
+  },
   "apps": [
     {
       "title": "Piano dei Pasti",
@@ -30,7 +65,16 @@ window.__APPS__ = {
       "source": "richiesta",
       "request": "Un'app per pianificare i pasti della settimana con lista della spesa generata automaticamente",
       "status": "pronta",
-      "size": 21100
+      "version": 2,
+      "changelog": [
+        "v2 (2026-09-17): ridisegnata mobile-first con barra tab (Ricette/Piano/Spesa), piano a schede per giorno, palette terracotta e titoli serif"
+      ],
+      "design": {
+        "layout": "tabs",
+        "palette": "terracotta",
+        "font": "serif-editoriale"
+      },
+      "size": 25244
     },
     {
       "title": "Dividi il Conto",
@@ -47,7 +91,16 @@ window.__APPS__ = {
       "source": "autonoma",
       "request": null,
       "status": "pronta",
-      "size": 18016
+      "version": 2,
+      "changelog": [
+        "v2 (2026-09-17): adeguata alle regole mobile (target 44px, input 16px, safe-area, CSS mobile-first)"
+      ],
+      "design": {
+        "layout": "card-stack",
+        "palette": "verde-bosco",
+        "font": "sans-geometrico"
+      },
+      "size": 18407
     }
   ]
 };

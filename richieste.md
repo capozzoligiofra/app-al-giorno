@@ -8,4 +8,4 @@ Puoi aggiungere righe dal sito locale (sezione Richieste) oppure editando questo
 ## Coda
 
 - [x] Un'app per pianificare i pasti della settimana con lista della spesa generata automaticamente → apps/2026-09-17-piano-dei-pasti
-- [ ] Non crearle tutte uguali, devono distinguersi anche secondo il layout e l'ui. crea delle idee, fai una bozza del sito e poi chiedimi conferma per svilupparlo meglio, aggiorna anche il sito vetrina, non mi piace. Tutti i siti web devono essere specializzati per telefono
+- [x] Non crearle tutte uguali, devono distinguersi anche secondo il layout e l'ui. crea delle idee, fai una bozza del sito e poi chiedimi conferma per svilupparlo meglio, aggiorna anche il sito vetrina, non mi piace. Tutti i siti web devono essere specializzati per telefono → applicata (regole DESIGN/MOBILE in CLAUDE.md, preferenze.md, idee.md, sito rifatto)

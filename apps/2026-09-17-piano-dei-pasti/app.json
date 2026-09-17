@@ -4,8 +4,22 @@
   "date": "2026-09-17",
   "description": "Pianifica pranzi e cene della settimana con le tue ricette e genera automaticamente la lista della spesa.",
   "category": "casa-cucina",
-  "tags": ["pasti", "settimana", "spesa", "cucina"],
+  "tags": [
+    "pasti",
+    "settimana",
+    "spesa",
+    "cucina"
+  ],
   "source": "richiesta",
   "request": "Un'app per pianificare i pasti della settimana con lista della spesa generata automaticamente",
-  "status": "pronta"
+  "status": "pronta",
+  "version": 2,
+  "changelog": [
+    "v2 (2026-09-17): ridisegnata mobile-first con barra tab (Ricette/Piano/Spesa), piano a schede per giorno, palette terracotta e titoli serif"
+  ],
+  "design": {
+    "layout": "tabs",
+    "palette": "terracotta",
+    "font": "serif-editoriale"
+  }
 }

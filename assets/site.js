@@ -1,6 +1,6 @@
-// Sito vetrina: legge il catalogo (window.__APPS__ generato da tools/build.mjs, con fetch
-// di apps.json come aggiornamento quando c'è un server), renderizza le card con ricerca e
-// filtri, e gestisce la sezione Richieste tramite le API di tools/serve.mjs (se presenti).
+// Sito vetrina: legge il catalogo (window.__APPS__ generato da tools/build.mjs, aggiornato via
+// fetch di apps.json quando c'è un server), renderizza le schede con ricerca e filtri, mostra le
+// idee proposte dall'agente (idee.md) e gestisce le richieste tramite le API di tools/serve.mjs.
 (() => {
   "use strict";
 
@@ -30,29 +30,29 @@
   };
   const fmtDate = (iso) => {
     const [y, m, d] = iso.split("-").map(Number);
-    return new Date(y, m - 1, d).toLocaleDateString("it-IT", { day: "numeric", month: "short", year: "numeric" });
+    return new Date(y, m - 1, d).toLocaleDateString("it-IT", { day: "numeric", month: "short" });
   };
 
   const state = { catalog: null, query: "", category: null, api: false };
 
   // ---- catalogo ----------------------------------------------------------
-  // La routine cloud gira al minuto 57 delle ore 0,5,10,15,20 UTC (cron "57 */5 * * *").
+  // La routine cloud gira alle 6:00 e alle 18:00 UTC (cron "0 6,18 * * *", il minuto può variare).
   function nextRun() {
     const now = new Date();
-    for (let h = 0; h <= 30; h++) {
-      const d = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), h, 57));
-      if (d.getUTCHours() % 5 === 0 && d > now) return d;
+    for (let h = 0; h <= 48; h++) {
+      const d = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), h, 0));
+      if ((d.getUTCHours() === 6 || d.getUTCHours() === 18) && d > now) return d;
     }
     return null;
   }
 
   function renderStats() {
     const { apps, count } = state.catalog;
-    const s = $("#stats");
     const next = nextRun();
-    const nextText = next ? ` Prossima generazione alle ${next.toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit" })}.` : "";
-    if (!count) { s.textContent = "Il catalogo è ancora vuoto." + nextText; return; }
-    s.textContent = `${count} app finora, l'ultima il ${fmtDate(apps[0].date)}.` + nextText;
+    const when = next ? next.toLocaleString("it-IT", { weekday: "short", hour: "2-digit", minute: "2-digit" }) : "";
+    $("#stats").textContent = count
+      ? `${count} app · ultima ${fmtDate(apps[0].date)} · prossima ${when}`
+      : `Nessuna app ancora · prossima ${when}`;
   }
 
   function renderCategories() {
@@ -82,13 +82,19 @@
   function card(app) {
     const href = `apps/${app.slug}/index.html`;
     const repo = state.catalog.repo;
+    const d = app.design || {};
     const badges = [el("span", { class: "badge cat" }, CATEGORY_LABELS[app.category] || app.category)];
     if (app.source === "richiesta") badges.push(el("span", { class: "badge req", title: app.request || "" }, "su richiesta"));
     if (app.status === "bozza") badges.push(el("span", { class: "badge draft" }, "bozza"));
+    if (app.version > 1) badges.push(el("span", { class: "badge", title: (app.changelog || []).join("\n") }, `v${app.version}`));
+    if (d.layout) badges.push(el("span", { class: "badge design", title: `layout ${d.layout} · palette ${d.palette} · font ${d.font}` }, `${d.layout} · ${d.palette}`));
     for (const t of app.tags) badges.push(el("span", { class: "badge" }, t));
-    const actions = [el("a", { class: "btn", href, target: "_blank", rel: "noopener" }, "Apri")];
-    if (repo) actions.push(el("a", { class: "btn btn-ghost", href: `${repo}/blob/main/apps/${app.slug}/index.html`, target: "_blank", rel: "noopener" }, "Codice"));
-    return el("article", { class: "card" },
+
+    const actions = [el("a", { class: "btn btn-accent", href, target: "_blank", rel: "noopener" }, "Apri")];
+    actions.push(el("button", { class: "btn btn-ghost", type: "button", title: "Chiedi una modifica a questa app", onclick: () => improve(app) }, "Migliora"));
+    if (repo) actions.push(el("a", { class: "btn btn-ghost", href: `${repo}/blob/main/apps/${app.slug}/index.html`, target: "_blank", rel: "noopener", title: "Codice sorgente" }, "</>"));
+
+    return el("article", { class: `card p-${d.palette || "none"}` },
       el("div", { class: "card-head" },
         el("h3", {}, el("a", { href, target: "_blank", rel: "noopener" }, app.title)),
         el("time", { class: "card-date", datetime: app.date }, fmtDate(app.date))),
@@ -124,25 +130,77 @@
     } catch (_) { /* file:// o server assente: resta window.__APPS__ */ }
   }
 
+  // "Migliora": precompila la richiesta con il prefisso che l'agente riconosce.
+  function improve(app) {
+    const ta = $("#request-text");
+    if (!state.api) { location.hash = "#richieste"; return; }
+    ta.value = `migliora apps/${app.slug}: `;
+    $("#request-count").textContent = `${ta.value.length} / 500`;
+    location.hash = "#richieste";
+    ta.focus();
+    ta.setSelectionRange(ta.value.length, ta.value.length);
+  }
+
+  // ---- idee --------------------------------------------------------------
+  function parseIdeeMd(text) {
+    const out = [];
+    for (const line of text.split("\n")) {
+      const m = line.match(/^- \[ \] (.+)$/);
+      if (!m) continue;
+      const [title, ...rest] = m[1].split(" — ");
+      out.push({ line: m[1].trim(), title: title.trim(), text: rest.join(" — ").trim() });
+    }
+    return out;
+  }
+
+  function renderIdeas(ideas) {
+    const ul = $("#ideas");
+    if (!ideas.length) { ul.replaceChildren(el("li", { class: "none" }, "Nessuna idea in attesa: l'agente ne proporrà di nuove alla prossima esecuzione.")); return; }
+    ul.replaceChildren(...ideas.map(i => el("li", {},
+      el("div", { class: "txt" }, el("b", {}, i.title), i.text ? el("span", {}, i.text) : ""),
+      state.api ? el("button", { class: "btn", type: "button", onclick: (ev) => approveIdea(i, ev.target) }, "Approva") : "")));
+  }
+
+  async function loadIdeas() {
+    try {
+      const r = await fetch("idee.md", { cache: "no-store" });
+      if (r.ok) { renderIdeas(parseIdeeMd(await r.text())); return; }
+    } catch (_) { /* non raggiungibile */ }
+    renderIdeas([]);
+  }
+
+  async function approveIdea(idea, btn) {
+    btn.disabled = true;
+    try {
+      const r = await fetch("api/richieste", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ text: idea.line, idea: idea.line }) });
+      const data = await r.json();
+      if (!r.ok) throw new Error(data.error || r.statusText);
+      showMsg($("#request-msg"), `Idea approvata: ${data.message}`, data.pushed ? "ok" : "warn");
+      await Promise.all([loadIdeas(), loadRequests()]);
+    } catch (e) {
+      showMsg($("#request-msg"), "Errore: " + e.message, "warn");
+      btn.disabled = false;
+    }
+  }
+
   // ---- richieste ---------------------------------------------------------
   function renderRequests({ open, done }) {
-    const openList = $("#open-list"), doneList = $("#done-list");
     $("#open-count").textContent = open.length ? `(${open.length})` : "";
     $("#done-count").textContent = done.length ? `(${done.length})` : "";
-    openList.replaceChildren(...(open.length
+    $("#open-list").replaceChildren(...(open.length
       ? open.map(r => el("li", {}, r.text))
-      : [el("li", { class: "none" }, "Nessuna richiesta in coda: l'agente inventerà da sé.")]));
-    doneList.replaceChildren(...(done.length
+      : [el("li", { class: "none" }, "Nessuna richiesta in coda: l'agente sceglierà un'idea da solo.")]));
+    $("#done-list").replaceChildren(...(done.length
       ? done.slice().reverse().map(r => {
           const li = el("li", { class: "done" }, r.text);
-          if (r.result && r.result.startsWith("apps/")) li.append(" — ", el("a", { href: `${r.result}/index.html`, target: "_blank", rel: "noopener" }, "apri"));
+          const m = r.result && r.result.match(/^(apps\/[a-z0-9-]+)/);
+          if (m) li.append(" — ", el("a", { href: `${m[1]}/index.html`, target: "_blank", rel: "noopener" }, "apri"));
           else if (r.result) li.append(" — ", r.result);
           return li;
         })
       : [el("li", { class: "none" }, "Ancora nessuna.")]));
   }
 
-  // Senza server (GitHub Pages, o file:// dove il browser lo consente): richieste.md letto direttamente.
   function parseRichiesteMd(text) {
     const open = [], done = [];
     for (const line of text.split("\n")) {
@@ -176,9 +234,10 @@
 
   async function submitRequest(ev) {
     ev.preventDefault();
-    const ta = $("#request-text"), btn = ev.target.querySelector("button"), msg = $("#request-msg");
+    const ta = $("#request-text"), btn = ev.target.querySelector("button[type=submit]"), msg = $("#request-msg");
     const text = ta.value.trim();
     if (text.length < 3) { showMsg(msg, "Scrivi almeno qualche parola.", "warn"); return; }
+    if (/^migliora apps\/[a-z0-9-]+:\s*$/i.test(text)) { showMsg(msg, "Scrivi cosa vuoi migliorare dopo i due punti.", "warn"); return; }
     btn.disabled = true; showMsg(msg, "Invio…");
     try {
       const r = await fetch("api/richieste", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ text }) });
@@ -200,8 +259,7 @@
       const r = await fetch("api/pull", { method: "POST" });
       const data = await r.json();
       showMsg(msg, data.message, data.ok ? "ok" : "warn");
-      await refreshCatalog();
-      await loadRequests();
+      await Promise.all([refreshCatalog(), loadRequests(), loadIdeas()]);
     } catch (e) {
       showMsg(msg, "Errore: " + e.message, "warn");
     } finally {
@@ -230,7 +288,7 @@
     $("#request-form").hidden = !state.api;
     $("#request-offline").hidden = state.api;
     $("#refresh").hidden = !state.api;
-    await Promise.all([refreshCatalog(), loadRequests()]);
+    await Promise.all([refreshCatalog(), loadRequests(), loadIdeas()]);
   }
 
   init();

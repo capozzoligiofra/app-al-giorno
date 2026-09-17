@@ -2,7 +2,8 @@
 <html lang="it">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#2f7d5a">
   <title>Dividi il Conto — spese di gruppo</title>
   <meta name="description" content="Registra le spese di un gruppo (cena, viaggio, casa) e scopri chi deve dare quanto a chi, con il minimo numero di pagamenti.">
   <style>
@@ -20,7 +21,7 @@
     }
     * { box-sizing: border-box; }
     body { margin: 0; font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); }
-    .wrap { max-width: 860px; margin: 0 auto; padding: 16px 20px 60px; }
+    .wrap { margin: 0 auto; padding: max(12px, env(safe-area-inset-top)) 14px calc(40px + env(safe-area-inset-bottom)); }
     .back { font-size: .9rem; color: var(--muted); text-decoration: none; }
     .back:hover { color: var(--text); }
     h1 { margin: .5rem 0 .2rem; font-size: 1.8rem; letter-spacing: -.02em; }
@@ -30,14 +31,14 @@
     .row { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
     input, select, button { font: inherit; color: inherit; }
     input[type=text], input[type=number], select {
-      padding: .55rem .75rem; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); min-width: 0;
+      padding: .6rem .75rem; min-height: 44px; font-size: 16px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); min-width: 0;
     }
     input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
     .grow { flex: 1 1 140px; }
-    .btn { border: 0; cursor: pointer; padding: .55rem .9rem; border-radius: 8px; background: var(--accent); color: var(--accent-ink); font-weight: 600; }
+    .btn { border: 0; cursor: pointer; min-height: 44px; padding: .55rem 1rem; border-radius: 8px; background: var(--accent); color: var(--accent-ink); font-weight: 600; }
     .btn:disabled { opacity: .5; cursor: default; }
     .btn-ghost { background: var(--chip); color: var(--text); font-weight: 500; }
-    .btn-icon { background: none; border: 0; cursor: pointer; color: var(--muted); padding: .2rem .4rem; border-radius: 6px; font-size: 1rem; }
+    .btn-icon { background: none; border: 0; cursor: pointer; color: var(--muted); min-width: 40px; min-height: 40px; border-radius: 6px; font-size: 1.1rem; }
     .btn-icon:hover { color: var(--danger); background: var(--chip); }
     .chips { display: flex; flex-wrap: wrap; gap: .4rem; }
     .chip { display: inline-flex; align-items: center; gap: .3rem; background: var(--chip); padding: .3rem .4rem .3rem .7rem; border-radius: 999px; font-size: .9rem; }
@@ -60,7 +61,12 @@
     .toolbar { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: flex-end; margin-top: .5rem; }
     .toast { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); background: var(--text); color: var(--bg); padding: .6rem 1rem; border-radius: 999px; font-size: .9rem; opacity: 0; transition: opacity .2s; pointer-events: none; }
     .toast.show { opacity: 1; }
-    @media (max-width: 480px) { .wrap { padding-inline: 14px; } th:nth-child(4), td:nth-child(4) { display: none; } }
+    /* mobile-first: su telefono la colonna "diviso tra" è nascosta; il desktop la mostra */
+    th:nth-child(4), td:nth-child(4) { display: none; }
+    @media (min-width: 700px) {
+      .wrap { max-width: 860px; padding-inline: 20px; }
+      th:nth-child(4), td:nth-child(4) { display: table-cell; }
+    }
   </style>
 </head>
 <body>
@@ -84,7 +90,7 @@
       <form id="expense-form" autocomplete="off">
         <div class="row">
           <input id="exp-desc" type="text" class="grow" placeholder="Descrizione (es. Cena pizzeria)" maxlength="60" required>
-          <input id="exp-amount" type="number" inputmode="decimal" step="0.01" min="0.01" placeholder="Importo €" style="width:130px" required>
+          <input id="exp-amount" type="number" inputmode="decimal" enterkeyhint="done" step="0.01" min="0.01" placeholder="Importo €" style="width:130px" required>
           <select id="exp-payer" aria-label="Chi ha pagato"></select>
         </div>
         <div class="split" id="exp-split" aria-label="Diviso tra"></div>
