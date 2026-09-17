@@ -30,6 +30,14 @@
       </label>
       <div id="categories" class="chips" role="group" aria-label="Filtra per categoria"></div>
       <p id="catalog-msg" class="msg" hidden></p>
+      <div id="gen-panel" class="gen" hidden>
+        <div class="gen-head">
+          <b id="gen-title">Generazione in corso…</b>
+          <button id="gen-close" class="btn-small" type="button" hidden>Chiudi</button>
+        </div>
+        <p id="gen-brief" class="muted small"></p>
+        <pre id="gen-log" class="gen-log"></pre>
+      </div>
       <div id="grid" class="list" aria-live="polite"></div>
     </section>
 
@@ -38,7 +46,7 @@
         <h2>Idee proposte</h2>
         <span class="muted small">dall'agente, da approvare</span>
       </div>
-      <p class="muted">Tocca <b>Approva</b> per metterla in coda: verrà costruita alla prossima esecuzione. Le altre restano qui finché non vengono rimpiazzate.</p>
+      <p class="muted"><b>Approva</b> la mette in coda per la prossima esecuzione automatica; <b>Genera ora</b> la costruisce subito su questo PC.</p>
       <ul id="ideas" class="ideas"></ul>
     </section>
 
@@ -53,11 +61,26 @@
         <textarea id="request-text" rows="3" maxlength="500" placeholder="Es. Un timer per la cottura della pasta con i tempi dei formati più comuni" required enterkeyhint="send"></textarea>
         <div class="form-row">
           <span id="request-count" class="muted small">0 / 500</span>
-          <button class="btn" type="submit">Invia</button>
+          <span class="form-actions">
+            <button class="btn btn-ghost" type="submit">In coda</button>
+            <button class="btn btn-accent" type="button" id="request-now">Genera subito</button>
+          </span>
         </div>
         <p id="request-msg" class="msg" hidden></p>
       </form>
       <p id="request-offline" class="msg" hidden>Sito aperto senza il server locale: aggiungi richieste modificando <a id="richieste-link" href="richieste.md">richieste.md</a> (una riga <code>- [ ] la tua idea</code>).</p>
+
+      <div class="auto">
+        <div>
+          <b>Creazione automatica</b>
+          <p class="muted small" id="auto-hint">Frequenza della routine cloud (gira anche a PC spento).</p>
+        </div>
+        <div class="auto-controls">
+          <select id="freq" aria-label="Frequenza"></select>
+          <button id="freq-save" class="btn" type="button">Salva</button>
+        </div>
+        <p id="freq-msg" class="msg" hidden></p>
+      </div>
 
       <details class="lists" open>
         <summary>In coda <span id="open-count" class="count"></span></summary>

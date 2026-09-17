@@ -20,7 +20,14 @@ di supporto) e git.
 4. **Migliora** su una scheda: precompila `migliora apps/<slug>: …` → l'agente modifica
    quell'app (versione +1, changelog) invece di crearne una nuova.
 5. **Idee proposte**: l'agente tiene 5 idee in `idee.md`; **Approva** le mette in coda.
-6. Bottone **Aggiorna** nel sito = `git pull` per scaricare le app nuove.
+6. **Genera ora / Genera subito**: salta la routine e costruisce l'app adesso, sul tuo PC,
+   lanciando `claude -p` (Opus) nella cartella del repo; il log compare nel sito e alla fine
+   l'app viene committata e pushata come al solito. Una generazione alla volta.
+7. **Creazione automatica**: cambia la frequenza della routine cloud (1–3 al giorno, ogni 3/5 ore,
+   pausa). Il server lancia `claude -p` che aggiorna la routine; la scelta è salvata in `config.json`.
+8. Bottone **Aggiorna** nel sito = `git pull` per scaricare le app nuove.
+
+Requisiti per 6 e 7: Claude Code installato e loggato su questo PC (`claude` nel PATH).
 
 Ogni app funziona anche aperta con doppio click su `apps/<cartella>/index.html`.
 

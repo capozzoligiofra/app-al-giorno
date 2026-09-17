@@ -36,23 +36,9 @@
   const state = { catalog: null, query: "", category: null, api: false };
 
   // ---- catalogo ----------------------------------------------------------
-  // La routine cloud gira alle 6:00 e alle 18:00 UTC (cron "0 6,18 * * *", il minuto può variare).
-  function nextRun() {
-    const now = new Date();
-    for (let h = 0; h <= 48; h++) {
-      const d = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), h, 0));
-      if ((d.getUTCHours() === 6 || d.getUTCHours() === 18) && d > now) return d;
-    }
-    return null;
-  }
-
   function renderStats() {
     const { apps, count } = state.catalog;
-    const next = nextRun();
-    const when = next ? next.toLocaleString("it-IT", { weekday: "short", hour: "2-digit", minute: "2-digit" }) : "";
-    $("#stats").textContent = count
-      ? `${count} app · ultima ${fmtDate(apps[0].date)} · prossima ${when}`
-      : `Nessuna app ancora · prossima ${when}`;
+    $("#stats").textContent = count ? `${count} app · ultima ${fmtDate(apps[0].date)}` : "Nessuna app ancora";
   }
 
   function renderCategories() {
@@ -158,7 +144,9 @@
     if (!ideas.length) { ul.replaceChildren(el("li", { class: "none" }, "Nessuna idea in attesa: l'agente ne proporrà di nuove alla prossima esecuzione.")); return; }
     ul.replaceChildren(...ideas.map(i => el("li", {},
       el("div", { class: "txt" }, el("b", {}, i.title), i.text ? el("span", {}, i.text) : ""),
-      state.api ? el("button", { class: "btn", type: "button", onclick: (ev) => approveIdea(i, ev.target) }, "Approva") : "")));
+      state.api ? el("div", { class: "acts" },
+        el("button", { class: "btn btn-accent", type: "button", onclick: (ev) => generateNow(i.line, i.line, ev.target) }, "Genera ora"),
+        el("button", { class: "btn btn-ghost", type: "button", onclick: (ev) => approveIdea(i, ev.target) }, "Approva")) : "")));
   }
 
   async function loadIdeas() {
@@ -181,6 +169,79 @@
       showMsg($("#request-msg"), "Errore: " + e.message, "warn");
       btn.disabled = false;
     }
+  }
+
+  // ---- generazione manuale (claude -p sul PC) --------------------------------
+  let genTimer = null;
+  async function generateNow(text, idea, btn) {
+    if (btn) btn.disabled = true;
+    try {
+      const r = await fetch("api/genera", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ text, idea }) });
+      const data = await r.json();
+      if (!r.ok) throw new Error(data.error || r.statusText);
+      showGenPanel(true);
+      location.hash = "#catalogo";
+      pollGen();
+      await loadIdeas();
+    } catch (e) {
+      showMsg($("#request-msg"), "Errore: " + e.message, "warn");
+      if (btn) btn.disabled = false;
+    }
+  }
+
+  function showGenPanel(on) {
+    $("#gen-panel").hidden = !on;
+  }
+
+  async function pollGen() {
+    clearTimeout(genTimer);
+    let st;
+    try { st = await (await fetch("api/genera/stato", { cache: "no-store" })).json(); }
+    catch (_) { return; }
+    if (!st.startedAt) return;
+    const panel = $("#gen-panel");
+    panel.hidden = false;
+    panel.classList.toggle("running", st.running);
+    $("#gen-title").textContent = st.running ? "Generazione in corso sul tuo PC…" : (st.ok ? "Generazione completata" : "Generazione terminata con errori");
+    $("#gen-brief").textContent = st.brief ? `Brief: ${st.brief}` : "Brief: dalla coda o dalle idee";
+    const log = $("#gen-log");
+    const atBottom = log.scrollTop + log.clientHeight >= log.scrollHeight - 8;
+    log.textContent = st.log.join("\n");
+    if (atBottom) log.scrollTop = log.scrollHeight;
+    $("#gen-close").hidden = st.running;
+    if (st.running) genTimer = setTimeout(pollGen, 3000);
+    else if (st.finishedAt && st.finishedAt !== state.lastGenSeen) {
+      state.lastGenSeen = st.finishedAt;
+      await Promise.all([refreshCatalog(), loadRequests(), loadIdeas()]);
+    }
+  }
+
+  // ---- frequenza della routine cloud ------------------------------------------
+  async function loadConfig() {
+    try {
+      const cfg = await (await fetch("api/config", { cache: "no-store" })).json();
+      const sel = $("#freq");
+      sel.replaceChildren(...Object.entries(cfg.presets).map(([k, label]) => new Option(label, k)));
+      sel.value = cfg.frequenza;
+      state.frequenza = cfg.frequenza;
+      if (!cfg.routine_id) { $("#auto-hint").textContent = "Nessuna routine cloud configurata (config.json)."; $("#freq-save").disabled = true; }
+    } catch (_) { /* senza server */ }
+  }
+
+  async function saveFrequenza() {
+    const sel = $("#freq"), btn = $("#freq-save"), msg = $("#freq-msg");
+    if (sel.value === state.frequenza) { showMsg(msg, "È già così.", ""); return; }
+    btn.disabled = true; showMsg(msg, "Aggiorno la routine cloud (qualche secondo)…");
+    try {
+      const r = await fetch("api/frequenza", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ preset: sel.value }) });
+      const data = await r.json();
+      if (!r.ok) throw new Error(data.error || r.statusText);
+      state.frequenza = sel.value;
+      showMsg(msg, data.message, "ok");
+    } catch (e) {
+      showMsg(msg, "Errore: " + e.message, "warn");
+      sel.value = state.frequenza;
+    } finally { btn.disabled = false; }
   }
 
   // ---- richieste ---------------------------------------------------------
@@ -276,19 +337,34 @@
     return false;
   }
 
+  function requestNow() {
+    const ta = $("#request-text"), msg = $("#request-msg");
+    const text = ta.value.trim();
+    if (text.length < 3) { showMsg(msg, "Scrivi almeno qualche parola.", "warn"); return; }
+    if (/^migliora apps\/[a-z0-9-]+:\s*$/i.test(text)) { showMsg(msg, "Scrivi cosa vuoi migliorare dopo i due punti.", "warn"); return; }
+    ta.value = ""; $("#request-count").textContent = "0 / 500";
+    generateNow(text, null, $("#request-now"));
+    setTimeout(() => { $("#request-now").disabled = false; }, 1500);
+  }
+
   // ---- avvio -------------------------------------------------------------
   async function init() {
     loadCatalog(window.__APPS__ || { apps: [], count: 0, categories: [], repo: null });
     $("#search").addEventListener("input", (e) => { state.query = e.target.value.trim().toLowerCase(); renderGrid(); });
     $("#request-text").addEventListener("input", (e) => { $("#request-count").textContent = `${e.target.value.length} / 500`; });
     $("#request-form").addEventListener("submit", submitRequest);
+    $("#request-now").addEventListener("click", requestNow);
     $("#refresh").addEventListener("click", pull);
+    $("#freq-save").addEventListener("click", saveFrequenza);
+    $("#gen-close").addEventListener("click", () => showGenPanel(false));
 
     state.api = await detectApi();
     $("#request-form").hidden = !state.api;
     $("#request-offline").hidden = state.api;
     $("#refresh").hidden = !state.api;
-    await Promise.all([refreshCatalog(), loadRequests(), loadIdeas()]);
+    $(".auto").hidden = !state.api;
+    await Promise.all([refreshCatalog(), loadRequests(), loadIdeas(), loadConfig()]);
+    if (state.api) pollGen();
   }
 
   init();
