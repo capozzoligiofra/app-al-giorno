@@ -1,8 +1,8 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
-  "generated": "2026-09-17T14:57:27.393Z",
+  "generated": "2026-09-17T15:02:27.405Z",
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 1,
+  "count": 2,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -16,6 +16,23 @@ window.__APPS__ = {
     "testo-scrittura"
   ],
   "apps": [
+    {
+      "title": "Piano dei Pasti",
+      "slug": "2026-09-17-piano-dei-pasti",
+      "date": "2026-09-17",
+      "description": "Pianifica pranzi e cene della settimana con le tue ricette e genera automaticamente la lista della spesa.",
+      "category": "casa-cucina",
+      "tags": [
+        "pasti",
+        "settimana",
+        "spesa",
+        "cucina"
+      ],
+      "source": "richiesta",
+      "request": "Un'app per pianificare i pasti della settimana con lista della spesa generata automaticamente",
+      "status": "pronta",
+      "size": 21100
+    },
     {
       "title": "Dividi il Conto",
       "slug": "2026-09-17-dividi-il-conto",

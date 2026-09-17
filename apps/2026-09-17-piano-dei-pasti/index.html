@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Piano dei Pasti — pianificazione settimanale e lista della spesa</title>
+  <meta name="description" content="Pianifica pranzi e cene della settimana con le tue ricette e genera automaticamente la lista della spesa.">
+  <style>
+    :root {
+      --bg: #f8f6f2; --surface: #fff; --text: #221d17; --muted: #6f6457; --line: #e6ded2;
+      --accent: #c4622d; --accent-ink: #fff; --danger: #b3403a; --chip: #efe8dc; --radius: 12px;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #17130f; --surface: #211b15; --text: #f1ebe1; --muted: #ab9d8a; --line: #362d23;
+        --accent: #e88a52; --accent-ink: #241206; --danger: #ff7b73; --chip: #2b241c;
+        color-scheme: dark;
+      }
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); }
+    .wrap { max-width: 900px; margin: 0 auto; padding: 16px 20px 60px; }
+    .back { font-size: .9rem; color: var(--muted); text-decoration: none; }
+    .back:hover { color: var(--text); }
+    h1 { margin: .5rem 0 .2rem; font-size: 1.8rem; letter-spacing: -.02em; }
+    h2 { font-size: 1.1rem; margin: 0 0 .5rem; }
+    .lead { color: var(--muted); margin: 0 0 1.5rem; }
+    .lead-small { font-size: .9rem; margin: 0 0 .9rem; }
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.1rem; margin-bottom: 1rem; }
+    .row { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+    input, select, button { font: inherit; color: inherit; }
+    input[type=text], input[type=number], select {
+      padding: .55rem .75rem; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); min-width: 0;
+    }
+    input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+    .grow { flex: 1 1 160px; }
+    .btn { border: 0; cursor: pointer; padding: .55rem .9rem; border-radius: 8px; background: var(--accent); color: var(--accent-ink); font-weight: 600; }
+    .btn:disabled { opacity: .5; cursor: default; }
+    .btn-ghost { background: var(--chip); color: var(--text); font-weight: 500; }
+    .btn-icon { background: none; border: 0; cursor: pointer; color: var(--muted); padding: .2rem .5rem; border-radius: 6px; font-size: 1rem; line-height: 1; }
+    .btn-icon:hover { color: var(--danger); background: var(--chip); }
+    .btn-icon.edit:hover { color: var(--accent); }
+    .ingredient-row { margin-bottom: .4rem; }
+    .ingredient-row input[type=text].ing-nome { flex: 2 1 160px; }
+    .ingredient-row input.ing-qta { width: 90px; }
+    .ingredient-row input.ing-unita { width: 90px; }
+    .err { color: var(--danger); font-size: .9rem; margin: .4rem 0 0; min-height: 1.2em; }
+    .muted { color: var(--muted); }
+    .empty { color: var(--muted); font-style: italic; margin: 0; }
+    .dish-list { display: flex; flex-direction: column; gap: .6rem; }
+    .dish { border: 1px solid var(--line); border-radius: 10px; padding: .7rem .9rem; }
+    .dish-head { display: flex; justify-content: space-between; align-items: center; gap: .5rem; }
+    .dish-head b { font-size: 1rem; }
+    .dish-ing { color: var(--muted); font-size: .9rem; margin: .3rem 0 0; }
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+    th, td { text-align: left; padding: .45rem .4rem; border-bottom: 1px solid var(--line); vertical-align: middle; }
+    th { font-weight: 600; color: var(--muted); font-size: .78rem; text-transform: uppercase; letter-spacing: .04em; }
+    td select { width: 100%; }
+    .toolbar { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: flex-end; margin-top: .75rem; }
+    .shop-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .35rem; }
+    .shop-list li { display: flex; align-items: baseline; gap: .5rem; padding: .3rem 0; border-bottom: 1px solid var(--line); }
+    .shop-list li.done span.name { text-decoration: line-through; color: var(--muted); }
+    .shop-list li input[type=checkbox] { margin-top: .2rem; accent-color: var(--accent); }
+    .shop-list .qty { color: var(--muted); font-size: .9rem; white-space: nowrap; }
+    .toast { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); background: var(--text); color: var(--bg); padding: .6rem 1rem; border-radius: 999px; font-size: .9rem; opacity: 0; transition: opacity .2s; pointer-events: none; }
+    .toast.show { opacity: 1; }
+    @media (max-width: 480px) { .wrap { padding-inline: 14px; } .ingredient-row input.ing-unita { width: 70px; } .ingredient-row input.ing-qta { width: 70px; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="../../index.html">← Tutte le app</a>
+    <h1>Piano dei Pasti</h1>
+    <p class="lead">Salva le tue ricette con gli ingredienti, componi il piano dei pranzi e delle cene della settimana e ottieni subito la lista della spesa, con le quantità già sommate. Tutto resta salvato nel tuo browser.</p>
+
+    <section class="card">
+      <h2>Aggiungi un piatto</h2>
+      <p class="lead-small muted">Inserisci nome e ingredienti di una ricetta: potrai poi usarla nel piano settimanale. Premi Invio in un campo ingrediente per aggiungerne subito un altro.</p>
+      <form id="dish-form" autocomplete="off">
+        <div class="row">
+          <input id="dish-name" type="text" class="grow" placeholder="Nome piatto (es. Pasta al pomodoro)" maxlength="50" required>
+        </div>
+        <div id="ingredient-rows" style="margin-top:.6rem"></div>
+        <div class="row" style="margin-top:.3rem">
+          <button class="btn btn-ghost" type="button" id="add-ingredient">+ Aggiungi ingrediente</button>
+        </div>
+        <div class="row" style="margin-top:.75rem">
+          <button class="btn" type="submit" id="dish-submit">Salva piatto</button>
+          <button class="btn btn-ghost" type="button" id="dish-cancel" hidden>Annulla modifica</button>
+          <span id="dish-err" class="err"></span>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Ricettario</h2>
+      <div id="dishes"></div>
+    </section>
+
+    <section class="card">
+      <h2>Piano settimanale</h2>
+      <p class="lead-small muted">Scegli un piatto per ogni pranzo e cena della settimana.</p>
+      <div class="table-wrap">
+        <table id="plan-table">
+          <thead><tr><th>Giorno</th><th>Pranzo</th><th>Cena</th></tr></thead>
+          <tbody id="plan-body"></tbody>
+        </table>
+      </div>
+      <div class="toolbar">
+        <button class="btn btn-ghost" type="button" id="clear-plan">Svuota piano</button>
+      </div>
+      <p id="clear-plan-confirm" class="err" hidden>Svuotare tutto il piano settimanale? <button class="btn" type="button" id="clear-plan-yes" style="padding:.3rem .7rem">Sì, svuota</button> <button class="btn btn-ghost" type="button" id="clear-plan-no" style="padding:.3rem .7rem">No</button></p>
+    </section>
+
+    <section class="card">
+      <h2>Lista della spesa</h2>
+      <p class="lead-small muted">Generata automaticamente dai piatti pianificati, con le quantità sommate. Spunta ciò che hai già preso.</p>
+      <div id="shopping-list"></div>
+      <div class="toolbar">
+        <button class="btn btn-ghost" type="button" id="copy-list">Copia lista</button>
+      </div>
+    </section>
+  </div>
+  <div id="toast" class="toast" role="status"></div>
+
+  <script>
+    // Modello dati (localStorage "piano-dei-pasti:v1"):
+    //   { piatti: [{id, nome, ingredienti:[{nome, quantita, unita}]}],
+    //     piano: { lun: {pranzo: id|null, cena: id|null}, ... per ogni giorno },
+    //     spesaFatta: { "chiave-ingrediente": true } }
+    // La lista della spesa si ricalcola sempre dal piano corrente sommando gli ingredienti dei piatti scelti.
+    (() => {
+      "use strict";
+      const KEY = "piano-dei-pasti:v1";
+      const $ = (s, r) => (r || document).querySelector(s);
+      const uid = () => (crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2));
+      const GIORNI = [
+        { key: "lun", label: "Lunedì" }, { key: "mar", label: "Martedì" }, { key: "mer", label: "Mercoledì" },
+        { key: "gio", label: "Giovedì" }, { key: "ven", label: "Venerdì" }, { key: "sab", label: "Sabato" },
+        { key: "dom", label: "Domenica" },
+      ];
+      const PASTI = [{ key: "pranzo", label: "Pranzo" }, { key: "cena", label: "Cena" }];
+
+      function pianoVuoto() {
+        const p = {};
+        for (const g of GIORNI) p[g.key] = { pranzo: null, cena: null };
+        return p;
+      }
+
+      let state = load();
+      function load() {
+        try {
+          const s = JSON.parse(localStorage.getItem(KEY));
+          if (s && Array.isArray(s.piatti) && s.piano) return { piatti: s.piatti, piano: s.piano, spesaFatta: s.spesaFatta || {} };
+        } catch (_) {}
+        return { piatti: [], piano: pianoVuoto(), spesaFatta: {} };
+      }
+      function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (_) {} }
+      const piattoOf = (id) => state.piatti.find(p => p.id === id) || null;
+
+      // ---- stato transitorio del form piatto (non persistito) ----
+      let editingId = null;
+      let formIngredienti = [{ nome: "", quantita: "", unita: "" }];
+
+      function renderIngredientRows() {
+        const box = $("#ingredient-rows");
+        box.replaceChildren();
+        formIngredienti.forEach((ing, i) => {
+          const row = document.createElement("div");
+          row.className = "row ingredient-row";
+          const nome = document.createElement("input");
+          nome.type = "text"; nome.className = "ing-nome"; nome.placeholder = "Ingrediente (es. Pomodori)"; nome.maxLength = 40; nome.value = ing.nome;
+          const qta = document.createElement("input");
+          qta.type = "number"; qta.className = "ing-qta"; qta.placeholder = "Quantità"; qta.min = "0"; qta.step = "any"; qta.value = ing.quantita;
+          const unita = document.createElement("input");
+          unita.type = "text"; unita.className = "ing-unita"; unita.placeholder = "Unità (g, pz…)"; unita.maxLength = 10; unita.value = ing.unita;
+          const del = document.createElement("button");
+          del.type = "button"; del.className = "btn-icon"; del.title = "Rimuovi ingrediente"; del.setAttribute("aria-label", del.title); del.textContent = "×";
+
+          nome.oninput = () => { formIngredienti[i].nome = nome.value; };
+          qta.oninput = () => { formIngredienti[i].quantita = qta.value; };
+          unita.oninput = () => { formIngredienti[i].unita = unita.value; };
+          const onEnter = (ev) => {
+            if (ev.key !== "Enter") return;
+            ev.preventDefault();
+            if (i === formIngredienti.length - 1) { formIngredienti.push({ nome: "", quantita: "", unita: "" }); renderIngredientRows(); focusRow(i + 1); }
+            else focusRow(i + 1);
+          };
+          nome.addEventListener("keydown", onEnter);
+          qta.addEventListener("keydown", onEnter);
+          unita.addEventListener("keydown", onEnter);
+          del.onclick = () => { formIngredienti.splice(i, 1); if (!formIngredienti.length) formIngredienti.push({ nome: "", quantita: "", unita: "" }); renderIngredientRows(); };
+
+          row.append(nome, qta, unita, del);
+          box.append(row);
+        });
+      }
+      function focusRow(i) {
+        const rows = $("#ingredient-rows").querySelectorAll(".ingredient-row");
+        if (rows[i]) rows[i].querySelector(".ing-nome").focus();
+      }
+
+      function resetForm() {
+        editingId = null; formIngredienti = [{ nome: "", quantita: "", unita: "" }];
+        $("#dish-name").value = ""; $("#dish-submit").textContent = "Salva piatto"; $("#dish-cancel").hidden = true;
+        showErr("#dish-err", ""); renderIngredientRows();
+      }
+
+      function startEdit(id) {
+        const piatto = piattoOf(id); if (!piatto) return;
+        editingId = id; formIngredienti = piatto.ingredienti.map(i => ({ ...i }));
+        if (!formIngredienti.length) formIngredienti.push({ nome: "", quantita: "", unita: "" });
+        $("#dish-name").value = piatto.nome; $("#dish-submit").textContent = "Salva modifiche"; $("#dish-cancel").hidden = false;
+        showErr("#dish-err", ""); renderIngredientRows(); $("#dish-name").focus();
+        $("#dish-form").scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      function removeDish(id) {
+        state.piatti = state.piatti.filter(p => p.id !== id);
+        for (const g of GIORNI) for (const p of PASTI) if (state.piano[g.key][p.key] === id) state.piano[g.key][p.key] = null;
+        if (editingId === id) resetForm();
+        save(); renderAll();
+      }
+
+      // ---- lista della spesa ----
+      function chiaveIngrediente(nome, unita) { return nome.trim().toLowerCase() + "|" + unita.trim().toLowerCase(); }
+      function listaSpesa() {
+        const map = new Map();
+        for (const g of GIORNI) for (const p of PASTI) {
+          const piatto = piattoOf(state.piano[g.key][p.key]);
+          if (!piatto) continue;
+          for (const ing of piatto.ingredienti) {
+            if (!ing.nome.trim()) continue;
+            const chiave = chiaveIngrediente(ing.nome, ing.unita || "");
+            const voce = map.get(chiave) || { nome: ing.nome.trim(), unita: (ing.unita || "").trim(), totale: 0, nonSpecificata: 0 };
+            const q = parseFloat(String(ing.quantita).replace(",", "."));
+            if (ing.quantita !== "" && !isNaN(q)) voce.totale += q; else voce.nonSpecificata++;
+            map.set(chiave, voce);
+          }
+        }
+        return [...map.entries()].map(([chiave, v]) => ({ chiave, ...v })).sort((a, b) => a.nome.localeCompare(b.nome, "it"));
+      }
+      function fmtQta(v) {
+        if (v.totale > 0 && v.nonSpecificata > 0) return `${fmtNum(v.totale)}${v.unita ? " " + v.unita : ""} + q.b.`;
+        if (v.totale > 0) return `${fmtNum(v.totale)}${v.unita ? " " + v.unita : ""}`;
+        return "q.b.";
+      }
+      function fmtNum(n) { return Number(n.toFixed(2)).toLocaleString("it-IT"); }
+
+      // ---- render ----
+      function renderDishes() {
+        const box = $("#dishes");
+        if (!state.piatti.length) { box.innerHTML = '<p class="empty">Nessun piatto ancora: aggiungine uno qui sopra per iniziare a pianificare.</p>'; return; }
+        const list = document.createElement("div"); list.className = "dish-list";
+        for (const piatto of state.piatti) {
+          const el = document.createElement("div"); el.className = "dish";
+          const head = document.createElement("div"); head.className = "dish-head";
+          const b = document.createElement("b"); b.textContent = piatto.nome;
+          const actions = document.createElement("div");
+          const editBtn = document.createElement("button"); editBtn.className = "btn-icon edit"; editBtn.type = "button"; editBtn.title = "Modifica " + piatto.nome; editBtn.setAttribute("aria-label", editBtn.title); editBtn.textContent = "✎";
+          editBtn.onclick = () => startEdit(piatto.id);
+          const delBtn = document.createElement("button"); delBtn.className = "btn-icon"; delBtn.type = "button"; delBtn.title = "Elimina " + piatto.nome; delBtn.setAttribute("aria-label", delBtn.title); delBtn.textContent = "×";
+          delBtn.onclick = () => removeDish(piatto.id);
+          actions.append(editBtn, delBtn);
+          head.append(b, actions);
+          const ing = document.createElement("p"); ing.className = "dish-ing";
+          ing.textContent = piatto.ingredienti.length
+            ? piatto.ingredienti.map(i => i.nome + (i.quantita !== "" ? ` (${i.quantita}${i.unita ? " " + i.unita : ""})` : "")).join(", ")
+            : "Nessun ingrediente";
+          el.append(head, ing); list.append(el);
+        }
+        box.replaceChildren(list);
+      }
+
+      function renderPlan() {
+        const tbody = $("#plan-body");
+        tbody.replaceChildren();
+        for (const g of GIORNI) {
+          const tr = document.createElement("tr");
+          const th = document.createElement("th"); th.scope = "row"; th.style.color = "var(--text)"; th.style.textTransform = "none"; th.style.fontSize = "1rem"; th.style.fontWeight = "600"; th.textContent = g.label;
+          tr.append(th);
+          for (const p of PASTI) {
+            const td = document.createElement("td");
+            const sel = document.createElement("select");
+            sel.setAttribute("aria-label", `${p.label} di ${g.label}`);
+            sel.disabled = !state.piatti.length;
+            sel.append(new Option(state.piatti.length ? "— nessuno —" : "Aggiungi prima un piatto", ""));
+            for (const piatto of state.piatti) sel.append(new Option(piatto.nome, piatto.id));
+            sel.value = state.piano[g.key][p.key] || "";
+            sel.onchange = () => { state.piano[g.key][p.key] = sel.value || null; save(); renderShoppingList(); };
+            td.append(sel); tr.append(td);
+          }
+          tbody.append(tr);
+        }
+      }
+
+      function renderShoppingList() {
+        const box = $("#shopping-list");
+        const lista = listaSpesa();
+        if (!lista.length) { box.innerHTML = '<p class="empty">Pianifica almeno un pasto qui sopra per generare la lista della spesa.</p>'; return; }
+        const ul = document.createElement("ul"); ul.className = "shop-list";
+        for (const v of lista) {
+          const li = document.createElement("li");
+          const fatto = !!state.spesaFatta[v.chiave];
+          if (fatto) li.classList.add("done");
+          const cb = document.createElement("input"); cb.type = "checkbox"; cb.checked = fatto;
+          cb.onchange = () => { state.spesaFatta[v.chiave] = cb.checked; save(); li.classList.toggle("done", cb.checked); };
+          const name = document.createElement("span"); name.className = "name"; name.textContent = v.nome;
+          const qty = document.createElement("span"); qty.className = "qty"; qty.textContent = fmtQta(v);
+          li.append(cb, name, qty); ul.append(li);
+        }
+        box.replaceChildren(ul);
+      }
+
+      function renderAll() { renderDishes(); renderPlan(); renderShoppingList(); }
+
+      function showErr(sel, msg) { $(sel).textContent = msg; }
+      function toast(msg) { const t = $("#toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(toast.h); toast.h = setTimeout(() => t.classList.remove("show"), 1800); }
+
+      // ---- eventi ----
+      $("#add-ingredient").addEventListener("click", () => { formIngredienti.push({ nome: "", quantita: "", unita: "" }); renderIngredientRows(); focusRow(formIngredienti.length - 1); });
+
+      $("#dish-form").addEventListener("submit", (ev) => {
+        ev.preventDefault();
+        const nome = $("#dish-name").value.trim().replace(/\s+/g, " ");
+        const ingredienti = formIngredienti
+          .map(i => ({ nome: i.nome.trim(), quantita: i.quantita === "" ? "" : i.quantita, unita: i.unita.trim() }))
+          .filter(i => i.nome);
+        if (!nome) return showErr("#dish-err", "Scrivi il nome del piatto.");
+        if (state.piatti.some(p => p.nome.toLowerCase() === nome.toLowerCase() && p.id !== editingId))
+          return showErr("#dish-err", "C'è già un piatto con questo nome.");
+        if (!ingredienti.length) return showErr("#dish-err", "Aggiungi almeno un ingrediente.");
+        if (editingId) {
+          const piatto = piattoOf(editingId); piatto.nome = nome; piatto.ingredienti = ingredienti;
+          toast("Piatto aggiornato");
+        } else {
+          state.piatti.push({ id: uid(), nome, ingredienti });
+          toast("Piatto aggiunto");
+        }
+        save(); resetForm(); renderAll();
+      });
+      $("#dish-cancel").addEventListener("click", resetForm);
+
+      $("#clear-plan").addEventListener("click", () => { $("#clear-plan-confirm").hidden = false; });
+      $("#clear-plan-no").addEventListener("click", () => { $("#clear-plan-confirm").hidden = true; });
+      $("#clear-plan-yes").addEventListener("click", () => {
+        state.piano = pianoVuoto(); save(); renderPlan(); renderShoppingList(); $("#clear-plan-confirm").hidden = true; toast("Piano svuotato");
+      });
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape") $("#clear-plan-confirm").hidden = true; });
+
+      $("#copy-list").addEventListener("click", async () => {
+        const lista = listaSpesa();
+        if (!lista.length) { toast("La lista è vuota"); return; }
+        const righe = ["Lista della spesa", ...lista.map(v => `- ${v.nome}: ${fmtQta(v)}${state.spesaFatta[v.chiave] ? " (già preso)" : ""}`)];
+        try { await navigator.clipboard.writeText(righe.join("\n")); toast("Lista copiata"); }
+        catch (_) { toast("Impossibile copiare: seleziona e copia a mano"); }
+      });
+
+      renderIngredientRows();
+      renderAll();
+    })();
+  </script>
+</body>
+</html>

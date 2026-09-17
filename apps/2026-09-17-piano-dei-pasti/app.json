@@ -1,0 +1,11 @@
+{
+  "title": "Piano dei Pasti",
+  "slug": "2026-09-17-piano-dei-pasti",
+  "date": "2026-09-17",
+  "description": "Pianifica pranzi e cene della settimana con le tue ricette e genera automaticamente la lista della spesa.",
+  "category": "casa-cucina",
+  "tags": ["pasti", "settimana", "spesa", "cucina"],
+  "source": "richiesta",
+  "request": "Un'app per pianificare i pasti della settimana con lista della spesa generata automaticamente",
+  "status": "pronta"
+}

@@ -7,4 +7,4 @@ Puoi aggiungere righe dal sito locale (sezione Richieste) oppure editando questo
 
 ## Coda
 
-- [ ] Un'app per pianificare i pasti della settimana con lista della spesa generata automaticamente
+- [x] Un'app per pianificare i pasti della settimana con lista della spesa generata automaticamente → apps/2026-09-17-piano-dei-pasti
