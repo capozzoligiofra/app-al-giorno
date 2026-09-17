@@ -1,7 +1,7 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 3,
+  "count": 4,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -99,6 +99,30 @@ window.__APPS__ = {
         "font": "serif-editoriale"
       },
       "size": 25244
+    },
+    {
+      "title": "Mance e Conto",
+      "slug": "2026-09-17-mance-e-conto",
+      "date": "2026-09-17",
+      "description": "Mancia e quota a testa al ristorante in tre tocchi: conto, percentuale, persone. Arrotonda le quote e copia il riepilogo.",
+      "category": "calcolatori-convertitori",
+      "tags": [
+        "mancia",
+        "ristorante",
+        "conto",
+        "dividere"
+      ],
+      "source": "richiesta",
+      "request": "Mance e Conto — calcola mancia e divisione del conto al ristorante in tre tocchi",
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "split",
+        "palette": "blu-notte",
+        "font": "mono-tecnico"
+      },
+      "size": 28854
     },
     {
       "title": "Dividi il Conto",

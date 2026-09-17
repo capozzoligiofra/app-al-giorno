@@ -1,0 +1,14 @@
+{
+  "title": "Mance e Conto",
+  "slug": "2026-09-17-mance-e-conto",
+  "date": "2026-09-17",
+  "description": "Mancia e quota a testa al ristorante in tre tocchi: conto, percentuale, persone. Arrotonda le quote e copia il riepilogo.",
+  "category": "calcolatori-convertitori",
+  "tags": ["mancia", "ristorante", "conto", "dividere"],
+  "source": "richiesta",
+  "request": "Mance e Conto — calcola mancia e divisione del conto al ristorante in tre tocchi",
+  "status": "pronta",
+  "version": 1,
+  "changelog": [],
+  "design": { "layout": "split", "palette": "blu-notte", "font": "mono-tecnico" }
+}

@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1f3d80">
+  <title>Mance e Conto — mancia e quota a testa</title>
+  <meta name="description" content="Calcola la mancia e dividi il conto del ristorante in tre tocchi: importo, percentuale, persone. Con arrotondamento a testa e riepilogo da copiare.">
+  <style>
+    :root {
+      --bg: #eaf0fa;
+      --bg-2: #dfe7f5;
+      --surface: #ffffff;
+      --text: #0f1a33;
+      --muted: #5a6786;
+      --line: #cdd8ec;
+      --accent: #1f3d80;
+      --accent-2: #2e5bc4;
+      --accent-soft: #dbe6fb;
+      --accent-ink: #ffffff;
+      --paper: #fdf9ee;
+      --paper-2: #f3ecd8;
+      --paper-ink: #1c1a14;
+      --paper-muted: #6d6752;
+      --ok: #1f7a4d;
+      --danger: #b3382a;
+      --r: 6px;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0a1224;
+        --bg-2: #0f1a33;
+        --surface: #141f3d;
+        --text: #e7edfb;
+        --muted: #94a3c8;
+        --line: #253760;
+        --accent: #7fa3ff;
+        --accent-2: #a9c0ff;
+        --accent-soft: #1e2f5c;
+        --accent-ink: #0a1224;
+        --ok: #6fd39a;
+        --danger: #ff8f7a;
+        color-scheme: dark;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      font: 16px/1.5 ui-monospace, "Cascadia Mono", Consolas, "SF Mono", Menlo, "Liberation Mono", monospace;
+      background: linear-gradient(180deg, var(--bg-2), var(--bg) 40%);
+      background-attachment: fixed;
+      color: var(--text);
+      overflow-x: hidden;
+      min-height: 100dvh;
+    }
+    button, input { font: inherit; color: inherit; }
+    button { cursor: pointer; }
+    :focus-visible { outline: 3px solid var(--accent-2); outline-offset: 2px; }
+
+    .app {
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      /* spazio per la barra azioni fissa in basso */
+      padding-bottom: calc(84px + env(safe-area-inset-bottom));
+    }
+
+    /* ---- testata ---- */
+    .top {
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+      padding: max(8px, env(safe-area-inset-top)) 16px 4px;
+      max-width: 1000px; width: 100%; margin: 0 auto;
+    }
+    .back {
+      display: inline-flex; align-items: center; min-height: 44px; padding: 0 8px 0 0;
+      color: var(--muted); text-decoration: none; font-size: .9rem;
+    }
+    .back:hover, .back:focus-visible { color: var(--accent); }
+    .brand { font-size: .85rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+
+    /* ---- pannello input: fisso in alto (layout split) ---- */
+    .panel {
+      position: sticky; top: 0; z-index: 5;
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+      padding: 8px 16px 14px;
+    }
+    .panel-in { max-width: 1000px; margin: 0 auto; display: grid; gap: 14px; }
+
+    .step {
+      display: grid; gap: 6px;
+    }
+    .step-label {
+      display: flex; align-items: center; gap: 8px;
+      font-size: .85rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+    }
+    .step-n {
+      display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%;
+      background: var(--accent); color: var(--accent-ink); font-size: .8rem; font-weight: 700; letter-spacing: 0;
+    }
+
+    /* importo */
+    .amount {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--surface); border: 2px solid var(--line); border-radius: var(--r);
+      padding: 6px 14px; min-height: 64px; transition: border-color .15s;
+    }
+    .amount:focus-within { border-color: var(--accent-2); }
+    .amount input {
+      flex: 1; min-width: 0; border: 0; background: transparent; padding: 0;
+      font-size: 2rem; font-weight: 700; letter-spacing: -.02em; text-align: right;
+    }
+    .amount input::placeholder { color: var(--line); }
+    .amount input:focus { outline: none; }
+    .amount .cur { font-size: 1.4rem; color: var(--muted); }
+    .clear {
+      width: 44px; height: 44px; border-radius: 50%; border: 0; background: transparent; color: var(--muted);
+      display: grid; place-items: center; font-size: 1.3rem; line-height: 1;
+    }
+    .clear:hover { background: var(--accent-soft); color: var(--accent); }
+    .clear[hidden] { display: none; }
+
+    /* chip mancia */
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      flex: 1 1 0; min-width: 52px; min-height: 46px; padding: 0 10px;
+      border: 2px solid var(--line); border-radius: var(--r); background: var(--surface);
+      font-weight: 600; letter-spacing: .02em; transition: background .12s, border-color .12s, color .12s;
+    }
+    .chip:hover { border-color: var(--accent-2); }
+    .chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+    .custom { display: none; gap: 8px; margin-top: 8px; }
+    .custom.open { display: flex; }
+    .custom input {
+      flex: 1; min-width: 0; min-height: 46px; padding: 0 12px; text-align: right;
+      border: 2px solid var(--line); border-radius: var(--r); background: var(--surface); font-size: 1.1rem; font-weight: 600;
+    }
+    .custom input:focus { border-color: var(--accent-2); outline: none; }
+    .seg { display: inline-flex; border: 2px solid var(--line); border-radius: var(--r); overflow: hidden; }
+    .seg button { min-width: 48px; min-height: 42px; border: 0; background: var(--surface); font-weight: 700; }
+    .seg button + button { border-left: 2px solid var(--line); }
+    .seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+
+    /* stepper persone */
+    .stepper { display: flex; align-items: stretch; gap: 8px; }
+    .stepper button {
+      width: 64px; min-height: 52px; border: 2px solid var(--line); border-radius: var(--r);
+      background: var(--surface); font-size: 1.6rem; font-weight: 700; line-height: 1;
+    }
+    .stepper button:hover:not(:disabled) { border-color: var(--accent-2); color: var(--accent); }
+    .stepper button:active:not(:disabled) { background: var(--accent-soft); }
+    .stepper button:disabled { opacity: .4; cursor: not-allowed; }
+    .stepper input {
+      flex: 1; min-width: 0; text-align: center; border: 2px solid var(--line); border-radius: var(--r);
+      background: var(--surface); font-size: 1.5rem; font-weight: 700;
+      -moz-appearance: textfield; appearance: textfield;
+    }
+    .stepper input::-webkit-outer-spin-button, .stepper input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    .stepper input:focus { border-color: var(--accent-2); outline: none; }
+
+    /* ---- risultato: scontrino scorrevole ---- */
+    .results { padding: 20px 16px 16px; max-width: 1000px; width: 100%; margin: 0 auto; display: grid; gap: 18px; align-content: start; }
+
+    .receipt {
+      position: relative;
+      background: var(--paper); color: var(--paper-ink);
+      padding: 22px 20px 30px;
+      box-shadow: 0 10px 30px rgba(10, 18, 36, .18);
+      max-width: 420px; width: 100%; margin: 0 auto;
+    }
+    /* bordo seghettato in basso, come lo scontrino strappato */
+    .receipt::after {
+      content: ""; position: absolute; left: 0; right: 0; bottom: -10px; height: 10px;
+      background:
+        linear-gradient(135deg, var(--paper) 50%, transparent 50%) 0 0 / 14px 10px repeat-x,
+        linear-gradient(-135deg, var(--paper) 50%, transparent 50%) 7px 0 / 14px 10px repeat-x;
+    }
+    .receipt h1 {
+      margin: 0 0 2px; font-size: 1.05rem; letter-spacing: .18em; text-transform: uppercase; text-align: center; font-weight: 700;
+    }
+    .receipt .sub { text-align: center; color: var(--paper-muted); font-size: .85rem; margin: 0 0 14px; }
+    .row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 5px 0; }
+    .row .k { text-transform: uppercase; letter-spacing: .06em; font-size: .9rem; }
+    .row .v { font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+    .row.sub-row { color: var(--paper-muted); padding-top: 0; }
+    .row.sub-row .k { text-transform: none; letter-spacing: 0; font-size: .85rem; }
+    .rule { border: 0; border-top: 2px dashed var(--paper-2); margin: 8px 0; }
+    .rule.strong { border-top-style: solid; border-top-color: var(--paper-ink); }
+    .row.big { align-items: center; padding: 8px 0 2px; }
+    .row.big .k { font-weight: 700; font-size: 1rem; }
+    .row.big .v { font-size: 2.2rem; font-weight: 800; letter-spacing: -.03em; line-height: 1.1; }
+    .note {
+      margin: 12px 0 0; padding: 8px 10px; font-size: .85rem; line-height: 1.4;
+      background: var(--paper-2); color: var(--paper-muted); border-left: 3px solid var(--paper-muted);
+    }
+    .note[hidden] { display: none; }
+    .empty { text-align: center; color: var(--paper-muted); padding: 10px 0 4px; font-size: .95rem; }
+    .receipt.is-empty .v { color: var(--paper-muted); }
+    .receipt .stamp {
+      margin-top: 18px; text-align: center; color: var(--paper-muted); font-size: .8rem; letter-spacing: .2em; text-transform: uppercase;
+    }
+
+    /* opzioni sotto lo scontrino */
+    .options { max-width: 420px; width: 100%; margin: 0 auto; display: grid; gap: 8px; }
+    .options .step-label { justify-content: space-between; }
+    .options .chips .chip { flex: 1 1 0; }
+    .hint { color: var(--muted); font-size: .85rem; margin: 0; }
+
+    /* ---- barra azioni fissa (pollice) ---- */
+    .actions {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 6;
+      display: flex; gap: 10px; padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+      background: color-mix(in srgb, var(--bg) 90%, transparent);
+      -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+      border-top: 1px solid var(--line);
+    }
+    .actions-in { max-width: 1000px; width: 100%; margin: 0 auto; display: flex; gap: 10px; align-items: center; }
+    .btn {
+      min-height: 52px; padding: 0 18px; border-radius: var(--r); border: 2px solid var(--line);
+      background: var(--surface); font-weight: 700; letter-spacing: .04em; text-transform: uppercase; font-size: .95rem;
+    }
+    .btn.primary { flex: 1; background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+    .btn.primary:disabled { opacity: .45; cursor: not-allowed; }
+    .btn:not(:disabled):hover { filter: brightness(1.08); }
+    .toast {
+      position: fixed; left: 50%; bottom: calc(90px + env(safe-area-inset-bottom)); transform: translateX(-50%) translateY(8px);
+      background: var(--text); color: var(--bg); padding: 10px 16px; border-radius: var(--r); font-size: .9rem;
+      opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; z-index: 7; white-space: nowrap;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* ---- desktop: due colonne affiancate ---- */
+    @media (min-width: 700px) {
+      .app { padding-bottom: 24px; }
+      .split { display: grid; grid-template-columns: minmax(300px, 420px) 1fr; gap: 32px; max-width: 1000px; width: 100%; margin: 0 auto; padding: 8px 16px 0; align-items: start; }
+      .panel { position: sticky; top: 16px; border: 1px solid var(--line); border-radius: 10px; padding: 18px; background: var(--surface); backdrop-filter: none; -webkit-backdrop-filter: none; }
+      .results { padding: 0; }
+      .actions { position: static; background: transparent; border: 0; padding: 0; backdrop-filter: none; -webkit-backdrop-filter: none; max-width: 420px; width: 100%; margin: 0 auto; }
+      .toast { bottom: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="top">
+      <a class="back" href="../../index.html">← Tutte le app</a>
+      <span class="brand">Mance e Conto</span>
+    </header>
+
+    <div class="split">
+      <section class="panel" aria-label="Dati del conto">
+        <div class="panel-in">
+          <div class="step">
+            <label class="step-label" for="importo"><span class="step-n">1</span> Conto del ristorante</label>
+            <div class="amount">
+              <span class="cur" aria-hidden="true">€</span>
+              <input id="importo" type="text" inputmode="decimal" autocomplete="off" enterkeyhint="done" placeholder="0,00" aria-describedby="importo-help">
+              <button class="clear" id="azzera-importo" type="button" aria-label="Cancella importo" hidden>×</button>
+            </div>
+            <span id="importo-help" hidden>Scrivi l'importo totale del conto, con virgola per i centesimi.</span>
+          </div>
+
+          <div class="step">
+            <div class="step-label" id="mancia-label"><span class="step-n">2</span> Mancia</div>
+            <div class="chips" role="group" aria-labelledby="mancia-label" id="chips-mancia">
+              <button class="chip" type="button" data-pct="0">Nessuna</button>
+              <button class="chip" type="button" data-pct="5">5%</button>
+              <button class="chip" type="button" data-pct="10">10%</button>
+              <button class="chip" type="button" data-pct="15">15%</button>
+              <button class="chip" type="button" data-pct="20">20%</button>
+              <button class="chip" type="button" data-pct="custom">Altro</button>
+            </div>
+            <div class="custom" id="custom">
+              <input id="custom-val" type="text" inputmode="decimal" autocomplete="off" enterkeyhint="done" placeholder="12" aria-label="Mancia personalizzata">
+              <div class="seg" role="group" aria-label="Unità della mancia">
+                <button type="button" data-unit="pct" aria-pressed="true">%</button>
+                <button type="button" data-unit="eur" aria-pressed="false">€</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="step">
+            <label class="step-label" for="persone"><span class="step-n">3</span> Persone</label>
+            <div class="stepper">
+              <button type="button" id="meno" aria-label="Una persona in meno">−</button>
+              <input id="persone" type="number" inputmode="numeric" min="1" max="50" step="1" value="2" enterkeyhint="done">
+              <button type="button" id="piu" aria-label="Una persona in più">+</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="results">
+        <article class="receipt is-empty" id="receipt" aria-live="polite">
+          <h1>Scontrino</h1>
+          <p class="sub" id="sub">— inserisci il conto —</p>
+          <div class="row"><span class="k">Conto</span><span class="v" id="r-conto">—</span></div>
+          <div class="row"><span class="k" id="r-mancia-k">Mancia</span><span class="v" id="r-mancia">—</span></div>
+          <hr class="rule">
+          <div class="row"><span class="k">Totale</span><span class="v" id="r-totale">—</span></div>
+          <div class="row"><span class="k">Persone</span><span class="v" id="r-persone">2</span></div>
+          <hr class="rule strong">
+          <div class="row big"><span class="k">A testa</span><span class="v" id="r-testa">—</span></div>
+          <div class="row sub-row"><span class="k">di cui mancia</span><span class="v" id="r-testa-mancia">—</span></div>
+          <p class="note" id="nota" hidden></p>
+          <p class="empty" id="empty">Scrivi l'importo qui sopra: la quota a testa compare subito.</p>
+          <div class="stamp">grazie e arrivederci</div>
+        </article>
+
+        <div class="options">
+          <div class="step-label" id="arr-label"><span>Arrotonda la quota a testa</span></div>
+          <div class="chips" role="group" aria-labelledby="arr-label" id="chips-arr">
+            <button class="chip" type="button" data-step="0">No</button>
+            <button class="chip" type="button" data-step="0.5">0,50 €</button>
+            <button class="chip" type="button" data-step="1">1 €</button>
+            <button class="chip" type="button" data-step="5">5 €</button>
+          </div>
+          <p class="hint">Arrotonda per eccesso, così si pagano cifre tonde: la differenza va in mancia.</p>
+        </div>
+
+        <div class="actions">
+          <div class="actions-in">
+            <button class="btn" type="button" id="reset">Azzera</button>
+            <button class="btn primary" type="button" id="copia" disabled>Copia riepilogo</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+    // Modello dati: stato = { conto (numero o null), mancia: {mode: 'pct'|'custom', pct, customVal, unit: 'pct'|'eur'},
+    // persone (1–50), arrotonda (passo in €: 0 = nessuno) }. Il conto non viene salvato; il resto sì in
+    // localStorage ("mance-e-conto:v1"), così le preferenze (mancia abituale, persone) restano tra un pasto e l'altro.
+    (function () {
+      const KEY = "mance-e-conto:v1";
+      const $ = (id) => document.getElementById(id);
+      const eur = new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR" });
+      const pctFmt = new Intl.NumberFormat("it-IT", { maximumFractionDigits: 1 });
+
+      const el = {
+        importo: $("importo"), azzeraImporto: $("azzera-importo"),
+        chipsMancia: $("chips-mancia"), custom: $("custom"), customVal: $("custom-val"),
+        seg: document.querySelector(".seg"),
+        meno: $("meno"), piu: $("piu"), persone: $("persone"),
+        receipt: $("receipt"), sub: $("sub"),
+        rConto: $("r-conto"), rManciaK: $("r-mancia-k"), rMancia: $("r-mancia"),
+        rTotale: $("r-totale"), rPersone: $("r-persone"), rTesta: $("r-testa"), rTestaMancia: $("r-testa-mancia"),
+        nota: $("nota"), empty: $("empty"),
+        chipsArr: $("chips-arr"), reset: $("reset"), copia: $("copia"), toast: $("toast"),
+      };
+
+      const stato = {
+        conto: null,
+        mancia: { mode: "pct", pct: 10, customVal: "", unit: "pct" },
+        persone: 2,
+        arrotonda: 0,
+      };
+
+      // ---- persistenza preferenze ----
+      function carica() {
+        try {
+          const s = JSON.parse(localStorage.getItem(KEY) || "null");
+          if (!s) return;
+          if (s.mancia && typeof s.mancia === "object") Object.assign(stato.mancia, s.mancia);
+          if (Number.isInteger(s.persone) && s.persone >= 1 && s.persone <= 50) stato.persone = s.persone;
+          if ([0, 0.5, 1, 5].includes(s.arrotonda)) stato.arrotonda = s.arrotonda;
+        } catch { /* storage non disponibile: si va avanti senza */ }
+      }
+      function salva() {
+        try {
+          localStorage.setItem(KEY, JSON.stringify({ mancia: stato.mancia, persone: stato.persone, arrotonda: stato.arrotonda }));
+        } catch { /* ignora */ }
+      }
+
+      // ---- parsing numeri "all'italiana" ----
+      function parseNum(str) {
+        const pulito = String(str).replace(/\s|€/g, "").replace(/\./g, "").replace(",", ".");
+        if (pulito === "" || pulito === ".") return null;
+        const n = Number(pulito);
+        return Number.isFinite(n) && n >= 0 ? n : null;
+      }
+      // Accetta solo cifre e un separatore decimale (max 2 decimali) mentre si scrive.
+      function normalizzaInput(str) {
+        let s = String(str).replace(/[^\d.,]/g, "").replace(/\./g, ",");
+        const i = s.indexOf(",");
+        if (i !== -1) s = s.slice(0, i + 1) + s.slice(i + 1).replace(/,/g, "").slice(0, 2);
+        return s.slice(0, 10);
+      }
+
+      // ---- calcolo ----
+      function calcola() {
+        const conto = stato.conto;
+        if (conto === null || conto <= 0) return null;
+        let mancia;
+        if (stato.mancia.mode === "pct") {
+          mancia = conto * stato.mancia.pct / 100;
+        } else {
+          const v = parseNum(stato.mancia.customVal) || 0;
+          mancia = stato.mancia.unit === "eur" ? v : conto * v / 100;
+        }
+        mancia = Math.round(mancia * 100) / 100;
+        const n = stato.persone;
+        let totale = conto + mancia;
+        let aTesta = totale / n;
+        let arrotondato = false;
+        if (stato.arrotonda > 0) {
+          const step = stato.arrotonda;
+          const tondo = Math.ceil(Math.round(aTesta * 100) / 100 / step - 1e-9) * step;
+          if (Math.abs(tondo - aTesta) > 0.004) {
+            arrotondato = true;
+            aTesta = tondo;
+            totale = Math.round(tondo * n * 100) / 100;
+            mancia = Math.round((totale - conto) * 100) / 100;
+          }
+        }
+        const pctEff = conto > 0 ? mancia / conto * 100 : 0;
+        return { conto, mancia, totale, n, aTesta, manciaTesta: mancia / n, pctEff, arrotondato };
+      }
+
+      function etichettaMancia() {
+        if (stato.mancia.mode === "pct") return stato.mancia.pct === 0 ? "Mancia" : `Mancia ${stato.mancia.pct}%`;
+        const v = parseNum(stato.mancia.customVal) || 0;
+        return stato.mancia.unit === "eur" ? "Mancia fissa" : `Mancia ${pctFmt.format(v)}%`;
+      }
+
+      // ---- rendering ----
+      function render() {
+        // chip mancia
+        for (const b of el.chipsMancia.querySelectorAll(".chip")) {
+          const attiva = stato.mancia.mode === "pct" ? b.dataset.pct === String(stato.mancia.pct) : b.dataset.pct === "custom";
+          b.setAttribute("aria-pressed", attiva ? "true" : "false");
+        }
+        el.custom.classList.toggle("open", stato.mancia.mode === "custom");
+        for (const b of el.seg.querySelectorAll("button")) b.setAttribute("aria-pressed", b.dataset.unit === stato.mancia.unit ? "true" : "false");
+        el.customVal.placeholder = stato.mancia.unit === "eur" ? "5,00" : "12";
+        // persone
+        if (document.activeElement !== el.persone) el.persone.value = stato.persone;
+        el.meno.disabled = stato.persone <= 1;
+        el.piu.disabled = stato.persone >= 50;
+        // arrotondamento
+        for (const b of el.chipsArr.querySelectorAll(".chip")) b.setAttribute("aria-pressed", Number(b.dataset.step) === stato.arrotonda ? "true" : "false");
+        // pulsante × sull'importo
+        el.azzeraImporto.hidden = el.importo.value === "";
+
+        const r = calcola();
+        el.rManciaK.textContent = etichettaMancia();
+        el.rPersone.textContent = stato.persone;
+        el.receipt.classList.toggle("is-empty", !r);
+        el.empty.hidden = !!r;
+        el.copia.disabled = !r;
+        if (!r) {
+          el.sub.textContent = "— inserisci il conto —";
+          for (const k of ["rConto", "rMancia", "rTotale", "rTesta", "rTestaMancia"]) el[k].textContent = "—";
+          el.nota.hidden = true;
+          return;
+        }
+        el.sub.textContent = new Date().toLocaleDateString("it-IT", { day: "2-digit", month: "long", year: "numeric" });
+        el.rConto.textContent = eur.format(r.conto);
+        el.rMancia.textContent = eur.format(r.mancia);
+        el.rTotale.textContent = eur.format(r.totale);
+        el.rTesta.textContent = eur.format(r.aTesta);
+        el.rTestaMancia.textContent = eur.format(r.manciaTesta);
+        if (r.arrotondato) {
+          el.nota.textContent = `Quota arrotondata a ${eur.format(stato.arrotonda)}: il totale sale a ${eur.format(r.totale)} e la mancia effettiva è ${eur.format(r.mancia)} (${pctFmt.format(r.pctEff)}%).`;
+          el.nota.hidden = false;
+        } else if (stato.mancia.mode === "custom" && stato.mancia.unit === "eur" && r.mancia > 0) {
+          el.nota.textContent = `Mancia fissa pari al ${pctFmt.format(r.pctEff)}% del conto.`;
+          el.nota.hidden = false;
+        } else {
+          el.nota.hidden = true;
+        }
+      }
+
+      // ---- riepilogo da copiare ----
+      function riepilogo() {
+        const r = calcola();
+        if (!r) return "";
+        const righe = [
+          `Conto ${eur.format(r.conto)}`,
+          r.mancia > 0 ? `${etichettaMancia()}: ${eur.format(r.mancia)}` : "Nessuna mancia",
+          `Totale ${eur.format(r.totale)}`,
+          r.n > 1 ? `In ${r.n}: ${eur.format(r.aTesta)} a testa` : `Una persona: ${eur.format(r.aTesta)}`,
+        ];
+        if (r.arrotondato) righe.push(`(quota arrotondata a ${eur.format(stato.arrotonda)})`);
+        return righe.join("\n");
+      }
+
+      let toastTimer = 0;
+      function toast(msg) {
+        el.toast.textContent = msg;
+        el.toast.classList.add("show");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => el.toast.classList.remove("show"), 1800);
+      }
+
+      async function copia() {
+        const testo = riepilogo();
+        if (!testo) return;
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(testo);
+          } else {
+            // fallback per file:// e contesti non sicuri
+            const ta = document.createElement("textarea");
+            ta.value = testo; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
+            document.body.appendChild(ta); ta.select();
+            const ok = document.execCommand("copy");
+            ta.remove();
+            if (!ok) throw new Error("copy");
+          }
+          toast("Riepilogo copiato");
+        } catch {
+          toast("Non riesco a copiare: seleziona e copia lo scontrino");
+        }
+      }
+
+      // ---- eventi ----
+      el.importo.addEventListener("input", () => {
+        const v = normalizzaInput(el.importo.value);
+        if (v !== el.importo.value) el.importo.value = v;
+        stato.conto = parseNum(v);
+        render();
+      });
+      el.importo.addEventListener("blur", () => {
+        if (stato.conto !== null && stato.conto > 0) el.importo.value = stato.conto.toFixed(2).replace(".", ",");
+        else el.importo.value = "";
+        stato.conto = parseNum(el.importo.value);
+        render();
+      });
+      el.importo.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") el.importo.blur();
+        if (e.key === "Escape") { el.importo.value = ""; stato.conto = null; render(); }
+      });
+      el.azzeraImporto.addEventListener("click", () => {
+        el.importo.value = ""; stato.conto = null; render(); el.importo.focus();
+      });
+
+      el.chipsMancia.addEventListener("click", (e) => {
+        const b = e.target.closest(".chip"); if (!b) return;
+        if (b.dataset.pct === "custom") {
+          stato.mancia.mode = "custom";
+          render(); el.customVal.focus();
+        } else {
+          stato.mancia.mode = "pct"; stato.mancia.pct = Number(b.dataset.pct);
+          render();
+        }
+        salva();
+      });
+      el.customVal.addEventListener("input", () => {
+        const v = normalizzaInput(el.customVal.value);
+        if (v !== el.customVal.value) el.customVal.value = v;
+        stato.mancia.customVal = v; render(); salva();
+      });
+      el.customVal.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") el.customVal.blur();
+        if (e.key === "Escape") { el.customVal.value = ""; stato.mancia.customVal = ""; render(); salva(); }
+      });
+      el.seg.addEventListener("click", (e) => {
+        const b = e.target.closest("button"); if (!b) return;
+        stato.mancia.unit = b.dataset.unit; render(); salva();
+      });
+
+      function setPersone(n) {
+        stato.persone = Math.min(50, Math.max(1, Math.round(n) || 1));
+        render(); salva();
+      }
+      el.meno.addEventListener("click", () => setPersone(stato.persone - 1));
+      el.piu.addEventListener("click", () => setPersone(stato.persone + 1));
+      el.persone.addEventListener("input", () => { const n = Number(el.persone.value); if (n >= 1 && n <= 50) setPersone(n); });
+      el.persone.addEventListener("blur", () => { setPersone(Number(el.persone.value)); el.persone.value = stato.persone; });
+      el.persone.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") el.persone.blur();
+        if (e.key === "Escape") { el.persone.blur(); }
+      });
+
+      el.chipsArr.addEventListener("click", (e) => {
+        const b = e.target.closest(".chip"); if (!b) return;
+        stato.arrotonda = Number(b.dataset.step); render(); salva();
+      });
+
+      el.reset.addEventListener("click", () => {
+        el.importo.value = ""; stato.conto = null; stato.arrotonda = 0;
+        render(); salva(); el.importo.focus(); toast("Conto azzerato");
+      });
+      el.copia.addEventListener("click", copia);
+
+      document.addEventListener("keydown", (e) => {
+        // Esc fuori dai campi = azzera il conto
+        if (e.key === "Escape" && !["INPUT", "TEXTAREA"].includes(document.activeElement?.tagName)) el.reset.click();
+      });
+
+      carica();
+      el.customVal.value = stato.mancia.customVal || "";
+      render();
+    })();
+  </script>
+</body>
+</html>
