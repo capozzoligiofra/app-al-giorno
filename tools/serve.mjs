@@ -15,6 +15,7 @@ import { readFileSync, writeFileSync, appendFileSync, existsSync, statSync } fro
 import { join, dirname, resolve, extname, normalize, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFileSync, spawn } from "node:child_process";
+import { networkInterfaces } from "node:os";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const PORT = Number(process.env.PORT) || 8787;
@@ -272,4 +273,12 @@ const server = createServer(async (req, res) => {
 
 const p = pull();
 console.log(p.ok ? `git pull: ${p.message}` : `git pull saltato: ${p.message}`);
-server.listen(PORT, "127.0.0.1", () => console.log(`Un'App al Giorno → http://localhost:${PORT}  (Ctrl+C per chiudere)`));
+// HOST=127.0.0.1 per limitare l'accesso al solo PC; di default ascolta anche sulla rete locale (telefono in casa).
+const HOST = process.env.HOST || "0.0.0.0";
+server.listen(PORT, HOST, () => {
+  console.log(`Un'App al Giorno → http://localhost:${PORT}  (Ctrl+C per chiudere)`);
+  if (HOST === "0.0.0.0") {
+    const ips = Object.values(networkInterfaces()).flat().filter(i => i && i.family === "IPv4" && !i.internal).map(i => i.address);
+    for (const ip of ips) console.log(`  dal telefono (stessa Wi-Fi): http://${ip}:${PORT}`);
+  }
+});

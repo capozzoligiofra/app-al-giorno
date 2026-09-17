@@ -55,29 +55,32 @@
         <h2>Chiedi un'app</h2>
       </div>
       <p class="muted">Descrivi cosa ti serve, oppure un'indicazione generale ("più app per la cucina", "colori più vivaci"). Per far migliorare un'app esistente usa il bottone <b>Migliora</b> sulla sua scheda.</p>
+      <p id="request-offline" class="msg" hidden>Sei sul sito pubblico, senza il server del PC: le richieste si aggiungono modificando <code>richieste.md</code> su GitHub. I bottoni copiano la riga pronta e aprono l'editor: incollala in fondo al file e salva (<i>Commit changes</i>).</p>
 
-      <form id="request-form" class="request-form" hidden>
+      <form id="request-form" class="request-form">
         <label for="request-text" class="sr-only">La tua richiesta</label>
         <textarea id="request-text" rows="3" maxlength="500" placeholder="Es. Un timer per la cottura della pasta con i tempi dei formati più comuni" required enterkeyhint="send"></textarea>
         <div class="form-row">
           <span id="request-count" class="muted small">0 / 500</span>
           <span class="form-actions">
-            <button class="btn btn-ghost" type="submit">In coda</button>
+            <button class="btn btn-ghost" type="submit" id="request-queue">In coda</button>
             <button class="btn btn-accent" type="button" id="request-now">Genera subito</button>
           </span>
         </div>
         <p id="request-msg" class="msg" hidden></p>
       </form>
-      <p id="request-offline" class="msg" hidden>Sito aperto senza il server locale: aggiungi richieste modificando <a id="richieste-link" href="richieste.md">richieste.md</a> (una riga <code>- [ ] la tua idea</code>).</p>
 
       <div class="auto">
         <div>
           <b>Creazione automatica</b>
           <p class="muted small" id="auto-hint">Frequenza della routine cloud (gira anche a PC spento).</p>
         </div>
-        <div class="auto-controls">
+        <div class="auto-controls" id="auto-local">
           <select id="freq" aria-label="Frequenza"></select>
           <button id="freq-save" class="btn" type="button">Salva</button>
+        </div>
+        <div class="auto-controls" id="auto-remote" hidden>
+          <a id="routine-link" class="btn" href="#" target="_blank" rel="noopener">Gestisci la routine su claude.ai</a>
         </div>
         <p id="freq-msg" class="msg" hidden></p>
       </div>

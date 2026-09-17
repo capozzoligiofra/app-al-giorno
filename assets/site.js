@@ -104,7 +104,6 @@
     if (catalog.repo) {
       repoLink.href = catalog.repo;
       repoLink.hidden = false;
-      $("#richieste-link").href = `${catalog.repo}/edit/main/richieste.md`;
     }
     renderStats(); renderCategories(); renderGrid();
   }
@@ -116,10 +115,20 @@
     } catch (_) { /* file:// o server assente: resta window.__APPS__ */ }
   }
 
+  // Modalità senza server (GitHub Pages / file://): copia la riga pronta e apre l'editor di richieste.md su GitHub.
+  async function copyAndOpenGitHub(text, msgNode) {
+    const line = `- [ ] ${text}`;
+    let copied = false;
+    try { await navigator.clipboard.writeText(line); copied = true; } catch (_) { /* clipboard non disponibile */ }
+    const repo = state.catalog.repo;
+    if (!repo) { showMsg(msgNode, "Riga da aggiungere a richieste.md: " + line, "warn"); return; }
+    showMsg(msgNode, copied ? "Riga copiata. Nell'editor GitHub incollala in fondo al file e premi Commit changes." : "Copia questa riga e incollala in fondo al file: " + line, copied ? "ok" : "warn");
+    window.open(`${repo}/edit/main/richieste.md`, "_blank", "noopener");
+  }
+
   // "Migliora": precompila la richiesta con il prefisso che l'agente riconosce.
   function improve(app) {
     const ta = $("#request-text");
-    if (!state.api) { location.hash = "#richieste"; return; }
     ta.value = `migliora apps/${app.slug}: `;
     $("#request-count").textContent = `${ta.value.length} / 500`;
     location.hash = "#richieste";
@@ -146,7 +155,9 @@
       el("div", { class: "txt" }, el("b", {}, i.title), i.text ? el("span", {}, i.text) : ""),
       state.api ? el("div", { class: "acts" },
         el("button", { class: "btn btn-accent", type: "button", onclick: (ev) => generateNow(i.line, i.line, ev.target) }, "Genera ora"),
-        el("button", { class: "btn btn-ghost", type: "button", onclick: (ev) => approveIdea(i, ev.target) }, "Approva")) : "")));
+        el("button", { class: "btn btn-ghost", type: "button", onclick: (ev) => approveIdea(i, ev.target) }, "Approva"))
+      : el("div", { class: "acts" },
+        el("button", { class: "btn btn-ghost", type: "button", onclick: () => copyAndOpenGitHub(i.line, $("#request-msg")) }, "Approva su GitHub")))));
   }
 
   async function loadIdeas() {
@@ -218,6 +229,16 @@
 
   // ---- frequenza della routine cloud ------------------------------------------
   async function loadConfig() {
+    if (!state.api) {
+      try {
+        const cfg = await (await fetch("config.json", { cache: "no-store" })).json();
+        if (cfg.routine_id) {
+          $("#routine-link").href = `https://claude.ai/code/routines/${cfg.routine_id}`;
+          $("#auto-hint").textContent = `Frequenza attuale: ${cfg.frequenza}. Da qui puoi cambiare l'orario o lanciare "Esegui ora" (prende la prima richiesta in coda).`;
+        }
+      } catch (_) { /* config assente */ }
+      return;
+    }
     try {
       const cfg = await (await fetch("api/config", { cache: "no-store" })).json();
       const sel = $("#freq");
@@ -299,6 +320,7 @@
     const text = ta.value.trim();
     if (text.length < 3) { showMsg(msg, "Scrivi almeno qualche parola.", "warn"); return; }
     if (/^migliora apps\/[a-z0-9-]+:\s*$/i.test(text)) { showMsg(msg, "Scrivi cosa vuoi migliorare dopo i due punti.", "warn"); return; }
+    if (!state.api) { await copyAndOpenGitHub(text.replace(/\s+/g, " "), msg); return; }
     btn.disabled = true; showMsg(msg, "Invio…");
     try {
       const r = await fetch("api/richieste", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ text }) });
@@ -359,10 +381,12 @@
     $("#gen-close").addEventListener("click", () => showGenPanel(false));
 
     state.api = await detectApi();
-    $("#request-form").hidden = !state.api;
     $("#request-offline").hidden = state.api;
+    $("#request-now").hidden = !state.api;
+    $("#request-queue").textContent = state.api ? "In coda" : "Copia e apri GitHub";
     $("#refresh").hidden = !state.api;
-    $(".auto").hidden = !state.api;
+    $("#auto-local").hidden = !state.api;
+    $("#auto-remote").hidden = state.api;
     await Promise.all([refreshCatalog(), loadRequests(), loadIdeas(), loadConfig()]);
     if (state.api) pollGen();
   }
