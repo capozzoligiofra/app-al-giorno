@@ -117,7 +117,7 @@
       "title": "Timer Pasta",
       "slug": "2026-09-17-timer-pasta",
       "date": "2026-09-17",
-      "description": "Tempi di cottura di 24 formati di pasta, timer a tutto schermo con avviso sonoro e dosi di acqua e sale.",
+      "description": "Tempi di cottura di 37 formati di pasta, timer a tutto schermo con avviso sonoro, dosi di acqua e sale e cottura passiva.",
       "category": "casa-cucina",
       "tags": [
         "cucina",
@@ -128,15 +128,53 @@
       "source": "autonoma",
       "request": null,
       "status": "pronta",
-      "version": 1,
-      "changelog": [],
+      "version": 2,
+      "changelog": [
+        "v2 (2026-09-18): modello business — keyword \"tempi di cottura pasta\", SEO (title, description, canonical, OG, JSON-LD WebApplication e FAQPage), tabella completa di 37 formati cliccabile, guida con esempi e FAQ, dosi con grammi a testa regolabili, agganci di monetizzazione, funzioni Pro Cottura passiva e I miei formati"
+      ],
       "design": {
         "layout": "fullscreen-tool",
         "palette": "giallo-senape",
         "font": "rounded"
       },
-      "business": null,
-      "size": 31574
+      "business": {
+        "keyword": "tempi di cottura pasta",
+        "keywords": [
+          "tempi di cottura pasta",
+          "quanti minuti cuocere la pasta",
+          "timer pasta al dente",
+          "quanta acqua e sale per la pasta",
+          "cottura passiva pasta"
+        ],
+        "intent": "Ha già l'acqua sul fuoco e vuole sapere in tre secondi quanti minuti cuocere quel formato, con un timer che suoni da solo.",
+        "target": "Chi cucina a casa tutti i giorni, 20-55 anni, dal telefono appoggiato al piano con le mani occupate.",
+        "edge": "Tabella dei tempi e timer nella stessa pagina: tocchi il formato nella tabella e il conto alla rovescia è già pronto, con dosi di acqua e sale, avviso sonoro e cottura passiva. Offline, senza registrazione.",
+        "monetization": [
+          "adsense",
+          "affiliate",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Cottura passiva",
+          "I miei formati"
+        ],
+        "affiliate": [
+          {
+            "t": "Pentola alta per la pasta con coperchio",
+            "q": "pentola alta pasta con coperchio"
+          },
+          {
+            "t": "Coperchio universale (serve per la cottura passiva)",
+            "q": "coperchio universale pentole"
+          },
+          {
+            "t": "Sale grosso marino da cucina",
+            "q": "sale grosso marino cucina"
+          }
+        ]
+      },
+      "size": 71394
     },
     {
       "title": "Piano dei Pasti",

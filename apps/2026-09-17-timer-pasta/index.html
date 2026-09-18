@@ -4,8 +4,40 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#b8860f">
-  <title>Timer Pasta — cottura al minuto</title>
-  <meta name="description" content="Tempi di cottura dei formati di pasta più comuni, timer a tutto schermo con avviso sonoro e dosi di acqua e sale.">
+  <title>Timer Pasta: tempi di cottura della pasta, gratis</title>
+  <meta name="description" content="Tempi di cottura della pasta per 37 formati, con timer a tutto schermo, dosi di acqua e sale e cottura passiva per risparmiare gas. Gratis, senza registrazione.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-17-timer-pasta/">
+  <meta property="og:title" content="Timer Pasta: tempi di cottura della pasta, gratis">
+  <meta property="og:description" content="Scegli il formato, tocca e parte il conto alla rovescia: tempi di cottura di 37 formati, dosi di acqua e sale, avviso sonoro.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-17-timer-pasta/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Timer Pasta",
+    "description": "Tempi di cottura della pasta per 37 formati con timer a tutto schermo, avviso sonoro, dosi di acqua e sale e modalità cottura passiva.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-17-timer-pasta/",
+    "applicationCategory": "LifestyleApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Da quando si contano i minuti di cottura della pasta?", "acceptedAnswer": { "@type": "Answer", "text": "Dal momento in cui l'acqua torna a bollire dopo aver buttato la pasta, non da quando la versi. Se l'acqua smette di bollire per un minuto, quel minuto non conta: alza la fiamma e fai riprendere il bollore prima di far partire il timer." } },
+      { "@type": "Question", "name": "Quanti minuti ci vogliono per gli spaghetti?", "acceptedAnswer": { "@type": "Answer", "text": "Gli spaghetti di sezione standard cuociono in circa 8 minuti al dente: 7 minuti per una cottura molto al dente, 9 minuti e mezzo per una cottura piena. Gli spaghettini scendono a 6 minuti, gli spaghettoni salgono a 12." } },
+      { "@type": "Question", "name": "Quanta acqua e quanto sale servono per la pasta?", "acceptedAnswer": { "@type": "Answer", "text": "La regola classica è 100-10-1: per ogni 100 grammi di pasta, 1 litro di acqua e 10 grammi di sale grosso, da aggiungere quando l'acqua bolle. Con 700 ml di acqua per 100 grammi la pasta viene comunque bene e si risparmia acqua ed energia." } },
+      { "@type": "Question", "name": "La cottura passiva funziona davvero?", "acceptedAnswer": { "@type": "Answer", "text": "Sì: dopo i primi due minuti a fuoco vivo il calore accumulato nell'acqua basta a portare a termine la cottura, se la pentola resta coperta. Il risultato è paragonabile alla cottura tradizionale e si spegne il fornello con diversi minuti di anticipo. Il risparmio su una singola pentola è di pochi centesimi, ma sull'anno diventa misurabile." } },
+      { "@type": "Question", "name": "I tempi valgono per tutte le marche di pasta?", "acceptedAnswer": { "@type": "Answer", "text": "Sono una media: trafila, spessore e tipo di grano cambiano di uno o due minuti. La confezione resta il riferimento, e con il Pass Pro puoi salvare i tuoi formati con il tempo esatto stampato sulla tua." } }
+    ]
+  }
+  </script>
   <style>
     :root {
       --bg: #fdf8ec;
@@ -42,11 +74,10 @@
     }
 
     * { box-sizing: border-box; }
-    html, body { height: 100%; }
     body {
       margin: 0;
       font: 17px/1.45 "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, system-ui, sans-serif;
-      background: radial-gradient(120% 60% at 50% 0%, var(--bg-2), var(--bg) 70%);
+      background: radial-gradient(120% 45% at 50% 0%, var(--bg-2), var(--bg) 70%);
       background-attachment: fixed;
       color: var(--text);
       overflow-x: hidden;
@@ -68,13 +99,14 @@
       display: inline-flex; align-items: center; min-height: 44px; padding: 0 10px 0 2px;
       color: var(--muted); text-decoration: none; font-size: .95rem; border-radius: var(--r-sm);
     }
-    .back:focus-visible, .btn:focus-visible, .chip:focus-visible, .voce:focus-visible,
-    .ring-btn:focus-visible, input:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+    .back:focus-visible, .btn:focus-visible, .chip:focus-visible, .voce:focus-visible, .pick:focus-visible,
+    .ring-btn:focus-visible, .toggle:focus-visible, .piega:focus-visible, input:focus-visible, a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
     .marchio { font-weight: 700; letter-spacing: -.01em; font-size: 1rem; }
     .marchio span { color: var(--accent); }
 
-    /* ---- selettore formato ---- */
-    .scelta { text-align: center; margin: 10px 0 2px; }
+    /* ---- titolo + selettore formato ---- */
+    .scelta { text-align: center; margin: 6px 0 2px; }
+    h1 { margin: 0 0 8px; font-size: 1.12rem; font-weight: 700; letter-spacing: -.01em; }
     .btn-formato {
       display: inline-flex; align-items: center; gap: 10px; max-width: 100%;
       min-height: 52px; padding: 8px 18px; border: 1px solid var(--line); border-radius: 999px;
@@ -88,7 +120,7 @@
     /* ---- cotture ---- */
     .cotture {
       display: grid; grid-template-columns: 1.18fr 1fr 1fr; gap: 8px;
-      max-width: 430px; margin: 12px auto 2px; padding: 6px;
+      max-width: 430px; margin: 10px auto 2px; padding: 6px;
       background: var(--surface); border: 1px solid var(--line); border-radius: 999px;
     }
     .chip {
@@ -100,7 +132,7 @@
     /* ---- timer centrale ---- */
     .centro { flex: 1 1 auto; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 6px 0 2px; }
     .ring-btn {
-      position: relative; width: min(72vw, 40dvh, 300px); aspect-ratio: 1; padding: 0;
+      position: relative; width: min(60vw, 32dvh, 280px); aspect-ratio: 1; padding: 0;
       border: 0; background: none; cursor: pointer; border-radius: 50%; color: inherit;
       -webkit-tap-highlight-color: transparent;
     }
@@ -110,9 +142,9 @@
     .dentro {
       position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
     }
-    .tempo.glifo { font-size: clamp(2.6rem, 14vw, 3.6rem); }
-    .tempo { font-size: clamp(3rem, 17vw, 4.4rem); font-weight: 700; letter-spacing: -.03em; font-variant-numeric: tabular-nums; line-height: 1; }
-    .stato { font-size: .95rem; color: var(--muted); text-transform: uppercase; letter-spacing: .12em; }
+    .tempo.glifo { font-size: clamp(2.4rem, 12vw, 3.2rem); }
+    .tempo { font-size: clamp(2.7rem, 15vw, 4rem); font-weight: 700; letter-spacing: -.03em; font-variant-numeric: tabular-nums; line-height: 1; }
+    .stato { font-size: .9rem; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; text-align: center; padding: 0 8px; }
     .app[data-fase="done"] .avanzamento { stroke: var(--ok); }
     .app[data-fase="done"] .tempo { color: var(--ok); }
     .app[data-fase="done"] .ring-btn { animation: pulsa 1.1s ease-in-out infinite; }
@@ -135,15 +167,25 @@
     .dosi {
       display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px 12px;
       background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md);
-      padding: 8px 12px; margin: 2px 0 0; font-size: .97rem;
+      padding: 8px 12px; margin: 2px 0 0; font-size: .97rem; width: 100%; max-width: 430px;
     }
-    .dosi .gruppo { display: flex; align-items: center; gap: 8px; }
+    .dosi .gruppo { display: flex; align-items: center; gap: 6px; }
     .dosi .btn-tondo { width: 44px; height: 44px; font-size: 1.05rem; }
-    .dosi .valore { min-width: 4.2em; text-align: center; font-variant-numeric: tabular-nums; }
-    .dosi .calcolo { color: var(--muted); text-align: center; }
+    .dosi .valore { min-width: 4.1em; text-align: center; font-variant-numeric: tabular-nums; }
+    .dosi .calcolo { color: var(--muted); text-align: center; margin: 0; width: 100%; }
     .dosi .calcolo b { color: var(--text); font-weight: 700; }
+    .grammi { display: flex; gap: 4px; }
+    .grammi button {
+      min-width: 44px; min-height: 44px; padding: 0 4px; border: 1px solid var(--line); border-radius: var(--r-sm);
+      background: transparent; color: var(--muted); font: inherit; font-size: .92rem; cursor: pointer;
+    }
+    .grammi button[aria-pressed="true"] { background: var(--accent-soft); color: var(--text); font-weight: 700; border-color: transparent; }
 
-    /* ---- barra azioni ---- */
+    /* ---- barra azioni + richiamo alla guida ---- */
+    .piega {
+      display: inline-flex; align-items: center; justify-content: center; align-self: center;
+      min-height: 44px; padding: 0 14px; color: var(--muted); text-decoration: none; font-size: .92rem;
+    }
     .azioni {
       position: sticky; bottom: 0; display: flex; gap: 10px;
       padding: 12px 0 calc(12px + env(safe-area-inset-bottom));
@@ -154,6 +196,7 @@
       background: var(--accent); color: var(--accent-ink); font: inherit; font-size: 1.12rem; font-weight: 700; cursor: pointer;
     }
     .btn.ghost { flex: 0 1 34%; background: var(--surface); color: var(--text); border: 1px solid var(--line); font-weight: 600; }
+    .btn.piccolo { flex: 0 0 auto; min-height: 48px; font-size: 1rem; border-radius: var(--r-sm); padding: 8px 16px; }
     .btn:disabled { opacity: .45; cursor: default; }
     .suggerimento { display: none; text-align: center; color: var(--muted); font-size: .9rem; padding-bottom: 10px; }
 
@@ -182,6 +225,7 @@
       border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--bg); color: var(--text);
     }
     .elenco { list-style: none; margin: 0; padding: 0 10px calc(14px + env(safe-area-inset-bottom)); overflow-y: auto; -webkit-overflow-scrolling: touch; }
+    .elenco .sezione { padding: 12px 12px 4px; color: var(--muted); font-size: .85rem; text-transform: uppercase; letter-spacing: .08em; }
     .voce {
       display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%;
       min-height: 56px; padding: 10px 12px; margin-bottom: 4px;
@@ -197,17 +241,96 @@
       color: var(--text); font: inherit; font-size: 1.05rem; cursor: pointer; flex: none;
     }
 
+    /* ---- contenuto sotto la piega ---- */
+    .sotto-piega { max-width: 760px; margin: 0 auto; padding: 0 16px calc(28px + env(safe-area-inset-bottom)); }
+    .blocco {
+      background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md);
+      padding: 16px; margin: 20px 0;
+    }
+    .blocco h2 { margin: 0 0 .4rem; font-size: 1.15rem; }
+    .muted { color: var(--muted); }
+    .small { font-size: .88rem; }
+    p.muted { margin: 0 0 .8rem; font-size: .95rem; }
+    .toggle {
+      display: inline-flex; align-items: center; gap: 12px; width: 100%;
+      min-height: 52px; padding: 6px 14px 6px 8px; border: 1px solid var(--line); border-radius: 999px;
+      background: var(--bg); color: var(--text); font: inherit; font-weight: 600; cursor: pointer; text-align: left;
+    }
+    .toggle .pista { flex: none; width: 52px; height: 32px; border-radius: 999px; background: var(--line); position: relative; transition: background .2s; }
+    .toggle .pallina { position: absolute; top: 3px; left: 3px; width: 26px; height: 26px; border-radius: 50%; background: var(--surface); transition: transform .2s; box-shadow: 0 1px 3px rgba(0,0,0,.25); }
+    .toggle[aria-checked="true"] .pista { background: var(--accent); }
+    .toggle[aria-checked="true"] .pallina { transform: translateX(20px); }
+    .toggle:disabled { opacity: .5; cursor: default; }
+    @media (prefers-reduced-motion: reduce) { .toggle .pista, .toggle .pallina { transition: none; } }
+    .risparmio { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 12px; margin-top: 14px; }
+    .risparmio .btn-tondo { width: 44px; height: 44px; }
+    .risparmio .valore { min-width: 7.5em; text-align: center; font-variant-numeric: tabular-nums; font-size: .95rem; }
+    .conto { margin: 10px 0 0; font-size: .95rem; line-height: 1.55; }
+    .conto b { font-variant-numeric: tabular-nums; }
+
+    form.aggiungi { display: flex; flex-wrap: wrap; gap: 8px; }
+    form.aggiungi input {
+      font: inherit; font-size: 16px; min-height: 48px; padding: 8px 12px;
+      border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--bg); color: var(--text); min-width: 0;
+    }
+    form.aggiungi .nome-in { flex: 1 1 150px; }
+    form.aggiungi .min-in { flex: 0 0 90px; }
+    .err { color: var(--danger); font-size: .9rem; margin: .5rem 0 0; min-height: 1.2em; }
+    .personali { list-style: none; margin: 12px 0 0; padding: 0; }
+    .personali li { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 48px; border-bottom: 1px solid var(--line); }
+    .personali .min { color: var(--muted); font-variant-numeric: tabular-nums; margin-left: auto; }
+    .togli { min-width: 44px; min-height: 44px; border: 0; border-radius: 50%; background: transparent; color: var(--muted); font: inherit; font-size: 1.05rem; cursor: pointer; flex: none; }
+    .togli:hover { color: var(--danger); background: var(--bg-2); }
+
+    /* ---- guida ---- */
+    .guida { margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--line); }
+    .guida h2 { font-size: 1.4rem; margin: 0 0 .6rem; letter-spacing: -.01em; }
+    .guida h3 { font-size: 1.15rem; margin: 1.7rem 0 .5rem; }
+    .guida h4 { font-size: 1rem; margin: 1.1rem 0 .3rem; }
+    .guida p, .guida li { line-height: 1.6; }
+    .guida p { margin: 0 0 .8rem; }
+    .gruppo-titolo { font-size: .85rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 1.4rem 0 .4rem; }
+    .tabella { list-style: none; margin: 0; padding: 0; }
+    .tabella li { border-bottom: 1px solid var(--line); }
+    /* colonne in rem: intestazione e righe hanno font diversi e devono restare allineate */
+    .tabella .intestazione, .pick {
+      display: grid; grid-template-columns: minmax(0, 1fr) 3.4rem 3.4rem 3.4rem; gap: 6px; align-items: center; width: 100%;
+    }
+    .tabella .intestazione {
+      padding: 6px 4px; color: var(--muted); font-size: .78rem; text-transform: uppercase; line-height: 1.2;
+    }
+    .tabella .intestazione span + span, .pick .t { text-align: right; }
+    .pick {
+      min-height: 48px; padding: 6px 4px; border: 0; background: none; color: inherit;
+      font: inherit; font-size: .97rem; text-align: left; cursor: pointer;
+    }
+    .pick:hover { background: var(--bg-2); }
+    .pick .nome { overflow-wrap: anywhere; }
+    .pick .t { color: var(--muted); font-variant-numeric: tabular-nums; font-size: .95rem; }
+    .pick .t.forte { color: var(--text); font-weight: 700; }
+    .pick[aria-current="true"] { background: var(--accent-soft); }
+    .pick[aria-current="true"] .t { color: var(--text); }
+    .nota { background: var(--bg-2); border-left: 3px solid var(--accent); border-radius: 0 var(--r-sm) var(--r-sm) 0; padding: 10px 14px; margin: 1rem 0; }
+    .nota p:last-child { margin-bottom: 0; }
+    .piede { margin-top: 1.6rem; padding-top: 1rem; border-top: 1px solid var(--line); }
+    .piede a { color: inherit; }
+    /* i link del box affiliazione sono un elenco, non testo corrente: vanno toccati comodamente */
+    [data-affiliate] li { margin: 2px 0; }
+    [data-affiliate] a { display: inline-block; padding: 13px 0; }
+
     .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
     /* ---- desktop: miglioramento progressivo ---- */
     @media (min-width: 700px) {
-      .app { padding-left: 24px; padding-right: 24px; }
-      .ring-btn { width: min(340px, 44dvh); }
+      .app, .sotto-piega { padding-left: 24px; padding-right: 24px; }
+      .ring-btn { width: min(320px, 40dvh); }
       .centro { gap: 18px; }
       .azioni { position: static; background: none; padding-bottom: 8px; }
       .suggerimento { display: block; }
+      h1 { font-size: 1.35rem; }
       .pannello { left: 50%; right: auto; bottom: 24px; width: 520px; transform: translate(-50%, 110%); border-radius: var(--r-lg); border: 1px solid var(--line); }
       body.aperto .pannello { transform: translate(-50%, 0); }
+      .tabella .intestazione, .pick { grid-template-columns: minmax(0, 1fr) 5.5rem 5.5rem 5.5rem; }
     }
   </style>
 </head>
@@ -219,6 +342,7 @@
     </div>
 
     <div class="scelta">
+      <h1>Tempi di cottura della pasta</h1>
       <button class="btn-formato" id="btnFormato" aria-haspopup="dialog">
         <span class="nome" id="nomeFormato">Scegli il formato</span>
         <span class="freccia" aria-hidden="true">▼</span>
@@ -252,12 +376,19 @@
       <div class="dosi">
         <div class="gruppo">
           <button class="btn-tondo" type="button" id="menoPersone" aria-label="Una persona in meno">−</button>
-          <span class="valore" id="numPersone" aria-live="off">2 pers.</span>
+          <span class="valore" id="numPersone">2 pers.</span>
           <button class="btn-tondo" type="button" id="piuPersone" aria-label="Una persona in più">+</button>
+        </div>
+        <div class="grammi" role="group" aria-label="Grammi di pasta a testa">
+          <button type="button" data-g="80" aria-pressed="false">80 g</button>
+          <button type="button" data-g="100" aria-pressed="true">100 g</button>
+          <button type="button" data-g="120" aria-pressed="false">120 g</button>
         </div>
         <p class="calcolo" id="calcolo"></p>
       </div>
     </main>
+
+    <a class="piega" href="#guida">↓ Tabella di tutti i formati e guida</a>
 
     <div class="azioni">
       <button class="btn ghost" type="button" id="btnAzzera" disabled>Azzera</button>
@@ -278,389 +409,691 @@
     <p class="vuoto" id="nessuno" hidden>Nessun formato con questo nome. I tempi sono indicativi: controlla sempre la confezione.</p>
   </section>
 
+  <div class="sotto-piega">
+    <section class="blocco" data-pro="Cottura passiva">
+      <h2>Cottura passiva: spegni dopo 2 minuti</h2>
+      <p class="muted">Butti la pasta, cuoci due minuti a fuoco vivo mescolando, poi spegni e copri: il calore già nell'acqua finisce il lavoro. Il timer ti avvisa quando spegnere e aggiunge un minuto di sicurezza.</p>
+      <button type="button" class="toggle" id="btnPassiva" role="switch" aria-checked="false">
+        <span class="pista" aria-hidden="true"><span class="pallina"></span></span>
+        <span>Usa la cottura passiva</span>
+      </button>
+      <p class="err" id="passivaNota" role="status"></p>
+      <div class="risparmio">
+        <button class="btn-tondo" type="button" id="menoVolte" aria-label="Una volta a settimana in meno">−</button>
+        <span class="valore" id="numVolte">4 volte a sett.</span>
+        <button class="btn-tondo" type="button" id="piuVolte" aria-label="Una volta a settimana in più">+</button>
+      </div>
+      <p class="conto" id="contoRisparmio"></p>
+    </section>
+
+    <section class="blocco" data-pro="I miei formati">
+      <h2>I miei formati</h2>
+      <p class="muted">Salva i formati che compri davvero con il tempo stampato sulla tua confezione: li trovi in cima all'elenco, prima di tutti gli altri.</p>
+      <form class="aggiungi" id="formPersonale" autocomplete="off" novalidate>
+        <input class="nome-in" id="nomePersonale" type="text" maxlength="30" placeholder="Nome (es. Fusilloni Rummo)" aria-label="Nome del formato">
+        <input class="min-in" id="minPersonale" type="number" inputmode="decimal" enterkeyhint="done" step="0.5" min="0.5" max="60" placeholder="min" aria-label="Minuti di cottura">
+        <button class="btn piccolo" type="submit">Aggiungi</button>
+      </form>
+      <p class="err" id="errPersonale" role="status"></p>
+      <ul class="personali" id="personali"></ul>
+    </section>
+
+    <div data-ad="top"></div>
+
+    <section id="guida" class="guida">
+      <h2>Tempi di cottura della pasta, formato per formato</h2>
+      <p>I minuti stampati sulla confezione sono quasi sempre giusti, ma arrivano sempre nel momento sbagliato: hai le mani bagnate, il pacco è già nella dispensa e l'acqua bolle. Questa pagina mette i <strong>tempi di cottura della pasta</strong> e il timer nella stessa schermata: scegli il formato, tocca il cerchio e il conto alla rovescia parte, con un avviso sonoro quando è ora di scolare. Sotto trovi la tabella completa di 37 formati, le dosi di acqua e sale e gli errori che fanno sbagliare la cottura anche a chi cucina da vent'anni.</p>
+
+      <h3>Da quando si contano i minuti</h3>
+      <p>Il tempo parte da quando l'acqua <strong>torna a bollire</strong> dopo che hai buttato la pasta, non da quando la versi. Mezzo chilo di pasta fredda in cinque litri d'acqua abbassa la temperatura di diversi gradi, e servono venti o trenta secondi perché il bollore riprenda: se fai partire il timer troppo presto, la pasta esce cruda di quel tanto che basta per accorgersene. Alza la fiamma al massimo appena butti, aspetta che l'acqua riprenda a muoversi e solo allora avvia il timer.</p>
+      <p>I tre gradi di cottura in alto spostano il tempo base: <em>molto al dente</em> toglie un minuto, <em>ben cotta</em> aggiunge un minuto e mezzo. Sulla pasta fresca, che cuoce in pochi minuti, gli scarti si riducono a mezzo minuto e tre quarti, perché lì trenta secondi cambiano tutto. Con i tasti −30s e +30s aggiusti a mano, anche a timer già partito.</p>
+
+      <h3>La tabella dei tempi di cottura</h3>
+      <p>Tocca un formato per caricarlo nel timer: la pagina risale in cima e il conto alla rovescia è pronto da avviare. Le tre colonne sono i tre gradi di cottura — <em>molto al dente</em>, <em>al dente</em> (la colonna in grassetto, quella di riferimento) e <em>ben cotta</em>. I tempi sono la media delle indicazioni dei principali pastifici italiani per la pasta di semola trafilata al bronzo o al teflon; trafila, spessore e tipo di grano possono spostarli di un minuto in più o in meno.</p>
+        <h4 class="gruppo-titolo">Pasta lunga secca</h4>
+        <ul class="tabella" aria-label="Pasta lunga secca: tempi di cottura">
+          <li class="intestazione" aria-hidden="true"><span>Formato</span><span>Molto</span><span>Al dente</span><span>Ben cotta</span></li>
+          <li><button type="button" class="pick" data-id="capelli-dangelo" data-sec="180"><span class="nome">Capelli d&#39;angelo</span><span class="t">2:00</span><span class="t forte">3:00</span><span class="t">4:30</span></button></li>
+          <li><button type="button" class="pick" data-id="spaghettini" data-sec="360"><span class="nome">Spaghettini</span><span class="t">5:00</span><span class="t forte">6:00</span><span class="t">7:30</span></button></li>
+          <li><button type="button" class="pick" data-id="spaghetti" data-sec="480"><span class="nome">Spaghetti</span><span class="t">7:00</span><span class="t forte">8:00</span><span class="t">9:30</span></button></li>
+          <li><button type="button" class="pick" data-id="spaghettoni" data-sec="720"><span class="nome">Spaghettoni</span><span class="t">11:00</span><span class="t forte">12:00</span><span class="t">13:30</span></button></li>
+          <li><button type="button" class="pick" data-id="vermicelli" data-sec="540"><span class="nome">Vermicelli</span><span class="t">8:00</span><span class="t forte">9:00</span><span class="t">10:30</span></button></li>
+          <li><button type="button" class="pick" data-id="linguine" data-sec="540"><span class="nome">Linguine</span><span class="t">8:00</span><span class="t forte">9:00</span><span class="t">10:30</span></button></li>
+          <li><button type="button" class="pick" data-id="bavette" data-sec="540"><span class="nome">Bavette</span><span class="t">8:00</span><span class="t forte">9:00</span><span class="t">10:30</span></button></li>
+          <li><button type="button" class="pick" data-id="bucatini" data-sec="540"><span class="nome">Bucatini</span><span class="t">8:00</span><span class="t forte">9:00</span><span class="t">10:30</span></button></li>
+          <li><button type="button" class="pick" data-id="tagliolini" data-sec="240"><span class="nome">Tagliolini secchi</span><span class="t">3:00</span><span class="t forte">4:00</span><span class="t">5:30</span></button></li>
+          <li><button type="button" class="pick" data-id="tagliatelle" data-sec="360"><span class="nome">Tagliatelle secche</span><span class="t">5:00</span><span class="t forte">6:00</span><span class="t">7:30</span></button></li>
+          <li><button type="button" class="pick" data-id="fettuccine" data-sec="420"><span class="nome">Fettuccine secche</span><span class="t">6:00</span><span class="t forte">7:00</span><span class="t">8:30</span></button></li>
+          <li><button type="button" class="pick" data-id="pappardelle" data-sec="420"><span class="nome">Pappardelle secche</span><span class="t">6:00</span><span class="t forte">7:00</span><span class="t">8:30</span></button></li>
+        </ul>
+        <h4 class="gruppo-titolo">Pasta corta secca</h4>
+        <ul class="tabella" aria-label="Pasta corta secca: tempi di cottura">
+          <li class="intestazione" aria-hidden="true"><span>Formato</span><span>Molto</span><span>Al dente</span><span>Ben cotta</span></li>
+          <li><button type="button" class="pick" data-id="pennette" data-sec="480"><span class="nome">Pennette</span><span class="t">7:00</span><span class="t forte">8:00</span><span class="t">9:30</span></button></li>
+          <li><button type="button" class="pick" data-id="penne-rigate" data-sec="660"><span class="nome">Penne rigate</span><span class="t">10:00</span><span class="t forte">11:00</span><span class="t">12:30</span></button></li>
+          <li><button type="button" class="pick" data-id="mezze-maniche" data-sec="600"><span class="nome">Mezze maniche</span><span class="t">9:00</span><span class="t forte">10:00</span><span class="t">11:30</span></button></li>
+          <li><button type="button" class="pick" data-id="rigatoni" data-sec="720"><span class="nome">Rigatoni</span><span class="t">11:00</span><span class="t forte">12:00</span><span class="t">13:30</span></button></li>
+          <li><button type="button" class="pick" data-id="paccheri" data-sec="780"><span class="nome">Paccheri</span><span class="t">12:00</span><span class="t forte">13:00</span><span class="t">14:30</span></button></li>
+          <li><button type="button" class="pick" data-id="fusilli" data-sec="660"><span class="nome">Fusilli</span><span class="t">10:00</span><span class="t forte">11:00</span><span class="t">12:30</span></button></li>
+          <li><button type="button" class="pick" data-id="farfalle" data-sec="660"><span class="nome">Farfalle</span><span class="t">10:00</span><span class="t forte">11:00</span><span class="t">12:30</span></button></li>
+          <li><button type="button" class="pick" data-id="conchiglie" data-sec="660"><span class="nome">Conchiglie</span><span class="t">10:00</span><span class="t forte">11:00</span><span class="t">12:30</span></button></li>
+          <li><button type="button" class="pick" data-id="caserecce" data-sec="660"><span class="nome">Caserecce</span><span class="t">10:00</span><span class="t forte">11:00</span><span class="t">12:30</span></button></li>
+          <li><button type="button" class="pick" data-id="sedanini" data-sec="540"><span class="nome">Sedanini</span><span class="t">8:00</span><span class="t forte">9:00</span><span class="t">10:30</span></button></li>
+          <li><button type="button" class="pick" data-id="maccheroni" data-sec="600"><span class="nome">Maccheroni</span><span class="t">9:00</span><span class="t forte">10:00</span><span class="t">11:30</span></button></li>
+          <li><button type="button" class="pick" data-id="orecchiette" data-sec="720"><span class="nome">Orecchiette secche</span><span class="t">11:00</span><span class="t forte">12:00</span><span class="t">13:30</span></button></li>
+          <li><button type="button" class="pick" data-id="trofie" data-sec="600"><span class="nome">Trofie secche</span><span class="t">9:00</span><span class="t forte">10:00</span><span class="t">11:30</span></button></li>
+        </ul>
+        <h4 class="gruppo-titolo">Pasta fresca e ripiena</h4>
+        <ul class="tabella" aria-label="Pasta fresca e ripiena: tempi di cottura">
+          <li class="intestazione" aria-hidden="true"><span>Formato</span><span>Molto</span><span>Al dente</span><span>Ben cotta</span></li>
+          <li><button type="button" class="pick" data-id="gnocchi" data-sec="120" data-fresca="1"><span class="nome">Gnocchi di patate</span><span class="t">1:30</span><span class="t forte">2:00</span><span class="t">2:45</span></button></li>
+          <li><button type="button" class="pick" data-id="tagliatelle-fresche" data-sec="180" data-fresca="1"><span class="nome">Tagliatelle fresche</span><span class="t">2:30</span><span class="t forte">3:00</span><span class="t">3:45</span></button></li>
+          <li><button type="button" class="pick" data-id="fettuccine-fresche" data-sec="180" data-fresca="1"><span class="nome">Fettuccine fresche</span><span class="t">2:30</span><span class="t forte">3:00</span><span class="t">3:45</span></button></li>
+          <li><button type="button" class="pick" data-id="trofie-fresche" data-sec="240" data-fresca="1"><span class="nome">Trofie fresche</span><span class="t">3:30</span><span class="t forte">4:00</span><span class="t">4:45</span></button></li>
+          <li><button type="button" class="pick" data-id="tortellini" data-sec="240" data-fresca="1"><span class="nome">Tortellini freschi</span><span class="t">3:30</span><span class="t forte">4:00</span><span class="t">4:45</span></button></li>
+          <li><button type="button" class="pick" data-id="ravioli" data-sec="300" data-fresca="1"><span class="nome">Ravioli freschi</span><span class="t">4:30</span><span class="t forte">5:00</span><span class="t">5:45</span></button></li>
+          <li><button type="button" class="pick" data-id="orecchiette-fresche" data-sec="300" data-fresca="1"><span class="nome">Orecchiette fresche</span><span class="t">4:30</span><span class="t forte">5:00</span><span class="t">5:45</span></button></li>
+        </ul>
+        <h4 class="gruppo-titolo">Integrali e formati da minestra</h4>
+        <ul class="tabella" aria-label="Integrali e formati da minestra: tempi di cottura">
+          <li class="intestazione" aria-hidden="true"><span>Formato</span><span>Molto</span><span>Al dente</span><span>Ben cotta</span></li>
+          <li><button type="button" class="pick" data-id="spaghetti-integrali" data-sec="540"><span class="nome">Spaghetti integrali</span><span class="t">8:00</span><span class="t forte">9:00</span><span class="t">10:30</span></button></li>
+          <li><button type="button" class="pick" data-id="penne-integrali" data-sec="660"><span class="nome">Penne integrali</span><span class="t">10:00</span><span class="t forte">11:00</span><span class="t">12:30</span></button></li>
+          <li><button type="button" class="pick" data-id="ditalini" data-sec="480"><span class="nome">Ditalini</span><span class="t">7:00</span><span class="t forte">8:00</span><span class="t">9:30</span></button></li>
+          <li><button type="button" class="pick" data-id="risoni" data-sec="540"><span class="nome">Risoni (orzo)</span><span class="t">8:00</span><span class="t forte">9:00</span><span class="t">10:30</span></button></li>
+          <li><button type="button" class="pick" data-id="stelline" data-sec="300"><span class="nome">Stelline</span><span class="t">4:00</span><span class="t forte">5:00</span><span class="t">6:30</span></button></li>
+        </ul>
+      <div class="nota">
+        <p><strong>Gnocchi e pasta ripiena fanno storia a sé.</strong> Gli gnocchi di patate sono pronti quando vengono a galla, di solito entro due minuti: il timer serve più come promemoria che come regola. Tortellini e ravioli vanno cotti a bollore dolce, altrimenti si aprono.</p>
+      </div>
+
+      <h3>Quanta acqua, quanto sale, quanta pasta</h3>
+      <p>La proporzione classica è la <strong>regola 100-10-1</strong>: per ogni 100 grammi di pasta, 1 litro d'acqua e 10 grammi di sale grosso. L'acqua abbondante serve a diluire l'amido che la pasta rilascia, così i pezzi non si attaccano tra loro; il sale va messo quando l'acqua bolle già, perché il sale alza leggermente il punto di ebollizione e prima rallenterebbe soltanto il bollore.</p>
+      <p>Un esempio concreto: siete in quattro e scegliete 100 grammi a testa. Il calcolatore in cima alla pagina indica <strong>400 g di pasta, 4 litri d'acqua e 40 g di sale grosso</strong>. Se prendete penne rigate e le volete al dente, il timer parte da 11:00; molto al dente sono 10:00, ben cotte 12:30. La porzione da 100 grammi è quella dei pastifici, ma per un primo dentro un pasto completo 80 grammi bastano, mentre per un piatto unico 120 sono più realistici: il selettore sotto il timer li calcola tutti e tre.</p>
+      <p>Si può usare meno acqua: con 700 ml per 100 grammi di pasta il risultato è praticamente lo stesso, si risparmia un terzo dell'acqua e l'acqua di cottura esce più ricca di amido, che è un vantaggio se mantechi in padella. Sotto i 600 ml, invece, la pasta tende davvero ad attaccarsi.</p>
+
+      <h3>Errori comuni</h3>
+      <ul>
+        <li><strong>Scolare al minuto esatto della confezione.</strong> Se la pasta finisce in padella con il condimento, toglila un minuto prima: in padella continua a cuocere e assorbe il sugo.</li>
+        <li><strong>Coprire la pentola durante la cottura.</strong> Con il coperchio l'acqua trabocca. Il coperchio serve prima, per arrivare al bollore più in fretta, e nella cottura passiva, a fuoco spento.</li>
+        <li><strong>Aggiungere olio nell'acqua.</strong> Non evita che la pasta si attacchi: galleggia in superficie e basta. Servono acqua abbondante e una mescolata nei primi due minuti.</li>
+        <li><strong>Buttare tutta l'acqua di cottura.</strong> Un mestolo messo da parte è quello che lega la salsa: tienilo prima di scolare.</li>
+        <li><strong>Fidarsi del tempo e non dell'assaggio.</strong> Il timer ti porta al minuto giusto; l'ultimo assaggio, trenta secondi prima, decide.</li>
+      </ul>
+
+      <h3>La cottura passiva conviene?</h3>
+      <p>Il metodo è semplice: due minuti a fuoco vivo, poi fornello spento e coperchio ben chiuso per il resto del tempo, più un minuto di margine. L'acqua resta abbastanza calda da portare a termine la cottura e il risultato è difficile da distinguere da quello tradizionale. Sul singolo piatto il risparmio è di pochi centesimi, ed è onesto dirlo: chi promette bollette dimezzate esagera. Sull'anno, però, otto o nove minuti di fiamma risparmiati a pentola diventano qualche metro cubo di metano e diversi chili di anidride carbonica in meno. Il calcolo con i tuoi numeri è nel riquadro sopra la guida.</p>
+
+      <h3>Domande frequenti</h3>
+      <h4>Quanti minuti ci vogliono per gli spaghetti?</h4>
+      <p>Gli spaghetti di sezione standard cuociono in circa 8 minuti al dente: 7 minuti molto al dente, 9 minuti e mezzo per una cottura piena. Gli spaghettini scendono a 6 minuti, gli spaghettoni salgono a 12, i capelli d'angelo stanno sotto i 3.</p>
+      <h4>Il timer continua se blocco il telefono o cambio app?</h4>
+      <p>Sì. Il conto alla rovescia usa l'orario di fine, non un contatore interno: quando torni sulla pagina, anche dopo un riavvio del browser, il tempo residuo è quello giusto. Mentre il timer è attivo lo schermo resta acceso sui dispositivi che lo permettono.</p>
+      <h4>I tempi valgono per tutte le marche?</h4>
+      <p>Sono una media ragionata, non un dogma: tra una trafila al bronzo e una liscia ballano quasi sempre uno o due minuti. La confezione resta il riferimento, e con il Pass Pro puoi salvare i tuoi formati con il tempo esatto della tua pasta preferita.</p>
+      <h4>Funziona senza connessione?</h4>
+      <p>Sì. La pagina non chiama nessun server: una volta aperta funziona anche in aereo o con il telefono offline, e ricorda formato, dosi e grado di cottura per la volta dopo. Nessun account, nessuna email.</p>
+      <h4>Perché la pasta si attacca anche con l'acqua abbondante?</h4>
+      <p>Quasi sempre perché non è stata mescolata subito. I primi due minuti sono quelli in cui l'amido esce in superficie ed è appiccicoso: una mescolata all'inizio e una a metà cottura risolvono il problema meglio di qualsiasi olio.</p>
+
+      <div data-affiliate data-title="Utile in cucina" data-items='[{"t":"Pentola alta per la pasta con coperchio","q":"pentola alta pasta con coperchio"},{"t":"Coperchio universale (serve per la cottura passiva)","q":"coperchio universale pentole"},{"t":"Sale grosso marino da cucina","q":"sale grosso marino cucina"}]'></div>
+      <div data-ad="bottom"></div>
+      <div data-support></div>
+      <p class="muted small piede">Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a> · Vedi anche <a href="../2026-09-17-piano-dei-pasti/">Piano dei Pasti</a> per organizzare la settimana e <a href="../2026-09-17-dividi-il-conto/">Dividi il Conto</a> per le spese di gruppo.</p>
+    </section>
+  </div>
+
   <p class="sr" id="annuncio" role="status" aria-live="polite"></p>
 
+  <script src="../../assets/monetize.js"></script>
   <script>
-    // Modello dati: ogni formato ha un tempo base in secondi (cottura "al dente"); il grado di
-    // cottura applica uno scarto (−60s / 0 / +90s) e i tasti ±30s un aggiustamento manuale.
-    // Il timer vive in `stato` e si salva in localStorage con la scadenza assoluta (ms epoch),
-    // così ricaricando la pagina il conto alla rovescia riprende esatto.
+    // Modello dati: la tabella HTML dentro #guida è l'unica fonte dei formati (nome, secondi
+    // "al dente", flag pasta fresca); i formati personali Pro vivono in localStorage e si
+    // aggiungono in cima. Il timer salva la scadenza assoluta (ms epoch), così ricaricando la
+    // pagina il conto alla rovescia riprende esatto; la cottura passiva è un solo conteggio in
+    // due fasi (fiamma accesa per i primi 2 minuti, poi fuoco spento e coperchio).
+    (() => {
+      "use strict";
 
-    const CHIAVE = "timer-pasta:v1";
-    const FORMATI = [
-      { id: "spaghetti", nome: "Spaghetti", sec: 480 },
-      { id: "spaghettini", nome: "Spaghettini", sec: 360 },
-      { id: "vermicelli", nome: "Vermicelli", sec: 540 },
-      { id: "capellini", nome: "Capellini", sec: 180 },
-      { id: "linguine", nome: "Linguine", sec: 540 },
-      { id: "bucatini", nome: "Bucatini", sec: 540 },
-      { id: "penne-rigate", nome: "Penne rigate", sec: 660 },
-      { id: "pennette", nome: "Pennette", sec: 480 },
-      { id: "rigatoni", nome: "Rigatoni", sec: 720 },
-      { id: "mezze-maniche", nome: "Mezze maniche", sec: 600 },
-      { id: "paccheri", nome: "Paccheri", sec: 780 },
-      { id: "fusilli", nome: "Fusilli", sec: 660 },
-      { id: "farfalle", nome: "Farfalle", sec: 660 },
-      { id: "conchiglie", nome: "Conchiglie", sec: 660 },
-      { id: "orecchiette", nome: "Orecchiette secche", sec: 720 },
-      { id: "sedanini", nome: "Sedanini", sec: 540 },
-      { id: "maccheroni", nome: "Maccheroni", sec: 600 },
-      { id: "ditalini", nome: "Ditalini", sec: 480 },
-      { id: "stelline", nome: "Stelline (in brodo)", sec: 300 },
-      { id: "tagliatelle", nome: "Tagliatelle secche", sec: 360 },
-      { id: "tagliatelle-fresche", nome: "Tagliatelle fresche", sec: 180 },
-      { id: "tortellini", nome: "Tortellini freschi", sec: 240 },
-      { id: "ravioli", nome: "Ravioli freschi", sec: 300 },
-      { id: "gnocchi", nome: "Gnocchi di patate", sec: 120 },
-    ];
-    const SCARTI = { molto: -60, dente: 0, cotta: 90 };
-    const ETICHETTE = { molto: "molto al dente", dente: "al dente", cotta: "ben cotta" };
-    const MIN_SEC = 30, MAX_SEC = 60 * 60;
-    const CIRCONFERENZA = 2 * Math.PI * 106;
+      const CHIAVE = "timer-pasta:v2";
+      const CHIAVE_MIEI = "timer-pasta:formati:v1";
+      const SCARTI = { molto: -60, dente: 0, cotta: 90 };
+      const SCARTI_FRESCA = { molto: -30, dente: 0, cotta: 45 };
+      const ETICHETTE = { molto: "molto al dente", dente: "al dente", cotta: "ben cotta" };
+      const MIN_SEC = 30, MAX_SEC = 60 * 60;
+      const SEC_FIAMMA = 120;          // minuti a fuoco vivo nella cottura passiva
+      const EXTRA_PASSIVA = 60;        // margine aggiunto a fuoco spento
+      const MIN_PASSIVA = 300;         // sotto i 5 minuti la cottura passiva non ha senso
+      const CIRCONFERENZA = 2 * Math.PI * 106;
+      // Stime per il risparmio: fornello a fiamma media, potere calorifico del metano,
+      // prezzo medio al metro cubo e fattore di emissione. Sono medie dichiarate nella guida.
+      const POTENZA_KW = 1.6, KWH_PER_MC = 9.5, EURO_PER_MC = 1.10, CO2_PER_MC = 1.9;
 
-    const el = (id) => document.getElementById(id);
-    const app = el("app"), ring = el("ring"), arco = el("arco"), tempoEl = el("tempo"), statoEl = el("etichettaStato");
-    const btnAvvia = el("btnAvvia"), btnAzzera = el("btnAzzera"), btnFormato = el("btnFormato");
-    const nomeFormato = el("nomeFormato"), sottotitolo = el("sottotitolo"), calcolo = el("calcolo");
-    const numPersone = el("numPersone"), elenco = el("elenco"), cerca = el("cerca");
-    const pannello = el("pannello"), velo = el("velo"), nessuno = el("nessuno"), annuncio = el("annuncio");
+      const el = (id) => document.getElementById(id);
+      const app = el("app"), ring = el("ring"), arco = el("arco"), tempoEl = el("tempo"), statoEl = el("etichettaStato");
+      const btnAvvia = el("btnAvvia"), btnAzzera = el("btnAzzera"), btnFormato = el("btnFormato");
+      const nomeFormato = el("nomeFormato"), sottotitolo = el("sottotitolo"), calcolo = el("calcolo");
+      const numPersone = el("numPersone"), elenco = el("elenco"), cerca = el("cerca");
+      const pannello = el("pannello"), velo = el("velo"), nessuno = el("nessuno"), annuncio = el("annuncio");
+      const btnPassiva = el("btnPassiva"), passivaNota = el("passivaNota"), contoRisparmio = el("contoRisparmio");
+      const numVolte = el("numVolte"), listaPersonali = el("personali"), errPersonale = el("errPersonale");
 
-    let stato = {
-      formato: null,      // id del formato scelto
-      cottura: "dente",
-      persone: 2,
-      manuale: 0,         // secondi aggiunti/tolti a mano
-      fase: "idle",       // idle | running | paused | done
-      scadenza: 0,        // ms epoch di fine (fase running)
-      rimasti: 0,         // ms residui (fase paused/idle)
-      durata: 0,          // ms totali del conteggio in corso
-    };
-    let tick = null, audio = null, sveglia = null, schermo = null;
-    const titoloBase = document.title;
+      // I formati "di serie" si leggono dalla tabella della guida: una sola fonte di verità.
+      const BASE = Array.from(document.querySelectorAll(".tabella .pick")).map((b) => ({
+        id: b.dataset.id,
+        nome: b.querySelector(".nome").textContent,
+        sec: Number(b.dataset.sec),
+        fresca: b.dataset.fresca === "1",
+        bottone: b,
+      }));
+      let miei = [];   // formati personali (Pro)
+      let pro = false;
 
-    /* ---------- persistenza ---------- */
-    function salva() {
-      try { localStorage.setItem(CHIAVE, JSON.stringify(stato)); } catch (e) { /* spazio pieno o privato */ }
-    }
-    function carica() {
-      let dati = null;
-      try { dati = JSON.parse(localStorage.getItem(CHIAVE) || "null"); } catch (e) { dati = null; }
-      if (!dati || typeof dati !== "object") return;
-      const valido = FORMATI.some(f => f.id === dati.formato);
-      stato.formato = valido ? dati.formato : null;
-      if (SCARTI[dati.cottura] !== undefined) stato.cottura = dati.cottura;
-      if (Number.isFinite(dati.persone)) stato.persone = Math.min(12, Math.max(1, Math.round(dati.persone)));
-      if (Number.isFinite(dati.manuale)) stato.manuale = Math.max(-MAX_SEC, Math.min(MAX_SEC, Math.round(dati.manuale)));
-      if (!valido) return;
-      if (dati.fase === "running" && Number.isFinite(dati.scadenza)) {
-        stato.durata = Number(dati.durata) || 0;
-        if (dati.scadenza > Date.now()) { stato.fase = "running"; stato.scadenza = dati.scadenza; }
-        else { stato.fase = "done"; stato.rimasti = 0; }
-      } else if (dati.fase === "paused" && Number.isFinite(dati.rimasti) && dati.rimasti > 0) {
-        stato.fase = "paused"; stato.rimasti = dati.rimasti; stato.durata = Number(dati.durata) || dati.rimasti;
+      let stato = {
+        formato: null,      // id del formato scelto
+        cottura: "dente",
+        persone: 2,
+        grammi: 100,        // grammi a testa
+        manuale: 0,         // secondi aggiunti/tolti a mano
+        passiva: false,
+        volte: 4,           // pentole di pasta a settimana (stima del risparmio)
+        fase: "idle",       // idle | running | paused | done
+        scadenza: 0,        // ms epoch di fine (fase running)
+        rimasti: 0,         // ms residui (fase paused)
+        durata: 0,          // ms totali del conteggio in corso
+        spento: false,      // nella cottura passiva: avviso "spegni il fuoco" già dato
+      };
+      let passivaSalvata = false;  // preferenza letta da localStorage, applicata solo se Pro
+      let tick = null, audio = null, sveglia = null, schermo = null;
+      const titoloBase = "Timer Pasta";
+
+      /* ---------- persistenza ---------- */
+      function salva() {
+        const { bottone, ...pulito } = stato;
+        try { localStorage.setItem(CHIAVE, JSON.stringify({ ...pulito, passiva: passivaSalvata || stato.passiva })); } catch (e) { /* spazio pieno o modalità privata */ }
       }
-    }
+      function carica() {
+        let dati = null;
+        try { dati = JSON.parse(localStorage.getItem(CHIAVE) || "null"); } catch (e) { dati = null; }
+        try { const m = JSON.parse(localStorage.getItem(CHIAVE_MIEI) || "[]"); if (Array.isArray(m)) miei = m.filter(valido); } catch (e) { miei = []; }
+        if (!dati || typeof dati !== "object") return;
+        if (SCARTI[dati.cottura] !== undefined) stato.cottura = dati.cottura;
+        if (Number.isFinite(dati.persone)) stato.persone = Math.min(12, Math.max(1, Math.round(dati.persone)));
+        if ([80, 100, 120].includes(dati.grammi)) stato.grammi = dati.grammi;
+        if (Number.isFinite(dati.manuale)) stato.manuale = Math.max(-MAX_SEC, Math.min(MAX_SEC, Math.round(dati.manuale)));
+        if (Number.isFinite(dati.volte)) stato.volte = Math.min(21, Math.max(1, Math.round(dati.volte)));
+        passivaSalvata = dati.passiva === true;
+        // il formato salvato può essere personale: resta valido solo se il Pass Pro è attivo
+        if (!tuttiFormati().some((f) => f.id === dati.formato)) return;
+        stato.formato = dati.formato;
+        if (dati.fase === "running" && Number.isFinite(dati.scadenza)) {
+          stato.durata = Number(dati.durata) || 0;
+          stato.spento = dati.spento === true;
+          stato.passiva = dati.passiva === true;
+          if (dati.scadenza > Date.now()) { stato.fase = "running"; stato.scadenza = dati.scadenza; }
+          else { stato.fase = "done"; stato.rimasti = 0; }
+        } else if (dati.fase === "paused" && Number.isFinite(dati.rimasti) && dati.rimasti > 0) {
+          stato.fase = "paused"; stato.rimasti = dati.rimasti;
+          stato.durata = Number(dati.durata) || dati.rimasti;
+          stato.spento = dati.spento === true;
+          stato.passiva = dati.passiva === true;
+        }
+      }
+      const valido = (f) => f && typeof f.id === "string" && typeof f.nome === "string" && Number.isFinite(f.sec) && f.sec >= MIN_SEC && f.sec <= MAX_SEC;
+      function salvaMiei() {
+        try { localStorage.setItem(CHIAVE_MIEI, JSON.stringify(miei.map(({ id, nome, sec }) => ({ id, nome, sec })))); } catch (e) { /* storage bloccato */ }
+      }
 
-    /* ---------- calcoli ---------- */
-    const formatoCorrente = () => FORMATI.find(f => f.id === stato.formato) || null;
-    function secondiPrevisti() {
-      const f = formatoCorrente();
-      if (!f) return 0;
-      return Math.min(MAX_SEC, Math.max(MIN_SEC, f.sec + SCARTI[stato.cottura] + stato.manuale));
-    }
-    function msRimasti() {
-      if (stato.fase === "running") return Math.max(0, stato.scadenza - Date.now());
-      if (stato.fase === "paused") return stato.rimasti;
-      if (stato.fase === "done") return 0;
-      return secondiPrevisti() * 1000;
-    }
-    function mmss(ms) {
-      const tot = Math.ceil(ms / 1000);
-      return String(Math.floor(tot / 60)).padStart(2, "0") + ":" + String(tot % 60).padStart(2, "0");
-    }
-    function numero(n, dec) {
-      return n.toLocaleString("it-IT", { minimumFractionDigits: dec, maximumFractionDigits: dec });
-    }
+      /* ---------- calcoli ---------- */
+      const tuttiFormati = () => (pro ? miei.concat(BASE) : BASE);
+      const formatoCorrente = () => tuttiFormati().find((f) => f.id === stato.formato) || null;
 
-    /* ---------- disegno ---------- */
-    function disegna() {
-      const f = formatoCorrente();
-      const ms = msRimasti();
-      app.dataset.fase = stato.fase;
+      function secondiPrevisti() {
+        const f = formatoCorrente();
+        if (!f) return 0;
+        const sc = f.fresca ? SCARTI_FRESCA : SCARTI;
+        return Math.min(MAX_SEC, Math.max(MIN_SEC, f.sec + sc[stato.cottura] + stato.manuale));
+      }
+      // La cottura passiva vale solo per la pasta secca e solo se il tempo è abbastanza lungo.
+      function passivaPossibile() {
+        const f = formatoCorrente();
+        return !!f && !f.fresca && secondiPrevisti() >= MIN_PASSIVA;
+      }
+      const passivaAttiva = () => stato.passiva && pro && passivaPossibile();
+      const secondiTotali = () => secondiPrevisti() + (passivaAttiva() ? EXTRA_PASSIVA : 0);
 
-      nomeFormato.textContent = f ? f.nome : "Scegli il formato";
-      tempoEl.textContent = f ? mmss(ms) : "🍝";
-      tempoEl.classList.toggle("glifo", !f);
+      function msRimasti() {
+        if (stato.fase === "running") return Math.max(0, stato.scadenza - Date.now());
+        if (stato.fase === "paused") return stato.rimasti;
+        if (stato.fase === "done") return 0;
+        return secondiTotali() * 1000;
+      }
+      function mmss(ms) {
+        const tot = Math.ceil(ms / 1000);
+        return String(Math.floor(tot / 60)).padStart(2, "0") + ":" + String(tot % 60).padStart(2, "0");
+      }
+      const numero = (n, dec) => n.toLocaleString("it-IT", { minimumFractionDigits: dec, maximumFractionDigits: dec });
 
-      const testiStato = { idle: ETICHETTE[stato.cottura], running: "in cottura", paused: "in pausa", done: "è pronta!" };
-      statoEl.textContent = f ? testiStato[stato.fase] : "tocca qui";
+      /* ---------- disegno ---------- */
+      function disegna() {
+        const f = formatoCorrente();
+        const ms = msRimasti();
+        app.dataset.fase = stato.fase;
 
-      if (!f) sottotitolo.textContent = "Tocca per scegliere tra " + FORMATI.length + " formati";
-      else if (stato.fase === "idle") sottotitolo.textContent = "Tempo previsto " + mmss(secondiPrevisti() * 1000) + " · " + ETICHETTE[stato.cottura];
-      else if (stato.fase === "done") sottotitolo.textContent = "Scola subito e condisci";
-      else sottotitolo.textContent = "Su " + mmss(stato.durata) + " totali · " + ETICHETTE[stato.cottura];
+        nomeFormato.textContent = f ? f.nome : "Scegli il formato";
+        tempoEl.textContent = f ? mmss(ms) : "🍝";
+        tempoEl.classList.toggle("glifo", !f);
 
-      const totale = stato.fase === "idle" || !stato.durata ? secondiPrevisti() * 1000 : stato.durata;
-      const quota = stato.fase === "done" ? 1 : totale > 0 ? Math.min(1, Math.max(0, ms / totale)) : 0;
-      arco.setAttribute("stroke-dasharray", CIRCONFERENZA.toFixed(1));
-      arco.setAttribute("stroke-dashoffset", (CIRCONFERENZA * (1 - (f ? quota : 0))).toFixed(1));
+        const inFiamma = passivaAttiva() && !stato.spento;
+        let testoStato;
+        if (!f) testoStato = "tocca qui";
+        else if (stato.fase === "idle") testoStato = ETICHETTE[stato.cottura];
+        else if (stato.fase === "done") testoStato = "è pronta!";
+        else if (stato.fase === "paused") testoStato = "in pausa";
+        else if (passivaAttiva()) testoStato = inFiamma ? "fuoco acceso" : "fuoco spento · coperchio";
+        else testoStato = "in cottura";
+        statoEl.textContent = testoStato;
 
-      btnAvvia.textContent = !f ? "Scegli il formato"
-        : stato.fase === "running" ? "Pausa"
-        : stato.fase === "paused" ? "Riprendi"
-        : stato.fase === "done" ? "Di nuovo" : "Avvia";
-      btnAzzera.disabled = !f || stato.fase === "idle";
-      el("piu").disabled = el("meno").disabled = !f || stato.fase === "done";
-      ring.setAttribute("aria-label", f
-        ? f.nome + ", " + mmss(ms) + ", " + (stato.fase === "running" ? "tocca per mettere in pausa" : "tocca per avviare")
-        : "Nessun formato scelto");
+        if (!f) sottotitolo.textContent = "Tocca per scegliere tra " + tuttiFormati().length + " formati";
+        else if (stato.fase === "idle") sottotitolo.textContent = "Tempo previsto " + mmss(secondiTotali() * 1000) + " · " + ETICHETTE[stato.cottura] + (passivaAttiva() ? " · passiva" : "");
+        else if (stato.fase === "done") sottotitolo.textContent = "Scola subito e condisci";
+        else sottotitolo.textContent = "Su " + mmss(stato.durata) + " totali · " + ETICHETTE[stato.cottura] + (passivaAttiva() ? " · passiva" : "");
 
-      const grammi = stato.persone * 100;
-      numPersone.textContent = stato.persone + (stato.persone === 1 ? " pers." : " pers.");
-      el("menoPersone").disabled = stato.persone <= 1;
-      el("piuPersone").disabled = stato.persone >= 12;
-      calcolo.innerHTML = "<b>" + grammi + " g</b> pasta · <b>" + numero(grammi / 100, 1) +
-        " L</b> acqua · <b>" + Math.round(grammi / 10) + " g</b> sale";
+        const totale = stato.fase === "idle" || !stato.durata ? secondiTotali() * 1000 : stato.durata;
+        const quota = stato.fase === "done" ? 1 : totale > 0 ? Math.min(1, Math.max(0, ms / totale)) : 0;
+        arco.setAttribute("stroke-dasharray", CIRCONFERENZA.toFixed(1));
+        arco.setAttribute("stroke-dashoffset", (CIRCONFERENZA * (1 - (f ? quota : 0))).toFixed(1));
 
-      document.title = stato.fase === "running" ? mmss(ms) + " · " + titoloBase : titoloBase;
-    }
+        btnAvvia.textContent = !f ? "Scegli il formato"
+          : stato.fase === "running" ? "Pausa"
+          : stato.fase === "paused" ? "Riprendi"
+          : stato.fase === "done" ? "Di nuovo" : "Avvia";
+        btnAzzera.disabled = !f || stato.fase === "idle";
+        el("piu").disabled = el("meno").disabled = !f || stato.fase === "done";
+        ring.setAttribute("aria-label", f
+          ? f.nome + ", " + mmss(ms) + ", " + (stato.fase === "running" ? "tocca per mettere in pausa" : "tocca per avviare")
+          : "Nessun formato scelto");
 
-    /* ---------- ciclo del timer ---------- */
-    function avviaTick() {
-      fermaTick();
-      tick = setInterval(() => {
-        if (stato.fase !== "running") return fermaTick();
-        if (msRimasti() <= 0) finisci();
-        else disegna();
-      }, 250);
-    }
-    function fermaTick() { if (tick) { clearInterval(tick); tick = null; } }
+        const grammi = stato.persone * stato.grammi;
+        numPersone.textContent = stato.persone + " pers.";
+        el("menoPersone").disabled = stato.persone <= 1;
+        el("piuPersone").disabled = stato.persone >= 12;
+        for (const b of document.querySelectorAll(".grammi button")) b.setAttribute("aria-pressed", String(Number(b.dataset.g) === stato.grammi));
+        calcolo.innerHTML = "<b>" + grammi + " g</b> pasta · <b>" + numero(grammi / 100, 1) +
+          " L</b> acqua · <b>" + Math.round(grammi / 10) + " g</b> sale";
 
-    function avvia() {
-      const f = formatoCorrente();
-      if (!f) return apriPannello();
-      preparaAudio();
-      if (stato.fase === "running") return pausa();
-      if (stato.fase === "paused") {
-        stato.scadenza = Date.now() + stato.rimasti;
-      } else {
-        stato.durata = secondiPrevisti() * 1000;
-        stato.scadenza = Date.now() + stato.durata;
+        for (const b of BASE) b.bottone.setAttribute("aria-current", String(b.id === stato.formato));
+        document.title = stato.fase === "running" ? mmss(ms) + " · " + titoloBase : titoloBase;
+        disegnaPassiva();
+      }
+
+      function disegnaPassiva() {
+        const f = formatoCorrente();
+        btnPassiva.setAttribute("aria-checked", String(passivaAttiva()));
+        btnPassiva.disabled = !f || !passivaPossibile();
+        if (!f) passivaNota.textContent = "Scegli prima un formato.";
+        else if (f.fresca) passivaNota.textContent = "La pasta fresca cuoce troppo in fretta: qui la cottura passiva non serve.";
+        else if (!passivaPossibile()) passivaNota.textContent = "Sotto i 5 minuti di cottura il fornello resta acceso quasi tutto il tempo: non conviene.";
+        else passivaNota.textContent = "";
+
+        const minCottura = (f ? secondiPrevisti() : 600) / 60;
+        const minRisparmiati = Math.max(0, minCottura - SEC_FIAMMA / 60);
+        const mcAlMinuto = POTENZA_KW / 60 / KWH_PER_MC;
+        const pentole = stato.volte * 52;
+        const mc = pentole * minRisparmiati * mcAlMinuto;
+        numVolte.textContent = stato.volte + (stato.volte === 1 ? " volta a sett." : " volte a sett.");
+        el("menoVolte").disabled = stato.volte <= 1;
+        el("piuVolte").disabled = stato.volte >= 21;
+        contoRisparmio.innerHTML = (f ? "Con <b>" + f.nome.toLowerCase() + "</b> spegni " : "Spegni ") +
+          "il fornello <b>" + numero(minRisparmiati, 0) + " minuti</b> prima. Cucinando la pasta " + stato.volte +
+          (stato.volte === 1 ? " volta" : " volte") + " a settimana fanno circa <b>" + numero(mc, 1) +
+          " m³</b> di metano all'anno: <b>" + numero(mc * EURO_PER_MC, 2) + " €</b> e <b>" +
+          numero(mc * CO2_PER_MC, 1) + " kg</b> di CO₂ in meno.";
+      }
+
+      /* ---------- ciclo del timer ---------- */
+      function avviaTick() {
+        fermaTick();
+        tick = setInterval(() => {
+          if (stato.fase !== "running") return fermaTick();
+          if (msRimasti() <= 0) return finisci();
+          controllaFiamma();
+          disegna();
+        }, 250);
+      }
+      function fermaTick() { if (tick) { clearInterval(tick); tick = null; } }
+
+      // Cottura passiva: al secondo 120 si avvisa una volta sola che è ora di spegnere.
+      function controllaFiamma() {
+        if (!passivaAttiva() || stato.spento) return;
+        if (stato.durata - msRimasti() < SEC_FIAMMA * 1000) return;
+        stato.spento = true;
+        salva();
+        serie(660, 2);
+        vibra([220, 120, 220]);
+        annuncia("Spegni il fuoco e metti il coperchio");
+      }
+
+      function avvia() {
+        const f = formatoCorrente();
+        if (!f) return apriPannello();
+        preparaAudio();
+        if (stato.fase === "running") return pausa();
+        if (stato.fase === "paused") {
+          stato.scadenza = Date.now() + stato.rimasti;
+        } else {
+          stato.durata = secondiTotali() * 1000;
+          stato.scadenza = Date.now() + stato.durata;
+          stato.spento = false;
+          fermaSveglia();
+        }
+        stato.fase = "running";
+        avviaTick();
+        tieniAccesoSchermo();
+        annuncia(f.nome + ": timer avviato, " + mmss(msRimasti()) +
+          (passivaAttiva() ? ". Spegni il fuoco fra due minuti." : ""));
+        salva(); disegna();
+      }
+      function pausa() {
+        stato.rimasti = msRimasti();
+        stato.fase = "paused";
+        fermaTick(); rilasciaSchermo();
+        annuncia("Timer in pausa a " + mmss(stato.rimasti));
+        salva(); disegna();
+      }
+      function azzera() {
+        fermaTick(); fermaSveglia(); rilasciaSchermo();
+        stato.fase = "idle"; stato.rimasti = 0; stato.scadenza = 0; stato.durata = 0; stato.manuale = 0; stato.spento = false;
+        annuncia("Timer azzerato");
+        salva(); disegna();
+      }
+      function finisci() {
+        fermaTick(); rilasciaSchermo();
+        stato.fase = "done"; stato.rimasti = 0; stato.scadenza = 0;
+        salva(); disegna();
+        suona(); vibra([160, 90, 160]);
+        annuncia("La pasta è pronta");
+      }
+
+      /* ---------- suono, vibrazione, schermo ---------- */
+      function preparaAudio() {
+        try {
+          const Ctx = window.AudioContext || window.webkitAudioContext;
+          if (!Ctx) return;
+          if (!audio) audio = new Ctx();
+          if (audio.state === "suspended") audio.resume();
+        } catch (e) { audio = null; }
+      }
+      function bip(quando, frequenza) {
+        if (!audio) return;
+        const osc = audio.createOscillator(), vol = audio.createGain();
+        osc.type = "sine"; osc.frequency.value = frequenza;
+        vol.gain.setValueAtTime(0.0001, quando);
+        vol.gain.exponentialRampToValueAtTime(0.28, quando + 0.02);
+        vol.gain.exponentialRampToValueAtTime(0.0001, quando + 0.32);
+        osc.connect(vol); vol.connect(audio.destination);
+        osc.start(quando); osc.stop(quando + 0.36);
+      }
+      function serie(frequenza, quanti) {
+        if (!audio || audio.state !== "running") return;
+        const t = audio.currentTime;
+        const n = quanti || 3, base = frequenza || 880;
+        for (let i = 0; i < n; i++) bip(t + i * 0.42, i === n - 1 && !frequenza ? 1174 : base);
+      }
+      function suona() {
+        if (!audio) return;
+        serie();
+        let ripetizioni = 0;
         fermaSveglia();
+        sveglia = setInterval(() => {
+          if (stato.fase !== "done" || ++ripetizioni > 12) return fermaSveglia();
+          serie(); vibra([160, 90, 160]);
+        }, 3000);
       }
-      stato.fase = "running";
-      avviaTick();
-      tieniAccesoSchermo();
-      annuncia(f.nome + ": timer avviato, " + mmss(msRimasti()));
-      salva(); disegna();
-    }
-    function pausa() {
-      stato.rimasti = msRimasti();
-      stato.fase = "paused";
-      fermaTick(); rilasciaSchermo();
-      annuncia("Timer in pausa a " + mmss(stato.rimasti));
-      salva(); disegna();
-    }
-    function azzera() {
-      fermaTick(); fermaSveglia(); rilasciaSchermo();
-      stato.fase = "idle"; stato.rimasti = 0; stato.scadenza = 0; stato.durata = 0; stato.manuale = 0;
-      annuncia("Timer azzerato");
-      salva(); disegna();
-    }
-    function finisci() {
-      fermaTick(); rilasciaSchermo();
-      stato.fase = "done"; stato.rimasti = 0; stato.scadenza = 0;
-      salva(); disegna();
-      suona(); vibra();
-      annuncia("La pasta è pronta");
-    }
+      function fermaSveglia() { if (sveglia) { clearInterval(sveglia); sveglia = null; } }
+      function vibra(schema) { try { if (navigator.vibrate) navigator.vibrate(schema); } catch (e) { /* non supportato */ } }
 
-    /* ---------- suono, vibrazione, schermo ---------- */
-    function preparaAudio() {
-      try {
-        const Ctx = window.AudioContext || window.webkitAudioContext;
-        if (!Ctx) return;
-        if (!audio) audio = new Ctx();
-        if (audio.state === "suspended") audio.resume();
-      } catch (e) { audio = null; }
-    }
-    function bip(quando, frequenza) {
-      if (!audio) return;
-      const osc = audio.createOscillator(), vol = audio.createGain();
-      osc.type = "sine"; osc.frequency.value = frequenza;
-      vol.gain.setValueAtTime(0.0001, quando);
-      vol.gain.exponentialRampToValueAtTime(0.28, quando + 0.02);
-      vol.gain.exponentialRampToValueAtTime(0.0001, quando + 0.32);
-      osc.connect(vol); vol.connect(audio.destination);
-      osc.start(quando); osc.stop(quando + 0.36);
-    }
-    function serie() {
-      if (!audio || audio.state !== "running") return;
-      const t = audio.currentTime;
-      bip(t, 880); bip(t + 0.42, 880); bip(t + 0.84, 1174);
-    }
-    function suona() {
-      if (!audio) return;
-      serie();
-      let ripetizioni = 0;
-      fermaSveglia();
-      sveglia = setInterval(() => {
-        if (stato.fase !== "done" || ++ripetizioni > 12) return fermaSveglia();
-        serie(); vibra();
-      }, 3000);
-    }
-    function fermaSveglia() { if (sveglia) { clearInterval(sveglia); sveglia = null; } }
-    function vibra() { try { if (navigator.vibrate) navigator.vibrate([160, 90, 160]); } catch (e) { /* non supportato */ } }
-
-    async function tieniAccesoSchermo() {
-      try {
-        if (!("wakeLock" in navigator) || schermo) return;
-        schermo = await navigator.wakeLock.request("screen");
-        schermo.addEventListener("release", () => { schermo = null; });
-      } catch (e) { schermo = null; }
-    }
-    function rilasciaSchermo() { try { if (schermo) { schermo.release(); schermo = null; } } catch (e) { schermo = null; } }
-
-    function annuncia(testo) { annuncio.textContent = testo; }
-
-    /* ---------- pannello formati ---------- */
-    let ultimoFuoco = null;
-    function creaElenco(filtro) {
-      const q = (filtro || "").trim().toLowerCase();
-      const visibili = FORMATI.filter(f => !q || f.nome.toLowerCase().includes(q));
-      elenco.innerHTML = "";
-      for (const f of visibili) {
-        const li = document.createElement("li");
-        const b = document.createElement("button");
-        b.type = "button"; b.className = "voce"; b.dataset.id = f.id;
-        if (f.id === stato.formato) b.setAttribute("aria-current", "true");
-        const nome = document.createElement("span");
-        nome.textContent = f.nome;
-        const min = document.createElement("span");
-        min.className = "min";
-        min.textContent = (f.sec % 60 === 0 ? f.sec / 60 + " min" : mmss(f.sec * 1000).replace(/^0/, ""));
-        b.append(nome, min);
-        li.append(b); elenco.append(li);
+      async function tieniAccesoSchermo() {
+        try {
+          if (!("wakeLock" in navigator) || schermo) return;
+          schermo = await navigator.wakeLock.request("screen");
+          schermo.addEventListener("release", () => { schermo = null; });
+        } catch (e) { schermo = null; }
       }
-      nessuno.hidden = visibili.length > 0;
-    }
-    function apriPannello() {
-      ultimoFuoco = document.activeElement;
-      creaElenco(cerca.value);
-      document.body.classList.add("aperto");
-      pannello.setAttribute("aria-hidden", "false");
-      const attuale = elenco.querySelector('[aria-current="true"]');
-      setTimeout(() => { (attuale || elenco.querySelector(".voce") || cerca).focus({ preventScroll: true }); attuale && attuale.scrollIntoView({ block: "center" }); }, 60);
-    }
-    function chiudiPannello() {
-      document.body.classList.remove("aperto");
-      pannello.setAttribute("aria-hidden", "true");
-      if (ultimoFuoco && document.contains(ultimoFuoco)) ultimoFuoco.focus({ preventScroll: true });
-    }
-    const pannelloAperto = () => document.body.classList.contains("aperto");
+      function rilasciaSchermo() { try { if (schermo) { schermo.release(); schermo = null; } } catch (e) { schermo = null; } }
 
-    function scegliFormato(id) {
-      const f = FORMATI.find(x => x.id === id);
-      if (!f) return;
-      fermaTick(); fermaSveglia(); rilasciaSchermo();
-      stato.formato = id; stato.manuale = 0; stato.fase = "idle";
-      stato.rimasti = 0; stato.scadenza = 0; stato.durata = 0;
-      salva(); disegna(); chiudiPannello();
-      annuncia(f.nome + ", tempo previsto " + mmss(secondiPrevisti() * 1000));
-    }
+      function annuncia(testo) { annuncio.textContent = testo; }
 
-    /* ---------- eventi ---------- */
-    btnFormato.addEventListener("click", apriPannello);
-    el("btnChiudi").addEventListener("click", chiudiPannello);
-    velo.addEventListener("click", chiudiPannello);
-    cerca.addEventListener("input", () => creaElenco(cerca.value));
-    cerca.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
-        const primo = elenco.querySelector(".voce");
-        if (primo) { e.preventDefault(); scegliFormato(primo.dataset.id); }
+      /* ---------- pannello formati ---------- */
+      let ultimoFuoco = null;
+      function creaElenco(filtro) {
+        const q = (filtro || "").trim().toLowerCase();
+        const match = (f) => !q || f.nome.toLowerCase().includes(q);
+        const gruppi = [["I miei formati", (pro ? miei : []).filter(match)], ["Tutti i formati", BASE.filter(match)]];
+        elenco.replaceChildren();
+        let totale = 0;
+        for (const [titolo, voci] of gruppi) {
+          if (!voci.length) continue;
+          totale += voci.length;
+          if (gruppi[0][1].length) {
+            const h = document.createElement("li");
+            h.className = "sezione"; h.textContent = titolo;
+            elenco.append(h);
+          }
+          for (const f of voci) {
+            const li = document.createElement("li");
+            const b = document.createElement("button");
+            b.type = "button"; b.className = "voce"; b.dataset.id = f.id;
+            if (f.id === stato.formato) b.setAttribute("aria-current", "true");
+            const nome = document.createElement("span");
+            nome.textContent = f.nome;
+            const min = document.createElement("span");
+            min.className = "min";
+            min.textContent = mmss(f.sec * 1000).replace(/^0/, "");
+            b.append(nome, min);
+            li.append(b); elenco.append(li);
+          }
+        }
+        nessuno.hidden = totale > 0;
       }
-    });
-    elenco.addEventListener("click", (e) => {
-      const b = e.target.closest(".voce");
-      if (b) scegliFormato(b.dataset.id);
-    });
-    // Il fuoco resta dentro al pannello finché è aperto.
-    pannello.addEventListener("keydown", (e) => {
-      if (e.key !== "Tab") return;
-      const fuocabili = pannello.querySelectorAll("button, input");
-      if (!fuocabili.length) return;
-      const primo = fuocabili[0], ultimo = fuocabili[fuocabili.length - 1];
-      if (e.shiftKey && document.activeElement === primo) { e.preventDefault(); ultimo.focus(); }
-      else if (!e.shiftKey && document.activeElement === ultimo) { e.preventDefault(); primo.focus(); }
-    });
-
-    for (const chip of document.querySelectorAll(".chip")) {
-      chip.addEventListener("click", () => {
-        stato.cottura = chip.dataset.cottura;
-        for (const c of document.querySelectorAll(".chip")) c.setAttribute("aria-pressed", String(c === chip));
-        if (stato.fase !== "idle") azzera(); else { salva(); disegna(); }
-      });
-    }
-
-    btnAvvia.addEventListener("click", avvia);
-    ring.addEventListener("click", () => { if (stato.fase === "done") azzera(); else avvia(); });
-    btnAzzera.addEventListener("click", azzera);
-
-    function regolaTempo(delta) {
-      if (!formatoCorrente()) return;
-      if (stato.fase === "idle") {
-        const prima = secondiPrevisti();
-        stato.manuale += delta;
-        if (secondiPrevisti() === prima) stato.manuale -= delta; // fuori dai limiti: annulla
-      } else if (stato.fase === "running") {
-        stato.scadenza = Math.max(Date.now() + 1000, stato.scadenza + delta * 1000);
-        stato.durata = Math.max(1000, stato.durata + delta * 1000);
-      } else if (stato.fase === "paused") {
-        stato.rimasti = Math.max(1000, stato.rimasti + delta * 1000);
-        stato.durata = Math.max(stato.durata, stato.rimasti);
-      } else return;
-      salva(); disegna();
-    }
-    el("piu").addEventListener("click", () => regolaTempo(30));
-    el("meno").addEventListener("click", () => regolaTempo(-30));
-
-    function regolaPersone(delta) {
-      stato.persone = Math.min(12, Math.max(1, stato.persone + delta));
-      salva(); disegna();
-    }
-    el("piuPersone").addEventListener("click", () => regolaPersone(1));
-    el("menoPersone").addEventListener("click", () => regolaPersone(-1));
-
-    document.addEventListener("keydown", (e) => {
-      const scrive = /^(INPUT|TEXTAREA)$/.test(e.target.tagName);
-      if (e.key === "Escape") {
-        if (pannelloAperto()) { e.preventDefault(); chiudiPannello(); }
-        else if (stato.fase === "done" || stato.fase === "paused") { e.preventDefault(); azzera(); }
-        return;
+      function apriPannello() {
+        ultimoFuoco = document.activeElement;
+        creaElenco(cerca.value);
+        document.body.classList.add("aperto");
+        pannello.setAttribute("aria-hidden", "false");
+        setTimeout(() => {
+          const attuale = elenco.querySelector('[aria-current="true"]');
+          (attuale || elenco.querySelector(".voce") || cerca).focus({ preventScroll: true });
+          if (attuale) attuale.scrollIntoView({ block: "center" });
+        }, 60);
       }
-      if (pannelloAperto() || scrive) return;
-      if (e.key === " " || e.code === "Space") {
+      function chiudiPannello() {
+        document.body.classList.remove("aperto");
+        pannello.setAttribute("aria-hidden", "true");
+        if (ultimoFuoco && document.contains(ultimoFuoco)) ultimoFuoco.focus({ preventScroll: true });
+      }
+      const pannelloAperto = () => document.body.classList.contains("aperto");
+
+      function scegliFormato(id, risali) {
+        const f = tuttiFormati().find((x) => x.id === id);
+        if (!f) return;
+        fermaTick(); fermaSveglia(); rilasciaSchermo();
+        stato.formato = id; stato.manuale = 0; stato.fase = "idle";
+        stato.rimasti = 0; stato.scadenza = 0; stato.durata = 0; stato.spento = false;
+        salva(); disegna();
+        if (pannelloAperto()) chiudiPannello();
+        if (risali) window.scrollTo({ top: 0, behavior: prefersRidotto() ? "auto" : "smooth" });
+        annuncia(f.nome + ", tempo previsto " + mmss(secondiTotali() * 1000));
+      }
+      const prefersRidotto = () => window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      /* ---------- formati personali (Pro) ---------- */
+      function disegnaPersonali() {
+        listaPersonali.replaceChildren();
+        if (!miei.length) {
+          const li = document.createElement("li");
+          li.className = "muted small";
+          li.textContent = "Nessun formato tuo, per ora.";
+          listaPersonali.append(li);
+          return;
+        }
+        for (const f of miei) {
+          const li = document.createElement("li");
+          const nome = document.createElement("span");
+          nome.textContent = f.nome;
+          const min = document.createElement("span");
+          min.className = "min";
+          min.textContent = mmss(f.sec * 1000).replace(/^0/, "");
+          const x = document.createElement("button");
+          x.type = "button"; x.className = "togli"; x.dataset.togli = f.id;
+          x.setAttribute("aria-label", "Elimina " + f.nome);
+          x.textContent = "✕";
+          li.append(nome, min, x);
+          listaPersonali.append(li);
+        }
+      }
+      el("formPersonale").addEventListener("submit", (e) => {
         e.preventDefault();
-        if (stato.fase === "done") azzera(); else avvia();
-      }
-    });
+        if (!pro) return;
+        const nome = el("nomePersonale").value.trim();
+        const minuti = Number(String(el("minPersonale").value).replace(",", "."));
+        if (!nome) { errPersonale.textContent = "Scrivi il nome del formato."; return; }
+        if (!Number.isFinite(minuti) || minuti < 0.5 || minuti > 60) { errPersonale.textContent = "I minuti devono stare fra 0,5 e 60."; return; }
+        if (miei.some((f) => f.nome.toLowerCase() === nome.toLowerCase())) { errPersonale.textContent = "Hai già un formato con questo nome."; return; }
+        const id = "mio-" + (crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).slice(2));
+        miei.unshift({ id, nome, sec: Math.round(minuti * 60) });
+        salvaMiei(); disegnaPersonali(); creaElenco(cerca.value); disegna();
+        errPersonale.textContent = "";
+        el("nomePersonale").value = ""; el("minPersonale").value = "";
+        el("nomePersonale").focus();
+        annuncia(nome + " aggiunto ai tuoi formati");
+      });
+      listaPersonali.addEventListener("click", (e) => {
+        const b = e.target.closest("[data-togli]");
+        if (!b || !pro) return;
+        const id = b.dataset.togli;
+        miei = miei.filter((f) => f.id !== id);
+        if (stato.formato === id) { stato.formato = null; azzera(); }
+        salvaMiei(); disegnaPersonali(); creaElenco(cerca.value); disegna();
+      });
 
-    // Tornando sull'app dopo un po' in secondo piano: riallinea o concludi il conto alla rovescia.
-    document.addEventListener("visibilitychange", () => {
-      if (document.visibilityState !== "visible") return;
-      if (stato.fase === "running") {
-        if (msRimasti() <= 0) finisci();
-        else { avviaTick(); tieniAccesoSchermo(); disegna(); }
+      /* ---------- Pass Pro ---------- */
+      function applicaPro(attivo) {
+        pro = !!attivo;
+        if (pro) stato.passiva = passivaSalvata;
+        else { stato.passiva = false; if (stato.formato && stato.formato.startsWith("mio-")) { stato.formato = null; azzera(); } }
+        disegnaPersonali(); creaElenco(cerca.value); disegna();
       }
-    });
-    window.addEventListener("pagehide", () => { fermaTick(); fermaSveglia(); });
+      if (window.Monetize) window.Monetize.onPro(applicaPro);
 
-    /* ---------- avvio ---------- */
-    carica();
-    for (const c of document.querySelectorAll(".chip")) c.setAttribute("aria-pressed", String(c.dataset.cottura === stato.cottura));
-    creaElenco("");
-    disegna();
-    if (stato.fase === "running") { if (msRimasti() <= 0) finisci(); else avviaTick(); }
+      /* ---------- eventi ---------- */
+      btnFormato.addEventListener("click", apriPannello);
+      el("btnChiudi").addEventListener("click", chiudiPannello);
+      velo.addEventListener("click", chiudiPannello);
+      cerca.addEventListener("input", () => creaElenco(cerca.value));
+      cerca.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          const primo = elenco.querySelector(".voce");
+          if (primo) { e.preventDefault(); scegliFormato(primo.dataset.id, false); }
+        }
+      });
+      elenco.addEventListener("click", (e) => {
+        const b = e.target.closest(".voce");
+        if (b) scegliFormato(b.dataset.id, false);
+      });
+      // La tabella della guida è anche un selettore: tocchi il formato e risali al timer.
+      for (const f of BASE) f.bottone.addEventListener("click", () => scegliFormato(f.id, true));
+
+      // Il fuoco resta dentro al pannello finché è aperto.
+      pannello.addEventListener("keydown", (e) => {
+        if (e.key !== "Tab") return;
+        const fuocabili = pannello.querySelectorAll("button, input");
+        if (!fuocabili.length) return;
+        const primo = fuocabili[0], ultimo = fuocabili[fuocabili.length - 1];
+        if (e.shiftKey && document.activeElement === primo) { e.preventDefault(); ultimo.focus(); }
+        else if (!e.shiftKey && document.activeElement === ultimo) { e.preventDefault(); primo.focus(); }
+      });
+
+      for (const chip of document.querySelectorAll(".chip")) {
+        chip.addEventListener("click", () => {
+          stato.cottura = chip.dataset.cottura;
+          for (const c of document.querySelectorAll(".chip")) c.setAttribute("aria-pressed", String(c === chip));
+          if (stato.fase !== "idle") azzera(); else { salva(); disegna(); }
+        });
+      }
+
+      btnAvvia.addEventListener("click", avvia);
+      ring.addEventListener("click", () => { if (stato.fase === "done") azzera(); else avvia(); });
+      btnAzzera.addEventListener("click", azzera);
+
+      btnPassiva.addEventListener("click", () => {
+        if (!pro || !passivaPossibile()) return;
+        stato.passiva = !stato.passiva;
+        passivaSalvata = stato.passiva;
+        if (stato.fase !== "idle") azzera(); else { salva(); disegna(); }
+        annuncia(stato.passiva ? "Cottura passiva attiva" : "Cottura passiva disattivata");
+      });
+
+      function regolaTempo(delta) {
+        if (!formatoCorrente()) return;
+        if (stato.fase === "idle") {
+          const prima = secondiPrevisti();
+          stato.manuale += delta;
+          if (secondiPrevisti() === prima) stato.manuale -= delta; // fuori dai limiti: annulla
+        } else if (stato.fase === "running") {
+          stato.scadenza = Math.max(Date.now() + 1000, stato.scadenza + delta * 1000);
+          stato.durata = Math.max(1000, stato.durata + delta * 1000);
+        } else if (stato.fase === "paused") {
+          stato.rimasti = Math.max(1000, stato.rimasti + delta * 1000);
+          stato.durata = Math.max(stato.durata, stato.rimasti);
+        } else return;
+        salva(); disegna();
+      }
+      el("piu").addEventListener("click", () => regolaTempo(30));
+      el("meno").addEventListener("click", () => regolaTempo(-30));
+
+      function passo(campo, delta, min, max) {
+        stato[campo] = Math.min(max, Math.max(min, stato[campo] + delta));
+        salva(); disegna();
+      }
+      el("piuPersone").addEventListener("click", () => passo("persone", 1, 1, 12));
+      el("menoPersone").addEventListener("click", () => passo("persone", -1, 1, 12));
+      el("piuVolte").addEventListener("click", () => passo("volte", 1, 1, 21));
+      el("menoVolte").addEventListener("click", () => passo("volte", -1, 1, 21));
+      for (const b of document.querySelectorAll(".grammi button")) {
+        b.addEventListener("click", () => { stato.grammi = Number(b.dataset.g); salva(); disegna(); });
+      }
+
+      document.addEventListener("keydown", (e) => {
+        const scrive = /^(INPUT|TEXTAREA)$/.test(e.target.tagName);
+        if (e.key === "Escape") {
+          if (pannelloAperto()) { e.preventDefault(); chiudiPannello(); }
+          else if (stato.fase === "done" || stato.fase === "paused") { e.preventDefault(); azzera(); }
+          return;
+        }
+        if (pannelloAperto() || scrive) return;
+        if (e.key === " " || e.code === "Space") {
+          e.preventDefault();
+          if (stato.fase === "done") azzera(); else avvia();
+        }
+      });
+
+      // Tornando sull'app dopo un po' in secondo piano: riallinea o concludi il conto alla rovescia.
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState !== "visible") return;
+        if (stato.fase === "running") {
+          if (msRimasti() <= 0) finisci();
+          else { avviaTick(); tieniAccesoSchermo(); disegna(); }
+        }
+      });
+      window.addEventListener("pagehide", () => { fermaTick(); fermaSveglia(); });
+
+      /* ---------- avvio ---------- */
+      carica();
+      for (const c of document.querySelectorAll(".chip")) c.setAttribute("aria-pressed", String(c.dataset.cottura === stato.cottura));
+      creaElenco(""); disegnaPersonali(); disegna();
+      if (stato.fase === "running") { if (msRimasti() <= 0) finisci(); else avviaTick(); }
+    })();
   </script>
 </body>
 </html>
