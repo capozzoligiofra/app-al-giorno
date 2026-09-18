@@ -7,7 +7,7 @@
 //   POST /api/pull              → git pull --ff-only
 //   GET  /api/config            → { frequenza, presets, routine_id }
 //   POST /api/frequenza         → { preset } → aggiorna la routine cloud via `claude -p` + salva config.json
-//   POST /api/genera            → { text?, idea? } → mette il brief in cima alla coda e lancia `claude -p` (Opus)
+//   POST /api/genera            → { text?, idea?, queued? } → mette il brief (o la riga già in coda `queued`) in cima e lancia `claude -p` (Opus)
 //   GET  /api/genera/stato      → { running, startedAt, finishedAt, ok, log: [...] }
 // All'avvio fa un git pull (non blocca se offline). Porta: env PORT o 8787.
 import { createServer } from "node:http";
@@ -111,6 +111,22 @@ function appendRichiesta(clean, first) {
   }
   appendFileSync(RICHIESTE, (content.endsWith("\n") ? "" : "\n") + entry + "\n");
 }
+// Sposta in cima alla coda una richiesta già presente; ritorna false se non la trova.
+function moveRequestToTop(line) {
+  if (!existsSync(RICHIESTE)) return false;
+  const lines = readFileSync(RICHIESTE, "utf8").split("\n");
+  const i = lines.findIndex(l => l.trim() === `- [ ] ${line}`.trim());
+  if (i < 0) return false;
+  const [entry] = lines.splice(i, 1);
+  let j = lines.findIndex(l => /^## Coda/.test(l));
+  if (j < 0) { lines.unshift(entry); } else {
+    j++;
+    while (j < lines.length && lines[j].trim() === "") j++;
+    lines.splice(j, 0, entry);
+  }
+  writeFileSync(RICHIESTE, lines.join("\n"));
+  return true;
+}
 function addRichiesta(text, idea, first) {
   const clean = cleanText(text);
   appendRichiesta(clean, first);
@@ -182,10 +198,13 @@ function describeEvent(line) {
   if (ev.type === "result") return ev.is_error ? `ERRORE: ${(ev.result || "").slice(0, 300)}` : `Fine: ${(ev.result || "").slice(0, 300)}`;
   return null;
 }
-async function startGeneration(text, idea) {
+async function startGeneration(text, idea, queued) {
   if (gen.running) throw new Error("c'è già una generazione in corso");
   let brief = null;
-  if (text) {
+  if (queued) {
+    if (!moveRequestToTop(queued)) throw new Error("richiesta non trovata in coda (forse è già stata fatta)");
+    brief = queued;
+  } else if (text) {
     brief = cleanText(text);
     appendRichiesta(brief, true);
     if (idea) removeIdea(idea);
@@ -259,7 +278,7 @@ const server = createServer(async (req, res) => {
     if (path === "/api/genera" && m === "POST") {
       const body = await readJson(req);
       if (gen.running) return json(res, 409, { error: "generazione già in corso" });
-      await startGeneration(typeof body.text === "string" && body.text.trim() ? body.text : null, typeof body.idea === "string" ? body.idea : null);
+      await startGeneration(typeof body.text === "string" && body.text.trim() ? body.text : null, typeof body.idea === "string" ? body.idea : null, typeof body.queued === "string" && body.queued.trim() ? body.queued.trim() : null);
       return json(res, 202, { ok: true, message: "Generazione avviata" });
     }
     if (path === "/api/genera/stato" && m === "GET") return json(res, 200, gen);

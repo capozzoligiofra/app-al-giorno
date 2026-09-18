@@ -163,8 +163,13 @@ main { padding: 0 16px; }
 .count { font-weight: 400; color: var(--muted); font-size: .9rem; }
 .request-list { list-style: none; padding: 0; margin: 0; }
 .request-list li { padding: .6rem 0; border-bottom: 1px solid var(--line); }
-.request-list li a { font-weight: 600; }
-.request-list .done { color: var(--muted); }
+.request-list li.req { display: flex; align-items: center; gap: .75rem; }
+.request-list .txt { flex: 1; min-width: 0; }
+.request-list .txt b { display: block; }
+.request-list .txt .kind { color: var(--muted); font-weight: 600; }
+.request-list .txt span { display: block; color: var(--muted); font-size: .9rem; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.request-list .acts .btn, .request-list a.btn { min-height: 40px; padding: .3rem .8rem; font-size: .9rem; text-decoration: none; display: inline-grid; place-items: center; flex: none; }
+.request-list .done b { color: var(--muted); font-weight: 600; }
 .request-list .none { color: var(--muted); font-style: italic; }
 
 .foot { padding: 2rem 16px 0; text-align: center; }

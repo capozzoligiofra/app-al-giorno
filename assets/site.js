@@ -267,21 +267,63 @@
   }
 
   // ---- richieste ---------------------------------------------------------
+  // Trasforma la riga grezza di richieste.md in titolo + dettaglio leggibili.
+  function describeRequest(text) {
+    let m = text.match(/^migliora\s+apps\/([a-z0-9-]+):\s*(.*)$/i);
+    if (m) {
+      const app = state.catalog.apps.find(a => a.slug === m[1]);
+      return { kind: "Migliora", title: app ? app.title : m[1], detail: m[2] };
+    }
+    m = text.match(/^(.+?)\s+—\s+keyword:\s*"([^"]+)"(?:\s+—\s+(.*))?$/);
+    if (m) return { kind: "Idea", title: m[1], detail: `🔎 ${m[2]}${m[3] ? " · " + m[3] : ""}` };
+    m = text.match(/^(.{3,60}?)\s+—\s+(.*)$/);
+    if (m) return { kind: "", title: m[1], detail: m[2] };
+    if (text.length <= 70) return { kind: "", title: text, detail: "" };
+    return { kind: "", title: text.slice(0, 67).replace(/\s+\S*$/, "") + "…", detail: text };
+  }
+
+  function requestItem(r, opts) {
+    const d = describeRequest(r.text);
+    const li = el("li", { class: opts.done ? "req done" : "req" },
+      el("div", { class: "txt" },
+        el("b", {}, d.kind ? el("span", { class: "kind" }, d.kind + " · ") : "", d.title),
+        d.detail ? el("span", { title: r.text }, d.detail) : ""));
+    if (opts.done) {
+      const m = r.result && r.result.match(/^(apps\/[a-z0-9-]+)/);
+      if (m) li.append(el("a", { class: "btn btn-ghost", href: `${m[1]}/index.html`, target: "_blank", rel: "noopener" }, "Apri"));
+      else if (r.result) li.querySelector(".txt").append(el("span", {}, "→ " + r.result));
+    } else if (state.api) {
+      li.append(el("div", { class: "acts" },
+        el("button", { class: "btn btn-accent", type: "button", onclick: (ev) => generateQueued(r.text, ev.target) }, "Genera ora")));
+    }
+    return li;
+  }
+
   function renderRequests({ open, done }) {
     $("#open-count").textContent = open.length ? `(${open.length})` : "";
     $("#done-count").textContent = done.length ? `(${done.length})` : "";
     $("#open-list").replaceChildren(...(open.length
-      ? open.map(r => el("li", {}, r.text))
+      ? open.map(r => requestItem(r, { done: false }))
       : [el("li", { class: "none" }, "Nessuna richiesta in coda: l'agente sceglierà un'idea da solo.")]));
     $("#done-list").replaceChildren(...(done.length
-      ? done.slice().reverse().map(r => {
-          const li = el("li", { class: "done" }, r.text);
-          const m = r.result && r.result.match(/^(apps\/[a-z0-9-]+)/);
-          if (m) li.append(" — ", el("a", { href: `${m[1]}/index.html`, target: "_blank", rel: "noopener" }, "apri"));
-          else if (r.result) li.append(" — ", r.result);
-          return li;
-        })
+      ? done.slice().reverse().map(r => requestItem(r, { done: true }))
       : [el("li", { class: "none" }, "Ancora nessuna.")]));
+  }
+
+  async function generateQueued(line, btn) {
+    btn.disabled = true;
+    try {
+      const r = await fetch("api/genera", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ queued: line }) });
+      const data = await r.json();
+      if (!r.ok) throw new Error(data.error || r.statusText);
+      showGenPanel(true);
+      location.hash = "#catalogo";
+      pollGen();
+      await loadRequests();
+    } catch (e) {
+      showMsg($("#request-msg"), "Errore: " + e.message, "warn");
+      btn.disabled = false;
+    }
   }
 
   function parseRichiesteMd(text) {
