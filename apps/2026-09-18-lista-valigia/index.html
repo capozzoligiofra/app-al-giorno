@@ -1,0 +1,843 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0f6fb0">
+  <title>Lista Valigia: Cosa mettere in valigia online gratis</title>
+  <meta name="description" content="Cosa mettere in valigia: genera la lista su misura per durata, clima e tipo di viaggio, con le quantità già calcolate. Spunti tutto dal telefono.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-18-lista-valigia/">
+  <meta property="og:title" content="Lista Valigia: Cosa mettere in valigia online gratis">
+  <meta property="og:description" content="Rispondi a tre domande e ottieni la lista della valigia su misura, con le quantità calcolate e le caselle da spuntare. Senza registrazione.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-18-lista-valigia/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Lista Valigia",
+    "description": "Generatore gratuito della lista per la valigia: indichi durata, clima, tipo di viaggio e persone, e ottieni cosa mettere in valigia con le quantità già calcolate e le caselle da spuntare.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-18-lista-valigia/",
+    "applicationCategory": "TravelApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Quante magliette e quanti cambi di intimo servono per una settimana?", "acceptedAnswer": { "@type": "Answer", "text": "Per sette giorni si contano sette magliette e otto cambi di intimo: un capo al giorno più uno di riserva. Se in alloggio c'è una lavatrice le quantità si fermano a sette giorni anche per viaggi più lunghi, perché a metà soggiorno si fa un carico di bucato." } },
+      { "@type": "Question", "name": "Cosa non si può mettere nel bagaglio a mano?", "acceptedAnswer": { "@type": "Answer", "text": "Nel bagaglio a mano i liquidi devono stare in contenitori da massimo 100 ml raccolti in un sacchetto trasparente richiudibile da un litro. Forbici lunghe, coltellini e liquidi in formato grande vanno in stiva; il power bank invece deve viaggiare in cabina e non in stiva." } },
+      { "@type": "Question", "name": "La lista si salva sul telefono?", "acceptedAnswer": { "@type": "Answer", "text": "Sì. Le risposte e le caselle spuntate restano salvate nel browser del dispositivo, senza account e senza connessione: puoi chiudere la pagina e riaprirla mentre prepari la valigia." } },
+      { "@type": "Question", "name": "Quanto tempo prima conviene preparare la valigia?", "acceptedAnswer": { "@type": "Answer", "text": "Conviene generare la lista due o tre giorni prima e spuntare le voci man mano: così resta il tempo di comprare quello che manca, ricaricare i dispositivi e chiedere le eventuali ricette per i farmaci." } }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #eef4f9; --surface: #ffffff; --surface-2: #e2edf6; --text: #0d1b26; --muted: #5a6b7a;
+      --line: #cbdcea; --accent: #0f6fb0; --accent-ink: #ffffff; --accent-soft: #d8ebfa;
+      --danger: #b23b30; --ok: #15794f; --r: 6px;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b1620; --surface: #132330; --surface-2: #17303f; --text: #e4eef6; --muted: #91a6b6;
+        --line: #234153; --accent: #58b6ef; --accent-ink: #07222f; --accent-soft: #123448;
+        --danger: #ff8a7d; --ok: #58cb9c;
+        color-scheme: dark;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font: 17px/1.5 "Arial Narrow", "Roboto Condensed", "Liberation Sans Narrow", "Helvetica Neue Condensed", Arial, sans-serif;
+      font-stretch: condensed;
+      letter-spacing: .005em;
+      padding-bottom: calc(86px + env(safe-area-inset-bottom));
+    }
+    .wrap { padding: max(10px, env(safe-area-inset-top)) 16px 24px; margin: 0 auto; }
+    .back { display: inline-block; font-size: .95rem; color: var(--muted); text-decoration: none; text-transform: uppercase; letter-spacing: .08em; padding: .4rem 0; }
+    .back:hover, .back:focus-visible { color: var(--accent); }
+    h1 { margin: .4rem 0 .1rem; font-size: 2.1rem; line-height: 1.05; text-transform: uppercase; letter-spacing: .01em; font-weight: 700; }
+    h1 span { display: block; margin-top: .35rem; font-size: .42em; letter-spacing: .1em; font-weight: 600; color: var(--accent); text-transform: uppercase; }
+    .lead { color: var(--muted); margin: .7rem 0 1rem; font-size: .98rem; }
+
+    /* ---- stepper (layout wizard) ---- */
+    .stepper { display: flex; gap: 4px; margin-bottom: 1rem; }
+    .stepper li { flex: 1; list-style: none; font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); padding-top: .45rem; border-top: 4px solid var(--line); }
+    .stepper li[aria-current="step"] { color: var(--accent); border-top-color: var(--accent); font-weight: 700; }
+    .stepper li.done { border-top-color: var(--accent); color: var(--text); }
+
+    .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 1.1rem 1rem 1.2rem; }
+    .panel[hidden] { display: none; }
+    .panel h2 { margin: 0 0 .2rem; font-size: 1.35rem; text-transform: uppercase; letter-spacing: .04em; }
+    .panel .hint { margin: 0 0 1.2rem; color: var(--muted); font-size: .95rem; }
+    fieldset { border: 0; padding: 0; margin: 0 0 1.4rem; }
+    legend { padding: 0; font-size: .82rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); font-weight: 700; margin-bottom: .5rem; }
+
+    /* ---- controlli ---- */
+    .stepbox { display: flex; align-items: center; gap: .6rem; }
+    .stepbox button { width: 52px; height: 52px; font-size: 1.5rem; line-height: 1; border: 2px solid var(--line); background: var(--surface-2); color: var(--text); border-radius: var(--r); cursor: pointer; font-family: inherit; }
+    .stepbox button:active { background: var(--accent-soft); }
+    .stepbox input { width: 88px; height: 52px; text-align: center; font-size: 22px; font-weight: 700; border: 2px solid var(--line); border-radius: var(--r); background: var(--bg); color: inherit; font-family: inherit; }
+    .stepbox .unit { color: var(--muted); font-size: .95rem; }
+    .chips { display: flex; flex-wrap: wrap; gap: .45rem; }
+    .chip { position: relative; }
+    .chip input { position: absolute; opacity: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+    .chip span { display: flex; align-items: center; justify-content: center; min-height: 46px; padding: .5rem .85rem; border: 2px solid var(--line); border-radius: 999px; background: var(--surface-2); font-size: .98rem; }
+    .chip input:checked + span { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 700; }
+    .chip input:focus-visible + span { outline: 3px solid var(--accent); outline-offset: 2px; }
+    .toggles { display: grid; gap: .4rem; }
+    .toggle { display: flex; align-items: center; gap: .7rem; min-height: 48px; padding: .3rem .7rem; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface-2); cursor: pointer; }
+    .toggle input { width: 22px; height: 22px; accent-color: var(--accent); flex: none; }
+    .toggle small { display: block; color: var(--muted); font-size: .85rem; line-height: 1.3; }
+    .counters { display: grid; grid-template-columns: 1fr; gap: .7rem; }
+    .counter { display: flex; align-items: center; justify-content: space-between; gap: .6rem; padding: .35rem .7rem; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface-2); }
+    .counter .lbl { font-size: .98rem; }
+
+    /* ---- risultato ---- */
+    .recap { display: flex; flex-wrap: wrap; gap: .35rem; margin-bottom: .9rem; }
+    .tag { font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; background: var(--accent-soft); color: var(--text); border-radius: 999px; padding: .28rem .7rem; }
+    .progress { margin: 0 0 1rem; }
+    .bar { height: 10px; border-radius: 999px; background: var(--surface-2); overflow: hidden; border: 1px solid var(--line); }
+    .bar i { display: block; height: 100%; background: var(--accent); width: 0; transition: width .25s; }
+    .progress p { margin: .4rem 0 0; font-size: .9rem; color: var(--muted); }
+    .group { margin: 0 0 1.3rem; }
+    .group h3 { margin: 0 0 .45rem; font-size: .88rem; text-transform: uppercase; letter-spacing: .12em; color: var(--accent); border-bottom: 2px solid var(--line); padding-bottom: .3rem; }
+    .items { list-style: none; margin: 0; padding: 0; }
+    .items li { border-bottom: 1px solid var(--line); }
+    .items label { display: flex; align-items: flex-start; gap: .7rem; min-height: 48px; padding: .55rem .2rem; cursor: pointer; }
+    .items input { width: 24px; height: 24px; margin-top: .15rem; flex: none; accent-color: var(--accent); }
+    .items .txt { flex: 1; }
+    .items .qty { font-weight: 700; color: var(--accent); white-space: nowrap; }
+    .items .note { display: block; margin-top: .1rem; color: var(--muted); font-size: .85rem; line-height: 1.35; }
+    .items input:checked ~ .txt { text-decoration: line-through; color: var(--muted); }
+    .items input:checked ~ .txt .qty { color: var(--muted); }
+    .items .del { border: 0; background: none; color: var(--muted); font-size: 1.2rem; min-width: 44px; min-height: 44px; cursor: pointer; border-radius: var(--r); font-family: inherit; }
+    .items .del:hover { color: var(--danger); background: var(--surface-2); }
+    .row { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .grow { flex: 1 1 150px; min-width: 0; }
+    input[type=text], select { font: inherit; font-size: 16px; min-height: 48px; padding: .5rem .7rem; border: 2px solid var(--line); border-radius: var(--r); background: var(--bg); color: inherit; }
+    input:focus-visible, select:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+    .btn { font: inherit; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; min-height: 48px; padding: .55rem 1.1rem; border: 2px solid var(--accent); border-radius: var(--r); background: var(--accent); color: var(--accent-ink); cursor: pointer; }
+    .btn.ghost { background: transparent; color: var(--accent); }
+    .btn.quiet { background: transparent; color: var(--muted); border-color: var(--line); }
+    .btn:disabled { opacity: .45; cursor: default; }
+    .warn { border-left: 4px solid var(--accent); background: var(--surface-2); padding: .7rem .9rem; border-radius: 0 var(--r) var(--r) 0; font-size: .95rem; margin: 0 0 1.2rem; }
+    .empty { color: var(--muted); font-style: italic; }
+    .err { color: var(--danger); font-size: .92rem; min-height: 1.2em; margin: .4rem 0 0; }
+
+    /* ---- barra di navigazione del wizard, a portata di pollice ---- */
+    .navbar {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 5;
+      display: flex; gap: .6rem; padding: .6rem 16px calc(.6rem + env(safe-area-inset-bottom));
+      background: var(--surface); border-top: 1px solid var(--line);
+    }
+    .navbar .btn { flex: 1; white-space: nowrap; padding-inline: .7rem; }
+    .navbar .btn.ghost { flex: 0 0 auto; }
+
+    /* ---- Pro, guida, extra ---- */
+    .pro { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 1rem; margin: 1.1rem 0; }
+    .pro h2 { margin: 0 0 .3rem; font-size: 1.1rem; text-transform: uppercase; letter-spacing: .06em; }
+    .pro p { margin: 0 0 .8rem; color: var(--muted); font-size: .95rem; }
+    .trips { list-style: none; margin: 0 0 .8rem; padding: 0; }
+    .trips li { display: flex; align-items: center; gap: .5rem; border-bottom: 1px solid var(--line); padding: .35rem 0; }
+    .trips .name { flex: 1; text-align: left; background: none; border: 0; font: inherit; color: inherit; cursor: pointer; min-height: 44px; padding: 0; }
+    .trips .name b { color: var(--accent); }
+    .guida { margin-top: 2rem; padding-top: 1.2rem; border-top: 3px solid var(--line); }
+    .guida h2 { font-size: 1.5rem; text-transform: uppercase; letter-spacing: .02em; margin: 0 0 .7rem; }
+    .guida h3 { font-size: 1.2rem; margin: 1.6rem 0 .4rem; }
+    .guida h4 { font-size: 1.02rem; margin: 1.1rem 0 .2rem; }
+    .guida p, .guida li { line-height: 1.65; }
+    .guida ul { padding-left: 1.2rem; }
+    .small { font-size: .88rem; color: var(--muted); }
+    .toast { position: fixed; left: 50%; bottom: calc(96px + env(safe-area-inset-bottom)); transform: translateX(-50%); background: var(--text); color: var(--bg); padding: .55rem 1rem; border-radius: 999px; font-size: .92rem; opacity: 0; transition: opacity .2s; pointer-events: none; z-index: 6; max-width: 90vw; }
+    .toast.show { opacity: 1; }
+
+    @media (min-width: 700px) {
+      .wrap { max-width: 820px; padding-inline: 24px; }
+      body { padding-bottom: 2rem; }
+      .navbar { position: static; border-top: 0; background: none; padding: 1rem 0 0; }
+      .navbar .btn, .navbar .btn.ghost { flex: 0 0 auto; }
+      .counters { grid-template-columns: repeat(3, 1fr); }
+      .toast { bottom: 24px; }
+      h1 { font-size: 2.6rem; }
+    }
+    @media print {
+      .navbar, .back, .lead, .stepper, .guida, .warn, [data-ad], [data-support], [data-affiliate], .mz-lock, #add-form, #act-row, .pro { display: none !important; }
+      .panel { border: 0; padding: 0; }
+      .items label { min-height: 0; }
+      body { padding: 0; background: #fff; color: #000; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="../../index.html">← Tutte le app</a>
+
+    <h1>Lista Valigia <span>cosa mettere in valigia, su misura</span></h1>
+    <p class="lead">Tre domande e la lista si costruisce da sola, con le quantità già calcolate. Spunti le voci mentre riempi il trolley: tutto resta salvato sul telefono.</p>
+
+    <ol class="stepper" id="stepper">
+      <li data-dot="1" aria-current="step">1 · Viaggio</li>
+      <li data-dot="2">2 · Persone</li>
+      <li data-dot="3">3 · Lista</li>
+    </ol>
+
+    <!-- PASSO 1 -->
+    <section class="panel" id="step-1" aria-label="Passo 1: il viaggio">
+      <h2>Il viaggio</h2>
+      <p class="hint">Quanto dura e che clima trovi: da qui escono le quantità.</p>
+
+      <fieldset>
+        <legend>Quanti giorni</legend>
+        <div class="stepbox">
+          <button type="button" id="gg-meno" aria-label="Un giorno in meno">−</button>
+          <input id="gg" type="text" inputmode="numeric" enterkeyhint="done" value="7" maxlength="2" aria-label="Numero di giorni">
+          <button type="button" id="gg-piu" aria-label="Un giorno in più">+</button>
+          <span class="unit" id="gg-unit">giorni</span>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Che clima trovi</legend>
+        <div class="chips" id="clima"></div>
+      </fieldset>
+
+      <fieldset style="margin-bottom:0">
+        <legend>Che viaggio è</legend>
+        <div class="chips" id="tipo"></div>
+      </fieldset>
+    </section>
+
+    <!-- PASSO 2 -->
+    <section class="panel" id="step-2" hidden aria-label="Passo 2: chi parte e come">
+      <h2>Chi parte e come</h2>
+      <p class="hint">Serve per aggiungere le voci giuste e togliere quelle inutili.</p>
+
+      <fieldset>
+        <legend>Chi parte</legend>
+        <div class="counters">
+          <div class="counter"><span class="lbl">Adulti</span>
+            <span class="stepbox"><button type="button" data-cnt="adulti" data-d="-1" aria-label="Un adulto in meno">−</button><input id="adulti" type="text" inputmode="numeric" value="1" maxlength="1" aria-label="Numero di adulti"><button type="button" data-cnt="adulti" data-d="1" aria-label="Un adulto in più">+</button></span>
+          </div>
+          <div class="counter"><span class="lbl">Bambini</span>
+            <span class="stepbox"><button type="button" data-cnt="bambini" data-d="-1" aria-label="Un bambino in meno">−</button><input id="bambini" type="text" inputmode="numeric" value="0" maxlength="1" aria-label="Numero di bambini"><button type="button" data-cnt="bambini" data-d="1" aria-label="Un bambino in più">+</button></span>
+          </div>
+          <div class="counter"><span class="lbl">Neonati</span>
+            <span class="stepbox"><button type="button" data-cnt="neonati" data-d="-1" aria-label="Un neonato in meno">−</button><input id="neonati" type="text" inputmode="numeric" value="0" maxlength="1" aria-label="Numero di neonati"><button type="button" data-cnt="neonati" data-d="1" aria-label="Un neonato in più">+</button></span>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Bagaglio</legend>
+        <div class="chips" id="bagaglio"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Come ci vai</legend>
+        <div class="chips" id="mezzo"></div>
+      </fieldset>
+
+      <fieldset style="margin-bottom:0">
+        <legend>Dettagli che cambiano la lista</legend>
+        <div class="toggles" id="extra"></div>
+      </fieldset>
+    </section>
+
+    <!-- PASSO 3 -->
+    <section class="panel" id="step-3" hidden aria-label="Passo 3: la lista">
+      <h2>La tua lista</h2>
+      <p class="hint" id="recap-hint">Spunta le voci mentre le metti dentro: restano salvate.</p>
+      <div class="recap" id="recap"></div>
+      <div class="warn" id="warn" hidden></div>
+
+      <div class="progress">
+        <div class="bar"><i id="bar"></i></div>
+        <p id="progress-txt"></p>
+      </div>
+
+      <div id="lista"></div>
+
+      <form id="add-form" class="row" autocomplete="off" style="margin-top:1rem">
+        <input id="add-txt" class="grow" type="text" placeholder="Aggiungi una voce tua" maxlength="60" enterkeyhint="done" aria-label="Nuova voce da aggiungere">
+        <button class="btn ghost" type="submit">Aggiungi</button>
+      </form>
+      <p class="err" id="add-err"></p>
+
+      <div class="row" id="act-row" style="margin-top:.8rem">
+        <button class="btn ghost" type="button" id="copia">Copia la lista</button>
+        <button class="btn quiet" type="button" id="azzera">Togli le spunte</button>
+      </div>
+      <p class="err" id="azzera-ask" hidden>Togliere tutte le spunte? <button class="btn" type="button" id="azzera-si" style="min-height:40px;padding:.3rem .8rem">Sì</button> <button class="btn quiet" type="button" id="azzera-no" style="min-height:40px;padding:.3rem .8rem">No</button></p>
+    </section>
+
+    <nav class="navbar" aria-label="Navigazione del questionario">
+      <button class="btn ghost" type="button" id="prev" hidden>◀ Indietro</button>
+      <button class="btn" type="button" id="next">Avanti ▶</button>
+    </nav>
+
+    <!-- PRO 1 -->
+    <section class="pro" data-pro="Più viaggi salvati">
+      <h2>Più viaggi salvati</h2>
+      <p>Tieni in memoria più liste contemporaneamente — il weekend a Berlino, la settimana al mare, la trasferta di lavoro — e passa dall'una all'altra senza rifare il questionario.</p>
+      <ul class="trips" id="trips"></ul>
+      <form id="trip-form" class="row" autocomplete="off">
+        <input id="trip-name" class="grow" type="text" placeholder="Nome del viaggio (es. Grecia agosto)" maxlength="40" aria-label="Nome del nuovo viaggio">
+        <button class="btn ghost" type="submit">Salva come nuovo</button>
+      </form>
+      <p class="err" id="trip-err"></p>
+    </section>
+
+    <!-- PRO 2 -->
+    <section class="pro" data-pro="Stampa e scarica la lista">
+      <h2>Stampa e scarica la lista</h2>
+      <p>Una copia da appendere all'armadio o da aprire con Excel e Fogli Google, con le quantità e lo stato delle spunte.</p>
+      <div class="row">
+        <button class="btn ghost" type="button" id="stampa">Stampa</button>
+        <button class="btn ghost" type="button" id="csv">Scarica CSV</button>
+      </div>
+    </section>
+
+    <div data-ad="top"></div>
+
+    <div data-affiliate data-title="Utili in valigia" data-items='[{"t":"Organizer / cubi da valigia","q":"organizer valigia set cubi"},{"t":"Bilancia digitale per bagagli","q":"bilancia digitale bagagli"},{"t":"Set contenitori da viaggio 100 ml","q":"contenitori da viaggio 100 ml set"},{"t":"Adattatore di corrente universale","q":"adattatore universale viaggio"}]'></div>
+
+    <section id="guida" class="guida">
+      <h2>Cosa mettere in valigia senza dimenticare niente</h2>
+      <p>Le liste che si trovano in giro hanno tutte lo stesso difetto: sono uguali per chiunque. Elencano duecento voci "per ogni evenienza" e lasciano a te il lavoro vero, cioè capire quali riguardano il tuo viaggio e in che quantità. Un weekend di lavoro a Milano e due settimane di mare in Grecia non hanno quasi niente in comune, eppure ricevono lo stesso foglio da stampare. Questo strumento ribalta il procedimento: prima gli fai tre domande sul viaggio, poi lui costruisce la lista — solo le voci pertinenti, con i numeri già fatti.</p>
+
+      <h3>Come funziona il calcolo delle quantità</h3>
+      <p>Il punto delicato non è ricordarsi le magliette: è sapere quante. La regola che usa il generatore è quella che applicano i viaggiatori abituali: un capo al giorno per ciò che si sporca (magliette, calzini, intimo) più uno di riserva, un capo ogni tre giorni per ciò che si riusa (pantaloni, gonne), un pigiama ogni cinque notti. Sopra i sette giorni le quantità non crescono all'infinito: se indichi che avrai una lavatrice o una lavanderia, il conto si ferma a una settimana, perché a metà soggiorno fai un carico e riparti da capo. È la differenza tra una valigia da 9 kg e una da 20.</p>
+      <p>Clima e tipo di viaggio agiscono da filtro. Con il clima freddo compaiono berretto, guanti e scaldacollo e raddoppiano i maglioni; con il clima tropicale arrivano repellente, K-way e fermenti lattici; se il viaggio è di lavoro entrano camicie e scarpe eleganti e spariscono telo mare e infradito. I bambini aggiungono la loro sezione, i neonati fanno comparire i pannolini con la quantità calcolata sui giorni.</p>
+
+      <h3>Un esempio con i numeri</h3>
+      <p>Due adulti, dieci giorni al mare in Grecia a luglio, aereo, bagaglio in stiva, appartamento con lavatrice. La lista che esce non contiene dieci magliette ma otto, perché il conteggio si ferma a sette giorni più la riserva; l'intimo è otto, i pantaloncini quattro, i costumi due a testa, il pigiama due. Compaiono crema solare, doposole, telo mare, infradito e cappello; compaiono anche la borraccia vuota da riempire dopo i controlli e l'avviso che il power bank deve stare in cabina e non in stiva. Non compaiono scarponcini, piumino e adattatore per la corrente. Totale: una sessantina di voci al posto di duecento, e nessuna da valutare a mano.</p>
+
+      <h3>Gli errori che fanno dimenticare le cose</h3>
+      <ul>
+        <li><strong>Preparare la valigia la sera prima.</strong> Le cose che mancano davvero — la crema solare finita, le pile del lettore, la ricetta del farmaco — si scoprono solo quando la lista è sotto gli occhi. Genera la lista due o tre giorni prima e spunta man mano.</li>
+        <li><strong>Mettere i documenti "per ultimi".</strong> Carta d'identità, biglietti e prenotazioni sono l'unica categoria che non si può ricomprare in loco: vanno spuntati per primi e tenuti addosso, non nel bagaglio da imbarcare.</li>
+        <li><strong>Riempire lo spazio disponibile.</strong> La valigia si riempie fino a quanto è grande, non fino a quanto serve. Con le quantità decise in anticipo la tentazione di aggiungere "un paio di magliette in più" perde forza.</li>
+        <li><strong>Dimenticare il ritorno.</strong> Se compri qualcosa, deve starci: lascia un 15% di spazio libero, o metti in conto una borsa pieghevole.</li>
+        <li><strong>Liquidi nel bagaglio a mano.</strong> È il motivo più frequente di sequestri al controllo: massimo 100 ml per contenitore, tutti dentro un sacchetto trasparente da un litro.</li>
+      </ul>
+
+      <h3>Domande frequenti</h3>
+      <h4>Quante magliette servono per una settimana?</h4>
+      <p>Sette più una di riserva, cioè otto: una al giorno e un cambio per l'imprevisto. Stessa regola per intimo e calzini. Se c'è una lavatrice puoi scendere a quattro o cinque e fare un carico a metà settimana.</p>
+      <h4>Cosa non posso portare nel bagaglio a mano?</h4>
+      <p>Liquidi in contenitori sopra i 100 ml, forbici a lama lunga e coltellini. Attenzione al contrario: il power bank e le batterie al litio devono viaggiare in cabina e non possono essere imbarcati in stiva.</p>
+      <h4>La lista resta salvata se chiudo la pagina?</h4>
+      <p>Sì. Risposte, voci aggiunte da te e caselle spuntate restano nel browser del dispositivo. Non serve registrarsi, non serve la connessione: puoi riaprire la pagina mentre prepari la valigia, anche in aereo.</p>
+      <h4>Posso aggiungere voci mie?</h4>
+      <p>Sì, il campo in fondo alla lista aggiunge qualsiasi cosa — il caricabatterie della macchina fotografica vecchia, il regalo per tua sorella — e la voce si salva insieme alle altre.</p>
+      <h4>Funziona anche per un solo giorno o per due mesi?</h4>
+      <p>La durata va da un giorno a novanta. Sotto i tre giorni spariscono le voci che hanno senso solo nei soggiorni lunghi; sopra la settimana entrano in gioco il bucato e le scorte.</p>
+
+      <div data-ad="bottom"></div>
+      <div data-support></div>
+      <p class="small">Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a> · Vedi anche <a href="../2026-09-17-dividi-il-conto/">Dividi il Conto</a> per le spese del viaggio di gruppo.</p>
+    </section>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="../../assets/monetize.js"></script>
+  <script>
+    // Modello dati (localStorage "lista-valigia:v1"):
+    //   { viaggi: [ {id, nome, cfg:{gg,clima,tipo,adulti,bambini,neonati,bagaglio,mezzo,extra:[...]},
+    //                spunte:{idVoce:true}, mie:[{id,label,cat}]} ], corrente: id }
+    // Le voci della lista non sono salvate: si rigenerano da `cfg` tramite le regole in ITEMS,
+    // così bastano le spunte (per id stabile) a ricostruire lo stato.
+    (() => {
+      "use strict";
+      const KEY = "lista-valigia:v1";
+      const $ = (s) => document.querySelector(s);
+      const uid = () => (crypto.randomUUID ? crypto.randomUUID() : "x" + Math.random().toString(36).slice(2));
+
+      // ---------- opzioni del questionario ----------
+      const CLIMA = [["caldo", "Caldo · estate"], ["mite", "Mite · mezze stagioni"], ["freddo", "Freddo · inverno"], ["tropicale", "Tropicale · umido"]];
+      const TIPO = [["mare", "Mare"], ["montagna", "Montagna o neve"], ["citta", "Città e cultura"], ["lavoro", "Lavoro"], ["natura", "Natura e campeggio"], ["parenti", "Da parenti o amici"]];
+      const BAGAGLIO = [["mano", "Solo bagaglio a mano"], ["stiva", "Bagaglio in stiva"]];
+      const MEZZO = [["aereo", "Aereo"], ["auto", "Auto"], ["treno", "Treno o bus"]];
+      const EXTRA = [
+        ["lavatrice", "Lavatrice o lavanderia", "Dimezza le quantità nei viaggi lunghi"],
+        ["estero", "Viaggio all'estero", "Passaporto, assicurazione, adattatore"],
+        ["piscina", "Piscina, spa o palestra", "Costume, ciabatte, asciugamano"],
+        ["farmaci", "Terapia o farmaci quotidiani", "Scorta, ricetta, contenitore"],
+        ["remoto", "Devo lavorare o studiare", "Portatile, cavi, quaderno"],
+        ["animale", "Viaggio con un animale", "Documenti, ciotole, guinzaglio"],
+      ];
+
+      const CATS = ["Documenti e soldi", "Abbigliamento", "Scarpe", "Bagno e igiene", "Salute", "Elettronica", "A portata di mano", "Bambini", "Extra per il viaggio"];
+
+      // ---------- regole: q = quantità (numero o null), w = quando serve ----------
+      const n = (v) => Math.max(1, Math.round(v));
+      const ITEMS = [
+        // Documenti
+        { k: "doc-id", l: "Carta d'identità valida", c: 0 },
+        { k: "doc-pass", l: "Passaporto", c: 0, w: (x) => x.estero, note: "Controlla la scadenza: molti Paesi chiedono 6 mesi di validità residua" },
+        { k: "doc-patente", l: "Patente di guida", c: 0, w: (x) => x.mezzo === "auto" || x.estero },
+        { k: "doc-biglietti", l: "Biglietti e carte d'imbarco", c: 0, w: (x) => x.mezzo !== "auto", note: "Salvali anche offline sul telefono" },
+        { k: "doc-preno", l: "Prenotazioni di alloggio e trasferimenti", c: 0 },
+        { k: "doc-tessera", l: "Tessera sanitaria", c: 0 },
+        { k: "doc-team", l: "Tessera sanitaria europea o assicurazione", c: 0, w: (x) => x.estero },
+        { k: "doc-carta", l: "Carta di pagamento e un po' di contanti", c: 0 },
+        { k: "doc-animale", l: "Libretto sanitario dell'animale", c: 0, w: (x) => x.animale },
+        { k: "doc-park", l: "Telepass, documenti auto e assicurazione", c: 0, w: (x) => x.mezzo === "auto" },
+
+        // Abbigliamento
+        { k: "ab-intimo", l: "Cambi di intimo", c: 1, q: (x) => x.cap + 1 },
+        { k: "ab-calzini", l: "Paia di calzini", c: 1, q: (x) => (x.clima === "caldo" && x.tipo === "mare" ? x.cap : x.cap + 1) },
+        { k: "ab-magliette", l: "Magliette o top", c: 1, q: (x) => x.cap + 1 },
+        { k: "ab-camicie", l: "Camicie o bluse", c: 1, q: (x) => Math.min(3, n(x.cap / 2)), w: (x) => x.tipo === "lavoro" || x.tipo === "citta" },
+        { k: "ab-pantaloni", l: "Pantaloni lunghi", c: 1, q: (x) => (x.clima === "freddo" ? n(x.cap / 2) : n(x.cap / 4)) },
+        { k: "ab-corti", l: "Pantaloncini o gonne", c: 1, q: (x) => n(x.cap / 3), w: (x) => x.clima === "caldo" || x.clima === "tropicale" },
+        { k: "ab-felpa", l: "Felpe o maglioni", c: 1, q: (x) => (x.clima === "freddo" ? 3 : x.clima === "caldo" ? 1 : 2) },
+        { k: "ab-termica", l: "Strato termico (maglia e calzamaglia)", c: 1, q: () => 2, w: (x) => x.clima === "freddo" || x.tipo === "montagna" },
+        { k: "ab-giacca", l: "Giacca pesante o piumino", c: 1, w: (x) => x.clima === "freddo" || x.tipo === "montagna" },
+        { k: "ab-giacchino", l: "Giacca leggera o antivento", c: 1, w: (x) => x.clima !== "freddo" },
+        { k: "ab-kway", l: "K-way o ombrello pieghevole", c: 1, w: (x) => x.clima === "tropicale" || x.clima === "mite" || x.tipo === "montagna" || x.tipo === "natura" },
+        { k: "ab-pigiama", l: "Pigiami", c: 1, q: (x) => Math.ceil(x.cap / 5) },
+        { k: "ab-elegante", l: "Un completo o un vestito buono", c: 1, w: (x) => x.tipo === "lavoro" || x.tipo === "citta" || x.tipo === "parenti" },
+        { k: "ab-costume", l: "Costumi da bagno", c: 1, q: () => 2, w: (x) => x.tipo === "mare" || x.piscina || x.clima === "tropicale" },
+        { k: "ab-copri", l: "Copricostume o pareo", c: 1, w: (x) => x.tipo === "mare" },
+        { k: "ab-cappello", l: "Cappello e occhiali da sole", c: 1, w: (x) => x.clima !== "freddo" || x.tipo === "montagna" },
+        { k: "ab-berretto", l: "Berretto, guanti e scaldacollo", c: 1, w: (x) => x.clima === "freddo" || x.tipo === "montagna" },
+        { k: "ab-cintura", l: "Cintura", c: 1 },
+
+        // Scarpe
+        { k: "sc-comode", l: "Scarpe comode già rodate", c: 2, note: "Indossale in viaggio: occupano meno spazio addosso che in valigia" },
+        { k: "sc-eleganti", l: "Scarpe eleganti", c: 2, w: (x) => x.tipo === "lavoro" || x.tipo === "citta" || x.tipo === "parenti" },
+        { k: "sc-trekking", l: "Scarponcini da trekking", c: 2, w: (x) => x.tipo === "montagna" || x.tipo === "natura" },
+        { k: "sc-infradito", l: "Infradito o ciabatte", c: 2, w: (x) => x.tipo === "mare" || x.piscina || x.clima === "tropicale" },
+        { k: "sc-doccia", l: "Ciabatte da doccia", c: 2, w: (x) => x.tipo === "natura" || x.piscina },
+
+        // Bagno e igiene
+        { k: "ig-denti", l: "Spazzolino e dentifricio", c: 3 },
+        { k: "ig-doccia", l: "Bagnoschiuma e shampoo", c: 3, note: (x) => (x.bagaglio === "mano" ? "In formato da viaggio: massimo 100 ml a contenitore" : "") },
+        { k: "ig-deodorante", l: "Deodorante", c: 3 },
+        { k: "ig-spazzola", l: "Spazzola o pettine", c: 3 },
+        { k: "ig-rasoio", l: "Rasoio e schiuma", c: 3 },
+        { k: "ig-crema", l: "Crema viso e corpo", c: 3 },
+        { k: "ig-solare", l: "Crema solare alta protezione", c: 3, w: (x) => x.clima !== "freddo" || x.tipo === "montagna", note: "In montagna e sulla neve serve quanto al mare" },
+        { k: "ig-doposole", l: "Doposole", c: 3, w: (x) => x.tipo === "mare" || x.clima === "tropicale" },
+        { k: "ig-repellente", l: "Repellente antizanzare", c: 3, w: (x) => x.clima === "tropicale" || x.tipo === "natura" || x.tipo === "mare" },
+        { k: "ig-igiene", l: "Assorbenti o coppetta", c: 3 },
+        { k: "ig-salviette", l: "Salviette umidificate e gel mani", c: 3 },
+        { k: "ig-asciugamano", l: "Asciugamano in microfibra", c: 3, w: (x) => x.tipo === "natura" || x.piscina || x.tipo === "mare" },
+        { k: "ig-sacco", l: "Sacchetto per il bucato sporco", c: 3 },
+        { k: "ig-liquidi", l: "Sacchetto trasparente per i liquidi (max 100 ml)", c: 3, w: (x) => x.bagaglio === "mano" && x.mezzo === "aereo", note: "Un solo sacchetto da 1 litro a passeggero" },
+        { k: "ig-detersivo", l: "Detersivo da viaggio", c: 3, w: (x) => x.lavatrice && x.gg > 7 },
+
+        // Salute
+        { k: "sa-cerotti", l: "Cerotti e disinfettante", c: 4 },
+        { k: "sa-antidolorifico", l: "Antidolorifico e antifebbrile", c: 4 },
+        { k: "sa-farmaci", l: "Farmaci della terapia + ricetta", c: 4, w: (x) => x.farmaci, note: "Porta qualche giorno di scorta e tienili nel bagaglio a mano" },
+        { k: "sa-stomaco", l: "Antidiarroico e fermenti lattici", c: 4, w: (x) => x.clima === "tropicale" || x.estero },
+        { k: "sa-cinetosi", l: "Pastiglie per il mal d'auto o di mare", c: 4, w: (x) => x.mezzo === "auto" || x.tipo === "mare" },
+        { k: "sa-punture", l: "Pomata per punture e scottature", c: 4, w: (x) => x.clima !== "freddo" },
+        { k: "sa-kit", l: "Kit di primo soccorso", c: 4, w: (x) => x.tipo === "natura" || x.tipo === "montagna" },
+
+        // Elettronica
+        { k: "el-carica", l: "Caricabatterie del telefono", c: 5 },
+        { k: "el-power", l: "Power bank", c: 5, note: (x) => (x.mezzo === "aereo" ? "Solo in cabina: in stiva non è ammesso" : "") },
+        { k: "el-adattatore", l: "Adattatore di corrente", c: 5, w: (x) => x.estero },
+        { k: "el-cuffie", l: "Cuffie o auricolari", c: 5 },
+        { k: "el-ciabatta", l: "Ciabatta multipresa o cavo lungo", c: 5, w: (x) => x.adulti > 1 || x.remoto },
+        { k: "el-portatile", l: "Portatile, caricatore e mouse", c: 5, w: (x) => x.remoto || x.tipo === "lavoro" },
+        { k: "el-foto", l: "Fotocamera, schede e batterie", c: 5, w: (x) => x.tipo === "citta" || x.tipo === "natura" || x.tipo === "montagna" },
+        { k: "el-torcia", l: "Torcia frontale", c: 5, w: (x) => x.tipo === "natura" || x.tipo === "montagna" },
+        { k: "el-libro", l: "Libro o e-reader", c: 5 },
+
+        // A portata di mano
+        { k: "pm-borraccia", l: "Borraccia vuota", c: 6, note: "Si riempie dopo i controlli o alle fontanelle" },
+        { k: "pm-snack", l: "Snack per il viaggio", c: 6 },
+        { k: "pm-mascherina", l: "Mascherina per dormire e tappi", c: 6, w: (x) => x.mezzo !== "auto" },
+        { k: "pm-cambio", l: "Un cambio completo nel bagaglio a mano", c: 6, w: (x) => x.bagaglio === "stiva" && x.mezzo === "aereo", note: "Se la valigia arriva in ritardo ti salva la prima sera" },
+        { k: "pm-penna", l: "Una penna", c: 6, w: (x) => x.estero, note: "Per i moduli d'ingresso" },
+        { k: "pm-borsa", l: "Borsa pieghevole per il ritorno", c: 6, w: (x) => x.gg >= 5 },
+        { k: "pm-chiavi", l: "Chiavi di casa e lucchetto della valigia", c: 6 },
+
+        // Bambini
+        { k: "bb-pannolini", l: "Pannolini", c: 7, q: (x) => x.neonati * (x.gg * 6 + 4), w: (x) => x.neonati > 0 },
+        { k: "bb-salviette", l: "Salviette e crema per il cambio", c: 7, w: (x) => x.neonati > 0 },
+        { k: "bb-pappa", l: "Latte, pappe e biberon", c: 7, w: (x) => x.neonati > 0 },
+        { k: "bb-ciuccio", l: "Ciucci di scorta", c: 7, q: () => 2, w: (x) => x.neonati > 0 },
+        { k: "bb-passeggino", l: "Passeggino leggero o fascia", c: 7, w: (x) => x.neonati > 0 },
+        { k: "bb-seggiolino", l: "Seggiolino auto", c: 7, w: (x) => x.mezzo === "auto" && x.bimbiTot > 0 },
+        { k: "bb-cambi", l: "Cambi extra per i bambini", c: 7, q: (x) => x.bimbiTot * 2, w: (x) => x.bimbiTot > 0, note: "Si sporcano più in fretta: conta due cambi al giorno nei primi anni" },
+        { k: "bb-giochi", l: "Giochi, libri e colori per il viaggio", c: 7, w: (x) => x.bimbiTot > 0 },
+        { k: "bb-termometro", l: "Termometro e farmaci pediatrici", c: 7, w: (x) => x.bimbiTot > 0 },
+        { k: "bb-merenda", l: "Merende e bottiglietta", c: 7, w: (x) => x.bimbiTot > 0 },
+
+        // Extra per il viaggio
+        { k: "ex-mare-borsa", l: "Borsa da mare e telo", c: 8, w: (x) => x.tipo === "mare" },
+        { k: "ex-mare-snork", l: "Maschera e boccaglio", c: 8, w: (x) => x.tipo === "mare" },
+        { k: "ex-mare-scogli", l: "Scarpette da scoglio", c: 8, w: (x) => x.tipo === "mare" },
+        { k: "ex-mont-bastoni", l: "Bastoncini e zaino da giornata", c: 8, w: (x) => x.tipo === "montagna" },
+        { k: "ex-mont-termica", l: "Borraccia termica", c: 8, w: (x) => x.tipo === "montagna" || x.clima === "freddo" },
+        { k: "ex-citta-zaino", l: "Zaino piccolo antiborseggio", c: 8, w: (x) => x.tipo === "citta" },
+        { k: "ex-citta-guida", l: "Guida o mappa scaricata offline", c: 8, w: (x) => x.tipo === "citta" || x.estero },
+        { k: "ex-lav-blocco", l: "Blocco appunti e biglietti da visita", c: 8, w: (x) => x.tipo === "lavoro" },
+        { k: "ex-nat-sacco", l: "Sacco a pelo e materassino", c: 8, w: (x) => x.tipo === "natura" },
+        { k: "ex-nat-coltello", l: "Coltellino multiuso", c: 8, w: (x) => x.tipo === "natura", note: (x) => x.bagaglio === "mano" ? "Vietato nel bagaglio a mano" : "" },
+        { k: "ex-nat-rifiuti", l: "Sacchetti per i rifiuti", c: 8, w: (x) => x.tipo === "natura" },
+        { k: "ex-par-regalo", l: "Un pensiero per chi ti ospita", c: 8, w: (x) => x.tipo === "parenti" },
+        { k: "ex-animale", l: "Ciotole, guinzaglio e cibo dell'animale", c: 8, w: (x) => x.animale },
+        { k: "ex-remoto", l: "Quaderno, cavi e auricolari per le call", c: 8, w: (x) => x.remoto },
+      ];
+
+      // ---------- stato ----------
+      const cfgVuota = () => ({ gg: 7, clima: "mite", tipo: "mare", adulti: 1, bambini: 0, neonati: 0, bagaglio: "stiva", mezzo: "aereo", extra: [] });
+      const viaggioVuoto = (nome) => ({ id: uid(), nome: nome || "Il mio viaggio", cfg: cfgVuota(), spunte: {}, mie: [] });
+
+      let stato = carica();
+      let passo = 1;
+
+      function carica() {
+        try {
+          const s = JSON.parse(localStorage.getItem(KEY));
+          if (s && Array.isArray(s.viaggi) && s.viaggi.length) {
+            s.viaggi.forEach(v => { v.cfg = Object.assign(cfgVuota(), v.cfg); v.spunte = v.spunte || {}; v.mie = v.mie || []; });
+            if (!s.viaggi.some(v => v.id === s.corrente)) s.corrente = s.viaggi[0].id;
+            return s;
+          }
+        } catch (_) { /* storage illeggibile: si riparte puliti */ }
+        const v = viaggioVuoto();
+        return { viaggi: [v], corrente: v.id };
+      }
+      function salva() { try { localStorage.setItem(KEY, JSON.stringify(stato)); } catch (_) { /* storage pieno o bloccato */ } }
+      const viaggio = () => stato.viaggi.find(v => v.id === stato.corrente) || stato.viaggi[0];
+      const cfg = () => viaggio().cfg;
+
+      // Contesto passato alle regole: i campi derivati sono calcolati una volta sola.
+      function contesto() {
+        const c = cfg();
+        const gg = c.gg;
+        const cap = c.extra.includes("lavatrice") ? Math.min(gg, 7) : Math.min(gg, 14);
+        const x = Object.assign({}, c, { gg, cap, bimbiTot: c.bambini + c.neonati });
+        for (const [k] of EXTRA) x[k] = c.extra.includes(k);
+        return x;
+      }
+
+      function genera() {
+        const x = contesto();
+        const out = [];
+        for (const it of ITEMS) {
+          if (it.w && !it.w(x)) continue;
+          const q = it.q ? Math.max(1, Math.round(it.q(x))) : null;
+          const note = typeof it.note === "function" ? it.note(x) : it.note;
+          out.push({ k: it.k, l: it.l, c: it.c, q, note: note || "" });
+        }
+        for (const m of viaggio().mie) out.push({ k: m.id, l: m.label, c: 8, q: null, note: "", mia: true });
+        return out;
+      }
+
+      // ---------- render del questionario ----------
+      function chips(box, opzioni, campo) {
+        const el = $(box);
+        el.replaceChildren();
+        for (const [val, lab] of opzioni) {
+          const w = document.createElement("label"); w.className = "chip";
+          const i = document.createElement("input");
+          i.type = "radio"; i.name = campo; i.value = val; i.checked = cfg()[campo] === val;
+          i.addEventListener("change", () => { cfg()[campo] = val; salva(); aggiornaAvvisi(); });
+          const s = document.createElement("span"); s.textContent = lab;
+          w.append(i, s); el.append(w);
+        }
+      }
+      function renderExtra() {
+        const el = $("#extra");
+        el.replaceChildren();
+        for (const [k, lab, sub] of EXTRA) {
+          const w = document.createElement("label"); w.className = "toggle";
+          const i = document.createElement("input");
+          i.type = "checkbox"; i.checked = cfg().extra.includes(k);
+          i.addEventListener("change", () => {
+            const e = cfg().extra;
+            if (i.checked) { if (!e.includes(k)) e.push(k); } else cfg().extra = e.filter(v => v !== k);
+            salva();
+          });
+          const t = document.createElement("span");
+          t.append(lab);
+          const s = document.createElement("small"); s.textContent = sub; t.append(s);
+          w.append(i, t); el.append(w);
+        }
+      }
+      // I giorni si aggiornano da soli: ricostruire i chip qui farebbe sparire il nodo
+      // tra il mousedown e il mouseup del tocco successivo, mangiandosi il tap.
+      function aggiornaGiorni() {
+        $("#gg").value = String(cfg().gg);
+        $("#gg-unit").textContent = cfg().gg === 1 ? "giorno" : "giorni";
+      }
+      function renderQuestionario() {
+        aggiornaGiorni();
+        for (const c of ["adulti", "bambini", "neonati"]) $("#" + c).value = String(cfg()[c]);
+        chips("#clima", CLIMA, "clima");
+        chips("#tipo", TIPO, "tipo");
+        chips("#bagaglio", BAGAGLIO, "bagaglio");
+        chips("#mezzo", MEZZO, "mezzo");
+        renderExtra();
+      }
+
+      // ---------- render della lista ----------
+      function renderLista() {
+        const voci = genera();
+        const v = viaggio();
+        const box = $("#lista");
+        box.replaceChildren();
+
+        const perCat = new Map();
+        for (const it of voci) { if (!perCat.has(it.c)) perCat.set(it.c, []); perCat.get(it.c).push(it); }
+
+        for (let ci = 0; ci < CATS.length; ci++) {
+          const lista = perCat.get(ci);
+          if (!lista || !lista.length) continue;
+          const g = document.createElement("section"); g.className = "group";
+          const h = document.createElement("h3"); h.textContent = CATS[ci]; g.append(h);
+          const ul = document.createElement("ul"); ul.className = "items";
+          for (const it of lista) {
+            const li = document.createElement("li");
+            const lab = document.createElement("label");
+            const cb = document.createElement("input");
+            cb.type = "checkbox"; cb.checked = !!v.spunte[it.k];
+            cb.addEventListener("change", () => {
+              if (cb.checked) v.spunte[it.k] = true; else delete v.spunte[it.k];
+              salva(); aggiornaProgresso(voci);
+              lab.parentElement.classList.toggle("fatto", cb.checked);
+            });
+            const txt = document.createElement("span"); txt.className = "txt";
+            txt.append(it.l + " ");
+            if (it.q && it.q > 1) { const q = document.createElement("b"); q.className = "qty"; q.textContent = "×" + it.q; txt.append(q); }
+            if (it.note) { const nt = document.createElement("small"); nt.className = "note"; nt.textContent = it.note; txt.append(nt); }
+            lab.append(cb, txt);
+            li.append(lab);
+            if (it.mia) {
+              const del = document.createElement("button");
+              del.type = "button"; del.className = "del"; del.textContent = "×";
+              del.title = "Togli « " + it.l + " »"; del.setAttribute("aria-label", del.title);
+              del.addEventListener("click", () => {
+                v.mie = v.mie.filter(m => m.id !== it.k); delete v.spunte[it.k];
+                salva(); renderLista(); avviso("Voce tolta");
+              });
+              lab.style.flex = "1"; li.style.display = "flex"; li.style.alignItems = "center"; li.append(del);
+            }
+            ul.append(li);
+          }
+          g.append(ul); box.append(g);
+        }
+        renderRecap();
+        aggiornaProgresso(voci);
+        aggiornaAvvisi();
+      }
+
+      function renderRecap() {
+        const c = cfg();
+        const et = (arr, val) => (arr.find(o => o[0] === val) || [0, val])[1];
+        const persone = [];
+        persone.push(c.adulti + (c.adulti === 1 ? " adulto" : " adulti"));
+        if (c.bambini) persone.push(c.bambini + (c.bambini === 1 ? " bambino" : " bambini"));
+        if (c.neonati) persone.push(c.neonati + (c.neonati === 1 ? " neonato" : " neonati"));
+        const tags = [c.gg + (c.gg === 1 ? " giorno" : " giorni"), et(CLIMA, c.clima).split(" · ")[0], et(TIPO, c.tipo), persone.join(" + "), et(BAGAGLIO, c.bagaglio), et(MEZZO, c.mezzo)];
+        for (const [k, lab] of EXTRA) if (c.extra.includes(k)) tags.push(lab);
+        const box = $("#recap"); box.replaceChildren();
+        for (const t of tags) { const s = document.createElement("span"); s.className = "tag"; s.textContent = t; box.append(s); }
+      }
+
+      function aggiornaProgresso(voci) {
+        const v = viaggio();
+        const tot = voci.length, fatte = voci.filter(i => v.spunte[i.k]).length;
+        $("#bar").style.width = tot ? Math.round((fatte / tot) * 100) + "%" : "0%";
+        $("#progress-txt").textContent = fatte === tot && tot > 0
+          ? "Tutto in valigia: " + tot + " voci su " + tot + ". Buon viaggio."
+          : fatte + " su " + tot + " voci spuntate · ne mancano " + (tot - fatte) + ".";
+      }
+
+      function aggiornaAvvisi() {
+        const c = cfg(), box = $("#warn");
+        const msg = [];
+        if (c.bagaglio === "mano" && c.mezzo === "aereo") msg.push("Bagaglio a mano: liquidi solo in contenitori da massimo 100 ml, tutti in un sacchetto trasparente da 1 litro. Forbici lunghe e coltellini restano a casa.");
+        if (c.bagaglio === "stiva" && c.mezzo === "aereo") msg.push("Power bank e batterie al litio devono viaggiare in cabina: non metterli nella valigia da imbarcare.");
+        if (c.gg > 14 && !c.extra.includes("lavatrice")) msg.push("Viaggio lungo senza lavatrice: le quantità si fermano a 14 giorni, metti in conto una lavanderia sul posto.");
+        box.hidden = !msg.length;
+        box.textContent = msg.join(" ");
+      }
+
+      // ---------- wizard ----------
+      function vaiA(p) {
+        passo = p;
+        for (let i = 1; i <= 3; i++) $("#step-" + i).hidden = i !== p;
+        const dots = document.querySelectorAll("#stepper li");
+        dots.forEach((d, i) => {
+          d.classList.toggle("done", i + 1 < p);
+          if (i + 1 === p) d.setAttribute("aria-current", "step"); else d.removeAttribute("aria-current");
+        });
+        $("#prev").hidden = p === 1;
+        $("#next").textContent = p === 3 ? "Copia la lista" : p === 2 ? "Genera la lista ▶" : "Avanti ▶";
+        if (p === 3) renderLista();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      // ---------- azioni ----------
+      function avviso(msg) {
+        const t = $("#toast"); t.textContent = msg; t.classList.add("show");
+        clearTimeout(avviso.h); avviso.h = setTimeout(() => t.classList.remove("show"), 1900);
+      }
+      function testo() {
+        const voci = genera(), v = viaggio();
+        const righe = ["LISTA VALIGIA — " + v.nome, ""];
+        for (let ci = 0; ci < CATS.length; ci++) {
+          const g = voci.filter(i => i.c === ci);
+          if (!g.length) continue;
+          righe.push(CATS[ci].toUpperCase());
+          for (const i of g) righe.push((v.spunte[i.k] ? "[x] " : "[ ] ") + i.l + (i.q && i.q > 1 ? " ×" + i.q : ""));
+          righe.push("");
+        }
+        return righe.join("\n").trim();
+      }
+      function numero(el, min, max, poi) {
+        const val = parseInt(String(el.value).replace(/[^0-9]/g, ""), 10);
+        const ok = Number.isFinite(val) ? Math.min(max, Math.max(min, val)) : min;
+        el.value = String(ok); poi(ok);
+      }
+
+      $("#gg-meno").addEventListener("click", () => { cfg().gg = Math.max(1, cfg().gg - 1); salva(); aggiornaGiorni(); });
+      $("#gg-piu").addEventListener("click", () => { cfg().gg = Math.min(90, cfg().gg + 1); salva(); aggiornaGiorni(); });
+      $("#gg").addEventListener("change", (e) => numero(e.target, 1, 90, (v) => { cfg().gg = v; salva(); aggiornaGiorni(); }));
+      $("#gg").addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); e.target.blur(); } });
+
+      for (const b of document.querySelectorAll("[data-cnt]")) {
+        b.addEventListener("click", () => {
+          const c = b.dataset.cnt, d = parseInt(b.dataset.d, 10);
+          const min = c === "adulti" ? 1 : 0;
+          cfg()[c] = Math.min(9, Math.max(min, cfg()[c] + d));
+          salva(); $("#" + c).value = String(cfg()[c]);
+        });
+      }
+      for (const c of ["adulti", "bambini", "neonati"]) {
+        $("#" + c).addEventListener("change", (e) => numero(e.target, c === "adulti" ? 1 : 0, 9, (v) => { cfg()[c] = v; salva(); }));
+      }
+
+      $("#next").addEventListener("click", () => {
+        if (passo < 3) vaiA(passo + 1);
+        else copiaLista();
+      });
+      $("#prev").addEventListener("click", () => { if (passo > 1) vaiA(passo - 1); });
+      for (const d of document.querySelectorAll("#stepper li")) {
+        d.addEventListener("click", () => vaiA(parseInt(d.dataset.dot, 10)));
+        d.style.cursor = "pointer";
+      }
+
+      async function copiaLista() {
+        try { await navigator.clipboard.writeText(testo()); avviso("Lista copiata: incollala in chat o nelle note"); }
+        catch (_) { avviso("Copia non riuscita: usa Stampa oppure seleziona il testo"); }
+      }
+      $("#copia").addEventListener("click", copiaLista);
+
+      $("#add-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const inp = $("#add-txt"), label = inp.value.trim().replace(/\s+/g, " ");
+        if (!label) { $("#add-err").textContent = "Scrivi cosa vuoi aggiungere."; return; }
+        if (viaggio().mie.some(m => m.label.toLowerCase() === label.toLowerCase())) { $("#add-err").textContent = "Questa voce c'è già."; return; }
+        viaggio().mie.push({ id: "mia-" + uid(), label });
+        $("#add-err").textContent = ""; inp.value = "";
+        salva(); renderLista(); avviso("Aggiunta alla lista"); inp.focus();
+      });
+
+      $("#azzera").addEventListener("click", () => { $("#azzera-ask").hidden = false; });
+      $("#azzera-no").addEventListener("click", () => { $("#azzera-ask").hidden = true; });
+      $("#azzera-si").addEventListener("click", () => {
+        viaggio().spunte = {}; salva(); renderLista(); $("#azzera-ask").hidden = true; avviso("Spunte azzerate");
+      });
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape") { $("#azzera-ask").hidden = true; $("#trip-err").textContent = ""; } });
+
+      // ---------- Pro 1: più viaggi salvati ----------
+      function renderViaggi() {
+        const ul = $("#trips"); ul.replaceChildren();
+        for (const v of stato.viaggi) {
+          const li = document.createElement("li");
+          const b = document.createElement("button");
+          b.type = "button"; b.className = "name";
+          if (v.id === stato.corrente) { const s = document.createElement("b"); s.textContent = v.nome + " · in uso"; b.append(s); }
+          else b.textContent = v.nome;
+          b.addEventListener("click", () => {
+            if (!pro()) return;
+            stato.corrente = v.id; salva(); renderQuestionario(); renderViaggi();
+            if (passo === 3) renderLista();
+            avviso("Sei su « " + v.nome + " »");
+          });
+          li.append(b);
+          if (stato.viaggi.length > 1) {
+            const del = document.createElement("button");
+            del.type = "button"; del.className = "del"; del.textContent = "×";
+            del.title = "Elimina « " + v.nome + " »"; del.setAttribute("aria-label", del.title);
+            del.addEventListener("click", () => {
+              if (!pro()) return;
+              stato.viaggi = stato.viaggi.filter(t => t.id !== v.id);
+              if (stato.corrente === v.id) stato.corrente = stato.viaggi[0].id;
+              salva(); renderQuestionario(); renderViaggi();
+              if (passo === 3) renderLista();
+              avviso("Viaggio eliminato");
+            });
+            li.append(del);
+          }
+          ul.append(li);
+        }
+      }
+      function pro() {
+        if (window.Monetize && window.Monetize.isPro()) return true;
+        if (window.Monetize) window.Monetize.unlock();
+        return false;
+      }
+      $("#trip-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (!pro()) return;
+        const inp = $("#trip-name"), nome = inp.value.trim().replace(/\s+/g, " ");
+        if (!nome) { $("#trip-err").textContent = "Dai un nome al viaggio."; return; }
+        if (stato.viaggi.some(v => v.nome.toLowerCase() === nome.toLowerCase())) { $("#trip-err").textContent = "C'è già un viaggio con questo nome."; return; }
+        const nuovo = viaggioVuoto(nome);
+        nuovo.cfg = JSON.parse(JSON.stringify(cfg()));
+        stato.viaggi.push(nuovo); stato.corrente = nuovo.id;
+        $("#trip-err").textContent = ""; inp.value = "";
+        salva(); renderQuestionario(); renderViaggi();
+        if (passo === 3) renderLista();
+        avviso("Viaggio « " + nome + " » salvato");
+      });
+
+      // ---------- Pro 2: stampa ed esporta ----------
+      $("#stampa").addEventListener("click", () => {
+        if (!pro()) return;
+        if (passo !== 3) vaiA(3);
+        setTimeout(() => window.print(), 120);
+      });
+      $("#csv").addEventListener("click", () => {
+        if (!pro()) return;
+        const v = viaggio(), voci = genera();
+        const esc = (s) => (/[";\n]/.test(String(s)) ? '"' + String(s).replace(/"/g, '""') + '"' : String(s));
+        const righe = [["Categoria", "Voce", "Quantità", "In valigia"]];
+        for (const i of voci) righe.push([CATS[i.c], i.l, i.q || 1, v.spunte[i.k] ? "sì" : "no"]);
+        const csv = "﻿" + righe.map(r => r.map(esc).join(";")).join("\r\n");
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+        a.download = "lista-valigia.csv"; a.click();
+        setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+        avviso("CSV scaricato");
+      });
+
+      // ---------- avvio ----------
+      renderQuestionario();
+      renderViaggi();
+      vaiA(1);
+    })();
+  </script>
+</body>
+</html>

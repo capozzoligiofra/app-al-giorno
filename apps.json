@@ -1,6 +1,6 @@
 {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 5,
+  "count": 6,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -49,6 +49,70 @@
     ]
   },
   "apps": [
+    {
+      "title": "Lista Valigia",
+      "slug": "2026-09-18-lista-valigia",
+      "date": "2026-09-18",
+      "description": "Genera la lista della valigia su misura per durata, clima e tipo di viaggio, con le quantità già calcolate.",
+      "category": "produttivita",
+      "tags": [
+        "viaggio",
+        "valigia",
+        "checklist",
+        "vacanza"
+      ],
+      "source": "richiesta",
+      "request": "Lista Valigia — checklist per il viaggio generata da durata, clima e tipo di viaggio",
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "wizard",
+        "palette": "azzurro-cielo",
+        "font": "condensed"
+      },
+      "business": {
+        "keyword": "cosa mettere in valigia",
+        "keywords": [
+          "lista valigia",
+          "lista cose da portare in vacanza",
+          "checklist valigia mare",
+          "cosa portare in viaggio lista"
+        ],
+        "intent": "Chi sta per partire e vuole subito una lista concreta e personalizzata da spuntare dal telefono, non l'ennesimo articolo da leggere.",
+        "target": "Chi parte per vacanza o trasferta, 25-55 anni, prepara la valigia dal telefono la sera prima.",
+        "edge": "Nessuno genera la lista: tutti pubblicano la stessa lista fissa per chiunque. Qui tre domande producono solo le voci pertinenti con le quantità calcolate su giorni, clima, bucato e persone, spuntabili e salvate offline.",
+        "monetization": [
+          "adsense",
+          "affiliate",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Più viaggi salvati",
+          "Stampa e scarica la lista"
+        ],
+        "affiliate": [
+          {
+            "t": "Organizer / cubi da valigia",
+            "q": "organizer valigia set cubi"
+          },
+          {
+            "t": "Bilancia digitale per bagagli",
+            "q": "bilancia digitale bagagli"
+          },
+          {
+            "t": "Set contenitori da viaggio 100 ml",
+            "q": "contenitori da viaggio 100 ml set"
+          },
+          {
+            "t": "Adattatore di corrente universale",
+            "q": "adattatore universale viaggio"
+          }
+        ]
+      },
+      "size": 56086
+    },
     {
       "title": "Timer Pasta",
       "slug": "2026-09-17-timer-pasta",
