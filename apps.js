@@ -208,7 +208,7 @@ window.__APPS__ = {
       "title": "Mance e Conto",
       "slug": "2026-09-17-mance-e-conto",
       "date": "2026-09-17",
-      "description": "Mancia e quota a testa al ristorante in tre tocchi: conto, percentuale, persone. Arrotonda le quote e copia il riepilogo.",
+      "description": "Quanto lasciare di mancia al ristorante e quanto viene a testa: conto, percentuale, persone. Con arrotondamento e usanze paese per paese.",
       "category": "calcolatori-convertitori",
       "tags": [
         "mancia",
@@ -219,17 +219,39 @@ window.__APPS__ = {
       "source": "richiesta",
       "request": "Mance e Conto — calcola mancia e divisione del conto al ristorante in tre tocchi",
       "status": "pronta",
-      "version": 2,
+      "version": 3,
       "changelog": [
-        "v2 (2026-09-17): layout telefono rifatto — eliminato l'overflow orizzontale (input e chip allargavano la pagina), pannello input non più fisso, quota a testa sempre in vista nella barra in basso con Copia e Azzera, chip mancia su griglia a 3 colonne."
+        "v2 (2026-09-17): layout telefono rifatto — eliminato l'overflow orizzontale (input e chip allargavano la pagina), pannello input non più fisso, quota a testa sempre in vista nella barra in basso con Copia e Azzera, chip mancia su griglia a 3 colonne.",
+        "v3 (2026-09-18): convertita al modello business — keyword \"quanto lasciare di mancia\", title/description/canonical/OG/JSON-LD (WebApplication + FAQPage), guida di oltre 600 parole con esempio numerico, usanze estere e FAQ, chip \"usanza del posto\" (6 paesi) che impostano la percentuale tipica, segnaposto data-ad/data-support e due funzioni Pro reali: quote personalizzate (mancia ripartita in proporzione al consumo) e storico dei conti salvati."
       ],
       "design": {
         "layout": "split",
         "palette": "blu-notte",
         "font": "mono-tecnico"
       },
-      "business": null,
-      "size": 31407
+      "business": {
+        "keyword": "quanto lasciare di mancia",
+        "keywords": [
+          "calcolo mancia ristorante",
+          "dividere il conto al ristorante",
+          "quanto si lascia di mancia in america",
+          "come si calcola il 10 per cento di mancia"
+        ],
+        "intent": "Sei al tavolo con il conto in mano e vuoi sapere subito quanto lasciare e quanto mettere a testa, senza fare i conti a mente davanti al cameriere.",
+        "target": "Chi mangia fuori in gruppo e chi viaggia all'estero e non conosce l'usanza del posto, 20-55 anni, quasi sempre da telefono.",
+        "edge": "Risponde con un numero, non con un articolo: percentuali italiane vere, arrotondamento per eccesso della quota a testa (l'abitudine che i tool tradotti dall'inglese ignorano), usanze di 6 paesi offline, riepilogo da incollare in chat. Niente account.",
+        "monetization": [
+          "adsense",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Quote personalizzate",
+          "Storico dei conti"
+        ],
+        "affiliate": []
+      },
+      "size": 59251
     },
     {
       "title": "Dividi il Conto",

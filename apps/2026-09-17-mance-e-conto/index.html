@@ -4,8 +4,40 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#1f3d80">
-  <title>Mance e Conto — mancia e quota a testa</title>
-  <meta name="description" content="Calcola la mancia e dividi il conto del ristorante in tre tocchi: importo, percentuale, persone. Con arrotondamento a testa e riepilogo da copiare.">
+  <title>Mance e Conto: quanto lasciare di mancia online gratis</title>
+  <meta name="description" content="Quanto lasciare di mancia al ristorante e quanto viene a testa: scrivi il conto, scegli la percentuale e le persone. Con arrotondamento e usanze estere.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-17-mance-e-conto/">
+  <meta property="og:title" content="Mance e Conto: quanto lasciare di mancia online gratis">
+  <meta property="og:description" content="Il conto, la percentuale, le persone: mancia e quota a testa in tre tocchi, con arrotondamento e le usanze paese per paese. Senza registrazione.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-17-mance-e-conto/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Mance e Conto",
+    "description": "Calcolatore gratuito della mancia al ristorante: dal conto totale ricava quanto lasciare di mancia, il totale e la quota a testa, con arrotondamento per eccesso e percentuali tipiche paese per paese.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-17-mance-e-conto/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Quanto lasciare di mancia al ristorante in Italia?", "acceptedAnswer": { "@type": "Answer", "text": "In Italia la mancia non è obbligatoria. L'abitudine più diffusa è arrotondare il conto per eccesso: 44 euro diventano 50. In alternativa si lascia dal 5% al 10% quando il servizio è stato buono: su un conto da 60 euro sono 3-6 euro." } },
+      { "@type": "Question", "name": "La mancia si calcola prima o dopo il coperto?", "acceptedAnswer": { "@type": "Answer", "text": "Si calcola sul totale che paghi davvero, coperto compreso, perché è la cifra scritta sul conto. Se però nel conto compare già una voce \"servizio\", quella è di fatto la mancia: in quel caso non serve aggiungere altro." } },
+      { "@type": "Question", "name": "Quanto si lascia di mancia negli Stati Uniti?", "acceptedAnswer": { "@type": "Answer", "text": "Negli Stati Uniti la mancia è attesa e fa parte dello stipendio di chi serve: dal 15% al 20% del conto, il 18% è lo standard. Controlla sempre se in fondo al conto c'è già la dicitura gratuity included, tipica dei gruppi numerosi." } },
+      { "@type": "Question", "name": "Come si divide il conto se qualcuno ha mangiato meno?", "acceptedAnswer": { "@type": "Answer", "text": "Con le quote personalizzate: scrivi quanto ha consumato ciascuno e la mancia viene ripartita in proporzione, così chi ha preso solo la pizza non paga come chi ha preso antipasto, primo e vino." } },
+      { "@type": "Question", "name": "I dati del conto restano sul telefono?", "acceptedAnswer": { "@type": "Answer", "text": "Sì. Il calcolo avviene nel browser, anche senza connessione. L'importo del conto non viene salvato; restano memorizzate solo le tue preferenze, come la percentuale abituale e il numero di persone." } }
+    ]
+  }
+  </script>
   <style>
     :root {
       --bg: #eaf0fa;
@@ -25,6 +57,9 @@
       --ok: #1f7a4d;
       --danger: #b3382a;
       --r: 6px;
+      /* mono per l'interfaccia (identità "scontrino"), sans per i testi lunghi della guida */
+      --font-ui: ui-monospace, "Cascadia Mono", Consolas, "SF Mono", Menlo, "Liberation Mono", monospace;
+      --font-testo: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
       color-scheme: light;
     }
     @media (prefers-color-scheme: dark) {
@@ -49,10 +84,11 @@
     html { -webkit-text-size-adjust: 100%; }
     body {
       margin: 0;
-      font: 16px/1.5 ui-monospace, "Cascadia Mono", Consolas, "SF Mono", Menlo, "Liberation Mono", monospace;
+      font: 16px/1.5 var(--font-ui);
       background: linear-gradient(180deg, var(--bg-2), var(--bg) 40%) fixed;
       color: var(--text);
       min-height: 100dvh;
+      overflow-x: hidden;
     }
     button, input { font: inherit; color: inherit; }
     button { cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
@@ -83,8 +119,11 @@
     }
 
     /* ---- pannello input: in alto, sotto scorre lo scontrino (layout split) ---- */
-    .panel { padding: 8px 16px 18px; }
+    .panel { padding: 4px 16px 18px; }
     .panel-in { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+
+    h1 { margin: 0 0 14px; font-size: 1.32rem; line-height: 1.25; letter-spacing: -.01em; font-weight: 700; }
+    h1 .h1-sub { display: block; font-size: .8rem; font-weight: 400; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
 
     /* Le righe di input sono flex dentro una griglia: min-width 0 evita che la larghezza
        intrinseca di input e bottoni allarghi la pagina oltre lo schermo del telefono. */
@@ -130,6 +169,24 @@
     }
     .chip:hover { border-color: var(--accent-2); }
     .chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+
+    /* usanze del posto: pannello richiudibile, così i tre passaggi restano compatti */
+    .paesi-box { border: 1px dashed var(--line); border-radius: var(--r); }
+    .paesi-box summary {
+      display: flex; align-items: center; min-height: 44px; padding: 0 12px; cursor: pointer;
+      font-size: .85rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted);
+    }
+    .paesi-box summary b { color: var(--accent); }
+    .paesi-box[open] summary { border-bottom: 1px dashed var(--line); }
+    .paesi { gap: 6px; padding: 10px; }
+    .paesi .chip { min-height: 44px; font-size: .85rem; font-weight: 500; border-width: 1px; }
+    .paesi .chip[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent-2); color: var(--text); font-weight: 700; }
+    .paese-nota {
+      margin: 0; padding: 8px 10px; font-size: .85rem; line-height: 1.45;
+      background: var(--accent-soft); color: var(--text); border-left: 3px solid var(--accent-2); border-radius: 0 var(--r) var(--r) 0;
+    }
+    .paese-nota[hidden] { display: none; }
+
     .custom { display: none; gap: 8px; margin-top: 8px; }
     .custom.open { display: flex; }
     .custom input {
@@ -180,7 +237,7 @@
         linear-gradient(135deg, var(--paper) 50%, transparent 50%) 0 0 / 14px 10px repeat-x,
         linear-gradient(-135deg, var(--paper) 50%, transparent 50%) 7px 0 / 14px 10px repeat-x;
     }
-    .receipt h1 {
+    .receipt h2 {
       margin: 0 0 2px; font-size: 1.05rem; letter-spacing: .18em; text-transform: uppercase; text-align: center; font-weight: 700;
     }
     .receipt .sub { text-align: center; color: var(--paper-muted); font-size: .85rem; margin: 0 0 14px; }
@@ -217,7 +274,10 @@
       background: color-mix(in srgb, var(--bg) 92%, transparent);
       -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
       border-top: 1px solid var(--line);
+      transition: transform .2s ease, opacity .2s ease;
     }
+    /* mentre si legge la guida la barra si toglie di mezzo */
+    .bar.hidden { transform: translateY(120%); opacity: 0; pointer-events: none; }
     .bar-in { max-width: 1000px; width: 100%; margin: 0 auto; display: flex; gap: 8px; align-items: center; }
     .bar-result { flex: 1 1 0; min-width: 0; display: grid; gap: 0; line-height: 1.2; }
     .bar-k { font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -245,19 +305,72 @@
     }
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
+    /* ---- sezioni Pro + guida: colonna larga sotto lo strumento ---- */
+    .below { max-width: 720px; width: 100%; margin: 0 auto; padding: 8px 16px 0; }
+    .pro {
+      background: var(--surface); border: 2px solid var(--line); border-radius: 10px;
+      padding: 16px; margin: 0 0 16px;
+    }
+    .pro h2 { margin: 0 0 4px; font-size: 1rem; letter-spacing: .1em; text-transform: uppercase; }
+    .pro > p { margin: 0 0 12px; color: var(--muted); font-size: .9rem; line-height: 1.45; }
+    .quote-list { display: grid; gap: 8px; margin: 0 0 12px; }
+    .quota-row { display: flex; align-items: center; gap: 8px; }
+    .quota-row label { flex: 1 1 0; min-width: 0; font-size: .9rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .quota-row input {
+      flex: 0 0 110px; width: 110px; min-height: 46px; padding: 0 10px; text-align: right;
+      border: 2px solid var(--line); border-radius: var(--r); background: var(--bg); font-size: 16px; font-weight: 600;
+    }
+    .quota-row input:focus { border-color: var(--accent-2); outline: none; }
+    .quota-row .out { flex: 0 0 96px; text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; font-size: .95rem; }
+    .pro-foot { margin: 0; font-size: .875rem; line-height: 1.45; color: var(--muted); }
+    .pro-foot.warn { color: var(--danger); }
+    .salva-row { display: flex; gap: 8px; margin: 0 0 12px; }
+    .salva-row input {
+      flex: 1 1 0; width: 0; min-width: 0; min-height: 48px; padding: 0 12px;
+      border: 2px solid var(--line); border-radius: var(--r); background: var(--bg); font-size: 16px;
+    }
+    .salva-row input:focus { border-color: var(--accent-2); outline: none; }
+    .salva-row .btn { min-height: 48px; }
+    .storico { list-style: none; margin: 0 0 10px; padding: 0; display: grid; gap: 6px; }
+    .storico li { display: flex; align-items: center; gap: 8px; padding: 8px 0; border-bottom: 1px dashed var(--line); }
+    .storico .st-txt { flex: 1 1 0; min-width: 0; }
+    .storico .st-nome { display: block; font-weight: 700; font-size: .95rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .storico .st-meta { display: block; font-size: .8rem; color: var(--muted); }
+    .storico .st-val { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .storico .st-del {
+      width: 44px; height: 44px; flex: none; border: 0; background: transparent; color: var(--muted);
+      border-radius: var(--r); font-size: 1.2rem; line-height: 1;
+    }
+    .storico .st-del:hover { background: var(--accent-soft); color: var(--danger); }
+
+    /* ---- guida testuale ---- */
+    .guida { padding: 4px 0 24px; }
+    .guida h2 { font-family: var(--font-ui); font-size: 1.25rem; line-height: 1.3; margin: 28px 0 10px; letter-spacing: -.01em; }
+    .guida h2:first-child { margin-top: 8px; }
+    .guida h3 { font-family: var(--font-ui); font-size: 1.05rem; margin: 24px 0 8px; }
+    .guida h4 { font-family: var(--font-ui); font-size: .95rem; margin: 18px 0 4px; color: var(--accent); }
+    .guida p, .guida li { font-family: var(--font-testo); font-size: 1rem; line-height: 1.65; }
+    .guida ul { padding-left: 1.2rem; }
+    .guida li { margin-bottom: 8px; }
+    .guida a { color: var(--accent); }
+    .piede { font-family: var(--font-testo); font-size: .85rem; color: var(--muted); line-height: 1.6; margin: 24px 0 0; }
+
     /* ---- desktop: due colonne affiancate, pannello che resta in vista ---- */
     @media (min-width: 700px) {
       .app { padding-bottom: 24px; }
       .split { display: grid; grid-template-columns: minmax(300px, 420px) minmax(0, 1fr); gap: 32px; max-width: 1000px; width: 100%; margin: 0 auto; padding: 8px 16px 0; align-items: start; }
       .panel { position: sticky; top: 16px; border: 1px solid var(--line); border-radius: 10px; padding: 18px; background: var(--surface); }
       .results { padding: 0; }
+      h1 { font-size: 1.5rem; }
       .row.big .v { font-size: 2.2rem; }
       .bar { position: static; background: transparent; border: 0; padding: 0; backdrop-filter: none; -webkit-backdrop-filter: none; max-width: 420px; width: 100%; margin: 0 auto; }
+      .bar.hidden { transform: none; opacity: 1; pointer-events: auto; }
       .bar-result { display: none; }
       .btn.ghost { width: auto; padding: 0 16px; }
       .btn.ghost .lbl { display: inline; }
       .btn.primary { flex: 1; }
       .toast { bottom: 24px; }
+      .below { padding-top: 32px; }
     }
   </style>
 </head>
@@ -271,6 +384,8 @@
     <div class="split">
       <section class="panel" aria-label="Dati del conto">
         <div class="panel-in">
+          <h1>Quanto lasciare di mancia<span class="h1-sub">e quanto viene a testa</span></h1>
+
           <div class="step">
             <label class="step-label" for="importo"><span class="step-n">1</span> Conto del ristorante</label>
             <div class="amount">
@@ -283,6 +398,10 @@
 
           <div class="step">
             <div class="step-label" id="mancia-label"><span class="step-n">2</span> Mancia</div>
+            <details class="paesi-box">
+              <summary id="paesi-sum">Usanza del posto<b id="paesi-sum-val"></b></summary>
+              <div class="chips paesi" role="group" aria-label="Usanza del posto" id="chips-paesi"></div>
+            </details>
             <div class="chips" role="group" aria-labelledby="mancia-label" id="chips-mancia">
               <button class="chip" type="button" data-pct="0">Nessuna</button>
               <button class="chip" type="button" data-pct="5">5%</button>
@@ -298,6 +417,7 @@
                 <button type="button" data-unit="eur" aria-pressed="false">€</button>
               </div>
             </div>
+            <p class="paese-nota" id="paese-nota" hidden></p>
           </div>
 
           <div class="step">
@@ -313,7 +433,7 @@
 
       <section class="results">
         <article class="receipt is-empty" id="receipt" aria-live="polite">
-          <h1>Scontrino</h1>
+          <h2>Scontrino</h2>
           <p class="sub" id="sub">— inserisci il conto —</p>
           <div class="row"><span class="k">Conto</span><span class="v" id="r-conto">—</span></div>
           <div class="row"><span class="k" id="r-mancia-k">Mancia</span><span class="v" id="r-mancia">—</span></div>
@@ -339,7 +459,7 @@
           <p class="hint">Arrotonda per eccesso, così si pagano cifre tonde: la differenza va in mancia.</p>
         </div>
 
-        <div class="bar">
+        <div class="bar" id="bar">
           <div class="bar-in">
             <div class="bar-result" aria-live="polite">
               <span class="bar-k" id="b-k">A testa</span>
@@ -354,22 +474,109 @@
         </div>
       </section>
     </div>
+
+    <div class="below">
+      <section class="pro" data-pro="Quote personalizzate">
+        <h2>Quote personalizzate</h2>
+        <p>Quando qualcuno ha preso solo la pizza e qualcun altro antipasto, primo e vino, la divisione in parti uguali non è giusta. Scrivi quanto ha consumato ciascuno: la mancia viene ripartita in proporzione.</p>
+        <div class="quote-list" id="quote-list"></div>
+        <p class="pro-foot" id="quote-foot">Inserisci il conto qui sopra per iniziare.</p>
+      </section>
+
+      <section class="pro" data-pro="Storico dei conti">
+        <h2>Storico dei conti</h2>
+        <p>Salva il conto con il nome del locale e ritrovalo più tardi: utile per sapere quanto spendi davvero fuori casa in un mese.</p>
+        <div class="salva-row">
+          <input id="storico-nome" type="text" maxlength="40" autocomplete="off" enterkeyhint="done" placeholder="Pizzeria da Mario" aria-label="Nome del locale">
+          <button class="btn primary" type="button" id="storico-salva">Salva</button>
+        </div>
+        <ul class="storico" id="storico-lista"></ul>
+        <p class="pro-foot" id="storico-foot">Nessun conto salvato.</p>
+      </section>
+
+      <div data-ad="top"></div>
+
+      <section id="guida" class="guida">
+        <h2>Quanto lasciare di mancia: la regola veloce</h2>
+        <p>In Italia la mancia non è obbligatoria e non viene aggiunta d'ufficio al conto. Chi si chiede quanto lasciare di mancia al ristorante, nella pratica sceglie tra due abitudini: arrotondare il conto per eccesso — 44 euro diventano 50, «tenga il resto» — oppure lasciare una cifra fra il 5% e il 10% quando il servizio è stato davvero buono. Su un conto da 30 euro una moneta da due euro è già un gesto apprezzato; in un ristorante importante si arriva tranquillamente a 5 o 10 euro. Il calcolatore qui sopra fa il conto al posto tuo e, soprattutto, risponde alla domanda che ci si fa davvero quando si è in sei al tavolo con una carta sola: quanto viene a testa.</p>
+
+        <h3>Come funziona</h3>
+        <p>Tre passaggi, nell'ordine in cui li faresti a mente. Nel primo campo scrivi l'importo del conto, usando la virgola per i centesimi. Nel secondo scegli la mancia: le percentuali rapide coprono i casi normali, il tasto «Altro» serve per una cifra esatta in euro o per una percentuale tua; i tasti dei paesi in alto impostano la percentuale tipica del posto in cui ti trovi. Nel terzo indichi quante persone dividono. Mentre compili, la quota a testa resta sempre visibile nella barra in basso, alla portata del pollice, e lo scontrino sopra mostra la scomposizione: conto, mancia, totale, quota e quanta parte di quella quota è mancia.</p>
+        <p>Il tasto «Copia» prepara un riepilogo di poche righe da incollare nella chat del gruppo, così chi deve fare il bonifico sa esattamente quanto mandare. Il calcolo avviene tutto nel browser: funziona anche con il telefono in modalità aereo, e l'importo del conto non viene salvato da nessuna parte. Restano memorizzate solo le preferenze — la percentuale che usi di solito, il numero di persone, l'arrotondamento — così la volta dopo il tool è già impostato come piace a te.</p>
+
+        <h3>L'arrotondamento: la funzione che serve davvero</h3>
+        <p>La particolarità italiana è che quasi nessuno lascia una percentuale precisa: si arrotonda. Per questo l'arrotondamento qui non agisce sul totale, ma sulla quota a testa, che è la cifra che ciascuno tira fuori dal portafoglio. Se attivi «1 €», ognuno paga una cifra tonda in euro e la differenza finisce automaticamente in mancia; lo scontrino ti dice a quanto ammonta e a che percentuale del conto corrisponde, così non lasci il 25% senza accorgertene.</p>
+
+        <h3>Un esempio con i numeri</h3>
+        <p>Conto di 87,40 euro, quattro persone, mancia al 10%. La mancia è 8,74 euro, il totale 96,14 euro, la quota a testa 24,04 euro: scomoda da pagare in contanti. Attivi l'arrotondamento a 1 euro e ognuno mette 25 euro: il totale sale a 100 euro e la mancia effettiva diventa 12,60 euro, cioè il 14,4% del conto — generoso ma sensato per un servizio buono. Se invece preferisci una mancia in cifra fissa, tocca «Altro», seleziona l'euro e scrivi 10: il totale è 97,40 euro e a testa vengono 24,35 euro.</p>
+
+        <h3>Quanto si lascia all'estero</h3>
+        <ul>
+          <li><strong>Stati Uniti:</strong> dal 15% al 20%, il 18% è lo standard. Non è un extra: è parte dello stipendio di chi serve. Controlla se in fondo al conto c'è già scritto <em>gratuity included</em>, cosa frequente per i tavoli numerosi.</li>
+          <li><strong>Regno Unito:</strong> dal 10% al 12,5%, ma molto spesso è già in conto come <em>service charge</em>. In quel caso non si aggiunge nulla.</li>
+          <li><strong>Francia:</strong> il servizio è compreso per legge (<em>service compris</em>); si lasciano un paio di euro o si arrotonda, e basta.</li>
+          <li><strong>Germania:</strong> dal 5% al 10%, e si usa dire al cameriere l'importo totale che si vuole pagare mentre si consegna il denaro, invece di lasciare le monete sul tavolo.</li>
+          <li><strong>Spagna:</strong> come in Italia, poco diffusa: si arrotonda e nei bar spesso non si lascia niente.</li>
+          <li><strong>Giappone:</strong> non si lascia mancia. Insistere può mettere in imbarazzo chi ti ha servito.</li>
+        </ul>
+
+        <h3>Errori comuni</h3>
+        <ul>
+          <li><strong>Pagare il servizio due volte.</strong> Prima di calcolare la mancia leggi il conto: se compare la voce «servizio», quella è già la mancia. Il «coperto», invece, è un'altra cosa: copre pane e apparecchiatura, non chi ti serve.</li>
+          <li><strong>Applicare le percentuali americane in Italia.</strong> Il 20% su un conto italiano è una cifra fuori scala: i calcolatori tradotti dall'inglese partono da lì, ma qui il riferimento è 5-10%.</li>
+          <li><strong>Dividere a occhio.</strong> «Mettiamo venti a testa» è il modo più veloce per restare scoperti di sette euro e farli pagare a chi ha tirato fuori la carta.</li>
+          <li><strong>Lasciare spiccioli.</strong> Monetine da uno, due o cinque centesimi fanno un'impressione peggiore del non lasciare niente.</li>
+        </ul>
+
+        <h3>Domande frequenti</h3>
+        <h4>Quanto lasciare di mancia al ristorante in Italia?</h4>
+        <p>Non c'è obbligo. L'abitudine più diffusa è arrotondare il conto per eccesso; in alternativa dal 5% al 10% se il servizio è stato buono. Su 60 euro sono 3-6 euro.</p>
+        <h4>La mancia si calcola prima o dopo il coperto?</h4>
+        <p>Sul totale che paghi davvero, coperto compreso, perché è la cifra scritta sul conto. Se invece c'è già una voce «servizio», non serve aggiungere altro.</p>
+        <h4>Si può lasciare la mancia con il bancomat?</h4>
+        <p>Sì: molti POS chiedono se aggiungere una mancia, oppure puoi chiedere di far passare un importo più alto. I contanti però restano la forma preferita, perché arrivano direttamente al personale.</p>
+        <h4>Come si divide il conto se qualcuno ha mangiato meno?</h4>
+        <p>Con le quote personalizzate: scrivi quanto ha consumato ciascuno e la mancia viene ripartita in proporzione. Chi ha preso solo la pizza non paga come chi ha preso antipasto, primo e vino.</p>
+        <h4>Il conto resta salvato sul telefono?</h4>
+        <p>L'importo no, viene dimenticato quando chiudi la pagina. Restano solo le preferenze e, se lo usi, lo storico dei conti che salvi tu: tutto nel tuo browser, senza account.</p>
+
+        <div data-ad="bottom"></div>
+        <div data-support></div>
+        <p class="piede">Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a> · Per le spese di un intero viaggio o di una casa condivisa usa <a href="../2026-09-17-dividi-il-conto/">Dividi il Conto</a>, che calcola chi deve dare quanto a chi.</p>
+      </section>
+    </div>
   </div>
 
   <div class="toast" id="toast" role="status"></div>
 
+  <script src="../../assets/monetize.js"></script>
   <script>
-    // Modello dati: stato = { conto (numero o null), mancia: {mode: 'pct'|'custom', pct, customVal, unit: 'pct'|'eur'},
-    // persone (1–50), arrotonda (passo in €: 0 = nessuno) }. Il conto non viene salvato; il resto sì in
-    // localStorage ("mance-e-conto:v1"), così le preferenze (mancia abituale, persone) restano tra un pasto e l'altro.
+    // Modello dati: stato = { conto (numero o null), paese (codice o null), mancia: {mode, pct, customVal, unit},
+    // persone (1–50), arrotonda (passo in €: 0 = nessuno), quote (array di stringhe: consumo per persona) }.
+    // Il conto non viene salvato; preferenze e quote sì in localStorage ("mance-e-conto:v1"), lo storico dei
+    // conti salvati a mano sta in "mance-e-conto:storico:v1" come array di { id, data, nome, conto, mancia, totale, persone, aTesta }.
     (function () {
       const KEY = "mance-e-conto:v1";
+      const KEY_STORICO = "mance-e-conto:storico:v1";
+      const MAX_STORICO = 60;
       const $ = (id) => document.getElementById(id);
       const eur = new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR" });
       const pctFmt = new Intl.NumberFormat("it-IT", { maximumFractionDigits: 1 });
 
+      // Usanze: percentuale tipica e nota. Dati statici, nessuna chiamata di rete.
+      const PAESI = [
+        { id: "it", nome: "Italia", pct: 5, nota: "In Italia la mancia non è obbligatoria: di solito si arrotonda per eccesso, oppure si lascia il 5-10% se il servizio è stato ottimo. Controlla che «servizio» non sia già nel conto." },
+        { id: "us", nome: "Stati Uniti", pct: 18, nota: "Negli Stati Uniti la mancia è attesa e fa parte dello stipendio: 15-20%, standard 18%. Verifica se compare già la voce «gratuity included»." },
+        { id: "uk", nome: "Regno Unito", pct: 12.5, nota: "Nel Regno Unito si lascia il 10-12,5%, ma spesso è già addebitato come «service charge»: in quel caso non aggiungere nulla." },
+        { id: "fr", nome: "Francia", pct: 5, nota: "In Francia il servizio è compreso per legge: si lasciano un paio di euro o si arrotonda, niente di più." },
+        { id: "de", nome: "Germania", pct: 10, nota: "In Germania si lascia il 5-10% dicendo al cameriere l'importo totale che si vuole pagare, invece di lasciare le monete sul tavolo." },
+        { id: "jp", nome: "Giappone", pct: 0, nota: "In Giappone la mancia non si usa e insistere può mettere in imbarazzo chi ti ha servito." },
+      ];
+
       const el = {
         importo: $("importo"), azzeraImporto: $("azzera-importo"),
+        chipsPaesi: $("chips-paesi"), paeseNota: $("paese-nota"),
+        paesiBox: document.querySelector(".paesi-box"), paesiSumVal: $("paesi-sum-val"),
         chipsMancia: $("chips-mancia"), custom: $("custom"), customVal: $("custom-val"),
         seg: document.querySelector(".seg"),
         meno: $("meno"), piu: $("piu"), persone: $("persone"),
@@ -379,29 +586,47 @@
         nota: $("nota"), empty: $("empty"),
         bK: $("b-k"), bTesta: $("b-testa"),
         chipsArr: $("chips-arr"), reset: $("reset"), copia: $("copia"), toast: $("toast"),
+        bar: $("bar"), guida: $("guida"),
+        quoteList: $("quote-list"), quoteFoot: $("quote-foot"),
+        storicoNome: $("storico-nome"), storicoSalva: $("storico-salva"),
+        storicoLista: $("storico-lista"), storicoFoot: $("storico-foot"),
       };
 
       const stato = {
         conto: null,
+        paese: null,
         mancia: { mode: "pct", pct: 10, customVal: "", unit: "pct" },
         persone: 2,
         arrotonda: 0,
+        quote: [],
       };
+      let storico = [];
 
       // ---- persistenza preferenze ----
       function carica() {
         try {
           const s = JSON.parse(localStorage.getItem(KEY) || "null");
-          if (!s) return;
-          if (s.mancia && typeof s.mancia === "object") Object.assign(stato.mancia, s.mancia);
-          if (Number.isInteger(s.persone) && s.persone >= 1 && s.persone <= 50) stato.persone = s.persone;
-          if ([0, 0.5, 1, 5].includes(s.arrotonda)) stato.arrotonda = s.arrotonda;
+          if (s) {
+            if (s.mancia && typeof s.mancia === "object") Object.assign(stato.mancia, s.mancia);
+            if (Number.isInteger(s.persone) && s.persone >= 1 && s.persone <= 50) stato.persone = s.persone;
+            if ([0, 0.5, 1, 5].includes(s.arrotonda)) stato.arrotonda = s.arrotonda;
+            if (PAESI.some(p => p.id === s.paese)) stato.paese = s.paese;
+          }
         } catch { /* storage non disponibile: si va avanti senza */ }
+        try {
+          const s = JSON.parse(localStorage.getItem(KEY_STORICO) || "null");
+          if (Array.isArray(s)) storico = s.filter(v => v && typeof v.totale === "number").slice(0, MAX_STORICO);
+        } catch { /* ignora */ }
       }
       function salva() {
         try {
-          localStorage.setItem(KEY, JSON.stringify({ mancia: stato.mancia, persone: stato.persone, arrotonda: stato.arrotonda }));
+          localStorage.setItem(KEY, JSON.stringify({
+            mancia: stato.mancia, persone: stato.persone, arrotonda: stato.arrotonda, paese: stato.paese,
+          }));
         } catch { /* ignora */ }
+      }
+      function salvaStorico() {
+        try { localStorage.setItem(KEY_STORICO, JSON.stringify(storico)); } catch { /* ignora */ }
       }
 
       // ---- parsing numeri "all'italiana" ----
@@ -418,6 +643,7 @@
         if (i !== -1) s = s.slice(0, i + 1) + s.slice(i + 1).replace(/,/g, "").slice(0, 2);
         return s.slice(0, 10);
       }
+      const round2 = (n) => Math.round(n * 100) / 100;
 
       // ---- calcolo ----
       function calcola() {
@@ -430,19 +656,19 @@
           const v = parseNum(stato.mancia.customVal) || 0;
           mancia = stato.mancia.unit === "eur" ? v : conto * v / 100;
         }
-        mancia = Math.round(mancia * 100) / 100;
+        mancia = round2(mancia);
         const n = stato.persone;
         let totale = conto + mancia;
         let aTesta = totale / n;
         let arrotondato = false;
         if (stato.arrotonda > 0) {
           const step = stato.arrotonda;
-          const tondo = Math.ceil(Math.round(aTesta * 100) / 100 / step - 1e-9) * step;
+          const tondo = Math.ceil(round2(aTesta) / step - 1e-9) * step;
           if (Math.abs(tondo - aTesta) > 0.004) {
             arrotondato = true;
             aTesta = tondo;
-            totale = Math.round(tondo * n * 100) / 100;
-            mancia = Math.round((totale - conto) * 100) / 100;
+            totale = round2(tondo * n);
+            mancia = round2(totale - conto);
           }
         }
         const pctEff = conto > 0 ? mancia / conto * 100 : 0;
@@ -450,13 +676,31 @@
       }
 
       function etichettaMancia() {
-        if (stato.mancia.mode === "pct") return stato.mancia.pct === 0 ? "Mancia" : `Mancia ${stato.mancia.pct}%`;
+        if (stato.mancia.mode === "pct") return stato.mancia.pct === 0 ? "Mancia" : `Mancia ${pctFmt.format(stato.mancia.pct)}%`;
         const v = parseNum(stato.mancia.customVal) || 0;
         return stato.mancia.unit === "eur" ? "Mancia fissa" : `Mancia ${pctFmt.format(v)}%`;
       }
 
+      // ---- chip dei paesi (usanze) ----
+      function creaChipsPaesi() {
+        for (const p of PAESI) {
+          const b = document.createElement("button");
+          b.type = "button"; b.className = "chip"; b.dataset.paese = p.id; b.textContent = p.nome;
+          b.setAttribute("aria-pressed", "false");
+          el.chipsPaesi.append(b);
+        }
+      }
+
       // ---- rendering ----
       function render() {
+        // usanze
+        for (const b of el.chipsPaesi.querySelectorAll(".chip")) {
+          b.setAttribute("aria-pressed", b.dataset.paese === stato.paese ? "true" : "false");
+        }
+        const paese = PAESI.find(p => p.id === stato.paese);
+        el.paeseNota.hidden = !paese;
+        if (paese) el.paeseNota.textContent = paese.nota;
+        el.paesiSumVal.textContent = paese ? `: ${paese.nome}` : "";
         // chip mancia
         for (const b of el.chipsMancia.querySelectorAll(".chip")) {
           const attiva = stato.mancia.mode === "pct" ? b.dataset.pct === String(stato.mancia.pct) : b.dataset.pct === "custom";
@@ -488,25 +732,26 @@
           el.bK.textContent = "A testa";
           el.bTesta.textContent = "—";
           el.nota.hidden = true;
-          return;
-        }
-        el.sub.textContent = new Date().toLocaleDateString("it-IT", { day: "2-digit", month: "long", year: "numeric" });
-        el.rConto.textContent = eur.format(r.conto);
-        el.rMancia.textContent = eur.format(r.mancia);
-        el.rTotale.textContent = eur.format(r.totale);
-        el.rTesta.textContent = eur.format(r.aTesta);
-        el.rTestaMancia.textContent = eur.format(r.manciaTesta);
-        el.bK.textContent = r.n > 1 ? `A testa · ${r.n} persone` : "Una persona";
-        el.bTesta.textContent = eur.format(r.aTesta);
-        if (r.arrotondato) {
-          el.nota.textContent = `Quota arrotondata a ${eur.format(stato.arrotonda)}: il totale sale a ${eur.format(r.totale)} e la mancia effettiva è ${eur.format(r.mancia)} (${pctFmt.format(r.pctEff)}%).`;
-          el.nota.hidden = false;
-        } else if (stato.mancia.mode === "custom" && stato.mancia.unit === "eur" && r.mancia > 0) {
-          el.nota.textContent = `Mancia fissa pari al ${pctFmt.format(r.pctEff)}% del conto.`;
-          el.nota.hidden = false;
         } else {
-          el.nota.hidden = true;
+          el.sub.textContent = new Date().toLocaleDateString("it-IT", { day: "2-digit", month: "long", year: "numeric" });
+          el.rConto.textContent = eur.format(r.conto);
+          el.rMancia.textContent = eur.format(r.mancia);
+          el.rTotale.textContent = eur.format(r.totale);
+          el.rTesta.textContent = eur.format(r.aTesta);
+          el.rTestaMancia.textContent = eur.format(r.manciaTesta);
+          el.bK.textContent = r.n > 1 ? `A testa · ${r.n} persone` : "Una persona";
+          el.bTesta.textContent = eur.format(r.aTesta);
+          if (r.arrotondato) {
+            el.nota.textContent = `Quota arrotondata a ${eur.format(stato.arrotonda)}: il totale sale a ${eur.format(r.totale)} e la mancia effettiva è ${eur.format(r.mancia)} (${pctFmt.format(r.pctEff)}%).`;
+            el.nota.hidden = false;
+          } else if (stato.mancia.mode === "custom" && stato.mancia.unit === "eur" && r.mancia > 0) {
+            el.nota.textContent = `Mancia fissa pari al ${pctFmt.format(r.pctEff)}% del conto.`;
+            el.nota.hidden = false;
+          } else {
+            el.nota.hidden = true;
+          }
         }
+        renderQuote(r);
       }
 
       // ---- riepilogo da copiare ----
@@ -520,6 +765,11 @@
           r.n > 1 ? `In ${r.n}: ${eur.format(r.aTesta)} a testa` : `Una persona: ${eur.format(r.aTesta)}`,
         ];
         if (r.arrotondato) righe.push(`(quota arrotondata a ${eur.format(stato.arrotonda)})`);
+        const q = calcolaQuote(r);
+        if (q) {
+          righe.push("", "Quote personalizzate:");
+          for (const v of q.righe) righe.push(`- Persona ${v.i + 1}: ${eur.format(v.quota)} (consumo ${eur.format(v.consumo)})`);
+        }
         return righe.join("\n");
       }
 
@@ -531,25 +781,139 @@
         toastTimer = setTimeout(() => el.toast.classList.remove("show"), 1800);
       }
 
+      async function copiaTesto(testo) {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(testo);
+          return;
+        }
+        // fallback per file:// e contesti non sicuri
+        const ta = document.createElement("textarea");
+        ta.value = testo; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
+        document.body.appendChild(ta); ta.select();
+        const ok = document.execCommand("copy");
+        ta.remove();
+        if (!ok) throw new Error("copy");
+      }
       async function copia() {
         const testo = riepilogo();
         if (!testo) return;
-        try {
-          if (navigator.clipboard && window.isSecureContext) {
-            await navigator.clipboard.writeText(testo);
-          } else {
-            // fallback per file:// e contesti non sicuri
-            const ta = document.createElement("textarea");
-            ta.value = testo; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
-            document.body.appendChild(ta); ta.select();
-            const ok = document.execCommand("copy");
-            ta.remove();
-            if (!ok) throw new Error("copy");
-          }
-          toast("Riepilogo copiato");
-        } catch {
-          toast("Non riesco a copiare: seleziona e copia lo scontrino");
+        try { await copiaTesto(testo); toast("Riepilogo copiato"); }
+        catch { toast("Non riesco a copiare: seleziona e copia lo scontrino"); }
+      }
+
+      // ---- Pro 1: quote personalizzate ----
+      // Ogni persona paga quanto ha consumato più la sua fetta di mancia, in proporzione al consumo.
+      // I centesimi che avanzano vengono assegnati all'ultima riga, così la somma torna esatta.
+      function calcolaQuote(r) {
+        if (!r) return null;
+        const consumi = [];
+        for (let i = 0; i < stato.persone; i++) consumi.push(parseNum(stato.quote[i]) || 0);
+        const somma = round2(consumi.reduce((a, b) => a + b, 0));
+        if (somma <= 0) return null;
+        const totaleCent = Math.round((somma + r.mancia) * 100);
+        let assegnato = 0;
+        const righe = consumi.map((c, i) => {
+          const cent = Math.round((c + r.mancia * c / somma) * 100);
+          assegnato += cent;
+          return { i, consumo: c, cent };
+        });
+        if (righe.length) {
+          righe[righe.length - 1].cent += totaleCent - assegnato;
+          for (const v of righe) v.quota = v.cent / 100;
         }
+        return { righe, somma, differenza: round2(somma - r.conto), totale: totaleCent / 100 };
+      }
+
+      function renderQuote(r) {
+        // le righe si ricostruiscono solo quando cambia il numero di persone (non a ogni tasto)
+        if (el.quoteList.children.length !== stato.persone) {
+          el.quoteList.replaceChildren();
+          for (let i = 0; i < stato.persone; i++) {
+            const row = document.createElement("div");
+            row.className = "quota-row";
+            const lab = document.createElement("label");
+            lab.textContent = `Persona ${i + 1}`;
+            lab.htmlFor = `quota-${i}`;
+            const inp = document.createElement("input");
+            inp.type = "text"; inp.id = `quota-${i}`; inp.inputMode = "decimal"; inp.autocomplete = "off";
+            inp.enterKeyHint = "done"; inp.placeholder = "0,00"; inp.value = stato.quote[i] || "";
+            inp.addEventListener("input", () => {
+              const v = normalizzaInput(inp.value);
+              if (v !== inp.value) inp.value = v;
+              stato.quote[i] = v;
+              render();
+            });
+            inp.addEventListener("keydown", (e) => { if (e.key === "Enter") inp.blur(); });
+            const out = document.createElement("span");
+            out.className = "out"; out.textContent = "—";
+            row.append(lab, inp, out);
+            el.quoteList.append(row);
+          }
+        }
+        const q = calcolaQuote(r);
+        const outs = el.quoteList.querySelectorAll(".out");
+        outs.forEach((o, i) => { o.textContent = q && q.righe[i] ? eur.format(q.righe[i].quota) : "—"; });
+        el.quoteFoot.classList.remove("warn");
+        if (!r) { el.quoteFoot.textContent = "Inserisci il conto qui sopra per iniziare."; return; }
+        if (!q) { el.quoteFoot.textContent = "Scrivi quanto ha consumato ciascuno: la mancia si divide in proporzione."; return; }
+        if (Math.abs(q.differenza) >= 0.01) {
+          el.quoteFoot.classList.add("warn");
+          el.quoteFoot.textContent = q.differenza < 0
+            ? `Mancano ${eur.format(-q.differenza)}: la somma dei consumi è inferiore al conto. Controlla se hai dimenticato il coperto o una bottiglia.`
+            : `Ci sono ${eur.format(q.differenza)} di troppo rispetto al conto: rivedi gli importi.`;
+        } else {
+          el.quoteFoot.textContent = `Somma dei consumi ${eur.format(q.somma)} + mancia ${eur.format(r.mancia)} = ${eur.format(q.totale)}.`;
+        }
+      }
+
+      // ---- Pro 2: storico dei conti ----
+      function renderStorico() {
+        el.storicoLista.replaceChildren();
+        for (const v of storico) {
+          const li = document.createElement("li");
+          const txt = document.createElement("span");
+          txt.className = "st-txt";
+          const nome = document.createElement("strong");
+          nome.className = "st-nome"; nome.textContent = v.nome || "Senza nome";
+          const meta = document.createElement("span");
+          meta.className = "st-meta";
+          const data = new Date(v.data);
+          const dataTxt = Number.isNaN(data.getTime()) ? "" : data.toLocaleDateString("it-IT", { day: "2-digit", month: "short", year: "numeric" });
+          meta.textContent = `${dataTxt} · ${v.persone} pers. · ${eur.format(v.aTesta)} a testa`;
+          txt.append(nome, meta);
+          const val = document.createElement("span");
+          val.className = "st-val"; val.textContent = eur.format(v.totale);
+          const del = document.createElement("button");
+          del.type = "button"; del.className = "st-del"; del.textContent = "×";
+          del.title = "Elimina questo conto";
+          del.setAttribute("aria-label", `Elimina ${v.nome || "conto"}`);
+          del.addEventListener("click", () => {
+            storico = storico.filter(x => x.id !== v.id);
+            salvaStorico(); renderStorico(); toast("Conto eliminato");
+          });
+          li.append(txt, val, del);
+          el.storicoLista.append(li);
+        }
+        if (!storico.length) { el.storicoFoot.textContent = "Nessun conto salvato."; return; }
+        const spesa = storico.reduce((a, v) => a + v.totale, 0);
+        const mance = storico.reduce((a, v) => a + (v.mancia || 0), 0);
+        el.storicoFoot.textContent = `${storico.length} ${storico.length === 1 ? "conto salvato" : "conti salvati"} · ${eur.format(spesa)} in totale, di cui ${eur.format(mance)} di mance.`;
+      }
+
+      function salvaConto() {
+        if (window.Monetize && !window.Monetize.isPro()) { window.Monetize.unlock(); return; }
+        const r = calcola();
+        if (!r) { toast("Inserisci prima il conto"); return; }
+        storico.unshift({
+          id: (crypto.randomUUID ? crypto.randomUUID() : String(Date.now())),
+          data: new Date().toISOString(),
+          nome: el.storicoNome.value.trim(),
+          conto: r.conto, mancia: r.mancia, totale: r.totale, persone: r.n, aTesta: r.aTesta,
+        });
+        storico = storico.slice(0, MAX_STORICO);
+        salvaStorico(); renderStorico();
+        el.storicoNome.value = "";
+        toast("Conto salvato nello storico");
       }
 
       // ---- eventi ----
@@ -571,6 +935,17 @@
       });
       el.azzeraImporto.addEventListener("click", () => {
         el.importo.value = ""; stato.conto = null; render(); el.importo.focus();
+      });
+
+      el.chipsPaesi.addEventListener("click", (e) => {
+        const b = e.target.closest(".chip"); if (!b) return;
+        const p = PAESI.find(x => x.id === b.dataset.paese); if (!p) return;
+        stato.paese = stato.paese === p.id ? null : p.id;
+        if (stato.paese) {
+          stato.mancia.mode = "pct"; stato.mancia.pct = p.pct;
+          el.paesiBox.open = false; // scelto il paese, il pannello si richiude e resta la nota
+        }
+        render(); salva();
       });
 
       el.chipsMancia.addEventListener("click", (e) => {
@@ -600,6 +975,7 @@
 
       function setPersone(n) {
         stato.persone = Math.min(50, Math.max(1, Math.round(n) || 1));
+        stato.quote.length = stato.persone;
         render(); salva();
       }
       el.meno.addEventListener("click", () => setPersone(stato.persone - 1));
@@ -617,19 +993,33 @@
       });
 
       el.reset.addEventListener("click", () => {
-        el.importo.value = ""; stato.conto = null; stato.arrotonda = 0;
+        el.importo.value = ""; stato.conto = null; stato.arrotonda = 0; stato.quote = [];
+        for (const i of el.quoteList.querySelectorAll("input")) i.value = "";
         render(); salva(); el.importo.focus(); toast("Conto azzerato");
       });
       el.copia.addEventListener("click", copia);
+      el.storicoSalva.addEventListener("click", salvaConto);
+      el.storicoNome.addEventListener("keydown", (e) => { if (e.key === "Enter") salvaConto(); });
 
       document.addEventListener("keydown", (e) => {
         // Esc fuori dai campi = azzera il conto
-        if (e.key === "Escape" && !["INPUT", "TEXTAREA"].includes(document.activeElement?.tagName)) el.reset.click();
+        if (e.key === "Escape" && !["INPUT", "TEXTAREA"].includes(document.activeElement && document.activeElement.tagName)) el.reset.click();
       });
 
+      // Mentre si legge la guida, la barra fissa (solo telefono) si toglie di mezzo.
+      if ("IntersectionObserver" in window) {
+        const io = new IntersectionObserver((entries) => {
+          for (const en of entries) el.bar.classList.toggle("hidden", en.isIntersecting);
+        }, { threshold: 0 });
+        io.observe(el.guida);
+      }
+
+      creaChipsPaesi();
       carica();
+      stato.quote.length = stato.persone;
       el.customVal.value = stato.mancia.customVal || "";
       render();
+      renderStorico();
     })();
   </script>
 </body>
