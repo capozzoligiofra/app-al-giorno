@@ -220,11 +220,11 @@
       <div class="tile wide">
         <span class="lbl">Percorso (sola andata)</span>
         <div class="route">
-          <div class="field small"><span class="tag">Da</span><div class="sw"><input id="from" type="text" enterkeyhint="next" autocapitalize="words" placeholder="es. Milano" aria-label="Località di partenza"></div></div>
-          <div class="field small"><span class="tag">A</span><div class="sw"><input id="to" type="text" enterkeyhint="next" autocapitalize="words" placeholder="es. Roma" aria-label="Località di arrivo"></div></div>
+          <div class="field small"><span class="tag">Da</span><div class="sw"><input id="from" type="text" enterkeyhint="next" autocapitalize="words" placeholder="es. Via Roma 10, Milano" aria-label="Indirizzo o località di partenza"></div></div>
+          <div class="field small"><span class="tag">A</span><div class="sw"><input id="to" type="text" enterkeyhint="next" autocapitalize="words" placeholder="es. Rimini" aria-label="Indirizzo o località di arrivo"></div></div>
           <div class="field km-row"><span class="tag">km</span><input id="km" type="number" inputmode="decimal" enterkeyhint="next" min="1" max="20000" step="1" placeholder="distanza" aria-label="Distanza in chilometri"><span class="unit">km</span></div>
         </div>
-        <p id="route-hint" class="hint">Scrivi partenza e arrivo: cerco qualsiasi località italiana e calcolo il percorso su strada.</p>
+        <p id="route-hint" class="hint">Scrivi partenza e arrivo — anche l'indirizzo con via e numero civico — e scegli dai suggerimenti: calcolo il percorso su strada.</p>
         <p id="km-err" class="err"></p>
       </div>
       <div class="tile">
@@ -345,7 +345,7 @@
       <p>Prima di partire per le vacanze o per un weekend fuori, la domanda è sempre la stessa: quanto ci costa andare in macchina? La risposta che si trova in giro si ferma quasi sempre alla benzina, ma il calcolo del costo di un viaggio in auto fatto bene ha almeno tre voci: <strong>carburante</strong>, <strong>pedaggi autostradali</strong> e <strong>usura del veicolo</strong>. Questo cruscotto stima la distanza tra le due località, prende il prezzo medio del carburante della tua regione, somma le tre voci, aggiunge gli extra (parcheggi, traghetti, ZTL) e divide il totale tra le persone a bordo, così sai subito quanto chiedere a chi viaggia con te.</p>
 
       <h3>Come viene calcolata la distanza</h3>
-      <p>Scrivi il nome di partenza e arrivo: il calcolatore cerca la località su <strong>OpenStreetMap</strong>, quindi trova anche i paesi piccoli e le frazioni, non solo le grandi città (oltre 150 mete frequenti sono in memoria e compaiono subito, senza rete). Scelte le due località, chiede il <strong>percorso stradale reale</strong> al servizio di routing OSRM e usa i chilometri effettivi, la durata di guida e i chilometri percorsi in autostrada, che compila da solo nel campo del pedaggio. Se il servizio non risponde o sei offline, usa la stima classica: distanza in linea d'aria moltiplicata per <strong>1,2</strong>, il rapporto medio tra strada e linea d'aria sulla rete italiana (Milano–Roma: 477 km in linea d'aria, 573 km in autostrada), con un errore tipico del 5–10%. Per il valore esatto tocca il link <em>Verifica su Google Maps</em>: si apre il percorso già impostato, leggi i chilometri e li correggi nel campo. Il calcolatore non interroga nessun servizio esterno, quindi funziona anche senza rete e non traccia dove vai.</p>
+      <p>Scrivi partenza e arrivo: il calcolatore cerca su <strong>OpenStreetMap</strong>, quindi trova anche i paesi piccoli, le frazioni e gli <strong>indirizzi precisi con via e numero civico</strong> (es. "Via Roma 10, Salerno"), non solo le grandi città (oltre 150 mete frequenti sono in memoria e compaiono subito, senza rete). Scelte le due località, chiede il <strong>percorso stradale reale</strong> al servizio di routing OSRM e usa i chilometri effettivi, la durata di guida e i chilometri percorsi in autostrada, che compila da solo nel campo del pedaggio. Se il servizio non risponde o sei offline, usa la stima classica: distanza in linea d'aria moltiplicata per <strong>1,2</strong>, il rapporto medio tra strada e linea d'aria sulla rete italiana (Milano–Roma: 477 km in linea d'aria, 573 km in autostrada), con un errore tipico del 5–10%. Per il valore esatto tocca il link <em>Verifica su Google Maps</em>: si apre il percorso già impostato, leggi i chilometri e li correggi nel campo. Il calcolatore non interroga nessun servizio esterno, quindi funziona anche senza rete e non traccia dove vai.</p>
 
       <h3>Le tre voci del costo, una per una</h3>
       <p><strong>Carburante.</strong> La formula è semplice: chilometri × consumo (litri ogni 100 km) ÷ 100 × prezzo al litro. Se conosci il consumo in km/l, cambia unità con il selettore: il calcolatore converte da solo. Per le auto elettriche il consumo è in kWh/100 km e il prezzo in €/kWh (a casa si spende molto meno che alla colonnina rapida: inserisci il valore che usi davvero). I prezzi di benzina, gasolio, GPL e metano sono le <strong>medie regionali self service dell'Osservaprezzi MIMIT</strong>, ricalcolate <strong>ogni mattina</strong> dai prezzi comunicati da circa 20.000 distributori (la data del dato è indicata sotto il campo): scegli la regione dove fai il pieno e il prezzo si compila da solo. Il prezzo cambia ogni giorno e in autostrada costa 8–12 centesimi in più: se vuoi il centesimo esatto, controlla il cartello del distributore o l'osservatorio ministeriale e scrivi il valore nel campo.</p>
@@ -456,19 +456,45 @@
       async function geocode(q) {
         const k = norm(q); if (geoMemo.has(k)) return geoMemo.get(k);
         let out = [];
-        try {
-          const params = new URLSearchParams({ q, countrycodes: "it", format: "jsonv2", limit: "6", addressdetails: "1", "accept-language": "it" });
+        const ask = async (text) => {
+          const params = new URLSearchParams({ q: text, countrycodes: "it", format: "jsonv2", limit: "6", addressdetails: "1", "accept-language": "it" });
           const r = await fetch(`https://nominatim.openstreetmap.org/search?${params}`);
           if (!r.ok) throw new Error(r.status);
-          for (const x of await r.json()) {
+          return r.json();
+        };
+        try {
+          let rows = await ask(q);
+          // Con un numero civico che in mappa non esiste, proponi anche la via (centro strada): per i km cambia pochissimo.
+          const civico = q.match(/(?:^|[\s,])(\d{1,4}[a-z]?)(?=$|[\s,])/i);
+          const wantedTown = civico ? norm(q.replace(civico[0], "")).split(" ").slice(-1)[0] : "";
+          if (civico && !rows.some(x => { const a = x.address || {}; const t = a.city || a.town || a.village || a.hamlet || ""; return t && norm(q).includes(norm(t)); })) {
+            await new Promise(res => setTimeout(res, 1100)); // policy Nominatim: max 1 richiesta al secondo
+            const more = await ask(q.replace(civico[1], "").replace(/\s+,/g, ",").replace(/\s{2,}/g, " ").trim());
+            rows = rows.concat(more.map(x => ({ ...x, _senzaCivico: true })));
+          }
+          for (const x of rows) {
             const a = x.address || {};
-            const name = x.name || String(x.display_name || "").split(",")[0].trim();
-            if (!name) continue;
+            const town = a.city || a.town || a.village || a.hamlet || a.municipality || a.suburb || a.isolated_dwelling || "";
+            const road = a.road || a.pedestrian || a.residential || a.square || a.footway || "";
+            const num = a.house_number || "";
             const prov = a.county || a.province || a.state_district || "";
-            const value = prov && norm(prov) !== norm(name) ? `${name}, ${prov}` : name;
-            const item = { name: value, key: norm(value), lat: +x.lat, lon: +x.lon, label: [a.state, x.type === "administrative" ? "" : (x.type || "").replace(/_/g, " ")].filter(Boolean).join(" · "), remote: true };
+            let value, label;
+            if (road) {
+              // indirizzo preciso: "Via Roma 10, Salerno"
+              value = `${road}${num ? " " + num : ""}, ${town || prov}`;
+              label = [prov && norm(prov) !== norm(town) ? prov : "", a.state, x._senzaCivico ? "civico non in mappa: centro della via" : (num ? "" : "via")].filter(Boolean).join(" · ");
+            } else {
+              const name = x.name || town || String(x.display_name || "").split(",")[0].trim();
+              if (!name) continue;
+              value = prov && norm(prov) !== norm(name) ? `${name}, ${prov}` : name;
+              label = [a.state, x.type === "administrative" ? "" : (x.type || "").replace(/_/g, " ")].filter(Boolean).join(" · ");
+            }
+            // il comune scritto dall'utente ha la precedenza (es. "Via Roma 10, Salerno" → prima Salerno città, poi la provincia)
+            const rank = town && norm(q).includes(norm(town)) ? 0 : 1;
+            const item = { name: value, key: norm(value), lat: +x.lat, lon: +x.lon, label, remote: true, rank };
             if (!out.some(o => o.key === item.key)) out.push(item);
           }
+          out.sort((a, b) => a.rank - b.rank);
         } catch (_) { out = []; }
         geoMemo.set(k, out);
         return out;
@@ -673,8 +699,8 @@
         if (r && r.road && i.kmSrc === "auto") h.replaceChildren(`Percorso stradale ${i.from} → ${i.to}${via}: ${r.km} km${durata}${r.motorwayKm ? `, di cui ${r.motorwayKm} km in autostrada` : ""}.`, ...osm, " · dati OSRM.", ...verify);
         else if (r && i.kmSrc === "auto") h.replaceChildren(`Stima ${i.from} → ${i.to}${via}: ${r.km} km (${r.air} km in linea d'aria × 1,2). Sto cercando il percorso stradale…`, ...verify);
         else if (r) h.replaceChildren(`Distanza scritta a mano (dal percorso: ${r.km} km${r.road ? durata : " stimati"}).`, ...verify);
-        else if (i.from.trim() && i.to.trim()) h.replaceChildren("Scegli le località dai suggerimenti (anche paesi e frazioni) oppure scrivi i chilometri a mano.", ...verify);
-        else h.textContent = "Scrivi partenza e arrivo: cerco qualsiasi località italiana e calcolo il percorso su strada.";
+        else if (i.from.trim() && i.to.trim()) h.replaceChildren("Scegli partenza e arrivo dai suggerimenti (paesi, frazioni o indirizzi con civico) oppure scrivi i chilometri a mano.", ...verify);
+        else h.textContent = "Scrivi partenza e arrivo — anche l'indirizzo con via e numero civico — e scegli dai suggerimenti: calcolo il percorso su strada.";
       }
       function read() {
         const i = state.in;

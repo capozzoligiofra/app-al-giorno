@@ -65,10 +65,11 @@
       "source": "richiesta",
       "request": "Costo Viaggio in Auto — keyword: \"calcolo costo viaggio auto\" — pianificazione vacanze, affiliazione naturale (accessori auto); Pro: confronto auto vs treno",
       "status": "pronta",
-      "version": 3,
+      "version": 4,
       "changelog": [
         "v2 (2026-09-19): distanza stimata automaticamente da partenza e arrivo (elenco offline di 170+ località, linea d'aria × 1,2) con link 'Verifica su Google Maps'; prezzi carburante sostituiti con le medie regionali MIMIT del 19/09/2026 e selettore regione (i vecchi 1,75/1,68 erano fuori di 40+ cent); km di autostrada proposti dal percorso; nuove Pro: Itinerario a tappe e Stampa preventivo PDF; guida e FAQ aggiornate.",
-        "v3 (2026-09-20): ricerca di qualsiasi località italiana (OpenStreetMap/Nominatim, anche paesi e frazioni), percorso stradale reale con durata e km di autostrada (OSRM), prezzi carburante MIMIT aggiornati ogni mattina da data/carburanti.json; fallback offline invariato"
+        "v3 (2026-09-20): ricerca di qualsiasi località italiana (OpenStreetMap/Nominatim, anche paesi e frazioni), percorso stradale reale con durata e km di autostrada (OSRM), prezzi carburante MIMIT aggiornati ogni mattina da data/carburanti.json; fallback offline invariato",
+        "v4 (2026-09-20): partenza e arrivo accettano anche indirizzi precisi con via e numero civico (es. Via Roma 10, Salerno), formattati correttamente nei suggerimenti"
       ],
       "design": {
         "layout": "dashboard",
@@ -114,7 +115,7 @@
           }
         ]
       },
-      "size": 77055
+      "size": 79124
     },
     {
       "title": "Lista Valigia",
