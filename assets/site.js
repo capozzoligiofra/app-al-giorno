@@ -234,7 +234,8 @@
       try {
         const cfg = await (await fetch("config.json", { cache: "no-store" })).json();
         if (cfg.routine_id) {
-          $("#routine-link").href = `https://claude.ai/code/routines/${cfg.routine_id}`;
+          state.routineUrl = `https://claude.ai/code/routines/${cfg.routine_id}`;
+          $("#routine-link").href = state.routineUrl;
           $("#auto-hint").textContent = `Frequenza attuale: ${cfg.frequenza}. Da qui puoi cambiare l'orario o lanciare "Esegui ora" (prende la prima richiesta in coda).`;
         }
       } catch (_) { /* config assente */ }
@@ -295,6 +296,13 @@
     } else if (state.api) {
       li.append(el("div", { class: "acts" },
         el("button", { class: "btn btn-accent", type: "button", onclick: (ev) => generateQueued(r.text, ev.target) }, "Genera ora")));
+    } else if (opts.first && state.routineUrl) {
+      // Sito pubblico: la routine cloud esegue sempre il primo elemento in coda.
+      li.append(el("div", { class: "acts" },
+        el("a", { class: "btn btn-accent", href: state.routineUrl, target: "_blank", rel: "noopener", title: "Apre la routine su claude.ai: premi Esegui ora" }, "Esegui ora")));
+    } else if (!opts.first && state.catalog.repo) {
+      li.append(el("div", { class: "acts" },
+        el("button", { class: "btn btn-ghost", type: "button", title: "Copia la riga e apre l'editor: incollala come prima riga della coda", onclick: () => copyAndOpenGitHub(r.text, $("#request-msg")) }, "Sposta in cima")));
     }
     return li;
   }
@@ -303,7 +311,7 @@
     $("#open-count").textContent = open.length ? `(${open.length})` : "";
     $("#done-count").textContent = done.length ? `(${done.length})` : "";
     $("#open-list").replaceChildren(...(open.length
-      ? open.map(r => requestItem(r, { done: false }))
+      ? open.map((r, i) => requestItem(r, { done: false, first: i === 0 }))
       : [el("li", { class: "none" }, "Nessuna richiesta in coda: l'agente sceglierà un'idea da solo.")]));
     $("#done-list").replaceChildren(...(done.length
       ? done.slice().reverse().map(r => requestItem(r, { done: true }))
@@ -430,7 +438,8 @@
     $("#refresh").hidden = !state.api;
     $("#auto-local").hidden = !state.api;
     $("#auto-remote").hidden = state.api;
-    await Promise.all([refreshCatalog(), loadRequests(), loadIdeas(), loadConfig()]);
+    await loadConfig();
+    await Promise.all([refreshCatalog(), loadRequests(), loadIdeas()]);
     if (state.api) pollGen();
   }
 
