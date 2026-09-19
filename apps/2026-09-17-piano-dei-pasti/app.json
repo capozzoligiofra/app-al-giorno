@@ -2,24 +2,58 @@
   "title": "Piano dei Pasti",
   "slug": "2026-09-17-piano-dei-pasti",
   "date": "2026-09-17",
-  "description": "Pianifica pranzi e cene della settimana con le tue ricette e genera automaticamente la lista della spesa.",
+  "description": "Menu settimanale con i tuoi piatti e lista della spesa generata in automatico, con le quantità già sommate.",
   "category": "casa-cucina",
   "tags": [
-    "pasti",
-    "settimana",
+    "menu settimanale",
     "spesa",
+    "pasti",
     "cucina"
   ],
   "source": "richiesta",
   "request": "Un'app per pianificare i pasti della settimana con lista della spesa generata automaticamente",
   "status": "pronta",
-  "version": 2,
+  "version": 3,
   "changelog": [
-    "v2 (2026-09-17): ridisegnata mobile-first con barra tab (Ricette/Piano/Spesa), piano a schede per giorno, palette terracotta e titoli serif"
+    "v2 (2026-09-17): ridisegnata mobile-first con barra tab (Ricette/Piano/Spesa), piano a schede per giorno, palette terracotta e titoli serif",
+    "v3 (2026-09-19): modello business — keyword \"menu settimanale con lista della spesa\", SEO (title, description, canonical, OG, JSON-LD WebApplication e FAQPage), guida con esempio e FAQ, agganci monetizzazione, funzioni Pro Settimane salvate e Menù/lista da stampare"
   ],
   "design": {
     "layout": "tabs",
     "palette": "terracotta",
     "font": "serif-editoriale"
+  },
+  "business": {
+    "keyword": "menu settimanale con lista della spesa",
+    "keywords": [
+      "menu settimanale con lista della spesa",
+      "menù settimanale famiglia",
+      "pianificare i pasti della settimana",
+      "lista della spesa settimanale",
+      "menu settimanale da stampare"
+    ],
+    "intent": "Chi la domenica vuole decidere pranzi e cene della settimana e uscire con una lista della spesa già pronta, senza inventarsi un menu altrui.",
+    "target": "Famiglie e coppie che cucinano in casa, 25-55 anni, da telefono mentre fanno la spesa.",
+    "competitors": [
+      "Blog di ricette (GialloZafferano, Fatto in casa da Benedetta): menu fissi con le ricette dell'autore",
+      "PDF stampabili vuoti (Café Creativo, Genitorialmente): da riempire a mano, nessuna somma",
+      "App da installare con account (Menu Plan, Spesone, Plan to Eat)"
+    ],
+    "edge": "Il menu si costruisce con i piatti che cucini davvero e la lista della spesa somma da sola le quantità degli stessi ingredienti: nel browser, senza account, anche offline.",
+    "monetization": [
+      "adsense",
+      "affiliate",
+      "pro",
+      "support"
+    ],
+    "pro": [
+      "Più settimane salvate",
+      "Menù e lista da stampare"
+    ],
+    "affiliate": [
+      { "t": "Contenitori per meal prep in vetro", "q": "contenitori meal prep vetro con coperchio" },
+      { "t": "Lavagna magnetica per il frigorifero", "q": "lavagna magnetica frigorifero lista spesa" },
+      { "t": "Borsa termica per la spesa", "q": "borsa termica spesa grande" }
+    ]
   }
 }

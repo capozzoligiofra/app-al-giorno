@@ -4,8 +4,39 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#b5552b">
-  <title>Piano dei Pasti — pianificazione settimanale e lista della spesa</title>
-  <meta name="description" content="Pianifica pranzi e cene della settimana con le tue ricette e genera automaticamente la lista della spesa.">
+  <title>Piano dei Pasti: menu settimanale con lista della spesa</title>
+  <meta name="description" content="Menu settimanale con lista della spesa generata in automatico: aggiungi i tuoi piatti, pianifica pranzi e cene e ottieni le quantità già sommate.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-17-piano-dei-pasti/">
+  <meta property="og:title" content="Piano dei Pasti: menu settimanale con lista della spesa">
+  <meta property="og:description" content="Pianifica pranzi e cene della settimana con i tuoi piatti e ottieni la lista della spesa con le quantità già sommate. Senza account, funziona offline.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-17-piano-dei-pasti/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Piano dei Pasti",
+    "description": "Pianificatore gratuito per il menu settimanale: inserisci i tuoi piatti, assegnali a pranzi e cene e ottieni la lista della spesa con le quantità sommate.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-17-piano-dei-pasti/",
+    "applicationCategory": "LifestyleApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Come si prepara un menu settimanale con lista della spesa?", "acceptedAnswer": { "@type": "Answer", "text": "Si parte dai piatti che si sanno già cucinare, si scrivono i loro ingredienti con le quantità per una porzione o per la famiglia, poi si assegna un piatto a ogni pranzo e cena della settimana. La lista della spesa si ottiene sommando gli ingredienti di tutti i piatti scelti: questo pianificatore lo fa in automatico ogni volta che cambi il menu." } },
+      { "@type": "Question", "name": "Serve registrarsi o scaricare un'app?", "acceptedAnswer": { "@type": "Answer", "text": "No. Piano dei Pasti funziona nel browser del telefono o del computer, anche senza connessione, e salva piatti e menu solo sul tuo dispositivo." } },
+      { "@type": "Question", "name": "Come vengono sommate le quantità degli stessi ingredienti?", "acceptedAnswer": { "@type": "Answer", "text": "Gli ingredienti con lo stesso nome e la stessa unità di misura vengono raggruppati e le quantità sommate. Se lo stesso ingrediente compare anche senza quantità, alla somma viene aggiunta l'indicazione q.b." } },
+      { "@type": "Question", "name": "Posso stampare il menu settimanale e la lista della spesa?", "acceptedAnswer": { "@type": "Answer", "text": "Sì: la funzione Pro prepara una pagina pulita con il menu dei sette giorni e la lista della spesa, da stampare o salvare in PDF per attaccarla al frigorifero." } }
+    ]
+  }
+  </script>
   <style>
     /* Design: layout "tabs" (barra in basso), palette "terracotta", font "serif-editoriale" per i titoli. */
     :root {
@@ -23,13 +54,14 @@
     }
     * { box-sizing: border-box; }
     body { margin: 0; min-height: 100dvh; font: 17px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); }
-    h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; font-weight: 700; letter-spacing: -.01em; }
+    h1, h2, h3, h4 { font-family: Georgia, "Times New Roman", serif; font-weight: 700; letter-spacing: -.01em; }
     .top { padding: max(12px, env(safe-area-inset-top)) 20px 0; }
     .back { font-size: .95rem; color: var(--muted); text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
-    h1 { margin: 0 20px .25rem; font-size: 2rem; }
-    .lead { color: var(--muted); margin: 0 20px 1.25rem; font-size: 1rem; }
+    h1 { margin: 0 20px .2rem; font-size: 1.7rem; }
+    h1 small { display: block; font-size: .55em; font-weight: 400; color: var(--muted); font-family: system-ui, sans-serif; letter-spacing: 0; margin-top: .25rem; }
+    .lead { color: var(--muted); margin: .5rem 20px .9rem; font-size: .98rem; }
     .lead-small { font-size: .95rem; margin: 0 0 .9rem; }
-    main { padding: 0 16px calc(var(--nav-h) + env(safe-area-inset-bottom) + 24px); }
+    main { padding: 0 16px 8px; }
     .panel { display: none; }
     .panel.active { display: block; }
     .card { background: var(--surface); border-radius: var(--radius); padding: 1.15rem 1.1rem; margin-bottom: 1rem; box-shadow: 0 1px 0 var(--line), 0 10px 30px -22px rgba(60, 30, 10, .5); }
@@ -53,6 +85,7 @@
     .ingredient-row input.ing-unita { width: 84px; }
     .err { color: var(--danger); font-size: .95rem; margin: .4rem 0 0; min-height: 1.2em; }
     .muted { color: var(--muted); }
+    .small { font-size: .9rem; }
     .empty { color: var(--muted); font-style: italic; margin: 0; }
     .dish-list { display: flex; flex-direction: column; gap: .6rem; }
     .dish { border: 1.5px solid var(--line); border-radius: 14px; padding: .6rem .4rem .6rem .9rem; }
@@ -72,16 +105,29 @@
     .shop-list li.done span.name { text-decoration: line-through; color: var(--muted); }
     .shop-list li input[type=checkbox] { width: 22px; height: 22px; accent-color: var(--accent); flex: none; }
     .shop-list .qty { color: var(--muted); font-size: .95rem; white-space: nowrap; margin-left: auto; }
+    .weeks { list-style: none; padding: 0; margin: .75rem 0 0; display: flex; flex-direction: column; gap: .5rem; }
+    .weeks li { display: flex; align-items: center; gap: .5rem; border: 1.5px solid var(--line); border-radius: 14px; padding: .35rem .4rem .35rem .9rem; }
+    .weeks li b { flex: 1; font-family: Georgia, serif; font-weight: 700; }
+    .weeks li .btn { min-height: 44px; padding: .45rem .9rem; font-size: .95rem; }
     .tabbar { position: fixed; left: 0; right: 0; bottom: 0; display: grid; grid-template-columns: repeat(3, 1fr); background: var(--surface); border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom); z-index: 5; }
     .tab { border: 0; background: none; min-height: var(--nav-h); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: var(--muted); font-size: .8rem; font-weight: 600; cursor: pointer; position: relative; }
     .tab svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
     .tab[aria-selected="true"] { color: var(--accent); }
     .tab .n { position: absolute; top: 8px; left: calc(50% + 8px); background: var(--accent); color: var(--accent-ink); font-size: .7rem; border-radius: 999px; padding: 0 6px; }
-    .toast { position: fixed; left: 50%; bottom: calc(var(--nav-h) + env(safe-area-inset-bottom) + 12px); transform: translateX(-50%); background: var(--text); color: var(--bg); padding: .6rem 1rem; border-radius: 999px; font-size: .95rem; opacity: 0; transition: opacity .2s; pointer-events: none; }
+    .toast { position: fixed; left: 50%; bottom: calc(var(--nav-h) + env(safe-area-inset-bottom) + 12px); transform: translateX(-50%); background: var(--text); color: var(--bg); padding: .6rem 1rem; border-radius: 999px; font-size: .95rem; opacity: 0; transition: opacity .2s; pointer-events: none; z-index: 6; }
     .toast.show { opacity: 1; }
+    .guida { padding: 0 20px calc(var(--nav-h) + env(safe-area-inset-bottom) + 28px); max-width: 720px; }
+    .guida h2 { font-size: 1.45rem; margin: 1.8rem 0 .6rem; }
+    .guida h3 { font-size: 1.15rem; margin: 1.5rem 0 .4rem; color: var(--accent); }
+    .guida h4 { font-size: 1rem; margin: 1.1rem 0 .25rem; }
+    .guida p, .guida li { font-size: 1rem; }
+    .guida ul { padding-left: 1.2rem; }
+    .guida a { color: var(--accent); padding: .35rem 0; } /* area di tocco più alta senza spezzare il testo */
+    #print-area { display: none; }
     @media (min-width: 700px) {
-      .top, h1, .lead { margin-inline: auto; max-width: 900px; padding-inline: 24px; }
+      .top, h1, .lead, .guida { margin-inline: auto; max-width: 900px; padding-inline: 24px; }
       h1 { font-size: 2.4rem; }
+      .guida { max-width: 760px; padding-bottom: 3rem; }
       main { max-width: 948px; margin: 0 auto; padding-inline: 24px; }
       .days { grid-template-columns: repeat(2, 1fr); }
       .tabbar { position: sticky; top: 0; bottom: auto; border-top: 0; border-bottom: 1px solid var(--line); margin: 0 auto 1rem; max-width: 900px; border-radius: 0 0 var(--radius) var(--radius); }
@@ -89,14 +135,23 @@
       .tab .n { position: static; }
       .toast { bottom: 20px; }
     }
+    @media print {
+      .top, h1, .lead, .tabbar, main, .guida, .toast, [data-ad], [data-support], [data-affiliate] { display: none !important; }
+      #print-area { display: block !important; }
+      body { background: #fff; color: #000; font-size: 12pt; }
+      #print-area h2 { margin: 0 0 .6rem; }
+      #print-area .pday { margin: 0 0 .5rem; padding-bottom: .4rem; border-bottom: 1px solid #ccc; }
+      #print-area .pday b { display: inline-block; min-width: 7em; }
+      #print-area ul { padding-left: 1.2rem; }
+    }
   </style>
 </head>
 <body>
   <header class="top">
     <a class="back" href="../../index.html">← Tutte le app</a>
   </header>
-  <h1>Piano dei Pasti</h1>
-  <p class="lead">Le tue ricette, il piano della settimana e la lista della spesa già sommata. Tutto resta nel tuo browser.</p>
+  <h1>Piano dei Pasti <small>menu settimanale con lista della spesa, senza registrazione</small></h1>
+  <p class="lead">I tuoi piatti, il menu dei sette giorni e la spesa già sommata. Niente account: resta tutto nel browser.</p>
 
   <nav class="tabbar" role="tablist" aria-label="Sezioni">
     <button class="tab" role="tab" id="tab-ricette" aria-controls="panel-ricette" aria-selected="true" type="button">
@@ -117,7 +172,7 @@
       <p class="lead-small muted">Inserisci nome e ingredienti di una ricetta: potrai poi usarla nel piano settimanale. Premi Invio in un campo ingrediente per aggiungerne subito un altro.</p>
       <form id="dish-form" autocomplete="off">
         <div class="row">
-          <input id="dish-name" type="text" class="grow" placeholder="Nome piatto (es. Pasta al pomodoro)" maxlength="50" required>
+          <input id="dish-name" type="text" class="grow" placeholder="Nome piatto (es. Pasta al pomodoro)" maxlength="50" enterkeyhint="done" required>
         </div>
         <div id="ingredient-rows" style="margin-top:.6rem"></div>
         <div class="row" style="margin-top:.3rem">
@@ -148,6 +203,16 @@
       <p id="clear-plan-confirm" class="err" hidden>Svuotare tutto il piano settimanale? <button class="btn" type="button" id="clear-plan-yes" style="padding:.3rem .7rem">Sì, svuota</button> <button class="btn btn-ghost" type="button" id="clear-plan-no" style="padding:.3rem .7rem">No</button></p>
     </section>
 
+    <section class="card" data-pro="Più settimane salvate">
+      <h2>Settimane salvate</h2>
+      <p class="lead-small muted">Salva il menu di questa settimana con un nome e richiamalo quando vuoi: così ruoti due o tre menu collaudati invece di ricominciare ogni domenica.</p>
+      <form id="week-form" class="row" autocomplete="off">
+        <input id="week-name" type="text" class="grow" placeholder="Nome (es. Settimana veloce)" maxlength="30" enterkeyhint="done">
+        <button class="btn" type="submit">Salva settimana</button>
+      </form>
+      <p id="week-err" class="err"></p>
+      <div id="weeks"></div>
+    </section>
   </div>
 
   <div class="panel" id="panel-spesa" role="tabpanel" aria-labelledby="tab-spesa">
@@ -159,15 +224,68 @@
         <button class="btn btn-ghost" type="button" id="copy-list">Copia lista</button>
       </div>
     </section>
+
+    <section class="card" data-pro="Menù e lista da stampare">
+      <h2>Menù e lista da stampare</h2>
+      <p class="lead-small muted">Prepara un foglio pulito con il menu dei sette giorni e la lista della spesa: da stampare per il frigorifero, da salvare in PDF o da aprire in Excel.</p>
+      <div class="toolbar" style="justify-content:flex-start">
+        <button class="btn" type="button" id="print-plan">Stampa menù e lista</button>
+        <button class="btn btn-ghost" type="button" id="export-csv">Scarica lista in CSV</button>
+      </div>
+    </section>
   </div>
   </main>
+
+  <div data-ad="top"></div>
+
+  <section id="guida" class="guida">
+    <h2>Come organizzare il menu settimanale con lista della spesa</h2>
+    <p>Il momento peggiore della settimana non è cucinare: è decidere cosa cucinare alle sette di sera, con il frigorifero mezzo vuoto. Un <strong>menu settimanale con lista della spesa</strong> risolve proprio questo, perché sposta tutte le decisioni in un unico quarto d'ora — di solito la domenica — e trasforma la spesa in un elenco già pronto. I menu che si trovano in giro però sono quasi sempre quelli di qualcun altro: ricette che non sai cucinare, ingredienti che a casa tua non mangia nessuno, PDF da stampare e riempire a mano. Qui il menu lo costruisci con i piatti che fai davvero, e la lista si scrive da sola.</p>
+
+    <h3>Come funziona il pianificatore</h3>
+    <p>Il lavoro si fa una volta sola, nella scheda <em>Ricette</em>: per ogni piatto che cucini di solito scrivi il nome e gli ingredienti, con quantità e unità di misura (per esempio 400 g di pasta, 1 barattolo di pelati, 50 g di parmigiano). Le quantità sono quelle che servono a casa tua, non quelle di un ricettario: se siete in quattro, scrivi le dosi per quattro. Venti piatti bastano per non ripetersi quasi mai.</p>
+    <p>Nella scheda <em>Piano</em> assegni un piatto a ogni pranzo e a ogni cena dei sette giorni; le caselle che lasci vuote semplicemente non vengono considerate, quindi puoi pianificare solo le cene se a pranzo sei fuori. Nella scheda <em>Spesa</em> trovi la lista aggiornata in tempo reale: gli ingredienti uguali vengono raggruppati e le quantità sommate, e puoi spuntare al supermercato ciò che hai già messo nel carrello. Il pulsante <em>Copia lista</em> prepara un testo da mandare su WhatsApp a chi va a fare la spesa.</p>
+
+    <h3>Un esempio con i numeri</h3>
+    <p>Famiglia di quattro persone. In settimana compaiono due volte la pasta al pomodoro (400 g di pasta e 1 barattolo di pelati ciascuna) e una volta la pasta al tonno (400 g di pasta, 2 scatolette di tonno, 1 barattolo di pelati). Nella lista non trovi tre voci separate: trovi <em>pasta 1,2 kg</em>, <em>pelati 3 barattoli</em>, <em>tonno 2 scatolette</em>. È esattamente la differenza tra tornare a casa con la pasta giusta e tornare con tre pacchi «per sicurezza». Se un ingrediente lo hai inserito senza quantità — il sale, l'olio — nella lista compare come «q.b.», e se lo stesso ingrediente compare sia con quantità sia senza, leggerai per esempio «300 g + q.b.».</p>
+
+    <h3>Errori comuni</h3>
+    <ul>
+      <li><strong>Scrivere gli ingredienti in modo diverso ogni volta.</strong> «Pomodori pelati» e «pelati» restano due voci separate: usa sempre lo stesso nome e la stessa unità, così le quantità si sommano.</li>
+      <li><strong>Pianificare sette cene diverse.</strong> Un menu realistico ripete i piatti: due o tre ricette veloci nei giorni pieni e una più lunga nel fine settimana reggono molto meglio di sette novità.</li>
+      <li><strong>Dimenticare la dispensa.</strong> La lista contiene tutto quello che serve, non quello che manca: prima di uscire dai un'occhiata agli scaffali e spunta ciò che hai già.</li>
+      <li><strong>Non contare gli avanzi.</strong> Se il sugo del martedì basta anche per il giovedì, metti lo stesso piatto in entrambi i giorni solo se ricomprerai gli ingredienti: altrimenti lascia la casella vuota e scrivi una nota a parte.</li>
+    </ul>
+
+    <h3>Domande frequenti</h3>
+    <h4>Serve registrarsi o scaricare un'app?</h4>
+    <p>No. Funziona nel browser del telefono o del computer, anche senza connessione, e piatti e menu restano salvati solo sul tuo dispositivo: nessun account, nessuna email, nessun abbonamento.</p>
+    <h4>Posso stampare il menu settimanale e la lista della spesa?</h4>
+    <p>Sì, con la funzione Pro «Menù e lista da stampare»: prepara un foglio pulito con i sette giorni e la lista, da stampare per il frigorifero o da salvare in PDF. La stessa funzione scarica la lista in CSV, che si apre con Excel e Fogli Google.</p>
+    <h4>Come vengono sommate le quantità?</h4>
+    <p>Vengono raggruppati gli ingredienti che hanno lo stesso nome e la stessa unità di misura. Se uno stesso ingrediente compare con unità diverse (per esempio 500 g e 1 kg di farina), resta su due righe: scegli un'unica unità quando inserisci le ricette.</p>
+    <h4>Quanto si risparmia pianificando i pasti?</h4>
+    <p>Il risparmio non arriva dagli sconti ma dai due sprechi tipici: il cibo comprato e mai cucinato, e le spese di corsa a fine giornata. Con un menu deciso in anticipo si fa una spesa sola, si comprano solo gli ingredienti che finiranno in un piatto e si ordina fuori molto meno spesso.</p>
+    <h4>I miei dati finiscono da qualche parte?</h4>
+    <p>No. Non c'è nessun server: ricette, menu e lista sono scritti nella memoria locale del browser. Se cancelli i dati di navigazione o usi un altro dispositivo, dovrai reinserirli.</p>
+
+    <div data-affiliate data-title="Utile per la spesa e il meal prep" data-items='[{"t":"Contenitori per meal prep in vetro","q":"contenitori meal prep vetro con coperchio"},{"t":"Lavagna magnetica per il frigorifero","q":"lavagna magnetica frigorifero lista spesa"},{"t":"Borsa termica per la spesa","q":"borsa termica spesa grande"}]'></div>
+
+    <div data-ad="bottom"></div>
+    <div data-support></div>
+    <p class="muted small">Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a> · Vedi anche <a href="../2026-09-17-timer-pasta/">Timer Pasta</a> per i tempi di cottura e <a href="../2026-09-17-dividi-il-conto/">Dividi il Conto</a> per dividere le spese di casa.</p>
+  </section>
+
+  <div id="print-area" aria-hidden="true"></div>
   <div id="toast" class="toast" role="status"></div>
 
+  <script src="../../assets/monetize.js"></script>
   <script>
     // Modello dati (localStorage "piano-dei-pasti:v1"):
     //   { piatti: [{id, nome, ingredienti:[{nome, quantita, unita}]}],
     //     piano: { lun: {pranzo: id|null, cena: id|null}, ... per ogni giorno },
-    //     spesaFatta: { "chiave-ingrediente": true } }
+    //     spesaFatta: { "chiave-ingrediente": true },
+    //     settimane: [{id, nome, piano}] (funzione Pro: menu salvati e richiamabili) }
     // La lista della spesa si ricalcola sempre dal piano corrente sommando gli ingredienti dei piatti scelti.
     (() => {
       "use strict";
@@ -186,14 +304,23 @@
         for (const g of GIORNI) p[g.key] = { pranzo: null, cena: null };
         return p;
       }
+      function copiaPiano(piano) {
+        const p = pianoVuoto();
+        for (const g of GIORNI) for (const m of PASTI) {
+          const id = piano?.[g.key]?.[m.key] || null;
+          p[g.key][m.key] = id && state.piatti.some(x => x.id === id) ? id : null; // i piatti eliminati non tornano
+        }
+        return p;
+      }
 
       let state = load();
       function load() {
         try {
           const s = JSON.parse(localStorage.getItem(KEY));
-          if (s && Array.isArray(s.piatti) && s.piano) return { piatti: s.piatti, piano: s.piano, spesaFatta: s.spesaFatta || {} };
+          if (s && Array.isArray(s.piatti) && s.piano)
+            return { piatti: s.piatti, piano: s.piano, spesaFatta: s.spesaFatta || {}, settimane: Array.isArray(s.settimane) ? s.settimane : [] };
         } catch (_) {}
-        return { piatti: [], piano: pianoVuoto(), spesaFatta: {} };
+        return { piatti: [], piano: pianoVuoto(), spesaFatta: {}, settimane: [] };
       }
       function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (_) {} }
       const piattoOf = (id) => state.piatti.find(p => p.id === id) || null;
@@ -210,8 +337,10 @@
           row.className = "row ingredient-row";
           const nome = document.createElement("input");
           nome.type = "text"; nome.className = "ing-nome"; nome.placeholder = "Ingrediente (es. Pomodori)"; nome.maxLength = 40; nome.value = ing.nome;
+          nome.setAttribute("enterkeyhint", "next");
           const qta = document.createElement("input");
           qta.type = "number"; qta.className = "ing-qta"; qta.placeholder = "Qtà"; qta.min = "0"; qta.step = "any"; qta.value = ing.quantita;
+          qta.setAttribute("inputmode", "decimal");
           const unita = document.createElement("input");
           unita.type = "text"; unita.className = "ing-unita"; unita.placeholder = "Unità"; unita.maxLength = 10; unita.value = ing.unita;
           const del = document.createElement("button");
@@ -258,6 +387,7 @@
       function removeDish(id) {
         state.piatti = state.piatti.filter(p => p.id !== id);
         for (const g of GIORNI) for (const p of PASTI) if (state.piano[g.key][p.key] === id) state.piano[g.key][p.key] = null;
+        for (const s of state.settimane) for (const g of GIORNI) for (const p of PASTI) if (s.piano[g.key][p.key] === id) s.piano[g.key][p.key] = null;
         if (editingId === id) resetForm();
         save(); renderAll();
       }
@@ -334,6 +464,36 @@
         }
       }
 
+      // ---- Pro: settimane salvate ----
+      function renderWeeks() {
+        const box = $("#weeks");
+        if (!state.settimane.length) {
+          box.innerHTML = '<p class="empty">Nessuna settimana salvata. Dai un nome al menu di questa settimana per ritrovarlo tra un mese.</p>';
+          return;
+        }
+        const ul = document.createElement("ul"); ul.className = "weeks";
+        for (const s of state.settimane) {
+          const li = document.createElement("li");
+          const b = document.createElement("b"); b.textContent = s.nome;
+          const load = document.createElement("button"); load.className = "btn btn-ghost"; load.type = "button"; load.textContent = "Carica";
+          load.onclick = () => caricaSettimana(s.id);
+          const del = document.createElement("button"); del.className = "btn-icon"; del.type = "button";
+          del.title = "Elimina " + s.nome; del.setAttribute("aria-label", del.title); del.textContent = "×";
+          del.onclick = () => { state.settimane = state.settimane.filter(x => x.id !== s.id); save(); renderWeeks(); toast("Settimana eliminata"); };
+          li.append(b, load, del); ul.append(li);
+        }
+        box.replaceChildren(ul);
+      }
+      function caricaSettimana(id) {
+        const s = state.settimane.find(x => x.id === id); if (!s) return;
+        state.piano = copiaPiano(s.piano);
+        state.spesaFatta = {}; // nuova settimana, nuova spesa da spuntare
+        save(); renderPlan(); renderShoppingList(); showTab("piano"); toast(`Caricata "${s.nome}"`);
+      }
+      function pianoPieno() {
+        return GIORNI.some(g => PASTI.some(p => state.piano[g.key][p.key]));
+      }
+
       // ---- tab (barra in basso su mobile) ----
       const TABS = ["ricette", "piano", "spesa"];
       function showTab(name) {
@@ -368,7 +528,7 @@
         box.replaceChildren(ul);
       }
 
-      function renderAll() { renderDishes(); renderPlan(); renderShoppingList(); }
+      function renderAll() { renderDishes(); renderPlan(); renderWeeks(); renderShoppingList(); }
 
       function showErr(sel, msg) { $(sel).textContent = msg; }
       function toast(msg) { const t = $("#toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(toast.h); toast.h = setTimeout(() => t.classList.remove("show"), 1800); }
@@ -404,12 +564,77 @@
       });
       document.addEventListener("keydown", (e) => { if (e.key === "Escape") $("#clear-plan-confirm").hidden = true; });
 
+      $("#week-form").addEventListener("submit", (ev) => {
+        ev.preventDefault();
+        if (!window.Monetize || !window.Monetize.isPro()) { window.Monetize && window.Monetize.unlock(); return; }
+        const nome = $("#week-name").value.trim().replace(/\s+/g, " ");
+        if (!nome) return showErr("#week-err", "Dai un nome alla settimana (es. «Settimana veloce»).");
+        if (!pianoPieno()) return showErr("#week-err", "Il piano è vuoto: scegli almeno un piatto prima di salvarlo.");
+        const esistente = state.settimane.find(s => s.nome.toLowerCase() === nome.toLowerCase());
+        if (esistente) { esistente.piano = copiaPiano(state.piano); toast("Settimana aggiornata"); }
+        else { state.settimane.push({ id: uid(), nome, piano: copiaPiano(state.piano) }); toast("Settimana salvata"); }
+        showErr("#week-err", ""); $("#week-name").value = "";
+        save(); renderWeeks();
+      });
+
       $("#copy-list").addEventListener("click", async () => {
         const lista = listaSpesa();
         if (!lista.length) { toast("La lista è vuota"); return; }
         const righe = ["Lista della spesa", ...lista.map(v => `- ${v.nome}: ${fmtQta(v)}${state.spesaFatta[v.chiave] ? " (già preso)" : ""}`)];
         try { await navigator.clipboard.writeText(righe.join("\n")); toast("Lista copiata"); }
         catch (_) { toast("Impossibile copiare: seleziona e copia a mano"); }
+      });
+
+      // ---- Pro: stampa ed esportazione ----
+      function buildPrintArea() {
+        const area = $("#print-area");
+        area.replaceChildren();
+        const h = document.createElement("h2"); h.textContent = "Menu settimanale";
+        area.append(h);
+        for (const g of GIORNI) {
+          const p = document.createElement("p"); p.className = "pday";
+          const b = document.createElement("b"); b.textContent = g.label;
+          const voci = PASTI.map(m => {
+            const piatto = piattoOf(state.piano[g.key][m.key]);
+            return `${m.label}: ${piatto ? piatto.nome : "—"}`;
+          }).join(" · ");
+          p.append(b, document.createTextNode(" " + voci));
+          area.append(p);
+        }
+        const lista = listaSpesa();
+        const h2 = document.createElement("h2"); h2.textContent = "Lista della spesa"; h2.style.marginTop = "1rem";
+        area.append(h2);
+        if (!lista.length) {
+          const vuoto = document.createElement("p"); vuoto.textContent = "Nessun ingrediente: il piano è vuoto.";
+          area.append(vuoto);
+        } else {
+          const ul = document.createElement("ul");
+          for (const v of lista) {
+            const li = document.createElement("li");
+            li.textContent = `${v.nome} — ${fmtQta(v)}${state.spesaFatta[v.chiave] ? " (già preso)" : ""}`;
+            ul.append(li);
+          }
+          area.append(ul);
+        }
+      }
+      $("#print-plan").addEventListener("click", () => {
+        if (!window.Monetize || !window.Monetize.isPro()) { window.Monetize && window.Monetize.unlock(); return; }
+        buildPrintArea();
+        window.print();
+      });
+      function csvEscape(v) { const s = String(v); return /[";\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; }
+      $("#export-csv").addEventListener("click", () => {
+        if (!window.Monetize || !window.Monetize.isPro()) { window.Monetize && window.Monetize.unlock(); return; }
+        const lista = listaSpesa();
+        if (!lista.length) { toast("La lista è vuota"); return; }
+        const rows = [["Ingrediente", "Quantità", "Unità", "Già preso"]];
+        for (const v of lista) rows.push([v.nome, v.totale > 0 ? fmtNum(v.totale) : "q.b.", v.unita, state.spesaFatta[v.chiave] ? "sì" : ""]);
+        const csv = "﻿" + rows.map(r => r.map(csvEscape).join(";")).join("\r\n");
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+        a.download = "lista-della-spesa.csv"; a.click();
+        setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+        toast("CSV scaricato");
       });
 
       renderIngredientRows();
