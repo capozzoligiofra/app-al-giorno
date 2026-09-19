@@ -33,6 +33,7 @@
       { "@type": "Question", "name": "Come si calcola il costo del carburante per un viaggio?", "acceptedAnswer": { "@type": "Answer", "text": "Si moltiplicano i chilometri per il consumo dell'auto in litri ogni 100 km, si divide per 100 e si moltiplica per il prezzo al litro. Per 570 km con 6,5 l/100 km e benzina a 2,15 €/l servono 37 litri, cioè circa 80 €." } },
       { "@type": "Question", "name": "Come viene calcolata la distanza tra le due città?", "acceptedAnswer": { "@type": "Answer", "text": "Le località si cercano su OpenStreetMap (qualsiasi comune o frazione italiana) e la distanza è quella del percorso stradale reale calcolato da OSRM, con durata e chilometri di autostrada. Se il servizio non è raggiungibile, il calcolatore stima la distanza in linea d'aria moltiplicata per 1,2." } },
       { "@type": "Question", "name": "Da dove vengono i prezzi del carburante?", "acceptedAnswer": { "@type": "Answer", "text": "Sono le medie regionali self service ricalcolate ogni mattina dagli open data dell'Osservaprezzi del Ministero delle Imprese e del Made in Italy (MIMIT), cioè dai prezzi comunicati dai distributori di tutta Italia. Scegli la regione e il prezzo si compila da solo; puoi sempre scrivere quello del tuo distributore." } },
+      { "@type": "Question", "name": "Come faccio a sapere il consumo della mia auto?", "acceptedAnswer": { "@type": "Answer", "text": "Scegli marca e modello nella sezione La tua auto: il catalogo, basato sul registro europeo delle immatricolazioni (EEA), copre oltre 2.500 modelli venduti in Italia dal 2010 e imposta carburante e consumo reale stimato (omologato WLTP +14%). Puoi sempre scrivere il consumo che conosci nel campo Consumo." } },
       { "@type": "Question", "name": "Quanto costa il pedaggio autostradale al chilometro?", "acceptedAnswer": { "@type": "Answer", "text": "Sulla rete italiana un'auto (classe A) paga in media 7-9 centesimi al chilometro; il calcolatore usa 0,08 €/km come stima, modificabile. Se conosci il pedaggio esatto puoi inserirlo direttamente." } },
       { "@type": "Question", "name": "Conviene l'auto o il treno?", "acceptedAnswer": { "@type": "Answer", "text": "Dipende dal numero di persone: il costo dell'auto è quasi fisso, quello del treno cresce per ogni biglietto. Da soli il treno quasi sempre vince; da tre persone in su l'auto di solito costa meno, soprattutto se l'usura è bassa." } }
     ]
@@ -108,6 +109,8 @@
     .chips { display: flex; flex-wrap: wrap; gap: .4rem; }
     .chip { min-height: 44px; padding: .4rem .8rem; border-radius: 999px; border: 1.5px solid var(--line); background: transparent; cursor: pointer; font-weight: 600; font-size: .92rem; }
     .chip[aria-pressed="true"] { background: var(--panel); color: var(--neon); border-color: var(--panel); }
+    .tile.car { grid-column: 1 / -1; }
+    .tile.car select { font-size: 1rem; font-weight: 600; text-overflow: ellipsis; }
     .seg { display: inline-flex; border: 1.5px solid var(--line); border-radius: 10px; overflow: hidden; }
     .seg button { min-height: 40px; padding: 0 .75rem; border: 0; background: transparent; cursor: pointer; font-weight: 600; font-size: .88rem; }
     .seg button[aria-pressed="true"] { background: var(--panel); color: var(--neon); }
@@ -254,6 +257,12 @@
         <label class="lbl" for="price">Prezzo <span id="price-unit">€/l</span></label>
         <div class="field small"><input id="price" type="number" inputmode="decimal" enterkeyhint="next" min="0.01" max="20" step="0.001"></div>
       </div>
+      <div class="tile car">
+        <label class="lbl" for="car-make">La tua auto</label>
+        <div class="field small"><select id="car-make" aria-label="Marca dell'auto"><option value="">Scegli la marca…</option></select></div>
+        <div class="field small" style="margin-top:.4rem"><select id="car-model" aria-label="Modello e carburante" disabled><option value="">Poi il modello…</option></select></div>
+        <p class="hint" id="car-hint">Marca e modello: imposto carburante e consumo reale stimato (fonte EEA, auto immatricolate in Italia dal 2010).</p>
+      </div>
       <div class="tile">
         <label class="lbl" for="cons">Consumo <span id="cons-unit">l/100 km</span></label>
         <div class="field small"><input id="cons" type="number" inputmode="decimal" enterkeyhint="next" min="0.1" max="99" step="0.1"></div>
@@ -347,6 +356,9 @@
       <h3>Come viene calcolata la distanza</h3>
       <p>Scrivi partenza e arrivo: il calcolatore cerca su <strong>OpenStreetMap</strong>, quindi trova anche i paesi piccoli, le frazioni e gli <strong>indirizzi precisi con via e numero civico</strong> (es. "Via Roma 10, Salerno"), non solo le grandi città (oltre 150 mete frequenti sono in memoria e compaiono subito, senza rete). Scelte le due località, chiede il <strong>percorso stradale reale</strong> al servizio di routing OSRM e usa i chilometri effettivi, la durata di guida e i chilometri percorsi in autostrada, che compila da solo nel campo del pedaggio. Se il servizio non risponde o sei offline, usa la stima classica: distanza in linea d'aria moltiplicata per <strong>1,2</strong>, il rapporto medio tra strada e linea d'aria sulla rete italiana (Milano–Roma: 477 km in linea d'aria, 573 km in autostrada), con un errore tipico del 5–10%. Per il valore esatto tocca il link <em>Verifica su Google Maps</em>: si apre il percorso già impostato, leggi i chilometri e li correggi nel campo. Il calcolatore non interroga nessun servizio esterno, quindi funziona anche senza rete e non traccia dove vai.</p>
 
+      <h3>Il consumo della tua auto, senza cercarlo</h3>
+      <p>Non serve sapere quanti litri ogni 100 km fa la tua macchina: scegli <strong>marca e modello</strong> nella tendina "La tua auto" e il calcolatore imposta da solo il carburante e il consumo. I dati vengono dal registro europeo delle immatricolazioni (EEA): per ogni modello venduto in Italia dal 2010 c'è il consumo omologato medio, che però è ottimistico. Per questo il calcolatore usa una <strong>stima su strada</strong>: omologazione WLTP più 14%, NEDC (auto fino al 2017 circa) più 35%, elettriche più 20%, in linea con le rilevazioni reali di ICCT e Spritmonitor. Sotto la tendina vedi entrambi i numeri; se conosci il consumo vero della tua auto, scrivilo nel campo e la scelta viene ignorata.</p>
+
       <h3>Le tre voci del costo, una per una</h3>
       <p><strong>Carburante.</strong> La formula è semplice: chilometri × consumo (litri ogni 100 km) ÷ 100 × prezzo al litro. Se conosci il consumo in km/l, cambia unità con il selettore: il calcolatore converte da solo. Per le auto elettriche il consumo è in kWh/100 km e il prezzo in €/kWh (a casa si spende molto meno che alla colonnina rapida: inserisci il valore che usi davvero). I prezzi di benzina, gasolio, GPL e metano sono le <strong>medie regionali self service dell'Osservaprezzi MIMIT</strong>, ricalcolate <strong>ogni mattina</strong> dai prezzi comunicati da circa 20.000 distributori (la data del dato è indicata sotto il campo): scegli la regione dove fai il pieno e il prezzo si compila da solo. Il prezzo cambia ogni giorno e in autostrada costa 8–12 centesimi in più: se vuoi il centesimo esatto, controlla il cartello del distributore o l'osservatorio ministeriale e scrivi il valore nel campo.</p>
       <p><strong>Pedaggio.</strong> In Italia un'auto (classe A) paga in media 7–9 centesimi al chilometro, con differenze tra concessionarie e tratte di montagna. Se non conosci l'importo esatto, inserisci i chilometri di autostrada e il calcolatore stima il pedaggio a 0,08 €/km; quando la distanza è stimata dal percorso, propone come chilometri di autostrada l'85% del tragitto, che è la quota tipica di un viaggio tra due città. Se conosci il pedaggio (dal sito della concessionaria o da un viaggio precedente) scegli "Importo noto" e scrivilo. Con "Andata e ritorno" attivo, il pedaggio viene raddoppiato.</p>
@@ -378,6 +390,8 @@
       <p>Dal percorso stradale reale calcolato da OSRM sui dati di OpenStreetMap, tra le località che hai scelto dai suggerimenti (qualsiasi comune o frazione italiana). Se il servizio non è raggiungibile, il calcolatore ripiega sulla distanza in linea d'aria moltiplicata per 1,2, con un errore del 5–10%, e te lo segnala. In ogni caso il link "Verifica su Google Maps" apre il percorso e puoi correggere i chilometri a mano.</p>
       <h4>Il prezzo del carburante si aggiorna da solo?</h4>
       <p>Sì. Ogni mattina le medie regionali vengono ricalcolate dagli open data dell'<a href="https://www.mimit.gov.it/it/prezzo-medio-carburanti/regioni" target="_blank" rel="noopener">Osservaprezzi carburanti del MIMIT</a>, cioè dai prezzi self service comunicati dai gestori di tutta Italia; la data del dato è scritta sotto il campo Prezzo. Se apri la pagina offline restano le ultime medie incorporate. Il cartello del tuo distributore resta l'unico prezzo "esatto": se vuoi, scrivilo nel campo e il calcolo si aggiorna subito.</p>
+      <h4>Come faccio a sapere il consumo della mia auto?</h4>
+      <p>Scegli marca e modello nella sezione "La tua auto": il catalogo copre oltre 2.500 combinazioni modello/carburante immatricolate in Italia dal 2010 (fonte EEA) e imposta il consumo reale stimato. In alternativa il libretto o il computer di bordo riportano il consumo medio: scrivilo direttamente nel campo Consumo.</p>
       <h4>Quanto costa il pedaggio autostradale al chilometro?</h4>
       <p>Per un'auto in classe A la media della rete italiana è di 7–9 centesimi al km; alcune tratte alpine e i trafori superano i 20 centesimi. Il valore usato dal calcolatore (0,08 €/km) si modifica nella sezione Avanzate.</p>
       <h4>Come faccio a sapere se conviene l'auto o il treno?</h4>
@@ -410,6 +424,7 @@
     // Località: elenco offline (170+) + ricerca OpenStreetMap/Nominatim (qualsiasi comune); i risultati scelti finiscono in state.geo.
     // Distanza: percorso stradale reale via OSRM (cache in state.routes), altrimenti linea d'aria × 1,2.
     // Prezzi: medie regionali MIMIT incorporate, sostituite all'avvio da ../../data/carburanti.json (aggiornato ogni mattina).
+    // Auto: catalogo ../../data/auto.json (EEA, marca/modello/carburante → consumo dichiarato e reale), caricato quando serve; scelta in state.in.auto.
     (() => {
       "use strict";
       const KEY = "costo-viaggio-auto:v1";
@@ -573,6 +588,50 @@
           render(); renderHints(); save();
         } catch (_) { /* file:// o offline: restano le medie incorporate */ }
       }
+      // ---- catalogo auto (EEA): marca → modelli con carburante e consumo ----
+      let CARS = null, carsLoading = null;
+      const CAR_FUEL = { benzina: "benzina", diesel: "diesel", gpl: "gpl", metano: "metano", elettrica: "elettrica", ibrida: "benzina", "ibrida-diesel": "diesel" };
+      const CAR_FUEL_LABEL = { benzina: "benzina", diesel: "diesel", gpl: "GPL", metano: "metano", elettrica: "elettrica", ibrida: "ibrida benzina", "ibrida-diesel": "ibrida diesel" };
+      const fmt1 = (v) => v.toLocaleString("it-IT", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+      async function loadCars() {
+        if (CARS) return CARS;
+        if (!carsLoading) carsLoading = fetch("../../data/auto.json", { cache: "force-cache" }).then(r => r.ok ? r.json() : null).catch(() => null).then(d => { CARS = d; return d; });
+        return carsLoading;
+      }
+      function fillMakes() {
+        const sel = $("#car-make");
+        if (!CARS) { sel.replaceChildren(new Option("Catalogo non disponibile offline", "")); sel.disabled = true; return; }
+        const makes = Object.keys(CARS.marche).sort((a, b) => a.localeCompare(b, "it"));
+        sel.replaceChildren(new Option("Scegli la marca…", ""), ...makes.map(m => new Option(m, m)));
+        sel.disabled = false;
+        if (state.in.auto) { sel.value = state.in.auto.marca; fillModels(state.in.auto.marca, state.in.auto.id); }
+      }
+      const carId = (c) => `${c.marca}|${c.modello}|${c.carburante}`;
+      function fillModels(make, selectedId) {
+        const sel = $("#car-model");
+        const list = (CARS && CARS.marche[make]) || [];
+        if (!list.length) { sel.replaceChildren(new Option("Poi il modello…", "")); sel.disabled = true; return; }
+        // più venduti prima (già ordinati nel catalogo); il testo mostra modello, carburante e consumo reale
+        sel.replaceChildren(new Option(`Modello (${list.length})…`, ""), ...list.map(c => new Option(`${c.modello} · ${CAR_FUEL_LABEL[c.carburante] || c.carburante} · ${fmt1(c.reale)} ${c.unita}/100 km`, carId(c))));
+        sel.disabled = false;
+        if (selectedId) sel.value = selectedId;
+      }
+      function applyCar(c) {
+        const i = state.in;
+        i.auto = { id: carId(c), marca: c.marca, modello: c.modello, carburante: c.carburante, dichiarato: c.dichiarato, reale: c.reale, unita: c.unita, base: c.base };
+        i.fuel = CAR_FUEL[c.carburante] || "benzina";
+        i.cons = c.reale; i.consUnit = "l100";
+        if (i.priceSrc !== "manual") i.price = priceFor(i.fuel, i.region);
+        fill(); render(); save();
+        toast(`${c.marca} ${c.modello}: consumo ${fmt1(c.reale)} ${c.unita}/100 km`);
+      }
+      function renderCarHint() {
+        const h = $("#car-hint"), a = state.in.auto;
+        if (!a) { h.textContent = "Marca e modello: imposto carburante e consumo reale stimato (fonte EEA, auto immatricolate in Italia dal 2010)."; return; }
+        const gap = a.carburante === "elettrica" ? "+20%" : (a.base === "nedc" ? "+35% (omologazione NEDC, più ottimistica)" : "+14%");
+        h.replaceChildren(`${a.marca} ${a.modello} ${CAR_FUEL_LABEL[a.carburante] || a.carburante}: omologato ${fmt1(a.dichiarato)} ${a.unita}/100 km, su strada stimo ${fmt1(a.reale)} (${gap}). Fonte EEA. `,
+          Object.assign(document.createElement("a"), { href: "#", textContent: "Rimuovi", onclick: (e) => { e.preventDefault(); state.in.auto = null; $("#car-make").value = ""; fillModels("", null); fill(); render(); save(); } }));
+      }
       function priceFor(fuel, region) {
         if (fuel === "elettrica") return 0.45;
         const row = ALL_REGIONS.find(r => r[0] === region) || ITALIA;
@@ -677,6 +736,7 @@
         $("#toll-stima").hidden = i.tollMode !== "stima"; $("#toll-importo").hidden = i.tollMode !== "importo";
         renderStops();
         renderHints();
+        renderCarHint();
       }
       function renderHints() {
         const i = state.in;
@@ -905,6 +965,7 @@
         if (e.target === F.price) { state.in.priceSrc = "manual"; read(); renderHints(); render(); save(); return; }
         if (e.target === F.from || e.target === F.to) return; // gestiti dal widget dei suggerimenti
         if (e.target === F.tollRate) { read(); renderHints(); render(); save(); return; }
+        if (e.target === F.cons && state.in.auto) { state.in.auto = null; $("#car-make").value = ""; fillModels("", null); renderCarHint(); }
         update();
       });
       $("#calc").addEventListener("submit", (e) => e.preventDefault());
@@ -924,8 +985,20 @@
         const b = e.target.closest(".chip"); if (!b) return;
         const fuel = b.dataset.fuel; if (fuel === state.in.fuel) return;
         state.in.fuel = fuel; state.in.price = priceFor(fuel, state.in.region); state.in.priceSrc = "auto"; state.in.cons = FUELS[fuel].cons; state.in.consUnit = "l100";
+        if (state.in.auto && CAR_FUEL[state.in.auto.carburante] !== fuel) { state.in.auto = null; $("#car-make").value = ""; fillModels("", null); }
         fill(); render(); save(); toast(fuel === "elettrica" ? "Prezzo indicativo: modificalo se vuoi" : `Prezzo medio ${state.in.region} impostato`);
       });
+      // Catalogo auto: si scarica (430 KB) solo quando l'utente apre la tendina o ha già un'auto salvata.
+      const carMake = $("#car-make"), carModel = $("#car-model");
+      const ensureCars = async () => { if (CARS) return; carMake.replaceChildren(new Option("Carico il catalogo…", "")); await loadCars(); fillMakes(); };
+      carMake.addEventListener("pointerdown", ensureCars, { once: true });
+      carMake.addEventListener("focus", ensureCars, { once: true });
+      carMake.addEventListener("change", () => fillModels(carMake.value, null));
+      carModel.addEventListener("change", () => {
+        const c = (CARS?.marche[carMake.value] || []).find(x => carId(x) === carModel.value);
+        if (c) applyCar(c);
+      });
+      if (state.in.auto) loadCars().then(fillMakes);
       $("#cons-seg").addEventListener("click", (e) => {
         const b = e.target.closest("button"); if (!b) return;
         const unit = b.dataset.unit; if (unit === state.in.consUnit) return;

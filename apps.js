@@ -54,7 +54,7 @@ window.__APPS__ = {
       "title": "Costo Viaggio in Auto",
       "slug": "2026-09-19-costo-viaggio-auto",
       "date": "2026-09-19",
-      "description": "Calcola quanto costa un viaggio in auto: percorso stradale reale tra qualsiasi località, carburante ai prezzi del giorno, pedaggi e usura, diviso per persona.",
+      "description": "Quanto costa un viaggio in auto: percorso reale tra indirizzi, consumo della tua auto da catalogo, carburante ai prezzi del giorno, pedaggi e usura.",
       "category": "calcolatori-convertitori",
       "tags": [
         "viaggio",
@@ -66,11 +66,12 @@ window.__APPS__ = {
       "source": "richiesta",
       "request": "Costo Viaggio in Auto — keyword: \"calcolo costo viaggio auto\" — pianificazione vacanze, affiliazione naturale (accessori auto); Pro: confronto auto vs treno",
       "status": "pronta",
-      "version": 4,
+      "version": 5,
       "changelog": [
         "v2 (2026-09-19): distanza stimata automaticamente da partenza e arrivo (elenco offline di 170+ località, linea d'aria × 1,2) con link 'Verifica su Google Maps'; prezzi carburante sostituiti con le medie regionali MIMIT del 19/09/2026 e selettore regione (i vecchi 1,75/1,68 erano fuori di 40+ cent); km di autostrada proposti dal percorso; nuove Pro: Itinerario a tappe e Stampa preventivo PDF; guida e FAQ aggiornate.",
         "v3 (2026-09-20): ricerca di qualsiasi località italiana (OpenStreetMap/Nominatim, anche paesi e frazioni), percorso stradale reale con durata e km di autostrada (OSRM), prezzi carburante MIMIT aggiornati ogni mattina da data/carburanti.json; fallback offline invariato",
-        "v4 (2026-09-20): partenza e arrivo accettano anche indirizzi precisi con via e numero civico (es. Via Roma 10, Salerno), formattati correttamente nei suggerimenti"
+        "v4 (2026-09-20): partenza e arrivo accettano anche indirizzi precisi con via e numero civico (es. Via Roma 10, Salerno), formattati correttamente nei suggerimenti",
+        "v5 (2026-09-20): selettore 'La tua auto' (marca → modello): carburante e consumo reale stimato impostati automaticamente da data/auto.json (EEA, 2.500+ modelli immatricolati in Italia dal 2010, WLTP +14% / NEDC +35%)"
       ],
       "design": {
         "layout": "dashboard",
@@ -82,9 +83,9 @@ window.__APPS__ = {
         "keywords": [
           "quanto costa un viaggio in auto",
           "costo benzina viaggio",
+          "consumo auto per modello",
           "calcolo carburante e pedaggi",
-          "conviene auto o treno",
-          "distanza in auto tra città"
+          "conviene auto o treno"
         ],
         "intent": "Chi sta organizzando un viaggio o una vacanza e vuole sapere subito quanto spende in auto, quanto tocca a testa e se conviene rispetto al treno.",
         "target": "Famiglie e gruppi di amici che pianificano vacanze e weekend, pendolari occasionali; 25-55 anni; da telefono.",
@@ -116,7 +117,7 @@ window.__APPS__ = {
           }
         ]
       },
-      "size": 79124
+      "size": 86221
     },
     {
       "title": "Lista Valigia",

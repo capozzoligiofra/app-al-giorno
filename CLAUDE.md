@@ -203,6 +203,9 @@ ridotto) se la chiamata fallisce o l'utente è offline:
   una GitHub Action; struttura: `updated`, `italia`, `regioni`, `province`, `regioneDiProvincia`).
   Usalo per qualunque app che parli di carburante, invece di numeri fissi (con fallback incorporato
   per l'apertura da file://).
+- **Dati del repo**: `../../data/auto.json` = catalogo auto EEA (marca → modelli con carburante,
+  consumo omologato `dichiarato` e stima su strada `reale`, cilindrata, kW; 430 KB: caricalo solo
+  quando l'utente apre il selettore). Generato da `tools/auto.mjs` ogni mese.
 Niente altro: niente API con chiave, niente servizi a pagamento, niente "prova gratuita".
 Mostra sempre la fonte e la data del dato accanto al risultato.
 
