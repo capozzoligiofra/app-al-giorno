@@ -54,7 +54,7 @@ window.__APPS__ = {
       "title": "Costo Viaggio in Auto",
       "slug": "2026-09-19-costo-viaggio-auto",
       "date": "2026-09-19",
-      "description": "Calcola quanto costa un viaggio in auto: carburante, pedaggi e usura, diviso per persona, con confronto auto vs treno.",
+      "description": "Calcola quanto costa un viaggio in auto: distanza tra città, carburante ai prezzi regionali, pedaggi e usura, diviso per persona.",
       "category": "calcolatori-convertitori",
       "tags": [
         "viaggio",
@@ -66,8 +66,10 @@ window.__APPS__ = {
       "source": "richiesta",
       "request": "Costo Viaggio in Auto — keyword: \"calcolo costo viaggio auto\" — pianificazione vacanze, affiliazione naturale (accessori auto); Pro: confronto auto vs treno",
       "status": "pronta",
-      "version": 1,
-      "changelog": [],
+      "version": 2,
+      "changelog": [
+        "v2 (2026-09-19): distanza stimata automaticamente da partenza e arrivo (elenco offline di 170+ località, linea d'aria × 1,2) con link 'Verifica su Google Maps'; prezzi carburante sostituiti con le medie regionali MIMIT del 19/09/2026 e selettore regione (i vecchi 1,75/1,68 erano fuori di 40+ cent); km di autostrada proposti dal percorso; nuove Pro: Itinerario a tappe e Stampa preventivo PDF; guida e FAQ aggiornate."
+      ],
       "design": {
         "layout": "dashboard",
         "palette": "nero-neon",
@@ -79,11 +81,12 @@ window.__APPS__ = {
           "quanto costa un viaggio in auto",
           "costo benzina viaggio",
           "calcolo carburante e pedaggi",
-          "conviene auto o treno"
+          "conviene auto o treno",
+          "distanza in auto tra città"
         ],
         "intent": "Chi sta organizzando un viaggio o una vacanza e vuole sapere subito quanto spende in auto, quanto tocca a testa e se conviene rispetto al treno.",
         "target": "Famiglie e gruppi di amici che pianificano vacanze e weekend, pendolari occasionali; 25-55 anni; da telefono.",
-        "edge": "Costo vero e non solo la benzina: pedaggio stimato dai km di autostrada, usura al km, extra, diviso a persona; funziona offline, senza registrazione; Pro: confronto auto vs treno con punto di pareggio e viaggi salvati.",
+        "edge": "Basta scrivere partenza e arrivo: distanza stimata offline, prezzo medio del carburante della regione (fonte MIMIT), pedaggio dai km di autostrada, usura al km, extra, diviso a persona; senza registrazione né API; Pro: itinerario a tappe, confronto auto vs treno, viaggi salvati, preventivo PDF.",
         "monetization": [
           "adsense",
           "affiliate",
@@ -91,8 +94,10 @@ window.__APPS__ = {
           "support"
         ],
         "pro": [
+          "Itinerario a tappe",
           "Confronto auto vs treno",
-          "Viaggi salvati"
+          "Viaggi salvati",
+          "Stampa preventivo PDF"
         ],
         "affiliate": [
           {
@@ -109,7 +114,7 @@ window.__APPS__ = {
           }
         ]
       },
-      "size": 41143
+      "size": 70073
     },
     {
       "title": "Lista Valigia",

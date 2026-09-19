@@ -7,6 +7,7 @@ Puoi aggiungere righe dal sito locale (sezione Richieste) oppure editando questo
 
 ## Coda
 
+- [x] migliora apps/2026-09-19-costo-viaggio-auto: inserisci nuove funzionalità tra le quali: calcolo automatico della distanza dopo l'inserimento della località di partenza e quiella di arrivo magari con un'integrazione a maps. I prezzi medi del carburante sono sbagliatissimi, trova qualche api a cui mi posso collegare per dare dati reali in tempo reale. Che funzioni premium hai in mente di aggiungere? → apps/2026-09-19-costo-viaggio-auto v2
 - [x] Costo Viaggio in Auto — keyword: "calcolo costo viaggio auto" — pianificazione vacanze, affiliazione naturale (accessori auto); Pro: confronto auto vs treno → apps/2026-09-19-costo-viaggio-auto
 - [x] Bozza Rapida — appunti veloci a schede con ricerca istantanea, salvati sul telefono → apps/2026-09-17-bozza-rapida
 - [x] migliora apps/2026-09-17-mance-e-conto: non è responsive per telefono → apps/2026-09-17-mance-e-conto v2
