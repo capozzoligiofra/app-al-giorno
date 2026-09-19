@@ -342,7 +342,7 @@ window.__APPS__ = {
       "title": "Bozza Rapida",
       "slug": "2026-09-17-bozza-rapida",
       "date": "2026-09-17",
-      "description": "Appunti veloci a schede con ricerca istantanea (anche senza accenti), fissa in cima, copia, condividi, backup: tutto salvato sul telefono.",
+      "description": "Blocco note online senza registrazione: più appunti a schede, ricerca istantanea anche senza accenti, tutto salvato sul dispositivo.",
       "category": "produttivita",
       "tags": [
         "appunti",
@@ -353,15 +353,38 @@ window.__APPS__ = {
       "source": "richiesta",
       "request": "Bozza Rapida — appunti veloci a schede con ricerca istantanea, salvati sul telefono",
       "status": "pronta",
-      "version": 1,
-      "changelog": [],
+      "version": 2,
+      "changelog": [
+        "v2 (2026-09-19): modello business — keyword \"blocco note online senza registrazione\", SEO (title, description, canonical, OG, JSON-LD WebApplication e FAQPage), guida con esempio e FAQ, agganci monetizzazione, funzioni Pro Esporta e stampa e Cronologia delle versioni; la pagina ora scorre (tool in alto, guida sotto) e il dettaglio è a tutto schermo su telefono"
+      ],
       "design": {
         "layout": "list-detail",
         "palette": "grigio-carta",
         "font": "serif-editoriale"
       },
-      "business": null,
-      "size": 31326
+      "business": {
+        "keyword": "blocco note online senza registrazione",
+        "keywords": [
+          "blocco note online",
+          "blocco note online gratis",
+          "appunti veloci online",
+          "scrivere note nel browser senza account"
+        ],
+        "intent": "Chi deve annotare o ritrovare qualcosa adesso dal browser — un codice, un indirizzo, una lista — e non vuole creare un account né installare un'app.",
+        "target": "Chi lavora o studia con il telefono in mano, 18-55 anni: appunti al volo in negozio, in ufficio, in viaggio.",
+        "edge": "Più appunti veri e non una casella unica, ricerca istantanea che ignora maiuscole e accenti, appunti fissati in cima, backup esportabile: tutto senza account e senza che il testo esca dal dispositivo.",
+        "monetization": [
+          "adsense",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Esporta e stampa",
+          "Cronologia delle versioni"
+        ],
+        "affiliate": []
+      },
+      "size": 53858
     }
   ]
 };

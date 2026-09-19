@@ -5,8 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#f1efe9" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#161615" media="(prefers-color-scheme: dark)">
-  <title>Bozza Rapida — appunti veloci con ricerca istantanea</title>
-  <meta name="description" content="Appunti veloci a schede, ricerca istantanea mentre scrivi, tutto salvato sul telefono senza account.">
+  <title>Bozza Rapida: blocco note online senza registrazione</title>
+  <meta name="description" content="Blocco note online senza registrazione: scrivi più appunti, ritrovali con la ricerca istantanea e tienili salvati solo sul tuo dispositivo, anche offline.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-17-bozza-rapida/">
+  <meta property="og:title" content="Bozza Rapida: blocco note online senza registrazione">
+  <meta property="og:description" content="Apri, scrivi, ritrova. Più appunti, ricerca istantanea che ignora gli accenti, tutto salvato solo sul tuo dispositivo. Nessun account.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-17-bozza-rapida/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Bozza Rapida",
+    "description": "Blocco note online senza registrazione: più appunti a schede, ricerca istantanea che ignora gli accenti, appunti fissati in cima e backup esportabile. I dati restano sul dispositivo.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-17-bozza-rapida/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Serve registrarsi per usare il blocco note online?", "acceptedAnswer": { "@type": "Answer", "text": "No. Non c'è nessun account, nessuna email e niente da installare: apri la pagina e scrivi. Gli appunti vengono salvati nella memoria locale del browser mentre digiti." } },
+      { "@type": "Question", "name": "Gli appunti sono privati?", "acceptedAnswer": { "@type": "Answer", "text": "Il testo resta nella memoria locale del browser su quel dispositivo e non viene inviato a nessun server. Chi però usa lo stesso browser sullo stesso dispositivo può leggerli: non è il posto giusto per password o dati sensibili." } },
+      { "@type": "Question", "name": "Funziona senza connessione?", "acceptedAnswer": { "@type": "Answer", "text": "Sì. Dopo il primo caricamento la pagina funziona anche in aereo o in cantina: scrittura, ricerca e salvataggio avvengono tutti nel browser, senza chiamate di rete." } },
+      { "@type": "Question", "name": "Posso spostare gli appunti su un altro telefono o sul computer?", "acceptedAnswer": { "@type": "Answer", "text": "Sì, con Esporta backup scarichi un file .json e con Importa backup lo rimetti dentro sull'altro dispositivo. L'importazione unisce senza cancellare: a parità di appunto tiene la versione modificata più di recente." } },
+      { "@type": "Question", "name": "Quanti appunti posso salvare?", "acceptedAnswer": { "@type": "Answer", "text": "Nell'ordine delle migliaia. Il browser riserva tipicamente circa 5 MB per sito: duecento appunti da mille caratteri occupano circa 200 KB. Nel pannello Backup e spazio vedi sempre quanto stai usando." } }
+    ]
+  }
+  </script>
   <style>
     :root {
       --carta: #f1efe9;
@@ -36,53 +68,48 @@
     }
 
     * { box-sizing: border-box; }
-    html, body { margin: 0; height: 100%; overflow: hidden; }
+    html { -webkit-text-size-adjust: 100%; }
     body {
+      margin: 0;
       font-family: var(--serif);
       font-size: 17px;
-      line-height: 1.5;
+      line-height: 1.6;
       color: var(--inchiostro);
       background: var(--carta);
-      -webkit-text-size-adjust: 100%;
     }
+    body.in-dettaglio { overflow: hidden; }
     button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
-    button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid var(--accento); outline-offset: 2px; }
+    button:focus-visible, input:focus-visible, a:focus-visible, select:focus-visible, summary:focus-visible {
+      outline: 2px solid var(--accento); outline-offset: 2px;
+    }
+    a { color: var(--accento); }
     svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 
-    /* Due pannelli: la lista e il dettaglio. Su telefono il dettaglio scorre sopra la lista da destra. */
-    .app { position: relative; height: 100dvh; overflow: hidden; }
-    .pannello { position: absolute; inset: 0; display: flex; flex-direction: column; min-height: 0; }
-    .lista { background: var(--carta); z-index: 1; }
-    .dettaglio {
-      background: var(--foglio);
-      z-index: 2;
-      transform: translateX(100%);
-      visibility: hidden;
-      transition: transform .25s ease, visibility 0s linear .25s;
-    }
-    body.in-dettaglio .dettaglio { transform: none; visibility: visible; transition: transform .25s ease, visibility 0s; }
-    @media (prefers-reduced-motion: reduce) {
-      .dettaglio, body.in-dettaglio .dettaglio { transition: none; }
-    }
+    .pagina { padding: 0 16px calc(32px + env(safe-area-inset-bottom)); }
 
-    /* Testata della lista */
-    .testata {
-      padding: env(safe-area-inset-top) 16px 12px;
-      border-bottom: 1px solid var(--linea);
-    }
+    /* ---------- testata ---------- */
+    .testata { padding-top: env(safe-area-inset-top); }
     .tutte {
       display: inline-block;
-      padding: 8px 0;
-      line-height: 28px;
+      padding: 10px 0;
+      line-height: 26px;
       font-size: 15px;
       color: var(--grigio);
       text-decoration: none;
     }
     .tutte:hover { color: var(--inchiostro); text-decoration: underline; }
-    .titolo-riga { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 10px; }
-    h1 { margin: 0; font-size: 32px; line-height: 1.15; font-weight: 700; letter-spacing: -.01em; }
+    .marchio {
+      margin: 4px 0 2px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      color: var(--grigio);
+    }
+    h1 { margin: 0; font-size: 30px; line-height: 1.15; font-weight: 700; letter-spacing: -.01em; }
     h1 em { font-style: italic; font-weight: 400; color: var(--grigio); }
+    .occhiello { margin: 10px 0 18px; font-size: 17px; color: var(--grigio); }
 
+    /* ---------- strumento: barra di ricerca ---------- */
     .cerca {
       display: flex;
       align-items: center;
@@ -108,20 +135,6 @@
     }
     .cerca input::-webkit-search-cancel-button { display: none; }
 
-    .strumenti { margin-top: 12px; padding: 12px; border: 1px dashed var(--linea); border-radius: var(--raggio); }
-    .strumenti p { margin: 0 0 10px; font-size: 15px; color: var(--grigio); }
-    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
-    .chip {
-      min-height: 44px;
-      padding: 0 16px;
-      border: 1px solid var(--linea);
-      border-radius: 999px;
-      background: var(--foglio);
-      font-size: 16px;
-    }
-    .chip:hover { border-color: var(--inchiostro); }
-    .chip.pericolo { background: var(--inchiostro); color: var(--carta); border-color: transparent; }
-
     .icona {
       flex: none;
       width: 44px;
@@ -135,10 +148,24 @@
     .icona[aria-pressed="true"] { color: var(--accento); }
     .icona[aria-pressed="true"] svg { fill: currentColor; }
 
-    /* Elenco degli appunti */
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      min-height: 44px;
+      padding: 0 16px;
+      border: 1px solid var(--linea);
+      border-radius: 999px;
+      background: var(--foglio);
+      font-size: 16px;
+    }
+    .chip:hover { border-color: var(--inchiostro); }
+    .chip.pericolo { background: var(--inchiostro); color: var(--carta); border-color: transparent; }
+    .chip.forte { background: var(--accento); color: #fff; border-color: transparent; font-weight: 700; }
+
+    #nuova-inline { display: none; margin-top: 12px; }
+
+    /* ---------- elenco appunti ---------- */
     .conteggio {
-      margin: 0;
-      padding: 12px 16px 0;
+      margin: 16px 0 0;
       font-size: 14px;
       text-transform: uppercase;
       letter-spacing: .12em;
@@ -146,12 +173,8 @@
     }
     .note {
       list-style: none;
-      margin: 0;
-      padding: 10px 16px calc(100px + env(safe-area-inset-bottom));
-      overflow-y: auto;
-      overscroll-behavior: contain;
-      flex: 1;
-      min-height: 0;
+      margin: 10px 0 0;
+      padding: 0;
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -178,7 +201,7 @@
     mark { background: var(--accento-tinta); color: inherit; border-radius: 2px; padding: 0 1px; box-shadow: 0 1px 0 var(--accento); }
 
     .vuoto {
-      margin: 40px 24px;
+      margin: 28px 8px;
       text-align: center;
       color: var(--grigio);
       font-style: italic;
@@ -187,8 +210,28 @@
     }
     .vuoto strong { display: block; font-style: normal; font-weight: 700; color: var(--inchiostro); margin-bottom: 6px; }
 
+    /* ---------- backup ---------- */
+    .strumenti {
+      margin-top: 20px;
+      border: 1px dashed var(--linea);
+      border-radius: var(--raggio);
+      padding: 0 12px;
+    }
+    .strumenti summary {
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+      color: var(--grigio);
+      cursor: pointer;
+    }
+    .strumenti[open] summary { color: var(--inchiostro); }
+    .strumenti .corpo { padding-bottom: 12px; }
+    .strumenti p { margin: 0 0 10px; font-size: 15px; color: var(--grigio); }
+
+    /* ---------- bottone flottante ---------- */
     .fab {
-      position: absolute;
+      position: fixed;
       right: 20px;
       bottom: calc(20px + env(safe-area-inset-bottom));
       width: 60px;
@@ -199,12 +242,29 @@
       display: grid;
       place-items: center;
       box-shadow: 0 6px 16px rgba(0, 0, 0, .25);
-      z-index: 3;
+      z-index: 30;
+      transition: opacity .2s ease, transform .2s ease;
     }
     .fab svg { width: 28px; height: 28px; stroke-width: 2.2; }
     .fab:active { transform: scale(.94); }
+    .fab.via { opacity: 0; transform: scale(.8); pointer-events: none; }
 
-    /* Dettaglio: barra azioni, foglio, piè di pagina */
+    /* ---------- dettaglio: a tutto schermo su telefono ---------- */
+    .dettaglio {
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      display: flex;
+      flex-direction: column;
+      background: var(--foglio);
+      transform: translateX(100%);
+      visibility: hidden;
+      transition: transform .25s ease, visibility 0s linear .25s;
+    }
+    body.in-dettaglio .dettaglio { transform: none; visibility: visible; transition: transform .25s ease, visibility 0s; }
+    @media (prefers-reduced-motion: reduce) {
+      .dettaglio, body.in-dettaglio .dettaglio, .fab { transition: none; }
+    }
     .barra {
       display: flex;
       align-items: center;
@@ -213,10 +273,11 @@
       border-bottom: 1px solid var(--linea);
     }
     .barra .spazio { flex: 1; }
+    .corpo-dettaglio { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
     #testo {
-      flex: 1;
-      min-height: 0;
+      display: block;
       width: 100%;
+      min-height: 46dvh;
       resize: none;
       border: 0;
       outline: none;
@@ -226,7 +287,7 @@
       font-size: 18px;
       line-height: 1.6;
       padding: 18px 20px;
-      -webkit-text-size-adjust: 100%;
+      overflow: hidden;
     }
     #testo::placeholder { color: var(--grigio); font-style: italic; }
     .segnaposto {
@@ -240,7 +301,7 @@
       font-size: 18px;
     }
     body.senza-nota .segnaposto { display: grid; }
-    body.senza-nota #testo, body.senza-nota .pie, body.senza-nota .barra .azione { display: none; }
+    body.senza-nota .corpo-dettaglio, body.senza-nota .pie, body.senza-nota .barra .azione { display: none; }
     .pie {
       display: flex;
       align-items: center;
@@ -256,12 +317,76 @@
     .conferma { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; width: 100%; color: var(--inchiostro); font-size: 16px; }
     .conferma span { flex: 1; }
 
+    /* ---------- sezioni Pro ---------- */
+    .card {
+      margin: 24px 0;
+      padding: 16px;
+      background: var(--foglio);
+      border: 1px solid var(--linea);
+      border-radius: var(--raggio);
+      box-shadow: var(--ombra);
+    }
+    .card h2 { margin: 0 0 6px; font-size: 21px; line-height: 1.25; }
+    .card .spiega { margin: 0 0 12px; font-size: 16px; color: var(--grigio); }
+    .campo { display: block; margin-bottom: 6px; font-size: 15px; color: var(--grigio); }
+    select {
+      font: inherit;
+      font-size: 16px;
+      min-height: 44px;
+      width: 100%;
+      padding: 8px 10px;
+      color: inherit;
+      background: var(--carta);
+      border: 1px solid var(--linea);
+      border-radius: var(--raggio);
+    }
+    .quanti { margin: 10px 0 12px; font-size: 15px; color: var(--grigio); }
+
+    .storia-sez { margin: 0; padding: 16px 20px 24px; border-top: 1px solid var(--linea); }
+    .storia-sez h2 { margin: 0 0 6px; font-size: 18px; }
+    .storia-sez .spiega { margin: 0 0 10px; font-size: 15px; color: var(--grigio); }
+    .storia { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+    .storia li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      border: 1px solid var(--linea);
+      border-radius: var(--raggio);
+      background: var(--carta);
+    }
+    .storia .testo-v { flex: 1; min-width: 0; font-size: 15px; color: var(--grigio); }
+    .storia .testo-v b { display: block; color: var(--inchiostro); font-size: 15px; font-weight: 700; }
+    .storia .anteprima-v { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .storia button { flex: none; min-height: 44px; padding: 0 12px; border: 1px solid var(--linea); border-radius: 999px; font-size: 15px; background: var(--foglio); }
+    .storia .niente { border: 0; background: none; color: var(--grigio); font-style: italic; font-size: 15px; padding: 4px 0; }
+
+    /* ---------- guida ---------- */
+    .guida { margin: 32px auto 0; max-width: 68ch; }
+    .guida h2 { font-size: 24px; line-height: 1.25; margin: 30px 0 8px; }
+    .guida h3 { font-size: 19px; line-height: 1.3; margin: 22px 0 4px; }
+    .guida p { margin: 0 0 12px; }
+    .guida ul { margin: 0 0 12px; padding-left: 20px; }
+    .guida li { margin-bottom: 8px; }
+    .piccolo { font-size: 15px; color: var(--grigio); }
+    .altre { list-style: none; margin: 4px 0 0; padding: 0; border-top: 1px solid var(--linea); }
+    .altre a {
+      display: flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 8px 0;
+      font-size: 16px;
+      border-bottom: 1px solid var(--linea);
+      text-decoration: none;
+    }
+    .altre a:hover { text-decoration: underline; }
+
     .toast {
       position: fixed;
       left: 50%;
       bottom: calc(96px + env(safe-area-inset-bottom));
       transform: translateX(-50%);
-      z-index: 10;
+      z-index: 50;
       display: flex;
       align-items: center;
       gap: 14px;
@@ -275,33 +400,60 @@
     }
     .toast button { min-height: 44px; padding: 0 6px; font-weight: 700; text-decoration: underline; color: inherit; }
 
-    /* Desktop: i due pannelli affiancati, entrambi sempre visibili */
+    /* ---------- desktop: miglioramento progressivo ---------- */
     @media (min-width: 700px) {
-      .app { display: grid; grid-template-columns: 360px 1fr; }
-      .pannello { position: relative; inset: auto; height: 100dvh; }
-      .lista { border-right: 1px solid var(--linea); }
-      .dettaglio { transform: none; visibility: visible; transition: none; }
+      .pagina { max-width: 1080px; margin: 0 auto; padding-inline: 24px; }
+      h1 { font-size: 38px; }
+      .strumento { display: grid; grid-template-columns: minmax(280px, 340px) 1fr; gap: 24px; align-items: start; }
+      #nuova-inline { display: inline-flex; align-items: center; }
+      .fab { display: none; }
+      .dettaglio {
+        position: sticky;
+        inset: auto;
+        top: 16px;
+        z-index: 1;
+        height: 76dvh;
+        border: 1px solid var(--linea);
+        border-radius: var(--raggio);
+        transform: none;
+        visibility: visible;
+        transition: none;
+      }
       #indietro { display: none; }
-      .barra { padding-left: 16px; padding-right: 16px; }
-      #testo { padding: 32px max(24px, calc((100% - 72ch) / 2)); font-size: 19px; }
-      .pie { padding-left: max(24px, calc((100% - 72ch) / 2)); padding-right: max(24px, calc((100% - 72ch) / 2)); }
-      .fab { right: 16px; bottom: 16px; width: 56px; height: 56px; }
+      .barra { padding: 4px 12px; }
+      #testo { padding: 24px; font-size: 19px; }
       .toast { bottom: 24px; }
+      .guida { margin-top: 40px; }
+    }
+
+    /* ---------- stampa: solo il foglio generato ---------- */
+    #foglio-stampa { display: none; }
+    @media print {
+      body > *:not(#foglio-stampa) { display: none !important; }
+      body { background: #fff; color: #000; }
+      #foglio-stampa { display: block; padding: 0; }
+      #foglio-stampa h1 { font-size: 20px; margin: 0 0 4px; }
+      #foglio-stampa .intestazione { font-size: 14px; color: #555; margin-bottom: 18px; }
+      #foglio-stampa article { page-break-inside: avoid; break-inside: avoid; border-bottom: 1px solid #ccc; padding-bottom: 12px; margin-bottom: 14px; }
+      #foglio-stampa h2 { font-size: 16px; margin: 0 0 4px; }
+      #foglio-stampa .data { font-size: 14px; color: #555; margin: 0 0 6px; }
+      #foglio-stampa pre { font-family: inherit; font-size: 15px; white-space: pre-wrap; margin: 0; }
     }
   </style>
 </head>
 <body class="senza-nota">
-  <div class="app">
+  <div class="pagina">
 
-    <section class="pannello lista" aria-label="Elenco appunti">
-      <header class="testata">
-        <a class="tutte" href="../../index.html">← Tutte le app</a>
-        <div class="titolo-riga">
-          <h1>Bozza <em>Rapida</em></h1>
-          <button class="icona" id="altro" type="button" aria-label="Backup e informazioni" aria-expanded="false">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1.4" fill="currentColor"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/><circle cx="19" cy="12" r="1.4" fill="currentColor"/></svg>
-          </button>
-        </div>
+    <header class="testata">
+      <a class="tutte" href="../../index.html">← Tutte le app</a>
+      <p class="marchio">Bozza Rapida</p>
+      <h1>Blocco note online <em>senza registrazione</em></h1>
+      <p class="occhiello">Apri e scrivi: l'appunto si salva da solo su questo dispositivo. Più appunti a schede, ricerca istantanea anche senza accenti, nessun account e nessun invio a un server.</p>
+    </header>
+
+    <section class="strumento" id="strumento" aria-label="Blocco note">
+
+      <div class="colonna-lista">
         <div class="cerca">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
           <input id="cerca" type="search" placeholder="Cerca negli appunti" aria-label="Cerca negli appunti" autocomplete="off" autocapitalize="off" enterkeyhint="search">
@@ -309,94 +461,192 @@
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
           </button>
         </div>
-        <div class="strumenti" id="strumenti" hidden>
-          <p id="info"></p>
-          <div class="chips">
-            <button class="chip" id="esporta" type="button">Esporta backup</button>
-            <button class="chip" id="importa" type="button">Importa backup</button>
+
+        <button class="chip forte" id="nuova-inline" type="button">＋ Nuovo appunto</button>
+
+        <p class="conteggio" id="conteggio"></p>
+        <ul class="note" id="note"></ul>
+        <div class="vuoto" id="vuoto" hidden></div>
+
+        <details class="strumenti">
+          <summary>Backup e spazio</summary>
+          <div class="corpo">
+            <p id="info"></p>
+            <div class="chips">
+              <button class="chip" id="esporta" type="button">Esporta backup</button>
+              <button class="chip" id="importa" type="button">Importa backup</button>
+            </div>
+            <input type="file" id="file" accept=".json,application/json" hidden>
           </div>
-          <input type="file" id="file" accept=".json,application/json" hidden>
+        </details>
+      </div>
+
+      <section class="dettaglio" aria-label="Appunto">
+        <header class="barra">
+          <button class="icona" id="indietro" type="button" aria-label="Torna agli appunti">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+          </button>
+          <span class="spazio"></span>
+          <button class="icona azione" id="fissa" type="button" aria-label="Fissa in alto" aria-pressed="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16v6M8 16h8l-1.5-4V6.5A1.5 1.5 0 0 0 13 5h-2a1.5 1.5 0 0 0-1.5 1.5V12z"/></svg>
+          </button>
+          <button class="icona azione" id="copia" type="button" aria-label="Copia il testo">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+          </button>
+          <button class="icona azione" id="condividi" type="button" aria-label="Condividi" hidden>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v13M7 8l5-5 5 5M5 14v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/></svg>
+          </button>
+          <button class="icona azione" id="elimina" type="button" aria-label="Elimina appunto">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg>
+          </button>
+        </header>
+
+        <div class="segnaposto">Scegli un appunto dall'elenco oppure creane uno nuovo con il tasto +.</div>
+
+        <div class="corpo-dettaglio">
+          <textarea id="testo" placeholder="Scrivi qui. La prima riga diventa il titolo." aria-label="Testo dell'appunto" spellcheck="true" enterkeyhint="enter"></textarea>
+
+          <section class="storia-sez" data-pro="Cronologia delle versioni">
+            <h2>Cronologia delle versioni</h2>
+            <p class="spiega">Ogni volta che apri un appunto e lo modifichi, la versione precedente viene messa da parte: da qui puoi tornare indietro.</p>
+            <ul class="storia" id="storia"></ul>
+          </section>
         </div>
-      </header>
 
-      <p class="conteggio" id="conteggio"></p>
-      <ul class="note" id="note"></ul>
-      <div class="vuoto" id="vuoto" hidden></div>
+        <footer class="pie">
+          <span id="stato"></span>
+          <div class="conferma" id="conferma" hidden>
+            <span>Eliminare questo appunto?</span>
+            <button class="chip pericolo" id="conferma-si" type="button">Elimina</button>
+            <button class="chip" id="conferma-no" type="button">Annulla</button>
+          </div>
+        </footer>
+      </section>
 
-      <button class="fab" id="nuova" type="button" aria-label="Nuovo appunto">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-      </button>
     </section>
 
-    <section class="pannello dettaglio" aria-label="Appunto">
-      <header class="barra">
-        <button class="icona" id="indietro" type="button" aria-label="Torna agli appunti">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
-        </button>
-        <span class="spazio"></span>
-        <button class="icona azione" id="fissa" type="button" aria-label="Fissa in alto" aria-pressed="false">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16v6M8 16h8l-1.5-4V6.5A1.5 1.5 0 0 0 13 5h-2a1.5 1.5 0 0 0-1.5 1.5V12z"/></svg>
-        </button>
-        <button class="icona azione" id="copia" type="button" aria-label="Copia il testo">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
-        </button>
-        <button class="icona azione" id="condividi" type="button" aria-label="Condividi" hidden>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v13M7 8l5-5 5 5M5 14v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/></svg>
-        </button>
-        <button class="icona azione" id="elimina" type="button" aria-label="Elimina appunto">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg>
-        </button>
-      </header>
+    <div data-ad="top"></div>
 
-      <div class="segnaposto">Scegli un appunto dall'elenco oppure creane uno nuovo con il tasto +.</div>
-      <textarea id="testo" placeholder="Scrivi qui. La prima riga diventa il titolo." aria-label="Testo dell'appunto" spellcheck="true" enterkeyhint="enter"></textarea>
+    <section class="card" data-pro="Esporta e stampa">
+      <h2>Esporta e stampa</h2>
+      <p class="spiega">Porta gli appunti fuori dal browser: un file di testo che si apre ovunque, oppure una stampa pulita da cui salvare il PDF.</p>
+      <label class="campo" for="ambito">Cosa esportare</label>
+      <select id="ambito">
+        <option value="tutti">Tutti gli appunti</option>
+        <option value="fissati">Solo quelli fissati in cima</option>
+        <option value="ricerca">Solo i risultati della ricerca</option>
+      </select>
+      <p class="quanti" id="quanti"></p>
+      <div class="chips">
+        <button class="chip" id="esporta-txt" type="button">Scarica .txt</button>
+        <button class="chip" id="stampa" type="button">Stampa o salva in PDF</button>
+      </div>
+    </section>
 
-      <footer class="pie">
-        <span id="stato"></span>
-        <div class="conferma" id="conferma" hidden>
-          <span>Eliminare questo appunto?</span>
-          <button class="chip pericolo" id="conferma-si" type="button">Elimina</button>
-          <button class="chip" id="conferma-no" type="button">Annulla</button>
-        </div>
-      </footer>
+    <section id="guida" class="guida">
+      <h2>Un blocco note online che tiene davvero gli appunti</h2>
+      <p>Quasi tutti i blocchi note che si trovano in rete sono una sola grande casella di testo: comodi per incollare al volo un indirizzo, molto meno quando gli appunti diventano dieci e devi ritrovare quello giusto. Quelli che invece gestiscono più note e cartelle chiedono quasi sempre un account e una password. Qui non succede né l'una né l'altra cosa: ogni appunto è una scheda a sé, l'elenco resta ordinato e non c'è niente da registrare.</p>
+
+      <h3>Come funziona</h3>
+      <p>Tocchi il tasto <strong>+</strong>, scrivi, e torni all'elenco. La prima riga non vuota diventa automaticamente il titolo, tutto il resto è il corpo dell'appunto. Non esiste un bottone «salva»: il testo viene scritto nella memoria del browser dopo pochi decimi di secondo di pausa, quindi anche se chiudi la scheda di colpo non perdi niente.</p>
+      <p>Gli appunti finiscono in <em>localStorage</em>, lo stesso spazio che i siti usano per ricordare le tue preferenze. Non passano da un server, non c'è un profilo a cui sono collegati e non c'è niente da installare. Se torni domani sullo stesso browser, li ritrovi dove li avevi lasciati; se apri la pagina da un altro dispositivo, invece, l'elenco sarà vuoto — per spostarli serve il backup, che trovi qui sotto.</p>
+
+      <h3>Trovare un appunto in due secondi</h3>
+      <p>Scrivi nella barra in alto e l'elenco si restringe mentre digiti, con le parole trovate evidenziate sia nel titolo sia nell'anteprima. La ricerca ignora maiuscole e accenti: cercando «perche» trovi «perché», cercando «citta» trovi «città». È il dettaglio che conta quando scrivi di fretta dal telefono e gli accenti li salti. Premendo Invio si apre direttamente il primo risultato.</p>
+      <p>Gli appunti che consulti sempre — il codice del wi-fi, le misure di una stanza, la lista della spesa ricorrente — puoi fissarli in cima con l'icona della puntina: restano al primo posto anche quando ne aggiungi altri venti.</p>
+
+      <h3>Un esempio concreto</h3>
+      <p>Sei dall'idraulico e ti serve il numero di serie della caldaia, annotato a marzo. Apri la pagina, scrivi «cald» nella ricerca: l'unico appunto che contiene quella sequenza compare in cima con «caldaia» evidenziato. Lo tocchi, premi il tasto copia, incolli il numero nel messaggio. Dieci secondi, senza aver fatto login da nessuna parte. E lo spazio non è un problema: duecento appunti da mille caratteri l'uno occupano circa 200 KB, contro i circa 5 MB che il browser mette a disposizione per ogni sito. Nel pannello «Backup e spazio» vedi sempre quanti appunti hai e quanto pesano.</p>
+
+      <h3>Errori comuni</h3>
+      <ul>
+        <li><strong>Pulire la cronologia e perdere tutto.</strong> Se cancelli i dati dei siti, o se navighi in incognito, gli appunti se ne vanno con loro. Ogni tanto tocca «Esporta backup»: scarichi un file <code>.json</code> che puoi rimettere dentro con «Importa backup», anche su un altro dispositivo.</li>
+        <li><strong>Aspettarsi la sincronizzazione automatica.</strong> Non c'è, ed è una scelta: senza server non c'è niente da sincronizzare e niente da farsi rubare. Il passaggio da telefono a computer si fa con l'esportazione.</li>
+        <li><strong>Cominciare con un elenco puntato.</strong> Il titolo è la prima riga non vuota: se parti con «- latte», l'appunto si chiamerà così. Scrivi prima una riga di intestazione, poi il contenuto.</li>
+        <li><strong>Usarlo per le password.</strong> Un blocco note nel browser non è una cassaforte: chi ha in mano il tuo dispositivo sbloccato legge tutto. Per le credenziali serve un gestore di password.</li>
+      </ul>
+
+      <h3>Domande frequenti</h3>
+
+      <h3>Serve registrarsi per usare il blocco note online?</h3>
+      <p>No. Niente account, niente email, niente installazione: apri la pagina e scrivi. Il salvataggio avviene nel browser mentre digiti.</p>
+
+      <h3>Gli appunti sono privati?</h3>
+      <p>Il testo resta sul dispositivo e non viene inviato da nessuna parte: non esiste una copia che qualcuno possa leggere a distanza. Attenzione però al rovescio della medaglia: chiunque usi lo stesso browser su quello stesso dispositivo apre la pagina e li vede.</p>
+
+      <h3>Funziona senza connessione?</h3>
+      <p>Sì. Dopo il primo caricamento scrittura, ricerca e salvataggio avvengono tutti dentro il browser, senza una sola chiamata di rete: funziona in aereo, in cantina e in metropolitana. Su telefono conviene aggiungere la pagina alla schermata iniziale, così si apre come un'app.</p>
+
+      <h3>Posso spostare gli appunti su un altro telefono?</h3>
+      <p>Sì. «Esporta backup» scarica un file <code>.json</code>; sull'altro dispositivo apri la stessa pagina e usa «Importa backup». L'importazione unisce invece di sostituire: gli appunti nuovi vengono aggiunti, e quando lo stesso appunto esiste da entrambe le parti resta la versione modificata più di recente.</p>
+
+      <h3>Ho cancellato un appunto per sbaglio: posso recuperarlo?</h3>
+      <p>Subito dopo l'eliminazione compare in basso un avviso con «Annulla», valido per qualche secondo. Per tornare invece a una stesura precedente dello stesso appunto c'è la cronologia delle versioni, che conserva le ultime sei stesure di ogni scheda.</p>
+
+      <div data-ad="bottom"></div>
+      <div data-support></div>
+      <p class="piccolo">Questa pagina può contenere annunci e link di affiliazione.</p>
+      <ul class="altre">
+        <li><a href="../../privacy.html">Privacy e trattamento dei dati</a></li>
+        <li><a href="../2026-09-18-lista-valigia/">Lista Valigia: cosa mettere in valigia, la checklist per il viaggio</a></li>
+        <li><a href="../2026-09-17-piano-dei-pasti/">Piano dei Pasti: il menù settimanale con la lista della spesa</a></li>
+      </ul>
     </section>
 
   </div>
+
+  <button class="fab" id="nuova" type="button" aria-label="Nuovo appunto">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+  </button>
 
   <div class="toast" id="toast" role="status" aria-live="polite" hidden>
     <span id="toast-testo"></span>
     <button id="toast-azione" type="button" hidden></button>
   </div>
 
+  <div id="foglio-stampa" aria-hidden="true"></div>
+
+  <script src="../../assets/monetize.js"></script>
   <script>
-    // Modello dati, in localStorage "bozza-rapida:v1": { note: [ { id, testo, fissata, creato, modificato } ] }.
-    // Il titolo di un appunto è la prima riga non vuota del testo. Ordine: prima le fissate, poi per
-    // data di modifica decrescente. La ricerca ignora maiuscole e accenti; gli appunti vuoti si cancellano da soli.
+    // Modello dati, in localStorage "bozza-rapida:v1": { note: [ { id, testo, fissata, creato, modificato, storia } ] }.
+    // Il titolo di un appunto è la prima riga non vuota del testo; l'ordine mette prima le fissate, poi
+    // per data di modifica decrescente. `storia` tiene le ultime 6 stesure precedenti ({ t, testo }, la più
+    // recente in testa): una versione ci finisce quando lasci un appunto che avevi modificato. La ricerca
+    // ignora maiuscole e accenti; gli appunti rimasti vuoti si cancellano da soli.
     const CHIAVE = 'bozza-rapida:v1';
+    const MAX_VERSIONI = 6;
     const $ = id => document.getElementById(id);
     const el = {
       note: $('note'), vuoto: $('vuoto'), conteggio: $('conteggio'), cerca: $('cerca'), cercaX: $('cerca-x'),
-      altro: $('altro'), strumenti: $('strumenti'), info: $('info'), esporta: $('esporta'), importa: $('importa'), file: $('file'),
-      nuova: $('nuova'), indietro: $('indietro'), fissa: $('fissa'), copia: $('copia'), condividi: $('condividi'), elimina: $('elimina'),
+      info: $('info'), esporta: $('esporta'), importa: $('importa'), file: $('file'),
+      nuova: $('nuova'), nuovaInline: $('nuova-inline'), strumento: $('strumento'),
+      indietro: $('indietro'), fissa: $('fissa'), copia: $('copia'), condividi: $('condividi'), elimina: $('elimina'),
       testo: $('testo'), stato: $('stato'), conferma: $('conferma'), confermaSi: $('conferma-si'), confermaNo: $('conferma-no'),
-      toast: $('toast'), toastTesto: $('toast-testo'), toastAzione: $('toast-azione'),
+      storia: $('storia'), ambito: $('ambito'), quanti: $('quanti'), esportaTxt: $('esporta-txt'), stampaBtn: $('stampa'),
+      stampa: $('foglio-stampa'), toast: $('toast'), toastTesto: $('toast-testo'), toastAzione: $('toast-azione'),
     };
     const SPILLO = '<svg class="spillo" viewBox="0 0 24 24" aria-label="Fissato"><path d="M12 16v6M8 16h8l-1.5-4V6.5A1.5 1.5 0 0 0 13 5h-2a1.5 1.5 0 0 0-1.5 1.5V12z"/></svg>';
 
     let stato = carica();
     let corrente = null;      // id dell'appunto aperto
+    let baseTesto = '';       // testo com'era all'apertura (per la cronologia)
+    let baseQuando = 0;
     let query = '';
     let timerSalva = null;
     let storiaSpinta = false; // su telefono l'apertura aggiunge una voce alla cronologia (tasto Indietro)
     let timerToast = null, azioneToast = null;
 
     const desktop = () => matchMedia('(min-width: 700px)').matches;
+    const isPro = () => !!(window.Monetize && Monetize.isPro());
 
     /* ---------- persistenza ---------- */
     function carica() {
       try {
         const d = JSON.parse(localStorage.getItem(CHIAVE));
-        if (d && Array.isArray(d.note)) return d;
+        if (d && Array.isArray(d.note)) {
+          for (const n of d.note) if (!Array.isArray(n.storia)) n.storia = [];
+          return d;
+        }
       } catch (e) { /* dati assenti o corrotti: si riparte da zero */ }
       return { note: [] };
     }
@@ -519,7 +769,7 @@
 
       if (!totale) {
         el.conteggio.textContent = '';
-        el.vuoto.innerHTML = '<strong>Nessun appunto, per ora.</strong>Tocca + per scrivere il primo: resta salvato su questo dispositivo.';
+        el.vuoto.innerHTML = '<strong>Nessun appunto, per ora.</strong>Tocca + per scrivere il primo: resta salvato su questo dispositivo, senza registrarsi.';
         el.vuoto.hidden = false;
       } else if (!visibili.length) {
         el.conteggio.textContent = '0 su ' + totale;
@@ -534,6 +784,66 @@
       }
       el.info.textContent = totale + (totale === 1 ? ' appunto salvato' : ' appunti salvati') + ' su questo dispositivo'
         + ' (' + Math.max(1, Math.round((localStorage.getItem(CHIAVE) || '').length / 1024)) + ' KB).';
+      aggiornaQuanti();
+    }
+
+    /* ---------- cronologia delle versioni (Pro) ---------- */
+    function registraVersione(n) {
+      if (!n || n.testo === baseTesto) return;
+      if (!Array.isArray(n.storia)) n.storia = [];
+      if (baseTesto.trim() && n.storia[0] && n.storia[0].testo === baseTesto) return;
+      if (baseTesto.trim()) n.storia.unshift({ t: baseQuando, testo: baseTesto });
+      n.storia = n.storia.slice(0, MAX_VERSIONI);
+    }
+    function disegnaStoria() {
+      const n = trova(corrente);
+      el.storia.textContent = '';
+      const versioni = (n && n.storia) || [];
+      if (!versioni.length) {
+        const li = document.createElement('li');
+        li.className = 'niente';
+        li.textContent = 'Nessuna versione precedente: compariranno qui appena modifichi questo appunto.';
+        el.storia.append(li);
+        return;
+      }
+      versioni.forEach((v, i) => {
+        const li = document.createElement('li');
+        const d = document.createElement('div');
+        d.className = 'testo-v';
+        const b = document.createElement('b');
+        b.textContent = tempoRelativo(v.t) + ' · ' + parole(v.testo) + (parole(v.testo) === 1 ? ' parola' : ' parole');
+        const a = document.createElement('span');
+        a.className = 'anteprima-v';
+        a.textContent = v.testo.replace(/\s+/g, ' ').trim().slice(0, 70) || 'Appunto vuoto';
+        d.append(b, a);
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.textContent = 'Ripristina';
+        btn.addEventListener('click', () => ripristina(i));
+        li.append(d, btn);
+        el.storia.append(li);
+      });
+    }
+    function ripristina(indice) {
+      if (!isPro()) { if (window.Monetize) Monetize.unlock(); return; }
+      const n = trova(corrente);
+      if (!n || !n.storia || !n.storia[indice]) return;
+      const versione = n.storia[indice];
+      const attuale = n.testo;
+      n.storia.splice(indice, 1);
+      if (attuale.trim()) n.storia.unshift({ t: n.modificato, testo: attuale });
+      n.storia = n.storia.slice(0, MAX_VERSIONI);
+      n.testo = versione.testo;
+      n.modificato = Date.now();
+      el.testo.value = n.testo;
+      adattaAltezza();
+      baseTesto = n.testo;
+      baseQuando = n.modificato;
+      salva();
+      disegnaLista();
+      disegnaStoria();
+      aggiornaStato();
+      toast('Versione ripristinata');
     }
 
     /* ---------- dettaglio ---------- */
@@ -541,6 +851,17 @@
       if (!corrente || corrente === eccetto) return;
       const n = trova(corrente);
       if (n && !n.testo.trim()) { stato.note = stato.note.filter(x => x.id !== corrente); salva(); }
+    }
+    function chiudiCorrente(eccetto) {
+      salvaSubito();
+      const n = trova(corrente);
+      if (n) registraVersione(n);
+      pulisciVuota(eccetto);
+      if (n) salva();
+    }
+    function adattaAltezza() {
+      el.testo.style.height = 'auto';
+      el.testo.style.height = el.testo.scrollHeight + 'px';
     }
     function aggiornaStato() {
       const n = trova(corrente);
@@ -551,16 +872,19 @@
     function apri(id, opzioni = {}) {
       const n = trova(id);
       if (!n) return;
-      salvaSubito();
-      pulisciVuota(id);
+      if (corrente !== id) chiudiCorrente(id);
       corrente = id;
+      baseTesto = n.testo;
+      baseQuando = n.modificato;
       el.testo.value = n.testo;
       document.body.classList.remove('senza-nota');
       el.fissa.setAttribute('aria-pressed', String(!!n.fissata));
       el.fissa.setAttribute('aria-label', n.fissata ? 'Togli dall\'alto' : 'Fissa in alto');
       nascondiConferma();
       aggiornaStato();
+      disegnaStoria();
       mostraDettaglio();
+      adattaAltezza();
       if (opzioni.focus) el.testo.focus();
       disegnaLista();
     }
@@ -573,15 +897,16 @@
       }
     }
     function chiudiDettaglio() {
-      salvaSubito();
-      pulisciVuota(null);
+      chiudiCorrente(null);
       corrente = null;
+      baseTesto = '';
       storiaSpinta = false;
       document.body.classList.remove('in-dettaglio');
       document.body.classList.add('senza-nota');
       el.testo.value = '';
       nascondiConferma();
       disegnaLista();
+      disegnaStoria();
     }
     function tornaAllaLista() {
       if (storiaSpinta) history.back(); else chiudiDettaglio();
@@ -610,15 +935,17 @@
       const b = e.target.closest('.nota');
       if (b) apri(b.dataset.id);
     });
-    el.nuova.addEventListener('click', () => {
-      salvaSubito();
-      pulisciVuota(null);
-      const n = { id: nuovoId(), testo: '', fissata: false, creato: Date.now(), modificato: Date.now() };
+    function nuovoAppunto() {
+      chiudiCorrente(null);
+      const n = { id: nuovoId(), testo: '', fissata: false, creato: Date.now(), modificato: Date.now(), storia: [] };
       stato.note.unshift(n);
       salva();
       if (query) { query = ''; el.cerca.value = ''; aggiornaCercaX(); }
       apri(n.id, { focus: true });
-    });
+    }
+    el.nuova.addEventListener('click', nuovoAppunto);
+    el.nuovaInline.addEventListener('click', nuovoAppunto);
+
     function aggiornaCercaX() { el.cercaX.hidden = !el.cerca.value; }
     el.cerca.addEventListener('input', () => { query = el.cerca.value; aggiornaCercaX(); disegnaLista(); });
     el.cercaX.addEventListener('click', () => {
@@ -634,11 +961,6 @@
         if (primo) apri(primo.dataset.id);
       }
     });
-    el.altro.addEventListener('click', () => {
-      const aperto = el.strumenti.hidden;
-      el.strumenti.hidden = !aperto;
-      el.altro.setAttribute('aria-expanded', String(aperto));
-    });
 
     /* ---------- eventi: editor ---------- */
     el.testo.addEventListener('input', () => {
@@ -646,6 +968,7 @@
       if (!n) return;
       n.testo = el.testo.value;
       n.modificato = Date.now();
+      adattaAltezza();
       aggiornaStato();
       clearTimeout(timerSalva);
       timerSalva = setTimeout(() => { timerSalva = null; salva(); disegnaLista(); }, 300);
@@ -663,7 +986,9 @@
       if (!n) return;
       n.fissata = !n.fissata;
       salva();
-      apri(corrente);
+      el.fissa.setAttribute('aria-pressed', String(!!n.fissata));
+      el.fissa.setAttribute('aria-label', n.fissata ? 'Togli dall\'alto' : 'Fissa in alto');
+      disegnaLista();
       toast(n.fissata ? 'Fissato in cima all\'elenco' : 'Tolto dalla cima');
     });
     el.copia.addEventListener('click', async () => {
@@ -701,6 +1026,7 @@
       stato.note.splice(indice, 1);
       salva();
       corrente = null;
+      baseTesto = '';
       tornaAllaLista();
       toast('Appunto eliminato', 'Annulla', () => {
         stato.note.splice(Math.min(indice, stato.note.length), 0, n);
@@ -709,19 +1035,22 @@
       });
     });
 
-    /* ---------- backup ---------- */
-    el.esporta.addEventListener('click', () => {
-      salvaSubito();
-      if (!stato.note.length) { toast('Nessun appunto da esportare'); return; }
-      const contenuto = JSON.stringify({ app: 'bozza-rapida', versione: 1, esportato: new Date().toISOString(), note: stato.note }, null, 2);
-      const blob = new Blob([contenuto], { type: 'application/json' });
+    /* ---------- backup (gratuito) ---------- */
+    function scarica(nomeFile, contenuto, tipo) {
+      const blob = new Blob([contenuto], { type: tipo });
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
-      a.download = 'bozza-rapida-' + new Date().toISOString().slice(0, 10) + '.json';
+      a.download = nomeFile;
       document.body.append(a);
       a.click();
       a.remove();
       setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    }
+    el.esporta.addEventListener('click', () => {
+      salvaSubito();
+      if (!stato.note.length) { toast('Nessun appunto da esportare'); return; }
+      const contenuto = JSON.stringify({ app: 'bozza-rapida', versione: 1, esportato: new Date().toISOString(), note: stato.note }, null, 2);
+      scarica('bozza-rapida-' + new Date().toISOString().slice(0, 10) + '.json', contenuto, 'application/json');
       toast('Backup scaricato');
     });
     el.importa.addEventListener('click', () => el.file.click());
@@ -741,6 +1070,7 @@
               id: typeof x.id === 'string' && x.id ? x.id : nuovoId(),
               testo: x.testo, fissata: !!x.fissata,
               creato: Number(x.creato) || Date.now(), modificato: Number(x.modificato) || Date.now(),
+              storia: Array.isArray(x.storia) ? x.storia.filter(v => v && typeof v.testo === 'string').slice(0, MAX_VERSIONI) : [],
             };
             const esistente = trova(n.id);
             if (!esistente) { stato.note.push(n); nuove++; }
@@ -759,20 +1089,90 @@
       lettore.readAsText(f);
     });
 
+    /* ---------- esporta e stampa (Pro) ---------- */
+    function selezione() {
+      const modo = el.ambito.value;
+      if (modo === 'fissati') return stato.note.filter(n => n.fissata && n.testo.trim());
+      if (modo === 'ricerca') return noteVisibili().filter(n => n.testo.trim());
+      return stato.note.filter(n => n.testo.trim()).sort((a, b) => ((b.fissata ? 1 : 0) - (a.fissata ? 1 : 0)) || (b.modificato - a.modificato));
+    }
+    function aggiornaQuanti() {
+      const n = selezione().length;
+      const coda = el.ambito.value === 'ricerca' && !query.trim() ? ' (nessuna ricerca attiva: sono tutti)' : '';
+      el.quanti.textContent = n === 0 ? 'Nessun appunto selezionato.' : n + (n === 1 ? ' appunto selezionato' : ' appunti selezionati') + coda + '.';
+    }
+    el.ambito.addEventListener('change', aggiornaQuanti);
+
+    el.esportaTxt.addEventListener('click', () => {
+      if (!isPro()) { if (window.Monetize) Monetize.unlock(); return; }
+      salvaSubito();
+      const scelte = selezione();
+      if (!scelte.length) { toast('Nessun appunto da esportare'); return; }
+      const data = new Date().toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
+      const righe = ['Bozza Rapida — appunti esportati il ' + data, ''];
+      for (const n of scelte) {
+        righe.push('## ' + (titoloDi(n) || 'Appunto senza titolo'));
+        righe.push('(modificato il ' + new Date(n.modificato).toLocaleDateString('it-IT') + ')');
+        righe.push('');
+        righe.push(n.testo.trim());
+        righe.push('');
+        righe.push('---');
+        righe.push('');
+      }
+      scarica('appunti-' + new Date().toISOString().slice(0, 10) + '.txt', righe.join('\n'), 'text/plain;charset=utf-8');
+      toast(scelte.length + (scelte.length === 1 ? ' appunto scaricato' : ' appunti scaricati'));
+    });
+
+    el.stampaBtn.addEventListener('click', () => {
+      if (!isPro()) { if (window.Monetize) Monetize.unlock(); return; }
+      salvaSubito();
+      const scelte = selezione();
+      if (!scelte.length) { toast('Nessun appunto da stampare'); return; }
+      el.stampa.textContent = '';
+      const h1 = document.createElement('h1');
+      h1.textContent = 'Bozza Rapida';
+      const sotto = document.createElement('p');
+      sotto.className = 'intestazione';
+      sotto.textContent = scelte.length + (scelte.length === 1 ? ' appunto' : ' appunti') + ' · '
+        + new Date().toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
+      el.stampa.append(h1, sotto);
+      for (const n of scelte) {
+        const art = document.createElement('article');
+        const t = document.createElement('h2');
+        t.textContent = titoloDi(n) || 'Appunto senza titolo';
+        const d = document.createElement('p');
+        d.className = 'data';
+        d.textContent = 'Modificato il ' + new Date(n.modificato).toLocaleDateString('it-IT');
+        const pre = document.createElement('pre');
+        pre.textContent = righeDi(n).slice(1).join('\n') || '(nessun testo oltre al titolo)';
+        art.append(t, d, pre);
+        el.stampa.append(art);
+      }
+      window.print();
+    });
+
     /* ---------- globali ---------- */
     document.addEventListener('keydown', e => {
-      const inCampo = /^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName);
-      if (e.key === '/' && !inCampo) { e.preventDefault(); el.cerca.focus(); }
+      const inCampo = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName);
+      if (e.key === '/' && !inCampo && !document.querySelector('dialog[open]')) { e.preventDefault(); el.cerca.focus(); }
     });
     document.addEventListener('visibilitychange', () => { if (document.hidden) salvaSubito(); });
-    window.addEventListener('pagehide', salvaSubito);
+    window.addEventListener('pagehide', () => { const n = trova(corrente); salvaSubito(); if (n) { registraVersione(n); baseTesto = n.testo; salva(); } });
     setInterval(() => {
       if (document.hidden || el.note.contains(document.activeElement)) return;
       disegnaLista();
       aggiornaStato();
     }, 60000);
 
+    // Il bottone flottante sparisce quando si scorre verso la guida, per non coprire il testo.
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(([voce]) => el.nuova.classList.toggle('via', !voce.isIntersecting), { rootMargin: '-72px 0px 0px 0px' })
+        .observe(el.strumento);
+    }
+    if (window.Monetize) Monetize.onPro(() => disegnaStoria());
+
     disegnaLista();
+    disegnaStoria();
   </script>
 </body>
 </html>
