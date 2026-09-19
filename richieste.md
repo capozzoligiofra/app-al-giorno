@@ -7,6 +7,7 @@ Puoi aggiungere righe dal sito locale (sezione Richieste) oppure editando questo
 
 ## Coda
 
+- [x] Costo Viaggio in Auto — keyword: "calcolo costo viaggio auto" — pianificazione vacanze, affiliazione naturale (accessori auto); Pro: confronto auto vs treno → apps/2026-09-19-costo-viaggio-auto
 - [x] Bozza Rapida — appunti veloci a schede con ricerca istantanea, salvati sul telefono → apps/2026-09-17-bozza-rapida
 - [x] migliora apps/2026-09-17-mance-e-conto: non è responsive per telefono → apps/2026-09-17-mance-e-conto v2
 - [x] Mance e Conto — calcola mancia e divisione del conto al ristorante in tre tocchi → apps/2026-09-17-mance-e-conto
@@ -17,4 +18,3 @@ Puoi aggiungere righe dal sito locale (sezione Richieste) oppure editando questo
 - [x] migliora apps/2026-09-17-mance-e-conto: converti al modello business di CLAUDE.md (MERCATO, SEO, MONETIZZAZIONE) — scegli la keyword reale, aggiungi title/description/canonical/OG/JSON-LD, guida con esempio e FAQ (≥350 parole), segnaposto data-ad/data-support (+ data-affiliate se pertinente), almeno una funzione Pro implementata in <section data-pro>, blocco business in app.json, versione +1. Prendi apps/2026-09-17-dividi-il-conto come riferimento. → apps/2026-09-17-mance-e-conto v3
 - [x] migliora apps/2026-09-17-piano-dei-pasti: converti al modello business di CLAUDE.md (MERCATO, SEO, MONETIZZAZIONE) — scegli la keyword reale, aggiungi title/description/canonical/OG/JSON-LD, guida con esempio e FAQ (≥350 parole), segnaposto data-ad/data-support (+ data-affiliate se pertinente), almeno una funzione Pro implementata in <section data-pro>, blocco business in app.json, versione +1. Prendi apps/2026-09-17-dividi-il-conto come riferimento. → apps/2026-09-17-piano-dei-pasti v3
 - [x] migliora apps/2026-09-17-bozza-rapida: converti al modello business di CLAUDE.md (MERCATO, SEO, MONETIZZAZIONE) — scegli la keyword reale, aggiungi title/description/canonical/OG/JSON-LD, guida con esempio e FAQ (≥350 parole), segnaposto data-ad/data-support (+ data-affiliate se pertinente), almeno una funzione Pro implementata in <section data-pro>, blocco business in app.json, versione +1. Prendi apps/2026-09-17-dividi-il-conto come riferimento. → apps/2026-09-17-bozza-rapida v2
-- [ ] Costo Viaggio in Auto — keyword: "calcolo costo viaggio auto" — pianificazione vacanze, affiliazione naturale (accessori auto); Pro: confronto auto vs treno

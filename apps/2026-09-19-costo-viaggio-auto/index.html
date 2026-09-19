@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#111318">
+  <title>Costo Viaggio in Auto: calcolo costo viaggio auto gratis</title>
+  <meta name="description" content="Calcolo costo viaggio auto in pochi secondi: carburante, pedaggi autostradali e usura, diviso tra i passeggeri. Gratis, senza registrazione, funziona offline.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-19-costo-viaggio-auto/">
+  <meta property="og:title" content="Costo Viaggio in Auto: calcolo costo viaggio auto gratis">
+  <meta property="og:description" content="Quanto costa davvero un viaggio in auto? Carburante, pedaggi e usura, diviso a persona. Confronto auto vs treno.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-19-costo-viaggio-auto/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Costo Viaggio in Auto",
+    "description": "Calcolatore gratuito del costo di un viaggio in auto: carburante, pedaggi autostradali, usura e costo per persona, con confronto auto vs treno.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-19-costo-viaggio-auto/",
+    "applicationCategory": "TravelApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Come si calcola il costo del carburante per un viaggio?", "acceptedAnswer": { "@type": "Answer", "text": "Si moltiplicano i chilometri per il consumo dell'auto in litri ogni 100 km, si divide per 100 e si moltiplica per il prezzo al litro. Per 570 km con 6,5 l/100 km e benzina a 1,75 €/l servono 37 litri, cioè circa 65 €." } },
+      { "@type": "Question", "name": "Quanto costa il pedaggio autostradale al chilometro?", "acceptedAnswer": { "@type": "Answer", "text": "Sulla rete italiana un'auto (classe A) paga in media 7-9 centesimi al chilometro; il calcolatore usa 0,08 €/km come stima, modificabile. Se conosci il pedaggio esatto puoi inserirlo direttamente." } },
+      { "@type": "Question", "name": "Perché considerare l'usura dell'auto?", "acceptedAnswer": { "@type": "Answer", "text": "Ogni chilometro consuma gomme, olio, freni e valore dell'auto. Secondo le tabelle ACI il costo chilometrico di una utilitaria, esclusi i costi fissi, è intorno ai 10 centesimi al km. Ignorarlo sottostima il costo reale di un terzo." } },
+      { "@type": "Question", "name": "Conviene l'auto o il treno?", "acceptedAnswer": { "@type": "Answer", "text": "Dipende dal numero di persone: il costo dell'auto è quasi fisso, quello del treno cresce per ogni biglietto. Da soli il treno quasi sempre vince; da tre persone in su l'auto di solito costa meno, soprattutto se l'usura è bassa." } }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #eef0f3; --surface: #ffffff; --text: #14161a; --muted: #5f6673; --line: #d7dbe2;
+      --panel: #111318; --panel-2: #1a1d24; --panel-text: #f3f5f8; --panel-muted: #8b93a3;
+      --neon: #b6ff2e; --neon-ink: #0e1a00; --neon-text: #4f7a00; --danger: #e5484d;
+      --radius: 14px; --gap: 10px;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #07080a; --surface: #14161b; --text: #eef0f3; --muted: #8c93a1; --line: #262a33;
+        --panel: #0e1014; --panel-2: #171a20; --panel-text: #f3f5f8; --panel-muted: #7f8794;
+        --neon: #c6ff4a; --neon-ink: #0e1a00; --neon-text: #c6ff4a; --danger: #ff6b6b;
+        color-scheme: dark;
+      }
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; } /* l'attributo hidden deve vincere su display:flex dei campi */
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, sans-serif;
+      background: var(--bg); color: var(--text); overflow-x: hidden;
+    }
+    .wrap { margin: 0 auto; padding: max(12px, env(safe-area-inset-top)) 12px calc(96px + env(safe-area-inset-bottom)); }
+    .back { font-size: .9rem; color: var(--muted); text-decoration: none; display: inline-block; min-height: 44px; line-height: 44px; }
+    h1 { margin: 0 0 .15rem; font-size: 1.65rem; line-height: 1.15; letter-spacing: -.02em; font-weight: 800; }
+    h1 small { display: block; font-size: .95rem; font-weight: 500; color: var(--muted); letter-spacing: 0; margin-top: .3rem; }
+    .lead { color: var(--muted); margin: .5rem 0 1rem; font-size: .95rem; }
+
+    /* ---- griglia cruscotto ---- */
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap); }
+    .tile { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: .8rem .85rem; min-width: 0; }
+    .tile.wide { grid-column: span 2; }
+    .lbl { display: block; font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 700; margin-bottom: .35rem; }
+    .dark { background: var(--panel); color: var(--panel-text); border-color: var(--panel); }
+    .dark .lbl { color: var(--panel-muted); }
+    .num { font-variant-numeric: tabular-nums; font-weight: 800; letter-spacing: -.02em; line-height: 1.1; }
+    .dark .num { color: var(--neon); font-size: 1.55rem; }
+    .dark .sub { color: var(--panel-muted); font-size: .8rem; margin-top: .25rem; font-variant-numeric: tabular-nums; }
+    .hero { grid-column: span 2; background: linear-gradient(160deg, var(--panel-2), var(--panel)); }
+    .hero .num { font-size: 2.9rem; }
+    .hero .sub { font-size: .9rem; }
+    .hint { font-size: .8rem; color: var(--muted); margin: .35rem 0 0; }
+    .err { color: var(--danger); font-size: .85rem; margin: .35rem 0 0; min-height: 1.2em; }
+
+    /* ---- controlli ---- */
+    input, select, button { font: inherit; color: inherit; }
+    .field { display: flex; align-items: center; gap: .4rem; }
+    .field input { width: 100%; min-width: 0; min-height: 48px; font-size: 1.35rem; font-weight: 700; font-variant-numeric: tabular-nums;
+      padding: .3rem .6rem; border: 1.5px solid var(--line); border-radius: 10px; background: var(--bg); }
+    .field input:focus { outline: 2px solid var(--neon-text); outline-offset: 1px; border-color: transparent; }
+    .field .unit { color: var(--muted); font-size: .9rem; white-space: nowrap; }
+    .field.small input { font-size: 1.05rem; min-height: 44px; font-weight: 600; }
+    .chips { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .chip { min-height: 44px; padding: .4rem .8rem; border-radius: 999px; border: 1.5px solid var(--line); background: transparent; cursor: pointer; font-weight: 600; font-size: .92rem; }
+    .chip[aria-pressed="true"] { background: var(--panel); color: var(--neon); border-color: var(--panel); }
+    .seg { display: inline-flex; border: 1.5px solid var(--line); border-radius: 10px; overflow: hidden; }
+    .seg button { min-height: 40px; padding: 0 .75rem; border: 0; background: transparent; cursor: pointer; font-weight: 600; font-size: .88rem; }
+    .seg button[aria-pressed="true"] { background: var(--panel); color: var(--neon); }
+    .switch { display: flex; align-items: center; justify-content: space-between; gap: .6rem; min-height: 44px; cursor: pointer; }
+    .switch input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .track { flex: none; width: 50px; height: 30px; border-radius: 999px; background: var(--line); position: relative; transition: background .15s; }
+    .track::after { content: ""; position: absolute; top: 3px; left: 3px; width: 24px; height: 24px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.3); transition: transform .15s; }
+    .switch input:checked + .track { background: var(--neon-text); }
+    .switch input:checked + .track::after { transform: translateX(20px); }
+    .switch input:focus-visible + .track { outline: 2px solid var(--neon-text); outline-offset: 2px; }
+    .stepper { display: flex; align-items: center; gap: .5rem; }
+    .stepper button { width: 48px; height: 48px; border-radius: 12px; border: 1.5px solid var(--line); background: transparent; font-size: 1.5rem; cursor: pointer; line-height: 1; }
+    .stepper button:active { background: var(--line); }
+    .stepper output { flex: 1; text-align: center; font-size: 1.6rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+    .btn { border: 0; cursor: pointer; min-height: 46px; padding: .55rem 1.1rem; border-radius: 12px; background: var(--panel); color: var(--neon); font-weight: 700; }
+    .btn-ghost { background: transparent; color: var(--text); border: 1.5px solid var(--line); }
+    .btn-icon { background: none; border: 0; cursor: pointer; color: var(--muted); min-width: 44px; min-height: 44px; border-radius: 8px; font-size: 1.2rem; }
+    .btn-icon:hover { color: var(--danger); }
+    .row { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+    .grow { flex: 1 1 140px; }
+    details.adv { grid-column: span 2; }
+    details.adv summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; color: var(--muted); font-weight: 600; font-size: .92rem; list-style: none; }
+    details.adv summary::-webkit-details-marker { display: none; }
+    details.adv summary::before { content: "▸ "; margin-right: .3rem; }
+    details.adv[open] summary::before { content: "▾ "; }
+    .adv-body { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap); margin-top: .4rem; }
+
+    /* ---- barra fissa in basso ---- */
+    .bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 5; background: var(--panel); color: var(--panel-text);
+      padding: .6rem 14px calc(.6rem + env(safe-area-inset-bottom)); display: flex; align-items: center; gap: .75rem;
+      box-shadow: 0 -6px 20px rgba(0,0,0,.25); }
+    .bar .num { color: var(--neon); font-size: 1.5rem; }
+    .bar .sub { color: var(--panel-muted); font-size: .8rem; }
+    .bar .btn { margin-left: auto; background: var(--neon); color: var(--neon-ink); }
+
+    /* ---- pro ---- */
+    .pro { margin-top: var(--gap); }
+    .cmp { display: grid; gap: .6rem; margin-top: .6rem; }
+    .barrow { display: grid; grid-template-columns: 4.2rem 1fr auto; align-items: center; gap: .5rem; font-size: .92rem; }
+    .barrow .fill { height: 22px; border-radius: 6px; background: var(--line); overflow: hidden; }
+    .barrow .fill i { display: block; height: 100%; background: var(--neon-text); width: 0; transition: width .3s; }
+    .barrow.win .fill i { background: var(--neon); }
+    .verdict { margin: .6rem 0 0; font-weight: 700; }
+    .trips { list-style: none; padding: 0; margin: .5rem 0 0; }
+    .trips li { display: flex; align-items: center; gap: .4rem; padding: .35rem 0; border-bottom: 1px solid var(--line); font-size: .92rem; }
+    .trips li b { font-variant-numeric: tabular-nums; }
+    .trips li .grow { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .empty { color: var(--muted); font-style: italic; font-size: .92rem; }
+
+    .toast { position: fixed; left: 50%; bottom: calc(90px + env(safe-area-inset-bottom)); transform: translateX(-50%); background: var(--neon); color: var(--neon-ink);
+      padding: .55rem 1rem; border-radius: 999px; font-size: .9rem; font-weight: 700; opacity: 0; transition: opacity .2s; pointer-events: none; z-index: 6; }
+    .toast.show { opacity: 1; }
+
+    /* ---- guida ---- */
+    .guida { margin-top: 2.2rem; padding-top: 1.2rem; border-top: 1px solid var(--line); }
+    .guida h2 { font-size: 1.4rem; margin: 0 0 .75rem; letter-spacing: -.01em; }
+    .guida h3 { font-size: 1.15rem; margin: 1.6rem 0 .5rem; }
+    .guida h4 { font-size: 1rem; margin: 1.1rem 0 .25rem; }
+    .guida p, .guida li { line-height: 1.65; }
+    .guida table { width: 100%; border-collapse: collapse; font-size: .92rem; font-variant-numeric: tabular-nums; }
+    .guida td, .guida th { padding: .4rem .3rem; border-bottom: 1px solid var(--line); text-align: left; }
+    .guida td:last-child, .guida th:last-child { text-align: right; }
+    .small { font-size: .85rem; }
+    .muted { color: var(--muted); }
+    .guida a { color: inherit; }
+
+    @media (min-width: 700px) {
+      .wrap { max-width: 980px; padding-inline: 20px; }
+      h1 { font-size: 2.1rem; }
+      .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .tile.wide { grid-column: span 2; }
+      .tile.hero { grid-column: span 4; display: flex; align-items: baseline; gap: 1.5rem; flex-wrap: wrap; }
+      .hero .num { font-size: 3.6rem; }
+      details.adv { grid-column: span 4; }
+      .adv-body { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .pro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="../../index.html">← Tutte le app</a>
+    <h1>Calcolo costo viaggio auto <small>carburante, pedaggi e usura, diviso per persona</small></h1>
+    <p class="lead">Inserisci i chilometri e l'auto: il cruscotto mostra subito quanto costa il viaggio e quanto tocca a testa. Tutto resta sul tuo telefono.</p>
+
+    <form id="calc" class="grid" autocomplete="off" novalidate>
+      <div class="tile wide">
+        <label class="lbl" for="km">Distanza (sola andata)</label>
+        <div class="field"><input id="km" type="number" inputmode="decimal" enterkeyhint="next" min="1" max="20000" step="1" placeholder="es. 570"><span class="unit">km</span></div>
+        <p id="km-err" class="err"></p>
+      </div>
+      <div class="tile">
+        <label class="switch"><span class="lbl" style="margin:0">Andata e ritorno</span><input id="ar" type="checkbox"><span class="track"></span></label>
+      </div>
+      <div class="tile">
+        <span class="lbl">Persone in auto</span>
+        <div class="stepper"><button type="button" id="p-minus" aria-label="Una persona in meno">−</button><output id="people" for="p-minus p-plus">1</output><button type="button" id="p-plus" aria-label="Una persona in più">+</button></div>
+      </div>
+
+      <div class="tile wide">
+        <span class="lbl">Carburante</span>
+        <div class="chips" id="fuel" role="group" aria-label="Tipo di carburante">
+          <button type="button" class="chip" data-fuel="benzina">Benzina</button>
+          <button type="button" class="chip" data-fuel="diesel">Diesel</button>
+          <button type="button" class="chip" data-fuel="gpl">GPL</button>
+          <button type="button" class="chip" data-fuel="metano">Metano</button>
+          <button type="button" class="chip" data-fuel="elettrica">Elettrica</button>
+        </div>
+      </div>
+      <div class="tile">
+        <label class="lbl" for="price">Prezzo <span id="price-unit">€/l</span></label>
+        <div class="field small"><input id="price" type="number" inputmode="decimal" enterkeyhint="next" min="0.01" max="20" step="0.001"></div>
+      </div>
+      <div class="tile">
+        <label class="lbl" for="cons">Consumo <span id="cons-unit">l/100 km</span></label>
+        <div class="field small"><input id="cons" type="number" inputmode="decimal" enterkeyhint="next" min="0.1" max="99" step="0.1"></div>
+        <div class="seg" id="cons-seg" style="margin-top:.4rem"><button type="button" data-unit="l100" aria-pressed="true">l/100 km</button><button type="button" data-unit="kml" aria-pressed="false">km/l</button></div>
+      </div>
+
+      <div class="tile wide">
+        <span class="lbl">Pedaggio autostradale</span>
+        <div class="row">
+          <div class="seg" id="toll-seg"><button type="button" data-mode="stima" aria-pressed="true">Stima dai km</button><button type="button" data-mode="importo" aria-pressed="false">Importo noto</button></div>
+        </div>
+        <div id="toll-stima" class="field small" style="margin-top:.5rem"><input id="km-auto" type="number" inputmode="decimal" enterkeyhint="next" min="0" max="20000" step="1" placeholder="km di autostrada (andata)"><span class="unit">km</span></div>
+        <div id="toll-importo" class="field small" style="margin-top:.5rem" hidden><input id="toll" type="number" inputmode="decimal" enterkeyhint="next" min="0" max="2000" step="0.1" placeholder="pedaggio per tratta"><span class="unit">€</span></div>
+        <p class="hint" id="toll-hint">Media rete italiana, auto classe A: 0,08 €/km (modificabile in Avanzate).</p>
+      </div>
+
+      <div class="tile">
+        <label class="switch"><span class="lbl" style="margin:0">Includi usura auto</span><input id="wear" type="checkbox" checked><span class="track"></span></label>
+        <p class="hint">Gomme, tagliandi, deprezzamento: 0,10 €/km.</p>
+      </div>
+      <div class="tile">
+        <label class="lbl" for="extra">Extra (parcheggi, traghetto…)</label>
+        <div class="field small"><input id="extra" type="number" inputmode="decimal" enterkeyhint="done" min="0" max="5000" step="0.5" placeholder="0"><span class="unit">€</span></div>
+      </div>
+
+      <details class="adv">
+        <summary>Avanzate: tariffa pedaggio e costo usura al km</summary>
+        <div class="adv-body">
+          <div class="tile"><label class="lbl" for="toll-rate">Pedaggio €/km</label><div class="field small"><input id="toll-rate" type="number" inputmode="decimal" min="0" max="1" step="0.005" value="0.08"></div></div>
+          <div class="tile"><label class="lbl" for="wear-rate">Usura €/km</label><div class="field small"><input id="wear-rate" type="number" inputmode="decimal" min="0" max="2" step="0.01" value="0.10"></div></div>
+        </div>
+      </details>
+
+      <!-- cruscotto risultati -->
+      <div class="tile dark hero">
+        <div><span class="lbl">Costo totale del viaggio</span><div class="num" id="r-total">—</div></div>
+        <div class="sub" id="r-sub">Inserisci i chilometri per vedere il costo.</div>
+      </div>
+      <div class="tile dark"><span class="lbl">A persona</span><div class="num" id="r-person">—</div><div class="sub" id="r-person-sub"></div></div>
+      <div class="tile dark"><span class="lbl">Carburante</span><div class="num" id="r-fuel">—</div><div class="sub" id="r-fuel-sub"></div></div>
+      <div class="tile dark"><span class="lbl">Pedaggio</span><div class="num" id="r-toll">—</div><div class="sub" id="r-toll-sub"></div></div>
+      <div class="tile dark"><span class="lbl">Usura + extra</span><div class="num" id="r-wear">—</div><div class="sub" id="r-wear-sub"></div></div>
+    </form>
+
+    <div class="pro-grid">
+      <section class="tile pro" data-pro="Confronto auto vs treno">
+        <span class="lbl">Confronto auto vs treno</span>
+        <p class="hint" style="margin:0 0 .5rem">Inserisci il prezzo del biglietto a persona per tratta: vedi chi vince e da quante persone conviene l'auto.</p>
+        <div class="field small"><input id="ticket" type="number" inputmode="decimal" enterkeyhint="done" min="0" max="1000" step="0.5" placeholder="biglietto a persona"><span class="unit">€</span></div>
+        <div class="cmp" id="cmp">
+          <div class="barrow" id="row-auto"><span>Auto</span><div class="fill"><i></i></div><b class="num" id="c-auto">—</b></div>
+          <div class="barrow" id="row-train"><span>Treno</span><div class="fill"><i></i></div><b class="num" id="c-train">—</b></div>
+        </div>
+        <p class="verdict" id="verdict"></p>
+      </section>
+
+      <section class="tile pro" data-pro="Viaggi salvati">
+        <span class="lbl">Viaggi salvati</span>
+        <p class="hint" style="margin:0 0 .5rem">Salva questo viaggio con un nome e confrontalo con gli altri (es. "Roma in 3" vs "Roma in 5").</p>
+        <div class="row">
+          <div class="field small grow"><input id="trip-name" type="text" enterkeyhint="done" maxlength="40" placeholder="Nome del viaggio"></div>
+          <button type="button" class="btn" id="trip-save">Salva</button>
+        </div>
+        <p id="trip-err" class="err"></p>
+        <ul class="trips" id="trips"></ul>
+      </section>
+    </div>
+
+    <div data-ad="top"></div>
+
+    <div data-affiliate data-title="Utili per il viaggio in auto" data-items='[{"t":"Supporto smartphone per auto","q":"supporto smartphone auto bocchetta"},{"t":"Caricatore USB da auto","q":"caricatore auto usb c rapido"},{"t":"Compressore portatile per gomme","q":"compressore portatile auto gomme"}]'></div>
+
+    <section id="guida" class="guida">
+      <h2>Come si fa il calcolo del costo di un viaggio in auto</h2>
+      <p>Prima di partire per le vacanze o per un weekend fuori, la domanda è sempre la stessa: quanto ci costa andare in macchina? La risposta che si trova in giro si ferma quasi sempre alla benzina, ma il calcolo del costo di un viaggio in auto fatto bene ha almeno tre voci: <strong>carburante</strong>, <strong>pedaggi autostradali</strong> e <strong>usura del veicolo</strong>. Questo cruscotto le somma tutte, aggiunge gli extra (parcheggi, traghetti, ZTL) e divide il totale tra le persone a bordo, così sai subito quanto chiedere a chi viaggia con te.</p>
+
+      <h3>Le tre voci del costo, una per una</h3>
+      <p><strong>Carburante.</strong> La formula è semplice: chilometri × consumo (litri ogni 100 km) ÷ 100 × prezzo al litro. Se conosci il consumo in km/l, cambia unità con il selettore: il calcolatore converte da solo. Per le auto elettriche il consumo è in kWh/100 km e il prezzo in €/kWh (a casa si spende molto meno che alla colonnina rapida: inserisci il valore che usi davvero). I prezzi precompilati sono medie indicative: aggiornali con quello del tuo distributore, cambia tutto.</p>
+      <p><strong>Pedaggio.</strong> In Italia un'auto (classe A) paga in media 7–9 centesimi al chilometro, con differenze tra concessionarie e tratte di montagna. Se non conosci l'importo esatto, inserisci i chilometri di autostrada e il calcolatore stima il pedaggio a 0,08 €/km; se lo conosci (dal sito della concessionaria o da un viaggio precedente) scegli "Importo noto" e scrivilo. Con "Andata e ritorno" attivo, il pedaggio viene raddoppiato.</p>
+      <p><strong>Usura.</strong> È la voce che tutti dimenticano. Ogni chilometro consuma gomme, olio, freni e valore dell'auto: le tabelle ACI, tolti i costi fissi come assicurazione e bollo che pagheresti comunque, danno circa 0,10 €/km per una utilitaria e 0,15–0,20 €/km per un SUV. Se vuoi il solo costo "vivo" della trasferta, spegni l'interruttore; se vuoi dividere le spese in modo onesto con chi viaggia con te, lascialo acceso.</p>
+
+      <h3>Esempio con i numeri: Milano–Roma in tre</h3>
+      <p>Tre amici partono da Milano per Roma: 570 km, quasi tutti in autostrada (560 km). L'auto è a benzina e consuma 6,5 l/100 km; la benzina costa 1,75 €/l.</p>
+      <table>
+        <tr><th>Voce</th><th>Calcolo</th><th>Costo</th></tr>
+        <tr><td>Carburante</td><td>570 × 6,5 ÷ 100 = 37 l × 1,75 €</td><td>64,84 €</td></tr>
+        <tr><td>Pedaggio</td><td>560 km × 0,08 €</td><td>44,80 €</td></tr>
+        <tr><td>Usura</td><td>570 km × 0,10 €</td><td>57,00 €</td></tr>
+        <tr><td><strong>Totale sola andata</strong></td><td></td><td><strong>166,64 €</strong></td></tr>
+        <tr><td>A persona (in 3)</td><td>166,64 ÷ 3</td><td>55,55 €</td></tr>
+      </table>
+      <p>Senza contare l'usura il viaggio costerebbe 109,64 €, cioè 36,55 € a testa: ecco perché è importante decidere prima se includerla. Un biglietto del treno Milano–Roma comprato in anticipo costa intorno ai 50–60 € a persona: da soli il treno vince, in tre l'auto costa più o meno uguale ma porta anche i bagagli fino alla porta, in quattro o cinque l'auto vince nettamente.</p>
+
+      <h3>Errori comuni</h3>
+      <ul>
+        <li><strong>Usare il consumo dichiarato dalla casa.</strong> In autostrada a 130 km/h con l'auto carica si consuma il 15–25% in più del dato omologato: usa il consumo che leggi sul computer di bordo dopo un viaggio simile.</li>
+        <li><strong>Dimenticare il ritorno.</strong> Sembra banale, ma metà delle stime "a mente" contano una sola tratta. Attiva l'interruttore "Andata e ritorno".</li>
+        <li><strong>Dividere il costo solo tra i passeggeri.</strong> Il guidatore viaggia anche lui: il numero di persone include chi guida.</li>
+        <li><strong>Ignorare parcheggi e traghetti.</strong> Tre giorni di parcheggio in centro possono costare più del pieno: mettili negli extra.</li>
+      </ul>
+
+      <h3>Domande frequenti</h3>
+      <h4>Quanto costa il pedaggio autostradale al chilometro?</h4>
+      <p>Per un'auto in classe A la media della rete italiana è di 7–9 centesimi al km; alcune tratte alpine e i trafori superano i 20 centesimi. Il valore usato dal calcolatore (0,08 €/km) si modifica nella sezione Avanzate.</p>
+      <h4>Il prezzo del carburante si aggiorna da solo?</h4>
+      <p>No: il calcolatore funziona anche offline e non interroga servizi esterni. I prezzi precompilati sono medie di riferimento; inserisci quello del tuo distributore per un risultato preciso al centesimo.</p>
+      <h4>Come faccio a sapere se conviene l'auto o il treno?</h4>
+      <p>La funzione Pro "Confronto auto vs treno" mette a confronto il costo totale dell'auto con il prezzo dei biglietti per tutte le persone e ti dice da quante persone in su l'auto conviene. In generale, con tre o più persone e distanze medio-lunghe l'auto costa meno; da soli o in due il treno è quasi sempre più economico.</p>
+      <h4>Posso usarlo per il rimborso chilometrico?</h4>
+      <p>Per un rimborso ufficiale servono le tabelle ACI del modello specifico. Questo strumento è pensato per dividere le spese tra amici e familiari e per preventivare un viaggio: attiva l'usura e imposta il costo al km della tua auto se lo conosci.</p>
+      <h4>I dati vengono salvati?</h4>
+      <p>Sì, ma solo nel tuo browser: ritrovi gli ultimi valori inseriti quando riapri la pagina. Nessun dato lascia il telefono.</p>
+
+      <div data-ad="bottom"></div>
+      <div data-support></div>
+      <p class="muted small">Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a> · Vedi anche <a href="../2026-09-18-lista-valigia/">Lista Valigia</a> per preparare i bagagli e <a href="../2026-09-17-dividi-il-conto/">Dividi il Conto</a> per le spese del gruppo durante il viaggio.</p>
+    </section>
+  </div>
+
+  <div class="bar" aria-live="polite">
+    <div><div class="num" id="bar-total">—</div><div class="sub" id="bar-sub">costo totale</div></div>
+    <button type="button" class="btn" id="copy">Copia riepilogo</button>
+  </div>
+  <div id="toast" class="toast" role="status"></div>
+
+  <script src="../../assets/monetize.js"></script>
+  <script>
+    // Modello dati (localStorage "costo-viaggio-auto:v1"):
+    //   { in: { km, ar, people, fuel, price, cons, consUnit, tollMode, kmAuto, toll, tollRate, wear, wearRate, extra, ticket },
+    //     trips: [{ id, name, in, total, person }] }
+    // Il calcolo è puro (calc(in) → {dist, qty, fuel, toll, wear, extra, total, person}); l'interfaccia lo chiama a ogni input.
+    (() => {
+      "use strict";
+      const KEY = "costo-viaggio-auto:v1";
+      const $ = (s) => document.querySelector(s);
+      const eur = (v) => v.toLocaleString("it-IT", { style: "currency", currency: "EUR" });
+      const n1 = (v) => v.toLocaleString("it-IT", { maximumFractionDigits: 1 });
+      const uid = () => (crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2));
+
+      // Valori medi di riferimento per carburante: prezzo e consumo (nessuna API: l'utente li può cambiare).
+      const FUELS = {
+        benzina:   { price: 1.75, cons: 6.5, pu: "€/l",   cu: "l/100 km",   q: "l" },
+        diesel:    { price: 1.68, cons: 5.5, pu: "€/l",   cu: "l/100 km",   q: "l" },
+        gpl:       { price: 0.72, cons: 8.5, pu: "€/l",   cu: "l/100 km",   q: "l" },
+        metano:    { price: 1.45, cons: 4.5, pu: "€/kg",  cu: "kg/100 km",  q: "kg" },
+        elettrica: { price: 0.45, cons: 17,  pu: "€/kWh", cu: "kWh/100 km", q: "kWh" },
+      };
+      const DEFAULTS = { km: null, ar: false, people: 1, fuel: "benzina", price: 1.75, cons: 6.5, consUnit: "l100",
+        tollMode: "stima", kmAuto: null, toll: null, tollRate: 0.08, wear: true, wearRate: 0.10, extra: null, ticket: null };
+
+      let state = load();
+      function load() {
+        try {
+          const s = JSON.parse(localStorage.getItem(KEY));
+          if (s && s.in) return { in: { ...DEFAULTS, ...s.in }, trips: Array.isArray(s.trips) ? s.trips : [] };
+        } catch (_) {}
+        return { in: { ...DEFAULTS }, trips: [] };
+      }
+      function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (_) {} }
+      const num = (v) => { const x = parseFloat(String(v ?? "").replace(",", ".")); return Number.isFinite(x) ? x : null; };
+
+      // ---- calcolo puro ----
+      function calc(i) {
+        if (!(i.km > 0)) return null;
+        const trips = i.ar ? 2 : 1, dist = i.km * trips;
+        const l100 = i.consUnit === "kml" ? (i.cons > 0 ? 100 / i.cons : 0) : (i.cons || 0);
+        const qty = dist * l100 / 100;
+        const fuel = qty * (i.price || 0);
+        const kmAuto = Math.min(i.kmAuto || 0, i.km) * trips;
+        const toll = i.tollMode === "stima" ? kmAuto * (i.tollRate || 0) : (i.toll || 0) * trips;
+        const wear = i.wear ? dist * (i.wearRate || 0) : 0;
+        const extra = i.extra || 0;
+        const total = fuel + toll + wear + extra;
+        const people = Math.max(1, i.people || 1);
+        return { trips, dist, qty, fuel, toll, wear, extra, total, people, person: total / people, perKm: total / dist, kmAuto };
+      }
+
+      // ---- interfaccia: lettura/scrittura campi ----
+      const F = {
+        km: $("#km"), ar: $("#ar"), price: $("#price"), cons: $("#cons"), kmAuto: $("#km-auto"), toll: $("#toll"),
+        tollRate: $("#toll-rate"), wear: $("#wear"), wearRate: $("#wear-rate"), extra: $("#extra"), ticket: $("#ticket"),
+      };
+      function fill() {
+        const i = state.in;
+        F.km.value = i.km ?? ""; F.ar.checked = !!i.ar; F.price.value = i.price ?? ""; F.cons.value = i.cons ?? "";
+        F.kmAuto.value = i.kmAuto ?? ""; F.toll.value = i.toll ?? ""; F.tollRate.value = i.tollRate ?? 0.08;
+        F.wear.checked = !!i.wear; F.wearRate.value = i.wearRate ?? 0.10; F.extra.value = i.extra ?? ""; F.ticket.value = i.ticket ?? "";
+        $("#people").value = i.people;
+        for (const b of document.querySelectorAll("#fuel .chip")) b.setAttribute("aria-pressed", String(b.dataset.fuel === i.fuel));
+        for (const b of document.querySelectorAll("#cons-seg button")) b.setAttribute("aria-pressed", String(b.dataset.unit === i.consUnit));
+        for (const b of document.querySelectorAll("#toll-seg button")) b.setAttribute("aria-pressed", String(b.dataset.mode === i.tollMode));
+        const f = FUELS[i.fuel];
+        $("#price-unit").textContent = f.pu;
+        $("#cons-unit").textContent = i.consUnit === "kml" && i.fuel !== "elettrica" ? "km/" + f.q : f.cu;
+        $("#cons-seg").hidden = i.fuel === "elettrica";
+        $("#toll-stima").hidden = i.tollMode !== "stima"; $("#toll-importo").hidden = i.tollMode !== "importo";
+        $("#toll-hint").textContent = i.tollMode === "stima"
+          ? `Media rete italiana, auto classe A: ${i.tollRate.toLocaleString("it-IT")} €/km (modificabile in Avanzate).`
+          : "Importo per una sola tratta: con andata e ritorno viene raddoppiato.";
+      }
+      function read() {
+        const i = state.in;
+        i.km = num(F.km.value); i.ar = F.ar.checked; i.price = num(F.price.value); i.cons = num(F.cons.value);
+        i.kmAuto = num(F.kmAuto.value); i.toll = num(F.toll.value); i.tollRate = num(F.tollRate.value) ?? 0.08;
+        i.wear = F.wear.checked; i.wearRate = num(F.wearRate.value) ?? 0.10; i.extra = num(F.extra.value); i.ticket = num(F.ticket.value);
+      }
+
+      // ---- render cruscotto ----
+      function render() {
+        const i = state.in, r = calc(i);
+        const set = (id, v) => { $(id).textContent = v; };
+        const kmErr = F.km.value !== "" && !(i.km > 0) ? "Inserisci una distanza maggiore di zero." : (i.km > 20000 ? "Distanza troppo grande." : "");
+        set("#km-err", kmErr);
+        if (!r || kmErr) {
+          for (const id of ["#r-total", "#r-person", "#r-fuel", "#r-toll", "#r-wear", "#bar-total", "#c-auto", "#c-train"]) set(id, "—");
+          for (const id of ["#r-person-sub", "#r-fuel-sub", "#r-toll-sub", "#r-wear-sub", "#verdict"]) set(id, "");
+          set("#r-sub", "Inserisci i chilometri per vedere il costo."); set("#bar-sub", "costo totale");
+          $("#row-auto .fill i").style.width = "0"; $("#row-train .fill i").style.width = "0";
+          return null;
+        }
+        const f = FUELS[i.fuel];
+        set("#r-total", eur(r.total));
+        set("#r-sub", `${n1(r.dist)} km ${r.trips === 2 ? "andata e ritorno" : "sola andata"} · ${eur(r.perKm)}/km`);
+        set("#r-person", eur(r.person)); set("#r-person-sub", r.people === 1 ? "1 persona" : `${r.people} persone, guidatore incluso`);
+        set("#r-fuel", eur(r.fuel)); set("#r-fuel-sub", `${n1(r.qty)} ${f.q} di ${i.fuel}`);
+        set("#r-toll", eur(r.toll));
+        set("#r-toll-sub", i.tollMode === "stima" ? (r.kmAuto ? `${n1(r.kmAuto)} km × ${i.tollRate.toLocaleString("it-IT")} €` : "nessun tratto autostradale") : (r.trips === 2 ? "2 tratte" : "1 tratta"));
+        set("#r-wear", eur(r.wear + r.extra));
+        set("#r-wear-sub", (i.wear ? `usura ${eur(r.wear)}` : "usura esclusa") + (r.extra ? ` + extra ${eur(r.extra)}` : ""));
+        set("#bar-total", eur(r.total)); set("#bar-sub", `${eur(r.person)} a persona`);
+        renderCompare(r);
+        return r;
+      }
+
+      // ---- Pro: confronto auto vs treno ----
+      function renderCompare(r) {
+        const t = state.in.ticket;
+        const set = (id, v) => { $(id).textContent = v; };
+        if (!(t > 0)) { set("#c-auto", eur(r.total)); set("#c-train", "—"); set("#verdict", "Scrivi il prezzo del biglietto per confrontare."); $("#row-auto .fill i").style.width = "0"; $("#row-train .fill i").style.width = "0"; return; }
+        const train = t * r.people * r.trips, max = Math.max(r.total, train);
+        set("#c-auto", eur(r.total)); set("#c-train", eur(train));
+        $("#row-auto .fill i").style.width = (r.total / max * 100) + "%";
+        $("#row-train .fill i").style.width = (train / max * 100) + "%";
+        $("#row-auto").classList.toggle("win", r.total <= train); $("#row-train").classList.toggle("win", train < r.total);
+        const breakEven = Math.ceil(r.total / (t * r.trips));
+        let msg = r.total <= train
+          ? `Conviene l'auto: risparmi ${eur(train - r.total)} rispetto a ${r.people === 1 ? "un biglietto" : r.people + " biglietti"}.`
+          : `Conviene il treno: risparmi ${eur(r.total - train)}.`;
+        msg += breakEven <= 1 ? " L'auto conviene anche da soli." : breakEven > 9 ? " Il treno conviene fino a 9 persone." : ` L'auto conviene da ${breakEven} persone in su.`;
+        set("#verdict", msg);
+      }
+
+      // ---- Pro: viaggi salvati ----
+      function renderTrips() {
+        const ul = $("#trips"); ul.replaceChildren();
+        if (!state.trips.length) { ul.innerHTML = '<li class="empty">Nessun viaggio salvato.</li>'; return; }
+        for (const t of state.trips) {
+          const li = document.createElement("li");
+          const name = document.createElement("span"); name.className = "grow"; name.textContent = t.name;
+          const tot = document.createElement("b"); tot.textContent = eur(t.total);
+          const per = document.createElement("span"); per.className = "muted small"; per.textContent = `${eur(t.person)}/pers.`;
+          const loadBtn = document.createElement("button"); loadBtn.type = "button"; loadBtn.className = "btn-icon"; loadBtn.textContent = "↺"; loadBtn.title = "Ricarica " + t.name; loadBtn.setAttribute("aria-label", loadBtn.title);
+          loadBtn.onclick = () => { if (!guardPro()) return; state.in = { ...DEFAULTS, ...t.in }; fill(); render(); save(); toast("Viaggio caricato"); };
+          const del = document.createElement("button"); del.type = "button"; del.className = "btn-icon"; del.textContent = "×"; del.title = "Elimina " + t.name; del.setAttribute("aria-label", del.title);
+          del.onclick = () => { state.trips = state.trips.filter(x => x.id !== t.id); save(); renderTrips(); };
+          li.append(name, tot, per, loadBtn, del); ul.append(li);
+        }
+      }
+      function guardPro() { if (window.Monetize?.isPro()) return true; window.Monetize?.unlock(); return false; }
+      $("#trip-save").addEventListener("click", () => {
+        if (!guardPro()) return;
+        const r = render(); const name = $("#trip-name").value.trim();
+        if (!r) return void ($("#trip-err").textContent = "Prima inserisci i chilometri del viaggio.");
+        if (!name) return void ($("#trip-err").textContent = "Dai un nome al viaggio.");
+        if (state.trips.length >= 20) return void ($("#trip-err").textContent = "Massimo 20 viaggi: eliminane uno.");
+        $("#trip-err").textContent = "";
+        state.trips.unshift({ id: uid(), name, in: { ...state.in }, total: r.total, person: r.person });
+        $("#trip-name").value = ""; save(); renderTrips(); toast("Viaggio salvato");
+      });
+      $("#trip-name").addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); $("#trip-save").click(); } });
+
+      // ---- eventi ----
+      const update = () => { read(); render(); save(); };
+      $("#calc").addEventListener("input", update);
+      $("#calc").addEventListener("submit", (e) => e.preventDefault());
+      $("#ticket").addEventListener("input", update);
+      // Enter passa al campo successivo (o chiude la tastiera sull'ultimo)
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" && e.target.matches("#calc input[type=number]")) {
+          e.preventDefault();
+          const inputs = [...document.querySelectorAll("#calc input[type=number]")].filter(x => x.offsetParent !== null);
+          const next = inputs[inputs.indexOf(e.target) + 1];
+          if (next) next.focus(); else e.target.blur();
+        }
+        if (e.key === "Escape" && e.target.matches("input")) e.target.blur();
+      });
+      $("#p-minus").addEventListener("click", () => { state.in.people = Math.max(1, state.in.people - 1); $("#people").value = state.in.people; render(); save(); });
+      $("#p-plus").addEventListener("click", () => { state.in.people = Math.min(9, state.in.people + 1); $("#people").value = state.in.people; render(); save(); });
+      $("#fuel").addEventListener("click", (e) => {
+        const b = e.target.closest(".chip"); if (!b) return;
+        const fuel = b.dataset.fuel; if (fuel === state.in.fuel) return;
+        state.in.fuel = fuel; state.in.price = FUELS[fuel].price; state.in.cons = FUELS[fuel].cons; state.in.consUnit = "l100";
+        fill(); render(); save(); toast("Prezzo e consumo medi impostati: modificali se vuoi");
+      });
+      $("#cons-seg").addEventListener("click", (e) => {
+        const b = e.target.closest("button"); if (!b) return;
+        const unit = b.dataset.unit; if (unit === state.in.consUnit) return;
+        const c = state.in.cons;
+        if (c > 0) state.in.cons = Math.round((100 / c) * 10) / 10; // l/100km ↔ km/l
+        state.in.consUnit = unit; fill(); render(); save();
+      });
+      $("#toll-seg").addEventListener("click", (e) => {
+        const b = e.target.closest("button"); if (!b) return;
+        state.in.tollMode = b.dataset.mode; fill(); render(); save();
+      });
+
+      function toast(msg) { const t = $("#toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(toast.h); toast.h = setTimeout(() => t.classList.remove("show"), 2200); }
+      $("#copy").addEventListener("click", async () => {
+        const r = render(); const i = state.in;
+        if (!r) { toast("Inserisci prima i chilometri"); F.km.focus(); return; }
+        const lines = [
+          `Costo viaggio in auto — ${n1(r.dist)} km ${r.trips === 2 ? "A/R" : "sola andata"}`,
+          `Carburante (${i.fuel}): ${eur(r.fuel)} (${n1(r.qty)} ${FUELS[i.fuel].q})`,
+          `Pedaggio: ${eur(r.toll)}`,
+          i.wear ? `Usura auto: ${eur(r.wear)}` : "Usura auto: esclusa",
+          r.extra ? `Extra: ${eur(r.extra)}` : null,
+          `TOTALE: ${eur(r.total)} → ${eur(r.person)} a persona (${r.people})`,
+        ].filter(Boolean);
+        try { await navigator.clipboard.writeText(lines.join("\n")); toast("Riepilogo copiato"); }
+        catch (_) { toast("Impossibile copiare: seleziona e copia a mano"); }
+      });
+
+      fill(); render(); renderTrips();
+    })();
+  </script>
+</body>
+</html>

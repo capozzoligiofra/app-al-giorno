@@ -1,6 +1,6 @@
 {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 6,
+  "count": 7,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -49,6 +49,67 @@
     ]
   },
   "apps": [
+    {
+      "title": "Costo Viaggio in Auto",
+      "slug": "2026-09-19-costo-viaggio-auto",
+      "date": "2026-09-19",
+      "description": "Calcola quanto costa un viaggio in auto: carburante, pedaggi e usura, diviso per persona, con confronto auto vs treno.",
+      "category": "calcolatori-convertitori",
+      "tags": [
+        "viaggio",
+        "auto",
+        "carburante",
+        "pedaggi",
+        "vacanze"
+      ],
+      "source": "richiesta",
+      "request": "Costo Viaggio in Auto — keyword: \"calcolo costo viaggio auto\" — pianificazione vacanze, affiliazione naturale (accessori auto); Pro: confronto auto vs treno",
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "dashboard",
+        "palette": "nero-neon",
+        "font": "sans-geometrico"
+      },
+      "business": {
+        "keyword": "calcolo costo viaggio auto",
+        "keywords": [
+          "quanto costa un viaggio in auto",
+          "costo benzina viaggio",
+          "calcolo carburante e pedaggi",
+          "conviene auto o treno"
+        ],
+        "intent": "Chi sta organizzando un viaggio o una vacanza e vuole sapere subito quanto spende in auto, quanto tocca a testa e se conviene rispetto al treno.",
+        "target": "Famiglie e gruppi di amici che pianificano vacanze e weekend, pendolari occasionali; 25-55 anni; da telefono.",
+        "edge": "Costo vero e non solo la benzina: pedaggio stimato dai km di autostrada, usura al km, extra, diviso a persona; funziona offline, senza registrazione; Pro: confronto auto vs treno con punto di pareggio e viaggi salvati.",
+        "monetization": [
+          "adsense",
+          "affiliate",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto auto vs treno",
+          "Viaggi salvati"
+        ],
+        "affiliate": [
+          {
+            "t": "Supporto smartphone per auto",
+            "q": "supporto smartphone auto bocchetta"
+          },
+          {
+            "t": "Caricatore USB da auto",
+            "q": "caricatore auto usb c rapido"
+          },
+          {
+            "t": "Compressore portatile per gomme",
+            "q": "compressore portatile auto gomme"
+          }
+        ]
+      },
+      "size": 41143
+    },
     {
       "title": "Lista Valigia",
       "slug": "2026-09-18-lista-valigia",
