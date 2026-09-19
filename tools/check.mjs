@@ -19,7 +19,7 @@ const FORBIDDEN = [
   [/@import\s+(url\()?\s*["']?(https?:)?\/\//i, "@import CSS remoto"],
   [/url\(\s*["']?(https?:)?\/\/[^)]*\)/i, "url() CSS verso risorsa remota"],
   [/<(img|iframe|video|audio|source|embed|object)[^>]+(src|data)\s*=\s*["']?\s*(https?:)?\/\//i, "media/iframe remoto"],
-  [/\bfetch\s*\(\s*["'`](https?:)?\/\//i, "fetch() verso host esterno"],
+  // fetch() verso host esterni: ammessi solo i servizi liberi e senza chiave in ALLOWED_HOSTS (vedi CLAUDE.md, RETE)
   [/\bnew\s+(XMLHttpRequest|WebSocket|EventSource)\b/i, "XMLHttpRequest/WebSocket/EventSource"],
   [/\bnavigator\.sendBeacon\b/i, "sendBeacon (tracking)"],
   [/\bimport\s*\(\s*["'`](https?:)?\/\//i, "import() dinamico remoto"],
@@ -27,6 +27,18 @@ const FORBIDDEN = [
   [/\b(alert|confirm|prompt)\s*\(/, "alert()/confirm()/prompt() bloccanti: usa UI inline"],
   [/googletagmanager|google-analytics|gtag\(|plausible|matomo|hotjar/i, "tracking/analytics"],
 ];
+
+// Servizi esterni consentiti nelle app (gratuiti, senza chiave, con policy d'uso leggera). Tutto il resto è vietato.
+const ALLOWED_HOSTS = ["nominatim.openstreetmap.org", "router.project-osrm.org"];
+function fetchProblems(html) {
+  const problems = [];
+  const re = /\bfetch\s*\(\s*(?:`|"|')(?:https?:)?\/\/([a-z0-9.-]+)/gi;
+  let m;
+  while ((m = re.exec(html))) {
+    if (!ALLOWED_HOSTS.includes(m[1].toLowerCase())) problems.push(`fetch() verso host non consentito: ${m[1]} (ammessi: ${ALLOWED_HOSTS.join(", ")})`);
+  }
+  return problems;
+}
 
 const REQUIRED = [
   [/<!doctype html>/i, "manca <!doctype html>"],
@@ -146,6 +158,7 @@ export function checkApp(dir) {
     const m = html.match(re);
     if (m) problems.push(`${msg} (riga ${html.slice(0, m.index).split("\n").length})`);
   }
+  problems.push(...fetchProblems(html));
   for (const [re, msg] of FORBIDDEN) {
     const m = html.match(re);
     if (m) {

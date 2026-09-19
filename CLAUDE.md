@@ -52,8 +52,8 @@ Esegui i passi in ordine. Non saltarne nessuno.
    - un solo file `index.html`, HTML+CSS+JS vanilla, `<!doctype html>`, `<html lang="it">`,
      `<meta name="viewport">`, un `<title>` significativo;
    - **vietati**: `<script src>`/`<link href>` verso URL esterni, `@import` remoti, font
-     esterni, `fetch`/`XMLHttpRequest`/`WebSocket`/`EventSource` verso host esterni, iframe
-     esterni, immagini remote, tracking/analytics;
+     esterni, `XMLHttpRequest`/`WebSocket`/`EventSource`, iframe esterni, immagini remote,
+     tracking/analytics; `fetch` solo verso i servizi elencati in RETE;
    - consentiti: `localStorage`/`IndexedDB` per la persistenza, SVG inline, data-URI,
      `crypto.randomUUID`, Web APIs offline (Canvas, Clipboard, File, Notification...);
    - deve funzionare aperta sia via `http://` sia via doppio click (`file://`);
@@ -140,7 +140,7 @@ ricorrente. Ordine di preferenza delle nicchie (alto valore per la pubblicità e
 6. **Studio e testi**: media voti, crediti, conta parole, generatori (password, nomi, lorem),
    convertitori.
 Evita: giochi, demo estetiche, tool troppo generici ("calcolatrice"), tutto ciò che richiede dati
-in tempo reale (cambi, meteo, prezzi) perché non possiamo chiamare API.
+in tempo reale che non abbiamo (cambi, meteo, borsa): le uniche fonti esterne ammesse sono in RETE.
 
 Criteri di scelta (rispondi per iscritto nel blocco `business`): la ricerca esiste ed è
 ricorrente? l'intento è "voglio un risultato ora"? i primi risultati attuali sono articoli
@@ -187,6 +187,24 @@ app). L'app mette solo segnaposto; finché l'utente non compila gli ID, non comp
   vicino al risultato, così l'utente sa cosa ottiene.
 - In fondo alla pagina una riga: "Questa pagina può contenere annunci e link di affiliazione.
   <a href="../../privacy.html">Privacy</a>".
+
+## RETE — servizi esterni ammessi (gratuiti, senza chiave)
+
+Un'app può chiamare con `fetch` **solo** questi servizi, e deve funzionare comunque (in modo
+ridotto) se la chiamata fallisce o l'utente è offline:
+- **Nominatim (OpenStreetMap)** `https://nominatim.openstreetmap.org/search?q=…&countrycodes=it&format=jsonv2&limit=6&addressdetails=1&accept-language=it`
+  → ricerca di qualsiasi comune/frazione/indirizzo. Regole d'uso: max 1 richiesta al secondo
+  (debounce ≥ 400 ms, minimo 3 caratteri), cache dei risultati, attribuzione "© OpenStreetMap".
+- **OSRM** `https://router.project-osrm.org/route/v1/driving/lon1,lat1;lon2,lat2?overview=false&steps=true`
+  → distanza e durata su strada reale (server demo pubblico: nessuna garanzia, quindi fallback
+  su stima in linea d'aria × 1,2).
+- **Dati del repo** (stessa origine, percorso relativo): `../../data/carburanti.json` = medie
+  giornaliere dei prezzi carburante MIMIT per regione e provincia (aggiornato ogni mattina da
+  una GitHub Action; struttura: `updated`, `italia`, `regioni`, `province`, `regioneDiProvincia`).
+  Usalo per qualunque app che parli di carburante, invece di numeri fissi (con fallback incorporato
+  per l'apertura da file://).
+Niente altro: niente API con chiave, niente servizi a pagamento, niente "prova gratuita".
+Mostra sempre la fonte e la data del dato accanto al risultato.
 
 ## CATEGORIE
 
@@ -245,6 +263,7 @@ slider, toggle, stepper) e micro-interazioni. Il design deve servire il contenut
 - `preferenze.md` — indicazioni permanenti dell'utente, accumulate nel tempo.
 - `assets/monetize.js` — agganci di monetizzazione condivisi (ID, Pass Pro); `privacy.html`.
 - `sitemap.xml`, `robots.txt` — GENERATI da `tools/build.mjs`.
+- `data/carburanti.json` — GENERATO da `tools/carburanti.mjs` (GitHub Action giornaliera).
 - `tools/` — `build.mjs` (catalogo), `check.mjs` (quality gate), `serve.mjs` (server locale).
 
 ## Stile del codice nelle app

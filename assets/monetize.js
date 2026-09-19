@@ -15,7 +15,7 @@
   const CONFIG = {
     adsense: { client: "" },                          // es. "ca-pub-1234567890123456" (da AdSense → Account → codice editore)
     affiliate: { amazonTag: "" },                     // es. "unappalgiorno-21" (Amazon Associates)
-    support: { url: "", label: "Offrimi un caffè" }, // es. "https://ko-fi.com/tuonome" oppure link PayPal.me
+    support: { url: "https://ko-fi.com/giovannicapozzoli", label: "Offrimi un caffè su Ko-fi" }, // es. "https://ko-fi.com/tuonome" oppure link PayPal.me
     pro: {
       buyUrl: "",                                     // es. "https://tuonome.gumroad.com/l/pass-pro"
       price: "",                                      // es. "4,99 €" (solo testo mostrato)
