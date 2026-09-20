@@ -226,7 +226,7 @@ window.__APPS__ = {
           }
         ]
       },
-      "size": 96173
+      "size": 98387
     },
     {
       "title": "Lista Valigia",

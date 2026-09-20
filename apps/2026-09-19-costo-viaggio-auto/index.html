@@ -527,7 +527,7 @@
       const ASPI = { p: 0.07869, m: 0.09315 };
       const TOLL_RULES = [
         // [sigla, condizione (lat, lon) → true, €/km, etichetta]  — la prima regola che combacia vince
-        ["A1", (la) => la > 43.85 && la < 44.45, ASPI.m, "A1 Appennino (ASPI, montagna)"],
+        ["A1", (la) => la > 43.82 && la < 44.45, ASPI.m, "A1 Appennino (ASPI, montagna)"],
         ["A1", () => true, ASPI.p, "A1 (ASPI)"],
         ["A4", (la, lo) => lo < 8.9, 0.098, "A4 Torino–Milano (SATAP)"],
         ["A4", (la, lo) => lo < 10.25, ASPI.p, "A4 Milano–Brescia (ASPI)"],
@@ -572,7 +572,7 @@
         ["A35", () => true, 0.22, "A35 Brebemi"], ["A36", () => true, 0.20, "A36 Pedemontana (free-flow)"],
         ["A50", () => true, 0.06, "Tangenziale Ovest Milano"], ["A51", () => true, 0.06, "Tangenziale Est Milano"], ["A52", () => true, 0.06, "Tangenziale Nord Milano"],
         ["A53", () => true, 0.085, "A53 Bereguardo–Pavia"], ["A54", () => true, 0.085, "A54 Pavia"],
-        ["A55", () => true, 0, "Tangenziale di Torino (gratuita)"], ["A58", () => true, 0.12, "A58 TEEM"],
+        ["A55", () => true, 0, "Tangenziale di Torino (gratuita)"], ["A57", () => true, 0.084, "A57 Tangenziale di Mestre (CAV)"], ["A58", () => true, 0.12, "A58 TEEM"],
         ["A59", () => true, 0.20, "A59 (Pedemontana)"], ["A60", () => true, 0.20, "A60 (Pedemontana)"],
         ["A90", () => true, 0, "GRA Roma (gratuito)"], ["A91", () => true, 0, "Roma–Fiumicino (gratuita)"],
         ["A2", () => true, 0, "A2 del Mediterraneo (gratuita)"],
