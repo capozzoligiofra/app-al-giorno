@@ -296,7 +296,7 @@ console.log(p.ok ? `git pull: ${p.message}` : `git pull saltato: ${p.message}`);
 // HOST=127.0.0.1 per limitare l'accesso al solo PC; di default ascolta anche sulla rete locale (telefono in casa).
 const HOST = process.env.HOST || "0.0.0.0";
 server.listen(PORT, HOST, () => {
-  console.log(`Un'App al Giorno → http://localhost:${PORT}  (Ctrl+C per chiudere)`);
+  console.log(`Un'App al Giorno → pannello http://localhost:${PORT}/admin.html · sito pubblico http://localhost:${PORT}/  (Ctrl+C per chiudere)`);
   if (HOST === "0.0.0.0") {
     const ips = Object.values(networkInterfaces()).flat().filter(i => i && i.family === "IPv4" && !i.internal).map(i => i.address);
     for (const ip of ips) console.log(`  dal telefono (stessa Wi-Fi): http://${ip}:${PORT}`);

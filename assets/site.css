@@ -210,3 +210,18 @@ main { padding: 0 16px; }
   .bottom-nav a { flex: 0 0 auto; padding: 0 1rem; }
   .bottom-nav a.primary { flex: 0 0 auto; }
 }
+
+/* sito pubblico */
+.hero-pub { padding-top: 28px; max-width: 760px; }
+.hero-pub h1 { font-size: 1.9rem; margin-bottom: .5rem; }
+.hero-pub .lead { color: var(--muted); margin: 0 0 1rem; font-size: 1.02rem; }
+.group-title { grid-column: 1 / -1; font-size: 1.15rem; margin: 1.25rem 0 .1rem; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.group-title:first-child { margin-top: .25rem; }
+.card-actions.one { grid-template-columns: 1fr; }
+.about { margin-top: 3rem; padding-top: 1.5rem; border-top: 1.5px solid var(--line); max-width: 760px; }
+.about h2 { font-size: 1.3rem; margin-bottom: .5rem; }
+.about p { color: var(--muted); }
+@media (min-width: 720px) {
+  .hero-pub h1 { font-size: 2.4rem; }
+  .public .list { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+}

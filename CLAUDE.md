@@ -258,7 +258,8 @@ slider, toggle, stepper) e micro-interazioni. Il design deve servire il contenut
 
 ## Struttura del repo
 
-- `index.html`, `assets/` — sito vetrina (non toccare, salvo richiesta esplicita).
+- `index.html` + `assets/public.js` — sito pubblico (catalogo per chi usa gli strumenti); `admin.html` +
+  `assets/site.js` — pannello di gestione (noindex). Non toccarli, salvo richiesta esplicita.
 - `apps.json` — GENERATO da `tools/build.mjs`, non modificarlo a mano.
 - `apps/<slug>/` — una cartella per app.
 - `richieste.md` — coda delle richieste dell'utente (nuove app, "migliora", indicazioni).

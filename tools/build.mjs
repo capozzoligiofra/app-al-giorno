@@ -155,7 +155,7 @@ function writeSeoFiles(apps) {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
     urls.map((u, i) => `  <url><loc>${u}</loc><lastmod>${lastmod(i >= 2 ? apps[i - 2] : null)}</lastmod></url>`).join("\n") + `\n</urlset>\n`;
   writeFileSync(OUT_SITEMAP, xml);
-  writeFileSync(OUT_ROBOTS, `User-agent: *\nAllow: /\nDisallow: /tools/\nSitemap: ${base}/sitemap.xml\n`);
+  writeFileSync(OUT_ROBOTS, `User-agent: *\nAllow: /\nDisallow: /tools/\nDisallow: /admin.html\nSitemap: ${base}/sitemap.xml\n`);
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

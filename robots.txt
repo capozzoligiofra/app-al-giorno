@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 Disallow: /tools/
+Disallow: /admin.html
 Sitemap: https://capozzoligiofra.github.io/app-al-giorno/sitemap.xml
