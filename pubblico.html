@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#111111">
+  <title>Un'App al Giorno — strumenti online gratuiti</title>
+  <meta name="description" content="Calcolatori e strumenti online gratuiti, senza registrazione, pensati per il telefono: soldi, casa, auto, cucina, viaggi. Funzionano nel browser e non chiedono i tuoi dati.">
+  <meta name="robots" content="noindex">
+  <meta property="og:title" content="Un'App al Giorno — strumenti online gratuiti">
+  <meta property="og:description" content="Calcolatori e strumenti gratuiti, senza registrazione, pensati per il telefono.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/">
+  <meta property="og:locale" content="it_IT">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23111'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='%23ffd166' font-family='sans-serif' font-weight='800'%3E1%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/site.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Un'App al Giorno",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/pubblico.html",
+    "description": "Calcolatori e strumenti online gratuiti, senza registrazione, pensati per il telefono.",
+    "inLanguage": "it"
+  }
+  </script>
+</head>
+<body class="public">
+  <header class="top">
+    <a class="brand" href="./" aria-label="Un'App al Giorno">
+      <span class="brand-mark" aria-hidden="true">1</span>
+      <span class="brand-name"><span>Un'App</span> <span>al Giorno</span></span>
+    </a>
+    <p class="top-stats" id="stats"></p>
+    <a class="kofi" href="https://ko-fi.com/giovannicapozzoli" target="_blank" rel="noopener" title="Sostieni il progetto">☕ Offrimi un caffè</a>
+  </header>
+
+  <main>
+    <section class="hero-pub">
+      <h1>Strumenti online gratuiti, senza registrazione</h1>
+      <p class="lead">Calcolatori e piccole app che funzionano nel tuo browser, anche dal telefono. Nessun account, nessun dato inviato a nessuno: quello che scrivi resta sul tuo dispositivo.</p>
+      <label class="search">
+        <span class="sr-only">Cerca uno strumento</span>
+        <input id="search" type="search" placeholder="Cerca: TFR, viaggio, condizionatore, valigia…" autocomplete="off" enterkeyhint="search">
+      </label>
+      <div id="categories" class="chips" role="group" aria-label="Categorie"></div>
+    </section>
+
+    <section id="catalogo" aria-live="polite">
+      <div id="grid" class="list"></div>
+    </section>
+
+    <section class="about">
+      <h2>Come funzionano</h2>
+      <p>Ogni strumento è una singola pagina: si apre in un attimo, non installa nulla e funziona anche offline dopo il primo caricamento. I dati che inserisci (spese, ricette, viaggi) vengono salvati solo nella memoria del tuo browser. Alcune pagine offrono funzioni extra con il <strong>Pass Pro</strong>, una chiave unica che sblocca tutte le app; il resto è e resta gratuito.</p>
+      <p>Ne esce uno nuovo quasi ogni giorno. Hai bisogno di un calcolatore che non c'è? <a href="mailto:capozzoligiofra@gmail.com?subject=Idea%20per%20Un'App%20al%20Giorno">Scrivimi l'idea</a>.</p>
+    </section>
+  </main>
+
+  <footer class="foot muted small">
+    <p>Se questi strumenti ti sono utili, <a href="https://ko-fi.com/giovannicapozzoli" target="_blank" rel="noopener">☕ offrimi un caffè su Ko-fi</a>.</p>
+    <p>Alcune pagine possono contenere annunci e link di affiliazione. <a href="privacy.html">Privacy e cookie</a></p>
+  </footer>
+
+  <nav class="bottom-nav" aria-label="Sezioni">
+    <a href="#catalogo">Strumenti</a>
+    <a href="https://ko-fi.com/giovannicapozzoli" class="kofi-nav" target="_blank" rel="noopener" title="Offrimi un caffè su Ko-fi">☕ Ko-fi</a>
+    <a href="privacy.html">Privacy</a>
+  </nav>
+
+  <script src="apps.js"></script>
+  <script src="assets/public.js"></script>
+</body>
+</html>
