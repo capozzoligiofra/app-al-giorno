@@ -1,7 +1,7 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 8,
+  "count": 9,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -50,6 +50,67 @@ window.__APPS__ = {
     ]
   },
   "apps": [
+    {
+      "title": "Consumo Condizionatore",
+      "slug": "2026-09-20-consumo-condizionatore",
+      "date": "2026-09-20",
+      "description": "Quanto consuma un condizionatore in kWh e quanto costa in bolletta: all'ora, al giorno, al mese e per tutta l'estate, in base a BTU, classe e ore d'uso.",
+      "category": "casa-cucina",
+      "tags": [
+        "condizionatore",
+        "bolletta",
+        "consumi",
+        "estate",
+        "risparmio"
+      ],
+      "source": "richiesta",
+      "request": "Consumo Condizionatore — keyword: \"quanto consuma un condizionatore\" — ricerca enorme da maggio a settembre, i primi risultati sono articoli di fornitori di luce senza un calcolatore vero; Pro: confronto fra più stanze e stima stagionale",
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "single-column",
+        "palette": "arancio-caldo",
+        "font": "rounded"
+      },
+      "business": {
+        "keyword": "quanto consuma un condizionatore",
+        "keywords": [
+          "consumo condizionatore kwh",
+          "quanto costa tenere acceso il condizionatore",
+          "condizionatore 12000 btu consumo",
+          "costo condizionatore al mese"
+        ],
+        "intent": "Chi ha appena acceso il condizionatore (o sta per comprarlo) e vuole sapere subito quanto gli costa un'ora, una notte, un mese di uso, prima che arrivi la bolletta.",
+        "target": "Famiglie e affittuari con 1-3 split in casa, 25-65 anni, da telefono, con picco da maggio a settembre.",
+        "edge": "Unico calcolatore vero: BTU, classe, intensità d'uso e prezzo kWh della propria bolletta in 4 tocchi, risultato per ora/giorno/mese/estate con il risparmio a 26 °C; nessun concorrente offre uno strumento interattivo, solo articoli.",
+        "monetization": [
+          "adsense",
+          "affiliate",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto fra più stanze",
+          "Stima stagionale mese per mese"
+        ],
+        "affiliate": [
+          {
+            "t": "Misuratore di consumo da presa",
+            "q": "misuratore consumo elettrico presa"
+          },
+          {
+            "t": "Presa smart Wi-Fi con contatore di energia",
+            "q": "presa smart monitoraggio energia"
+          },
+          {
+            "t": "Spray igienizzante per filtri condizionatore",
+            "q": "igienizzante condizionatore spray"
+          }
+        ]
+      },
+      "size": 41721
+    },
     {
       "title": "Calcolo TFR",
       "slug": "2026-09-20-calcolo-tfr",
@@ -113,12 +174,13 @@ window.__APPS__ = {
       "source": "richiesta",
       "request": "Costo Viaggio in Auto — keyword: \"calcolo costo viaggio auto\" — pianificazione vacanze, affiliazione naturale (accessori auto); Pro: confronto auto vs treno",
       "status": "pronta",
-      "version": 5,
+      "version": 6,
       "changelog": [
         "v2 (2026-09-19): distanza stimata automaticamente da partenza e arrivo (elenco offline di 170+ località, linea d'aria × 1,2) con link 'Verifica su Google Maps'; prezzi carburante sostituiti con le medie regionali MIMIT del 19/09/2026 e selettore regione (i vecchi 1,75/1,68 erano fuori di 40+ cent); km di autostrada proposti dal percorso; nuove Pro: Itinerario a tappe e Stampa preventivo PDF; guida e FAQ aggiornate.",
         "v3 (2026-09-20): ricerca di qualsiasi località italiana (OpenStreetMap/Nominatim, anche paesi e frazioni), percorso stradale reale con durata e km di autostrada (OSRM), prezzi carburante MIMIT aggiornati ogni mattina da data/carburanti.json; fallback offline invariato",
         "v4 (2026-09-20): partenza e arrivo accettano anche indirizzi precisi con via e numero civico (es. Via Roma 10, Salerno), formattati correttamente nei suggerimenti",
-        "v5 (2026-09-20): selettore 'La tua auto' (marca → modello): carburante e consumo reale stimato impostati automaticamente da data/auto.json (EEA, 2.500+ modelli immatricolati in Italia dal 2010, WLTP +14% / NEDC +35%)"
+        "v5 (2026-09-20): selettore 'La tua auto' (marca → modello): carburante e consumo reale stimato impostati automaticamente da data/auto.json (EEA, 2.500+ modelli immatricolati in Italia dal 2010, WLTP +14% / NEDC +35%)",
+        "v6 (2026-09-20): pedaggio calcolato tratto per tratto sul percorso reale con la tariffa di ogni concessionaria (ASPI 2026 ufficiale pianura/montagna, altre tariffe pubblicate), autostrade gratuite e importi fissi (Tangenziale di Napoli, trafori), arrotondamento ai 10 cent, dettaglio per autostrada"
       ],
       "design": {
         "layout": "dashboard",
@@ -164,7 +226,7 @@ window.__APPS__ = {
           }
         ]
       },
-      "size": 86221
+      "size": 96173
     },
     {
       "title": "Lista Valigia",

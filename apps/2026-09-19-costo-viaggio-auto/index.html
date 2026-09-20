@@ -578,18 +578,56 @@
         ["A2", () => true, 0, "A2 del Mediterraneo (gratuita)"],
         ["A3", () => true, 0.0865, "A3 Napoli–Salerno"],
         ["A56", () => true, 0, "Tangenziale di Napoli"],
+        ["A", () => true, 0.08, "Autostrada senza sigla (tariffa media)"],
       ];
       // Importi fissi per transito (indipendenti dai km): tangenziale di Napoli e trafori alpini.
       const TOLL_FIXED = { A56: [2.30, "Tangenziale di Napoli: 2,30 € a transito"], T1: [54.20, "Traforo del Monte Bianco"], T2: [33.80, "Traforo del Gran San Bernardo"], T4: [54.20, "Traforo del Frejus"] };
       const round10 = (v) => Math.round(v * 10) / 10;
+      // Decodifica la polyline (precisione 5) restituita da OSRM per ogni passo.
+      function decodePolyline(str) {
+        const pts = []; let i = 0, lat = 0, lon = 0;
+        while (i < str.length) {
+          for (const k of [0, 1]) {
+            let shift = 0, result = 0, b;
+            do { b = str.charCodeAt(i++) - 63; result |= (b & 0x1f) << shift; shift += 5; } while (b >= 0x20);
+            const d = (result & 1) ? ~(result >> 1) : (result >> 1);
+            if (k === 0) lat += d; else lon += d;
+          }
+          pts.push({ lat: lat / 1e5, lon: lon / 1e5 });
+        }
+        return pts;
+      }
+      // Sigla base: "A1var", "A2dirNA", "A1-R5" → "A1", "A2", "A1"; "RA4"/"NSA" → raccordi (gratuiti).
+      function baseRef(ref) {
+        const r = String(ref || "").toUpperCase().replace(/\s+/g, "");
+        const m = r.match(/^(A\d{1,2}|T[124])(?![0-9])/);
+        if (m) return m[1];
+        if (/^(RA|NSA|SS|SR|SP)\d*/.test(r)) return "RA";
+        return null;
+      }
+      // Un passo OSRM può essere lungo centinaia di km: lo spezzo lungo la geometria e assegno ogni pezzo alla
+      // regola giusta (montagna/pianura, gestore) in base alla posizione del pezzo.
+      function splitStep(ref, geometry, totalKm) {
+        const pts = geometry ? decodePolyline(geometry) : [];
+        if (pts.length < 2) return [{ ref, km: totalKm, lat: pts[0]?.lat || 0, lon: pts[0]?.lon || 0 }];
+        const segs = [];
+        for (let k = 1; k < pts.length; k++) {
+          const d = haversine(pts[k - 1], pts[k]);
+          segs.push({ ref, km: d, lat: (pts[k - 1].lat + pts[k].lat) / 2, lon: (pts[k - 1].lon + pts[k].lon) / 2 });
+        }
+        const sum = segs.reduce((a, x) => a + x.km, 0) || 1;
+        for (const x of segs) x.km = x.km / sum * totalKm; // riallinea alla distanza dichiarata da OSRM
+        return segs;
+      }
       // Da una lista di tratti {ref, km, lat, lon} ricava il dettaglio del pedaggio (sola andata).
       function tollFromSteps(steps) {
         const groups = new Map(); let fixed = 0; const notes = [];
         for (const st of steps) {
-          const ref = st.ref.toUpperCase();
+          const ref = st.ref;
           if (TOLL_FIXED[ref] && !notes.includes(TOLL_FIXED[ref][1])) { fixed += TOLL_FIXED[ref][0]; notes.push(TOLL_FIXED[ref][1]); }
           if (/^T\d/.test(ref)) continue;
-          const rule = TOLL_RULES.find(([r, cond]) => r === ref && cond(st.lat, st.lon)) || [ref, null, 0.08, `${ref} (tariffa media)`];
+          const rule = ref === "RA" ? ["RA", null, 0, "Raccordi e tangenziali (gratuiti)"]
+            : TOLL_RULES.find(([r, cond]) => r === ref && cond(st.lat, st.lon)) || [ref, null, 0.08, `${ref} (tariffa media)`];
           const g = groups.get(rule[3]) || { label: rule[3], rate: rule[2], km: 0 };
           g.km += st.km; groups.set(rule[3], g);
         }
@@ -613,12 +651,10 @@
           let motorway = 0; const tratti = [];
           const legs = rt.legs.map(l => {
             for (const st of l.steps || []) {
-              const ref = ((st.ref || "").split(";")[0] || "").trim().toUpperCase();
-              const isMotorway = /^A\d+/.test(ref) || /autostrada/i.test(st.name || "") || /^T[124]$/.test(ref);
-              if (!isMotorway) continue;
+              const ref = baseRef((st.ref || "").split(";")[0]) || (/autostrada/i.test(st.name || "") ? "A" : null);
+              if (!ref || ref === "RA") continue;
               motorway += st.distance;
-              const loc = (st.maneuver && st.maneuver.location) || [0, 0];
-              tratti.push({ ref: ref || "A", km: st.distance / 1000, lon: loc[0], lat: loc[1] });
+              tratti.push(...splitStep(ref, st.geometry, st.distance / 1000));
             }
             return Math.round(l.distance / 1000);
           });
@@ -835,6 +871,9 @@
       }
       function renderHints() {
         const i = state.in;
+        for (const b of document.querySelectorAll("#toll-seg button")) b.setAttribute("aria-pressed", String(b.dataset.mode === i.tollMode));
+        $("#toll-percorso").hidden = !i.tollAuto;
+        $("#toll-stima").hidden = i.tollMode !== "stima"; $("#toll-importo").hidden = i.tollMode !== "importo";
         const parts = $("#toll-parts"); parts.hidden = true; parts.replaceChildren();
         if (i.tollMode === "percorso" && i.tollAuto) {
           const t = i.tollAuto;
@@ -843,7 +882,7 @@
             : "Il percorso non usa autostrade a pedaggio.";
           for (const p of t.parts) {
             const li = document.createElement("li");
-            li.append(Object.assign(document.createElement("span"), { textContent: p.fixed ? p.label : `${p.label} · ${n1(p.km)} km × ${p.rate.toLocaleString("it-IT", { minimumFractionDigits: 3, maximumFractionDigits: 5 })}` }));
+            li.append(Object.assign(document.createElement("span"), { textContent: p.fixed ? p.label : `${p.label} · ${n1(p.km)} km × ${p.rate.toLocaleString("it-IT", { minimumFractionDigits: 3, maximumFractionDigits: 5 })} €/km ` }));
             li.append(Object.assign(document.createElement("b"), { textContent: p.fixed ? "" : (p.eur ? eur(p.eur) : "gratis") }));
             parts.append(li);
           }

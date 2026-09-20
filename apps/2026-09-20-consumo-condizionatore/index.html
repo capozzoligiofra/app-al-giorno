@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#e8641b">
+  <title>Quanto consuma un condizionatore? Calcolo costo online gratis</title>
+  <meta name="description" content="Calcola quanto consuma un condizionatore in kWh e quanto costa in bolletta per ora, al giorno, al mese e per tutta la stagione: BTU, classe, ore di uso.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-20-consumo-condizionatore/">
+  <meta property="og:title" content="Quanto consuma un condizionatore? Calcolo costo online gratis">
+  <meta property="og:description" content="kWh e costo in bolletta del condizionatore all'ora, al giorno, al mese e per l'estate: scegli BTU, classe e ore d'uso, il resto lo fa il calcolatore.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-20-consumo-condizionatore/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Consumo Condizionatore",
+    "description": "Calcolatore gratuito del consumo del condizionatore: kWh e costo in bolletta all'ora, al giorno, al mese e per l'estate in base a BTU, classe energetica, intensità d'uso e prezzo dell'energia.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-20-consumo-condizionatore/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Quanto consuma un condizionatore da 12000 BTU in un'ora?", "acceptedAnswer": { "@type": "Answer", "text": "Un 12000 BTU inverter in classe A++ assorbe circa 1 kW a piena potenza, ma in un'ora di uso normale a 24-25 °C consuma in media 0,5-0,6 kWh, cioè circa 15 centesimi con l'energia a 0,27 €/kWh." } },
+      { "@type": "Question", "name": "Quanto costa tenere acceso il condizionatore tutta la notte?", "acceptedAnswer": { "@type": "Answer", "text": "Per 8 ore in camera con un 9000 BTU in modalità notte a 26-27 °C si spendono circa 0,45-0,60 € a notte, cioè 15-18 € al mese. Con il termostato a 22 °C il costo raddoppia." } },
+      { "@type": "Question", "name": "Il condizionatore inverter consuma davvero meno?", "acceptedAnswer": { "@type": "Answer", "text": "Sì: una volta raggiunta la temperatura il compressore inverter modula la potenza invece di spegnersi e riaccendersi, e nelle ore lunghe consuma il 20-30% in meno di un on-off a parità di classe." } },
+      { "@type": "Question", "name": "Quanto si risparmia impostando 26 gradi invece di 22?", "acceptedAnswer": { "@type": "Answer", "text": "Ogni grado in più vale circa il 6-8% di consumo in meno: passare da 22 a 26 °C riduce la spesa di circa un terzo, spesso 10-20 € al mese per uno split usato tutti i giorni." } }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #fff8f1; --surface: #ffffff; --text: #2b1d12; --muted: #7a6455; --line: #f0dccb;
+      --accent: #e8641b; --accent-deep: #c24d0d; --accent-soft: #ffe6d2; --accent-ink: #fff;
+      --ok: #2e8b57; --warn: #b3403a; --radius: 22px; --radius-s: 14px;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1b120c; --surface: #26190f; --text: #f7ebe0; --muted: #c0a48f; --line: #3d2a1c;
+        --accent: #ff7a2f; --accent-deep: #ff9552; --accent-soft: #3a2314; --accent-ink: #1b120c;
+        --ok: #5fcf8a; --warn: #ff8a80;
+        color-scheme: dark;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font: 17px/1.5 "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+      overflow-x: hidden; padding-bottom: calc(96px + env(safe-area-inset-bottom));
+    }
+    a { color: var(--accent-deep); }
+    .wrap { max-width: 640px; margin: 0 auto; padding: 0 20px; }
+    header.top { display: flex; align-items: center; gap: .75rem; padding: 14px 0 6px; }
+    .back { text-decoration: none; color: var(--muted); font-size: .95rem; font-weight: 600; min-height: 44px; display: inline-flex; align-items: center; }
+    h1 { font-size: 1.65rem; line-height: 1.2; margin: 14px 0 6px; letter-spacing: -.01em; }
+    .lead { margin: 0 0 22px; color: var(--muted); font-size: 1rem; }
+    h2 { font-size: 1.05rem; margin: 0 0 12px; }
+    .field { margin: 0 0 30px; }
+    .field > label, .field > .lbl { display: block; font-weight: 700; margin-bottom: 10px; }
+    .hint { color: var(--muted); font-size: .9rem; margin: 8px 0 0; }
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+    .chip {
+      font: inherit; font-size: 1rem; font-weight: 700; min-height: 48px; padding: 10px 18px; border-radius: 999px;
+      border: 2px solid var(--line); background: var(--surface); color: var(--text); cursor: pointer; flex: 1 1 auto; text-align: center;
+      transition: transform .08s, background .15s, border-color .15s;
+    }
+    .chip:active { transform: scale(.96); }
+    .chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+    .chip small { display: block; font-weight: 500; font-size: .8rem; opacity: .8; }
+    .chips.classi .chip { flex: 1 1 26%; padding-inline: 8px; }
+    .stepper { display: grid; grid-template-columns: 56px 1fr 56px; gap: 10px; align-items: stretch; }
+    .stepper button {
+      font: inherit; font-size: 1.6rem; font-weight: 700; min-height: 56px; border-radius: 999px; border: 2px solid var(--line);
+      background: var(--surface); color: var(--accent-deep); cursor: pointer;
+    }
+    .stepper button:active { background: var(--accent-soft); }
+    .stepper output {
+      display: flex; align-items: center; justify-content: center; font-size: 1.35rem; font-weight: 800; border-radius: 999px;
+      background: var(--surface); border: 2px solid var(--line);
+    }
+    .stepper output small { font-size: .9rem; font-weight: 500; color: var(--muted); margin-left: 6px; }
+    input[type="range"] { width: 100%; margin: 6px 0; accent-color: var(--accent); height: 44px; }
+    .inputrow { display: flex; align-items: center; gap: 10px; }
+    input[type="text"], input[type="number"] {
+      font: inherit; font-size: 18px; min-height: 52px; width: 100%; padding: 10px 16px; border-radius: 999px;
+      border: 2px solid var(--line); background: var(--surface); color: var(--text);
+    }
+    input:focus-visible, .chip:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+    .unit { font-weight: 700; color: var(--muted); white-space: nowrap; }
+    .toggle { display: flex; align-items: center; gap: 12px; min-height: 44px; cursor: pointer; }
+    .toggle input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .toggle .sw { width: 54px; height: 32px; border-radius: 999px; background: var(--line); position: relative; flex: none; transition: background .15s; }
+    .toggle .sw::after { content: ""; position: absolute; top: 4px; left: 4px; width: 24px; height: 24px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.3); transition: left .15s; }
+    .toggle input:checked + .sw { background: var(--accent); }
+    .toggle input:checked + .sw::after { left: 26px; }
+    .toggle input:focus-visible + .sw { outline: 3px solid var(--accent); outline-offset: 2px; }
+    .adv { display: none; margin-top: 14px; }
+    .adv.open { display: block; }
+    .err { color: var(--warn); font-size: .9rem; min-height: 1.3em; margin: 6px 0 0; }
+
+    /* Risultato */
+    .risultato { margin: 8px 0 26px; }
+    .big { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .kpi { background: var(--accent-soft); border-radius: var(--radius); padding: 16px 16px 14px; }
+    .kpi .v { font-size: 1.9rem; font-weight: 800; line-height: 1.1; letter-spacing: -.02em; }
+    .kpi .k { font-size: .85rem; color: var(--muted); margin-top: 6px; }
+    .kpi .kwh { font-size: .95rem; font-weight: 600; margin-top: 2px; }
+    .kpi.hero { grid-column: 1 / -1; background: var(--accent); color: var(--accent-ink); }
+    .kpi.hero .k, .kpi.hero .kwh { color: inherit; opacity: .9; }
+    .note { margin: 14px 0 0; padding: 12px 16px; border-radius: var(--radius-s); background: var(--surface); border: 2px solid var(--line); font-size: .95rem; }
+    .note b { color: var(--ok); }
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+    .btn {
+      font: inherit; font-weight: 700; min-height: 48px; padding: 10px 20px; border-radius: 999px; border: 2px solid var(--accent);
+      background: transparent; color: var(--accent-deep); cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn.primary { background: var(--accent); color: var(--accent-ink); }
+    .btn.small { min-height: 44px; padding: 6px 14px; font-size: .95rem; }
+    .btn.danger { border-color: var(--line); color: var(--warn); }
+    .toast { position: fixed; left: 50%; bottom: calc(110px + env(safe-area-inset-bottom)); transform: translateX(-50%) translateY(20px); background: var(--text); color: var(--bg); padding: 10px 18px; border-radius: 999px; font-weight: 600; opacity: 0; pointer-events: none; transition: .2s; z-index: 30; white-space: nowrap; }
+    .toast.show { opacity: 1; transform: translateX(-50%); }
+
+    /* Pro */
+    section[data-pro] { margin: 0 0 30px; padding: 18px 16px; border-radius: var(--radius); background: var(--surface); border: 2px solid var(--line); min-height: 180px; }
+    section[data-pro] h2 { display: flex; align-items: center; gap: 8px; }
+    .badge { font-size: .7rem; font-weight: 800; letter-spacing: .08em; padding: 3px 8px; border-radius: 999px; background: var(--accent); color: var(--accent-ink); }
+    .stanze { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 10px; }
+    .stanza { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; padding: 12px 14px; border-radius: var(--radius-s); background: var(--accent-soft); }
+    .stanza .nome { font-weight: 800; }
+    .stanza .desc { grid-column: 1; color: var(--muted); font-size: .88rem; }
+    .stanza .costi { grid-column: 1; font-size: .95rem; }
+    .stanza button { grid-column: 2; grid-row: 1 / span 3; align-self: center; }
+    .totale { margin-top: 14px; padding: 14px 16px; border-radius: var(--radius-s); background: var(--accent); color: var(--accent-ink); font-weight: 700; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px; }
+    .totale span { font-weight: 500; opacity: .9; }
+    .mesi { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 10px; }
+    .mese { display: grid; grid-template-columns: 44px 1fr auto; gap: 10px; align-items: center; font-size: .95rem; }
+    .mese .bar { height: 26px; border-radius: 999px; background: var(--accent-soft); overflow: hidden; }
+    .mese .bar i { display: block; height: 100%; background: var(--accent); border-radius: 999px; min-width: 4px; transition: width .3s; }
+    .mese .val { font-weight: 700; text-align: right; white-space: nowrap; }
+    .mese .val small { display: block; font-weight: 500; color: var(--muted); }
+    .empty { color: var(--muted); font-size: .95rem; margin: 10px 0 0; }
+
+    /* Barra fissa */
+    .bar-fissa {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: var(--surface); border-top: 2px solid var(--line);
+      padding: 10px 20px calc(10px + env(safe-area-inset-bottom)); display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    }
+    .bar-fissa .sum b { font-size: 1.25rem; }
+    .bar-fissa .sum span { display: block; color: var(--muted); font-size: .8rem; }
+
+    /* Guida */
+    #guida { margin-top: 10px; }
+    #guida h2 { font-size: 1.35rem; margin: 30px 0 10px; }
+    #guida h3 { font-size: 1.1rem; margin: 22px 0 8px; }
+    #guida p, #guida li { color: var(--text); }
+    #guida ul { padding-left: 1.2rem; }
+    .tab-wrap { overflow-x: auto; margin: 10px 0; -webkit-overflow-scrolling: touch; }
+    table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+    th, td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--line); }
+    th { font-size: .8rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+    td:last-child, th:last-child { text-align: right; }
+    .muted { color: var(--muted); }
+    .small { font-size: .85rem; }
+    footer { margin: 30px 0 10px; }
+
+    @media (min-width: 700px) {
+      .wrap { max-width: 760px; }
+      h1 { font-size: 2.1rem; }
+      .big { grid-template-columns: repeat(4, 1fr); }
+      .kpi.hero { grid-column: 1 / span 2; }
+      .kpi .v { font-size: 1.7rem; }
+      .chips.classi .chip { flex: 1 1 12%; }
+      .stanza { grid-template-columns: 1fr 1fr auto; }
+      .stanza .desc { grid-column: 1; } .stanza .costi { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
+      .stanza button { grid-column: 3; grid-row: 1 / span 2; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top"><a class="back" href="../../index.html">← Tutte le app</a></header>
+
+  <h1>Quanto consuma un condizionatore (e quanto costa in bolletta)</h1>
+  <p class="lead">Scegli potenza, classe e come lo usi: vedi subito i kWh e la spesa per un'ora, una giornata, un mese e tutta l'estate, con il prezzo dell'energia della tua bolletta.</p>
+
+  <form id="form" autocomplete="off" novalidate>
+    <div class="field">
+      <span class="lbl" id="l-btu">Potenza del condizionatore</span>
+      <div class="chips" role="group" aria-labelledby="l-btu" id="btu"></div>
+      <p class="hint">I BTU sono scritti sull'etichetta dello split o nel nome del modello (es. "12000"). 9000 = stanza fino a 25 m², 12000 fino a 35 m², 18000 fino a 50 m².</p>
+    </div>
+
+    <div class="field">
+      <span class="lbl" id="l-classe">Classe energetica (raffrescamento)</span>
+      <div class="chips classi" role="group" aria-labelledby="l-classe" id="classe"></div>
+      <p class="hint">È la lettera grande sull'etichetta europea. Se non la ricordi, un inverter comprato dopo il 2015 è quasi sempre A++.</p>
+    </div>
+
+    <div class="field">
+      <span class="lbl" id="l-uso">Come lo usi</span>
+      <div class="chips" role="group" aria-labelledby="l-uso" id="uso"></div>
+      <label class="toggle" style="margin-top:14px">
+        <input type="checkbox" id="inverter" checked><span class="sw" aria-hidden="true"></span>
+        <span>È un inverter (quasi tutti quelli venduti dopo il 2010)</span>
+      </label>
+      <button type="button" class="btn small" id="advBtn" aria-expanded="false" style="margin-top:12px">Conosco la potenza assorbita in targhetta</button>
+      <div class="adv" id="adv">
+        <label for="watt">Potenza assorbita (W) letta sulla targhetta o sul manuale</label>
+        <div class="inputrow"><input type="number" id="watt" inputmode="numeric" min="100" max="6000" step="10" placeholder="es. 780" enterkeyhint="done"><span class="unit">W</span></div>
+        <p class="hint">Se la inserisci, il calcolo usa questo valore al posto della stima da BTU e classe. Lascia vuoto per tornare alla stima.</p>
+        <p class="err" id="wattErr"></p>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="ore">Ore di utilizzo al giorno: <output id="oreOut" for="ore">6 ore</output></label>
+      <input type="range" id="ore" min="1" max="24" step="1" value="6">
+      <p class="hint">Conta solo le ore in cui è acceso davvero. Una notte in camera vale 7-8 ore.</p>
+    </div>
+
+    <div class="field">
+      <span class="lbl" id="l-mesi">Mesi di utilizzo nell'estate</span>
+      <div class="stepper" aria-labelledby="l-mesi">
+        <button type="button" data-step="-1" aria-label="Un mese in meno">−</button>
+        <output id="mesiOut">3 <small>mesi</small></output>
+        <button type="button" data-step="1" aria-label="Un mese in più">+</button>
+      </div>
+      <p class="hint">Giugno, luglio e agosto sono 3 mesi. Al Sud spesso se ne contano 4 o 5.</p>
+    </div>
+
+    <div class="field">
+      <label for="prezzo">Prezzo dell'energia (€/kWh, tutto compreso)</label>
+      <div class="inputrow"><input type="text" id="prezzo" inputmode="decimal" value="0,27" enterkeyhint="done" aria-describedby="prezzoHint"><span class="unit">€/kWh</span></div>
+      <p class="hint" id="prezzoHint">Lo trovi in bolletta come "costo medio unitario" o "spesa totale ÷ kWh". Nel 2026 un'offerta tipica costa 0,22-0,32 €/kWh con oneri e tasse.</p>
+      <p class="err" id="prezzoErr"></p>
+    </div>
+  </form>
+
+  <section class="risultato" aria-live="polite" id="risultato">
+    <h2>Quanto consuma e quanto spendi</h2>
+    <div class="big">
+      <div class="kpi hero"><div class="v" id="rMeseE">—</div><div class="kwh" id="rMeseK">—</div><div class="k">al mese (30 giorni)</div></div>
+      <div class="kpi"><div class="v" id="rOraE">—</div><div class="kwh" id="rOraK">—</div><div class="k">per ora di uso</div></div>
+      <div class="kpi"><div class="v" id="rGiornoE">—</div><div class="kwh" id="rGiornoK">—</div><div class="k" id="rGiornoL">al giorno</div></div>
+      <div class="kpi"><div class="v" id="rStagE">—</div><div class="kwh" id="rStagK">—</div><div class="k" id="rStagL">per l'estate</div></div>
+      <div class="kpi"><div class="v" id="rWatt">—</div><div class="kwh" id="rWattK">—</div><div class="k">potenza assorbita stimata</div></div>
+    </div>
+    <p class="note" id="nota"></p>
+    <div class="actions">
+      <button type="button" class="btn" id="copia">📋 Copia il riepilogo</button>
+      <button type="button" class="btn small" id="reset">Azzera</button>
+    </div>
+    <p class="hint">Stima basata sull'efficienza media per classe (EER) e su quanto lavora il compressore nella modalità scelta; per il dato esatto inserisci la potenza in targhetta o misura con una presa contatore.</p>
+  </section>
+
+  <div data-ad="top"></div>
+
+  <section data-pro="Confronto fra più stanze">
+    <h2><span class="badge">PRO</span> Confronto fra più stanze</h2>
+    <p class="hint" style="margin:0 0 12px">Salva la configurazione che hai impostato sopra come "Camera", "Soggiorno", "Studio" e scopri quanto pesa ogni split e quanto costa tutta la casa insieme.</p>
+    <div class="inputrow">
+      <input type="text" id="nomeStanza" placeholder="Nome della stanza (es. Camera)" maxlength="30" enterkeyhint="done" aria-label="Nome della stanza">
+      <button type="button" class="btn primary small" id="addStanza">Aggiungi</button>
+    </div>
+    <p class="err" id="stanzaErr"></p>
+    <ul class="stanze" id="stanze"></ul>
+    <p class="empty" id="stanzeVuoto">Nessuna stanza salvata: imposta lo split qui sopra e premi Aggiungi.</p>
+    <div class="totale" id="totale" hidden></div>
+    <div class="actions"><button type="button" class="btn small" id="copiaStanze" hidden>📋 Copia il confronto</button></div>
+  </section>
+
+  <section data-pro="Stima stagionale mese per mese">
+    <h2><span class="badge">PRO</span> Stima stagionale mese per mese</h2>
+    <p class="hint" style="margin:0 0 12px">Non si usa il condizionatore allo stesso modo a giugno e ad agosto. Scegli la tua zona: le ore che hai impostato vengono pesate sul caldo tipico di ogni mese, da maggio a settembre.</p>
+    <div class="chips" role="group" aria-label="Zona climatica" id="zona"></div>
+    <ul class="mesi" id="mesi"></ul>
+    <div class="totale" id="totStag"></div>
+    <p class="hint" id="stagNota"></p>
+  </section>
+
+  <div data-affiliate data-title="Per misurare il consumo reale" data-items='[{"t":"Misuratore di consumo da presa","q":"misuratore consumo elettrico presa"},{"t":"Presa smart Wi-Fi con contatore di energia","q":"presa smart monitoraggio energia"},{"t":"Spray igienizzante per filtri condizionatore","q":"igienizzante condizionatore spray"}]'></div>
+
+  <section id="guida">
+    <h2>Quanto consuma un condizionatore: come si calcola davvero</h2>
+    <p>La domanda "quanto consuma un condizionatore" ha una risposta seria solo se si distinguono due numeri che spesso vengono confusi: la <strong>potenza assorbita</strong> (i watt che l'apparecchio tira dalla presa quando lavora al massimo) e il <strong>consumo effettivo</strong> (i kWh che finiscono in bolletta dopo un'ora, una notte o un mese). Un inverter arriva alla potenza massima solo nei primi minuti, quando deve abbassare la temperatura della stanza; poi modula il compressore e, in un'ora di uso normale, consuma circa la metà di quanto dice la targhetta. Questo calcolatore fa esattamente questa distinzione.</p>
+
+    <h3>La formula, passo per passo</h3>
+    <ul>
+      <li><strong>Potenza frigorifera</strong>: i BTU/h si convertono in watt moltiplicando per 0,293. Un 12000 BTU rende quindi circa 3,5 kW di freddo.</li>
+      <li><strong>Potenza elettrica assorbita</strong> = potenza frigorifera ÷ EER. L'EER (Energy Efficiency Ratio) dice quanti watt di freddo ottieni per ogni watt elettrico: circa 4,1 in classe A+++, 3,6 in A++, 3,3 in A+, 3,0 in A, 2,8 in B e via scendendo. Il 12000 BTU in A++ assorbe così circa 970 W a pieno regime.</li>
+      <li><strong>Fattore di carico</strong>: quanto lavora mediamente il compressore nell'ora. Con termostato a 26-27 °C di notte vale circa il 35%, a 24-25 °C circa il 55%, a 21-22 °C in una stanza al sole arriva all'80%. Un apparecchio on-off (non inverter) spreca circa il 25% in più perché non può modulare.</li>
+      <li><strong>Consumo orario</strong> = potenza assorbita × fattore di carico. Poi si moltiplica per le ore al giorno, per 30 giorni e per i mesi di utilizzo.</li>
+      <li><strong>Costo</strong> = kWh × prezzo dell'energia. Usa il prezzo "tutto compreso" della tua bolletta (materia energia + trasporto + oneri + IVA), non il solo prezzo della componente energia che vedi nelle pubblicità.</li>
+    </ul>
+
+    <h3>Esempio con i numeri</h3>
+    <p>Camera da letto con uno split da <strong>9000 BTU in classe A++</strong>, inverter, acceso <strong>8 ore a notte</strong> in modalità notte a 26 °C, energia a 0,27 €/kWh. Potenza frigorifera 2,64 kW, assorbimento massimo 2,64 ÷ 3,6 ≈ 0,73 kW, fattore di carico 35% → circa <strong>0,26 kWh per ora</strong>, cioè 7 centesimi. In una notte 2,05 kWh e 0,55 €; in un mese 62 kWh e circa <strong>16,60 €</strong>; su tre mesi estivi 185 kWh e circa <strong>50 €</strong>. Lo stesso split tenuto a 22 °C in una stanza esposta a ovest sale a 0,58 kWh/ora: 38 € al mese, più del doppio.</p>
+    <p>Secondo esempio: soggiorno con un <strong>18000 BTU in classe A</strong>, 6 ore al giorno in uso normale. Potenza frigorifera 5,27 kW ÷ 3,0 = 1,76 kW assorbiti, fattore 55% → 0,97 kWh/ora, 5,8 kWh al giorno, <strong>47 € al mese</strong>. Passando a un modello A+++ lo stesso comfort costerebbe 34 €: la differenza di classe si ripaga in 3-4 estati.</p>
+
+    <h3>Tabella rapida: consumo per ora di uso normale (24-25 °C, inverter)</h3>
+    <div class="tab-wrap"><table>
+      <thead><tr><th>Modello</th><th>Assorb. max</th><th>kWh/ora reali</th><th>€/ora a 0,27</th></tr></thead>
+      <tbody>
+        <tr><td>7000 BTU A++</td><td>570 W</td><td>0,31</td><td>0,08 €</td></tr>
+        <tr><td>9000 BTU A++</td><td>730 W</td><td>0,40</td><td>0,11 €</td></tr>
+        <tr><td>12000 BTU A++</td><td>980 W</td><td>0,54</td><td>0,15 €</td></tr>
+        <tr><td>18000 BTU A++</td><td>1.470 W</td><td>0,81</td><td>0,22 €</td></tr>
+        <tr><td>24000 BTU A++</td><td>1.950 W</td><td>1,07</td><td>0,29 €</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>Errori comuni</h3>
+    <ul>
+      <li><strong>Moltiplicare i watt di targhetta per le ore.</strong> È il calcolo che fanno molti articoli: sovrastima il consumo del 40-60% perché ignora la modulazione dell'inverter.</li>
+      <li><strong>Usare il prezzo sbagliato dell'energia.</strong> Lo 0,10-0,15 €/kWh delle offerte è la sola componente energia; in bolletta, con trasporto, oneri e IVA, si arriva a 0,22-0,32 €/kWh.</li>
+      <li><strong>Confondere BTU e metri quadri.</strong> Un 12000 BTU in una stanza da 15 m² lavora poco e consuma meno di quanto pensi; un 9000 in un open space da 45 m² resta al massimo per ore e consuma di più di un 18000 ben dimensionato.</li>
+      <li><strong>Dimenticare i filtri.</strong> Filtri intasati riducono il flusso d'aria e fanno lavorare di più il compressore: pulirli ogni due settimane in estate vale un 5-10% di consumo.</li>
+      <li><strong>Spegnere e riaccendere di continuo.</strong> Ogni riavvio costa la fase a piena potenza; per assenze brevi conviene alzare il termostato di 2-3 gradi invece di spegnere.</li>
+    </ul>
+
+    <h3>Come consumare meno senza rinunciare al fresco</h3>
+    <p>Imposta 25-26 °C e attiva la deumidificazione: con meno umidità 26 °C si percepiscono come 23. Ogni grado in più vale circa il 6-8% di consumo in meno. Chiudi tapparelle e tende nelle ore di sole, usa la modalità notte, tieni l'unità esterna all'ombra e non ostruita. Se hai un contatore con fascia oraria, le ore serali e i weekend costano meno.</p>
+
+    <h3>Domande frequenti</h3>
+    <h3>Quanto consuma un condizionatore da 12000 BTU in un'ora?</h3>
+    <p>Un 12000 BTU inverter in classe A++ assorbe circa 1 kW a piena potenza, ma in un'ora di uso normale a 24-25 °C consuma in media 0,5-0,6 kWh, cioè circa 15 centesimi con l'energia a 0,27 €/kWh.</p>
+    <h3>Quanto costa tenere acceso il condizionatore tutta la notte?</h3>
+    <p>Per 8 ore in camera con un 9000 BTU in modalità notte a 26-27 °C si spendono circa 0,45-0,60 € a notte, cioè 15-18 € al mese. Con il termostato a 22 °C il costo raddoppia.</p>
+    <h3>Il condizionatore inverter consuma davvero meno?</h3>
+    <p>Sì. Una volta raggiunta la temperatura il compressore inverter modula la potenza invece di spegnersi e riaccendersi, e nelle ore lunghe consuma il 20-30% in meno di un on-off a parità di classe. Il vantaggio è minore se lo accendi per periodi brevissimi.</p>
+    <h3>Quanto si risparmia impostando 26 gradi invece di 22?</h3>
+    <p>Circa un terzo della spesa: ogni grado in più vale il 6-8% di consumo in meno. Per uno split usato ogni giorno sono spesso 10-20 € al mese. Il calcolatore ti mostra il risparmio esatto in base ai tuoi dati.</p>
+    <h3>Il dato dell'etichetta energetica (kWh/anno) è affidabile?</h3>
+    <p>È calcolato su 350 ore equivalenti a pieno carico in un clima di riferimento: serve a confrontare modelli, non a stimare la tua bolletta. Le tue ore reali e la tua temperatura contano molto di più, ed è per questo che il calcolatore le chiede.</p>
+
+    <div data-ad="bottom"></div>
+  </section>
+
+  <footer>
+    <div data-support></div>
+    <p class="muted small">Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a> · I dati restano sul tuo telefono. Vedi anche <a href="../2026-09-19-costo-viaggio-auto/">Costo Viaggio in Auto</a> per l'altra spesa dell'estate.</p>
+  </footer>
+</div>
+
+<div class="bar-fissa">
+  <div class="sum"><b id="barMese">—</b><span>al mese</span></div>
+  <div class="sum"><b id="barGiorno">—</b><span>al giorno</span></div>
+  <button type="button" class="btn primary small" id="vaiRisultato">Vedi dettaglio</button>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="../../assets/monetize.js"></script>
+<script>
+  // Modello dati: `stato` = configurazione corrente dello split { btu, classe, uso, inverter, watt|null, ore, mesi, prezzo, zona }.
+  // Il consumo si calcola come (BTU×0,293 / EER classe, oppure watt targhetta) × fattore di carico della modalità d'uso.
+  // Pro: `stanze` = array di configurazioni salvate con nome; tutto persiste in localStorage (chiave STORE).
+  (() => {
+    "use strict";
+    const STORE = "consumo-condizionatore:v1";
+    const BTU_W = 0.29307;
+    const BTU = [7000, 9000, 12000, 18000, 24000];
+    const CLASSI = { "A+++": 4.1, "A++": 3.6, "A+": 3.3, "A": 3.0, "B": 2.8, "C": 2.6, "D": 2.4 };
+    const USI = {
+      eco: { t: "Notte / eco", s: "26-27 °C, deumidifica", f: 0.35 },
+      normale: { t: "Normale", s: "24-25 °C", f: 0.55 },
+      intenso: { t: "Intenso", s: "21-22 °C, stanza al sole", f: 0.8 },
+    };
+    const ONOFF = 1.25;
+    // Peso del caldo tipico di ogni mese (1 = il mese di picco) per zona: usato dalla stima stagionale Pro.
+    const MESI = ["Mag", "Giu", "Lug", "Ago", "Set"];
+    const GIORNI = [31, 30, 31, 31, 30];
+    const ZONE = {
+      nord: { t: "Nord", p: [0.1, 0.55, 0.95, 0.9, 0.25] },
+      centro: { t: "Centro", p: [0.2, 0.7, 1, 1, 0.4] },
+      sud: { t: "Sud e isole", p: [0.3, 0.8, 1, 1, 0.6] },
+    };
+    const DEFAULT = { btu: 12000, classe: "A++", uso: "normale", inverter: true, watt: null, ore: 6, mesi: 3, prezzo: 0.27, zona: "centro" };
+
+    const $ = (id) => document.getElementById(id);
+    const fmtE = (v) => v.toLocaleString("it-IT", { style: "currency", currency: "EUR", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const fmtK = (v, d) => v.toLocaleString("it-IT", { minimumFractionDigits: d ?? (v < 10 ? 2 : 0), maximumFractionDigits: d ?? (v < 10 ? 2 : 0) }) + " kWh";
+    const parseDec = (s) => { const n = parseFloat(String(s).replace(/\s/g, "").replace(",", ".")); return Number.isFinite(n) ? n : NaN; };
+
+    let stato = { ...DEFAULT };
+    let stanze = [];
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORE) || "{}");
+      if (saved.stato) stato = { ...DEFAULT, ...saved.stato };
+      if (Array.isArray(saved.stanze)) stanze = saved.stanze;
+    } catch (_) { /* storage vuoto o corrotto */ }
+    const salva = () => { try { localStorage.setItem(STORE, JSON.stringify({ stato, stanze })); } catch (_) { /* storage bloccato */ } };
+
+    // ---- calcolo ----
+    function calcola(c) {
+      const wattMax = c.watt || (c.btu * BTU_W) / CLASSI[c.classe];
+      const fattore = Math.min(1, USI[c.uso].f * (c.inverter ? 1 : ONOFF));
+      const kwhOra = (wattMax / 1000) * fattore;
+      const kwhGiorno = kwhOra * c.ore;
+      const kwhMese = kwhGiorno * 30;
+      const kwhStag = kwhMese * c.mesi;
+      return { wattMax, fattore, kwhOra, kwhGiorno, kwhMese, kwhStag,
+        eOra: kwhOra * c.prezzo, eGiorno: kwhGiorno * c.prezzo, eMese: kwhMese * c.prezzo, eStag: kwhStag * c.prezzo };
+    }
+
+    // ---- UI: chip ----
+    function chips(root, items, sel, onPick) {
+      root.replaceChildren(...items.map(([val, label, sub]) => {
+        const b = document.createElement("button");
+        b.type = "button"; b.className = "chip"; b.dataset.val = val;
+        b.setAttribute("aria-pressed", String(val === sel));
+        b.append(label); if (sub) { const s = document.createElement("small"); s.textContent = sub; b.append(s); }
+        b.addEventListener("click", () => { onPick(val); });
+        return b;
+      }));
+    }
+    const press = (root, val) => root.querySelectorAll(".chip").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.val === String(val))));
+
+    function renderControlli() {
+      chips($("btu"), BTU.map(b => [String(b), `${b / 1000}000`, "BTU"]), String(stato.btu), v => { stato.btu = +v; aggiorna(); });
+      chips($("classe"), Object.keys(CLASSI).map(k => [k, k]), stato.classe, v => { stato.classe = v; aggiorna(); });
+      chips($("uso"), Object.entries(USI).map(([k, u]) => [k, u.t, u.s]), stato.uso, v => { stato.uso = v; aggiorna(); });
+      chips($("zona"), Object.entries(ZONE).map(([k, z]) => [k, z.t]), stato.zona, v => { stato.zona = v; aggiorna(); });
+      $("inverter").checked = stato.inverter;
+      $("ore").value = stato.ore;
+      $("prezzo").value = stato.prezzo.toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 3 });
+      if (stato.watt) { $("watt").value = stato.watt; apriAdv(true); }
+    }
+    function apriAdv(open) { $("adv").classList.toggle("open", open); $("advBtn").setAttribute("aria-expanded", String(open)); }
+
+    // ---- UI: risultato ----
+    function aggiorna() {
+      press($("btu"), stato.btu); press($("classe"), stato.classe); press($("uso"), stato.uso); press($("zona"), stato.zona);
+      $("oreOut").textContent = `${stato.ore} ${stato.ore === 1 ? "ora" : "ore"}`;
+      $("mesiOut").innerHTML = `${stato.mesi} <small>${stato.mesi === 1 ? "mese" : "mesi"}</small>`;
+      const r = calcola(stato);
+      $("rMeseE").textContent = fmtE(r.eMese); $("rMeseK").textContent = fmtK(r.kwhMese);
+      $("rOraE").textContent = fmtE(r.eOra); $("rOraK").textContent = fmtK(r.kwhOra, 2);
+      $("rGiornoE").textContent = fmtE(r.eGiorno); $("rGiornoK").textContent = fmtK(r.kwhGiorno);
+      $("rGiornoL").textContent = `al giorno (${stato.ore} ${stato.ore === 1 ? "ora" : "ore"})`;
+      $("rStagE").textContent = fmtE(r.eStag); $("rStagK").textContent = fmtK(r.kwhStag);
+      $("rStagL").textContent = `per l'estate (${stato.mesi} ${stato.mesi === 1 ? "mese" : "mesi"})`;
+      $("rWatt").textContent = `${Math.round(r.wattMax).toLocaleString("it-IT")} W`;
+      $("rWattK").textContent = stato.watt ? "dalla targhetta" : `EER ${CLASSI[stato.classe].toLocaleString("it-IT")} · lavora al ${Math.round(r.fattore * 100)}%`;
+      $("barMese").textContent = fmtE(r.eMese); $("barGiorno").textContent = fmtE(r.eGiorno);
+      nota(r);
+      renderStanze();
+      renderStagione();
+      salva();
+    }
+    function nota(r) {
+      const n = $("nota");
+      if (stato.uso === "eco") {
+        const vent = Math.round(r.kwhOra / 0.05);
+        n.innerHTML = `Sei già nella modalità più economica. Per capirci: un'ora del tuo split equivale a circa <b>${vent} ore</b> di un ventilatore da 50 W.`;
+        return;
+      }
+      const eco = calcola({ ...stato, uso: "eco" });
+      const risp = r.eMese - eco.eMese;
+      n.innerHTML = `Con il termostato a 26 °C e la deumidificazione spenderesti <b>${fmtE(eco.eMese)}</b> al mese: risparmi <b>${fmtE(risp)}</b> (${Math.round((risp / r.eMese) * 100)}%) senza rinunciare al fresco.`;
+    }
+
+    // ---- Pro: stanze ----
+    function descr(c) {
+      return `${c.btu / 1000}000 BTU · ${c.watt ? c.watt + " W" : "classe " + c.classe} · ${USI[c.uso].t.toLowerCase()} · ${c.ore} h/g · ${c.mesi} mesi${c.inverter ? "" : " · on-off"}`;
+    }
+    function renderStanze() {
+      const ul = $("stanze");
+      const rows = stanze.map(s => calcola({ ...s, prezzo: stato.prezzo }));
+      ul.replaceChildren(...stanze.map((s, i) => {
+        const r = rows[i];
+        const li = document.createElement("li"); li.className = "stanza";
+        li.innerHTML = `<div class="nome"></div><div class="desc"></div><div class="costi"><b>${fmtE(r.eMese)}</b> al mese · ${fmtE(r.eGiorno)} al giorno · ${fmtE(r.eStag)} per l'estate</div>`;
+        li.querySelector(".nome").textContent = s.nome; li.querySelector(".desc").textContent = descr(s);
+        const del = document.createElement("button"); del.type = "button"; del.className = "btn small danger"; del.textContent = "Rimuovi"; del.setAttribute("aria-label", `Rimuovi ${s.nome}`);
+        del.addEventListener("click", () => { stanze.splice(i, 1); aggiorna(); });
+        li.append(del);
+        return li;
+      }));
+      $("stanzeVuoto").hidden = stanze.length > 0;
+      $("copiaStanze").hidden = stanze.length === 0;
+      const tot = $("totale");
+      tot.hidden = stanze.length === 0;
+      if (stanze.length) {
+        const m = rows.reduce((a, r) => a + r.eMese, 0), g = rows.reduce((a, r) => a + r.eGiorno, 0), st = rows.reduce((a, r) => a + r.eStag, 0), k = rows.reduce((a, r) => a + r.kwhMese, 0);
+        tot.innerHTML = `<div>Tutta la casa: ${fmtE(m)} al mese <span>(${fmtK(k)})</span></div><div>${fmtE(g)} al giorno · ${fmtE(st)} per l'estate</div>`;
+      }
+    }
+    function addStanza() {
+      if (!window.Monetize?.isPro()) { window.Monetize?.unlock(); return; }
+      const err = $("stanzaErr");
+      const nome = $("nomeStanza").value.trim() || `Stanza ${stanze.length + 1}`;
+      if (stanze.some(s => s.nome.toLowerCase() === nome.toLowerCase())) { err.textContent = "C'è già una stanza con questo nome."; return; }
+      if (stanze.length >= 12) { err.textContent = "Massimo 12 stanze."; return; }
+      err.textContent = "";
+      stanze.push({ nome, btu: stato.btu, classe: stato.classe, uso: stato.uso, inverter: stato.inverter, watt: stato.watt, ore: stato.ore, mesi: stato.mesi });
+      $("nomeStanza").value = "";
+      aggiorna(); toast(`${nome} aggiunta`);
+    }
+
+    // ---- Pro: stagione ----
+    function renderStagione() {
+      const z = ZONE[stato.zona];
+      const base = calcola(stato);
+      const ul = $("mesi");
+      let totK = 0, totE = 0;
+      const righe = MESI.map((m, i) => {
+        const k = base.kwhOra * stato.ore * GIORNI[i] * z.p[i];
+        totK += k; totE += k * stato.prezzo;
+        return { m, k, e: k * stato.prezzo, p: z.p[i] };
+      });
+      ul.replaceChildren(...righe.map(r => {
+        const li = document.createElement("li"); li.className = "mese";
+        li.innerHTML = `<span>${r.m}</span><div class="bar"><i style="width:${Math.round(r.p * 100)}%"></i></div><div class="val">${fmtE(r.e)}<small>${fmtK(r.k)}</small></div>`;
+        return li;
+      }));
+      $("totStag").innerHTML = `<div>Maggio–settembre, ${z.t}: ${fmtE(totE)} <span>(${fmtK(totK)})</span></div>`;
+      const diff = totE - base.eStag;
+      $("stagNota").textContent = `La stima semplice qui sopra (${stato.mesi} ${stato.mesi === 1 ? "mese" : "mesi"} pieni, ${stato.ore} ore al giorno) dava ${fmtE(base.eStag)}: la curva mensile ${diff >= 0 ? "aggiunge" : "toglie"} ${fmtE(Math.abs(diff))} perché conta le settimane meno calde di maggio, giugno e settembre.`;
+    }
+
+    // ---- copia / toast ----
+    let toastT;
+    function toast(msg) { const t = $("toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove("show"), 1800); }
+    async function copia(testo, ok) {
+      try { await navigator.clipboard.writeText(testo); toast(ok); }
+      catch (_) { toast("Copia non disponibile su questo browser"); }
+    }
+    function riepilogo() {
+      const r = calcola(stato);
+      return [`Consumo condizionatore ${descr(stato)}`,
+        `Per ora: ${fmtK(r.kwhOra, 2)} = ${fmtE(r.eOra)}`,
+        `Al giorno: ${fmtK(r.kwhGiorno)} = ${fmtE(r.eGiorno)}`,
+        `Al mese: ${fmtK(r.kwhMese)} = ${fmtE(r.eMese)}`,
+        `Estate (${stato.mesi} mesi): ${fmtK(r.kwhStag)} = ${fmtE(r.eStag)}`,
+        `Energia a ${stato.prezzo.toLocaleString("it-IT")} €/kWh · calcolato con Consumo Condizionatore`].join("\n");
+    }
+    function riepilogoStanze() {
+      const rows = stanze.map(s => { const r = calcola({ ...s, prezzo: stato.prezzo }); return `${s.nome}: ${fmtE(r.eMese)}/mese (${descr(s)})`; });
+      const tot = stanze.reduce((a, s) => a + calcola({ ...s, prezzo: stato.prezzo }).eMese, 0);
+      return ["Condizionatori di casa — costo al mese", ...rows, `Totale: ${fmtE(tot)} al mese`].join("\n");
+    }
+
+    // ---- eventi ----
+    $("inverter").addEventListener("change", e => { stato.inverter = e.target.checked; aggiorna(); });
+    $("ore").addEventListener("input", e => { stato.ore = +e.target.value; aggiorna(); });
+    document.querySelectorAll(".stepper button").forEach(b => b.addEventListener("click", () => {
+      stato.mesi = Math.min(6, Math.max(1, stato.mesi + (+b.dataset.step))); aggiorna();
+    }));
+    $("prezzo").addEventListener("input", e => {
+      const v = parseDec(e.target.value);
+      if (!(v > 0 && v < 5)) { $("prezzoErr").textContent = "Inserisci un prezzo tra 0,05 e 2 €/kWh (es. 0,27)."; return; }
+      $("prezzoErr").textContent = ""; stato.prezzo = v; aggiorna();
+    });
+    $("advBtn").addEventListener("click", () => { const open = !$("adv").classList.contains("open"); apriAdv(open); if (open) $("watt").focus(); });
+    $("watt").addEventListener("input", e => {
+      const raw = e.target.value.trim();
+      if (raw === "") { $("wattErr").textContent = ""; stato.watt = null; aggiorna(); return; }
+      const v = parseDec(raw);
+      if (!(v >= 100 && v <= 6000)) { $("wattErr").textContent = "Un valore realistico è tra 100 e 6000 W."; return; }
+      $("wattErr").textContent = ""; stato.watt = v; aggiorna();
+    });
+    $("form").addEventListener("submit", e => e.preventDefault());
+    $("form").addEventListener("keydown", e => { if (e.key === "Enter" && e.target.tagName === "INPUT") { e.preventDefault(); e.target.blur(); } });
+    $("copia").addEventListener("click", () => copia(riepilogo(), "Riepilogo copiato"));
+    $("copiaStanze").addEventListener("click", () => { if (!window.Monetize?.isPro()) { window.Monetize?.unlock(); return; } copia(riepilogoStanze(), "Confronto copiato"); });
+    $("reset").addEventListener("click", () => { stato = { ...DEFAULT, zona: stato.zona }; $("watt").value = ""; apriAdv(false); renderControlli(); aggiorna(); toast("Valori riportati a quelli iniziali"); });
+    $("addStanza").addEventListener("click", addStanza);
+    $("nomeStanza").addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); addStanza(); } if (e.key === "Escape") e.target.value = ""; });
+    $("vaiRisultato").addEventListener("click", () => $("risultato").scrollIntoView({ behavior: "smooth", block: "start" }));
+
+    renderControlli();
+    aggiorna();
+  })();
+</script>
+</body>
+</html>

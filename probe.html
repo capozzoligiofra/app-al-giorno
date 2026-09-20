@@ -1,0 +1,21 @@
+<body><iframe id="f" src="/apps/2026-09-19-costo-viaggio-auto/" style="width:400px;height:900px"></iframe><pre id="out">START</pre>
+<script>
+const out = (t) => { document.getElementById('out').textContent += "\n" + t; };
+const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+function type(doc, sel, text) { const el = doc.querySelector(sel); el.focus(); el.value = text; el.dispatchEvent(new Event('input', {bubbles:true})); }
+async function pick(doc, sel) { for (let i = 0; i < 60; i++) { const ul = doc.querySelector(sel).parentElement.querySelector('.sugg'); const li = ul && ul.querySelector('li'); if (li && !ul.hidden) { li.dispatchEvent(new PointerEvent('pointerdown', {bubbles:true})); return; } await sleep(250); } }
+async function trip(d, a, b) {
+  try { d.defaultView.localStorage.clear(); } catch(e) {}
+  type(d, '#from', a); await pick(d, '#from'); type(d, '#to', b); await pick(d, '#to');
+  for (let i = 0; i < 80; i++) { await sleep(500); if (/Percorso stradale/.test(d.querySelector('#route-hint').textContent)) break; }
+  await sleep(300);
+  out(`== ${a} → ${b}: ${d.querySelector('#km').value} km | pedaggio ${d.querySelector('#r-toll').textContent} | modo ${[...d.querySelectorAll('#toll-seg button')].find(x=>x.getAttribute('aria-pressed')==='true').textContent}`);
+  for (const li of d.querySelectorAll('#toll-parts li')) out("   - " + li.textContent);
+}
+window.addEventListener('load', async () => {
+  try { const d = document.getElementById('f').contentWindow.document; await sleep(1500);
+    await trip(d, 'Milano', 'Roma'); await trip(d, 'Torino', 'Venezia'); await trip(d, 'Bologna', 'Firenze'); await trip(d, 'Napoli', 'Reggio Calabria');
+  } catch (e) { out("ERR " + e.message); }
+  out("FINE");
+});
+</script></body>
