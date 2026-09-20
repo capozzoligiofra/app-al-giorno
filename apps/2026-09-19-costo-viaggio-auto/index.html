@@ -34,7 +34,7 @@
       { "@type": "Question", "name": "Come viene calcolata la distanza tra le due città?", "acceptedAnswer": { "@type": "Answer", "text": "Le località si cercano su OpenStreetMap (qualsiasi comune o frazione italiana) e la distanza è quella del percorso stradale reale calcolato da OSRM, con durata e chilometri di autostrada. Se il servizio non è raggiungibile, il calcolatore stima la distanza in linea d'aria moltiplicata per 1,2." } },
       { "@type": "Question", "name": "Da dove vengono i prezzi del carburante?", "acceptedAnswer": { "@type": "Answer", "text": "Sono le medie regionali self service ricalcolate ogni mattina dagli open data dell'Osservaprezzi del Ministero delle Imprese e del Made in Italy (MIMIT), cioè dai prezzi comunicati dai distributori di tutta Italia. Scegli la regione e il prezzo si compila da solo; puoi sempre scrivere quello del tuo distributore." } },
       { "@type": "Question", "name": "Come faccio a sapere il consumo della mia auto?", "acceptedAnswer": { "@type": "Answer", "text": "Scegli marca e modello nella sezione La tua auto: il catalogo, basato sul registro europeo delle immatricolazioni (EEA), copre oltre 2.500 modelli venduti in Italia dal 2010 e imposta carburante e consumo reale stimato (omologato WLTP +14%). Puoi sempre scrivere il consumo che conosci nel campo Consumo." } },
-      { "@type": "Question", "name": "Quanto costa il pedaggio autostradale al chilometro?", "acceptedAnswer": { "@type": "Answer", "text": "Sulla rete italiana un'auto (classe A) paga in media 7-9 centesimi al chilometro; il calcolatore usa 0,08 €/km come stima, modificabile. Se conosci il pedaggio esatto puoi inserirlo direttamente." } },
+      { "@type": "Question", "name": "Quanto costa il pedaggio autostradale al chilometro?", "acceptedAnswer": { "@type": "Answer", "text": "Dipende dal gestore: Autostrade per l'Italia nel 2026 applica 7,9 centesimi al km in pianura e 9,3 in montagna, IVA inclusa; altre concessionarie vanno da 8 a oltre 20 centesimi (Brebemi, Frejus, Monte Bianco). Il calcolatore applica la tariffa del gestore a ogni tratto del percorso reale, con arrotondamento ai 10 centesimi; senza percorso usa 0,08 €/km." } },
       { "@type": "Question", "name": "Conviene l'auto o il treno?", "acceptedAnswer": { "@type": "Answer", "text": "Dipende dal numero di persone: il costo dell'auto è quasi fisso, quello del treno cresce per ogni biglietto. Da soli il treno quasi sempre vince; da tre persone in su l'auto di solito costa meno, soprattutto se l'usura è bassa." } }
     ]
   }
@@ -111,6 +111,9 @@
     .chip[aria-pressed="true"] { background: var(--panel); color: var(--neon); border-color: var(--panel); }
     .tile.car { grid-column: 1 / -1; }
     .tile.car select { font-size: 1rem; font-weight: 600; text-overflow: ellipsis; }
+    .toll-parts { list-style: none; margin: .5rem 0 0; padding: 0; font-size: .85rem; color: var(--muted); }
+    .toll-parts li { display: flex; justify-content: space-between; gap: .75rem; padding: .2rem 0; border-top: 1px dashed var(--line); }
+    .toll-parts li b { color: var(--text); font-variant-numeric: tabular-nums; white-space: nowrap; }
     .seg { display: inline-flex; border: 1.5px solid var(--line); border-radius: 10px; overflow: hidden; }
     .seg button { min-height: 40px; padding: 0 .75rem; border: 0; background: transparent; cursor: pointer; font-weight: 600; font-size: .88rem; }
     .seg button[aria-pressed="true"] { background: var(--panel); color: var(--neon); }
@@ -272,11 +275,12 @@
       <div class="tile wide">
         <span class="lbl">Pedaggio autostradale</span>
         <div class="row">
-          <div class="seg" id="toll-seg"><button type="button" data-mode="stima" aria-pressed="true">Stima dai km</button><button type="button" data-mode="importo" aria-pressed="false">Importo noto</button></div>
+          <div class="seg" id="toll-seg"><button type="button" data-mode="percorso" aria-pressed="false" id="toll-percorso" hidden>Dal percorso</button><button type="button" data-mode="stima" aria-pressed="true">Stima dai km</button><button type="button" data-mode="importo" aria-pressed="false">Importo noto</button></div>
         </div>
         <div id="toll-stima" class="field small" style="margin-top:.5rem"><input id="km-auto" type="number" inputmode="decimal" enterkeyhint="next" min="0" max="20000" step="1" placeholder="km di autostrada (andata)"><span class="unit">km</span></div>
         <div id="toll-importo" class="field small" style="margin-top:.5rem" hidden><input id="toll" type="number" inputmode="decimal" enterkeyhint="next" min="0" max="2000" step="0.1" placeholder="pedaggio per tratta"><span class="unit">€</span></div>
         <p class="hint" id="toll-hint">Media rete italiana, auto classe A: 0,08 €/km (modificabile in Avanzate).</p>
+        <ul class="toll-parts" id="toll-parts" hidden></ul>
       </div>
 
       <div class="tile">
@@ -361,7 +365,7 @@
 
       <h3>Le tre voci del costo, una per una</h3>
       <p><strong>Carburante.</strong> La formula è semplice: chilometri × consumo (litri ogni 100 km) ÷ 100 × prezzo al litro. Se conosci il consumo in km/l, cambia unità con il selettore: il calcolatore converte da solo. Per le auto elettriche il consumo è in kWh/100 km e il prezzo in €/kWh (a casa si spende molto meno che alla colonnina rapida: inserisci il valore che usi davvero). I prezzi di benzina, gasolio, GPL e metano sono le <strong>medie regionali self service dell'Osservaprezzi MIMIT</strong>, ricalcolate <strong>ogni mattina</strong> dai prezzi comunicati da circa 20.000 distributori (la data del dato è indicata sotto il campo): scegli la regione dove fai il pieno e il prezzo si compila da solo. Il prezzo cambia ogni giorno e in autostrada costa 8–12 centesimi in più: se vuoi il centesimo esatto, controlla il cartello del distributore o l'osservatorio ministeriale e scrivi il valore nel campo.</p>
-      <p><strong>Pedaggio.</strong> In Italia un'auto (classe A) paga in media 7–9 centesimi al chilometro, con differenze tra concessionarie e tratte di montagna. Se non conosci l'importo esatto, inserisci i chilometri di autostrada e il calcolatore stima il pedaggio a 0,08 €/km; quando la distanza è stimata dal percorso, propone come chilometri di autostrada l'85% del tragitto, che è la quota tipica di un viaggio tra due città. Se conosci il pedaggio (dal sito della concessionaria o da un viaggio precedente) scegli "Importo noto" e scrivilo. Con "Andata e ritorno" attivo, il pedaggio viene raddoppiato.</p>
+      <p><strong>Pedaggio.</strong> In Italia il pedaggio si calcola così: <em>tariffa unitaria della concessionaria</em> (in €/km, diversa tra pianura e montagna) × chilometri percorsi, IVA inclusa, arrotondato ai 10 centesimi. Il calcolatore fa esattamente questo, <strong>tratto per tratto</strong>: dal percorso stradale reale prende ogni segmento autostradale con la sua sigla e posizione, gli assegna la tariffa del gestore (Autostrade per l'Italia 2026: 0,07869 €/km in pianura e 0,09315 in montagna, dato ufficiale; A22, A4 Brescia–Padova, Brebemi, Frejus, Aosta–Monte Bianco e le altre con le rispettive tariffe pubblicate) e riconosce le autostrade gratuite (A2 Salerno–Reggio Calabria, A19, A29, GRA) e gli importi fissi (Tangenziale di Napoli, trafori alpini). Sotto il campo vedi il dettaglio: quale autostrada, quanti km, quale tariffa. Le stazioni di ingresso e uscita non coincidono al metro con i tratti del percorso e alcune tariffe minori sono stime: l'errore tipico è di 1–2 € su un viaggio lungo. Se conosci il pedaggio esatto, scegli "Importo noto"; senza percorso stradale resta la stima a 0,08 €/km sui km di autostrada. Con "Andata e ritorno" attivo, il pedaggio viene raddoppiato.</p>
       <p><strong>Usura.</strong> È la voce che tutti dimenticano. Ogni chilometro consuma gomme, olio, freni e valore dell'auto: le tabelle ACI, tolti i costi fissi come assicurazione e bollo che pagheresti comunque, danno circa 0,10 €/km per una utilitaria e 0,15–0,20 €/km per un SUV. Se vuoi il solo costo "vivo" della trasferta, spegni l'interruttore; se vuoi dividere le spese in modo onesto con chi viaggia con te, lascialo acceso.</p>
 
       <h3>Esempio con i numeri: Milano–Roma in tre</h3>
@@ -393,7 +397,7 @@
       <h4>Come faccio a sapere il consumo della mia auto?</h4>
       <p>Scegli marca e modello nella sezione "La tua auto": il catalogo copre oltre 2.500 combinazioni modello/carburante immatricolate in Italia dal 2010 (fonte EEA) e imposta il consumo reale stimato. In alternativa il libretto o il computer di bordo riportano il consumo medio: scrivilo direttamente nel campo Consumo.</p>
       <h4>Quanto costa il pedaggio autostradale al chilometro?</h4>
-      <p>Per un'auto in classe A la media della rete italiana è di 7–9 centesimi al km; alcune tratte alpine e i trafori superano i 20 centesimi. Il valore usato dal calcolatore (0,08 €/km) si modifica nella sezione Avanzate.</p>
+      <p>Dipende dal gestore: Autostrade per l'Italia nel 2026 applica 7,9 centesimi al km in pianura e 9,3 in montagna (IVA inclusa); A22 e A4 Brescia–Padova sono sullo stesso ordine, la Torino–Milano vale circa 10 centesimi, la Cisa 13, il Frejus 20, la Brebemi 22 e l'Aosta–Monte Bianco oltre 23. Il calcolatore applica la tariffa giusta a ogni tratto del percorso; se il percorso reale non è disponibile usa la media di 0,08 €/km, modificabile in Avanzate.</p>
       <h4>Come faccio a sapere se conviene l'auto o il treno?</h4>
       <p>La funzione Pro "Confronto auto vs treno" mette a confronto il costo totale dell'auto con il prezzo dei biglietti per tutte le persone e ti dice da quante persone in su l'auto conviene. In generale, con tre o più persone e distanze medio-lunghe l'auto costa meno; da soli o in due il treno è quasi sempre più economico.</p>
       <h4>Posso usarlo per il rimborso chilometrico?</h4>
@@ -515,6 +519,85 @@
         return out;
       }
 
+      // ---- pedaggi: tariffa per concessionaria applicata a ogni tratto autostradale del percorso ----
+      // Il pedaggio italiano è tariffa unitaria (€/km, classe A, IVA inclusa) × km, arrotondato ai 10 centesimi per
+      // ogni tratta a sistema chiuso. ASPI 2026 è il dato ufficiale (autostrade.it, 1° gennaio 2026); le altre
+      // concessionarie sono tariffe pubblicate 2025 +1,5% (stima, in attesa di verifica). Le regole per tratto
+      // usano sigla (ref) e posizione del tratto: la stessa A4 ha 5 gestori diversi da Torino a Trieste.
+      const ASPI = { p: 0.07869, m: 0.09315 };
+      const TOLL_RULES = [
+        // [sigla, condizione (lat, lon) → true, €/km, etichetta]  — la prima regola che combacia vince
+        ["A1", (la) => la > 43.85 && la < 44.45, ASPI.m, "A1 Appennino (ASPI, montagna)"],
+        ["A1", () => true, ASPI.p, "A1 (ASPI)"],
+        ["A4", (la, lo) => lo < 8.9, 0.098, "A4 Torino–Milano (SATAP)"],
+        ["A4", (la, lo) => lo < 10.25, ASPI.p, "A4 Milano–Brescia (ASPI)"],
+        ["A4", (la, lo) => lo < 11.95, 0.082, "A4 Brescia–Padova"],
+        ["A4", (la, lo) => lo < 12.35, 0.084, "A4 Padova–Venezia (CAV)"],
+        ["A4", () => true, 0.076, "A4 Venezia–Trieste (Alto Adriatico)"],
+        ["A5", (la) => la < 45.45, 0.10, "A5 Torino–Ivrea (ATIVA)"],
+        ["A5", (la) => la < 45.75, 0.145, "A5 Ivrea–Aosta (SAV)"],
+        ["A5", () => true, 0.235, "A5 Aosta–Monte Bianco (RAV)"],
+        ["A6", () => true, 0.10, "A6 Torino–Savona (Autofiori)"],
+        ["A7", (la) => la > 44.75, 0.085, "A7 Milano–Serravalle"],
+        ["A7", () => true, ASPI.m, "A7 Serravalle–Genova (ASPI, montagna)"],
+        ["A8", () => true, ASPI.p, "A8 (ASPI)"], ["A9", () => true, ASPI.p, "A9 (ASPI)"],
+        ["A10", (la, lo) => lo > 8.45, ASPI.m, "A10 Genova–Savona (ASPI, montagna)"],
+        ["A10", () => true, 0.098, "A10 Savona–Ventimiglia (Autofiori)"],
+        ["A11", () => true, ASPI.p, "A11 (ASPI)"],
+        ["A12", (la) => la < 42.3, ASPI.p, "A12 Roma–Civitavecchia (ASPI)"],
+        ["A12", (la, lo) => lo < 8.95, ASPI.p, "A12 Genova (ASPI)"],
+        ["A12", (la, lo) => lo < 9.45, ASPI.m, "A12 Genova–Sestri (ASPI, montagna)"],
+        ["A12", (la, lo) => lo < 10.35, 0.093, "A12 Sestri–Livorno (SALT)"],
+        ["A12", () => true, 0.109, "A12 Livorno–Rosignano (SAT)"],
+        ["A13", () => true, ASPI.p, "A13 (ASPI)"], ["A14", () => true, ASPI.p, "A14 (ASPI)"],
+        ["A15", () => true, 0.13, "A15 Cisa (SALT, montagna)"],
+        ["A16", (la, lo) => lo > 14.9 && lo < 15.6, ASPI.m, "A16 Avellino–Candela (ASPI, montagna)"],
+        ["A16", () => true, ASPI.p, "A16 (ASPI)"],
+        ["A18", () => true, 0.048, "A18 Messina–Catania (CAS, barriere)"],
+        ["A19", () => true, 0, "A19 Palermo–Catania (gratuita)"],
+        ["A20", () => true, 0.057, "A20 Messina–Palermo (CAS, barriere)"],
+        ["A21", (la, lo) => lo < 9.75, 0.088, "A21 Torino–Piacenza (SATAP)"],
+        ["A21", () => true, 0.089, "A21 Piacenza–Brescia (Autovia Padana)"],
+        ["A22", () => true, 0.080, "A22 Brennero"],
+        ["A23", (la) => la < 46.1, 0.076, "A23 Palmanova–Udine (Alto Adriatico)"],
+        ["A23", (la) => la < 46.35, ASPI.p, "A23 (ASPI)"],
+        ["A23", () => true, ASPI.m, "A23 Carnia–Tarvisio (ASPI, montagna)"],
+        ["A24", () => true, 0.10, "A24 (Strada dei Parchi, montagna)"], ["A25", () => true, 0.10, "A25 (Strada dei Parchi, montagna)"],
+        ["A26", (la) => la > 44.4 && la < 44.7, ASPI.m, "A26 Voltri–Ovada (ASPI, montagna)"],
+        ["A26", () => true, ASPI.p, "A26 (ASPI)"],
+        ["A27", () => true, ASPI.p, "A27 (ASPI)"], ["A28", () => true, 0.076, "A28 (Alto Adriatico)"],
+        ["A29", () => true, 0, "A29 (gratuita)"], ["A30", () => true, ASPI.p, "A30 (ASPI)"],
+        ["A31", () => true, 0.082, "A31 Valdastico"], ["A32", () => true, 0.20, "A32 Frejus (SITAF, montagna)"],
+        ["A33", () => true, 0.10, "A33 Asti–Cuneo"], ["A34", () => true, 0.076, "A34 (Alto Adriatico)"],
+        ["A35", () => true, 0.22, "A35 Brebemi"], ["A36", () => true, 0.20, "A36 Pedemontana (free-flow)"],
+        ["A50", () => true, 0.06, "Tangenziale Ovest Milano"], ["A51", () => true, 0.06, "Tangenziale Est Milano"], ["A52", () => true, 0.06, "Tangenziale Nord Milano"],
+        ["A53", () => true, 0.085, "A53 Bereguardo–Pavia"], ["A54", () => true, 0.085, "A54 Pavia"],
+        ["A55", () => true, 0, "Tangenziale di Torino (gratuita)"], ["A58", () => true, 0.12, "A58 TEEM"],
+        ["A59", () => true, 0.20, "A59 (Pedemontana)"], ["A60", () => true, 0.20, "A60 (Pedemontana)"],
+        ["A90", () => true, 0, "GRA Roma (gratuito)"], ["A91", () => true, 0, "Roma–Fiumicino (gratuita)"],
+        ["A2", () => true, 0, "A2 del Mediterraneo (gratuita)"],
+        ["A3", () => true, 0.0865, "A3 Napoli–Salerno"],
+        ["A56", () => true, 0, "Tangenziale di Napoli"],
+      ];
+      // Importi fissi per transito (indipendenti dai km): tangenziale di Napoli e trafori alpini.
+      const TOLL_FIXED = { A56: [2.30, "Tangenziale di Napoli: 2,30 € a transito"], T1: [54.20, "Traforo del Monte Bianco"], T2: [33.80, "Traforo del Gran San Bernardo"], T4: [54.20, "Traforo del Frejus"] };
+      const round10 = (v) => Math.round(v * 10) / 10;
+      // Da una lista di tratti {ref, km, lat, lon} ricava il dettaglio del pedaggio (sola andata).
+      function tollFromSteps(steps) {
+        const groups = new Map(); let fixed = 0; const notes = [];
+        for (const st of steps) {
+          const ref = st.ref.toUpperCase();
+          if (TOLL_FIXED[ref] && !notes.includes(TOLL_FIXED[ref][1])) { fixed += TOLL_FIXED[ref][0]; notes.push(TOLL_FIXED[ref][1]); }
+          if (/^T\d/.test(ref)) continue;
+          const rule = TOLL_RULES.find(([r, cond]) => r === ref && cond(st.lat, st.lon)) || [ref, null, 0.08, `${ref} (tariffa media)`];
+          const g = groups.get(rule[3]) || { label: rule[3], rate: rule[2], km: 0 };
+          g.km += st.km; groups.set(rule[3], g);
+        }
+        const parts = [...groups.values()].map(g => ({ ...g, km: Math.round(g.km * 10) / 10, eur: round10(g.km * g.rate) })).filter(g => g.km >= 0.5);
+        for (const n of notes) parts.push({ label: n, km: 0, rate: 0, eur: 0, fixed: true });
+        return { total: round10(parts.reduce((a, p) => a + p.eur, 0) + fixed), parts, km: Math.round(parts.reduce((a, p) => a + p.km, 0)) };
+      }
+
       // ---- percorso stradale reale (OSRM, server demo pubblico) ----
       const routeKey = (pts) => pts.map(p => `${p.lon.toFixed(4)},${p.lat.toFixed(4)}`).join(";");
       let routeInFlight = null;
@@ -527,12 +610,19 @@
           if (!r.ok) throw new Error(r.status);
           const d = await r.json();
           const rt = d.routes && d.routes[0]; if (!rt) throw new Error("no route");
-          let motorway = 0;
+          let motorway = 0; const tratti = [];
           const legs = rt.legs.map(l => {
-            for (const st of l.steps || []) if (/^A\d+/i.test(st.ref || "") || /autostrada/i.test(st.name || "")) motorway += st.distance;
+            for (const st of l.steps || []) {
+              const ref = ((st.ref || "").split(";")[0] || "").trim().toUpperCase();
+              const isMotorway = /^A\d+/.test(ref) || /autostrada/i.test(st.name || "") || /^T[124]$/.test(ref);
+              if (!isMotorway) continue;
+              motorway += st.distance;
+              const loc = (st.maneuver && st.maneuver.location) || [0, 0];
+              tratti.push({ ref: ref || "A", km: st.distance / 1000, lon: loc[0], lat: loc[1] });
+            }
             return Math.round(l.distance / 1000);
           });
-          state.routes[key] = { legs, km: legs.reduce((a, b) => a + b, 0), min: Math.round(rt.duration / 60), motorwayKm: Math.round(motorway / 1000) };
+          state.routes[key] = { legs, km: legs.reduce((a, b) => a + b, 0), min: Math.round(rt.duration / 60), motorwayKm: Math.round(motorway / 1000), toll: tollFromSteps(tratti) };
           const keys = Object.keys(state.routes); if (keys.length > 25) delete state.routes[keys[0]];
           applyRoute(); render(); renderHints(); save();
         } catch (_) { /* server non raggiungibile: resta la stima in linea d'aria */ }
@@ -681,7 +771,7 @@
         const road = good.length >= 2 ? state.routes[routeKey(good.map(x => x.p))] : null;
         if (road && road.legs.length === legs.length) {
           legs.forEach((l, k) => { l.km = road.legs[k]; });
-          return { legs, km: road.km, air: Math.round(air), missing, names: pts.map(x => x.name), road: true, min: road.min, motorwayKm: road.motorwayKm };
+          return { legs, km: road.km, air: Math.round(air), missing, names: pts.map(x => x.name), road: true, min: road.min, motorwayKm: road.motorwayKm, toll: road.toll || null };
         }
         if (good.length >= 2 && !missing.length) fetchRoadRoute(good.map(x => x.p));
         return { legs, km, air: Math.round(air), missing, names: pts.map(x => x.name), road: false };
@@ -693,6 +783,10 @@
           i.km = r.km; F.km.value = r.km;
           if (i.kmAutoSrc === "auto") { i.kmAuto = r.road ? r.motorwayKm : (r.km >= 80 ? Math.round(r.km * 0.85) : 0); F.kmAuto.value = i.kmAuto || ""; }
         }
+        // pedaggio calcolato tratto per tratto: disponibile solo con il percorso stradale reale
+        i.tollAuto = r && r.road && r.toll ? r.toll : null;
+        if (i.tollAuto && i.tollMode === "stima" && !i.tollModeManual) i.tollMode = "percorso";
+        if (!i.tollAuto && i.tollMode === "percorso") i.tollMode = "stima";
         return r;
       }
 
@@ -704,7 +798,7 @@
         const qty = dist * l100 / 100;
         const fuel = qty * (i.price || 0);
         const kmAuto = Math.min(i.kmAuto || 0, i.km) * trips;
-        const toll = i.tollMode === "stima" ? kmAuto * (i.tollRate || 0) : (i.toll || 0) * trips;
+        const toll = i.tollMode === "percorso" && i.tollAuto ? i.tollAuto.total * trips : i.tollMode === "stima" ? kmAuto * (i.tollRate || 0) : (i.toll || 0) * trips;
         const wear = i.wear ? dist * (i.wearRate || 0) : 0;
         const extra = i.extra || 0;
         const total = fuel + toll + wear + extra;
@@ -734,14 +828,28 @@
         $("#cons-seg").hidden = i.fuel === "elettrica";
         $("#region-row").hidden = i.fuel === "elettrica";
         $("#toll-stima").hidden = i.tollMode !== "stima"; $("#toll-importo").hidden = i.tollMode !== "importo";
+        $("#toll-percorso").hidden = !i.tollAuto;
         renderStops();
         renderHints();
         renderCarHint();
       }
       function renderHints() {
         const i = state.in;
-        $("#toll-hint").textContent = i.tollMode === "stima"
-          ? `Media rete italiana, auto classe A: ${i.tollRate.toLocaleString("it-IT")} €/km (modificabile in Avanzate).` + (i.kmAutoSrc === "auto" && i.kmSrc === "auto" && i.kmAuto ? " Km di autostrada stimati all'85% del percorso: correggili se serve." : "")
+        const parts = $("#toll-parts"); parts.hidden = true; parts.replaceChildren();
+        if (i.tollMode === "percorso" && i.tollAuto) {
+          const t = i.tollAuto;
+          $("#toll-hint").textContent = t.parts.length
+            ? `Calcolato tratto per tratto sul percorso reale (${t.km} km di autostrada): tariffa della concessionaria × km, IVA inclusa, arrotondato ai 10 cent. Sola andata: ${eur(t.total)}.`
+            : "Il percorso non usa autostrade a pedaggio.";
+          for (const p of t.parts) {
+            const li = document.createElement("li");
+            li.append(Object.assign(document.createElement("span"), { textContent: p.fixed ? p.label : `${p.label} · ${n1(p.km)} km × ${p.rate.toLocaleString("it-IT", { minimumFractionDigits: 3, maximumFractionDigits: 5 })}` }));
+            li.append(Object.assign(document.createElement("b"), { textContent: p.fixed ? "" : (p.eur ? eur(p.eur) : "gratis") }));
+            parts.append(li);
+          }
+          parts.hidden = !t.parts.length;
+        } else $("#toll-hint").textContent = i.tollMode === "stima"
+          ? `Media rete italiana, auto classe A: ${i.tollRate.toLocaleString("it-IT")} €/km (modificabile in Avanzate).` + (i.kmAutoSrc === "auto" && i.kmSrc === "auto" && i.kmAuto ? (i.tollAuto ? "" : " Km di autostrada stimati all'85% del percorso: correggili se serve.") : "")
           : "Importo per una sola tratta: con andata e ritorno viene raddoppiato.";
         const ph = $("#price-hint");
         if (i.fuel === "elettrica") ph.textContent = "Indicativo: ricarica a casa ~0,30 €/kWh, colonnina AC ~0,55, rapida DC ~0,75. Scrivi quello che paghi davvero.";
@@ -1008,7 +1116,7 @@
       });
       $("#toll-seg").addEventListener("click", (e) => {
         const b = e.target.closest("button"); if (!b) return;
-        state.in.tollMode = b.dataset.mode; fill(); render(); save();
+        state.in.tollMode = b.dataset.mode; state.in.tollModeManual = b.dataset.mode !== "percorso"; fill(); render(); save();
       });
 
       function toast(msg) { const t = $("#toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(toast.h); toast.h = setTimeout(() => t.classList.remove("show"), 2200); }

@@ -14,12 +14,13 @@
   "source": "richiesta",
   "request": "Costo Viaggio in Auto — keyword: \"calcolo costo viaggio auto\" — pianificazione vacanze, affiliazione naturale (accessori auto); Pro: confronto auto vs treno",
   "status": "pronta",
-  "version": 5,
+  "version": 6,
   "changelog": [
     "v2 (2026-09-19): distanza stimata automaticamente da partenza e arrivo (elenco offline di 170+ località, linea d'aria × 1,2) con link 'Verifica su Google Maps'; prezzi carburante sostituiti con le medie regionali MIMIT del 19/09/2026 e selettore regione (i vecchi 1,75/1,68 erano fuori di 40+ cent); km di autostrada proposti dal percorso; nuove Pro: Itinerario a tappe e Stampa preventivo PDF; guida e FAQ aggiornate.",
     "v3 (2026-09-20): ricerca di qualsiasi località italiana (OpenStreetMap/Nominatim, anche paesi e frazioni), percorso stradale reale con durata e km di autostrada (OSRM), prezzi carburante MIMIT aggiornati ogni mattina da data/carburanti.json; fallback offline invariato",
     "v4 (2026-09-20): partenza e arrivo accettano anche indirizzi precisi con via e numero civico (es. Via Roma 10, Salerno), formattati correttamente nei suggerimenti",
-    "v5 (2026-09-20): selettore 'La tua auto' (marca → modello): carburante e consumo reale stimato impostati automaticamente da data/auto.json (EEA, 2.500+ modelli immatricolati in Italia dal 2010, WLTP +14% / NEDC +35%)"
+    "v5 (2026-09-20): selettore 'La tua auto' (marca → modello): carburante e consumo reale stimato impostati automaticamente da data/auto.json (EEA, 2.500+ modelli immatricolati in Italia dal 2010, WLTP +14% / NEDC +35%)",
+    "v6 (2026-09-20): pedaggio calcolato tratto per tratto sul percorso reale con la tariffa di ogni concessionaria (ASPI 2026 ufficiale pianura/montagna, altre tariffe pubblicate), autostrade gratuite e importi fissi (Tangenziale di Napoli, trafori), arrotondamento ai 10 cent, dettaglio per autostrada"
   ],
   "design": {
     "layout": "dashboard",
