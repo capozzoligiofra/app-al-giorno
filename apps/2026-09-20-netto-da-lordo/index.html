@@ -1,0 +1,651 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#5b21b6">
+  <title>Calcolo stipendio netto 2026: dal lordo al netto gratis</title>
+  <meta name="description" content="Calcolo stipendio netto 2026 dal lordo: contributi INPS, IRPEF, detrazioni e bonus in busta paga. Scopri quanto prendi al mese in pochi secondi.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-20-netto-da-lordo/">
+  <meta property="og:title" content="Calcolo stipendio netto 2026: dal lordo al netto gratis">
+  <meta property="og:description" content="Inserisci la RAL e vedi subito il netto mensile: contributi, IRPEF a scaglioni, detrazioni e bonus del 2026, voce per voce.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-20-netto-da-lordo/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Netto da Lordo",
+    "description": "Calcolatore gratuito dello stipendio netto 2026: dalla RAL lorda al netto in busta paga, con contributi INPS, IRPEF a scaglioni, detrazioni da lavoro dipendente e bonus.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-20-netto-da-lordo/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Come si passa dallo stipendio lordo al netto?", "acceptedAnswer": { "@type": "Answer", "text": "Prima si tolgono i contributi INPS a carico del lavoratore, il 9,19% della retribuzione lorda. Su quello che resta si calcola l'IRPEF a scaglioni, si sottraggono le detrazioni da lavoro dipendente e le addizionali regionale e comunale, e si aggiungono il bonus in busta paga e il trattamento integrativo se spettano." } },
+      { "@type": "Question", "name": "Quanto è il netto di 30.000 euro lordi?", "acceptedAnswer": { "@type": "Answer", "text": "Con 30.000 euro di RAL e tredici mensilità il netto annuo si aggira sui 23.500 euro, cioè circa 1.800 euro al mese. L'importo esatto cambia con le addizionali del comune di residenza e con le detrazioni personali." } },
+      { "@type": "Question", "name": "Quali sono gli scaglioni IRPEF 2026?", "acceptedAnswer": { "@type": "Answer", "text": "Tre: 23% fino a 28.000 euro, 33% da 28.000 a 50.000 euro e 43% oltre i 50.000 euro. Rispetto al 2025 la seconda aliquota è scesa dal 35% al 33%." } },
+      { "@type": "Question", "name": "Perché il mio netto è diverso da quello calcolato?", "acceptedAnswer": { "@type": "Answer", "text": "Le cause più frequenti sono le addizionali del proprio comune, le detrazioni per familiari a carico, i fringe benefit, gli straordinari, i premi di risultato tassati al 5% e i conguagli di fine anno. Il calcolo qui è una stima sul caso standard." } },
+      { "@type": "Question", "name": "Quanto costo davvero all'azienda?", "acceptedAnswer": { "@type": "Answer", "text": "Il costo aziendale è in genere il 30-35% in più della RAL, perché il datore di lavoro versa circa il 24% di contributi INPS a suo carico, l'INAIL e accantona il TFR." } }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #faf8ff;
+      --panel: #ffffff;
+      --ink: #1a1230;
+      --muted: #6b6087;
+      --rule: #e3dcf5;
+      --accent: #6d28d9;
+      --accent-ink: #ffffff;
+      --accent-soft: #f1ebff;
+      --neg: #b03a5b;
+      --pos: #1f7a5a;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        color-scheme: dark;
+        --bg: #120e1f;
+        --panel: #1b1530;
+        --ink: #ece7fa;
+        --muted: #a396c4;
+        --rule: #2e2450;
+        --accent: #b794ff;
+        --accent-ink: #1a1030;
+        --accent-soft: #241a40;
+        --neg: #ff8fab;
+        --pos: #6fdcb2;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--ink);
+      font: 16px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      overflow-x: hidden;
+    }
+    a { color: var(--accent); }
+
+    /* layout split: pannello di input incollato in alto, risultati che scorrono sotto */
+    .testa {
+      position: sticky; top: 0; z-index: 10;
+      background: var(--panel); border-bottom: 2px solid var(--accent);
+      padding: max(8px, env(safe-area-inset-top)) 16px 14px;
+    }
+    .testa .dentro { max-width: 42rem; margin: 0 auto; }
+    .back { display: inline-block; min-height: 40px; line-height: 40px; font-size: .82rem; color: var(--muted); text-decoration: none; }
+    .back:hover, .back:focus-visible { color: var(--ink); }
+
+    label { display: block; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: .3rem; }
+    .ral { position: relative; }
+    .ral span { position: absolute; left: .75rem; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; font-size: 1.1rem; }
+    .ral input {
+      width: 100%; font: inherit; font-size: 22px; font-weight: 700; letter-spacing: -.01em;
+      min-height: 56px; padding: .4rem .7rem .4rem 2.1rem;
+      color: var(--ink); background: var(--bg); border: 2px solid var(--rule);
+      border-radius: 10px; -webkit-appearance: none; appearance: none;
+    }
+    .ral input:focus-visible { outline: none; border-color: var(--accent); }
+
+    .chips { display: flex; align-items: center; gap: .4rem; margin-top: .6rem; }
+    .chips-eti { font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-right: .2rem; }
+    .chip {
+      font: inherit; font-size: .95rem; font-weight: 700; min-height: 44px; min-width: 52px; padding: .3rem .6rem;
+      border-radius: 999px; border: 1.5px solid var(--rule); background: transparent;
+      color: var(--muted); cursor: pointer; white-space: nowrap;
+    }
+    .chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 700; }
+    .chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    .esito-testa { display: flex; align-items: baseline; justify-content: space-between; gap: .8rem; margin-top: .9rem; flex-wrap: wrap; }
+    .cifra { font-size: clamp(1.9rem, 10vw, 2.6rem); font-weight: 700; letter-spacing: -.03em; color: var(--accent); line-height: 1.1; }
+    .cifra small { display: block; font-size: .72rem; font-weight: 400; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+    .annuo { font-size: .88rem; color: var(--muted); text-align: right; }
+    .errore { color: var(--neg); font-size: .85rem; margin: .5rem 0 0; }
+
+    /* corpo scorrevole */
+    .corpo { max-width: 42rem; margin: 0 auto; padding: 1.4rem 16px calc(40px + env(safe-area-inset-bottom)); }
+    section { margin: 0 0 2.2rem; }
+    h1 { font-size: 1.5rem; line-height: 1.25; letter-spacing: -.02em; margin: 0 0 .5rem; }
+    h2 { font-size: 1.15rem; margin: 2rem 0 .6rem; letter-spacing: -.01em; }
+    h3 { font-size: 1rem; margin: 1.5rem 0 .3rem; }
+    p { margin: 0 0 .9rem; }
+    .lead { color: var(--muted); font-size: .95rem; }
+
+    .barre { margin: 0 0 1.2rem; }
+    .barra { display: flex; height: 14px; border-radius: 999px; overflow: hidden; background: var(--rule); }
+    .barra i { display: block; }
+    .barra i.n { background: var(--accent); }
+    .barra i.c { background: #8b78c9; }
+    .barra i.t { background: var(--neg); }
+    .legenda { display: flex; flex-wrap: wrap; gap: .2rem 1rem; font-size: .78rem; color: var(--muted); margin-top: .45rem; }
+    .legenda b { font-weight: 400; color: var(--ink); }
+    .legenda i { display: inline-block; width: .6rem; height: .6rem; border-radius: 2px; margin-right: .3rem; }
+
+    dl.voci { margin: 0; font-size: .9rem; }
+    dl.voci > div { display: flex; justify-content: space-between; gap: 1rem; padding: .55rem 0; border-top: 1px solid var(--rule); }
+    dl.voci dt { color: var(--muted); }
+    dl.voci dd { margin: 0; font-weight: 700; white-space: nowrap; }
+    dl.voci .meno dd { color: var(--neg); }
+    dl.voci .piu dd { color: var(--pos); }
+    dl.voci .tot { border-top: 2px solid var(--accent); }
+    dl.voci .tot dt, dl.voci .tot dd { color: var(--ink); font-weight: 700; }
+
+    details.opts { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: .2rem 0; margin: 1.2rem 0; }
+    details.opts summary { font-size: .85rem; min-height: 44px; display: flex; align-items: center; cursor: pointer; list-style: none; color: var(--muted); }
+    details.opts summary::-webkit-details-marker { display: none; }
+    details.opts summary::before { content: "▸ "; margin-right: .4rem; }
+    details.opts[open] summary::before { content: "▾ "; }
+    .opt { margin: .9rem 0 1.2rem; }
+    .opt .riga { display: flex; align-items: center; gap: .8rem; }
+    input[type="range"] { width: 100%; height: 44px; accent-color: var(--accent); }
+    .valore { font-weight: 700; color: var(--accent); min-width: 3.6rem; text-align: right; }
+    .nota { font-size: .8rem; color: var(--muted); margin-top: .3rem; }
+
+    .confronto { display: grid; gap: .9rem; }
+    .confronto input[type="text"] {
+      width: 100%; font: inherit; font-size: 17px; min-height: 50px; padding: .4rem .7rem;
+      background: var(--bg); color: var(--ink); border: 1.5px solid var(--rule); border-radius: 8px;
+      -webkit-appearance: none; appearance: none;
+    }
+    .verdetto { font-size: .95rem; padding: .8rem .9rem; background: var(--accent-soft); border-radius: 10px; }
+    .verdetto b { color: var(--accent); }
+
+    .azioni { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1rem; }
+    button.azione {
+      font: inherit; font-size: .88rem; font-weight: 700; min-height: 46px; padding: .5rem 1.1rem;
+      border-radius: 999px; border: 1.5px solid var(--accent); background: transparent;
+      color: var(--accent); cursor: pointer;
+    }
+    button.azione:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+    .guida { font-size: .95rem; line-height: 1.7; }
+    .guida ul { padding-left: 1.2rem; margin: 0 0 1rem; }
+    .guida li { margin-bottom: .4rem; }
+    .esempio { border-left: 3px solid var(--accent); padding-left: .9rem; margin: 1.1rem 0; }
+    .esempio p:last-child { margin-bottom: 0; }
+    .small { font-size: .8rem; color: var(--muted); }
+    footer { border-top: 1px solid var(--rule); padding-top: 1rem; margin-top: 2rem; }
+
+    @media (min-width: 46rem) {
+      h1 { font-size: 1.9rem; }
+      .confronto { grid-template-columns: 1fr 1fr; align-items: end; }
+      .confronto .verdetto { grid-column: 1 / -1; }
+    }
+
+    @media print {
+      .testa { position: static; } .back, .azioni, details.opts, .guida, [data-ad], [data-support], .mz-lock { display: none !important; }
+      [data-pro] > :not(.mz-lock) { filter: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="testa">
+    <div class="dentro">
+      <a class="back" href="../../index.html">← Tutte le app</a>
+
+      <label for="ral">Retribuzione annua lorda (RAL)</label>
+      <div class="ral">
+        <span aria-hidden="true">€</span>
+        <input id="ral" type="text" inputmode="decimal" autocomplete="off" enterkeyhint="done" placeholder="30.000">
+      </div>
+
+      <div class="chips" role="group" aria-label="Numero di mensilità">
+        <span class="chips-eti">Mensilità</span>
+        <button type="button" class="chip" data-mens="12" aria-pressed="false" aria-label="12 mensilità">12</button>
+        <button type="button" class="chip" data-mens="13" aria-pressed="true" aria-label="13 mensilità">13</button>
+        <button type="button" class="chip" data-mens="14" aria-pressed="false" aria-label="14 mensilità">14</button>
+      </div>
+
+      <div class="esito-testa">
+        <div class="cifra" id="netto-mese"><small>Netto al mese</small>—</div>
+        <div class="annuo" id="netto-anno">Inserisci la tua RAL</div>
+      </div>
+      <p class="errore" id="errore" role="status"></p>
+    </div>
+  </div>
+
+  <div class="corpo">
+    <section>
+      <h1>Calcolo stipendio netto: dal lordo al netto in busta</h1>
+      <p class="lead">Contributi INPS, IRPEF a scaglioni 2026, detrazioni da lavoro dipendente,
+        bonus in busta e trattamento integrativo. Tutte le voci, una per una.</p>
+
+      <div class="barre" id="barre" hidden>
+        <div class="barra" aria-hidden="true">
+          <i class="n" id="q-netto"></i><i class="c" id="q-contributi"></i><i class="t" id="q-tasse"></i>
+        </div>
+        <div class="legenda">
+          <span><i class="n" style="background:var(--accent)"></i>Netto <b id="l-netto">—</b></span>
+          <span><i class="c" style="background:#8b78c9"></i>Contributi <b id="l-contributi">—</b></span>
+          <span><i class="t" style="background:var(--neg)"></i>Tasse <b id="l-tasse">—</b></span>
+        </div>
+      </div>
+
+      <dl class="voci" id="voci" hidden>
+        <div><dt>Retribuzione lorda</dt><dd id="v-ral">—</dd></div>
+        <div class="meno"><dt>Contributi INPS 9,19%</dt><dd id="v-inps">—</dd></div>
+        <div><dt>Imponibile fiscale</dt><dd id="v-imponibile">—</dd></div>
+        <div class="meno"><dt>IRPEF lorda</dt><dd id="v-irpef">—</dd></div>
+        <div class="piu"><dt>Detrazioni da lavoro dipendente</dt><dd id="v-detrazioni">—</dd></div>
+        <div class="piu"><dt>Ulteriore detrazione (20.000–40.000 €)</dt><dd id="v-ulteriore">—</dd></div>
+        <div class="meno"><dt>Addizionali regionale e comunale</dt><dd id="v-addizionali">—</dd></div>
+        <div class="piu"><dt>Bonus in busta paga (fino a 20.000 €)</dt><dd id="v-bonus">—</dd></div>
+        <div class="piu"><dt>Trattamento integrativo</dt><dd id="v-integrativo">—</dd></div>
+        <div class="tot"><dt>Netto annuo</dt><dd id="v-netto">—</dd></div>
+      </dl>
+
+      <details class="opts">
+        <summary>Opzioni: addizionali e aliquota contributiva</summary>
+        <div class="opt">
+          <label for="addizionali">Addizionali regionale + comunale</label>
+          <div class="riga">
+            <input id="addizionali" type="range" min="0" max="4" step="0.1" value="2">
+            <span class="valore" id="addizionali-v">2,0%</span>
+          </div>
+          <p class="nota">Dipendono da regione e comune di residenza: si va da circa l'1,3% a oltre il 3,3%.
+            Se non lo sai, lascia il 2% che è la media italiana.</p>
+        </div>
+        <div class="opt">
+          <label for="inps">Aliquota contributiva a tuo carico</label>
+          <div class="riga">
+            <input id="inps" type="range" min="8" max="11" step="0.01" value="9.19">
+            <span class="valore" id="inps-v">9,19%</span>
+          </div>
+          <p class="nota">Il 9,19% è l'aliquota standard del dipendente del settore privato.
+            Sale al 9,49% per i dirigenti e in alcuni settori con contribuzioni aggiuntive.</p>
+        </div>
+      </details>
+    </section>
+
+    <div data-ad="top"></div>
+
+    <section data-pro="Confronto tra due offerte">
+      <h2>Due offerte a confronto</h2>
+      <p class="small">La domanda vera non è «quanto è il netto», ma «quale delle due conviene».
+        Metti qui la seconda proposta: stesso calcolo, differenza al mese e all'anno.</p>
+      <div class="confronto">
+        <div>
+          <label for="ral-b">RAL della seconda offerta</label>
+          <input id="ral-b" type="text" inputmode="decimal" autocomplete="off" placeholder="34.000">
+        </div>
+        <div>
+          <label for="mens-b">Mensilità della seconda offerta</label>
+          <input id="mens-b" type="text" inputmode="numeric" autocomplete="off" placeholder="14">
+        </div>
+        <p class="verdetto" id="verdetto">Inserisci la seconda RAL per vedere il confronto.</p>
+      </div>
+    </section>
+
+    <section data-pro="Dettaglio ed export CSV">
+      <h2>Porta via il conteggio</h2>
+      <p class="small">Il dettaglio completo, voce per voce, da scaricare in CSV o stampare:
+        utile quando negozi l'aumento o controlli la busta paga.</p>
+      <div class="azioni">
+        <button type="button" class="azione" id="csv">Scarica CSV</button>
+        <button type="button" class="azione" id="stampa">Stampa il dettaglio</button>
+      </div>
+    </section>
+
+    <section id="guida" class="guida">
+      <h2>Come funziona il calcolo dello stipendio netto</h2>
+      <p>Tra quello che l'azienda scrive nel contratto e quello che arriva sul conto ci sono
+        quattro passaggi. Il calcolo dello stipendio netto li ripercorre nell'ordine esatto in cui
+        li esegue il consulente del lavoro, e il risultato qui sopra cambia mentre scrivi.</p>
+      <ul>
+        <li><strong>Contributi INPS.</strong> Al lavoratore dipendente del settore privato si
+          trattiene il 9,19% della retribuzione lorda. Non è una tassa: finanzia la pensione futura.</li>
+        <li><strong>Imponibile fiscale.</strong> È il lordo meno i contributi. È su questo, e non
+          sulla RAL, che si calcola l'IRPEF: per questo il conto «a occhio» sbaglia sempre per eccesso.</li>
+        <li><strong>IRPEF a scaglioni.</strong> Nel 2026 le aliquote sono tre: 23% fino a 28.000 €,
+          33% dalla soglia fino a 50.000 € e 43% sopra. L'aliquota si applica solo alla parte di
+          reddito dentro ciascuno scaglione, mai a tutto.</li>
+        <li><strong>Detrazioni, addizionali e bonus.</strong> Le detrazioni da lavoro dipendente
+          abbattono l'IRPEF; le addizionali regionale e comunale la fanno risalire; il bonus in busta
+          paga e il trattamento integrativo si sommano al netto.</li>
+      </ul>
+
+      <h2>Un esempio con i numeri</h2>
+      <div class="esempio">
+        <p>Giulia ha una RAL di <strong>30.000 €</strong> su tredici mensilità.
+          I contributi INPS sono 30.000 × 9,19% = <strong>2.757 €</strong>, quindi l'imponibile
+          fiscale è <strong>27.243 €</strong>: appena sotto la soglia dei 28.000 €, tutto al 23%.</p>
+        <p>L'IRPEF lorda è circa <strong>6.266 €</strong>. La detrazione da lavoro dipendente per
+          quel reddito vale <strong>2.044 €</strong>, e a questa si aggiunge l'ulteriore detrazione
+          di <strong>1.000 €</strong> prevista per i redditi tra 20.000 e 32.000 €. L'IRPEF netta
+          scende così a circa <strong>3.222 €</strong>.</p>
+        <p>Tolte le addizionali (circa 545 € al 2%), restano più o meno <strong>23.480 € netti</strong>
+          l'anno: circa <strong>1.806 € al mese</strong> su tredici mensilità. E se Giulia trattasse
+          4.000 € di aumento? In tasca ne arriverebbero circa 2.100: poco più della metà, perché la
+          parte eccedente entra nello scaglione al 33% e fa perdere quota di detrazioni.</p>
+      </div>
+
+      <h2>Gli errori più comuni</h2>
+      <ul>
+        <li><strong>Applicare l'aliquota più alta a tutto il reddito.</strong> Chi supera i 28.000 €
+          non paga il 33% su tutto: solo sulla parte eccedente.</li>
+        <li><strong>Confondere RAL e costo aziendale.</strong> L'azienda spende il 30-35% in più
+          della RAL tra contributi a suo carico, INAIL e TFR: è quello il numero che sente il datore
+          di lavoro quando chiedi un aumento.</li>
+        <li><strong>Dividere il netto annuo per dodici.</strong> Con tredici o quattordici mensilità
+          la busta ordinaria è più bassa, ma a giugno e dicembre arriva la mensilità aggiuntiva.</li>
+        <li><strong>Ignorare le addizionali.</strong> Tra un comune e l'altro il netto può variare
+          di qualche centinaio di euro l'anno a parità di stipendio.</li>
+      </ul>
+
+      <h2>Domande frequenti</h2>
+
+      <h3>Quanto è il netto di 30.000 € lordi?</h3>
+      <p>Intorno ai 23.500 € l'anno, cioè circa 1.800 € al mese su tredici mensilità, con addizionali
+        medie e nessuna detrazione per familiari a carico. Prova a inserire la tua RAL qui sopra: il
+        calcolo tiene conto delle mensilità e delle addizionali che imposti.</p>
+
+      <h3>Il calcolo considera i figli a carico?</h3>
+      <p>No, e vale la pena spiegare perché: dal 2022 il sostegno per i figli passa quasi tutto
+        dall'Assegno Unico, che non è una detrazione in busta paga ma un accredito INPS a parte. Le
+        detrazioni per figli restano solo in casi particolari, per esempio i figli tra 21 e 30 anni.
+        Lo stesso vale per mutuo, spese mediche e coniuge a carico, che si recuperano con il 730.</p>
+
+      <h3>Vale anche per part-time e contratti a termine?</h3>
+      <p>Sì, purché tu inserisca la RAL effettiva del tuo contratto, cioè già proporzionata alle ore.
+        Per i contratti a tempo determinato la detrazione minima è leggermente diversa, quindi su
+        redditi molto bassi la stima può discostarsi di qualche decina di euro.</p>
+
+      <h3>E per i dipendenti pubblici?</h3>
+      <p>Lo schema è lo stesso, ma l'aliquota contributiva cambia (in genere 8,80% per la gestione
+        ex INPDAP). Puoi correggerla nelle opzioni di calcolo qui sopra.</p>
+
+      <h3>Perché conviene ragionare sul netto e non sulla RAL?</h3>
+      <p>Perché la progressività rende gli aumenti meno ricchi di quanto sembrino, e perché due
+        offerte con la stessa RAL ma mensilità diverse danno buste paga mensili molto diverse. È
+        esattamente il confronto che trovi nella sezione «Due offerte a confronto».</p>
+
+      <div data-ad="bottom"></div>
+      <div data-support></div>
+
+      <footer>
+        <p class="small">Stima a scopo informativo, senza valore contrattuale o fiscale. Non considera
+          detrazioni per familiari a carico, fringe benefit, premi di risultato, straordinari e
+          conguagli. Aliquote IRPEF, detrazioni e bonus aggiornati al 2026.</p>
+        <p class="small">Questa pagina può contenere annunci e link di affiliazione.
+          <a href="../../privacy.html">Privacy</a> · Vedi anche
+          <a href="../2026-09-20-calcolo-tfr/">Calcolo TFR</a> per la liquidazione e
+          <a href="../2026-09-17-dividi-il-conto/">Dividi il Conto</a> per le spese di gruppo.</p>
+      </footer>
+    </section>
+  </div>
+
+  <script src="../../assets/monetize.js"></script>
+  <script>
+    /* Modello dati: `stato` = { ral, mensilita, addizionali, inps, ralB, mensB } salvato in
+     * localStorage. `busta(ral, opzioni)` calcola una busta completa dal lordo: contributi →
+     * imponibile → IRPEF a scaglioni → detrazioni → addizionali → bonus. Le due sezioni Pro
+     * (confronto e export) riusano la stessa funzione, così il conto è sempre uno solo. */
+    (() => {
+      "use strict";
+      const $ = (s) => document.querySelector(s);
+      const CHIAVE = "netto-da-lordo:v1";
+
+      const SCAGLIONI = [[28000, 0.23], [50000, 0.33], [Infinity, 0.43]];
+
+      const eur = new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
+      const eur2 = new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR", minimumFractionDigits: 2 });
+      const pc = (n) => n.toLocaleString("it-IT", { minimumFractionDigits: 1, maximumFractionDigits: 2 }) + "%";
+
+      function leggiNumero(v) {
+        let s = String(v || "").replace(/[\s€]/g, "");
+        if (!s) return NaN;
+        if (/^\d{1,3}(\.\d{3})+(,\d+)?$/.test(s)) s = s.replace(/\./g, "");
+        return parseFloat(s.replace(",", "."));
+      }
+
+      function irpefLorda(reddito) {
+        let imposta = 0, sotto = 0;
+        for (const [soglia, aliquota] of SCAGLIONI) {
+          if (reddito <= sotto) break;
+          imposta += (Math.min(reddito, soglia) - sotto) * aliquota;
+          sotto = soglia;
+        }
+        return imposta;
+      }
+
+      // Detrazione da lavoro dipendente, art. 13 TUIR (importi 2026).
+      function detrazioneLavoro(r) {
+        let d;
+        if (r <= 15000) d = 1955;
+        else if (r <= 28000) d = 1910 + 1190 * (28000 - r) / 13000;
+        else if (r <= 50000) d = 1910 * (50000 - r) / 22000;
+        else d = 0;
+        if (r > 25000 && r <= 35000) d += 65;
+        return Math.max(0, d);
+      }
+
+      // Ulteriore detrazione: 1.000 € fino a 32.000 €, poi decresce fino ad azzerarsi a 40.000 €.
+      function ulterioreDetrazione(r) {
+        if (r <= 20000) return 0;
+        if (r <= 32000) return 1000;
+        if (r <= 40000) return 1000 * (40000 - r) / 8000;
+        return 0;
+      }
+
+      // Somma esente sui redditi fino a 20.000 €: non concorre al reddito, si somma al netto.
+      function bonusBusta(r) {
+        if (r <= 0) return 0;
+        if (r <= 8500) return r * 0.071;
+        if (r <= 15000) return r * 0.053;
+        if (r <= 20000) return r * 0.048;
+        return 0;
+      }
+
+      function trattamentoIntegrativo(r, irpef, detrLavoro, detrazioniTotali) {
+        if (r <= 15000) return irpef > detrLavoro ? 1200 : 0;
+        if (r <= 28000) return detrazioniTotali > irpef ? Math.min(1200, detrazioniTotali - irpef) : 0;
+        return 0;
+      }
+
+      function busta(ral, opt) {
+        const contributi = ral * (opt.inps / 100);
+        const imponibile = ral - contributi;
+        const lorda = irpefLorda(imponibile);
+        const detrLavoro = detrazioneLavoro(imponibile);
+        const ulteriore = ulterioreDetrazione(imponibile);
+        const detrazioni = detrLavoro + ulteriore;
+        const netta = Math.max(0, lorda - detrazioni);
+        const addizionali = netta > 0 ? imponibile * (opt.addizionali / 100) : 0;
+        const bonus = bonusBusta(imponibile);
+        const integrativo = trattamentoIntegrativo(imponibile, lorda, detrLavoro, detrazioni);
+        const netto = ral - contributi - netta - addizionali + bonus + integrativo;
+        return { ral, contributi, imponibile, lorda, detrLavoro, ulteriore, netta, addizionali, bonus, integrativo, netto };
+      }
+
+      const stato = { ral: "", mensilita: 13, addizionali: 2, inps: 9.19, ralB: "", mensB: "" };
+      let ultima = null;
+
+      function carica() {
+        try {
+          const s = JSON.parse(localStorage.getItem(CHIAVE) || "null");
+          if (s && typeof s === "object") Object.assign(stato, s);
+        } catch (_) { /* storage bloccato o dati corrotti */ }
+      }
+      function salva() {
+        try { localStorage.setItem(CHIAVE, JSON.stringify(stato)); } catch (_) { /* storage bloccato */ }
+      }
+
+      function mostra() {
+        const ral = leggiNumero(stato.ral);
+        const vuoto = !String(stato.ral).trim();
+        $("#errore").textContent = vuoto || ral > 0 ? "" : "Inserisci una cifra valida, per esempio 30.000.";
+        if (!(ral > 0)) {
+          ultima = null;
+          $("#netto-mese").innerHTML = "<small>Netto al mese</small>—";
+          $("#netto-anno").textContent = "Inserisci la tua RAL";
+          $("#voci").hidden = true;
+          $("#barre").hidden = true;
+          confronta();
+          return;
+        }
+        if (ral > 5000000) {
+          ultima = null;
+          $("#errore").textContent = "Cifra troppo grande: controlla di non aver aggiunto uno zero.";
+          return;
+        }
+
+        const r = busta(ral, stato);
+        ultima = r;
+        const mese = r.netto / stato.mensilita;
+        $("#netto-mese").innerHTML = `<small>Netto al mese</small>${eur.format(mese)}`;
+        $("#netto-anno").innerHTML =
+          `${eur.format(r.netto)} netti l'anno<br>su ${stato.mensilita} mensilità`;
+
+        $("#v-ral").textContent = eur.format(r.ral);
+        $("#v-inps").textContent = "− " + eur.format(r.contributi);
+        $("#v-imponibile").textContent = eur.format(r.imponibile);
+        $("#v-irpef").textContent = "− " + eur.format(r.lorda);
+        $("#v-detrazioni").textContent = r.detrLavoro >= 1 ? "+ " + eur.format(r.detrLavoro) : "non spetta";
+        $("#v-ulteriore").textContent = r.ulteriore >= 1 ? "+ " + eur.format(r.ulteriore) : "non spetta";
+        $("#v-addizionali").textContent = r.addizionali >= 1 ? "− " + eur.format(r.addizionali) : "—";
+        $("#v-bonus").textContent = r.bonus >= 1 ? "+ " + eur.format(r.bonus) : "non spetta";
+        $("#v-integrativo").textContent = r.integrativo >= 1 ? "+ " + eur.format(r.integrativo) : "non spetta";
+        $("#v-netto").textContent = eur.format(r.netto);
+        $("#voci").hidden = false;
+
+        const tasse = r.netta + r.addizionali;
+        const tot = r.netto + r.contributi + tasse;
+        const q = (x) => (x / tot * 100).toFixed(2) + "%";
+        $("#q-netto").style.width = q(r.netto);
+        $("#q-contributi").style.width = q(r.contributi);
+        $("#q-tasse").style.width = q(tasse);
+        $("#l-netto").textContent = q(r.netto);
+        $("#l-contributi").textContent = q(r.contributi);
+        $("#l-tasse").textContent = q(tasse);
+        $("#barre").hidden = false;
+
+        confronta();
+      }
+
+      function confronta() {
+        const el = $("#verdetto");
+        const ralB = leggiNumero(stato.ralB);
+        if (!ultima) { el.textContent = "Inserisci prima la tua RAL qui sopra."; return; }
+        if (!(ralB > 0)) { el.textContent = "Inserisci la seconda RAL per vedere il confronto."; return; }
+        const mensB = Math.min(16, Math.max(12, parseInt(stato.mensB, 10) || stato.mensilita));
+        const b = busta(ralB, stato);
+        const diffAnno = b.netto - ultima.netto;
+        const diffMese = b.netto / mensB - ultima.netto / stato.mensilita;
+        const segno = diffAnno >= 0 ? "in più" : "in meno";
+        el.innerHTML =
+          `Seconda offerta: <b>${eur.format(b.netto / mensB)}</b> al mese su ${mensB} mensilità, ` +
+          `<b>${eur.format(b.netto)}</b> l'anno.<br>` +
+          `Rispetto alla prima sono <b>${eur.format(Math.abs(diffAnno))}</b> l'anno ${segno} ` +
+          `(${eur.format(Math.abs(diffMese))} al mese). ` +
+          `Su ${eur.format(Math.abs(b.ral - ultima.ral))} di differenza di RAL, ` +
+          `in tasca ne arriva il ${pc(Math.abs(b.ral - ultima.ral) > 0 ? Math.abs(diffAnno) / Math.abs(b.ral - ultima.ral) * 100 : 0)}.`;
+      }
+
+      // --- interazioni ---
+      $("#ral").value = stato.ral;
+      $("#ral-b").value = stato.ralB;
+      $("#mens-b").value = stato.mensB;
+      $("#addizionali").value = stato.addizionali;
+      $("#inps").value = stato.inps;
+
+      const etichette = () => {
+        $("#addizionali-v").textContent = pc(stato.addizionali);
+        $("#inps-v").textContent = pc(stato.inps);
+      };
+
+      const lega = (sel, chiave, trasforma, extra) => {
+        const n = $(sel);
+        n.addEventListener("input", () => {
+          stato[chiave] = trasforma ? trasforma(n) : n.value;
+          if (extra) extra();
+          salva(); mostra();
+        });
+      };
+      lega("#ral", "ral");
+      lega("#ral-b", "ralB");
+      lega("#mens-b", "mensB");
+      lega("#addizionali", "addizionali", (n) => parseFloat(n.value), etichette);
+      lega("#inps", "inps", (n) => parseFloat(n.value), etichette);
+
+      function scegliMensilita(v) {
+        stato.mensilita = v;
+        for (const c of document.querySelectorAll(".chip")) {
+          c.setAttribute("aria-pressed", String(Number(c.dataset.mens) === v));
+        }
+        salva(); mostra();
+      }
+      for (const c of document.querySelectorAll(".chip")) {
+        c.addEventListener("click", () => scegliMensilita(Number(c.dataset.mens)));
+      }
+
+      for (const sel of ["#ral", "#ral-b", "#mens-b"]) {
+        $(sel).addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); $(sel).blur(); } });
+      }
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && document.activeElement && document.activeElement.blur) document.activeElement.blur();
+      });
+
+      // --- Pro: export e stampa ---
+      const csvSafe = (v) => (/[";\n]/.test(String(v)) ? '"' + String(v).replace(/"/g, '""') + '"' : String(v));
+      const n2 = (n) => n.toFixed(2).replace(".", ",");
+
+      $("#csv").addEventListener("click", () => {
+        if (!window.Monetize || !window.Monetize.isPro()) { window.Monetize && window.Monetize.unlock(); return; }
+        if (!ultima) return;
+        const r = ultima;
+        const righe = [
+          ["Voce", "Importo annuo"],
+          ["Retribuzione lorda", n2(r.ral)],
+          [`Contributi INPS ${n2(stato.inps)}%`, "-" + n2(r.contributi)],
+          ["Imponibile fiscale", n2(r.imponibile)],
+          ["IRPEF lorda", "-" + n2(r.lorda)],
+          ["Detrazione lavoro dipendente", n2(r.detrLavoro)],
+          ["Ulteriore detrazione", n2(r.ulteriore)],
+          [`Addizionali ${n2(stato.addizionali)}%`, "-" + n2(r.addizionali)],
+          ["Bonus in busta paga", n2(r.bonus)],
+          ["Trattamento integrativo", n2(r.integrativo)],
+          ["Netto annuo", n2(r.netto)],
+          [`Netto mensile su ${stato.mensilita} mensilita`, n2(r.netto / stato.mensilita)],
+        ];
+        const ralB = leggiNumero(stato.ralB);
+        if (ralB > 0) {
+          const b = busta(ralB, stato);
+          righe.push([], ["Seconda offerta - RAL", n2(b.ral)], ["Seconda offerta - netto annuo", n2(b.netto)]);
+        }
+        const csv = "﻿" + righe.map((x) => x.map(csvSafe).join(";")).join("\r\n");
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+        a.download = "stipendio-netto.csv";
+        a.click();
+        setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+      });
+
+      $("#stampa").addEventListener("click", () => {
+        if (!window.Monetize || !window.Monetize.isPro()) { window.Monetize && window.Monetize.unlock(); return; }
+        window.print();
+      });
+
+      carica();
+      $("#ral").value = stato.ral;
+      $("#ral-b").value = stato.ralB;
+      $("#mens-b").value = stato.mensB;
+      $("#addizionali").value = stato.addizionali;
+      $("#inps").value = stato.inps;
+      etichette();
+      scegliMensilita(stato.mensilita);
+    })();
+  </script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 9,
+  "count": 10,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -50,6 +50,52 @@ window.__APPS__ = {
     ]
   },
   "apps": [
+    {
+      "title": "Netto da Lordo",
+      "slug": "2026-09-20-netto-da-lordo",
+      "date": "2026-09-20",
+      "description": "Dalla RAL al netto in busta: contributi, IRPEF 2026, detrazioni e bonus, voce per voce, con il confronto tra due offerte.",
+      "category": "finanza-personale",
+      "tags": [
+        "stipendio",
+        "irpef",
+        "busta paga",
+        "lavoro"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "split",
+        "palette": "viola-elettrico",
+        "font": "mono-tecnico"
+      },
+      "business": {
+        "keyword": "calcolo stipendio netto",
+        "keywords": [
+          "da lordo a netto",
+          "quanto prendo al mese con 30000 lordi",
+          "calcolo netto da ral",
+          "stipendio netto 2026"
+        ],
+        "intent": "Chi ha in mano un'offerta di lavoro con una RAL e vuole sapere in un secondo quanto gli arriva davvero in busta ogni mese, prima di rispondere.",
+        "target": "Chi cambia lavoro o negozia un aumento, 22-50 anni, quasi sempre da telefono e di fretta.",
+        "edge": "Il netto cambia mentre digiti, con il pannello di input fisso in alto; sotto c'è ogni singola voce (contributi, IRPEF, detrazioni, bonus 2026) invece del solo totale, e il confronto tra due offerte dice quanto di un aumento di RAL arriva davvero in tasca.",
+        "monetization": [
+          "adsense",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto tra due offerte",
+          "Dettaglio ed export CSV"
+        ],
+        "affiliate": []
+      },
+      "size": 34378
+    },
     {
       "title": "Consumo Condizionatore",
       "slug": "2026-09-20-consumo-condizionatore",
