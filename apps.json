@@ -1,6 +1,6 @@
 {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 7,
+  "count": 8,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -49,6 +49,53 @@
     ]
   },
   "apps": [
+    {
+      "title": "Calcolo TFR",
+      "slug": "2026-09-20-calcolo-tfr",
+      "date": "2026-09-20",
+      "description": "Quanto TFR hai accumulato e quanto ti resta dopo le tasse: accantonamenti, rivalutazione ISTAT e tassazione separata anno per anno.",
+      "category": "finanza-personale",
+      "tags": [
+        "tfr",
+        "lavoro",
+        "stipendio",
+        "tasse"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "sheet",
+        "palette": "verde-menta",
+        "font": "condensed"
+      },
+      "business": {
+        "keyword": "calcolo tfr",
+        "keywords": [
+          "quanto tfr mi spetta",
+          "calcolo tfr netto",
+          "come si calcola il tfr",
+          "tfr quanto si accumula all'anno"
+        ],
+        "intent": "Chi sta per lasciare il lavoro, o vuole controllare la cifra scritta in busta paga, e cerca subito quanto TFR ha accumulato e quanto ne resta al netto delle tasse.",
+        "target": "Lavoratori dipendenti del settore privato, 25-60 anni, spesso da telefono durante o dopo l'orario di lavoro.",
+        "edge": "Risultato in due campi, dettaglio anno per anno con rivalutazione e imposta sostitutiva, tassazione separata con detrazione TFR: nessun concorrente mostra tutta la filiera su telefono.",
+        "monetization": [
+          "adsense",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Dettaglio anno per anno ed export CSV",
+          "Simulazione anticipo TFR",
+          "Confronto TFR in azienda o fondo pensione"
+        ],
+        "affiliate": []
+      },
+      "size": 41760
+    },
     {
       "title": "Costo Viaggio in Auto",
       "slug": "2026-09-19-costo-viaggio-auto",

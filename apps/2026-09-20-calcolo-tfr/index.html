@@ -1,0 +1,652 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0d8f68">
+  <title>Calcolo TFR online gratis: lordo, netto e anticipo</title>
+  <meta name="description" content="Calcolo TFR online e gratis: inserisci la retribuzione lorda e le date del contratto e scopri quanto TFR hai accumulato, la rivalutazione e il netto.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-20-calcolo-tfr/">
+  <meta property="og:title" content="Calcolo TFR online gratis: lordo, netto e anticipo">
+  <meta property="og:description" content="Quanto TFR hai accumulato e quanto ti resta in mano dopo le tasse: il calcolo completo, anno per anno, senza registrazione.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-20-calcolo-tfr/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Calcolo TFR",
+    "description": "Calcolatore gratuito del TFR: accantonamento annuo, rivalutazione ISTAT, imposta sostitutiva e netto in busta con la tassazione separata.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-20-calcolo-tfr/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Come si calcola il TFR?", "acceptedAnswer": { "@type": "Answer", "text": "Ogni anno il datore di lavoro accantona la retribuzione utile divisa per 13,5 e toglie il contributo dello 0,50% destinato all'INPS: restano circa 6,91 euro ogni 100 euro di retribuzione lorda. Il fondo già accumulato si rivaluta ogni 31 dicembre dell'1,5% fisso più il 75% dell'aumento dell'indice ISTAT dei prezzi al consumo." } },
+      { "@type": "Question", "name": "Quanto TFR si prende al mese?", "acceptedAnswer": { "@type": "Answer", "text": "Circa il 6,91% della retribuzione lorda mensile: con 1.600 euro lordi al mese si accantonano poco più di 110 euro, cioè intorno a 1.330 euro l'anno se le mensilità sono 12." } },
+      { "@type": "Question", "name": "Quante tasse si pagano sul TFR?", "acceptedAnswer": { "@type": "Answer", "text": "Le rivalutazioni pagano ogni anno un'imposta sostitutiva del 17%, già trattenuta dal fondo. La parte restante è tassata alla cessazione con la tassazione separata: l'aliquota media IRPEF calcolata sul reddito di riferimento, cioè il TFR imponibile diviso gli anni di servizio e moltiplicato per dodici." } },
+      { "@type": "Question", "name": "Quando si può chiedere l'anticipo del TFR?", "acceptedAnswer": { "@type": "Answer", "text": "Dopo almeno 8 anni di servizio presso lo stesso datore di lavoro, una sola volta, per un massimo del 70% del TFR maturato e per motivi previsti dalla legge come spese sanitarie, acquisto della prima casa o congedi parentali." } },
+      { "@type": "Question", "name": "Conviene lasciare il TFR in azienda o versarlo al fondo pensione?", "acceptedAnswer": { "@type": "Answer", "text": "Dipende dal rendimento del fondo e dagli anni che mancano alla pensione. In azienda il TFR rende l'1,5% più il 75% dell'inflazione ed è tassato con l'aliquota media IRPEF; nel fondo pensione rende quanto rende il comparto scelto ed è tassato dal 15% che scende fino al 9% dopo 35 anni di adesione." } }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #eef7f2; --surface: #fff; --text: #10241d; --muted: #5c7268; --line: #d4e6dd;
+      --accent: #0d8f68; --accent-ink: #fff; --soft: #e0f2ea; --warn: #a8452f;
+      --r: 14px; --shadow: 0 -8px 28px rgba(16, 36, 29, .14);
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0e1613; --surface: #15201c; --text: #e6f2ec; --muted: #94aaa0; --line: #243430;
+        --accent: #4fdda9; --accent-ink: #05231a; --soft: #172a24; --warn: #ff9478;
+        --shadow: 0 -8px 28px rgba(0, 0, 0, .5);
+        color-scheme: dark;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font: 17px/1.6 "Arial Narrow", "Roboto Condensed", "Liberation Sans Narrow", "Helvetica Neue Condensed", sans-serif;
+      padding-bottom: calc(96px + env(safe-area-inset-bottom));
+      overflow-x: hidden;
+    }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: max(10px, env(safe-area-inset-top)) 16px 32px; }
+    a { color: var(--accent); }
+    .back { display: inline-block; min-height: 44px; line-height: 44px; font-size: 1rem; color: var(--muted); text-decoration: none; }
+    .back:hover { color: var(--text); }
+    h1 { margin: .1rem 0 .25rem; font-size: 1.55rem; line-height: 1.1; letter-spacing: .01em; text-transform: uppercase; font-weight: 800; }
+    h2 { font-size: 1.3rem; text-transform: uppercase; letter-spacing: .04em; margin: 2rem 0 .6rem; font-weight: 800; }
+    h3 { font-size: 1.1rem; margin: 1.4rem 0 .3rem; font-weight: 700; }
+    .lead { color: var(--muted); margin: 0 0 .9rem; font-size: 1rem; line-height: 1.45; }
+
+    .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 1rem; }
+    .panel + .panel { margin-top: .9rem; }
+    fieldset { border: 0; margin: 0; padding: 0; }
+    legend, .lbl { display: block; font-size: .95rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-bottom: .45rem; }
+    .field { margin-bottom: 1rem; }
+    .field:last-child { margin-bottom: 0; }
+    input[type="text"], input[type="date"], select {
+      width: 100%; font: inherit; font-size: 16px; min-height: 50px; padding: .55rem .75rem;
+      border: 1.5px solid var(--line); border-radius: 10px; background: var(--bg); color: var(--text);
+    }
+    input:focus-visible, select:focus-visible, button:focus-visible, summary:focus-visible {
+      outline: 3px solid var(--accent); outline-offset: 2px;
+    }
+    .row2 { display: grid; gap: .7rem; grid-template-columns: 1fr 1fr; }
+    .seg { display: flex; gap: 6px; background: var(--soft); padding: 5px; border-radius: 999px; }
+    .seg button {
+      flex: 1; min-height: 44px; font: inherit; font-weight: 700; text-transform: uppercase; letter-spacing: .04em;
+      border: 0; border-radius: 999px; background: transparent; color: var(--muted); cursor: pointer;
+    }
+    .seg button[aria-pressed="true"] { background: var(--surface); color: var(--text); box-shadow: 0 1px 3px rgba(0,0,0,.14); }
+    .hint { font-size: .9rem; color: var(--muted); margin: .35rem 0 0; }
+    .err { color: var(--warn); font-size: .95rem; margin: .5rem 0 0; min-height: 1.2em; font-weight: 700; }
+    details.adv { margin-top: .9rem; border-top: 1px solid var(--line); padding-top: .6rem; }
+    details.adv > summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; font-size: .95rem; color: var(--muted); }
+    .slider { display: flex; align-items: center; gap: .8rem; }
+    input[type="range"] { flex: 1; min-height: 44px; accent-color: var(--accent); }
+    .slider output { min-width: 4.5rem; text-align: right; font-weight: 800; font-variant-numeric: tabular-nums; }
+
+    /* --- sheet: pannello risultato che sale dal basso --- */
+    .sheet {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
+      background: var(--surface); border-top: 1px solid var(--line);
+      border-radius: 18px 18px 0 0; box-shadow: var(--shadow);
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+    .peek {
+      width: 100%; display: flex; align-items: center; gap: .7rem; text-align: left;
+      min-height: 78px; padding: .7rem 1rem; font: inherit; color: inherit;
+      background: transparent; border: 0; cursor: pointer;
+    }
+    .peek-label { flex: 1; font-size: .9rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); font-weight: 700; }
+    .peek-val { font-size: 1.9rem; font-weight: 800; letter-spacing: -.01em; font-variant-numeric: tabular-nums; color: var(--accent); }
+    .peek-ico { transition: transform .2s ease; color: var(--muted); font-size: .9rem; }
+    .sheet.open .peek-ico { transform: rotate(180deg); }
+    .sheet-body { max-height: 0; overflow: hidden; transition: max-height .25s ease; }
+    .sheet.open .sheet-body { max-height: 62dvh; overflow-y: auto; }
+    .sheet-in { padding: 0 1rem 1.1rem; border-top: 1px solid var(--line); }
+    .grab { width: 40px; height: 4px; border-radius: 99px; background: var(--line); margin: .45rem auto -.2rem; }
+
+    .lines { list-style: none; margin: .8rem 0 0; padding: 0; }
+    .lines li { display: flex; justify-content: space-between; gap: 1rem; padding: .5rem 0; border-bottom: 1px dashed var(--line); font-variant-numeric: tabular-nums; }
+    .lines li:last-child { border-bottom: 0; }
+    .lines .k { color: var(--muted); }
+    .lines .v { font-weight: 700; white-space: nowrap; }
+    .lines li.total { border-top: 2px solid var(--text); border-bottom: 0; margin-top: .4rem; padding-top: .7rem; font-size: 1.1rem; }
+    .lines li.total .k { color: var(--text); font-weight: 800; text-transform: uppercase; letter-spacing: .04em; }
+    .lines li.minus .v { color: var(--warn); }
+    .note { font-size: .88rem; color: var(--muted); margin: .9rem 0 0; }
+
+    .years { list-style: none; margin: .8rem 0 0; padding: 0; display: grid; gap: .6rem; }
+    .years li { background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: .6rem .75rem; }
+    .years .head { display: flex; justify-content: space-between; font-weight: 800; letter-spacing: .03em; }
+    .years .head .fondo { color: var(--accent); font-variant-numeric: tabular-nums; }
+    .years .det { display: flex; flex-wrap: wrap; gap: .2rem .9rem; font-size: .9rem; color: var(--muted); margin-top: .2rem; font-variant-numeric: tabular-nums; }
+
+    .btns { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1rem; }
+    .btn {
+      flex: 1 1 auto; min-height: 48px; min-width: 44px; padding: .5rem 1.1rem; font: inherit; font-weight: 800;
+      text-transform: uppercase; letter-spacing: .05em; border-radius: 999px; cursor: pointer;
+      border: 1.5px solid var(--accent); background: transparent; color: var(--accent);
+    }
+    .btn.fill { background: var(--accent); color: var(--accent-ink); }
+    .big { font-size: 1.6rem; font-weight: 800; color: var(--accent); font-variant-numeric: tabular-nums; }
+    .callout { background: var(--soft); border-radius: 12px; padding: .8rem .9rem; margin-top: .9rem; }
+    .callout p { margin: .2rem 0; }
+    [data-pro] { margin-top: 1.4rem; min-height: 180px; }
+    .empty { color: var(--muted); }
+
+    #guida p, #guida li { max-width: 68ch; }
+    #guida ul { padding-left: 1.2rem; }
+    .related { list-style: none; padding: 0; display: grid; gap: .5rem; }
+    .related a { display: block; min-height: 44px; line-height: 1.4; padding: .6rem .8rem; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; text-decoration: none; }
+    .disc { font-size: .85rem; color: var(--muted); border-top: 1px solid var(--line); margin-top: 2rem; padding-top: .9rem; }
+    .disc a { display: inline-block; min-width: 44px; min-height: 44px; line-height: 44px; text-align: center; }
+
+    @media (min-width: 860px) {
+      body { padding-bottom: 32px; }
+      .tool { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; align-items: start; }
+      .sheet { position: sticky; top: 16px; box-shadow: none; border: 1px solid var(--line); border-radius: var(--r); }
+      .sheet-body, .sheet.open .sheet-body { max-height: none; overflow: visible; }
+      .peek { cursor: default; min-height: 0; padding-top: 1rem; }
+      .peek-ico, .grab { display: none; }
+      .peek-val { font-size: 2.2rem; }
+      h1 { font-size: 2.4rem; }
+      .years { grid-template-columns: 1fr 1fr; }
+    }
+    @media print {
+      .sheet { position: static; box-shadow: none; }
+      .btns, .back, [data-ad], [data-support], .seg { display: none; }
+      .sheet-body, .sheet.open .sheet-body { max-height: none; overflow: visible; }
+    }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="../../index.html">← Tutte le app</a>
+    <h1>Calcolo TFR: quanto ti spetta netto</h1>
+    <p class="lead">Retribuzione lorda e date del contratto: ecco il TFR accantonato, la rivalutazione ISTAT e quanto resta dopo le tasse.</p>
+
+    <div class="tool">
+      <form class="panel" id="form" novalidate>
+        <fieldset class="field">
+          <legend>Retribuzione lorda</legend>
+          <div class="seg" role="group" aria-label="Tipo di retribuzione">
+            <button type="button" id="m-anno" aria-pressed="true">Annua</button>
+            <button type="button" id="m-mese" aria-pressed="false">Mensile</button>
+          </div>
+          <div class="row2" style="margin-top:.7rem">
+            <div>
+              <label class="lbl" for="importo">Importo lordo €</label>
+              <input type="text" id="importo" inputmode="decimal" enterkeyhint="done" autocomplete="off" placeholder="28000" aria-describedby="importo-hint">
+            </div>
+            <div id="wrap-mensilita" hidden>
+              <label class="lbl" for="mensilita">Mensilità</label>
+              <select id="mensilita">
+                <option value="12">12</option>
+                <option value="13" selected>13</option>
+                <option value="14">14</option>
+              </select>
+            </div>
+          </div>
+          <p class="hint" id="importo-hint">La retribuzione utile dell'ultimo anno, comprese tredicesima e quattordicesima.</p>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend>Periodo di lavoro</legend>
+          <div class="row2">
+            <div>
+              <label class="lbl" for="inizio">Assunzione</label>
+              <input type="date" id="inizio" min="1982-06-01" max="2075-12-31">
+            </div>
+            <div>
+              <label class="lbl" for="fine">Fine o oggi</label>
+              <input type="date" id="fine" min="1982-06-01" max="2075-12-31">
+            </div>
+          </div>
+          <p class="err" id="err" role="alert"></p>
+        </fieldset>
+
+        <details class="adv">
+          <summary>Ipotesi del calcolo</summary>
+          <div class="field" style="margin-top:.8rem">
+            <label class="lbl" for="infl">Inflazione media annua (ISTAT)</label>
+            <div class="slider">
+              <input type="range" id="infl" min="0" max="8" step="0.1" value="2">
+              <output for="infl" id="infl-out">2,0%</output>
+            </div>
+            <p class="hint">Serve per la rivalutazione: 1,5% fisso + 75% dell'inflazione.</p>
+          </div>
+          <div class="field">
+            <label class="lbl" for="cresc">Aumento medio annuo della retribuzione</label>
+            <div class="slider">
+              <input type="range" id="cresc" min="0" max="8" step="0.1" value="0">
+              <output for="cresc" id="cresc-out">0,0%</output>
+            </div>
+            <p class="hint">A 0% la retribuzione indicata vale per tutti gli anni. Sopra lo 0% gli anni passati sono ricostruiti più bassi.</p>
+          </div>
+          <div class="btns"><button type="button" class="btn" id="reset">Azzera tutto</button></div>
+        </details>
+      </form>
+
+      <div class="sheet" id="sheet" aria-live="polite">
+        <div class="grab" aria-hidden="true"></div>
+        <button type="button" class="peek" id="peek" aria-expanded="false" aria-controls="sheet-body">
+          <span class="peek-label">TFR netto stimato</span>
+          <span class="peek-val" id="peek-val">—</span>
+          <span class="peek-ico" aria-hidden="true">▲</span>
+        </button>
+        <div class="sheet-body" id="sheet-body">
+          <div class="sheet-in">
+            <p class="empty" id="empty">Inserisci la retribuzione lorda e le date: il risultato compare qui.</p>
+            <ul class="lines" id="lines" hidden></ul>
+            <p class="note" id="note" hidden></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="panel" data-pro="Dettaglio anno per anno ed export CSV">
+      <h2 style="margin-top:0">Dettaglio anno per anno</h2>
+      <p class="hint" id="years-hint">Quanto si è accantonato, quanto ha reso e quanto valeva il fondo alla fine di ogni anno.</p>
+      <ul class="years" id="years"></ul>
+      <div class="btns">
+        <button type="button" class="btn fill" id="csv">Esporta CSV</button>
+        <button type="button" class="btn" id="print">Stampa il prospetto</button>
+      </div>
+    </section>
+
+    <section class="panel" data-pro="Simulazione anticipo TFR">
+      <h2 style="margin-top:0">Anticipo del TFR</h2>
+      <p class="hint">Dopo 8 anni di servizio puoi chiedere fino al 70% del maturato, una sola volta.</p>
+      <div class="field" style="margin-top:.8rem">
+        <label class="lbl" for="quota">Quota che vuoi chiedere</label>
+        <div class="slider">
+          <input type="range" id="quota" min="10" max="70" step="5" value="70">
+          <output for="quota" id="quota-out">70%</output>
+        </div>
+      </div>
+      <div class="callout" id="anticipo">
+        <p class="empty">Compila il calcolatore per vedere quanto puoi chiedere.</p>
+      </div>
+    </section>
+
+    <section class="panel" data-pro="Confronto TFR in azienda o fondo pensione">
+      <h2 style="margin-top:0">In azienda o al fondo pensione?</h2>
+      <p class="hint">Stesso accantonamento, due destinazioni: cambiano il rendimento e la tassazione finale.</p>
+      <div class="field" style="margin-top:.8rem">
+        <label class="lbl" for="rend">Rendimento medio annuo del fondo pensione</label>
+        <div class="slider">
+          <input type="range" id="rend" min="0" max="8" step="0.1" value="3">
+          <output for="rend" id="rend-out">3,0%</output>
+        </div>
+      </div>
+      <div class="callout" id="confronto">
+        <p class="empty">Compila il calcolatore per vedere il confronto.</p>
+      </div>
+    </section>
+
+    <div data-ad="top"></div>
+
+    <section id="guida">
+      <h2>Come funziona il calcolo del TFR</h2>
+      <p>Il trattamento di fine rapporto è una parte di stipendio che non ti viene pagata ogni mese ma messa da parte e consegnata quando il rapporto finisce. La regola è nell'articolo 2120 del codice civile: ogni anno il datore di lavoro accantona la retribuzione utile dell'anno divisa per 13,5, cioè il 7,41%, e da questa quota toglie il contributo dello 0,50% che versa all'INPS per il Fondo di garanzia. Quello che resta davvero sul tuo fondo è circa il <strong>6,91% della retribuzione annua lorda</strong>.</p>
+      <p>Il fondo già accumulato non resta fermo. Al 31 dicembre di ogni anno si rivaluta di un 1,5% fisso più il 75% dell'aumento dell'indice ISTAT dei prezzi al consumo per famiglie di operai e impiegati rispetto a dicembre dell'anno prima. Su questa rivalutazione il datore trattiene subito un'imposta sostitutiva del 17%: è per questo che nel prospetto trovi la rivalutazione già al netto. La quota maturata nell'anno in corso non si rivaluta: entra nel fondo e comincia a fruttare dall'anno successivo.</p>
+
+      <h2>Come si legge il risultato</h2>
+      <p>Il pannello in basso parte dal numero che conta davvero, il netto. Sopra trovi il TFR lordo, cioè il fondo accumulato, e sotto le voci che lo compongono: gli accantonamenti di tutti gli anni, le rivalutazioni nette e l'imposta del 17% già trattenuta. L'ultima parte riguarda la <strong>tassazione separata</strong>, che è il modo in cui lo Stato tassa il TFR quando lo incassi: non entra nel reddito dell'anno, ma ha un'aliquota sua.</p>
+      <p>L'aliquota si trova così: si prende il TFR imponibile, cioè il fondo senza le rivalutazioni che hanno già pagato il 17%, lo si divide per gli anni di servizio e lo si moltiplica per dodici. Viene fuori il reddito di riferimento. Su quel reddito si calcola l'IRPEF con gli scaglioni in vigore (23% fino a 28.000 euro, 33% da 28.000 a 50.000, 43% oltre) e si ricava l'aliquota media, che viene poi applicata all'intero imponibile. Se il reddito di riferimento non supera i 30.000 euro spetta anche una detrazione fino a 70 euro, che il calcolatore toglie in automatico.</p>
+
+      <h2>Un esempio con i numeri</h2>
+      <p>Prendiamo 28.000 euro lordi l'anno per dieci anni pieni, con inflazione media al 2%. Ogni anno entrano nel fondo 28.000 × 6,91% = 1.934 euro. Dopo dieci anni gli accantonamenti valgono 19.341 euro, a cui si aggiungono 2.317 euro di rivalutazioni già al netto del 17%: il fondo lordo arriva a <strong>21.658 euro</strong>. Il reddito di riferimento è 19.341 × 12 / 10 = 23.209 euro, quindi sotto la prima soglia: l'aliquota media è il 23%, l'IRPEF sull'imponibile vale 4.394 euro al netto della detrazione e il netto in mano resta di <strong>17.265 euro</strong>. Se ne va così circa il 20% del lordo, ed è la sorpresa più comune: il TFR non arriva mai intero.</p>
+
+      <h2>Gli errori più comuni</h2>
+      <ul>
+        <li><strong>Dividere per 13 invece che per 13,5.</strong> Il divisore di legge è 13,5, e il risultato cambia di quasi mezzo punto percentuale su tutta la carriera.</li>
+        <li><strong>Dimenticare il contributo dello 0,50%.</strong> Non è una tassa su di te, ma riduce l'accantonamento: chi lo ignora si aspetta il 7,41% e trova il 6,91%.</li>
+        <li><strong>Confondere lordo e netto.</strong> La cifra sulla busta paga alla voce fondo TFR è sempre lorda: le tasse della tassazione separata arrivano solo alla cessazione.</li>
+        <li><strong>Usare lo stipendio netto.</strong> Il calcolo parte dalla retribuzione lorda, comprese tredicesima e quattordicesima dove ci sono.</li>
+        <li><strong>Considerare l'ultimo stipendio per tutta la carriera.</strong> Se sei cresciuto negli anni, imposta l'aumento medio annuo nelle ipotesi: gli anni passati vengono ricostruiti più bassi e la stima si avvicina alla realtà.</li>
+      </ul>
+
+      <h3>Come faccio a sapere quanto TFR ho accumulato davvero?</h3>
+      <p>La busta paga di dicembre o l'ultima dell'anno riporta il fondo TFR accantonato. In alternativa puoi chiedere all'ufficio paghe il prospetto del TFR, che il datore è tenuto a rilasciare. Questo calcolatore serve a verificare quella cifra e soprattutto a capire quanto ne resta al netto.</p>
+
+      <h3>Il TFR si perde se mi licenzio?</h3>
+      <p>No. Il TFR spetta sempre, qualunque sia il motivo per cui il rapporto finisce: dimissioni, licenziamento, scadenza del contratto o pensione. Cambia solo il momento in cui viene liquidato.</p>
+
+      <h3>Perché la mia aliquota è più alta di quella del calcolatore?</h3>
+      <p>L'Agenzia delle Entrate riliquida il TFR usando l'aliquota media dei cinque anni precedenti la cessazione, che considera tutti i tuoi redditi, non solo quello di questo lavoro. Se negli ultimi anni hai avuto redditi alti puoi ricevere una richiesta di conguaglio; se erano bassi ti viene restituita la differenza. La stima qui usa la formula del sostituto d'imposta, quella applicata al momento del pagamento.</p>
+
+      <h3>Il calcolo vale anche per i dipendenti pubblici?</h3>
+      <p>Solo in parte. Chi è stato assunto nel pubblico impiego prima del 2001 ha in genere il TFS (buonuscita), che si calcola in modo diverso e viene pagato a rate. Per gli assunti successivi vale il TFR, con la stessa formula usata qui, ma la liquidazione avviene con tempi più lunghi.</p>
+
+      <h3>I dati che inserisco restano sul telefono?</h3>
+      <p>Sì. Il calcolo avviene interamente nel browser e i valori sono salvati solo sul tuo dispositivo, così li ritrovi alla prossima visita. Non c'è registrazione, non c'è invio a nessun server e la pagina funziona anche senza connessione.</p>
+
+      <p class="note">Le cifre sono una stima a scopo informativo e non hanno valore legale o fiscale: per l'importo esatto fanno fede il prospetto dell'ufficio paghe e la riliquidazione dell'Agenzia delle Entrate.</p>
+    </section>
+
+    <div data-ad="bottom"></div>
+
+    <h2>Altre app utili</h2>
+    <ul class="related">
+      <li><a href="../2026-09-17-dividi-il-conto/">Dividi il Conto: calcola chi deve dare quanto a chi dopo una vacanza o una cena</a></li>
+      <li><a href="../2026-09-19-costo-viaggio-auto/">Costo Viaggio in Auto: quanto spendi davvero tra carburante e pedaggi</a></li>
+    </ul>
+
+    <div data-support></div>
+
+    <p class="disc">Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a></p>
+  </div>
+
+  <script src="../../assets/monetize.js"></script>
+  <script>
+    (() => {
+      "use strict";
+      // Modello dati: { modo: "anno"|"mese", importo, mensilita, inizio, fine, infl, cresc }
+      // Il calcolo è una simulazione anno per anno: ogni anno entra nel fondo la quota
+      // (retribuzione/13,5 meno il contributo 0,50%) e il fondo dell'anno prima si rivaluta
+      // (1,5% + 75% ISTAT) pagando il 17% di imposta sostitutiva; alla fine tassazione separata.
+
+      const KEY = "calcolo-tfr:v1";
+      const $ = (s) => document.querySelector(s);
+      const eur0 = new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
+      const eur2 = new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      const pct = (n, d = 1) => n.toLocaleString("it-IT", { minimumFractionDigits: d, maximumFractionDigits: d }) + "%";
+
+      const DIVISORE = 13.5, CONTRIBUTO = 0.005, SOSTITUTIVA = 0.17, FISSO = 0.015, QUOTA_ISTAT = 0.75;
+      const SCAGLIONI = [[28000, 0.23], [50000, 0.33], [Infinity, 0.43]];
+      const DETRAZIONE_DA = Date.UTC(2008, 3, 1); // la detrazione TFR spetta per il periodo dall'1/4/2008
+
+      // ---- date (in UTC, per non dipendere dal fuso) ----
+      const parseDate = (v) => { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v || ""); return m ? Date.UTC(+m[1], +m[2] - 1, +m[3]) : null; };
+      const iso = (t) => new Date(t).toISOString().slice(0, 10);
+      const parts = (t) => { const d = new Date(t); return [d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()]; };
+      // Mesi di servizio tra due date: la frazione di almeno 15 giorni conta come mese intero.
+      function mesiTra(a, b) {
+        if (b < a) return 0;
+        const [ya, ma, ga] = parts(a), [yb, mb, gb] = parts(b);
+        let m = (yb - ya) * 12 + (mb - ma);
+        if (gb - ga >= 15) m += 1;
+        return Math.max(0, m);
+      }
+      function mesiNellAnno(y, inizio, fine) {
+        const a = Math.max(inizio, Date.UTC(y, 0, 1)), b = Math.min(fine, Date.UTC(y, 11, 31));
+        return b < a ? 0 : Math.min(12, mesiTra(a, b));
+      }
+
+      // ---- fisco ----
+      function irpef(reddito) {
+        let imposta = 0, precedente = 0;
+        for (const [soglia, aliquota] of SCAGLIONI) {
+          if (reddito <= precedente) break;
+          imposta += (Math.min(reddito, soglia) - precedente) * aliquota;
+          precedente = soglia;
+        }
+        return imposta;
+      }
+      // Detrazione TFR (D.M. 20/03/2008), rapportata al periodo successivo all'1/4/2008.
+      function detrazioneTfr(redditoRif, inizio, fine, mesiTot) {
+        let d = 0;
+        if (redditoRif <= 7500) d = 70;
+        else if (redditoRif <= 28000) d = 50 + 20 * (28000 - redditoRif) / 20500;
+        else if (redditoRif <= 30000) d = 50 * (30000 - redditoRif) / 2000;
+        if (!d || !mesiTot) return 0;
+        const mesiUtili = mesiTra(Math.max(inizio, DETRAZIONE_DA), fine);
+        return d * Math.min(1, mesiUtili / mesiTot);
+      }
+
+      // ---- calcolo ----
+      function calcola(s) {
+        const ralFine = s.modo === "mese" ? s.importo * s.mensilita : s.importo;
+        const inizio = parseDate(s.inizio), fine = parseDate(s.fine);
+        if (!(ralFine > 0) || inizio === null || fine === null || fine <= inizio) return null;
+
+        const annoFine = parts(fine)[0], g = s.cresc / 100, infl = s.infl / 100;
+        const anni = [];
+        let fondo = 0, totQuote = 0, totRiv = 0, totImp = 0, mesiTot = 0;
+        for (let y = parts(inizio)[0]; y <= annoFine; y++) {
+          const mesi = mesiNellAnno(y, inizio, fine);
+          if (!mesi) continue;
+          const ral = ralFine / Math.pow(1 + g, annoFine - y);
+          const riv = fondo * (FISSO + QUOTA_ISTAT * infl) * (mesi / 12);
+          const imp = riv * SOSTITUTIVA;
+          const quota = (ral / 12) * mesi * (1 / DIVISORE - CONTRIBUTO);
+          fondo += riv - imp + quota;
+          totQuote += quota; totRiv += riv; totImp += imp; mesiTot += mesi;
+          anni.push({ y, mesi, ral, quota, riv: riv - imp, imp, fondo });
+        }
+        if (!mesiTot) return null;
+
+        const anniServizio = mesiTot / 12;
+        const redditoRif = totQuote * 12 / anniServizio;
+        const aliquota = redditoRif > 0 ? irpef(redditoRif) / redditoRif : 0;
+        const detrazione = detrazioneTfr(redditoRif, inizio, fine, mesiTot);
+        const impostaSep = Math.max(0, totQuote * aliquota - detrazione);
+        return {
+          anni, fondo, totQuote, rivNette: totRiv - totImp, totImp, mesiTot, anniServizio,
+          redditoRif, aliquota, detrazione, impostaSep, netto: fondo - impostaSep, ralFine,
+        };
+      }
+
+      // ---- stato ----
+      const oggi = iso(Date.now());
+      const def = { modo: "anno", importo: 0, mensilita: 13, inizio: "", fine: oggi, infl: 2, cresc: 0, quota: 70, rend: 3 };
+      let state = { ...def };
+      try { const raw = localStorage.getItem(KEY); if (raw) state = { ...def, ...JSON.parse(raw) }; } catch (_) { /* storage bloccato */ }
+      const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (_) { /* storage bloccato */ } };
+      const numero = (v) => { const n = parseFloat(String(v).replace(/\./g, "").replace(",", ".").replace(/[^0-9.]/g, "")); return Number.isFinite(n) && n > 0 ? n : 0; };
+
+      // ---- render ----
+      function riga(k, v, cls) {
+        const li = document.createElement("li");
+        if (cls) li.className = cls;
+        const a = document.createElement("span"); a.className = "k"; a.textContent = k;
+        const b = document.createElement("span"); b.className = "v"; b.textContent = v;
+        li.append(a, b);
+        return li;
+      }
+      function durata(mesi) {
+        const a = Math.floor(mesi / 12), m = mesi % 12;
+        const pa = a ? `${a} ${a === 1 ? "anno" : "anni"}` : "";
+        const pm = m ? `${m} ${m === 1 ? "mese" : "mesi"}` : "";
+        return [pa, pm].filter(Boolean).join(" e ") || "meno di un mese";
+      }
+
+      function renderRisultato(r) {
+        const lines = $("#lines"), note = $("#note"), empty = $("#empty");
+        if (!r) {
+          $("#peek-val").textContent = "—";
+          lines.hidden = true; note.hidden = true; empty.hidden = false;
+          return;
+        }
+        empty.hidden = true; lines.hidden = false; note.hidden = false;
+        $("#peek-val").textContent = eur0.format(r.netto);
+        lines.replaceChildren(
+          riga("TFR lordo accumulato", eur2.format(r.fondo)),
+          riga("di cui accantonamenti", eur2.format(r.totQuote)),
+          riga("di cui rivalutazioni nette", eur2.format(r.rivNette)),
+          riga("Imposta sostitutiva 17% già trattenuta", "− " + eur2.format(r.totImp), "minus"),
+          riga("Imponibile a tassazione separata", eur2.format(r.totQuote)),
+          riga("Reddito di riferimento", eur0.format(r.redditoRif)),
+          riga("Aliquota media IRPEF", pct(r.aliquota * 100, 2)),
+          riga("Detrazione TFR", "+ " + eur2.format(r.detrazione)),
+          riga("IRPEF a tassazione separata", "− " + eur2.format(r.impostaSep), "minus"),
+          riga("TFR netto stimato", eur2.format(r.netto), "total"),
+        );
+        note.textContent = `Servizio: ${durata(r.mesiTot)}. Accantonamento pari al ${pct((1 / DIVISORE - CONTRIBUTO) * 100, 2)} della retribuzione lorda. Stima informativa, senza valore legale.`;
+      }
+
+      function renderAnni(r) {
+        const ul = $("#years"), hint = $("#years-hint");
+        if (!r) { ul.replaceChildren(); hint.textContent = "Compila il calcolatore per vedere il prospetto anno per anno."; return; }
+        hint.textContent = `${r.anni.length} ${r.anni.length === 1 ? "anno" : "anni"}: quanto è entrato nel fondo, quanto ha reso e quanto valeva alla fine di ogni anno.`;
+        ul.replaceChildren(...r.anni.map((a) => {
+          const li = document.createElement("li");
+          const head = document.createElement("div"); head.className = "head";
+          const y = document.createElement("span"); y.textContent = `${a.y} · ${a.mesi} ${a.mesi === 1 ? "mese" : "mesi"}`;
+          const f = document.createElement("span"); f.className = "fondo"; f.textContent = eur0.format(a.fondo);
+          head.append(y, f);
+          const det = document.createElement("div"); det.className = "det";
+          for (const t of [`Retribuzione ${eur0.format(a.ral)}`, `Accantonato ${eur2.format(a.quota)}`, `Rivalutazione netta ${eur2.format(a.riv)}`]) {
+            const s = document.createElement("span"); s.textContent = t; det.append(s);
+          }
+          li.append(head, det);
+          return li;
+        }));
+      }
+
+      function renderAnticipo(r) {
+        const box = $("#anticipo");
+        const p = (t, cls) => { const n = document.createElement("p"); if (cls) n.className = cls; n.textContent = t; return n; };
+        if (!r) { box.replaceChildren(p("Compila il calcolatore per vedere quanto puoi chiedere.", "empty")); return; }
+        if (r.mesiTot < 96) {
+          const mancano = 96 - r.mesiTot;
+          box.replaceChildren(
+            p("Non hai ancora i requisiti: servono almeno 8 anni di servizio presso lo stesso datore."),
+            p(`Ti mancano ${durata(mancano)}.`, "big"));
+          return;
+        }
+        const perc = state.quota / 100;
+        const lordo = r.fondo * perc;
+        const imposta = lordo * r.aliquota;
+        box.replaceChildren(
+          p(`Puoi chiedere fino al ${state.quota}% del maturato: ${eur2.format(lordo)} lordi.`),
+          p(`Netto in mano: ${eur0.format(lordo - imposta)}`, "big"),
+          p(`Trattenuta stimata ${eur2.format(imposta)} con la stessa aliquota media del ${pct(r.aliquota * 100, 2)}. Nel fondo resterebbero ${eur2.format(r.fondo - lordo)}, che continuano a rivalutarsi.`, "hint"));
+      }
+
+      function renderConfronto(r) {
+        const box = $("#confronto");
+        const p = (t, cls) => { const n = document.createElement("p"); if (cls) n.className = cls; n.textContent = t; return n; };
+        if (!r) { box.replaceChildren(p("Compila il calcolatore per vedere il confronto.", "empty")); return; }
+        const netRend = (state.rend / 100) * 0.8; // sui rendimenti del fondo pensione grava il 20%
+        let montante = 0;
+        for (const a of r.anni) montante = montante * (1 + netRend * (a.mesi / 12)) + a.quota;
+        const aliquotaFp = Math.max(0.09, 0.15 - 0.003 * Math.max(0, r.anniServizio - 15));
+        const nettoFp = montante - r.totQuote * aliquotaFp;
+        const diff = nettoFp - r.netto;
+        box.replaceChildren(
+          p(`In azienda: ${eur0.format(r.netto)} netti (rivalutazione ${pct((FISSO + QUOTA_ISTAT * state.infl / 100) * 100, 2)} l'anno, aliquota ${pct(r.aliquota * 100, 2)}).`),
+          p(`Al fondo pensione: ${eur0.format(nettoFp)} netti (aliquota finale ${pct(aliquotaFp * 100, 1)}).`),
+          p(`${diff >= 0 ? "Il fondo pensione rende" : "L'azienda rende"} ${eur0.format(Math.abs(diff))} in più`, "big"),
+          p("Il confronto usa lo stesso accantonamento nei due casi e non considera il contributo del datore né la deducibilità dei versamenti volontari, che spostano ancora l'ago verso il fondo pensione.", "hint"));
+      }
+
+      let ultimo = null;
+      function aggiorna() {
+        const err = $("#err");
+        const inizio = parseDate(state.inizio), fine = parseDate(state.fine);
+        if (inizio !== null && fine !== null && fine <= inizio) err.textContent = "La data di fine deve venire dopo l'assunzione.";
+        else if (inizio !== null && parts(inizio)[0] < 1982) err.textContent = "Il TFR esiste dal giugno 1982: controlla la data di assunzione.";
+        else err.textContent = "";
+        ultimo = err.textContent ? null : calcola(state);
+        renderRisultato(ultimo); renderAnni(ultimo); renderAnticipo(ultimo); renderConfronto(ultimo);
+      }
+
+      // ---- input ----
+      function setModo(modo) {
+        state.modo = modo;
+        $("#m-anno").setAttribute("aria-pressed", String(modo === "anno"));
+        $("#m-mese").setAttribute("aria-pressed", String(modo === "mese"));
+        $("#wrap-mensilita").hidden = modo !== "mese";
+        $("#importo").placeholder = modo === "mese" ? "1600" : "28000";
+        $("#importo-hint").textContent = modo === "mese"
+          ? "Lo stipendio lordo di un mese: le mensilità aggiuntive si aggiungono qui accanto."
+          : "La retribuzione utile dell'ultimo anno, comprese tredicesima e quattordicesima.";
+        save(); aggiorna();
+      }
+      $("#m-anno").addEventListener("click", () => setModo("anno"));
+      $("#m-mese").addEventListener("click", () => setModo("mese"));
+
+      $("#importo").addEventListener("input", (e) => { state.importo = numero(e.target.value); save(); aggiorna(); });
+      $("#mensilita").addEventListener("change", (e) => { state.mensilita = +e.target.value; save(); aggiorna(); });
+      $("#inizio").addEventListener("change", (e) => { state.inizio = e.target.value; save(); aggiorna(); });
+      $("#fine").addEventListener("change", (e) => { state.fine = e.target.value; save(); aggiorna(); });
+      $("#form").addEventListener("submit", (e) => e.preventDefault());
+      $("#form").addEventListener("keydown", (e) => { if (e.key === "Enter" && e.target.tagName === "INPUT") { e.preventDefault(); e.target.blur(); } });
+
+      const sliders = [
+        ["#infl", "#infl-out", "infl", (v) => pct(v)],
+        ["#cresc", "#cresc-out", "cresc", (v) => pct(v)],
+        ["#quota", "#quota-out", "quota", (v) => pct(v, 0)],
+        ["#rend", "#rend-out", "rend", (v) => pct(v)],
+      ];
+      for (const [sel, out, key, fmt] of sliders) {
+        const input = $(sel);
+        input.addEventListener("input", () => {
+          state[key] = parseFloat(input.value);
+          $(out).textContent = fmt(state[key]);
+          save(); aggiorna();
+        });
+      }
+
+      $("#reset").addEventListener("click", () => {
+        state = { ...def };
+        try { localStorage.removeItem(KEY); } catch (_) { /* storage bloccato */ }
+        applicaStato(); aggiorna(); $("#importo").focus();
+      });
+
+      // ---- sheet ----
+      const sheet = $("#sheet"), peek = $("#peek");
+      peek.addEventListener("click", () => {
+        const aperto = sheet.classList.toggle("open");
+        peek.setAttribute("aria-expanded", String(aperto));
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && sheet.classList.contains("open")) {
+          sheet.classList.remove("open"); peek.setAttribute("aria-expanded", "false");
+        }
+      });
+
+      // ---- Pro: export e stampa ----
+      const csvCell = (v) => { const s = String(v); return /[";\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
+      const num = (n) => n.toFixed(2).replace(".", ",");
+      $("#csv").addEventListener("click", () => {
+        if (!window.Monetize || !window.Monetize.isPro()) { window.Monetize && window.Monetize.unlock(); return; }
+        if (!ultimo) return;
+        const righe = [["Anno", "Mesi", "Retribuzione lorda", "Accantonato", "Rivalutazione netta", "Imposta 17%", "Fondo a fine anno"]];
+        for (const a of ultimo.anni) righe.push([a.y, a.mesi, num(a.ral), num(a.quota), num(a.riv), num(a.imp), num(a.fondo)]);
+        righe.push([], ["TFR lordo", num(ultimo.fondo)], ["Imponibile", num(ultimo.totQuote)],
+          ["Aliquota media %", num(ultimo.aliquota * 100)], ["IRPEF separata", num(ultimo.impostaSep)], ["TFR netto", num(ultimo.netto)]);
+        const csv = "﻿" + righe.map((r) => r.map(csvCell).join(";")).join("\r\n");
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+        a.download = "calcolo-tfr.csv"; a.click();
+        setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+      });
+      $("#print").addEventListener("click", () => {
+        if (!window.Monetize || !window.Monetize.isPro()) { window.Monetize && window.Monetize.unlock(); return; }
+        sheet.classList.add("open"); peek.setAttribute("aria-expanded", "true");
+        window.print();
+      });
+
+      // ---- avvio ----
+      function applicaStato() {
+        $("#importo").value = state.importo ? String(state.importo).replace(".", ",") : "";
+        $("#mensilita").value = String(state.mensilita);
+        $("#inizio").value = state.inizio;
+        $("#fine").value = state.fine || oggi;
+        for (const [sel, out, key, fmt] of sliders) { $(sel).value = String(state[key]); $(out).textContent = fmt(state[key]); }
+        setModo(state.modo);
+      }
+      applicaStato();
+      aggiorna();
+    })();
+  </script>
+</body>
+</html>
