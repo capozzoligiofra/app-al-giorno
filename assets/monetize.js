@@ -62,6 +62,8 @@
     .mz-ad { min-height: 90px; margin: 1.25rem 0; text-align: center; }
     .mz-support { display: inline-flex; align-items: center; gap: .5rem; min-height: 44px; padding: .5rem 1rem; border-radius: 999px; border: 1.5px solid currentColor; text-decoration: none; font-weight: 600; color: inherit; }
     .mz-support-wrap { margin: 1.25rem 0; text-align: center; }
+    .mz-top { display: inline-flex; align-items: center; gap: .35rem; min-height: 36px; padding: .25rem .8rem; border-radius: 999px; background: #ffd166; color: #1a1a1a; text-decoration: none; font-weight: 700; font-size: .85rem; margin-left: auto; box-shadow: 0 2px 8px rgba(0,0,0,.18); white-space: nowrap; }
+    .mz-top-row { display: flex; align-items: center; gap: .75rem; }
     [data-pro] { position: relative; }
     [data-pro].mz-locked > :not(.mz-lock) { filter: blur(3px); pointer-events: none; user-select: none; }
     .mz-lock { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5rem; text-align: center; padding: 1rem; z-index: 2; }
@@ -118,6 +120,14 @@
     for (const box of $$("[data-support]")) {
       box.classList.add("mz-support-wrap");
       box.replaceChildren(el("a", { class: "mz-support", href: CONFIG.support.url, target: "_blank", rel: "noopener" }, "☕ ", box.dataset.label || CONFIG.support.label));
+    }
+    // Bottone in alto, accanto al link "← Tutte le app": visibile appena si apre la pagina.
+    const back = document.querySelector('a[href$="../../index.html"], a[href$="../index.html"]');
+    if (back && !document.querySelector(".mz-top")) {
+      const pill = el("a", { class: "mz-top", href: CONFIG.support.url, target: "_blank", rel: "noopener", title: "Sostieni il progetto" }, "☕ Offrimi un caffè");
+      const parent = back.parentElement;
+      if (parent && parent.children.length === 1) { parent.classList.add("mz-top-row"); parent.append(pill); }
+      else { const row = el("span", { class: "mz-top-row", style: "width:100%" }); back.replaceWith(row); row.append(back, pill); }
     }
   }
 
