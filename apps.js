@@ -112,8 +112,10 @@ window.__APPS__ = {
       "source": "richiesta",
       "request": "Consumo Condizionatore — keyword: \"quanto consuma un condizionatore\" — ricerca enorme da maggio a settembre, i primi risultati sono articoli di fornitori di luce senza un calcolatore vero; Pro: confronto fra più stanze e stima stagionale",
       "status": "pronta",
-      "version": 1,
-      "changelog": [],
+      "version": 2,
+      "changelog": [
+        "v2 (2026-09-20): corretto l'interruttore 'È un inverter' (la pista non era visibile e la levetta finiva sopra il testo)"
+      ],
       "design": {
         "layout": "single-column",
         "palette": "arancio-caldo",
@@ -155,7 +157,7 @@ window.__APPS__ = {
           }
         ]
       },
-      "size": 41721
+      "size": 41744
     },
     {
       "title": "Calcolo TFR",

@@ -4,26 +4,65 @@
   "date": "2026-09-20",
   "description": "Quanto consuma un condizionatore in kWh e quanto costa in bolletta: all'ora, al giorno, al mese e per tutta l'estate, in base a BTU, classe e ore d'uso.",
   "category": "casa-cucina",
-  "tags": ["condizionatore", "bolletta", "consumi", "estate", "risparmio"],
+  "tags": [
+    "condizionatore",
+    "bolletta",
+    "consumi",
+    "estate",
+    "risparmio"
+  ],
   "source": "richiesta",
   "request": "Consumo Condizionatore — keyword: \"quanto consuma un condizionatore\" — ricerca enorme da maggio a settembre, i primi risultati sono articoli di fornitori di luce senza un calcolatore vero; Pro: confronto fra più stanze e stima stagionale",
   "status": "pronta",
-  "version": 1,
-  "changelog": [],
-  "design": { "layout": "single-column", "palette": "arancio-caldo", "font": "rounded" },
+  "version": 2,
+  "changelog": [
+    "v2 (2026-09-20): corretto l'interruttore 'È un inverter' (la pista non era visibile e la levetta finiva sopra il testo)"
+  ],
+  "design": {
+    "layout": "single-column",
+    "palette": "arancio-caldo",
+    "font": "rounded"
+  },
   "business": {
     "keyword": "quanto consuma un condizionatore",
-    "keywords": ["consumo condizionatore kwh", "quanto costa tenere acceso il condizionatore", "condizionatore 12000 btu consumo", "costo condizionatore al mese"],
+    "keywords": [
+      "consumo condizionatore kwh",
+      "quanto costa tenere acceso il condizionatore",
+      "condizionatore 12000 btu consumo",
+      "costo condizionatore al mese"
+    ],
     "intent": "Chi ha appena acceso il condizionatore (o sta per comprarlo) e vuole sapere subito quanto gli costa un'ora, una notte, un mese di uso, prima che arrivi la bolletta.",
     "target": "Famiglie e affittuari con 1-3 split in casa, 25-65 anni, da telefono, con picco da maggio a settembre.",
-    "competitors": ["a2a.it e estra.it (articoli di fornitori con tabelle statiche e CTA alle offerte)", "altroconsumo.it (spiega la formula ma non la calcola)", "segugio.it (guida lunga orientata al cambio tariffa)", "met.com (esempi fissi a 0,30 €/kWh, nessun calcolatore)"],
+    "competitors": [
+      "a2a.it e estra.it (articoli di fornitori con tabelle statiche e CTA alle offerte)",
+      "altroconsumo.it (spiega la formula ma non la calcola)",
+      "segugio.it (guida lunga orientata al cambio tariffa)",
+      "met.com (esempi fissi a 0,30 €/kWh, nessun calcolatore)"
+    ],
     "edge": "Unico calcolatore vero: BTU, classe, intensità d'uso e prezzo kWh della propria bolletta in 4 tocchi, risultato per ora/giorno/mese/estate con il risparmio a 26 °C; nessun concorrente offre uno strumento interattivo, solo articoli.",
-    "monetization": ["adsense", "affiliate", "pro", "support"],
-    "pro": ["Confronto fra più stanze", "Stima stagionale mese per mese"],
+    "monetization": [
+      "adsense",
+      "affiliate",
+      "pro",
+      "support"
+    ],
+    "pro": [
+      "Confronto fra più stanze",
+      "Stima stagionale mese per mese"
+    ],
     "affiliate": [
-      { "t": "Misuratore di consumo da presa", "q": "misuratore consumo elettrico presa" },
-      { "t": "Presa smart Wi-Fi con contatore di energia", "q": "presa smart monitoraggio energia" },
-      { "t": "Spray igienizzante per filtri condizionatore", "q": "igienizzante condizionatore spray" }
+      {
+        "t": "Misuratore di consumo da presa",
+        "q": "misuratore consumo elettrico presa"
+      },
+      {
+        "t": "Presa smart Wi-Fi con contatore di energia",
+        "q": "presa smart monitoraggio energia"
+      },
+      {
+        "t": "Spray igienizzante per filtri condizionatore",
+        "q": "igienizzante condizionatore spray"
+      }
     ]
   }
 }
