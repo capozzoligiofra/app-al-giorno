@@ -1,0 +1,816 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#a8392a">
+  <title>Rata Mutuo: Calcolo rata mutuo online gratis</title>
+  <meta name="description" content="Calcolo rata mutuo senza registrazione: inserisci importo, durata e tasso e ottieni subito la rata mensile, gli interessi totali e il piano di ammortamento.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-21-rata-mutuo/">
+  <meta property="og:title" content="Rata Mutuo: Calcolo rata mutuo online gratis">
+  <meta property="og:description" content="Rata mensile, interessi totali e piano di ammortamento mese per mese. Nessun modulo da compilare, nessun contatto commerciale.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-21-rata-mutuo/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Rata Mutuo",
+    "description": "Calcolatore gratuito della rata del mutuo: rata mensile, interessi totali e piano di ammortamento completo, senza registrazione.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-21-rata-mutuo/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Come si calcola la rata del mutuo?", "acceptedAnswer": { "@type": "Answer", "text": "Con la formula dell'ammortamento alla francese: rata = C × i ÷ [1 − (1 + i)^−n], dove C è il capitale, i il tasso annuo diviso 12 e n il numero di rate mensili. La rata resta costante, mentre la quota di interessi diminuisce e quella di capitale cresce rata dopo rata." } },
+      { "@type": "Question", "name": "La rata calcolata qui è quella che mi darà la banca?", "acceptedAnswer": { "@type": "Answer", "text": "È la rata di puro rimborso calcolata sul TAN, cioè la stessa cifra che trovi nel piano di ammortamento del contratto. Alla spesa mensile effettiva vanno aggiunte le assicurazioni e, una tantum, istruttoria, perizia e imposta sostitutiva: sono questi costi a fare la differenza tra TAN e TAEG." } },
+      { "@type": "Question", "name": "Quanta rata posso permettermi?", "acceptedAnswer": { "@type": "Answer", "text": "Le banche concedono di norma un mutuo se la rata non supera un terzo del reddito netto mensile del nucleo familiare. Con 2.000 euro netti al mese il limite pratico è quindi una rata intorno ai 660 euro, al netto di altri finanziamenti già in corso." } },
+      { "@type": "Question", "name": "Conviene allungare la durata per abbassare la rata?", "acceptedAnswer": { "@type": "Answer", "text": "Abbassa la rata ma alza parecchio il costo totale. Su 150.000 euro al 2,95% passare da 25 a 30 anni fa scendere la rata da 707 a 628 euro, ma gli interessi salgono da circa 62.000 a circa 76.000 euro: quasi 14.000 euro in più per 79 euro di respiro al mese." } },
+      { "@type": "Question", "name": "Conviene estinguere il mutuo in anticipo?", "acceptedAnswer": { "@type": "Answer", "text": "Quasi sempre sì nei primi anni, quando la rata è fatta soprattutto di interessi. Sui mutui stipulati dal 2 aprile 2007 la legge Bersani vieta le penali di estinzione anticipata. A parità di somma versata, accorciare la durata fa risparmiare molto più che abbassare la rata." } }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #f7f2ec; --surface: #fffcf8; --text: #2a1d17; --muted: #7c6558; --line: #e5d6c6;
+      --accent: #a8392a; --accent-ink: #fff8f4; --soft: #f1ded4; --int: #b07d2f; --int-soft: #ecdfc4;
+      --radius: 10px; color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #17110e; --surface: #211815; --text: #f2e8e1; --muted: #ac9285; --line: #3a2b24;
+        --accent: #e3775e; --accent-ink: #2b0e06; --soft: #3b241d; --int: #d9a45f; --int-soft: #3d3223;
+        color-scheme: dark;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font: 17px/1.6 Georgia, "Times New Roman", Times, serif;
+      -webkit-text-size-adjust: 100%;
+    }
+    .wrap { margin: 0 auto; max-width: 1080px; padding: max(12px, env(safe-area-inset-top)) 16px calc(36px + env(safe-area-inset-bottom)); }
+    .topbar { margin: 0; }
+    .back { display: inline-flex; align-items: center; min-height: 44px; color: var(--muted); text-decoration: none; font-size: .95rem; }
+    .back:hover { color: var(--accent); }
+    h1 { margin: 0 0 .25rem; font-size: 1.55rem; line-height: 1.15; letter-spacing: -.01em; }
+    h2 { font-size: 1.25rem; margin: 0 0 .5rem; letter-spacing: -.01em; }
+    h3 { font-size: 1.05rem; margin: 1.4rem 0 .3rem; }
+    .lead { color: var(--muted); margin: 0 0 .9rem; font-size: .98rem; }
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1rem; margin-bottom: 1rem; }
+    .nota { color: var(--muted); font-size: .93rem; margin: .1rem 0 .8rem; }
+
+    /* ---- campi ---- */
+    label { display: block; font-size: .85rem; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); margin-bottom: .25rem; font-family: system-ui, sans-serif; }
+    .campo { margin-bottom: .85rem; }
+    .campo:last-child { margin-bottom: 0; }
+    .box { display: flex; align-items: center; border: 1.5px solid var(--line); border-radius: 8px; background: var(--bg); overflow: hidden; }
+    .box:focus-within { border-color: var(--accent); }
+    .box input {
+      flex: 1; min-width: 0; width: 100%; font: inherit; font-size: 19px; font-variant-numeric: tabular-nums;
+      padding: .5rem .6rem; min-height: 46px; border: 0; background: transparent; color: inherit;
+    }
+    .box input:focus { outline: none; }
+    .box .unita { padding: 0 .6rem; color: var(--muted); font-size: 1rem; }
+    /* i suggerimenti scorrono in orizzontale: restano su una riga e non allungano il form */
+    .chips { display: flex; gap: .4rem; margin-top: .4rem; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+    .chips::-webkit-scrollbar { display: none; }
+    .chip {
+      flex: 0 0 auto; font: inherit; font-size: .92rem; font-family: system-ui, sans-serif; min-height: 40px; padding: .3rem .75rem;
+      border: 1.5px solid var(--line); border-radius: 999px; background: transparent; color: var(--muted); cursor: pointer; white-space: nowrap;
+    }
+    .chip[aria-pressed="true"] { background: var(--soft); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+    .due { display: grid; gap: 1rem; }
+    .due > * { min-width: 0; } /* senza questo le righe di chip allargano la griglia */
+    .due.stretta { grid-template-columns: 1fr 1fr; gap: .6rem; }
+    .errore { color: var(--accent); font-size: .92rem; margin: .35rem 0 0; }
+    details.extra { border-top: 1px solid var(--line); margin-top: .9rem; }
+    details.extra summary { cursor: pointer; color: var(--accent); font-size: .98rem; padding: .7rem 0; }
+    details.extra .due { margin-top: .4rem; }
+
+    /* ---- risultato ---- */
+    .risultato { border-color: var(--accent); border-width: 1.5px; }
+    .etichetta { margin: 0; font-size: .88rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-family: system-ui, sans-serif; }
+    .rata { margin: .1rem 0 0; font-size: 2.7rem; line-height: 1.05; color: var(--accent); font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+    .sotto { margin: .2rem 0 .9rem; color: var(--muted); font-size: .92rem; }
+    .barra { display: flex; height: 10px; border-radius: 999px; overflow: hidden; background: var(--line); }
+    .barra i { display: block; height: 100%; }
+    .barra .cap { background: var(--accent); }
+    .barra .int { background: var(--int); }
+    .legenda { display: flex; flex-wrap: wrap; gap: .2rem 1rem; margin: .5rem 0 1rem; font-size: .95rem; }
+    .legenda span { display: inline-flex; align-items: center; gap: .4rem; }
+    .pallino { width: .7rem; height: .7rem; border-radius: 3px; display: inline-block; }
+    .pallino.cap { background: var(--accent); }
+    .pallino.int { background: var(--int); }
+    ul.numeri { list-style: none; margin: 0; padding: 0; }
+    ul.numeri li { display: flex; justify-content: space-between; gap: 1rem; padding: .55rem 0; border-top: 1px solid var(--line); font-size: 1rem; }
+    ul.numeri li span { color: var(--muted); }
+    ul.numeri li b { font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .avviso { background: var(--soft); border-radius: 8px; padding: .7rem .8rem; color: var(--text); font-size: .95rem; margin: 0 0 .8rem; }
+
+    /* ---- piano: lista + dettaglio ---- */
+    .ld { display: grid; gap: 1rem; }
+    ol.anni { list-style: none; margin: 0; padding: 0; max-height: 52dvh; overflow-y: auto; border: 1px solid var(--line); border-radius: 8px; }
+    ol.anni li + li { border-top: 1px solid var(--line); }
+    .anno {
+      display: grid; grid-template-columns: 1fr auto; gap: .25rem .5rem; width: 100%; text-align: left;
+      font: inherit; background: transparent; color: inherit; border: 0; cursor: pointer; padding: .7rem .8rem; min-height: 44px;
+    }
+    .anno[aria-current="true"] { background: var(--soft); }
+    .anno-n { font-weight: 700; }
+    .anno-res { font-variant-numeric: tabular-nums; text-align: right; }
+    .anno-res small { display: block; font-size: .78rem; color: var(--muted); font-family: system-ui, sans-serif; letter-spacing: .04em; }
+    .anno-bar { grid-column: 1 / -1; display: flex; height: 6px; border-radius: 999px; overflow: hidden; background: var(--int-soft); }
+    .anno-bar i { display: block; height: 100%; background: var(--accent); }
+    .anno-det { grid-column: 1 / -1; font-size: .88rem; color: var(--muted); font-family: system-ui, sans-serif; }
+    .dettaglio h3 { margin: 0 0 .5rem; font-size: 1.05rem; }
+    ol.rate { list-style: none; margin: 0; padding: 0; }
+    ol.rate li { display: grid; grid-template-columns: repeat(2, 1fr); gap: .15rem .8rem; padding: .6rem 0; border-top: 1px solid var(--line); }
+    .rn { grid-column: 1 / -1; font-weight: 700; display: flex; justify-content: space-between; gap: 1rem; }
+    .rn b { font-weight: 400; font-variant-numeric: tabular-nums; }
+    ol.rate li span[data-l] { font-size: .92rem; font-variant-numeric: tabular-nums; }
+    ol.rate li span[data-l]::before { content: attr(data-l) " "; color: var(--muted); font-family: system-ui, sans-serif; font-size: .8rem; letter-spacing: .03em; }
+    .residuo-riga { grid-column: 1 / -1; }
+    .vuoto { color: var(--muted); font-size: .95rem; }
+
+    /* ---- pro ---- */
+    .pro { min-height: 190px; }
+    .esito { margin-top: .9rem; }
+    .azioni { display: flex; flex-wrap: wrap; gap: .6rem; }
+    .btn {
+      font: inherit; font-family: system-ui, sans-serif; font-size: 1rem; min-height: 48px; padding: .6rem 1.2rem; border-radius: 999px;
+      border: 1.5px solid var(--accent); background: var(--accent); color: var(--accent-ink); cursor: pointer; font-weight: 600;
+    }
+    .btn.secondario { background: transparent; color: var(--accent); }
+
+    /* ---- guida ---- */
+    #guida { margin-top: 2rem; }
+    #guida p, #guida li { font-size: 1.02rem; }
+    #guida ul { padding-left: 1.2rem; }
+    #guida li { margin-bottom: .4rem; }
+    .esempio { background: var(--surface); border-left: 3px solid var(--accent); padding: .8rem 1rem; margin: 1rem 0; }
+    .esempio p { margin: .3rem 0; }
+    footer { margin-top: 2rem; border-top: 1px solid var(--line); padding-top: 1rem; color: var(--muted); font-size: .92rem; }
+    footer a { color: var(--accent); }
+    .solo-stampa { display: none; }
+
+    @media (min-width: 700px) {
+      .wrap { padding-left: 24px; padding-right: 24px; }
+      h1 { font-size: 2.3rem; }
+      .due { grid-template-columns: 1fr 1fr; }
+      .rata { font-size: 3.6rem; }
+      ol.rate li { grid-template-columns: repeat(4, 1fr); }
+      .rn { grid-column: auto; justify-content: flex-start; gap: .5rem; }
+      .residuo-riga { grid-column: auto; }
+    }
+    @media (min-width: 900px) {
+      .ld { grid-template-columns: 340px 1fr; align-items: start; }
+      ol.anni { max-height: 460px; }
+    }
+    @media print {
+      body { background: #fff; color: #000; }
+      .topbar, .campi, .risultato, .pro, .piano, #guida, footer, [data-ad], [data-support] { display: none; }
+      .solo-stampa { display: block; }
+      .solo-stampa table { width: 100%; border-collapse: collapse; font-size: 11pt; }
+      .solo-stampa th, .solo-stampa td { border-bottom: 1px solid #ccc; padding: 3px 6px; text-align: right; }
+      .solo-stampa th:first-child, .solo-stampa td:first-child { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="topbar"><a class="back" href="../../index.html">← Tutte le app</a></p>
+
+    <h1>Calcolo rata mutuo</h1>
+    <p class="lead">Rata mensile, interessi totali e piano di ammortamento rata per rata. Nessun modulo, nessuna telefonata da un consulente.</p>
+
+    <form class="card campi" id="form" novalidate>
+      <div class="campo">
+        <label for="importo">Importo del mutuo</label>
+        <div class="box">
+          <input id="importo" type="text" inputmode="decimal" enterkeyhint="done" autocomplete="off" spellcheck="false" value="150.000" aria-describedby="err-importo">
+          <span class="unita">€</span>
+        </div>
+        <div class="chips" id="chips-importo"></div>
+        <p class="errore" id="err-importo" hidden></p>
+      </div>
+
+      <div class="due stretta">
+        <div class="campo">
+          <label for="anni">Durata</label>
+          <div class="box">
+            <input id="anni" type="text" inputmode="numeric" enterkeyhint="done" autocomplete="off" value="25" aria-describedby="err-anni">
+            <span class="unita">anni</span>
+          </div>
+          <div class="chips" id="chips-anni"></div>
+          <p class="errore" id="err-anni" hidden></p>
+        </div>
+
+        <div class="campo">
+          <label for="tasso">Tasso annuo (TAN)</label>
+          <div class="box">
+            <input id="tasso" type="text" inputmode="decimal" enterkeyhint="done" autocomplete="off" value="2,95" aria-describedby="err-tasso">
+            <span class="unita">%</span>
+          </div>
+          <div class="chips" id="chips-tasso"></div>
+          <p class="errore" id="err-tasso" hidden></p>
+        </div>
+      </div>
+
+      <details class="extra">
+        <summary>Altri costi e sostenibilità (facoltativo)</summary>
+        <div class="due">
+          <div class="campo">
+            <label for="spese">Spese iniziali una tantum</label>
+            <div class="box">
+              <input id="spese" type="text" inputmode="decimal" enterkeyhint="done" autocomplete="off" placeholder="0">
+              <span class="unita">€</span>
+            </div>
+          </div>
+          <div class="campo">
+            <label for="assicurazione">Assicurazione al mese</label>
+            <div class="box">
+              <input id="assicurazione" type="text" inputmode="decimal" enterkeyhint="done" autocomplete="off" placeholder="0">
+              <span class="unita">€</span>
+            </div>
+          </div>
+        </div>
+        <div class="campo">
+          <label for="reddito">Reddito netto del nucleo, al mese</label>
+          <div class="box">
+            <input id="reddito" type="text" inputmode="decimal" enterkeyhint="done" autocomplete="off" placeholder="0">
+            <span class="unita">€</span>
+          </div>
+          <p class="nota">Serve solo a calcolare quanto pesa la rata: resta sul tuo telefono.</p>
+        </div>
+      </details>
+    </form>
+
+    <section class="card risultato" id="risultato" aria-live="polite">
+      <p class="avviso" id="avviso" hidden></p>
+      <p class="etichetta">Rata mensile</p>
+      <p class="rata" id="rata">—</p>
+      <p class="sotto" id="sotto">Metodo francese: rata costante, interessi sul debito residuo.</p>
+      <div class="barra" aria-hidden="true"><i class="cap" id="barra-cap"></i><i class="int" id="barra-int"></i></div>
+      <p class="legenda">
+        <span><i class="pallino cap"></i> Capitale <b id="q-capitale">—</b></span>
+        <span><i class="pallino int"></i> Interessi <b id="q-interessi">—</b></span>
+      </p>
+      <ul class="numeri">
+        <li><span>Totale restituito alla banca</span><b id="tot-restituito">—</b></li>
+        <li><span>Costo degli interessi</span><b id="tot-interessi">—</b></li>
+        <li hidden id="li-mensile"><span>Uscita mensile con l'assicurazione</span><b id="tot-mensile">—</b></li>
+        <li hidden id="li-costo"><span>Costo totale con le spese iniziali</span><b id="tot-costo">—</b></li>
+        <li hidden id="li-incidenza"><span>Peso sul reddito netto</span><b id="incidenza">—</b></li>
+      </ul>
+    </section>
+
+    <div data-ad="top"></div>
+
+    <section class="card pro" data-pro="Estinzione anticipata">
+      <h2>Estinzione anticipata</h2>
+      <p class="nota">Hai una somma da parte: conviene abbassare la rata o accorciare il mutuo? Qui vedi i due scenari sul tuo piano.</p>
+      <div class="due">
+        <div class="campo">
+          <label for="extra-importo">Somma versata</label>
+          <div class="box">
+            <input id="extra-importo" type="text" inputmode="decimal" enterkeyhint="done" autocomplete="off" value="10.000">
+            <span class="unita">€</span>
+          </div>
+        </div>
+        <div class="campo">
+          <label for="extra-anno">Dopo quanti anni</label>
+          <div class="box">
+            <input id="extra-anno" type="text" inputmode="numeric" enterkeyhint="done" autocomplete="off" value="5">
+            <span class="unita">anni</span>
+          </div>
+        </div>
+      </div>
+      <div class="chips" id="chips-modo" role="group" aria-label="Cosa riduci"></div>
+      <ul class="numeri esito" id="esito-extra"></ul>
+      <p class="nota">Sui mutui stipulati dal 2 aprile 2007 la legge Bersani vieta le penali per l'estinzione anticipata, totale o parziale.</p>
+    </section>
+
+    <section class="card pro" data-pro="Esporta il piano in CSV">
+      <h2>Esporta il piano</h2>
+      <p class="nota">Tutte le rate in un foglio di calcolo, da aprire con Excel, Numbers o Fogli Google, oppure da stampare e portare in banca.</p>
+      <div class="azioni">
+        <button type="button" class="btn" id="csv">Scarica il CSV</button>
+        <button type="button" class="btn secondario" id="stampa">Stampa il piano</button>
+      </div>
+    </section>
+
+    <section class="card piano" id="piano">
+      <h2>Piano di ammortamento</h2>
+      <p class="nota">Tocca un anno per aprire le singole rate: la barra mostra quanta parte di quell'anno va in capitale (rosso) e quanta in interessi (ocra).</p>
+      <div class="ld">
+        <ol class="anni" id="lista-anni"></ol>
+        <div class="dettaglio" id="dettaglio"></div>
+      </div>
+    </section>
+
+    <section id="guida">
+      <h2>Come funziona il calcolo della rata del mutuo</h2>
+      <p>Quasi tutti i mutui italiani usano l'ammortamento alla francese: la rata resta uguale dal primo all'ultimo mese, ma cambia continuamente ciò che c'è dentro. Ogni mese la banca calcola gli interessi sul debito che ti resta, li toglie dalla rata e usa il resto per ridurre il capitale. All'inizio il debito è alto, quindi la fetta di interessi è grande e quella di capitale è piccola; con il passare degli anni il rapporto si ribalta. È il motivo per cui dopo cinque anni di pagamenti il debito è sceso molto meno di quanto ci si aspetti.</p>
+      <p>La formula è rata = C × i ÷ [1 − (1 + i)<sup>−n</sup>], dove C è il capitale chiesto in prestito, i è il tasso annuo diviso dodici e n è il numero di rate mensili. Il calcolo qui sopra parte dal TAN, cioè il tasso puro: è la stessa cifra che ritroverai nel piano di ammortamento allegato al contratto. Il TAEG, invece, è un indicatore più ampio che include istruttoria, perizia, imposta sostitutiva e assicurazioni obbligatorie, e serve a confrontare offerte diverse.</p>
+
+      <h2>Un esempio con numeri veri</h2>
+      <p>Prendiamo un caso frequente: 150.000 € in 25 anni al 2,95%, che a metà settembre 2026 è più o meno la media del tasso fisso sul mercato italiano.</p>
+      <div class="esempio">
+        <p><b>Rata mensile: 707,42 €</b> per 300 mesi.</p>
+        <p>Della prima rata, 368,75 € sono interessi e solo 338,67 € vanno a ridurre il debito. Dell'ultima, gli interessi sono 1,73 €.</p>
+        <p>In totale restituisci 212.227 €, di cui 62.227 € di soli interessi: il 41% in più di quanto hai chiesto.</p>
+      </div>
+      <p>Cambiando la durata si capisce subito il compromesso. Sullo stesso importo e allo stesso tasso, in 20 anni la rata sale a 828,15 € ma gli interessi scendono a 48.755 €; in 30 anni la rata scende a 628,37 € e gli interessi salgono a 76.213 €. Cinque anni in più di mutuo alleggeriscono la rata di 79 € al mese, ma costano quasi 14.000 € in più.</p>
+
+      <h2>Errori comuni</h2>
+      <ul>
+        <li><b>Confrontare rate e non costi.</b> Una rata più bassa ottenuta allungando la durata non è un risparmio: è lo stesso debito spalmato su più anni, con più interessi.</li>
+        <li><b>Dimenticare le spese iniziali.</b> Istruttoria, perizia, imposta sostitutiva (0,25% dell'importo sulla prima casa) e notaio non entrano nella rata, ma vanno pagati subito: mettili nel campo dei costi facoltativi.</li>
+        <li><b>Non contare le assicurazioni.</b> La polizza scoppio e incendio è obbligatoria; quella sulla vita quasi sempre solo proposta. Vanno sommate alla rata per capire l'uscita mensile reale.</li>
+        <li><b>Chiedere il 100% del valore.</b> Sopra l'80% del prezzo dell'immobile i tassi peggiorano sensibilmente, perché la banca considera il finanziamento più rischioso.</li>
+        <li><b>Confondere tasso fisso e variabile.</b> Nel variabile la rata calcolata qui vale per la situazione di oggi: se l'Euribor sale, sale anche la rata. Simula sempre anche uno scenario con uno o due punti in più.</li>
+      </ul>
+
+      <h2>Domande frequenti</h2>
+      <h3>Quanta rata posso permettermi?</h3>
+      <p>La regola usata dalle banche è che la rata non superi un terzo del reddito netto mensile del nucleo familiare, considerando anche gli altri finanziamenti in corso. Con 2.000 € netti al mese il limite pratico è una rata intorno ai 660 €. Inserisci il reddito nei campi facoltativi e il calcolatore ti mostra il peso della rata in percentuale.</p>
+      <h3>La rata calcolata qui è quella che mi darà la banca?</h3>
+      <p>Sì per la parte di rimborso, che dipende solo da importo, durata e TAN. Cambia se la banca applica spese di incasso rata (pochi euro al mese) o se includi le assicurazioni nel finanziamento. Per il confronto tra offerte usa sempre il TAEG indicato nel prospetto informativo.</p>
+      <h3>Conviene estinguere una parte del mutuo in anticipo?</h3>
+      <p>Nei primi anni quasi sempre, perché ogni euro versato in anticipo cancella tutti gli interessi futuri su quell'euro. Con la funzione Pro puoi confrontare i due scenari: sull'esempio da 150.000 €, versare 10.000 € dopo cinque anni accorcia il mutuo di due anni facendo risparmiare circa 7.500 € di interessi, oppure abbassa la rata a 652 € con un risparmio di circa 3.250 €. Stessa somma, risparmio più che doppio se scegli di accorciare la durata.</p>
+      <h3>Fisso o variabile?</h3>
+      <p>A settembre 2026 il variabile parte più basso del fisso (in media 2,49% contro 2,95%), ma la rata può cambiare a ogni revisione dell'indice. Il fisso costa un po' di più e in cambio blocca la rata per tutta la durata: non a caso oltre nove richieste su dieci in Italia sono a tasso fisso. Se la rata al limite del sostenibile ti toglie il sonno, il fisso è la scelta prudente.</p>
+      <h3>I miei dati restano privati?</h3>
+      <p>Sì. Il calcolo avviene nel browser, i valori restano salvati solo sul tuo dispositivo e la pagina funziona anche offline. Non c'è nessun modulo di contatto e nessuna banca riceve i tuoi dati.</p>
+    </section>
+
+    <div data-ad="bottom"></div>
+    <div data-support></div>
+
+    <footer>
+      <p>Ti può servire anche il <a href="../2026-09-20-netto-da-lordo/index.html">calcolo dello stipendio netto</a>, per sapere su quale reddito contare, o il <a href="../2026-09-20-calcolo-tfr/index.html">calcolo del TFR</a> se pensi di usarlo per l'anticipo sulla casa.</p>
+      <p>Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a></p>
+    </footer>
+  </div>
+
+  <div class="solo-stampa" id="stampa-piano" aria-hidden="true"></div>
+
+  <script src="../../assets/monetize.js"></script>
+  <script>
+    (() => {
+      "use strict";
+      // Modello dati: lo stato è { importo, anni, tasso, spese, assicurazione, reddito, extraImporto,
+      // extraAnno, modo } e viene salvato in localStorage sotto "rata-mutuo:v1". Il piano di ammortamento
+      // non è mai salvato: viene ricalcolato da costruisciPiano() a ogni modifica di un campo.
+
+      const CHIAVE = "rata-mutuo:v1";
+      const $ = (sel) => document.querySelector(sel);
+      const MAX_IMPORTO = 3000000, MAX_ANNI = 40, MAX_TASSO = 15;
+
+      const eur = new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      const eur0 = new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
+      const pct = new Intl.NumberFormat("it-IT", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+
+      // "150.000" → 150000, "2,95" → 2.95, "2.95" → 2.95 (un punto seguito da 1-2 cifre è decimale)
+      function numero(valore) {
+        let s = String(valore == null ? "" : valore).trim().replace(/[€%\s ]/g, "");
+        if (!s) return NaN;
+        if (s.includes(",")) s = s.replace(/\./g, "").replace(",", ".");
+        else {
+          const parti = s.split(".");
+          if (parti.length > 2 || (parti.length === 2 && parti[1].length === 3)) s = parti.join("");
+        }
+        const n = parseFloat(s);
+        return Number.isFinite(n) ? n : NaN;
+      }
+
+      function rataMensile(capitale, tassoMese, rate) {
+        if (rate <= 0) return 0;
+        if (tassoMese <= 0) return capitale / rate;
+        return capitale * tassoMese / (1 - Math.pow(1 + tassoMese, -rate));
+      }
+
+      // Restituisce { rata, interessi, rate: [{n, rata, interessi, capitale, residuo}] }
+      function costruisciPiano(capitale, tassoMese, numeroRate) {
+        const rata = rataMensile(capitale, tassoMese, numeroRate);
+        const rate = [];
+        let residuo = capitale, interessiTotali = 0;
+        for (let k = 1; k <= numeroRate; k++) {
+          const interessi = residuo * tassoMese;
+          let quota = rata - interessi;
+          if (k === numeroRate || quota > residuo) quota = residuo;
+          residuo = Math.max(0, residuo - quota);
+          interessiTotali += interessi;
+          rate.push({ n: k, rata: quota + interessi, interessi, capitale: quota, residuo });
+        }
+        return { rata, interessi: interessiTotali, rate };
+      }
+
+      // ---------- stato ----------
+      const campi = ["importo", "anni", "tasso", "spese", "assicurazione", "reddito", "extra-importo", "extra-anno"];
+      let modo = "durata";
+      let annoAperto = 1;
+      let piano = null;
+
+      function salva() {
+        const dati = { modo };
+        for (const id of campi) dati[id] = $("#" + id).value;
+        try { localStorage.setItem(CHIAVE, JSON.stringify(dati)); } catch (_) { /* storage non disponibile */ }
+      }
+      function carica() {
+        let dati = null;
+        try { dati = JSON.parse(localStorage.getItem(CHIAVE) || "null"); } catch (_) { /* dati corrotti */ }
+        if (!dati) return;
+        for (const id of campi) if (typeof dati[id] === "string") $("#" + id).value = dati[id];
+        if (dati.modo === "rata" || dati.modo === "durata") modo = dati.modo;
+      }
+
+      // ---------- chips ----------
+      function creaChips(contenitore, voci, onClick) {
+        const nodi = voci.map(v => {
+          const b = document.createElement("button");
+          b.type = "button"; b.className = "chip"; b.textContent = v.testo;
+          b.setAttribute("aria-pressed", "false");
+          b.addEventListener("click", () => onClick(v));
+          b.dataset.valore = String(v.valore);
+          contenitore.append(b);
+          return b;
+        });
+        return nodi;
+      }
+
+      const chipsImporto = creaChips($("#chips-importo"),
+        [100000, 150000, 200000, 250000].map(v => ({ testo: eur0.format(v), valore: v })),
+        v => { $("#importo").value = new Intl.NumberFormat("it-IT").format(v.valore); aggiorna(); });
+
+      const chipsAnni = creaChips($("#chips-anni"),
+        [10, 15, 20, 25, 30].map(v => ({ testo: v + " anni", valore: v })),
+        v => { $("#anni").value = String(v.valore); aggiorna(); });
+
+      const chipsTasso = creaChips($("#chips-tasso"),
+        [{ testo: "Fisso 2,95%", valore: 2.95 }, { testo: "Variabile 2,49%", valore: 2.49 }],
+        v => { $("#tasso").value = String(v.valore).replace(".", ","); aggiorna(); });
+
+      const chipsModo = creaChips($("#chips-modo"),
+        [{ testo: "Riduci la durata", valore: "durata" }, { testo: "Riduci la rata", valore: "rata" }],
+        v => { modo = v.valore; aggiorna(); });
+
+      function segnaChips(nodi, valore) {
+        for (const n of nodi) {
+          const scelto = n.dataset.valore === String(valore);
+          n.setAttribute("aria-pressed", String(scelto));
+          // porta il suggerimento scelto dentro la parte visibile della riga, senza muovere la pagina
+          if (scelto) {
+            const riga = n.parentElement;
+            const sinistra = n.offsetLeft, destra = sinistra + n.offsetWidth;
+            if (sinistra < riga.scrollLeft || destra > riga.scrollLeft + riga.clientWidth) {
+              riga.scrollLeft = Math.max(0, sinistra - 8);
+            }
+          }
+        }
+      }
+
+      // ---------- validazione ----------
+      function leggiCampi() {
+        const errori = {};
+        const importo = numero($("#importo").value);
+        const anni = numero($("#anni").value);
+        const tasso = numero($("#tasso").value);
+
+        if (!Number.isFinite(importo) || importo <= 0) errori.importo = "Inserisci l'importo che vuoi chiedere in prestito.";
+        else if (importo < 1000) errori.importo = "Importo troppo basso: minimo 1.000 €.";
+        else if (importo > MAX_IMPORTO) errori.importo = "Importo troppo alto: massimo " + eur0.format(MAX_IMPORTO) + ".";
+
+        if (!Number.isFinite(anni) || anni <= 0) errori.anni = "Inserisci la durata in anni.";
+        else if (anni > MAX_ANNI) errori.anni = "Durata troppo lunga: massimo " + MAX_ANNI + " anni.";
+        else if (Math.round(anni) !== anni) errori.anni = "Usa un numero intero di anni.";
+
+        if (!Number.isFinite(tasso) || tasso < 0) errori.tasso = "Inserisci il tasso annuo, per esempio 2,95.";
+        else if (tasso > MAX_TASSO) errori.tasso = "Tasso fuori scala: massimo " + MAX_TASSO + "%.";
+
+        for (const id of ["importo", "anni", "tasso"]) {
+          const p = $("#err-" + id);
+          p.textContent = errori[id] || "";
+          p.hidden = !errori[id];
+        }
+        return { importo, anni, tasso, errori };
+      }
+
+      // ---------- rendering ----------
+      function svuotaRisultato(messaggio) {
+        piano = null;
+        $("#rata").textContent = "—";
+        $("#sotto").textContent = messaggio;
+        $("#barra-cap").style.width = "0%";
+        $("#barra-int").style.width = "0%";
+        for (const id of ["#q-capitale", "#q-interessi", "#tot-restituito", "#tot-interessi"]) $(id).textContent = "—";
+        for (const id of ["#li-mensile", "#li-costo", "#li-incidenza"]) $(id).hidden = true;
+        $("#lista-anni").replaceChildren();
+        $("#dettaglio").replaceChildren(creaVuoto("Il piano di ammortamento compare appena i dati sono completi."));
+        $("#esito-extra").replaceChildren();
+      }
+
+      function creaVuoto(testo) {
+        const p = document.createElement("p");
+        p.className = "vuoto"; p.textContent = testo;
+        return p;
+      }
+
+      function aggiorna() {
+        const { importo, anni, tasso, errori } = leggiCampi();
+        segnaChips(chipsImporto, importo);
+        segnaChips(chipsAnni, anni);
+        segnaChips(chipsTasso, tasso);
+        segnaChips(chipsModo, modo);
+        salva();
+
+        if (Object.keys(errori).length) {
+          svuotaRisultato("Correggi i campi segnalati per vedere la rata.");
+          return;
+        }
+
+        const rate = Math.round(anni * 12);
+        const i = tasso / 100 / 12;
+        piano = costruisciPiano(importo, i, rate);
+
+        const totale = importo + piano.interessi;
+        $("#rata").textContent = eur.format(piano.rata);
+        $("#sotto").textContent = rate + " rate mensili al " + String(tasso).replace(".", ",") + "% · metodo francese, rata costante";
+        $("#barra-cap").style.width = (importo / totale * 100).toFixed(1) + "%";
+        $("#barra-int").style.width = (piano.interessi / totale * 100).toFixed(1) + "%";
+        $("#q-capitale").textContent = eur0.format(importo);
+        $("#tot-restituito").textContent = eur0.format(totale);
+        $("#tot-interessi").textContent = eur0.format(piano.interessi);
+        $("#q-interessi").textContent = eur0.format(piano.interessi) +
+          " (+" + pct.format(piano.interessi / importo * 100) + "% sul capitale)";
+
+        const assicurazione = numero($("#assicurazione").value) || 0;
+        const spese = numero($("#spese").value) || 0;
+        const reddito = numero($("#reddito").value) || 0;
+
+        $("#li-mensile").hidden = !(assicurazione > 0);
+        if (assicurazione > 0) $("#tot-mensile").textContent = eur.format(piano.rata + assicurazione);
+
+        $("#li-costo").hidden = !(spese > 0);
+        if (spese > 0) $("#tot-costo").textContent = eur0.format(totale + spese + assicurazione * rate);
+
+        $("#li-incidenza").hidden = !(reddito > 0);
+        if (reddito > 0) {
+          const peso = (piano.rata + assicurazione) / reddito * 100;
+          $("#incidenza").textContent = pct.format(peso) + "% del reddito";
+        }
+
+        const avviso = $("#avviso");
+        if (reddito > 0 && (piano.rata + assicurazione) / reddito > 1 / 3) {
+          avviso.hidden = false;
+          avviso.textContent = "La rata supera un terzo del reddito indicato: è la soglia oltre la quale la maggior parte delle banche non concede il mutuo.";
+        } else avviso.hidden = true;
+
+        disegnaAnni();
+        disegnaDettaglio();
+        calcolaEstinzione();
+      }
+
+      function disegnaAnni() {
+        const lista = $("#lista-anni");
+        lista.replaceChildren();
+        const anni = Math.ceil(piano.rate.length / 12);
+        if (annoAperto > anni) annoAperto = 1;
+
+        for (let a = 1; a <= anni; a++) {
+          const gruppo = piano.rate.slice((a - 1) * 12, a * 12);
+          const cap = gruppo.reduce((s, r) => s + r.capitale, 0);
+          const inter = gruppo.reduce((s, r) => s + r.interessi, 0);
+          const residuo = gruppo[gruppo.length - 1].residuo;
+
+          const b = document.createElement("button");
+          b.type = "button"; b.className = "anno"; b.dataset.anno = String(a);
+          b.setAttribute("aria-controls", "dettaglio");
+          if (a === annoAperto) b.setAttribute("aria-current", "true");
+
+          const n = document.createElement("span");
+          n.className = "anno-n"; n.textContent = "Anno " + a;
+
+          const res = document.createElement("span");
+          res.className = "anno-res";
+          res.append(eur0.format(residuo));
+          const small = document.createElement("small");
+          small.textContent = "debito residuo";
+          res.append(small);
+
+          const barra = document.createElement("span");
+          barra.className = "anno-bar";
+          const pieno = document.createElement("i");
+          pieno.style.width = (cap / (cap + inter) * 100).toFixed(1) + "%";
+          barra.append(pieno);
+
+          const det = document.createElement("span");
+          det.className = "anno-det";
+          det.textContent = "capitale " + eur0.format(cap) + " · interessi " + eur0.format(inter);
+
+          b.append(n, res, barra, det);
+          b.addEventListener("click", () => { annoAperto = a; disegnaAnni(); disegnaDettaglio(); });
+
+          const li = document.createElement("li");
+          li.append(b);
+          lista.append(li);
+        }
+      }
+
+      function disegnaDettaglio() {
+        const box = $("#dettaglio");
+        const gruppo = piano.rate.slice((annoAperto - 1) * 12, annoAperto * 12);
+        box.replaceChildren();
+        if (!gruppo.length) { box.append(creaVuoto("Anno non presente nel piano.")); return; }
+
+        const h = document.createElement("h3");
+        h.textContent = "Anno " + annoAperto + ": rate da " + gruppo[0].n + " a " + gruppo[gruppo.length - 1].n;
+        box.append(h);
+
+        const ol = document.createElement("ol");
+        ol.className = "rate";
+        for (const r of gruppo) {
+          const li = document.createElement("li");
+          const rn = document.createElement("span");
+          rn.className = "rn";
+          rn.append("Rata " + r.n);
+          const b = document.createElement("b");
+          b.textContent = eur.format(r.rata);
+          rn.append(b);
+
+          const int = document.createElement("span");
+          int.dataset.l = "interessi"; int.textContent = eur.format(r.interessi);
+          const cap = document.createElement("span");
+          cap.dataset.l = "capitale"; cap.textContent = eur.format(r.capitale);
+          const res = document.createElement("span");
+          res.className = "residuo-riga"; res.dataset.l = "residuo"; res.textContent = eur.format(r.residuo);
+
+          li.append(rn, int, cap, res);
+          ol.append(li);
+        }
+        box.append(ol);
+      }
+
+      // ---------- Pro: estinzione anticipata ----------
+      function calcolaEstinzione() {
+        const box = $("#esito-extra");
+        box.replaceChildren();
+        if (!piano) return;
+
+        const somma = numero($("#extra-importo").value);
+        const annoExtra = numero($("#extra-anno").value);
+        const tassoMese = numero($("#tasso").value) / 100 / 12;
+        const totRate = piano.rate.length;
+        const meseExtra = Math.round(annoExtra * 12);
+
+        if (!Number.isFinite(somma) || somma <= 0) { box.append(riga("Inserisci la somma", "che vuoi versare")); return; }
+        const annoMax = Math.ceil(totRate / 12) - 1;
+        if (annoMax < 1) { box.append(riga("Mutuo troppo corto", "servono almeno 2 anni")); return; }
+        if (!Number.isFinite(annoExtra) || meseExtra < 1 || meseExtra >= totRate) {
+          box.append(riga("Anno non valido", annoMax === 1 ? "solo 1" : "da 1 a " + annoMax));
+          return;
+        }
+
+        const residuo = piano.rate[meseExtra - 1].residuo;
+        const interessiPagati = piano.rate.slice(0, meseExtra).reduce((s, r) => s + r.interessi, 0);
+        if (somma >= residuo) {
+          box.append(riga("Debito residuo dopo " + annoExtra + " anni", eur0.format(residuo)));
+          box.append(riga("Con questa somma", "estingui tutto il mutuo"));
+          box.append(riga("Interessi risparmiati", eur0.format(piano.interessi - interessiPagati)));
+          return;
+        }
+
+        const nuovoCapitale = residuo - somma;
+        const rateRimaste = totRate - meseExtra;
+        let nuovoPiano, etichetta, valore;
+
+        if (modo === "rata") {
+          nuovoPiano = costruisciPiano(nuovoCapitale, tassoMese, rateRimaste);
+          etichetta = "Nuova rata";
+          valore = eur.format(nuovoPiano.rata) + " (da " + eur.format(piano.rata) + ")";
+        } else {
+          nuovoPiano = pianoARataFissa(nuovoCapitale, tassoMese, piano.rata);
+          const mesiRisparmiati = rateRimaste - nuovoPiano.rate.length;
+          etichetta = "Mutuo più corto di";
+          valore = mesiInTesto(mesiRisparmiati);
+        }
+
+        const risparmio = piano.interessi - interessiPagati - nuovoPiano.interessi;
+        box.append(riga("Debito residuo dopo " + annoExtra + " anni", eur0.format(residuo)));
+        box.append(riga(etichetta, valore));
+        box.append(riga("Interessi risparmiati", eur0.format(Math.max(0, risparmio))));
+        box.append(riga("Interessi totali del mutuo", eur0.format(interessiPagati + nuovoPiano.interessi) + " (da " + eur0.format(piano.interessi) + ")"));
+      }
+
+      // Tiene ferma la rata e accorcia la durata: utile per l'estinzione parziale.
+      function pianoARataFissa(capitale, tassoMese, rata) {
+        const rate = [];
+        let residuo = capitale, interessiTotali = 0;
+        while (residuo > 0.005 && rate.length < 1200) {
+          const interessi = residuo * tassoMese;
+          if (rata <= interessi) break; // rata che non copre nemmeno gli interessi: caso impossibile, si esce
+          let quota = Math.min(rata - interessi, residuo);
+          residuo -= quota;
+          interessiTotali += interessi;
+          rate.push({ n: rate.length + 1, rata: quota + interessi, interessi, capitale: quota, residuo: Math.max(0, residuo) });
+        }
+        return { rata, interessi: interessiTotali, rate };
+      }
+
+      function mesiInTesto(mesi) {
+        if (mesi <= 0) return "nessuna riduzione";
+        const anni = Math.floor(mesi / 12), resto = mesi % 12;
+        const parti = [];
+        if (anni) parti.push(anni + (anni === 1 ? " anno" : " anni"));
+        if (resto) parti.push(resto + (resto === 1 ? " mese" : " mesi"));
+        return parti.join(" e ");
+      }
+
+      function riga(etichetta, valore) {
+        const li = document.createElement("li");
+        const s = document.createElement("span"); s.textContent = etichetta;
+        const b = document.createElement("b"); b.textContent = valore;
+        li.append(s, b);
+        return li;
+      }
+
+      // ---------- Pro: esportazione ----------
+      function csvEscape(v) {
+        const s = String(v);
+        return /[";\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+      }
+      const dec = (n) => n.toFixed(2).replace(".", ",");
+
+      function esportaCsv() {
+        if (!window.Monetize || !window.Monetize.isPro()) { window.Monetize && window.Monetize.unlock(); return; }
+        if (!piano) return;
+        const righe = [["Rata", "Anno", "Importo rata", "Quota interessi", "Quota capitale", "Debito residuo"]];
+        for (const r of piano.rate) righe.push([r.n, Math.ceil(r.n / 12), dec(r.rata), dec(r.interessi), dec(r.capitale), dec(r.residuo)]);
+        const csv = "﻿" + righe.map(r => r.map(csvEscape).join(";")).join("\r\n");
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+        a.download = "piano-ammortamento-mutuo.csv";
+        a.click();
+        setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+      }
+
+      function stampaPiano() {
+        if (!window.Monetize || !window.Monetize.isPro()) { window.Monetize && window.Monetize.unlock(); return; }
+        if (!piano) return;
+        const box = $("#stampa-piano");
+        box.replaceChildren();
+        const h = document.createElement("h1");
+        h.textContent = "Piano di ammortamento";
+        const p = document.createElement("p");
+        p.textContent = "Importo " + eur0.format(numero($("#importo").value)) + " · durata " + $("#anni").value +
+          " anni · TAN " + $("#tasso").value + "% · rata " + eur.format(piano.rata) +
+          " · interessi totali " + eur0.format(piano.interessi);
+
+        const tabella = document.createElement("table");
+        const thead = document.createElement("thead");
+        const trh = document.createElement("tr");
+        for (const t of ["Rata", "Interessi", "Capitale", "Debito residuo"]) {
+          const th = document.createElement("th"); th.textContent = t; trh.append(th);
+        }
+        thead.append(trh);
+        const tbody = document.createElement("tbody");
+        for (const r of piano.rate) {
+          const tr = document.createElement("tr");
+          for (const v of [r.n, eur.format(r.interessi), eur.format(r.capitale), eur.format(r.residuo)]) {
+            const td = document.createElement("td"); td.textContent = v; tr.append(td);
+          }
+          tbody.append(tr);
+        }
+        tabella.append(thead, tbody);
+        box.append(h, p, tabella);
+        window.print();
+      }
+
+      // ---------- eventi ----------
+      $("#form").addEventListener("submit", (e) => { e.preventDefault(); aggiorna(); });
+      for (const id of campi) {
+        const el = $("#" + id);
+        el.addEventListener("input", aggiorna);
+        el.addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); el.blur(); aggiorna(); } });
+      }
+      $("#csv").addEventListener("click", esportaCsv);
+      $("#stampa").addEventListener("click", stampaPiano);
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && document.activeElement && document.activeElement.blur) document.activeElement.blur();
+      });
+
+      carica();
+      aggiorna();
+    })();
+  </script>
+</body>
+</html>

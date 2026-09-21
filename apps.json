@@ -1,6 +1,6 @@
 {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 10,
+  "count": 11,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -49,6 +49,52 @@
     ]
   },
   "apps": [
+    {
+      "title": "Rata Mutuo",
+      "slug": "2026-09-21-rata-mutuo",
+      "date": "2026-09-21",
+      "description": "Calcola la rata del mutuo, gli interessi totali e il piano di ammortamento mese per mese, senza registrarti e senza lasciare i tuoi dati.",
+      "category": "finanza-personale",
+      "tags": [
+        "mutuo",
+        "casa",
+        "rata",
+        "ammortamento"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "list-detail",
+        "palette": "rosso-mattone",
+        "font": "serif-editoriale"
+      },
+      "business": {
+        "keyword": "calcolo rata mutuo",
+        "keywords": [
+          "quanto pago di mutuo al mese",
+          "piano di ammortamento mutuo",
+          "rata mutuo 150000 euro",
+          "quanti interessi pago sul mutuo"
+        ],
+        "intent": "Chi sta valutando l'acquisto di casa e vuole sapere subito quanto pagherebbe al mese e quanto gli costa davvero il mutuo, prima di parlare con la banca.",
+        "target": "Chi compra la prima casa o rinegozia il mutuo, 28-55 anni, quasi sempre da telefono mentre guarda gli annunci immobiliari.",
+        "edge": "Nessun modulo, nessun contatto commerciale: rata, interessi totali e piano di ammortamento completo mese per mese, leggibile dal telefono e funzionante offline.",
+        "monetization": [
+          "adsense",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Estinzione anticipata",
+          "Esporta il piano in CSV"
+        ],
+        "affiliate": []
+      },
+      "size": 45754
+    },
     {
       "title": "Netto da Lordo",
       "slug": "2026-09-20-netto-da-lordo",
