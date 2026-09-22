@@ -1,7 +1,7 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 11,
+  "count": 12,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -50,6 +50,66 @@ window.__APPS__ = {
     ]
   },
   "apps": [
+    {
+      "title": "Giorni Lavorativi",
+      "slug": "2026-09-22-giorni-lavorativi",
+      "date": "2026-09-22",
+      "description": "Conta i giorni lavorativi tra due date togliendo weekend, festività nazionali e santo patrono, con ore e prospetto mensile.",
+      "category": "calcolatori-convertitori",
+      "tags": [
+        "lavoro",
+        "date",
+        "festivita",
+        "ferie"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "dashboard",
+        "palette": "blu-notte",
+        "font": "condensed"
+      },
+      "business": {
+        "keyword": "giorni lavorativi tra due date",
+        "keywords": [
+          "calcolo giorni lavorativi",
+          "quanti giorni lavorativi ci sono",
+          "contare i giorni lavorativi escluse le festività",
+          "giorni lavorativi 2026"
+        ],
+        "intent": "Voglio sapere subito quante giornate di lavoro ci sono in un periodo, per ferie, contratti a termine, fatture a giornata o scadenze.",
+        "target": "Dipendenti, partite IVA, amministrativi e HR che fanno il conto al volo dal telefono.",
+        "edge": "Settimana lavorativa personalizzabile con un tocco, festività nazionali e patrono di 44 comuni, ore totali e riepilogo copiabile: tutto in una schermata, anche offline.",
+        "monetization": [
+          "adsense",
+          "affiliate",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Prospetto mese per mese ed export CSV",
+          "Calcolo della scadenza in giorni lavorativi"
+        ],
+        "affiliate": [
+          {
+            "t": "Planner da parete annuale",
+            "q": "planner da parete annuale 2026"
+          },
+          {
+            "t": "Agenda settimanale da ufficio",
+            "q": "agenda settimanale 2026 ufficio"
+          },
+          {
+            "t": "Calendario da tavolo con festività",
+            "q": "calendario da tavolo 2026"
+          }
+        ]
+      },
+      "size": 44382
+    },
     {
       "title": "Rata Mutuo",
       "slug": "2026-09-21-rata-mutuo",

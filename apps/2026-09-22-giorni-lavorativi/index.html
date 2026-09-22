@@ -1,0 +1,924 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#16305c">
+  <title>Giorni Lavorativi tra due date: calcolo online gratis</title>
+  <meta name="description" content="Calcola i giorni lavorativi tra due date escludendo weekend, festività nazionali e santo patrono: giorni, ore e settimane in un tocco, senza registrarsi.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-22-giorni-lavorativi/">
+  <meta property="og:title" content="Giorni Lavorativi tra due date: calcolo online gratis">
+  <meta property="og:description" content="Weekend, festività nazionali e patrono esclusi automaticamente: quanti giorni lavorativi ci sono tra due date, con ore e settimane.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-22-giorni-lavorativi/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Giorni Lavorativi",
+    "description": "Calcolatore gratuito dei giorni lavorativi tra due date: esclude sabato, domenica, le dodici festività nazionali italiane e il giorno del santo patrono, e mostra giorni, ore e settimane.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-22-giorni-lavorativi/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Come si calcolano i giorni lavorativi tra due date?", "acceptedAnswer": { "@type": "Answer", "text": "Si contano tutti i giorni del periodo, si tolgono quelli che cadono nei giorni di riposo (di solito sabato e domenica) e si tolgono le festività che cadono in un giorno altrimenti lavorativo. Una festività che cade di domenica non va sottratta due volte: era già un giorno non lavorativo." } },
+      { "@type": "Question", "name": "Il giorno finale va incluso nel conteggio?", "acceptedAnswer": { "@type": "Answer", "text": "Dipende dallo scopo. Per contare i giorni di lavoro di un periodo, per le ferie o per un contratto a termine si include anche l'ultimo giorno. Per calcolare quanto manca a una scadenza di solito si esclude il giorno finale. Il calcolatore ha un interruttore per entrambi i casi." } },
+      { "@type": "Question", "name": "Quali sono le festività nazionali italiane?", "acceptedAnswer": { "@type": "Answer", "text": "Sono dodici: 1 e 6 gennaio, Pasqua e Lunedì dell'Angelo (date mobili), 25 aprile, 1 maggio, 2 giugno, 15 agosto, 1 novembre, 8 dicembre, 25 e 26 dicembre. A queste si aggiunge il giorno del santo patrono, che vale solo nel comune dove si lavora." } },
+      { "@type": "Question", "name": "Quanti giorni lavorativi ci sono in un anno?", "acceptedAnswer": { "@type": "Answer", "text": "In un anno con settimana dal lunedì al venerdì i giorni lavorativi sono circa 250-254, a seconda di quante festività cadono di sabato o di domenica. Impostando 1 gennaio e 31 dicembre il calcolatore dà il numero esatto per l'anno che ti interessa." } }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #eef1f7;
+      --surface: #ffffff;
+      --ink: #101c33;
+      --muted: #5c6a86;
+      --line: #d3dae8;
+      --navy: #16305c;
+      --navy-soft: #21447d;
+      --on-navy: #f4f7fd;
+      --accent: #e0b34a;
+      --warn: #b23b32;
+      --r: 10px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        color-scheme: dark;
+        --bg: #0b1220;
+        --surface: #131d30;
+        --ink: #e7ecf6;
+        --muted: #93a2bd;
+        --line: #26334c;
+        --navy: #1d3f77;
+        --navy-soft: #27508f;
+        --on-navy: #eef3fc;
+        --accent: #f0c766;
+        --warn: #ff8b80;
+      }
+    }
+    * { box-sizing: border-box; }
+    html, body { overflow-x: hidden; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font: 17px/1.55 "Arial Narrow", "Roboto Condensed", "Helvetica Neue", Arial, sans-serif;
+      -webkit-text-size-adjust: 100%;
+    }
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: max(10px, env(safe-area-inset-top)) 14px calc(32px + env(safe-area-inset-bottom));
+    }
+    h1, h2, h3, .tile-k, .chip, .btn, th {
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    h1 { font-size: 1.75rem; line-height: 1.1; margin: .6rem 0 .3rem; font-weight: 700; }
+    h2 { font-size: 1.15rem; margin: 1.8rem 0 .6rem; }
+    h3 { font-size: 1rem; margin: 1.2rem 0 .3rem; letter-spacing: .03em; }
+    p { margin: 0 0 .8rem; }
+    .lead { color: var(--muted); margin-bottom: 1.1rem; text-transform: none; }
+    .back { display: inline-block; min-height: 30px; color: var(--muted); font-size: .95rem; text-decoration: none; }
+    .back:hover, .back:focus-visible { color: var(--ink); }
+    a { color: var(--navy-soft); }
+    @media (prefers-color-scheme: dark) { a { color: #9dc0f5; } }
+
+    /* ---- pannello impostazioni ---- */
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+    .field { margin-bottom: 14px; }
+    .field:last-child { margin-bottom: 0; }
+    .lbl {
+      display: block;
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: .09em;
+      color: var(--muted);
+      margin-bottom: 5px;
+      font-weight: 700;
+    }
+    .dates { display: grid; gap: 10px; grid-template-columns: 1fr 1fr; }
+    input[type="date"], input[type="number"], select {
+      width: 100%;
+      min-height: 48px;
+      padding: 8px 10px;
+      font-family: inherit;
+      font-size: 16px;
+      color: var(--ink);
+      background: var(--surface);
+      border: 1.5px solid var(--line);
+      border-radius: 8px;
+    }
+    input:focus-visible, select:focus-visible, button:focus-visible, a:focus-visible {
+      outline: 3px solid var(--navy-soft);
+      outline-offset: 2px;
+    }
+    .chips { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
+    .chip {
+      min-width: 0;
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 2px;
+      font-family: inherit;
+      font-size: 14px;
+      letter-spacing: .02em;
+      font-weight: 700;
+      color: var(--muted);
+      background: var(--surface);
+      border: 1.5px solid var(--line);
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .chip[aria-pressed="true"] {
+      color: var(--on-navy);
+      background: var(--navy);
+      border-color: var(--navy);
+    }
+    .switch {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 46px;
+      cursor: pointer;
+      text-transform: none;
+    }
+    .switch input { width: 22px; height: 22px; margin: 0; accent-color: var(--navy-soft); flex: none; }
+    .switch span { font-size: .98rem; }
+    .hint { font-size: .85rem; color: var(--muted); margin: 4px 0 0; text-transform: none; }
+
+    /* ---- cruscotto risultati ---- */
+    .board { display: grid; gap: 10px; grid-template-columns: repeat(2, 1fr); margin-bottom: 12px; }
+    .tile {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: 12px;
+    }
+    .tile.hero {
+      grid-column: 1 / -1;
+      background: var(--navy);
+      border-color: var(--navy);
+      color: var(--on-navy);
+      padding: 18px 16px;
+    }
+    .tile-k { font-size: .76rem; letter-spacing: .1em; opacity: .8; font-weight: 700; display: block; }
+    .tile-v { font-size: 2rem; font-weight: 700; line-height: 1.05; display: block; margin-top: 4px; font-variant-numeric: tabular-nums; }
+    .tile.hero .tile-v { font-size: 3.6rem; letter-spacing: -.02em; }
+    .tile.hero .tile-k { opacity: .85; }
+    .tile-sub { font-size: .85rem; opacity: .85; margin-top: 4px; text-transform: none; }
+    .notice {
+      background: var(--surface);
+      border: 1.5px solid var(--warn);
+      border-radius: var(--r);
+      color: var(--warn);
+      padding: 12px;
+      margin-bottom: 12px;
+      font-size: .95rem;
+    }
+    .notice[hidden] { display: none; }
+
+    /* ---- elenchi ---- */
+    .fest { list-style: none; margin: 0; padding: 0; }
+    .fest li {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 8px;
+      align-items: baseline;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .fest li:last-child { border-bottom: 0; }
+    .fest .d { font-weight: 700; font-variant-numeric: tabular-nums; min-width: 6.5em; }
+    .fest .n { flex: 1 1 8em; }
+    .tag {
+      font-size: .74rem;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      padding: 3px 7px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .tag.out { color: var(--on-navy); background: var(--navy-soft); border-color: var(--navy-soft); }
+    .empty { color: var(--muted); font-size: .95rem; margin: 0; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      min-height: 48px;
+      padding: 0 16px;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--on-navy);
+      background: var(--navy);
+      border: 1.5px solid var(--navy);
+      border-radius: 999px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn.ghost { color: var(--navy-soft); background: transparent; border-color: var(--line); }
+    @media (prefers-color-scheme: dark) { .btn.ghost { color: var(--ink); } }
+    .btns { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .toast { font-size: .9rem; color: var(--muted); margin: 8px 0 0; min-height: 1.2em; }
+
+    table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+    th, td { text-align: right; padding: 8px 4px; border-bottom: 1px solid var(--line); font-size: .95rem; }
+    th { font-size: .74rem; letter-spacing: .07em; color: var(--muted); }
+    th:first-child, td:first-child { text-align: left; }
+    tfoot td { font-weight: 700; border-bottom: 0; }
+
+    [data-pro] {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: 14px;
+      margin: 14px 0;
+      min-height: 190px;
+    }
+    [data-pro] h2 { margin-top: 0; }
+    .pro-badge {
+      display: inline-block;
+      font-size: .72rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--navy);
+      background: var(--accent);
+      border-radius: 999px;
+      padding: 3px 9px;
+      margin-bottom: 6px;
+    }
+    .row2 { display: grid; gap: 10px; grid-template-columns: 1fr 1fr; }
+    .out {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 8px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+    }
+    .out b { font-size: 1.3rem; }
+
+    .guida { text-transform: none; }
+    .guida h2, .guida h3 { text-transform: uppercase; }
+    .guida ul { padding-left: 1.15rem; margin: 0 0 .9rem; }
+    .guida li { margin-bottom: .4rem; }
+    .small { font-size: .88rem; color: var(--muted); }
+    .src { font-size: .85rem; color: var(--muted); text-transform: none; }
+
+    @media (min-width: 700px) {
+      .wrap { padding-left: 24px; padding-right: 24px; }
+      h1 { font-size: 2.3rem; }
+      .board { grid-template-columns: repeat(4, 1fr); }
+      .tile.hero { grid-column: span 2; }
+      .dates { grid-template-columns: 1fr 1fr; }
+      .panel { padding: 18px; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <p style="margin:0"><a class="back" href="../../index.html">← Tutte le app</a></p>
+
+  <h1>Giorni lavorativi tra due date</h1>
+  <p class="lead">Tolgo sabati, domeniche, le dodici festività nazionali e il santo patrono. Senza registrarsi, anche offline.</p>
+
+  <form id="form" autocomplete="off">
+    <div class="panel">
+      <div class="field">
+        <div class="dates">
+          <label><span class="lbl">Dal</span>
+            <input type="date" id="dal" required></label>
+          <label><span class="lbl">Al</span>
+            <input type="date" id="al" required></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <span class="lbl" id="lbl-gg">Giorni di lavoro della settimana</span>
+        <div class="chips" id="chips" role="group" aria-labelledby="lbl-gg"></div>
+      </div>
+    </div>
+
+    <div class="notice" id="notice" hidden role="status"></div>
+
+    <section class="board" aria-live="polite" aria-label="Risultato del calcolo">
+      <div class="tile hero">
+        <span class="tile-k">Giorni lavorativi</span>
+        <strong class="tile-v" id="v-lav">—</strong>
+        <div class="tile-sub" id="v-periodo">—</div>
+      </div>
+      <div class="tile"><span class="tile-k">Giorni totali</span><strong class="tile-v" id="v-tot">—</strong></div>
+      <div class="tile"><span class="tile-k">Riposi settimanali</span><strong class="tile-v" id="v-rip">—</strong></div>
+      <div class="tile"><span class="tile-k">Festività tolte</span><strong class="tile-v" id="v-fes">—</strong></div>
+      <div class="tile"><span class="tile-k">Ore di lavoro</span><strong class="tile-v" id="v-ore">—</strong></div>
+    </section>
+
+    <div class="panel">
+      <h2 style="margin-top:0">Affina il calcolo</h2>
+      <div class="field">
+        <label class="switch"><input type="checkbox" id="fest" checked><span>Escludi le festività nazionali</span></label>
+        <label class="switch"><input type="checkbox" id="incl" checked><span>Includi anche il giorno finale</span></label>
+      </div>
+
+      <div class="field">
+        <label class="lbl" for="patrono">Santo patrono (solo dove si lavora)</label>
+        <select id="patrono"></select>
+        <div id="wrap-custom" hidden style="margin-top:8px">
+          <label class="lbl" for="custom">Data del patrono</label>
+          <input type="date" id="custom">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="lbl" for="ore">Ore per giornata lavorativa</label>
+        <input type="number" id="ore" inputmode="decimal" min="0" max="24" step="0.5" value="8" enterkeyhint="done">
+        <p class="hint">Part-time, turni, sabato lavorativo: spegni o accendi i giorni qui sopra e il conto si aggiorna da solo.</p>
+      </div>
+    </div>
+  </form>
+
+  <section class="panel">
+    <h2 style="margin-top:0">Festività nel periodo</h2>
+    <ul class="fest" id="lista-fest"></ul>
+    <p class="empty" id="fest-vuoto" hidden>Nel periodo scelto non cade nessuna festività.</p>
+    <div class="btns">
+      <button type="button" class="btn ghost" id="copia">Copia il riepilogo</button>
+      <button type="button" class="btn ghost" id="reset">Azzera le impostazioni</button>
+    </div>
+    <p class="toast" id="toast" role="status"></p>
+  </section>
+
+  <div data-ad="top"></div>
+
+  <section data-pro="Prospetto mese per mese ed export CSV">
+    <span class="pro-badge">Pro</span>
+    <h2>Prospetto mese per mese</h2>
+    <p class="small">Quanti giorni lavorativi cade in ogni mese del periodo: utile per fatturare a giornata, pianificare i turni o distribuire le ferie.</p>
+    <div style="overflow-x:auto">
+      <table id="tab-mesi">
+        <thead><tr><th>Mese</th><th>Lavorativi</th><th>Festivi</th><th>Ore</th></tr></thead>
+        <tbody></tbody>
+        <tfoot><tr><td>Totale</td><td id="m-lav">—</td><td id="m-fes">—</td><td id="m-ore">—</td></tr></tfoot>
+      </table>
+    </div>
+    <div class="btns">
+      <button type="button" class="btn" id="csv">Scarica il CSV</button>
+    </div>
+  </section>
+
+  <section data-pro="Calcolo della scadenza in giorni lavorativi">
+    <span class="pro-badge">Pro</span>
+    <h2>Scadenza in giorni lavorativi</h2>
+    <p class="small">Il contrario del conteggio: parti da una data e scopri dove cade il termine, saltando riposi e festività con le stesse regole impostate sopra.</p>
+    <div class="row2">
+      <label><span class="lbl">Partenza</span><input type="date" id="s-dal"></label>
+      <label><span class="lbl">Giorni lavorativi</span><input type="number" id="s-n" inputmode="numeric" min="0" max="3650" step="1" value="30" enterkeyhint="done"></label>
+    </div>
+    <div class="field" style="margin-top:10px">
+      <label class="switch"><input type="checkbox" id="s-indietro"><span>Conta all'indietro (termine già scaduto)</span></label>
+    </div>
+    <div class="out" id="s-out">Imposta una data di partenza per vedere il termine.</div>
+  </section>
+
+  <div data-affiliate data-title="Per organizzare l'anno" data-items='[{"t":"Planner da parete annuale","q":"planner da parete annuale 2026"},{"t":"Agenda settimanale da ufficio","q":"agenda settimanale 2026 ufficio"},{"t":"Calendario da tavolo con festività","q":"calendario da tavolo 2026"}]'></div>
+
+  <section id="guida" class="guida">
+    <h2>Come si contano i giorni lavorativi tra due date</h2>
+    <p>Il conteggio dei giorni lavorativi tra due date segue sempre tre passaggi. Prima si contano tutti i giorni del calendario compresi nel periodo. Poi si tolgono i giorni di riposo settimanale, che per la maggior parte dei contratti sono il sabato e la domenica ma che per chi lavora su turni o part-time possono essere altri. Infine si tolgono le festività che cadono in un giorno che sarebbe stato lavorativo: una festa che cade di domenica non va sottratta, perché quel giorno non si lavorava comunque, ed è l'errore che si vede più spesso nei conti fatti a mano.</p>
+    <p>Sopra puoi impostare la settimana che ti riguarda davvero: se lavori dal lunedì al sabato accendi anche il sabato, se fai quattro giorni spegni il venerdì. Il calcolo si aggiorna mentre modifichi, senza premere nulla.</p>
+
+    <h3>Un esempio con i numeri</h3>
+    <p>Prendiamo dal 1° al 31 dicembre 2026, settimana dal lunedì al venerdì. I giorni di calendario sono 31. Di questi, 8 cadono di sabato o di domenica, quindi restano 23 giorni potenzialmente lavorativi. In dicembre cadono quattro festività: l'8 (Immacolata, martedì), il 25 (Natale, venerdì), il 26 (Santo Stefano, sabato) e, per chi lavora a Milano, il 7 (Sant'Ambrogio, lunedì). Santo Stefano cade di sabato e quindi non toglie nulla: era già un giorno di riposo. Restano 20 giorni lavorativi, 21 per chi non ha il patrono di Milano. Con 8 ore al giorno sono 160 ore. È esattamente il conto che il calcolatore fa in automatico quando imposti quelle date.</p>
+
+    <h3>Includere o no l'ultimo giorno</h3>
+    <p>La differenza fra "dal 1° al 31" e "dal 1° al 30" sembra un dettaglio e invece cambia il risultato. La regola pratica: quando conti un periodo di lavoro — un mese di contratto, una sostituzione, le giornate da fatturare — l'ultimo giorno va incluso, perché è una giornata in cui si lavora. Quando invece conti quanto manca a una scadenza, il giorno di arrivo si esclude, perché quello è il termine, non un giorno di attesa. L'interruttore "Includi anche il giorno finale" serve proprio a passare da una logica all'altra senza rifare i conti.</p>
+
+    <h3>Errori comuni</h3>
+    <ul>
+      <li><strong>Sottrarre tutte le festività dell'anno.</strong> Ogni anno tre o quattro feste cadono di sabato o domenica: vanno contate una volta sola, cioè zero.</li>
+      <li><strong>Dimenticare Pasqua.</strong> Pasqua e il Lunedì dell'Angelo cambiano data ogni anno; qui sono calcolate automaticamente per l'anno giusto.</li>
+      <li><strong>Applicare il patrono a tutta l'Italia.</strong> Il santo patrono è festivo solo nel comune in cui si presta servizio: Sant'Ambrogio vale a Milano, non a Bologna.</li>
+      <li><strong>Confondere giorni lavorativi e giorni feriali.</strong> In diritto "feriale" vuol dire non festivo e comprende il sabato; "lavorativo" è il giorno in cui si lavora davvero secondo il proprio orario. Per i termini di legge conta il primo, per lo stipendio e le ferie il secondo.</li>
+      <li><strong>Scordare le chiusure aziendali.</strong> Ponti e fermate estive non sono festività nazionali: vanno tolti a parte dal risultato.</li>
+    </ul>
+
+    <h2>Domande frequenti</h2>
+    <h3>Quanti giorni lavorativi ci sono in un anno?</h3>
+    <p>Con la settimana dal lunedì al venerdì siamo quasi sempre fra 250 e 254 giorni, a seconda di quante festività finiscono nel fine settimana. Imposta 1 gennaio e 31 dicembre dell'anno che ti interessa e leggi il numero esatto.</p>
+    <h3>Il sabato è un giorno lavorativo?</h3>
+    <p>Per la legge il sabato è un giorno feriale, ma nella maggior parte dei contratti d'ufficio non si lavora. Per questo qui decidi tu: il sabato è spento all'inizio e lo accendi con un tocco se rientra nel tuo orario.</p>
+    <h3>Il calcolo vale anche per le ferie?</h3>
+    <p>Sì. Se le tue ferie si contano in giorni lavorativi, imposta il primo e l'ultimo giorno di assenza tenendo acceso "Includi anche il giorno finale": il numero grande è quello che ti verrà scalato. Se invece l'azienda conta in giorni di calendario, ti serve il riquadro "Giorni totali".</p>
+    <h3>I dati restano sul telefono?</h3>
+    <p>Sì. Il calcolo avviene tutto nel browser e le tue preferenze (settimana, patrono, ore) sono salvate solo sul tuo dispositivo. Nessun dato esce dalla pagina e non serve alcun account.</p>
+
+    <p class="src">Festività nazionali secondo la legge 260/1949 e successive modifiche; Pasqua calcolata con l'algoritmo gregoriano. Le date del patrono sono quelle comunemente riconosciute nei comuni indicati: verifica sempre il calendario del tuo contratto.</p>
+
+    <div data-ad="bottom"></div>
+    <div data-support></div>
+    <p class="small">Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a> · Vedi anche <a href="../2026-09-20-netto-da-lordo/">Netto da Lordo</a> per lo stipendio e <a href="../2026-09-20-calcolo-tfr/">Calcolo TFR</a> per la liquidazione.</p>
+  </section>
+</div>
+
+<script src="../../assets/monetize.js"></script>
+<script>
+(() => {
+  "use strict";
+  // Modello dati: `stato` = { settimana: [7 booleani, indice 0=domenica come getDay()], festivi, inclusivo,
+  // patrono (chiave della lista PATRONI o "custom"), customData, ore }. È l'unica cosa salvata in localStorage.
+  // Il calcolo scorre il periodo giorno per giorno: ogni data è "lavorativa" se il suo getDay() è acceso
+  // nella settimana e non coincide con una festività attiva (nazionali + patrono scelto).
+
+  const STORAGE = "giorni-lavorativi:v1";
+  const $ = (id) => document.getElementById(id);
+
+  const NOMI_GG = ["Dom", "Lun", "Mar", "Mer", "Gio", "Ven", "Sab"];
+  const ORDINE_CHIP = [1, 2, 3, 4, 5, 6, 0]; // lunedì → domenica
+
+  // Patroni comunemente riconosciuti. `m` è il mese 1-12.
+  const PATRONI = [
+    { k: "ancona", c: "Ancona", m: 5, d: 4, s: "San Ciriaco" },
+    { k: "bari", c: "Bari", m: 12, d: 6, s: "San Nicola" },
+    { k: "bergamo", c: "Bergamo", m: 8, d: 26, s: "Sant'Alessandro" },
+    { k: "bologna", c: "Bologna", m: 10, d: 4, s: "San Petronio" },
+    { k: "bolzano", c: "Bolzano", m: 8, d: 15, s: "Assunta" },
+    { k: "brescia", c: "Brescia", m: 2, d: 15, s: "Santi Faustino e Giovita" },
+    { k: "cagliari", c: "Cagliari", m: 10, d: 30, s: "San Saturnino" },
+    { k: "catania", c: "Catania", m: 2, d: 5, s: "Sant'Agata" },
+    { k: "como", c: "Como", m: 8, d: 31, s: "Sant'Abbondio" },
+    { k: "ferrara", c: "Ferrara", m: 4, d: 23, s: "San Giorgio" },
+    { k: "firenze", c: "Firenze", m: 6, d: 24, s: "San Giovanni Battista" },
+    { k: "foggia", c: "Foggia", m: 3, d: 22, s: "Madonna dei Sette Veli" },
+    { k: "genova", c: "Genova", m: 6, d: 24, s: "San Giovanni Battista" },
+    { k: "latina", c: "Latina", m: 4, d: 25, s: "San Marco" },
+    { k: "lecce", c: "Lecce", m: 8, d: 26, s: "Sant'Oronzo" },
+    { k: "livorno", c: "Livorno", m: 5, d: 22, s: "Santa Giulia" },
+    { k: "messina", c: "Messina", m: 6, d: 3, s: "Madonna della Lettera" },
+    { k: "milano", c: "Milano", m: 12, d: 7, s: "Sant'Ambrogio" },
+    { k: "modena", c: "Modena", m: 1, d: 31, s: "San Geminiano" },
+    { k: "monza", c: "Monza", m: 6, d: 24, s: "San Giovanni Battista" },
+    { k: "napoli", c: "Napoli", m: 9, d: 19, s: "San Gennaro" },
+    { k: "novara", c: "Novara", m: 1, d: 22, s: "San Gaudenzio" },
+    { k: "padova", c: "Padova", m: 6, d: 13, s: "Sant'Antonio" },
+    { k: "palermo", c: "Palermo", m: 7, d: 15, s: "Santa Rosalia" },
+    { k: "parma", c: "Parma", m: 1, d: 13, s: "Sant'Ilario" },
+    { k: "perugia", c: "Perugia", m: 1, d: 29, s: "Sant'Ercolano" },
+    { k: "pescara", c: "Pescara", m: 10, d: 10, s: "San Cetteo" },
+    { k: "piacenza", c: "Piacenza", m: 7, d: 4, s: "Sant'Antonino" },
+    { k: "pisa", c: "Pisa", m: 6, d: 17, s: "San Ranieri" },
+    { k: "prato", c: "Prato", m: 12, d: 26, s: "Santo Stefano" },
+    { k: "ravenna", c: "Ravenna", m: 7, d: 23, s: "Sant'Apollinare" },
+    { k: "rimini", c: "Rimini", m: 10, d: 14, s: "San Gaudenzo" },
+    { k: "roma", c: "Roma", m: 6, d: 29, s: "Santi Pietro e Paolo" },
+    { k: "salerno", c: "Salerno", m: 9, d: 21, s: "San Matteo" },
+    { k: "siracusa", c: "Siracusa", m: 12, d: 13, s: "Santa Lucia" },
+    { k: "taranto", c: "Taranto", m: 5, d: 10, s: "San Cataldo" },
+    { k: "terni", c: "Terni", m: 2, d: 14, s: "San Valentino" },
+    { k: "torino", c: "Torino", m: 6, d: 24, s: "San Giovanni Battista" },
+    { k: "trento", c: "Trento", m: 6, d: 26, s: "San Vigilio" },
+    { k: "trieste", c: "Trieste", m: 11, d: 3, s: "San Giusto" },
+    { k: "udine", c: "Udine", m: 7, d: 12, s: "Santi Ermacora e Fortunato" },
+    { k: "venezia", c: "Venezia", m: 4, d: 25, s: "San Marco" },
+    { k: "verona", c: "Verona", m: 5, d: 21, s: "San Zeno" },
+    { k: "vicenza", c: "Vicenza", m: 9, d: 8, s: "Madonna di Monte Berico" },
+  ];
+
+  // ---------- date ----------
+  const dataDa = (a, m, g) => new Date(a, m - 1, g);
+  const iso = (dt) => `${dt.getFullYear()}-${String(dt.getMonth() + 1).padStart(2, "0")}-${String(dt.getDate()).padStart(2, "0")}`;
+  const daIso = (t) => {
+    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(t || ""));
+    if (!m) return null;
+    const dt = dataDa(+m[1], +m[2], +m[3]);
+    return dt.getMonth() === +m[2] - 1 ? dt : null;
+  };
+  const piuGiorni = (dt, n) => { const c = new Date(dt.getTime()); c.setDate(c.getDate() + n); return c; };
+  const giorniTra = (a, b) => Math.round((dataDa(b.getFullYear(), b.getMonth() + 1, b.getDate()) - dataDa(a.getFullYear(), a.getMonth() + 1, a.getDate())) / 86400000);
+
+  const fmtLungo = new Intl.DateTimeFormat("it-IT", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+  const fmtCorto = new Intl.DateTimeFormat("it-IT", { weekday: "short", day: "numeric", month: "short" });
+  const fmtMese = new Intl.DateTimeFormat("it-IT", { month: "long", year: "numeric" });
+  const fmtData = new Intl.DateTimeFormat("it-IT", { day: "numeric", month: "long", year: "numeric" });
+  const numero = new Intl.NumberFormat("it-IT");
+
+  // Pasqua gregoriana (algoritmo di Meeus/Jones/Butcher).
+  function pasqua(anno) {
+    const a = anno % 19, b = Math.floor(anno / 100), c = anno % 100;
+    const d = Math.floor(b / 4), e = b % 4;
+    const f = Math.floor((b + 8) / 25), g = Math.floor((b - f + 1) / 3);
+    const h = (19 * a + b - d - g + 15) % 30;
+    const i = Math.floor(c / 4), k = c % 4;
+    const l = (32 + 2 * e + 2 * i - h - k) % 7;
+    const m = Math.floor((a + 11 * h + 22 * l) / 451);
+    const mese = Math.floor((h + l - 7 * m + 114) / 31);
+    const giorno = ((h + l - 7 * m + 114) % 31) + 1;
+    return dataDa(anno, mese, giorno);
+  }
+
+  const cacheAnni = new Map();
+  function festivitaAnno(anno) {
+    if (cacheAnni.has(anno)) return cacheAnni.get(anno);
+    const p = pasqua(anno);
+    const lista = [
+      { dt: dataDa(anno, 1, 1), n: "Capodanno" },
+      { dt: dataDa(anno, 1, 6), n: "Epifania" },
+      { dt: p, n: "Pasqua" },
+      { dt: piuGiorni(p, 1), n: "Lunedì dell'Angelo" },
+      { dt: dataDa(anno, 4, 25), n: "Festa della Liberazione" },
+      { dt: dataDa(anno, 5, 1), n: "Festa del Lavoro" },
+      { dt: dataDa(anno, 6, 2), n: "Festa della Repubblica" },
+      { dt: dataDa(anno, 8, 15), n: "Ferragosto" },
+      { dt: dataDa(anno, 11, 1), n: "Ognissanti" },
+      { dt: dataDa(anno, 12, 8), n: "Immacolata Concezione" },
+      { dt: dataDa(anno, 12, 25), n: "Natale" },
+      { dt: dataDa(anno, 12, 26), n: "Santo Stefano" },
+    ].map(f => ({ ...f, iso: iso(f.dt) })).sort((a, b) => a.dt - b.dt);
+    cacheAnni.set(anno, lista);
+    return lista;
+  }
+
+  // ---------- stato ----------
+  const predefinito = () => ({
+    settimana: [false, true, true, true, true, true, false],
+    festivi: true,
+    inclusivo: true,
+    patrono: "",
+    customData: "",
+    ore: 8,
+  });
+  let stato = predefinito();
+
+  function carica() {
+    let salvato = null;
+    try { salvato = JSON.parse(localStorage.getItem(STORAGE) || "null"); } catch (_) { /* storage bloccato o rotto */ }
+    if (!salvato || typeof salvato !== "object") return;
+    const s = predefinito();
+    if (Array.isArray(salvato.settimana) && salvato.settimana.length === 7) s.settimana = salvato.settimana.map(Boolean);
+    if (typeof salvato.festivi === "boolean") s.festivi = salvato.festivi;
+    if (typeof salvato.inclusivo === "boolean") s.inclusivo = salvato.inclusivo;
+    if (typeof salvato.patrono === "string") s.patrono = salvato.patrono;
+    if (typeof salvato.customData === "string") s.customData = salvato.customData;
+    if (Number.isFinite(+salvato.ore) && +salvato.ore >= 0 && +salvato.ore <= 24) s.ore = +salvato.ore;
+    stato = s;
+  }
+  function salva() {
+    try { localStorage.setItem(STORAGE, JSON.stringify(stato)); } catch (_) { /* storage pieno o negato */ }
+  }
+
+  // ---------- calcolo ----------
+  // Festività attive (nazionali + patrono) per gli anni toccati dal periodo, come mappa iso → nome.
+  function mappaFestivita(annoDa, annoA) {
+    const mappa = new Map();
+    if (!stato.festivi && !patronoScelto()) return mappa;
+    for (let a = annoDa; a <= annoA; a++) {
+      if (stato.festivi) for (const f of festivitaAnno(a)) mappa.set(f.iso, f.n);
+      const p = patronoScelto();
+      if (p) {
+        const dt = p.k === "custom" ? daIso(stato.customData) : dataDa(a, p.m, p.d);
+        if (dt && (p.k !== "custom" || dt.getFullYear() === a)) {
+          const chiave = iso(dt);
+          mappa.set(chiave, mappa.has(chiave) ? `${mappa.get(chiave)} e ${p.s}` : p.s);
+        }
+      }
+    }
+    return mappa;
+  }
+  function patronoScelto() {
+    if (stato.patrono === "custom") return { k: "custom", s: "Santo patrono" };
+    return PATRONI.find(p => p.k === stato.patrono) || null;
+  }
+
+  const MAX_GIORNI = 366 * 60; // tetto di sicurezza: 60 anni di periodo
+
+  function calcola(dal, al, inclusivo) {
+    const fine = inclusivo ? al : piuGiorni(al, -1);
+    const totale = giorniTra(dal, fine) + 1;
+    if (totale <= 0) return { vuoto: true, totale: 0, lavorativi: 0, riposi: 0, festiviTolti: 0, festivita: [], mesi: [] };
+    const fest = mappaFestivita(dal.getFullYear(), fine.getFullYear());
+    const mesi = new Map();
+    let lavorativi = 0, riposi = 0, festiviTolti = 0;
+    const festivita = [];
+    for (let i = 0, cur = new Date(dal.getTime()); i < totale; i++, cur = piuGiorni(cur, 1)) {
+      const chiave = iso(cur);
+      const nome = fest.get(chiave);
+      const settimanale = stato.settimana[cur.getDay()];
+      const chiaveMese = `${cur.getFullYear()}-${String(cur.getMonth() + 1).padStart(2, "0")}`;
+      let m = mesi.get(chiaveMese);
+      if (!m) { m = { etichetta: fmtMese.format(cur), lavorativi: 0, festivi: 0 }; mesi.set(chiaveMese, m); }
+      if (nome) festivita.push({ dt: new Date(cur.getTime()), n: nome, tolta: settimanale });
+      if (!settimanale) { riposi++; continue; }
+      if (nome) { festiviTolti++; m.festivi++; continue; }
+      lavorativi++;
+      m.lavorativi++;
+    }
+    return { vuoto: false, totale, lavorativi, riposi, festiviTolti, festivita, mesi: [...mesi.values()], fine };
+  }
+
+  // Aggiunge o sottrae N giorni lavorativi a una data, con le stesse regole.
+  function spostaLavorativi(dal, n, indietro) {
+    if (!stato.settimana.some(Boolean)) return null;
+    const passo = indietro ? -1 : 1;
+    let cur = new Date(dal.getTime());
+    let restanti = n;
+    let guardia = 0;
+    while (restanti > 0 && guardia < MAX_GIORNI) {
+      cur = piuGiorni(cur, passo);
+      guardia++;
+      const anno = cur.getFullYear();
+      const fest = mappaFestivita(anno, anno);
+      if (!stato.settimana[cur.getDay()]) continue;
+      if (fest.has(iso(cur))) continue;
+      restanti--;
+    }
+    return restanti > 0 ? null : cur;
+  }
+
+  // ---------- interfaccia ----------
+  function costruisciChip() {
+    const cont = $("chips");
+    cont.replaceChildren();
+    for (const g of ORDINE_CHIP) {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "chip";
+      b.textContent = NOMI_GG[g];
+      b.setAttribute("aria-pressed", String(stato.settimana[g]));
+      b.setAttribute("aria-label", `${NOMI_GG[g]}: ${stato.settimana[g] ? "lavorativo" : "riposo"}`);
+      b.addEventListener("click", () => {
+        stato.settimana[g] = !stato.settimana[g];
+        b.setAttribute("aria-pressed", String(stato.settimana[g]));
+        b.setAttribute("aria-label", `${NOMI_GG[g]}: ${stato.settimana[g] ? "lavorativo" : "riposo"}`);
+        salva();
+        aggiorna();
+      });
+      cont.append(b);
+    }
+  }
+
+  function costruisciPatroni() {
+    const sel = $("patrono");
+    const vuoto = new Option("Nessuno", "");
+    sel.append(vuoto);
+    for (const p of PATRONI) sel.append(new Option(`${p.c} — ${p.s} (${p.d}/${p.m})`, p.k));
+    sel.append(new Option("Altro comune: scelgo la data", "custom"));
+    sel.value = stato.patrono;
+    if (sel.value !== stato.patrono) { stato.patrono = ""; sel.value = ""; }
+  }
+
+  function aggiorna() {
+    const dal = daIso($("dal").value);
+    const al = daIso($("al").value);
+    const notice = $("notice");
+    const mostraVuoto = (messaggio) => {
+      notice.hidden = !messaggio;
+      notice.textContent = messaggio || "";
+      for (const id of ["v-lav", "v-tot", "v-rip", "v-fes", "v-ore"]) $(id).textContent = "—";
+      $("v-periodo").textContent = messaggio ? "" : "—";
+      $("lista-fest").replaceChildren();
+      $("fest-vuoto").hidden = true;
+      svuotaMesi();
+    };
+
+    if (!dal || !al) return mostraVuoto("Inserisci la data di inizio e quella di fine.");
+    if (giorniTra(dal, al) < 0) return mostraVuoto("La data finale è precedente a quella iniziale: controlla il periodo.");
+    if (giorniTra(dal, al) > MAX_GIORNI) return mostraVuoto("Il periodo supera i 60 anni: restringi le date.");
+    if (!stato.settimana.some(Boolean)) return mostraVuoto("Accendi almeno un giorno della settimana, altrimenti non c'è nulla da contare.");
+    if (stato.patrono === "custom" && !daIso(stato.customData)) return mostraVuoto("Scegli la data del santo patrono oppure seleziona «Nessuno».");
+
+    notice.hidden = true;
+    notice.textContent = "";
+    const r = calcola(dal, al, stato.inclusivo);
+    if (r.vuoto) return mostraVuoto("Con il giorno finale escluso il periodo resta vuoto: sposta la data di fine.");
+
+    const ore = stato.ore * r.lavorativi;
+    $("v-lav").textContent = numero.format(r.lavorativi);
+    $("v-tot").textContent = numero.format(r.totale);
+    $("v-rip").textContent = numero.format(r.riposi);
+    $("v-fes").textContent = numero.format(r.festiviTolti);
+    $("v-ore").textContent = numero.format(Math.round(ore * 10) / 10);
+    $("v-periodo").textContent = `Dal ${fmtData.format(dal)} al ${fmtData.format(r.fine)}${stato.inclusivo ? " compreso" : " escluso"}`;
+
+    // elenco festività
+    const ul = $("lista-fest");
+    ul.replaceChildren();
+    for (const f of r.festivita) {
+      const li = document.createElement("li");
+      const d = document.createElement("span");
+      d.className = "d";
+      d.textContent = fmtCorto.format(f.dt);
+      const n = document.createElement("span");
+      n.className = "n";
+      n.textContent = f.n;
+      const t = document.createElement("span");
+      t.className = "tag" + (f.tolta ? " out" : "");
+      t.textContent = f.tolta ? "tolta dal conto" : "già di riposo";
+      li.append(d, n, t);
+      ul.append(li);
+    }
+    $("fest-vuoto").hidden = r.festivita.length > 0;
+
+    riempiMesi(r);
+    aggiornaScadenza();
+    ultimoRisultato = { dal, fine: r.fine, r, ore };
+  }
+
+  let ultimoRisultato = null;
+
+  function svuotaMesi() {
+    $("tab-mesi").tBodies[0].replaceChildren();
+    $("m-lav").textContent = "—";
+    $("m-fes").textContent = "—";
+    $("m-ore").textContent = "—";
+  }
+
+  function riempiMesi(r) {
+    const tbody = $("tab-mesi").tBodies[0];
+    tbody.replaceChildren();
+    for (const m of r.mesi) {
+      const tr = document.createElement("tr");
+      for (const v of [m.etichetta, numero.format(m.lavorativi), numero.format(m.festivi), numero.format(Math.round(m.lavorativi * stato.ore * 10) / 10)]) {
+        const td = document.createElement("td");
+        td.textContent = v;
+        tr.append(td);
+      }
+      tbody.append(tr);
+    }
+    $("m-lav").textContent = numero.format(r.lavorativi);
+    $("m-fes").textContent = numero.format(r.festiviTolti);
+    $("m-ore").textContent = numero.format(Math.round(r.lavorativi * stato.ore * 10) / 10);
+  }
+
+  function aggiornaScadenza() {
+    const out = $("s-out");
+    const dal = daIso($("s-dal").value);
+    const grezzo = $("s-n").value.trim();
+    const n = Math.floor(Number(grezzo));
+    if (!dal) { out.textContent = "Imposta una data di partenza per vedere il termine."; return; }
+    if (!grezzo || !Number.isFinite(n) || n < 0 || n > 3650) { out.textContent = "Inserisci un numero di giorni fra 0 e 3650."; return; }
+    const indietro = $("s-indietro").checked;
+    const res = spostaLavorativi(dal, n, indietro);
+    out.replaceChildren();
+    if (!res) { out.textContent = "Con questa settimana lavorativa non è possibile arrivare al termine."; return; }
+    const p = document.createElement("div");
+    p.textContent = `${n === 0 ? "Zero giorni" : n + (n === 1 ? " giorno lavorativo" : " giorni lavorativi")} ${indietro ? "prima del" : "dopo il"} ${fmtData.format(dal)}:`;
+    const b = document.createElement("b");
+    b.textContent = fmtLungo.format(res);
+    const cal = Math.abs(giorniTra(dal, res));
+    const small = document.createElement("div");
+    small.className = "small";
+    small.style.marginTop = "4px";
+    small.textContent = cal === 1 ? "È 1 giorno di calendario." : `Sono ${numero.format(cal)} giorni di calendario.`;
+    out.append(p, b, small);
+  }
+
+  function riepilogo() {
+    if (!ultimoRisultato) return "";
+    const { dal, fine, r, ore } = ultimoRisultato;
+    const gg = ORDINE_CHIP.filter(g => stato.settimana[g]).map(g => NOMI_GG[g]).join(" ");
+    const righe = [
+      `Giorni lavorativi dal ${fmtData.format(dal)} al ${fmtData.format(fine)}: ${r.lavorativi}`,
+      `Giorni totali: ${r.totale} · Riposi settimanali: ${r.riposi} · Festività tolte: ${r.festiviTolti}`,
+      `Ore di lavoro (${stato.ore} al giorno): ${Math.round(ore * 10) / 10}`,
+      `Settimana considerata: ${gg}`,
+    ];
+    if (r.festivita.length) {
+      righe.push("Festività nel periodo:");
+      for (const f of r.festivita) righe.push(`- ${fmtData.format(f.dt)} ${f.n}${f.tolta ? "" : " (già giorno di riposo)"}`);
+    }
+    return righe.join("\n");
+  }
+
+  let timerToast = 0;
+  function avvisa(testo) {
+    const t = $("toast");
+    t.textContent = testo;
+    clearTimeout(timerToast);
+    timerToast = setTimeout(() => { t.textContent = ""; }, 3200);
+  }
+
+  async function copiaTesto(testo) {
+    try {
+      if (navigator.clipboard && window.isSecureContext) { await navigator.clipboard.writeText(testo); return true; }
+    } catch (_) { /* permesso negato: provo il metodo vecchio */ }
+    try {
+      const ta = document.createElement("textarea");
+      ta.value = testo;
+      ta.setAttribute("readonly", "");
+      ta.style.cssText = "position:fixed;top:0;left:-9999px";
+      document.body.append(ta);
+      ta.select();
+      const ok = document.execCommand("copy");
+      ta.remove();
+      return ok;
+    } catch (_) { return false; }
+  }
+
+  function scaricaCsv() {
+    if (!ultimoRisultato) { avvisa("Prima imposta un periodo valido."); return; }
+    const { r } = ultimoRisultato;
+    const righe = [["Mese", "Giorni lavorativi", "Festivita tolte", "Ore"]];
+    for (const m of r.mesi) righe.push([m.etichetta, m.lavorativi, m.festivi, Math.round(m.lavorativi * stato.ore * 10) / 10]);
+    righe.push(["Totale", r.lavorativi, r.festiviTolti, Math.round(r.lavorativi * stato.ore * 10) / 10]);
+    const csv = "﻿" + righe.map(r2 => r2.map(c => `"${String(c).replace(/"/g, '""')}"`).join(";")).join("\r\n");
+    const url = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `giorni-lavorativi-${$("dal").value}_${$("al").value}.csv`;
+    document.body.append(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
+  // ---------- avvio ----------
+  function avvio() {
+    carica();
+    const oggi = new Date();
+    $("dal").value = iso(dataDa(oggi.getFullYear(), oggi.getMonth() + 1, 1));
+    $("al").value = iso(dataDa(oggi.getFullYear(), oggi.getMonth() + 2, 0));
+    $("s-dal").value = iso(oggi);
+    $("fest").checked = stato.festivi;
+    $("incl").checked = stato.inclusivo;
+    $("ore").value = stato.ore;
+    $("custom").value = stato.customData;
+    costruisciChip();
+    costruisciPatroni();
+    $("wrap-custom").hidden = stato.patrono !== "custom";
+
+    for (const id of ["dal", "al"]) $(id).addEventListener("change", aggiorna);
+    $("fest").addEventListener("change", (e) => { stato.festivi = e.target.checked; salva(); aggiorna(); });
+    $("incl").addEventListener("change", (e) => { stato.inclusivo = e.target.checked; salva(); aggiorna(); });
+    $("patrono").addEventListener("change", (e) => {
+      stato.patrono = e.target.value;
+      $("wrap-custom").hidden = stato.patrono !== "custom";
+      salva();
+      aggiorna();
+    });
+    $("custom").addEventListener("change", (e) => { stato.customData = e.target.value; salva(); aggiorna(); });
+    $("ore").addEventListener("input", (e) => {
+      const v = Number(e.target.value);
+      stato.ore = Number.isFinite(v) && v >= 0 && v <= 24 ? v : 0;
+      salva();
+      aggiorna();
+    });
+    $("form").addEventListener("submit", (e) => e.preventDefault());
+    $("form").addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && e.target.tagName === "INPUT") { e.preventDefault(); e.target.blur(); aggiorna(); }
+      if (e.key === "Escape" && e.target.tagName === "INPUT") e.target.blur();
+    });
+
+    $("copia").addEventListener("click", async () => {
+      const testo = riepilogo();
+      if (!testo) { avvisa("Prima imposta un periodo valido."); return; }
+      avvisa(await copiaTesto(testo) ? "Riepilogo copiato negli appunti." : "Non riesco a copiare: seleziona il testo a mano.");
+    });
+    $("reset").addEventListener("click", () => {
+      stato = predefinito();
+      try { localStorage.removeItem(STORAGE); } catch (_) { /* storage negato */ }
+      $("fest").checked = stato.festivi;
+      $("incl").checked = stato.inclusivo;
+      $("ore").value = stato.ore;
+      $("custom").value = "";
+      $("patrono").value = "";
+      $("wrap-custom").hidden = true;
+      costruisciChip();
+      aggiorna();
+      avvisa("Impostazioni riportate ai valori di partenza.");
+    });
+
+    $("csv").addEventListener("click", scaricaCsv);
+    for (const id of ["s-dal", "s-n", "s-indietro"]) $(id).addEventListener("change", aggiornaScadenza);
+    $("s-n").addEventListener("input", aggiornaScadenza);
+
+    aggiorna();
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", avvio);
+  else avvio();
+})();
+</script>
+</body>
+</html>
