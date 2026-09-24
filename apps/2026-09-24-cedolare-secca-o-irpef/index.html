@@ -1,0 +1,710 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#b4542f">
+  <title>Cedolare Secca o IRPEF: conviene la cedolare secca?</title>
+  <meta name="description" content="Conviene la cedolare secca o la tassazione IRPEF sul tuo affitto? Confronto in euro con addizionali, imposta di registro, bollo e detrazioni perse.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-24-cedolare-secca-o-irpef/">
+  <meta property="og:title" content="Cedolare Secca o IRPEF: conviene la cedolare secca?">
+  <meta property="og:description" content="Metti canone e reddito: scopri quanto paghi con la cedolare secca e quanto con l'IRPEF, addizionali e imposta di registro comprese.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-24-cedolare-secca-o-irpef/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Cedolare Secca o IRPEF",
+    "description": "Calcolatore gratuito che confronta la cedolare secca con la tassazione IRPEF ordinaria sul canone di locazione, comprese addizionali regionali e comunali, imposta di registro e bollo.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-24-cedolare-secca-o-irpef/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Conviene la cedolare secca con un reddito basso?", "acceptedAnswer": { "@type": "Answer", "text": "Quasi sempre sì, perché anche nel primo scaglione l'IRPEF al 23% si applica al 95% del canone e sopra ci sono le addizionali regionali e comunali, più la metà dell'imposta di registro. La cedolare al 21% si paga invece sul canone pieno e sostituisce tutto il resto. L'IRPEF torna conveniente soprattutto quando hai detrazioni o oneri che perderesti per incapienza." } },
+      { "@type": "Question", "name": "L'aliquota del 10% vale per tutti i contratti a canone concordato?", "acceptedAnswer": { "@type": "Answer", "text": "No. La cedolare al 10% vale per i contratti a canone concordato stipulati nei comuni ad alta tensione abitativa (Bari, Bologna, Catania, Firenze, Genova, Milano, Napoli, Palermo, Roma, Torino, Venezia, i comuni confinanti e quelli della delibera CIPE) o nei comuni colpiti da calamità. Fuori da quei comuni il contratto concordato resta al 21%." } },
+      { "@type": "Question", "name": "Con la cedolare secca posso aggiornare il canone all'ISTAT?", "acceptedAnswer": { "@type": "Answer", "text": "No: chi opta per la cedolare rinuncia per iscritto all'aggiornamento del canone, compreso l'adeguamento ISTAT, per tutta la durata dell'opzione. Su un contratto lungo è una parte del risparmio che se ne va, ed è il motivo per cui la simulazione pluriennale è utile." } },
+      { "@type": "Question", "name": "Posso cambiare regime ogni anno?", "acceptedAnswer": { "@type": "Answer", "text": "Sì. L'opzione si esercita alla registrazione del contratto oppure, per le annualità successive, entro 30 giorni dalla scadenza dell'annualità precedente con il modello RLI. Allo stesso modo si può revocare e tornare alla tassazione IRPEF ordinaria." } },
+      { "@type": "Question", "name": "Che cosa cambia se affitto più di un immobile?", "acceptedAnswer": { "@type": "Answer", "text": "Per le locazioni ordinarie puoi scegliere il regime contratto per contratto. Per gli affitti brevi sotto i 30 giorni, invece, dal 2026 solo il primo immobile resta al 21% e dal secondo si passa al 26%; con tre o più immobili si è considerati imprenditori e si esce dalla cedolare." } }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #faf4f0; --surface: #fff; --text: #2a1c16; --muted: #7c6156; --line: #e8d8cd;
+      --accent: #b4542f; --accent-ink: #fff; --soft: #f3e4da; --ok: #2f6f52; --danger: #a33327;
+      --radius: 6px; color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #19120f; --surface: #221a15; --text: #f1e6df; --muted: #b29a8d; --line: #3a2b23;
+        --accent: #e2825a; --accent-ink: #2b1108; --soft: #2c211b; --ok: #6cc196; --danger: #ff8a7d;
+        color-scheme: dark;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font: 17px/1.55 Georgia, "Times New Roman", Times, serif;
+      padding-bottom: calc(74px + env(safe-area-inset-bottom));
+    }
+    .wrap { margin: 0 auto; padding: max(10px, env(safe-area-inset-top)) 16px 24px; }
+    .back { font-size: 0.9rem; color: var(--muted); text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; }
+    .back:hover { color: var(--accent); }
+    h1 { margin: 0.6rem 0 0.3rem; font-size: 1.65rem; line-height: 1.2; font-weight: 700; letter-spacing: -0.01em; }
+    h1 span { display: block; font-size: 0.55em; font-weight: 400; color: var(--muted); margin-top: 0.35rem; font-style: italic; }
+    .lead { margin: 0 0 1.2rem; color: var(--muted); font-size: 0.98rem; }
+    .panel[hidden] { display: none; }
+    fieldset { border: 0; margin: 0 0 1.1rem; padding: 0; }
+    legend, .lbl { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-family: system-ui, sans-serif; font-weight: 600; margin-bottom: 0.4rem; display: block; }
+    label { display: block; }
+    input, select, button, textarea { font: inherit; color: inherit; }
+    input[type=text], input[type=number] {
+      width: 100%; font-size: 16px; min-height: 48px; padding: 0.5rem 0.7rem;
+      border: 1px solid var(--line); border-top-width: 2px; border-radius: var(--radius);
+      background: var(--surface); font-variant-numeric: tabular-nums;
+    }
+    input:focus-visible, button:focus-visible, select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .field { margin-bottom: 1rem; }
+    .field .hint { font-size: 0.82rem; color: var(--muted); margin: 0.3rem 0 0; }
+    .inline { display: flex; gap: 0.5rem; align-items: stretch; }
+    .inline .grow { flex: 1 1 auto; min-width: 0; }
+    .unit { display: flex; }
+    .unit button {
+      background: var(--surface); border: 1px solid var(--line); border-left: 0; cursor: pointer;
+      padding: 0 0.7rem; font-size: 0.9rem; color: var(--muted); min-width: 54px; min-height: 48px;
+    }
+    .unit button:first-child { border-left: 1px solid var(--line); border-radius: var(--radius) 0 0 var(--radius); }
+    .unit button:last-child { border-radius: 0 var(--radius) var(--radius) 0; }
+    .unit button[aria-pressed=true] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 700; }
+    .choice { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+    .choice button {
+      text-align: left; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 0.7rem; min-height: 60px; cursor: pointer; line-height: 1.25;
+    }
+    .choice button b { display: block; font-size: 0.98rem; }
+    .choice button small { color: var(--muted); font-size: 0.82rem; }
+    .choice button[aria-pressed=true] { border-color: var(--accent); border-width: 2px; background: var(--soft); }
+    .check { display: flex; gap: 0.6rem; align-items: flex-start; padding: 0.7rem; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); min-height: 48px; cursor: pointer; }
+    .check input { width: 22px; height: 22px; margin: 2px 0 0; accent-color: var(--accent); flex: 0 0 auto; }
+    .check span { font-size: 0.92rem; }
+    .check small { display: block; color: var(--muted); font-size: 0.82rem; }
+    details.adv { border-top: 1px solid var(--line); padding-top: 0.6rem; margin-bottom: 1.2rem; }
+    details.adv summary { cursor: pointer; font-family: system-ui, sans-serif; font-size: 0.9rem; color: var(--accent); min-height: 44px; display: flex; align-items: center; font-weight: 600; }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+    .verdict {
+      background: var(--surface); border: 1px solid var(--line); border-left: 5px solid var(--accent);
+      border-radius: var(--radius); padding: 1rem; margin: 0 0 1rem;
+    }
+    .verdict .kicker { font-family: system-ui, sans-serif; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--muted); }
+    .verdict strong { display: block; font-size: 1.45rem; line-height: 1.2; margin: 0.25rem 0 0.4rem; }
+    .verdict p { margin: 0; font-size: 0.95rem; color: var(--muted); }
+    .versus { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-bottom: 1rem; }
+    .tile { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 0.8rem; }
+    .tile.win { border-color: var(--accent); border-width: 2px; background: var(--soft); }
+    .tile .t { font-family: system-ui, sans-serif; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+    .tile .v { font-size: 1.5rem; font-weight: 700; font-variant-numeric: tabular-nums; display: block; margin: 0.2rem 0; letter-spacing: -0.02em; }
+    .tile .s { font-size: 0.82rem; color: var(--muted); display: block; }
+    .empty { background: var(--surface); border: 1px dashed var(--line); border-radius: var(--radius); padding: 1.4rem 1rem; text-align: center; color: var(--muted); font-style: italic; }
+    .err { color: var(--danger); font-size: 0.88rem; margin: 0.4rem 0 0; min-height: 1.2em; }
+    dl.det { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 0.4rem 0.9rem; }
+    dl.det div { display: flex; justify-content: space-between; gap: 1rem; padding: 0.55rem 0; border-bottom: 1px solid var(--line); font-size: 0.95rem; }
+    dl.det div:last-child { border-bottom: 0; }
+    dl.det div.tot { font-weight: 700; font-size: 1.05rem; }
+    dl.det dt { margin: 0; }
+    dl.det dt small { display: block; color: var(--muted); font-size: 0.8rem; }
+    dl.det dd { margin: 0; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    h2 { font-size: 1.25rem; margin: 1.6rem 0 0.7rem; }
+    h2:first-child { margin-top: 0; }
+    .btn {
+      background: var(--accent); color: var(--accent-ink); border: 0; border-radius: var(--radius);
+      min-height: 48px; padding: 0.6rem 1.1rem; font-family: system-ui, sans-serif; font-weight: 600;
+      font-size: 0.95rem; cursor: pointer;
+    }
+    .btn.ghost { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); }
+    .btn:disabled { opacity: 0.45; cursor: default; }
+    .actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.9rem; }
+    [data-pro] { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1rem; margin: 1.2rem 0; }
+    [data-pro] h2 { margin-top: 0; }
+    table.years { width: 100%; border-collapse: collapse; font-size: 0.92rem; font-variant-numeric: tabular-nums; }
+    table.years th, table.years td { padding: 0.45rem 0.25rem; border-bottom: 1px solid var(--line); text-align: right; }
+    table.years th:first-child, table.years td:first-child { text-align: left; }
+    table.years th { font-family: system-ui, sans-serif; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); font-weight: 600; }
+    table.years tr.tot td { font-weight: 700; border-bottom: 0; }
+    ul.homes { list-style: none; margin: 0.8rem 0 0; padding: 0; }
+    ul.homes li { display: flex; gap: 0.6rem; align-items: center; padding: 0.6rem 0; border-bottom: 1px solid var(--line); }
+    ul.homes .n { flex: 1 1 auto; min-width: 0; }
+    ul.homes .n b { display: block; font-size: 1rem; }
+    ul.homes .n small { color: var(--muted); font-size: 0.82rem; }
+    ul.homes .a { font-variant-numeric: tabular-nums; font-weight: 700; white-space: nowrap; }
+    ul.homes button { background: none; border: 0; color: var(--muted); cursor: pointer; min-width: 44px; min-height: 44px; font-size: 1.1rem; border-radius: var(--radius); }
+    ul.homes button:hover { color: var(--danger); background: var(--soft); }
+    .tabbar {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 5; display: grid; grid-template-columns: repeat(3, 1fr);
+      background: var(--surface); border-top: 1px solid var(--line);
+      padding-bottom: env(safe-area-inset-bottom);
+      box-shadow: 0 -2px 12px rgba(0,0,0,0.07);
+    }
+    .tabbar button {
+      background: none; border: 0; border-top: 3px solid transparent; cursor: pointer; color: var(--muted);
+      min-height: 62px; padding: 0.4rem 0.2rem; font-family: system-ui, sans-serif; font-size: 0.78rem; font-weight: 600;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.2rem;
+    }
+    .tabbar button svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+    .tabbar button[aria-selected=true] { color: var(--accent); border-top-color: var(--accent); }
+    .guida { margin-top: 2.2rem; padding-top: 1.2rem; border-top: 2px solid var(--line); }
+    .guida h2 { font-size: 1.4rem; }
+    .guida h3 { font-size: 1.12rem; margin: 1.5rem 0 0.4rem; }
+    .guida p, .guida li { line-height: 1.65; }
+    .guida ul, .guida ol { padding-left: 1.2rem; }
+    .guida .box { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 0.8rem 1rem; font-size: 0.95rem; }
+    .small { font-size: 0.85rem; color: var(--muted); }
+    .small a { color: var(--accent); }
+    .toast {
+      position: fixed; left: 50%; bottom: calc(86px + env(safe-area-inset-bottom)); transform: translateX(-50%);
+      background: var(--text); color: var(--bg); padding: 0.55rem 1rem; border-radius: 999px;
+      font-family: system-ui, sans-serif; font-size: 0.88rem; opacity: 0; transition: opacity 0.2s; pointer-events: none; z-index: 9;
+    }
+    .toast.show { opacity: 1; }
+    @media (min-width: 700px) {
+      body { padding-bottom: 0; }
+      .wrap { max-width: 820px; padding-inline: 24px; padding-top: 18px; }
+      h1 { font-size: 2.1rem; }
+      .tabbar {
+        position: static; grid-template-columns: repeat(3, auto); justify-content: start;
+        border-top: 0; border-bottom: 1px solid var(--line); box-shadow: none; background: none;
+        max-width: 820px; margin: 0 auto 1.2rem; padding: 0 24px;
+      }
+      .tabbar button { flex-direction: row; min-height: 48px; padding: 0.4rem 1rem; border-top: 0; border-bottom: 3px solid transparent; font-size: 0.9rem; }
+      .tabbar button[aria-selected=true] { border-bottom-color: var(--accent); }
+      .toast { bottom: 24px; }
+      .versus { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="tabbar" role="tablist" aria-label="Sezioni dello strumento">
+    <button type="button" role="tab" id="tab-calcolo" aria-controls="pan-calcolo" aria-selected="true" data-tab="calcolo">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h3M8 16h3M15 12v4"/></svg>
+      Confronto
+    </button>
+    <button type="button" role="tab" id="tab-dettaglio" aria-controls="pan-dettaglio" aria-selected="false" tabindex="-1" data-tab="dettaglio">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+      Dettaglio
+    </button>
+    <button type="button" role="tab" id="tab-immobili" aria-controls="pan-immobili" aria-selected="false" tabindex="-1" data-tab="immobili">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>
+      Immobili
+    </button>
+  </nav>
+
+  <div class="wrap">
+    <a class="back" href="../../index.html">← Tutte le app</a>
+    <h1>Conviene la cedolare secca?<span>Cedolare secca o IRPEF sull'affitto: il confronto in euro, aliquote 2026</span></h1>
+    <p class="lead">Canone e reddito, e sai subito quale regime ti costa meno. Addizionali, registro e bollo compresi.</p>
+
+    <!-- ============ TAB 1: confronto ============ -->
+    <section class="panel" id="pan-calcolo" role="tabpanel" aria-labelledby="tab-calcolo">
+      <form id="form" autocomplete="off" novalidate>
+        <div class="field">
+          <label class="lbl" for="canone">Canone di locazione</label>
+          <div class="inline">
+            <div class="grow"><input id="canone" type="number" inputmode="decimal" min="0" max="2000000" step="10" placeholder="es. 700" enterkeyhint="done"></div>
+            <div class="unit" role="group" aria-label="Periodo del canone">
+              <button type="button" id="per-mese" aria-pressed="true">mese</button>
+              <button type="button" id="per-anno" aria-pressed="false">anno</button>
+            </div>
+          </div>
+          <p class="hint" id="canone-hint">Il canone lordo pattuito, spese condominiali escluse.</p>
+        </div>
+
+        <fieldset>
+          <legend>Tipo di contratto</legend>
+          <div class="choice" role="group">
+            <button type="button" id="tipo-libero" aria-pressed="true"><b>Canone libero</b><small>4+4, cedolare 21%</small></button>
+            <button type="button" id="tipo-concordato" aria-pressed="false"><b>Canone concordato</b><small>3+2, cedolare 10%</small></button>
+          </div>
+        </fieldset>
+
+        <div class="field" id="ata-wrap" hidden>
+          <label class="check">
+            <input type="checkbox" id="ata">
+            <span>Immobile in un comune ad alta tensione abitativa
+              <small>Bari, Bologna, Catania, Firenze, Genova, Milano, Napoli, Palermo, Roma, Torino, Venezia, i comuni confinanti e quelli della delibera CIPE. Serve per l'aliquota del 10%.</small>
+            </span>
+          </label>
+        </div>
+
+        <div class="field">
+          <label class="lbl" for="altri">Altri redditi imponibili (anno)</label>
+          <input id="altri" type="number" inputmode="numeric" min="0" max="2000000" step="500" placeholder="es. 30000" enterkeyhint="done">
+          <p class="hint">Stipendio o pensione imponibile, senza questo affitto: serve per lo scaglione.</p>
+        </div>
+        <p class="err" id="err" role="status"></p>
+      </form>
+
+      <div id="risultato" aria-live="polite">
+        <div class="empty" id="vuoto">Inserisci il canone e il tuo reddito: qui comparirà quale dei due regimi ti costa meno, e di quanto.</div>
+      </div>
+
+      <div data-ad="top"></div>
+
+      <form id="form-adv" autocomplete="off" novalidate>
+        <details class="adv">
+          <summary>Opzioni avanzate (addizionali, registro, detrazioni)</summary>
+          <div class="grid2">
+            <div class="field">
+              <label class="lbl" for="reg">Addizionale regionale %</label>
+              <input id="reg" type="number" inputmode="decimal" min="0" max="10" step="0.01" value="1.7">
+            </div>
+            <div class="field">
+              <label class="lbl" for="com">Addizionale comunale %</label>
+              <input id="com" type="number" inputmode="decimal" min="0" max="10" step="0.01" value="0.6">
+            </div>
+          </div>
+          <div class="field">
+            <label class="lbl" for="quota">Quota di registro e bollo a tuo carico %</label>
+            <input id="quota" type="number" inputmode="numeric" min="0" max="100" step="5" value="50">
+            <p class="hint">Per consuetudine l'imposta di registro si divide a metà con l'inquilino. Con la cedolare secca non si paga affatto.</p>
+          </div>
+          <div class="field">
+            <label class="check">
+              <input type="checkbox" id="prima" checked>
+              <span>Prima annualità del contratto<small>Solo sulla prima annualità il registro ha un minimo di 67 €.</small></span>
+            </label>
+          </div>
+          <div class="field">
+            <label class="lbl" for="detr">Detrazioni che perderesti per incapienza (€)</label>
+            <input id="detr" type="number" inputmode="numeric" min="0" max="200000" step="100" value="0">
+            <p class="hint">Spese mediche, ristrutturazioni, interessi del mutuo che con il tuo reddito attuale non riesci a scaricare tutte: con l'IRPEF il canone le rende utilizzabili, con la cedolare no.</p>
+          </div>
+          <div class="field">
+            <label class="lbl" for="istat">Adeguamento annuo del canone %</label>
+            <input id="istat" type="number" inputmode="decimal" min="0" max="20" step="0.1" value="1.5">
+            <p class="hint">Di solito il 75% dell'indice ISTAT. Usato nella simulazione pluriennale: con la cedolare non si può applicare.</p>
+          </div>
+        </details>
+      </form>
+
+      <section data-pro="Simulazione a 4 anni con adeguamento ISTAT">
+        <h2>Su tutta la durata del contratto</h2>
+        <p class="small">Con la cedolare il canone resta bloccato, con l'IRPEF puoi adeguarlo ogni anno: su quattro anni il conto può ribaltarsi. Ecco il netto che ti resta in tasca, anno per anno.</p>
+        <div id="anni"></div>
+      </section>
+
+      <div class="actions">
+        <button type="button" class="btn ghost" id="copia">Copia riepilogo</button>
+        <button type="button" class="btn ghost" id="salva">Salva come immobile</button>
+      </div>
+    </section>
+
+    <!-- ============ TAB 2: dettaglio ============ -->
+    <section class="panel" id="pan-dettaglio" role="tabpanel" aria-labelledby="tab-dettaglio" hidden>
+      <h2>Voce per voce</h2>
+      <p class="small">Come nascono i due totali. Tutti gli importi sono annui.</p>
+      <div id="dettaglio"></div>
+    </section>
+
+    <!-- ============ TAB 3: immobili ============ -->
+    <section class="panel" id="pan-immobili" role="tabpanel" aria-labelledby="tab-immobili" hidden>
+      <section data-pro="Confronto tra più immobili con export CSV">
+        <h2>I tuoi immobili</h2>
+        <p class="small">Salva ogni contratto dalla schermata di confronto e tieni sott'occhio il totale delle imposte e il risparmio complessivo. Puoi scaricare il prospetto in CSV per il commercialista.</p>
+        <div id="immobili"></div>
+        <div class="actions">
+          <button type="button" class="btn ghost" id="csv">Scarica CSV</button>
+        </div>
+      </section>
+    </section>
+
+    <!-- ============ GUIDA ============ -->
+    <section id="guida" class="guida">
+      <h2>Cedolare secca o IRPEF: come si decide davvero</h2>
+      <p>La domanda «conviene la cedolare secca?» non si risolve confrontando il 21% con la propria aliquota IRPEF, perché le due imposte non si applicano alla stessa base e non portano con sé gli stessi costi accessori. La cedolare è un'imposta sostitutiva: si calcola sul <strong>100% del canone</strong> con aliquota fissa (21% per il canone libero, 10% per il canone concordato nei comuni ad alta tensione abitativa) e manda a zero IRPEF, addizionali, imposta di registro e imposta di bollo su quel contratto.</p>
+      <p>Con la tassazione ordinaria, invece, il canone entra nel reddito complessivo dopo un abbattimento forfettario del 5% (che diventa 33,5% complessivo per il concordato agevolato, cioè base imponibile al 66,5%). Su quella base paghi l'IRPEF con le aliquote 2026 — 23% fino a 28.000 €, 33% da 28.000 a 50.000 €, 43% oltre — più le addizionali regionale e comunale, e in più resta il 2% di imposta di registro, di solito diviso a metà con l'inquilino, e il bollo sulle copie del contratto.</p>
+
+      <h3>Un esempio con i numeri</h3>
+      <p>Canone di 700 € al mese, cioè 8.400 € l'anno, contratto a canone libero, proprietario con 32.000 € di altri redditi imponibili.</p>
+      <ul>
+        <li><strong>Cedolare secca</strong>: 8.400 × 21% = <strong>1.764 €</strong>. Fine.</li>
+        <li><strong>IRPEF</strong>: base imponibile 8.400 × 95% = 7.980 €. Il reddito passa da 32.000 a 39.980 €, quindi il canone è tassato tutto al 33%: 2.633 €. Addizionali al 2,3%: 184 €. Metà dell'imposta di registro (2% di 8.400 = 168 €): 84 €. Metà del bollo: 16 €. Totale <strong>2.917 €</strong>.</li>
+      </ul>
+      <p>La cedolare fa risparmiare circa 1.153 € l'anno, oltre 4.600 € su un contratto 4+4. Se lo stesso proprietario avesse un reddito di 15.000 € l'aliquota scenderebbe al 23% e la differenza si ridurrebbe, ma la cedolare resterebbe comunque avanti: è il motivo per cui, con le aliquote attuali, nella grande maggioranza dei casi il regime sostitutivo vince.</p>
+
+      <h3>Quando invece conviene restare all'IRPEF</h3>
+      <p>Tre situazioni concrete. La prima è l'<strong>incapienza</strong>: se hai spese mediche, interessi del mutuo o bonus edilizi che non riesci a detrarre fino in fondo perché la tua IRPEF è bassa, il reddito da affitto fa da capienza e quelle detrazioni diventano utilizzabili. In quel caso l'IRPEF sull'affitto può costarti zero. Il campo dedicato nelle opzioni avanzate serve proprio a questo. La seconda è l'<strong>adeguamento ISTAT</strong>: chi opta per la cedolare rinuncia per iscritto ad aggiornare il canone, e su un contratto lungo con inflazione alta la rinuncia pesa più del risparmio fiscale. La terza è il <strong>canone concordato fuori dai comuni agevolati</strong>: lì la cedolare resta al 21% mentre l'IRPEF lavora comunque su una base ridotta.</p>
+
+      <h3>Errori comuni</h3>
+      <ul>
+        <li>Confrontare il 21% con l'aliquota marginale dimenticando che l'IRPEF si applica al 95% del canone e non al 100%.</li>
+        <li>Dimenticare addizionali, registro e bollo: sono qualche centinaio di euro che esistono solo nel regime ordinario.</li>
+        <li>Usare l'aliquota marginale piatta quando il canone fa cambiare scaglione: la parte eccedente va tassata di più. Questo calcolatore spezza il canone sugli scaglioni.</li>
+        <li>Dare per scontato il 10%: vale solo per il concordato nei comuni ad alta tensione abitativa o colpiti da calamità.</li>
+        <li>Applicare le regole delle locazioni ordinarie agli affitti brevi, dove dal 2026 il secondo immobile è tassato al 26%.</li>
+      </ul>
+      <p class="box">Il calcolo è una stima a scopo informativo, basata sulle aliquote in vigore nel 2026. Non tiene conto di detrazioni e deduzioni personali diverse da quella che indichi tu, né di redditi soggetti a regimi separati. Per la scelta definitiva, e per la compilazione del modello RLI, sentire un CAF o un commercialista resta la mossa giusta.</p>
+
+      <h3>Domande frequenti</h3>
+      <h4>Conviene la cedolare secca con un reddito basso?</h4>
+      <p>Quasi sempre sì. Anche nel primo scaglione l'IRPEF al 23% colpisce il 95% del canone e sopra ci sono le addizionali e la metà del registro, mentre la cedolare al 21% sostituisce tutto. Il caso opposto è l'incapienza di detrazioni.</p>
+      <h4>L'aliquota del 10% vale per tutti i contratti a canone concordato?</h4>
+      <p>No: vale nei comuni ad alta tensione abitativa (le grandi città, i comuni confinanti e quelli della delibera CIPE) e nei comuni colpiti da calamità. Altrove il concordato sconta la cedolare al 21%.</p>
+      <h4>Con la cedolare posso aggiornare il canone all'ISTAT?</h4>
+      <p>No, per tutta la durata dell'opzione. È una rinuncia da comunicare all'inquilino con raccomandata o PEC, ed è il motivo per cui la simulazione pluriennale qui sopra esiste.</p>
+      <h4>Posso cambiare idea l'anno prossimo?</h4>
+      <p>Sì. L'opzione si esercita alla registrazione o, per le annualità successive, entro 30 giorni dalla scadenza dell'annualità precedente con il modello RLI; allo stesso modo si revoca.</p>
+      <h4>Vale anche per un negozio o un ufficio?</h4>
+      <p>No: la cedolare secca riguarda le locazioni abitative di persone fisiche fuori dall'esercizio d'impresa. Per i locali commerciali il regime ordinario è l'unica strada.</p>
+    </section>
+
+    <footer>
+      <div data-ad="bottom"></div>
+      <div data-support></div>
+      <p class="small">Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a> · Vedi anche <a href="../2026-09-21-rata-mutuo/">Rata del Mutuo</a> per il costo della casa e <a href="../2026-09-20-netto-da-lordo/">Netto da Lordo</a> per lo stipendio imponibile da inserire qui sopra.</p>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="../../assets/monetize.js"></script>
+<script>
+/* Modello dati: `S` tiene tutti gli input (canone + periodo, tipo di contratto, comune ad alta
+ * tensione abitativa, altri redditi, addizionali, quota di registro/bollo, detrazioni incapienti,
+ * adeguamento annuo) e l'elenco `immobili` salvati. `calcola(S)` restituisce le due colonne di
+ * imposte — cedolare e IRPEF ordinaria — voce per voce; tutto è ricalcolato a ogni modifica e
+ * salvato in localStorage sotto la chiave `cedolare-secca:v1`. Nessun dato lascia il dispositivo. */
+(() => {
+  "use strict";
+  const KEY = "cedolare-secca:v1";
+  const $ = (id) => document.getElementById(id);
+
+  // Aliquote IRPEF 2026: 23% fino a 28.000, 33% fino a 50.000, 43% oltre (L. 199/2025).
+  const SCAGLIONI = [[28000, 0.23], [50000, 0.33], [Infinity, 0.43]];
+  const BOLLO_TOT = 32;      // 16 € per copia, due copie
+  const REGISTRO_MIN = 67;   // solo sulla prima annualità
+  const ANNI_SIM = 4;
+
+  const S = {
+    canone: null, periodo: "mese", tipo: "libero", ata: false, altri: null,
+    reg: 1.7, com: 0.6, quota: 50, prima: true, detr: 0, istat: 1.5, immobili: [],
+  };
+
+  const eur = (n, dec) => new Intl.NumberFormat("it-IT", {
+    style: "currency", currency: "EUR",
+    minimumFractionDigits: dec === undefined ? 0 : dec, maximumFractionDigits: dec === undefined ? 0 : dec,
+  }).format(n);
+  const num = (v, min, max, def) => {
+    const n = parseFloat(String(v).replace(",", "."));
+    if (!Number.isFinite(n)) return def;
+    return Math.min(Math.max(n, min), max);
+  };
+
+  function irpefLorda(imponibile) {
+    let tot = 0, prec = 0;
+    for (const [limite, aliq] of SCAGLIONI) {
+      if (imponibile <= prec) break;
+      tot += (Math.min(imponibile, limite) - prec) * aliq;
+      prec = limite;
+    }
+    return tot;
+  }
+
+  // Calcolo dei due regimi su un canone annuo dato (usato anche dalla simulazione pluriennale).
+  function regimi(canoneAnnuo, s) {
+    const agev = s.tipo === "concordato" && s.ata;           // concordato in comune ad alta tensione
+    const aliqCed = agev ? 0.10 : 0.21;
+    const cedolare = canoneAnnuo * aliqCed;
+
+    const baseIrpef = canoneAnnuo * 0.95 * (agev ? 0.70 : 1);
+    const altri = s.altri || 0;
+    const irpefLordaDiff = irpefLorda(altri + baseIrpef) - irpefLorda(altri);
+    const detrUsate = Math.min(Math.max(s.detr, 0), irpefLordaDiff);
+    const irpef = irpefLordaDiff - detrUsate;
+    const addiz = baseIrpef * (s.reg + s.com) / 100;
+    let registroTot = canoneAnnuo * (agev ? 0.70 : 1) * 0.02;
+    if (s.prima) registroTot = Math.max(registroTot, REGISTRO_MIN);
+    const registro = registroTot * s.quota / 100;
+    const bollo = BOLLO_TOT * s.quota / 100;
+    const totIrpef = irpef + addiz + registro + bollo;
+
+    return {
+      canoneAnnuo, agev, aliqCed, cedolare, baseIrpef, irpefLordaDiff, detrUsate, irpef,
+      addiz, registro, bollo, totIrpef, diff: totIrpef - cedolare,
+    };
+  }
+
+  function calcola(s) {
+    const canoneAnnuo = s.periodo === "mese" ? (s.canone || 0) * 12 : (s.canone || 0);
+    return regimi(canoneAnnuo, s);
+  }
+
+  // ---------- rendering ----------
+  function render() {
+    const valido = S.canone > 0;
+    $("vuoto").hidden = valido;
+    $("ata-wrap").hidden = S.tipo !== "concordato";
+    $("canone-hint").textContent = S.periodo === "mese"
+      ? "Il canone lordo mensile pattuito nel contratto, spese condominiali escluse."
+      : "Il totale dei canoni dell'anno, spese condominiali escluse.";
+
+    const vecchio = document.getElementById("res-box");
+    if (vecchio) vecchio.remove();
+    if (!valido) { $("dettaglio").innerHTML = '<div class="empty">Compila il canone nella scheda Confronto.</div>'; $("anni").innerHTML = ""; renderImmobili(); return; }
+
+    const r = calcola(S);
+    const vinceCed = r.diff >= 0;
+    const risparmio = Math.abs(r.diff);
+    const box = document.createElement("div");
+    box.id = "res-box";
+    box.innerHTML =
+      '<div class="verdict">' +
+        '<span class="kicker">Su un canone di ' + eur(r.canoneAnnuo) + " l'anno</span>" +
+        "<strong>" + (vinceCed
+          ? (risparmio < 1 ? "I due regimi si equivalgono" : "Conviene la cedolare secca al " + (r.aliqCed * 100).toLocaleString("it-IT") + "%")
+          : "Conviene la tassazione IRPEF") + "</strong>" +
+        "<p>" + (risparmio < 1
+          ? "La differenza è inferiore a un euro: decidi in base all'adeguamento ISTAT e alle detrazioni."
+          : "Risparmi <strong>" + eur(risparmio) + "</strong> l'anno, cioè " + eur(risparmio * 4) + " su un contratto di quattro anni.") + "</p>" +
+      "</div>" +
+      '<div class="versus">' +
+        '<div class="tile' + (vinceCed ? " win" : "") + '"><span class="t">Cedolare secca</span><span class="v">' + eur(r.cedolare) + '</span><span class="s">' + (r.aliqCed * 100).toLocaleString("it-IT") + "% sul canone pieno · ti restano " + eur(r.canoneAnnuo - r.cedolare) + "</span></div>" +
+        '<div class="tile' + (!vinceCed ? " win" : "") + '"><span class="t">IRPEF ordinaria</span><span class="v">' + eur(r.totIrpef) + '</span><span class="s">imposte, addizionali e registro · ti restano ' + eur(r.canoneAnnuo - r.totIrpef) + "</span></div>" +
+      "</div>";
+    $("risultato").append(box);
+
+    renderDettaglio(r);
+    renderAnni();
+    renderImmobili();
+  }
+
+  function riga(dt, sub, dd, tot) {
+    return "<div" + (tot ? ' class="tot"' : "") + "><dt>" + dt + (sub ? "<small>" + sub + "</small>" : "") + "</dt><dd>" + dd + "</dd></div>";
+  }
+
+  function renderDettaglio(r) {
+    const perc = (S.reg + S.com).toLocaleString("it-IT", { maximumFractionDigits: 2 });
+    const html =
+      "<h2>Con la cedolare secca</h2><dl class='det'>" +
+        riga("Base imponibile", "il 100% del canone", eur(r.canoneAnnuo, 2)) +
+        riga("Imposta sostitutiva", "aliquota " + (r.aliqCed * 100).toLocaleString("it-IT") + "%", eur(r.cedolare, 2)) +
+        riga("Addizionali, registro, bollo", "sostituiti dalla cedolare", "0,00 €") +
+        riga("Totale imposte", "", eur(r.cedolare, 2), true) +
+      "</dl>" +
+      "<h2>Con l'IRPEF ordinaria</h2><dl class='det'>" +
+        riga("Base imponibile", r.agev ? "66,5% del canone (95% meno il 30% del concordato)" : "95% del canone", eur(r.baseIrpef, 2)) +
+        riga("IRPEF sul canone", "calcolata sugli scaglioni, sopra i tuoi altri redditi", eur(r.irpefLordaDiff, 2)) +
+        (r.detrUsate > 0 ? riga("Detrazioni recuperate", "che senza questo reddito perderesti", "− " + eur(r.detrUsate, 2)) : "") +
+        riga("Addizionali regionale e comunale", perc + "% sulla base imponibile", eur(r.addiz, 2)) +
+        riga("Imposta di registro", "2%" + (r.agev ? " sul 70% del canone" : "") + ", quota tua " + S.quota + "%", eur(r.registro, 2)) +
+        riga("Imposta di bollo", "32 € sul contratto, quota tua " + S.quota + "%", eur(r.bollo, 2)) +
+        riga("Totale imposte e oneri", "", eur(r.totIrpef, 2), true) +
+      "</dl>" +
+      "<p class='small'>Differenza a favore " + (r.diff >= 0 ? "della cedolare secca" : "dell'IRPEF") + ": <strong>" + eur(Math.abs(r.diff), 2) + "</strong> l'anno.</p>";
+    $("dettaglio").innerHTML = html;
+  }
+
+  // Pro: quattro anni di contratto. Con l'IRPEF il canone si adegua, con la cedolare resta fermo.
+  function renderAnni() {
+    if (!(S.canone > 0)) { $("anni").innerHTML = ""; return; }
+    const base = calcola(S).canoneAnnuo;
+    let righe = "", nettoCed = 0, nettoIrp = 0;
+    for (let i = 0; i < ANNI_SIM; i++) {
+      const canoneIrp = base * Math.pow(1 + S.istat / 100, i);
+      const rC = regimi(base, { ...S, prima: S.prima && i === 0 });
+      const rI = regimi(canoneIrp, { ...S, prima: S.prima && i === 0 });
+      const nC = base - rC.cedolare, nI = canoneIrp - rI.totIrpef;
+      nettoCed += nC; nettoIrp += nI;
+      righe += "<tr><td>Anno " + (i + 1) + "</td><td>" + eur(nC) + "</td><td>" + eur(nI) + "</td><td>" + (nC >= nI ? "+" : "−") + eur(Math.abs(nC - nI)) + "</td></tr>";
+    }
+    const vince = nettoCed >= nettoIrp;
+    $("anni").innerHTML =
+      "<table class='years'><thead><tr><th></th><th>Netto cedolare</th><th>Netto IRPEF</th><th>Differenza</th></tr></thead><tbody>" +
+      righe +
+      "<tr class='tot'><td>Totale</td><td>" + eur(nettoCed) + "</td><td>" + eur(nettoIrp) + "</td><td>" + (vince ? "+" : "−") + eur(Math.abs(nettoCed - nettoIrp)) + "</td></tr>" +
+      "</tbody></table>" +
+      "<p class='small'>Con un adeguamento del " + S.istat.toLocaleString("it-IT") + "% l'anno, su " + ANNI_SIM + " anni " +
+      (vince ? "la cedolare resta avanti di " : "l'IRPEF recupera e supera di ") + eur(Math.abs(nettoCed - nettoIrp)) + ".</p>";
+  }
+
+  function renderImmobili() {
+    const box = $("immobili");
+    if (!S.immobili.length) {
+      box.innerHTML = '<div class="empty">Nessun immobile salvato. Dalla scheda Confronto usa «Salva come immobile».</div>';
+      $("csv").disabled = true;
+      return;
+    }
+    $("csv").disabled = false;
+    let tot = 0, ris = 0;
+    const li = S.immobili.map((im, i) => {
+      const r = regimi(im.canoneAnnuo, im);
+      const migliore = Math.min(r.cedolare, r.totIrpef);
+      tot += migliore; ris += Math.abs(r.diff);
+      return "<li><span class='n'><b>" + escape(im.nome) + "</b><small>" + eur(im.canoneAnnuo) + " l'anno · " +
+        (r.diff >= 0 ? "cedolare al " + (r.aliqCed * 100).toLocaleString("it-IT") + "%" : "IRPEF") + "</small></span>" +
+        "<span class='a'>" + eur(migliore) + "</span>" +
+        "<button type='button' data-del='" + i + "' aria-label='Elimina " + escape(im.nome) + "'>✕</button></li>";
+    }).join("");
+    box.innerHTML = "<ul class='homes'>" + li + "</ul>" +
+      "<p class='small'>Totale imposte scegliendo ogni volta il regime migliore: <strong>" + eur(tot) + "</strong> l'anno. Rispetto alla scelta sbagliata risparmi <strong>" + eur(ris) + "</strong>.</p>";
+    box.querySelectorAll("button[data-del]").forEach((b) => b.addEventListener("click", () => {
+      S.immobili.splice(parseInt(b.dataset.del, 10), 1); salva(); render(); toast("Immobile eliminato");
+    }));
+  }
+
+  const escape = (t) => String(t).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+  // ---------- azioni ----------
+  let toastTimer = null;
+  function toast(msg) {
+    const t = $("toast");
+    t.textContent = msg; t.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove("show"), 2200);
+  }
+
+  function riepilogo() {
+    const r = calcola(S);
+    return [
+      "Cedolare secca o IRPEF — canone " + eur(r.canoneAnnuo) + " l'anno",
+      "Contratto: " + (S.tipo === "concordato" ? "canone concordato" + (S.ata ? " agevolato" : "") : "canone libero"),
+      "Cedolare secca (" + (r.aliqCed * 100).toLocaleString("it-IT") + "%): " + eur(r.cedolare, 2),
+      "IRPEF + addizionali + registro: " + eur(r.totIrpef, 2),
+      (r.diff >= 0 ? "Conviene la cedolare secca: risparmi " : "Conviene l'IRPEF: risparmi ") + eur(Math.abs(r.diff), 2) + " l'anno",
+    ].join("\n");
+  }
+
+  async function copia() {
+    const testo = riepilogo();
+    try {
+      if (navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(testo);
+      else {
+        const ta = document.createElement("textarea");
+        ta.value = testo; ta.style.position = "fixed"; ta.style.opacity = "0";
+        document.body.append(ta); ta.select(); document.execCommand("copy"); ta.remove();
+      }
+      toast("Riepilogo copiato");
+    } catch { toast("Copia non riuscita"); }
+  }
+
+  function scaricaCsv() {
+    const righe = [["Immobile", "Canone annuo", "Cedolare", "IRPEF", "Regime migliore", "Risparmio"]];
+    for (const im of S.immobili) {
+      const r = regimi(im.canoneAnnuo, im);
+      righe.push([im.nome, im.canoneAnnuo.toFixed(2), r.cedolare.toFixed(2), r.totIrpef.toFixed(2),
+        r.diff >= 0 ? "cedolare secca" : "IRPEF", Math.abs(r.diff).toFixed(2)]);
+    }
+    const csv = righe.map((r) => r.map((c) => '"' + String(c).replace(/"/g, '""') + '"').join(";")).join("\r\n");
+    const url = URL.createObjectURL(new Blob(["﻿" + csv], { type: "text/csv;charset=utf-8" }));
+    const a = document.createElement("a");
+    a.href = url; a.download = "immobili-cedolare-secca.csv";
+    document.body.append(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    toast("CSV scaricato");
+  }
+
+  // ---------- stato ----------
+  function salva() {
+    try { localStorage.setItem(KEY, JSON.stringify(S)); } catch { /* quota o modalità privata */ }
+  }
+  function carica() {
+    let dati = null;
+    try { dati = JSON.parse(localStorage.getItem(KEY) || "null"); } catch { dati = null; }
+    if (!dati || typeof dati !== "object") return;
+    for (const k of Object.keys(S)) if (dati[k] !== undefined && dati[k] !== null) S[k] = dati[k];
+    if (!Array.isArray(S.immobili)) S.immobili = [];
+  }
+
+  function leggiForm() {
+    S.canone = $("canone").value === "" ? null : num($("canone").value, 0, 2000000, null);
+    S.altri = $("altri").value === "" ? null : num($("altri").value, 0, 2000000, null);
+    S.reg = num($("reg").value, 0, 10, 0);
+    S.com = num($("com").value, 0, 10, 0);
+    S.quota = num($("quota").value, 0, 100, 50);
+    S.detr = num($("detr").value, 0, 200000, 0);
+    S.istat = num($("istat").value, 0, 20, 0);
+    S.prima = $("prima").checked;
+    S.ata = $("ata").checked;
+    const e = [];
+    if ($("canone").value !== "" && !(S.canone > 0)) e.push("Il canone deve essere un numero maggiore di zero.");
+    if ($("altri").value !== "" && S.altri === null) e.push("Gli altri redditi devono essere un numero.");
+    $("err").textContent = e.join(" ");
+    salva(); render();
+  }
+
+  function scriviForm() {
+    $("canone").value = S.canone === null ? "" : S.canone;
+    $("altri").value = S.altri === null ? "" : S.altri;
+    $("reg").value = S.reg; $("com").value = S.com; $("quota").value = S.quota;
+    $("detr").value = S.detr; $("istat").value = S.istat;
+    $("prima").checked = S.prima; $("ata").checked = S.ata;
+    $("per-mese").setAttribute("aria-pressed", String(S.periodo === "mese"));
+    $("per-anno").setAttribute("aria-pressed", String(S.periodo === "anno"));
+    $("tipo-libero").setAttribute("aria-pressed", String(S.tipo === "libero"));
+    $("tipo-concordato").setAttribute("aria-pressed", String(S.tipo === "concordato"));
+  }
+
+  // ---------- tab ----------
+  const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+  function apriTab(nome) {
+    for (const t of tabs) {
+      const attivo = t.dataset.tab === nome;
+      t.setAttribute("aria-selected", String(attivo));
+      t.tabIndex = attivo ? 0 : -1;
+      document.getElementById("pan-" + t.dataset.tab).hidden = !attivo;
+    }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+  tabs.forEach((t, i) => {
+    t.addEventListener("click", () => apriTab(t.dataset.tab));
+    t.addEventListener("keydown", (ev) => {
+      const d = ev.key === "ArrowRight" ? 1 : ev.key === "ArrowLeft" ? -1 : 0;
+      if (!d) return;
+      ev.preventDefault();
+      const n = tabs[(i + d + tabs.length) % tabs.length];
+      n.focus(); apriTab(n.dataset.tab);
+    });
+  });
+
+  // ---------- eventi ----------
+  for (const f of [$("form"), $("form-adv")]) {
+    f.addEventListener("input", leggiForm);
+    f.addEventListener("change", leggiForm);
+    f.addEventListener("submit", (e) => e.preventDefault());
+    f.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && e.target.tagName === "INPUT") { e.preventDefault(); e.target.blur(); }
+      if (e.key === "Escape" && e.target.tagName === "INPUT") { e.target.value = ""; leggiForm(); }
+    });
+  }
+  $("per-mese").addEventListener("click", () => { S.periodo = "mese"; scriviForm(); salva(); render(); });
+  $("per-anno").addEventListener("click", () => { S.periodo = "anno"; scriviForm(); salva(); render(); });
+  $("tipo-libero").addEventListener("click", () => { S.tipo = "libero"; scriviForm(); salva(); render(); });
+  $("tipo-concordato").addEventListener("click", () => { S.tipo = "concordato"; scriviForm(); salva(); render(); });
+  $("copia").addEventListener("click", () => { if (S.canone > 0) copia(); else toast("Inserisci prima il canone"); });
+  $("csv").addEventListener("click", scaricaCsv);
+  $("salva").addEventListener("click", () => {
+    if (!(S.canone > 0)) { toast("Inserisci prima il canone"); return; }
+    const r = calcola(S);
+    const nome = "Immobile " + (S.immobili.length + 1) + " · " + eur(r.canoneAnnuo);
+    S.immobili.push({
+      nome, canoneAnnuo: r.canoneAnnuo, tipo: S.tipo, ata: S.ata, altri: S.altri,
+      reg: S.reg, com: S.com, quota: S.quota, prima: S.prima, detr: S.detr,
+    });
+    salva(); render(); apriTab("immobili"); toast("Immobile salvato");
+  });
+
+  carica();
+  scriviForm();
+  render();
+})();
+</script>
+</body>
+</html>

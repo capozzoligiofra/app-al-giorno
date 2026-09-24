@@ -1,7 +1,7 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 12,
+  "count": 13,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -50,6 +50,52 @@ window.__APPS__ = {
     ]
   },
   "apps": [
+    {
+      "title": "Cedolare Secca o IRPEF",
+      "slug": "2026-09-24-cedolare-secca-o-irpef",
+      "date": "2026-09-24",
+      "description": "Scopri se conviene la cedolare secca o l'IRPEF sul tuo affitto: addizionali, imposta di registro, bollo e detrazioni a confronto.",
+      "category": "finanza-personale",
+      "tags": [
+        "affitto",
+        "tasse",
+        "casa",
+        "irpef"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "tabs",
+        "palette": "terracotta",
+        "font": "serif-editoriale"
+      },
+      "business": {
+        "keyword": "conviene la cedolare secca",
+        "keywords": [
+          "cedolare secca o irpef",
+          "calcolo cedolare secca 2026",
+          "quanto si paga di tasse sull'affitto",
+          "cedolare secca 10 o 21"
+        ],
+        "intent": "Chi affitta casa e deve decidere entro la registrazione (o la proroga) del contratto quale regime scegliere, e vuole il numero in euro, non un articolo.",
+        "target": "Proprietari che affittano una o due case, 35-70 anni, spesso da telefono mentre parlano con l'agenzia o con il CAF.",
+        "edge": "Calcola l'IRPEF davvero incrementale scaglione per scaglione (non l'aliquota marginale piatta), aggiunge addizionali, registro e bollo, e tiene conto delle detrazioni che si perderebbero per incapienza: nessun altro lo fa. Zero registrazione, funziona offline.",
+        "monetization": [
+          "adsense",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Simulazione a 4 anni con adeguamento ISTAT",
+          "Confronto tra più immobili con export CSV"
+        ],
+        "affiliate": []
+      },
+      "size": 45560
+    },
     {
       "title": "Giorni Lavorativi",
       "slug": "2026-09-22-giorni-lavorativi",
