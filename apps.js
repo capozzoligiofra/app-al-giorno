@@ -1,7 +1,7 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 13,
+  "count": 14,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -50,6 +50,52 @@ window.__APPS__ = {
     ]
   },
   "apps": [
+    {
+      "title": "Bollo Auto",
+      "slug": "2026-09-25-calcolo-bollo-auto",
+      "date": "2026-09-25",
+      "description": "Calcola il bollo auto da kW, classe Euro e regione: importo esatto, superbollo, esenzioni e data entro cui pagare.",
+      "category": "calcolatori-convertitori",
+      "tags": [
+        "auto",
+        "tasse",
+        "bollo",
+        "regioni"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "wizard",
+        "palette": "giallo-senape",
+        "font": "sans-geometrico"
+      },
+      "business": {
+        "keyword": "calcolo bollo auto",
+        "keywords": [
+          "quanto costa il bollo auto",
+          "bollo auto 2026 per regione",
+          "calcolo bollo auto kw",
+          "superbollo auto calcolo"
+        ],
+        "intent": "Chi ha in mano il libretto (o sta per comprare un'auto usata) e vuole sapere in trenta secondi quanto paga di bollo e entro quando, senza targa e senza registrarsi.",
+        "target": "Automobilisti di ogni età, in larga parte da telefono, spesso mentre valutano un usato o ricevono un promemoria di scadenza.",
+        "edge": "Non chiede la targa né dati personali: bastano kW e classe Euro. Copre le tariffe proprie di Piemonte, Toscana, Trento e Bolzano, l'arrotondamento all'euro, superbollo, esenzioni e la data di scadenza, e lascia correggere la tariffa se la Regione l'ha aggiornata.",
+        "monetization": [
+          "adsense",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Garage con più veicoli e scadenze",
+          "Confronto del bollo in tutte le regioni"
+        ],
+        "affiliate": []
+      },
+      "size": 50901
+    },
     {
       "title": "Cedolare Secca o IRPEF",
       "slug": "2026-09-24-cedolare-secca-o-irpef",

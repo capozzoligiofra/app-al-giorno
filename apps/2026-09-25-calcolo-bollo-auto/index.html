@@ -1,0 +1,858 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#a07800">
+  <title>Bollo Auto: calcolo bollo auto 2026 per regione</title>
+  <meta name="description" content="Calcolo bollo auto 2026: metti kW, classe Euro e regione e sai subito quanto paghi, con superbollo, esenzioni e la data entro cui versare.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-25-calcolo-bollo-auto/">
+  <meta property="og:title" content="Bollo Auto: calcolo bollo auto 2026 per regione">
+  <meta property="og:description" content="Tre passi: potenza in kW, classe Euro, regione. Ottieni l'importo esatto del bollo, l'eventuale superbollo e la scadenza del pagamento.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-25-calcolo-bollo-auto/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Bollo Auto",
+    "description": "Calcolatore gratuito del bollo auto: importo annuo per kW, classe Euro e regione, con superbollo, esenzioni per elettriche e veicoli storici e data di scadenza del pagamento.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-25-calcolo-bollo-auto/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Dove trovo i kW e la classe Euro della mia auto?", "acceptedAnswer": { "@type": "Answer", "text": "Sulla carta di circolazione. I kW sono al punto P.2 (la potenza massima del motore); i cavalli fiscali non servono. La classe Euro si legge al punto V.9 oppure nelle annotazioni, dove compare la direttiva europea di omologazione: se trovi solo la direttiva, l'anno di immatricolazione aiuta a collocarla (Euro 4 dal 2006, Euro 5 dal 2011, Euro 6 dal 2015)." } },
+      { "@type": "Question", "name": "Perché il bollo costa di più in alcune regioni?", "acceptedAnswer": { "@type": "Answer", "text": "Perché la tassa automobilistica è un tributo regionale: lo Stato fissa la tariffa base per kW e ogni Regione può aumentarla o ridurla entro i limiti di legge. Con la stessa auto Euro 6 da 110 kW si passa da circa 297 euro dove si applica la tariffa base a circa 359 euro in Campania o Abruzzo, mentre a Trento e Bolzano si scende sotto i 230 euro." } },
+      { "@type": "Question", "name": "Quando scade il bollo auto?", "acceptedAnswer": { "@type": "Answer", "text": "Il bollo vale dodici mesi e scade alla fine del mese in cui era scaduto quello precedente; il pagamento si può fare entro l'ultimo giorno del mese successivo. Se il bollo scade a settembre, quindi, hai tempo fino al 31 ottobre. Per un'auto appena immatricolata il primo pagamento va fatto nel mese di immatricolazione, o nel mese dopo se l'immatricolazione è avvenuta negli ultimi dieci giorni." } },
+      { "@type": "Question", "name": "Le auto elettriche e ibride pagano il bollo?", "acceptedAnswer": { "@type": "Answer", "text": "Le elettriche sono esenti per cinque anni dall'immatricolazione in tutta Italia; in Lombardia e in Piemonte l'esenzione è permanente, mentre altrove dopo il quinto anno quasi tutte le Regioni chiedono un quarto della tariffa ordinaria. Per le ibride non esiste una regola unica: diverse Regioni concedono tre o cinque anni di esenzione o uno sconto, altre nulla." } },
+      { "@type": "Question", "name": "Cosa succede se pago il bollo in ritardo?", "acceptedAnswer": { "@type": "Answer", "text": "Non paghi subito la sanzione piena del 25%: con il ravvedimento operoso versi l'imposta più una sanzione ridotta che cresce con i giorni di ritardo, più gli interessi legali (1,60% annuo nel 2026). Nei primi quattordici giorni la sanzione è una frazione di punto percentuale al giorno, quindi conviene rimediare in fretta: superato l'anno la riduzione si assottiglia e arriva l'avviso di accertamento della Regione." } }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #fdfaf2; --surface: #fff; --text: #262214; --muted: #6d6550; --line: #e7dcc1;
+      --accent: #8a6a00; --accent-ink: #fff; --soft: #f7edd4; --ok: #2c6b46; --warn: #9a4b12;
+      --r: 14px;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #14130d; --surface: #1e1c14; --text: #f3ecda; --muted: #a79e86; --line: #35311f;
+        --accent: #e5bb4a; --accent-ink: #201903; --soft: #29240f; --ok: #77c89b; --warn: #f0a96b;
+        color-scheme: dark;
+      }
+    }
+    * { box-sizing: border-box; }
+    html, body { overflow-x: hidden; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font: 17px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      padding-bottom: calc(96px + env(safe-area-inset-bottom));
+    }
+    .wrap { max-width: 720px; margin: 0 auto; padding: max(12px, env(safe-area-inset-top)) 16px 28px; }
+    a { color: var(--accent); }
+    .back { display: inline-block; min-height: 44px; line-height: 44px; text-decoration: none; font-weight: 600; }
+    h1 { font-size: 1.62rem; line-height: 1.2; margin: .2rem 0 .3rem; letter-spacing: -.02em; }
+    h2 { font-size: 1.22rem; margin: 1.6rem 0 .5rem; letter-spacing: -.01em; }
+    h3 { font-size: 1.05rem; margin: 1.2rem 0 .3rem; }
+    .lead { margin: 0 0 1rem; color: var(--muted); }
+
+    /* ---- passi del wizard ---- */
+    .steps { display: flex; gap: 6px; margin: 0 0 14px; padding: 0; list-style: none; }
+    .steps li { flex: 1; }
+    .steps button {
+      width: 100%; font: inherit; font-size: .84rem; font-weight: 700; cursor: pointer;
+      min-height: 44px; padding: 6px 4px 8px; border: 0; border-top: 4px solid var(--line);
+      background: transparent; color: var(--muted); text-align: left; border-radius: 0;
+    }
+    .steps button[aria-current="step"] { color: var(--text); border-top-color: var(--accent); }
+    .steps .n { display: block; font-size: .72rem; opacity: .75; font-weight: 600; }
+
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 16px; margin: 0 0 14px; }
+    .field { margin: 0 0 18px; }
+    .field:last-child { margin-bottom: 0; }
+    .lbl { display: block; font-weight: 700; font-size: .96rem; margin: 0 0 6px; }
+    .hint { margin: 6px 0 0; font-size: .86rem; color: var(--muted); }
+    input[type="number"], input[type="text"], select {
+      font: inherit; font-size: 17px; width: 100%; min-height: 50px; padding: 10px 12px;
+      border: 1.5px solid var(--line); border-radius: 10px; background: var(--bg); color: var(--text);
+    }
+    input:focus-visible, select:focus-visible, button:focus-visible {
+      outline: 3px solid var(--accent); outline-offset: 2px;
+    }
+    .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: end; }
+    .pair .sep { display: none; text-align: center; color: var(--muted); font-size: .86rem; padding-bottom: 14px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chips label {
+      display: inline-flex; align-items: center; min-height: 44px; padding: 8px 14px;
+      border: 1.5px solid var(--line); border-radius: 999px; background: var(--surface);
+      font-size: .94rem; font-weight: 600; cursor: pointer;
+    }
+    .chips input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .chips label:has(input:checked) { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+    .chips label:has(input:focus-visible) { outline: 3px solid var(--accent); outline-offset: 2px; }
+    .check { display: flex; gap: 10px; align-items: flex-start; min-height: 44px; }
+    .check input { width: 22px; height: 22px; margin-top: 12px; accent-color: var(--accent); flex: none; }
+
+    .btn {
+      font: inherit; font-weight: 700; min-height: 50px; padding: 12px 20px; border-radius: 999px;
+      border: 1.5px solid var(--accent); background: var(--accent); color: var(--accent-ink); cursor: pointer;
+    }
+    .btn.ghost { background: transparent; color: var(--text); border-color: var(--line); }
+    .btn[disabled] { opacity: .5; cursor: not-allowed; }
+    .btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+
+    /* ---- risultato ---- */
+    .esito { border: 2px solid var(--accent); border-radius: var(--r); background: var(--soft); padding: 18px 16px; }
+    .esito .k { font-size: .9rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+    .cifra { font-size: 2.8rem; font-weight: 800; line-height: 1.05; margin: 4px 0 2px; letter-spacing: -.03em; }
+    .sotto { color: var(--muted); font-size: .95rem; margin: 0; }
+    .righe { list-style: none; margin: 14px 0 0; padding: 0; }
+    .righe li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2px 12px; padding: 9px 0; border-top: 1px solid var(--line); font-size: .96rem; }
+    .righe li span:first-child { color: var(--muted); }
+    .righe li span:last-child { font-weight: 700; margin-left: auto; text-align: right; }
+    .note { margin: 12px 0 0; padding: 0; list-style: none; }
+    .note li { position: relative; padding-left: 20px; margin: 8px 0; font-size: .92rem; color: var(--muted); }
+    .note li::before { content: "•"; position: absolute; left: 6px; color: var(--accent); font-weight: 700; }
+    .note li.hi { color: var(--text); }
+    .avviso { margin: 0 0 14px; padding: 12px 14px; border-radius: 10px; background: var(--soft); border: 1.5px solid var(--warn); font-size: .94rem; }
+    details.tarif { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 10px; }
+    details.tarif summary { cursor: pointer; font-weight: 700; font-size: .92rem; min-height: 44px; display: flex; align-items: center; }
+    .toast { min-height: 1.3em; margin: 10px 0 0; font-size: .92rem; color: var(--ok); font-weight: 600; }
+
+    /* ---- barra fissa in basso ---- */
+    .barra {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 5;
+      background: var(--surface); border-top: 1px solid var(--line);
+      padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+      display: flex; align-items: center; gap: 12px;
+    }
+    .barra .stima { flex: 1; min-width: 0; line-height: 1.2; }
+    .barra .stima b { display: block; font-size: 1.22rem; }
+    .barra .stima small { color: var(--muted); font-size: .8rem; }
+    .barra .btn { flex: none; }
+
+    /* ---- Pro ---- */
+    .pro-badge {
+      display: inline-block; font-size: .72rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+      background: var(--accent); color: var(--accent-ink); border-radius: 999px; padding: 3px 10px; margin-bottom: 6px;
+    }
+    section[data-pro] { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 16px; margin: 14px 0; }
+    .garage { list-style: none; margin: 12px 0 0; padding: 0; }
+    .garage li { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; display: flex; gap: 10px; align-items: center; }
+    .garage .info { flex: 1; min-width: 0; }
+    .garage .info b { display: block; }
+    .garage .info small { color: var(--muted); font-size: .84rem; }
+    .garage .imp { font-weight: 800; white-space: nowrap; }
+    .garage .del { font: inherit; border: 0; background: transparent; color: var(--muted); cursor: pointer; min-width: 44px; min-height: 44px; font-size: 1.1rem; }
+    .classifica { list-style: none; margin: 12px 0 0; padding: 0; }
+    .classifica li { display: flex; justify-content: space-between; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: .95rem; }
+    .classifica li.mia { font-weight: 800; color: var(--accent); }
+    .classifica li b { white-space: nowrap; }
+    .vuoto { color: var(--muted); font-size: .93rem; margin: 10px 0 0; }
+
+    /* ---- guida ---- */
+    .guida { margin-top: 26px; }
+    .guida p, .guida li { font-size: 1.02rem; }
+    .guida ul { padding-left: 1.2rem; }
+    .guida li { margin: .4rem 0; }
+    .src { font-size: .86rem; color: var(--muted); border-left: 3px solid var(--line); padding-left: 12px; }
+    .small { font-size: .88rem; color: var(--muted); }
+
+    @media (min-width: 700px) {
+      body { padding-bottom: 32px; }
+      .wrap { padding-top: 24px; }
+      h1 { font-size: 2.1rem; }
+      .cifra { font-size: 3.4rem; }
+      .barra { position: static; border: 1px solid var(--line); border-radius: 999px; padding: 10px 14px; margin-top: 14px; }
+      .pair { grid-template-columns: 1fr auto 1fr; }
+      .pair .sep { display: block; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <p style="margin:0"><a class="back" href="../../index.html">← Tutte le app</a></p>
+
+  <h1>Calcolo bollo auto 2026</h1>
+  <p class="lead">Potenza, classe Euro, regione: in tre passi sai quanto paghi e entro quando.</p>
+
+  <ol class="steps" id="steps">
+    <li><button type="button" data-go="1" aria-current="step"><span class="n">Passo 1</span>Il veicolo</button></li>
+    <li><button type="button" data-go="2"><span class="n">Passo 2</span>La regione</button></li>
+    <li><button type="button" data-go="3"><span class="n">Passo 3</span>Quanto paghi</button></li>
+  </ol>
+
+  <form id="form" autocomplete="off">
+    <!-- PASSO 1 -->
+    <section class="card" id="p1" aria-label="Dati del veicolo">
+      <div class="field">
+        <span class="lbl" id="lbl-um">Potenza del motore</span>
+        <div class="chips" role="group" aria-labelledby="lbl-um" style="margin-bottom:10px">
+          <label><input type="radio" name="um" value="kw" checked>kW</label>
+          <label><input type="radio" name="um" value="cv">Cavalli (CV)</label>
+        </div>
+        <input type="text" id="pot" inputmode="decimal" maxlength="6" placeholder="es. 110" enterkeyhint="next" aria-describedby="pot-hint">
+        <p class="hint" id="pot-hint">I kW sono al punto <strong>P.2</strong> della carta di circolazione. Se hai solo i cavalli, cambia unità qui sopra: converto io.</p>
+      </div>
+
+      <div class="field">
+        <label class="lbl" for="euro">Classe Euro</label>
+        <select id="euro">
+          <option value="6" selected>Euro 6 (dal 2015)</option>
+          <option value="5">Euro 5 (2011 – 2015)</option>
+          <option value="4">Euro 4 (2006 – 2010)</option>
+          <option value="3">Euro 3 (2001 – 2005)</option>
+          <option value="2">Euro 2 (1997 – 2000)</option>
+          <option value="1">Euro 1 (1993 – 1996)</option>
+          <option value="0">Euro 0 (fino al 1992)</option>
+        </select>
+        <p class="hint">Sul libretto è al punto <strong>V.9</strong>, oppure fra le annotazioni come direttiva europea di omologazione.</p>
+      </div>
+
+      <div class="field">
+        <span class="lbl" id="lbl-alim">Alimentazione</span>
+        <div class="chips" role="group" aria-labelledby="lbl-alim">
+          <label><input type="radio" name="alim" value="termica" checked>Benzina o diesel</label>
+          <label><input type="radio" name="alim" value="ibrida">Ibrida</label>
+          <label><input type="radio" name="alim" value="elettrica">Elettrica</label>
+          <label><input type="radio" name="alim" value="gas">Solo GPL o metano</label>
+        </div>
+      </div>
+    </section>
+
+    <!-- PASSO 2 -->
+    <section class="card" id="p2" aria-label="Regione e date" hidden>
+      <div class="field">
+        <label class="lbl" for="reg">Regione di residenza del proprietario</label>
+        <select id="reg"></select>
+        <p class="hint">Conta dove risiedi tu, non dove è stata immatricolata l'auto.</p>
+      </div>
+
+      <div class="field">
+        <span class="lbl" id="lbl-imm">Prima immatricolazione</span>
+        <div class="pair">
+          <label><span class="hint" style="margin:0 0 4px">Mese</span>
+            <select id="mese-imm" aria-labelledby="lbl-imm"></select></label>
+          <span class="sep" aria-hidden="true">del</span>
+          <label><span class="hint" style="margin:0 0 4px">Anno</span>
+            <input type="number" id="anno-imm" inputmode="numeric" min="1900" max="2026" step="1" placeholder="es. 2019" enterkeyhint="done" aria-labelledby="lbl-imm"></label>
+        </div>
+        <p class="hint">Serve per il superbollo, per le esenzioni delle elettriche e per i veicoli storici. La trovi al punto <strong>B</strong> del libretto.</p>
+      </div>
+
+      <div class="field">
+        <label class="lbl" for="mese-scad">Mese in cui scade il bollo</label>
+        <select id="mese-scad"></select>
+        <p class="hint">Di solito coincide con il mese di immatricolazione. Se il tuo bollo scade in un altro mese, correggilo qui.</p>
+      </div>
+
+      <div class="field" id="wrap-storico" hidden>
+        <label class="check"><input type="checkbox" id="storico">
+          <span><strong>Veicolo di interesse storico</strong><br><span class="hint" style="margin:0">Iscritto a un registro (ASI, Storico Lancia, Italiano Fiat, Alfa Romeo, FMI) con certificato di rilevanza storica.</span></span></label>
+      </div>
+    </section>
+
+    <!-- PASSO 3 -->
+    <section id="p3" aria-label="Risultato del calcolo" hidden>
+      <div class="avviso" id="avviso" hidden role="status"></div>
+
+      <div class="esito" aria-live="polite">
+        <span class="k" id="esito-k">Bollo da pagare</span>
+        <p class="cifra" id="cifra">—</p>
+        <p class="sotto" id="sotto">Compila il passo 1 per vedere l'importo.</p>
+        <ul class="righe" id="righe"></ul>
+        <ul class="note" id="note"></ul>
+
+        <details class="tarif" id="tarif">
+          <summary>Tariffa applicata: <span id="tarif-txt">—</span></summary>
+          <p class="hint">Le Regioni possono aggiornare le tariffe ogni anno. Se sul tariffario della tua trovi un importo diverso, scrivilo qui e il calcolo si adegua.</p>
+          <div class="pair">
+            <label><span class="hint" style="margin:0 0 4px">€/kW fino a 100 kW</span>
+              <input type="text" id="t1" inputmode="decimal" maxlength="6" placeholder="auto"></label>
+            <span class="sep" aria-hidden="true"> </span>
+            <label><span class="hint" style="margin:0 0 4px">€/kW oltre i 100 kW</span>
+              <input type="text" id="t2" inputmode="decimal" maxlength="6" placeholder="auto"></label>
+          </div>
+        </details>
+      </div>
+
+      <div class="btns">
+        <button type="button" class="btn ghost" id="copia">Copia il riepilogo</button>
+        <button type="button" class="btn ghost" id="azzera">Ricomincia</button>
+      </div>
+      <p class="toast" id="toast" role="status"></p>
+    </section>
+  </form>
+
+  <div data-ad="top"></div>
+
+  <section data-pro="Garage con più veicoli e scadenze">
+    <span class="pro-badge">Pro</span>
+    <h2 style="margin-top:0">Il tuo garage</h2>
+    <p class="small">Salva auto, moto e furgone di casa: ritrovi ogni importo e soprattutto la prossima scadenza, ordinata dalla più vicina. Tutto resta sul tuo telefono, niente account.</p>
+    <div class="pair" style="grid-template-columns:1fr">
+      <label><span class="hint" style="margin:0 0 4px">Nome del veicolo</span>
+        <input type="text" id="g-nome" maxlength="30" placeholder="es. Panda di Marta" enterkeyhint="done"></label>
+    </div>
+    <div class="btns">
+      <button type="button" class="btn" id="g-salva">Salva questo veicolo</button>
+      <button type="button" class="btn ghost" id="g-csv">Scarica CSV</button>
+    </div>
+    <ul class="garage" id="g-lista"></ul>
+    <p class="vuoto" id="g-vuoto">Nessun veicolo salvato: compila il calcolo qui sopra e premi «Salva questo veicolo».</p>
+  </section>
+
+  <section data-pro="Confronto del bollo in tutte le regioni">
+    <span class="pro-badge">Pro</span>
+    <h2 style="margin-top:0">Quanto pagheresti nelle altre regioni</h2>
+    <p class="small">Lo stesso veicolo, le venti tariffe regionali a confronto: serve a chi sta per cambiare residenza o vuole capire quanto pesa la sua Regione.</p>
+    <ul class="classifica" id="confronto"></ul>
+    <p class="vuoto" id="c-vuoto">Inserisci potenza e classe Euro per vedere il confronto.</p>
+  </section>
+
+  <section id="guida" class="guida">
+    <h2>Come si calcola il bollo auto</h2>
+    <p>Il bollo auto — il cui nome esatto è tassa automobilistica — non si paga sul valore dell'auto né sui chilometri percorsi, ma sulla <strong>potenza del motore espressa in kilowatt</strong> e sulla <strong>classe Euro</strong> di omologazione. Il calcolo bollo auto parte da una tariffa in euro per ogni kW: più l'auto è potente e più la sua omologazione è vecchia, più quella tariffa sale. Sopra i 100 kW scatta poi una seconda tariffa, più alta, che si applica solo ai kW eccedenti: un'auto da 110 kW non paga 110 kW al prezzo maggiorato, ma 100 kW alla tariffa base e 10 kW a quella superiore.</p>
+    <p>L'ultimo ingrediente è la Regione. La tassa automobilistica è un tributo regionale: lo Stato fissa gli importi di riferimento, ma ogni Regione può ritoccarli, e conta la <strong>residenza del proprietario</strong> al momento della scadenza, non il luogo di immatricolazione. Ecco perché due vicini di casa che hanno traslocato da regioni diverse trovano cifre diverse per la stessa identica utilitaria. L'importo finale, infine, si arrotonda all'euro.</p>
+
+    <h3>Un esempio con i numeri</h3>
+    <p>Prendiamo una berlina Euro 6 a benzina da 110 kW, immatricolata nel 2019. Dove si applica la tariffa di riferimento (per esempio in Lombardia, Marche o Puglia) il conto è: 100 kW × 2,58 € = 258,00 € più 10 kW × 3,87 € = 38,70 €, cioè 296,70 €, che arrotondati fanno <strong>297 euro</strong> all'anno. La stessa auto in Lazio, Liguria, Veneto, Calabria o Emilia-Romagna, dove la tariffa è maggiorata del 10%, costa 100 × 2,84 + 10 × 4,26 = 326,60 €, cioè 327 euro. In Campania o in Abruzzo si sale a 100 × 3,12 + 10 × 4,68 = 358,80 €, cioè 359 euro: sessantadue euro l'anno in più della prima ipotesi, per la stessa macchina. A Trento e a Bolzano, che applicano tariffe ridotte sulle classi recenti, la stessa berlina scende a 225 euro.</p>
+
+    <h3>Quando si paga e cosa succede se sei in ritardo</h3>
+    <p>Il bollo copre dodici mesi e va rinnovato entro l'ultimo giorno del <strong>mese successivo</strong> a quello di scadenza: se scade a settembre, il termine per pagare è il 31 ottobre. Per un'auto nuova il primo versamento si fa nel mese di immatricolazione, con la proroga al mese dopo se l'immatricolazione cade negli ultimi dieci giorni. Chi salta la scadenza non paga per forza la sanzione piena del 25%: con il ravvedimento operoso si versa l'imposta più una sanzione ridotta, che nei primi quattordici giorni è una frazione di punto percentuale per ogni giorno di ritardo e cresce a scaglioni fino a un anno, più gli interessi legali (1,60% annuo nel 2026). Dopo, arriva l'avviso di accertamento della Regione, con sanzione piena e possibile fermo amministrativo.</p>
+
+    <h3>Chi non paga il bollo, o lo paga ridotto</h3>
+    <ul>
+      <li><strong>Auto elettriche</strong>: esenti per cinque anni dall'immatricolazione in tutta Italia. In Lombardia e in Piemonte l'esenzione è a vita; altrove, dal sesto anno, quasi tutte le Regioni chiedono un quarto della tariffa ordinaria.</li>
+      <li><strong>Veicoli a GPL o metano in via esclusiva</strong>: la gran parte delle Regioni applica un quarto della tariffa. Il doppio impianto benzina-GPL, invece, di norma paga per intero.</li>
+      <li><strong>Veicoli ultratrentennali</strong>: esenti dalla tassa automobilistica; se circolano pagano una tassa di circolazione forfettaria di 28,40 euro l'anno (11,36 euro per i motoveicoli).</li>
+      <li><strong>Veicoli tra i 20 e i 29 anni</strong> con certificato di rilevanza storica rilasciato da un registro riconosciuto: molte Regioni riducono l'importo del 50%, ma non tutte.</li>
+      <li><strong>Persone con disabilità</strong>: esenzione totale per i veicoli intestati (o al familiare che ha la persona a carico) nei casi previsti dalla legge 104, entro i limiti di cilindrata di 2.000 cc a benzina e 2.800 cc a diesel.</li>
+    </ul>
+
+    <h3>Il superbollo sopra i 185 kW</h3>
+    <p>Oltre al bollo regionale, le auto con più di 185 kW (circa 252 CV) pagano allo Stato un'addizionale erariale di 20 euro per ogni kW eccedente. L'importo cala con l'età del veicolo: 12 euro per kW dopo cinque anni dalla costruzione, 6 euro dopo dieci, 3 euro dopo quindici, zero dopo venti. Su una sportiva da 220 kW immatricolata da poco significano 35 kW × 20 € = 700 euro in più ogni anno; sulla stessa auto con dodici anni sulle spalle restano 210 euro.</p>
+
+    <h3>Errori comuni</h3>
+    <ul>
+      <li><strong>Usare i cavalli invece dei kW.</strong> La tariffa è per kilowatt: 1 kW vale circa 1,36 CV. Con i CV al posto dei kW il risultato è gonfiato di un terzo abbondante.</li>
+      <li><strong>Applicare la tariffa maggiorata a tutti i kW.</strong> Sopra i 100 kW la tariffa alta vale solo per l'eccedenza.</li>
+      <li><strong>Calcolare sulla regione di immatricolazione.</strong> Se ti sei trasferito, il bollo segue la tua nuova residenza già dalla prima scadenza utile.</li>
+      <li><strong>Credere che vendendo l'auto a metà anno si recuperi qualcosa.</strong> Il bollo non si rimborsa pro quota: se hai pagato, hai pagato per dodici mesi.</li>
+      <li><strong>Dimenticare la classe Euro effettiva.</strong> Molte auto immatricolate a cavallo di un cambio di normativa sono omologate nella classe precedente: controlla il libretto, non l'anno.</li>
+    </ul>
+
+    <h2>Domande frequenti</h2>
+    <h3>Dove trovo i kW e la classe Euro della mia auto?</h3>
+    <p>Sulla carta di circolazione: i kW sono al punto P.2, la classe Euro al punto V.9 o nelle annotazioni, dove compare la direttiva europea di omologazione. Se leggi solo la direttiva, l'anno di immatricolazione aiuta a collocarla, ma in caso di dubbio vale sempre quanto scritto sul libretto.</p>
+    <h3>Perché il bollo costa di più in alcune regioni?</h3>
+    <p>Perché ogni Regione decide la propria tariffa entro i limiti fissati dallo Stato. Con il confronto Pro qui sopra vedi lo stesso veicolo in tutte le regioni, dalla più economica alla più cara.</p>
+    <h3>Quando scade il bollo auto?</h3>
+    <p>Alla fine del mese in cui scadeva il precedente, con un mese di tempo per pagare. Il calcolatore ti dice la data esatta entro cui versare, e con il garage Pro tieni insieme le scadenze di più veicoli.</p>
+    <h3>Le auto elettriche e ibride pagano il bollo?</h3>
+    <p>Le elettriche no per i primi cinque anni, e in Lombardia e Piemonte mai. Per le ibride dipende dalla Regione: alcune concedono tre o cinque anni di esenzione, altre uno sconto, altre ancora nulla; qui l'importo mostrato è quello pieno, così non hai sorprese al contrario.</p>
+    <h3>Il calcolo vale anche per moto e furgoni?</h3>
+    <p>No: questo strumento è tarato sulle autovetture (categoria M1). Motocicli e autocarri seguono tabelle diverse, basate su cilindrata o portata.</p>
+
+    <p class="src">Tariffe di riferimento per kW per classe Euro e maggiorazioni regionali secondo i tariffari delle Regioni e delle Province autonome, aggiornati a settembre 2026; superbollo secondo l'articolo 23 del decreto legge 98/2011. Le Regioni possono modificare le tariffe: il risultato è una stima attendibile ma non ha valore ufficiale, e prima di pagare conviene verificare sul tariffario della propria Regione. Se la tua tariffa è cambiata, correggila direttamente nel riquadro «Tariffa applicata».</p>
+
+    <div data-ad="bottom"></div>
+    <div data-support></div>
+    <p class="small">Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a> · Vedi anche <a href="../2026-09-19-costo-viaggio-auto/">Costo Viaggio in Auto</a> per sapere quanto spendi di carburante e pedaggi, e <a href="../2026-09-22-giorni-lavorativi/">Giorni Lavorativi</a> per le scadenze di lavoro.</p>
+  </section>
+</div>
+
+<div class="barra">
+  <div class="stima"><b id="b-cifra">—</b><small id="b-txt">Inserisci la potenza in kW</small></div>
+  <button type="button" class="btn" id="avanti">Avanti</button>
+</div>
+
+<script src="../../assets/monetize.js"></script>
+<script>
+(() => {
+  "use strict";
+  // Modello dati: `stato` = { pot, um ("kw"|"cv"), euro (0-6), alim, regione (chiave), meseImm, annoImm,
+  // meseScad, storico, t1/t2 (tariffe corrette a mano, opzionali) }; `garage` = array di veicoli salvati.
+  // Entrambi finiscono in localStorage con la chiave "calcolo-bollo-auto:v1".
+  // Il calcolo: tariffa €/kW = tabella nazionale per classe Euro × coefficiente della regione (o tariffa
+  // propria dove la regione ne ha una), applicata ai primi 100 kW e, con l'aliquota alta, ai kW eccedenti.
+
+  const STORAGE = "calcolo-bollo-auto:v1";
+  const $ = (id) => document.getElementById(id);
+  const r2 = (n) => Math.round(n * 100) / 100;
+  const eur = (n) => n.toLocaleString("it-IT", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
+  const eur2 = (n) => n.toLocaleString("it-IT", { style: "currency", currency: "EUR", minimumFractionDigits: 2 });
+  const num = (n) => n.toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const kwTxt = (n) => (Number.isInteger(n) ? String(n) : num(n)) + " kW";
+
+  const MESI = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"];
+
+  // Tariffe di riferimento in €/kW: [fino a 100 kW, oltre i 100 kW] per classe Euro 0 → 6.
+  const BASE = {
+    0: [3.00, 4.50], 1: [2.90, 4.35], 2: [2.80, 4.20], 3: [2.70, 4.05],
+    4: [2.58, 3.87], 5: [2.58, 3.87], 6: [2.58, 3.87],
+  };
+
+  // m = coefficiente applicato alla tariffa di riferimento; ov = tariffe proprie della regione per
+  // quella classe Euro; dom = sconto per domiciliazione bancaria; elet = elettriche esenti a vita;
+  // fasce = Piemonte, che usa fasce di potenza invece dei due soli scaglioni.
+  const REGIONI = [
+    { k: "abruzzo", n: "Abruzzo", m: 1.21 },
+    { k: "basilicata", n: "Basilicata", m: 1 },
+    { k: "bolzano", n: "Bolzano (prov. aut.)", m: 0.90, ov: { 4: [2.25, 3.38], 5: [2.09, 3.14], 6: [1.96, 2.94] } },
+    { k: "calabria", n: "Calabria", m: 1.10 },
+    { k: "campania", n: "Campania", m: 1.21, dom: 0.10 },
+    { k: "emilia-romagna", n: "Emilia-Romagna", m: 1.10 },
+    { k: "friuli", n: "Friuli-Venezia Giulia", m: 1 },
+    { k: "lazio", n: "Lazio", m: 1.10, dom: 0.10 },
+    { k: "liguria", n: "Liguria", m: 1.10 },
+    { k: "lombardia", n: "Lombardia", m: 1, dom: 0.15, elet: true },
+    { k: "marche", n: "Marche", m: 1 },
+    { k: "molise", n: "Molise", m: 1 },
+    { k: "piemonte", n: "Piemonte", m: 1, fasce: true, elet: true },
+    { k: "puglia", n: "Puglia", m: 1 },
+    { k: "sardegna", n: "Sardegna", m: 1 },
+    { k: "sicilia", n: "Sicilia", m: 1 },
+    { k: "toscana", n: "Toscana", m: 1.157, ov: { 4: [2.71, 4.26], 5: [2.71, 4.26], 6: [2.71, 4.26] } },
+    { k: "trento", n: "Trento (prov. aut.)", m: 0.90, ov: { 4: [2.25, 3.38], 5: [2.09, 3.14], 6: [1.96, 2.95] } },
+    { k: "umbria", n: "Umbria", m: 1 },
+    { k: "valle-aosta", n: "Valle d'Aosta", m: 1 },
+    { k: "veneto", n: "Veneto", m: 1.10 },
+  ];
+  const regione = (k) => REGIONI.find((r) => r.k === k) || REGIONI[9];
+
+  const ALIM = { termica: "benzina o diesel", ibrida: "ibrida", elettrica: "elettrica", gas: "GPL o metano" };
+
+  // ---------- stato ----------
+  const predefinito = () => ({
+    pot: "", um: "kw", euro: 6, alim: "termica", regione: "lombardia",
+    meseImm: new Date().getMonth() + 1, annoImm: "", meseScad: new Date().getMonth() + 1,
+    storico: false, t1: "", t2: "",
+  });
+  let stato = predefinito();
+  let garage = [];
+  let passo = 1;
+
+  function carica() {
+    try {
+      const salvato = JSON.parse(localStorage.getItem(STORAGE) || "null");
+      if (salvato && typeof salvato === "object") {
+        if (salvato.stato) stato = Object.assign(predefinito(), salvato.stato);
+        if (Array.isArray(salvato.garage)) garage = salvato.garage;
+      }
+    } catch (_) { /* storage negato o dati vecchi: si riparte dai valori base */ }
+  }
+  function salva() {
+    try { localStorage.setItem(STORAGE, JSON.stringify({ stato, garage })); } catch (_) { /* quota o modalità privata */ }
+  }
+
+  // ---------- calcolo ----------
+  const numIn = (v) => Number(String(v == null ? "" : v).replace(/\s/g, "").replace(",", "."));
+  const kwDi = (s) => {
+    const v = numIn(s.pot);
+    if (!Number.isFinite(v) || v <= 0) return 0;
+    return s.um === "cv" ? v / 1.35962 : v;
+  };
+
+  function tariffe(reg, cls) {
+    if (reg.ov && reg.ov[cls]) return reg.ov[cls].slice();
+    const b = BASE[cls];
+    return [r2(b[0] * reg.m), r2(b[1] * reg.m)];
+  }
+
+  // Piemonte: quattro fasce di potenza invece dei due scaglioni, con tariffe crescenti.
+  function tariffePiemonte(cls, kw) {
+    const b = BASE[cls];
+    if (kw <= 53) return [b[0], b[1]];
+    if (kw <= 100) return [r2(b[0] * 1.0581), r2(b[1] * 1.0581)];
+    return [r2(b[0] * 1.0814), r2(b[1] * 1.0801)];
+  }
+
+  function tariffeUsate(s, reg, kw) {
+    const a = numIn(s.t1), b = numIn(s.t2);
+    const auto = reg.fasce ? tariffePiemonte(s.euro, kw) : tariffe(reg, s.euro);
+    return [
+      Number.isFinite(a) && a > 0 ? r2(a) : auto[0],
+      Number.isFinite(b) && b > 0 ? r2(b) : auto[1],
+    ];
+  }
+
+  const eta = (s) => {
+    const anno = Number(s.annoImm);
+    if (!Number.isFinite(anno) || anno < 1900) return null;
+    const oggi = new Date();
+    let a = oggi.getFullYear() - anno;
+    if (oggi.getMonth() + 1 < Number(s.meseImm || 1)) a -= 1;
+    return Math.max(0, a);
+  };
+
+  function superbollo(kw, anni) {
+    if (kw <= 185) return { euro: 0, tariffa: 0 };
+    const t = anni === null ? 20 : anni < 5 ? 20 : anni < 10 ? 12 : anni < 15 ? 6 : anni < 20 ? 3 : 0;
+    return { euro: (kw - 185) * t, tariffa: t };
+  }
+
+  // Restituisce tutto ciò che serve al risultato: importi, dettaglio del calcolo e note da mostrare.
+  function calcola(s) {
+    const kw = kwDi(s);
+    if (!kw) return null;
+    const reg = regione(s.regione);
+    const anni = eta(s);
+    const [t1, t2] = tariffeUsate(s, reg, kw);
+    const kwT = Math.round(kw * 100) / 100;
+
+    let lordo = kwT <= 100 ? kwT * t1 : 100 * t1 + (kwT - 100) * t2;
+    const dettaglio = kwT <= 100
+      ? kwTxt(kwT) + " × " + num(t1) + " €"
+      : "100 kW × " + num(t1) + " € + " + kwTxt(r2(kwT - 100)) + " × " + num(t2) + " €";
+
+    let fattore = 1;
+    const note = [];
+    let etichetta = "Bollo da pagare";
+
+    if (anni !== null && anni >= 30) {
+      fattore = 0;
+      note.push({ hi: true, t: "Veicolo ultratrentennale: esente dalla tassa automobilistica. Se circola si paga la tassa di circolazione forfettaria di 28,40 € l'anno (11,36 € per i motoveicoli)." });
+      etichetta = "Bollo dovuto";
+    } else if (s.alim === "elettrica") {
+      if (reg.elet) { fattore = 0; note.push({ hi: true, t: "In " + reg.n + " i veicoli elettrici sono esenti dal bollo a tempo indeterminato." }); }
+      else if (anni !== null && anni < 5) { fattore = 0; note.push({ hi: true, t: "Auto elettrica entro i cinque anni dall'immatricolazione: esente in tutta Italia. Dal sesto anno pagherai " + eur(Math.round(lordo * 0.25)) + " l'anno." }); }
+      else { fattore = 0.25; note.push({ hi: true, t: "Passati i cinque anni di esenzione, quasi tutte le Regioni applicano alle elettriche un quarto della tariffa ordinaria." }); }
+    } else if (s.alim === "gas") {
+      fattore = 0.25;
+      note.push({ hi: true, t: "Alimentazione esclusiva a GPL o metano: la gran parte delle Regioni applica un quarto della tariffa. A tariffa piena sarebbero " + eur(Math.round(lordo)) + ". Se hai il doppio impianto benzina-GPL vale invece l'importo pieno." });
+    } else if (s.alim === "ibrida") {
+      note.push({ t: "Qui vedi l'importo pieno. Diverse Regioni esentano le ibride per tre o cinque anni dall'immatricolazione o applicano uno sconto: controlla il tariffario della tua." });
+    }
+
+    if (fattore > 0 && s.storico && anni !== null && anni >= 20 && anni < 30) {
+      fattore *= 0.5;
+      note.push({ t: "Veicolo fra i 20 e i 29 anni con certificato di rilevanza storica: applicata la riduzione del 50% prevista da molte Regioni. Verifica che la tua la conceda." });
+    }
+
+    const bollo = Math.round(lordo * fattore);
+    const sb = fattore === 0 ? { euro: 0, tariffa: 0 } : superbollo(kwT, anni);
+    const superb = Math.round(sb.euro);
+    const totale = bollo + superb;
+
+    if (sb.tariffa > 0) {
+      note.push({ hi: true, t: "Sopra i 185 kW si aggiunge l'addizionale erariale: " + kwTxt(r2(kwT - 185)) + " × " + sb.tariffa + " € = " + eur(superb) + "." });
+    }
+    if (reg.dom && fattore > 0) {
+      note.push({ t: "In " + reg.n + " con la domiciliazione bancaria l'importo scende del " + Math.round(reg.dom * 100) + "%, cioè a " + eur(Math.round(bollo * (1 - reg.dom))) + " di bollo." });
+    }
+    if (reg.fasce && kwT > 130) {
+      note.push({ t: "Il Piemonte usa una quarta fascia sopra i 130 kW: qui l'importo è indicativo, controlla il tariffario regionale." });
+    }
+    if (anni === null) {
+      note.push({ t: "Aggiungi l'anno di immatricolazione nel passo 2: serve per superbollo, esenzioni e veicoli storici." });
+    }
+
+    return { kw: kwT, reg, anni, t1, t2, dettaglio, lordo, fattore, bollo, superb, totale, note, etichetta };
+  }
+
+  // Ultimo giorno del mese successivo alla scadenza, a partire da oggi.
+  function scadenza(meseScad) {
+    const oggi = new Date(); oggi.setHours(0, 0, 0, 0);
+    for (let y = oggi.getFullYear() - 1; y <= oggi.getFullYear() + 2; y++) {
+      const ultimo = new Date(y, meseScad + 1, 0); // ultimo giorno del mese successivo alla scadenza
+      if (ultimo >= oggi) return ultimo;
+    }
+    return null;
+  }
+  const dataIt = (d) => d.toLocaleDateString("it-IT", { day: "numeric", month: "long", year: "numeric" });
+
+  // ---------- interfaccia ----------
+  function mostraPasso(n) {
+    passo = Math.min(3, Math.max(1, n));
+    $("p1").hidden = passo !== 1;
+    $("p2").hidden = passo !== 2;
+    $("p3").hidden = passo !== 3;
+    for (const b of document.querySelectorAll("#steps button")) {
+      if (Number(b.dataset.go) === passo) b.setAttribute("aria-current", "step");
+      else b.removeAttribute("aria-current");
+    }
+    $("avanti").textContent = passo === 3 ? "Torna ai dati" : "Avanti";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function avvisa(testo) {
+    $("toast").textContent = testo;
+    clearTimeout(avvisa.t);
+    avvisa.t = setTimeout(() => { $("toast").textContent = ""; }, 4000);
+  }
+
+  function aggiorna() {
+    const c = calcola(stato);
+    $("wrap-storico").hidden = !(eta(stato) !== null && eta(stato) >= 20);
+
+    // barra fissa
+    if (!c) {
+      $("b-cifra").textContent = "—";
+      $("b-txt").textContent = stato.pot ? "Potenza non valida" : "Inserisci la potenza in " + (stato.um === "cv" ? "CV" : "kW");
+    } else {
+      $("b-cifra").textContent = eur(c.totale);
+      $("b-txt").textContent = "all'anno · " + c.reg.n;
+    }
+
+    const avviso = $("avviso");
+    if (!c) {
+      $("cifra").textContent = "—";
+      $("sotto").textContent = "Torna al passo 1 e inserisci la potenza del motore.";
+      $("righe").replaceChildren();
+      $("note").replaceChildren();
+      $("tarif-txt").textContent = "—";
+      avviso.hidden = true;
+      confronta(null);
+      return;
+    }
+    avviso.hidden = true;
+    if (c.kw > 1000) { avviso.hidden = false; avviso.textContent = "Una potenza di " + kwTxt(c.kw) + " è fuori scala per un'autovettura: controlla di non aver inserito i cavalli al posto dei kW."; }
+
+    $("esito-k").textContent = c.etichetta;
+    $("cifra").textContent = eur(c.totale);
+    const scad = scadenza(Number(stato.meseScad));
+    $("sotto").textContent = c.totale === 0
+      ? "Nessun importo dovuto per questo veicolo."
+      : "all'anno, da versare entro il " + dataIt(scad) + ".";
+
+    const righe = [];
+    righe.push(["Potenza", kwTxt(c.kw) + (stato.um === "cv" ? " (da " + stato.pot + " CV)" : "")]);
+    righe.push(["Calcolo", c.dettaglio]);
+    if (c.fattore !== 1) righe.push(["Tariffa intera", eur2(c.lordo)]);
+    righe.push(["Bollo regionale", eur(c.bollo)]);
+    if (c.superb > 0) righe.push(["Superbollo", eur(c.superb)]);
+    if (c.superb > 0) righe.push(["Totale annuo", eur(c.totale)]);
+    if (scad) righe.push(["Scadenza", dataIt(scad)]);
+    $("righe").replaceChildren(...righe.map(([k, v]) => {
+      const li = document.createElement("li");
+      const a = document.createElement("span"); a.textContent = k;
+      const b = document.createElement("span"); b.textContent = v;
+      li.append(a, b); return li;
+    }));
+
+    $("note").replaceChildren(...c.note.map((n) => {
+      const li = document.createElement("li");
+      if (n.hi) li.className = "hi";
+      li.textContent = n.t;
+      return li;
+    }));
+
+    $("tarif-txt").textContent = num(c.t1) + " €/kW" + (c.kw > 100 ? " e " + num(c.t2) + " €/kW oltre i 100" : "") + " · " + c.reg.n + ", Euro " + stato.euro;
+
+    confronta(c);
+    rendiGarage();
+  }
+
+  function riepilogo() {
+    const c = calcola(stato);
+    if (!c) return "";
+    const scad = scadenza(Number(stato.meseScad));
+    const righe = [
+      "Bollo auto — " + c.reg.n,
+      kwTxt(c.kw) + ", Euro " + stato.euro + ", " + ALIM[stato.alim],
+      "Bollo regionale: " + eur(c.bollo),
+    ];
+    if (c.superb > 0) righe.push("Superbollo: " + eur(c.superb), "Totale: " + eur(c.totale));
+    if (scad) righe.push("Da pagare entro il " + dataIt(scad));
+    righe.push("Calcolato con " + location.href.replace(/index\.html$/, ""));
+    return righe.join("\n");
+  }
+
+  async function copiaTesto(testo) {
+    try {
+      if (navigator.clipboard && window.isSecureContext) { await navigator.clipboard.writeText(testo); return true; }
+    } catch (_) { /* permesso negato: provo il metodo vecchio */ }
+    try {
+      const ta = document.createElement("textarea");
+      ta.value = testo; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.append(ta); ta.select();
+      const ok = document.execCommand("copy");
+      ta.remove();
+      return ok;
+    } catch (_) { return false; }
+  }
+
+  // ---------- Pro: confronto fra regioni ----------
+  function confronta(c) {
+    const lista = $("confronto"), vuoto = $("c-vuoto");
+    if (!c) { lista.replaceChildren(); vuoto.hidden = false; return; }
+    vuoto.hidden = true;
+    const voci = REGIONI.map((r) => {
+      const finto = Object.assign({}, stato, { regione: r.k, t1: "", t2: "" });
+      const res = calcola(finto);
+      return { n: r.n, k: r.k, tot: res ? res.totale : 0 };
+    }).sort((a, b) => a.tot - b.tot);
+    lista.replaceChildren(...voci.map((v, i) => {
+      const li = document.createElement("li");
+      if (v.k === stato.regione) li.className = "mia";
+      const a = document.createElement("span");
+      a.textContent = (i + 1) + ". " + v.n;
+      const b = document.createElement("b");
+      b.textContent = eur(v.tot);
+      li.append(a, b);
+      return li;
+    }));
+  }
+
+  // ---------- Pro: garage ----------
+  function rendiGarage() {
+    const lista = $("g-lista");
+    $("g-vuoto").hidden = garage.length > 0;
+    const voci = garage.map((v) => {
+      const res = calcola(v.dati);
+      const scad = scadenza(Number(v.dati.meseScad));
+      return { v, tot: res ? res.totale : 0, scad };
+    }).sort((a, b) => (a.scad && b.scad ? a.scad - b.scad : 0));
+    lista.replaceChildren(...voci.map(({ v, tot, scad }) => {
+      const li = document.createElement("li");
+      const info = document.createElement("div"); info.className = "info";
+      const nome = document.createElement("b"); nome.textContent = v.nome;
+      const sotto = document.createElement("small");
+      const giorni = scad ? Math.ceil((scad - Date.now()) / 86400000) : null;
+      sotto.textContent = regione(v.dati.regione).n + " · Euro " + v.dati.euro +
+        (scad ? " · entro il " + dataIt(scad) + (giorni !== null && giorni <= 60 ? " (fra " + giorni + " giorni)" : "") : "");
+      info.append(nome, sotto);
+      const imp = document.createElement("span"); imp.className = "imp"; imp.textContent = eur(tot);
+      const del = document.createElement("button");
+      del.type = "button"; del.className = "del"; del.textContent = "✕";
+      del.setAttribute("aria-label", "Togli " + v.nome + " dal garage");
+      del.addEventListener("click", () => {
+        garage = garage.filter((g) => g.id !== v.id);
+        salva(); rendiGarage(); avvisa("Veicolo tolto dal garage.");
+      });
+      li.append(info, imp, del);
+      return li;
+    }));
+  }
+
+  function salvaVeicolo() {
+    const c = calcola(stato);
+    if (!c) { avvisa("Prima inserisci la potenza del motore."); return; }
+    const nome = ($("g-nome").value || "").trim() || "Veicolo " + (garage.length + 1);
+    const id = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()));
+    garage.push({ id, nome, dati: Object.assign({}, stato) });
+    $("g-nome").value = "";
+    salva(); rendiGarage();
+    avvisa("«" + nome + "» salvato nel garage.");
+  }
+
+  function scaricaCsv() {
+    if (!garage.length) { avvisa("Il garage è vuoto: salva almeno un veicolo."); return; }
+    const righe = [["Veicolo", "kW", "Classe Euro", "Alimentazione", "Regione", "Bollo", "Superbollo", "Totale", "Da pagare entro"]];
+    for (const v of garage) {
+      const c = calcola(v.dati);
+      const scad = scadenza(Number(v.dati.meseScad));
+      righe.push([v.nome, c ? num(c.kw) : "", "Euro " + v.dati.euro, ALIM[v.dati.alim], regione(v.dati.regione).n,
+        c ? c.bollo : "", c ? c.superb : "", c ? c.totale : "", scad ? scad.toLocaleDateString("it-IT") : ""]);
+    }
+    const csv = righe.map((r) => r.map((x) => '"' + String(x).replace(/"/g, '""') + '"').join(";")).join("\r\n");
+    const url = URL.createObjectURL(new Blob(["﻿" + csv], { type: "text/csv;charset=utf-8" }));
+    const a = document.createElement("a");
+    a.href = url; a.download = "garage-bollo-auto.csv";
+    document.body.append(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    avvisa("CSV scaricato.");
+  }
+
+  // ---------- avvio ----------
+  function riempiSelect() {
+    $("reg").replaceChildren(...REGIONI.map((r) => new Option(r.n, r.k)));
+    const mesi = MESI.map((m, i) => new Option(m.charAt(0).toUpperCase() + m.slice(1), String(i + 1)));
+    $("mese-imm").replaceChildren(...mesi);
+    $("mese-scad").replaceChildren(...mesi.map((o) => o.cloneNode(true)));
+  }
+
+  function scriviCampi() {
+    $("pot").value = stato.pot;
+    for (const r of document.querySelectorAll('input[name="um"]')) r.checked = r.value === stato.um;
+    for (const r of document.querySelectorAll('input[name="alim"]')) r.checked = r.value === stato.alim;
+    $("euro").value = String(stato.euro);
+    $("reg").value = stato.regione;
+    $("mese-imm").value = String(stato.meseImm);
+    $("mese-scad").value = String(stato.meseScad);
+    $("anno-imm").value = stato.annoImm;
+    $("storico").checked = !!stato.storico;
+    $("t1").value = stato.t1;
+    $("t2").value = stato.t2;
+  }
+
+  function avvio() {
+    riempiSelect();
+    carica();
+    scriviCampi();
+
+    $("pot").addEventListener("input", (e) => { stato.pot = e.target.value; salva(); aggiorna(); });
+    for (const r of document.querySelectorAll('input[name="um"]')) {
+      r.addEventListener("change", () => {
+        const prima = stato.um;
+        stato.um = r.value;
+        const v = numIn(stato.pot);
+        if (Number.isFinite(v) && v > 0 && prima !== stato.um) {
+          stato.pot = String(Math.round(stato.um === "cv" ? v * 1.35962 : v / 1.35962));
+          $("pot").value = stato.pot;
+        }
+        salva(); aggiorna();
+      });
+    }
+    for (const r of document.querySelectorAll('input[name="alim"]')) {
+      r.addEventListener("change", () => { stato.alim = r.value; salva(); aggiorna(); });
+    }
+    $("euro").addEventListener("change", (e) => { stato.euro = Number(e.target.value); salva(); aggiorna(); });
+    $("reg").addEventListener("change", (e) => { stato.regione = e.target.value; salva(); aggiorna(); });
+    $("mese-imm").addEventListener("change", (e) => {
+      stato.meseImm = Number(e.target.value);
+      if (!stato.scadToccata) { stato.meseScad = stato.meseImm; $("mese-scad").value = String(stato.meseScad); }
+      salva(); aggiorna();
+    });
+    $("mese-scad").addEventListener("change", (e) => { stato.meseScad = Number(e.target.value); stato.scadToccata = true; salva(); aggiorna(); });
+    $("anno-imm").addEventListener("input", (e) => { stato.annoImm = e.target.value; salva(); aggiorna(); });
+    $("storico").addEventListener("change", (e) => { stato.storico = e.target.checked; salva(); aggiorna(); });
+    $("t1").addEventListener("input", (e) => { stato.t1 = e.target.value; salva(); aggiorna(); });
+    $("t2").addEventListener("input", (e) => { stato.t2 = e.target.value; salva(); aggiorna(); });
+
+    for (const b of document.querySelectorAll("#steps button")) {
+      b.addEventListener("click", () => mostraPasso(Number(b.dataset.go)));
+    }
+    $("avanti").addEventListener("click", () => mostraPasso(passo === 3 ? 1 : passo + 1));
+
+    $("form").addEventListener("submit", (e) => e.preventDefault());
+    $("form").addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && e.target.tagName === "INPUT") { e.preventDefault(); e.target.blur(); if (passo < 3) mostraPasso(passo + 1); }
+      if (e.key === "Escape" && e.target.tagName === "INPUT") e.target.blur();
+    });
+
+    $("copia").addEventListener("click", async () => {
+      const testo = riepilogo();
+      if (!testo) { avvisa("Prima inserisci la potenza del motore."); return; }
+      avvisa(await copiaTesto(testo) ? "Riepilogo copiato negli appunti." : "Non riesco a copiare: seleziona il testo a mano.");
+    });
+    $("azzera").addEventListener("click", () => {
+      stato = predefinito();
+      salva(); scriviCampi(); aggiorna(); mostraPasso(1);
+      avvisa("Dati azzerati. Il garage resta salvato.");
+    });
+    $("g-salva").addEventListener("click", salvaVeicolo);
+    $("g-csv").addEventListener("click", scaricaCsv);
+    $("g-nome").addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); salvaVeicolo(); } });
+
+    aggiorna();
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", avvio);
+  else avvio();
+})();
+</script>
+</body>
+</html>
