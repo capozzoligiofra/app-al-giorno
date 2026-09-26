@@ -1,6 +1,6 @@
 {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 14,
+  "count": 15,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -49,6 +49,52 @@
     ]
   },
   "apps": [
+    {
+      "title": "Preavviso Dimissioni",
+      "slug": "2026-09-26-preavviso-dimissioni",
+      "date": "2026-09-26",
+      "description": "Calcola i giorni di preavviso dovuti per CCNL e anzianità, l'ultimo giorno di lavoro e la data di decorrenza da mettere nel modulo.",
+      "category": "calcolatori-convertitori",
+      "tags": [
+        "lavoro",
+        "dimissioni",
+        "preavviso",
+        "ccnl"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "single-column",
+        "palette": "grigio-carta",
+        "font": "serif-editoriale"
+      },
+      "business": {
+        "keyword": "giorni di preavviso dimissioni",
+        "keywords": [
+          "calcolo preavviso dimissioni",
+          "quanti giorni di preavviso devo dare",
+          "ultimo giorno di lavoro dimissioni",
+          "data decorrenza dimissioni"
+        ],
+        "intent": "Chi ha già deciso di licenziarsi e deve sapere subito quanti giorni deve, quale sarà il suo ultimo giorno in azienda e che data scrivere nelle dimissioni telematiche.",
+        "target": "Lavoratori dipendenti 22-55 anni che cercano dal telefono prima di consegnare la lettera, spesso di sera.",
+        "edge": "È l'unico che implementa davvero le regole di decorrenza (dal giorno dopo oppure dal 1° o dal 16 del mese) e i mesi di calendario invece di moltiplicare per 30, mostra il preavviso su un calendario e dà già pronta la data di decorrenza da copiare nel modulo del Ministero, che è l'errore più comune.",
+        "monetization": [
+          "adsense",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Indennità di mancato preavviso",
+          "Confronto tra date di consegna"
+        ],
+        "affiliate": []
+      },
+      "size": 55194
+    },
     {
       "title": "Bollo Auto",
       "slug": "2026-09-25-calcolo-bollo-auto",

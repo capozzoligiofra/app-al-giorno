@@ -1,0 +1,982 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f3f1ec">
+  <title>Preavviso Dimissioni: giorni e ultimo giorno di lavoro</title>
+  <meta name="description" content="Calcola i giorni di preavviso dimissioni previsti dal tuo CCNL e scopri subito ultimo giorno di lavoro e data di decorrenza da indicare nel modulo.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-26-preavviso-dimissioni/">
+  <meta property="og:title" content="Preavviso Dimissioni: giorni e ultimo giorno di lavoro">
+  <meta property="og:description" content="Metti CCNL, livello, anzianita e data di consegna: ottieni i giorni di preavviso, il tuo ultimo giorno di lavoro e la data di decorrenza da scrivere nel modulo.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-26-preavviso-dimissioni/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Preavviso Dimissioni",
+    "description": "Calcolatore gratuito dei giorni di preavviso per dimissioni: tabelle per CCNL, livello e anzianità, calcolo dell'ultimo giorno di lavoro e della data di decorrenza da indicare nelle dimissioni telematiche.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-26-preavviso-dimissioni/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Quanti giorni di preavviso devo dare se mi dimetto?", "acceptedAnswer": { "@type": "Answer", "text": "Dipende da tre cose: il CCNL applicato, il livello di inquadramento e l'anzianità di servizio maturata in azienda. Si va da 15 giorni per i livelli più bassi con pochi anni di servizio fino a 4 o 6 mesi per quadri e dirigenti con oltre dieci anni. Nel CCNL Terziario, per esempio, un 4° livello con sette anni di anzianità deve 30 giorni di calendario; lo stesso livello sotto i cinque anni ne deve 20." } },
+      { "@type": "Question", "name": "Il preavviso si conta in giorni lavorativi o di calendario?", "acceptedAnswer": { "@type": "Answer", "text": "In giorni di calendario, salvo diversa previsione del contratto: dentro il conteggio finiscono sabati, domeniche e festivi. Trenta giorni di preavviso sono trenta giorni consecutivi sul calendario, non sei settimane lavorative. Alcuni CCNL esprimono il preavviso in mesi di calendario: in quel caso non si moltiplica per trenta, si sposta la data di un mese (dal 10 marzo al 10 aprile)." } },
+      { "@type": "Question", "name": "Che data devo mettere come decorrenza nelle dimissioni telematiche?", "acceptedAnswer": { "@type": "Answer", "text": "Il giorno successivo all'ultimo giorno di lavoro, non il giorno in cui invii la pratica. È l'errore più frequente nel modulo del Ministero del Lavoro: se il tuo ultimo giorno in azienda è il 31 ottobre, la data di decorrenza delle dimissioni è il 1° novembre. Il calcolatore la mostra già pronta accanto all'ultimo giorno di lavoro." } },
+      { "@type": "Question", "name": "Posso usare le ferie per coprire il preavviso?", "acceptedAnswer": { "@type": "Answer", "text": "Di norma no: le ferie non sospendono e non sostituiscono il preavviso, perché il preavviso serve a garantire all'azienda un periodo di lavoro effettivo per organizzare la sostituzione. Se le ferie erano già state concordate e autorizzate prima della comunicazione di dimissioni la situazione cambia, ma serve l'accordo con il datore di lavoro. Le ferie non godute alla fine del rapporto vengono comunque pagate nella busta paga finale." } },
+      { "@type": "Question", "name": "Cosa rischio se non rispetto il preavviso?", "acceptedAnswer": { "@type": "Answer", "text": "Il datore di lavoro può trattenere dalle ultime competenze una somma pari alla retribuzione che avresti percepito nei giorni di preavviso non lavorati, compresi i ratei di tredicesima e quattordicesima: è la cosiddetta indennità di mancato preavviso. La trattenuta si applica su busta paga finale, ferie residue e TFR. In alternativa il datore può rinunciare al preavviso e liberarti subito, ma è una sua facoltà, non un tuo diritto." } }
+    ]
+  }
+  </script>
+  <style>
+    /* Palette "grigio-carta": monocromo su carta, un solo accento (inchiostro). */
+    :root {
+      --paper: #f3f1ec; --sheet: #fbfaf7; --ink: #1d1c1a; --soft-ink: #62605a;
+      --rule: #d9d5cc; --rule-strong: #b9b4a8; --accent: #2c4c72; --accent-ink: #fbfaf7;
+      --wash: #e7e4dc; --alert: #8a3320;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #17171a; --sheet: #1f1f23; --ink: #eceae4; --soft-ink: #a29f97;
+        --rule: #32323a; --rule-strong: #4c4c56; --accent: #8fb5e0; --accent-ink: #14141a;
+        --wash: #26262c; --alert: #e09a86;
+        color-scheme: dark;
+      }
+    }
+    * { box-sizing: border-box; }
+    html, body { overflow-x: hidden; }
+    body {
+      margin: 0; background: var(--paper); color: var(--ink);
+      font: 17px/1.6 Georgia, "Times New Roman", Times, serif;
+      padding: 0 0 calc(80px + env(safe-area-inset-bottom));
+      -webkit-text-size-adjust: 100%;
+    }
+    .wrap { max-width: 44rem; margin: 0 auto; padding: 0 18px; }
+    a { color: var(--accent); }
+    .back {
+      display: inline-block; margin: 14px 0 0; font-size: .95rem; text-decoration: none;
+      color: var(--soft-ink); min-height: 44px; line-height: 44px;
+    }
+    .back:hover, .back:focus { color: var(--accent); }
+
+    header { padding: 0 0 20px; border-bottom: 1px solid var(--rule); }
+    h1 { margin: .1em 0 .3em; font-size: 1.55rem; line-height: 1.2; font-weight: 400; letter-spacing: -.01em; }
+    .lead { margin: 0; color: var(--soft-ink); font-size: .98rem; }
+
+    /* layout single-column: sezioni separate dallo spazio e da filetti, senza schede */
+    section { padding: 24px 0; border-bottom: 1px solid var(--rule); }
+    section:last-of-type { border-bottom: 0; }
+    h2 {
+      margin: 0 0 14px; font-size: .78rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .13em; color: var(--soft-ink);
+    }
+    h3 { margin: 26px 0 .4em; font-size: 1.12rem; font-weight: 400; }
+
+    /* campi */
+    .field { margin: 0 0 16px; }
+    .field > label, .legend { display: block; margin: 0 0 7px; font-size: .95rem; color: var(--soft-ink); }
+    .hint { margin: 6px 0 0; font-size: .88rem; color: var(--soft-ink); font-style: italic; }
+    select, input[type="date"], input[type="number"], input[type="text"] {
+      font: inherit; font-size: 16px; width: 100%; min-height: 48px;
+      padding: 10px 12px; color: var(--ink); background: var(--sheet);
+      border: 1px solid var(--rule-strong); border-radius: 3px; appearance: none;
+    }
+    select { background-image: none; }
+    input:focus-visible, select:focus-visible, button:focus-visible, a:focus-visible {
+      outline: 2px solid var(--accent); outline-offset: 2px;
+    }
+    .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .duo .field { margin: 0; }
+    fieldset { margin: 0 0 20px; padding: 0; border: 0; }
+    .choices { display: grid; gap: 8px; }
+    .choice {
+      display: flex; gap: 10px; align-items: flex-start; min-height: 44px;
+      padding: 11px 13px; background: var(--sheet); border: 1px solid var(--rule-strong);
+      border-radius: 3px; cursor: pointer; font-size: .96rem;
+    }
+    .choice input { margin: 4px 0 0; accent-color: var(--accent); width: 20px; height: 20px; flex: 0 0 auto; }
+    .choice.on { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+    .choice span small { display: block; color: var(--soft-ink); font-size: .84rem; line-height: 1.4; }
+
+    /* risultato */
+    .out { border-bottom: 1px solid var(--rule); }
+    .headline { margin: 0 0 4px; font-size: 1.05rem; color: var(--soft-ink); }
+    .big {
+      margin: 0 0 22px; font-size: 2.6rem; line-height: 1.05; letter-spacing: -.02em;
+      font-variant-numeric: tabular-nums;
+    }
+    .big small { display: block; font-size: 1rem; letter-spacing: 0; color: var(--soft-ink); margin-top: 8px; }
+    dl.rows { margin: 0; display: grid; gap: 0; }
+    dl.rows > div {
+      display: flex; flex-wrap: wrap; gap: 4px 12px; justify-content: space-between;
+      align-items: baseline; padding: 11px 0; border-top: 1px solid var(--rule);
+    }
+    dl.rows dt { margin: 0; color: var(--soft-ink); font-size: .93rem; }
+    dl.rows dd { margin: 0; font-size: 1.05rem; }
+    dl.rows .key dd { font-weight: 700; color: var(--accent); }
+    .stamp {
+      margin: 22px 0 0; padding: 14px 16px; background: var(--wash);
+      border-left: 3px solid var(--accent); border-radius: 0 3px 3px 0; font-size: .95rem;
+    }
+    .stamp b { display: block; font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; color: var(--soft-ink); font-weight: 700; margin-bottom: 4px; }
+    .fonte { margin: 18px 0 0; font-size: .86rem; color: var(--soft-ink); }
+    .warn { color: var(--alert); }
+
+    /* calendario */
+    .cal-months { display: grid; gap: 22px; }
+    .month h4 { margin: 0 0 8px; font-size: .95rem; font-weight: 700; }
+    .grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
+    .grid .wd { text-align: center; font-size: .72rem; color: var(--soft-ink); padding: 2px 0; letter-spacing: .04em; }
+    .day {
+      aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
+      font-size: .88rem; border-radius: 3px; font-variant-numeric: tabular-nums;
+    }
+    .day.off { color: var(--soft-ink); opacity: .45; }
+    .day.in { background: var(--wash); }
+    .day.last { background: var(--accent); color: var(--accent-ink); font-weight: 700; }
+    .day.start { box-shadow: inset 0 0 0 1.5px var(--rule-strong); }
+    .day.dec { box-shadow: inset 0 0 0 1.5px var(--accent); color: var(--accent); font-weight: 700; }
+    .legend { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0 0; font-size: .85rem; color: var(--soft-ink); }
+    .legend i { display: inline-block; width: 13px; height: 13px; border-radius: 2px; vertical-align: -2px; margin-right: 5px; }
+
+    /* pro */
+    [data-pro] { padding: 30px 0; }
+    .pro-tag {
+      display: inline-block; margin: 0 0 12px; padding: 2px 9px; font-size: .7rem; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase; color: var(--accent);
+      border: 1px solid var(--accent); border-radius: 999px;
+    }
+    .scenari { display: grid; gap: 12px; margin: 0 0 14px; }
+    .scen { display: grid; grid-template-columns: 1fr; gap: 8px; padding: 13px 0 0; border-top: 1px solid var(--rule); }
+    .scen:first-child { border-top: 0; padding-top: 0; }
+    .scen .res { font-size: .95rem; color: var(--soft-ink); }
+    .scen .res b { color: var(--ink); font-weight: 700; }
+    .scen .row2 { display: flex; gap: 8px; align-items: center; }
+    .scen .row2 input { flex: 1 1 auto; }
+    .mini {
+      font: inherit; font-size: .9rem; min-height: 44px; min-width: 44px; padding: 8px 14px;
+      background: transparent; color: var(--soft-ink); border: 1px solid var(--rule-strong);
+      border-radius: 3px; cursor: pointer;
+    }
+    .mini:hover { color: var(--accent); border-color: var(--accent); }
+    .total { margin: 0; padding: 14px 16px; background: var(--wash); border-left: 3px solid var(--accent); font-size: 1.05rem; }
+    .total b { font-size: 1.5rem; display: block; margin-top: 4px; font-variant-numeric: tabular-nums; }
+    .calcolo { margin: 12px 0 0; font-size: .88rem; color: var(--soft-ink); }
+    .calcolo li { margin: 3px 0; }
+
+    /* guida */
+    #guida p, #guida li { font-size: 1.04rem; }
+    #guida h3 { color: var(--ink); }
+    #guida .esempio { padding: 14px 16px; background: var(--sheet); border: 1px solid var(--rule); border-radius: 3px; }
+    #guida .esempio p { margin: .4em 0; font-size: .98rem; }
+    table.tab { width: 100%; border-collapse: collapse; font-size: .92rem; margin: 12px 0 0; }
+    table.tab th, table.tab td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--rule); }
+    table.tab th { font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; color: var(--soft-ink); font-weight: 700; }
+    table.tab td.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+    .related { list-style: none; padding: 0; margin: 0; }
+    .related li { padding: 10px 0; border-bottom: 1px solid var(--rule); }
+    .related a { min-height: 44px; display: inline-block; line-height: 1.5; }
+    .foot { padding: 26px 0 10px; font-size: .86rem; color: var(--soft-ink); }
+    .foot a { display: inline-block; padding: 8px 4px; }
+
+    /* barra pollice */
+    .bar {
+      position: fixed; inset: auto 0 0 0; z-index: 5;
+      padding: 10px 18px calc(10px + env(safe-area-inset-bottom));
+      background: color-mix(in srgb, var(--paper) 92%, transparent);
+      backdrop-filter: blur(8px); border-top: 1px solid var(--rule);
+    }
+    .bar-in { max-width: 44rem; margin: 0 auto; display: flex; gap: 10px; }
+    .bar button {
+      flex: 1 1 auto; font: inherit; font-size: 1rem; font-weight: 700; min-height: 50px;
+      padding: 12px 16px; border: 1px solid var(--accent); border-radius: 3px;
+      background: var(--accent); color: var(--accent-ink); cursor: pointer;
+    }
+    .bar button.ghost { flex: 0 0 auto; background: transparent; color: var(--accent); font-weight: 400; }
+    .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+
+    @media (min-width: 700px) {
+      body { font-size: 18px; }
+      .wrap { padding: 0 28px; }
+      h1 { font-size: 2.3rem; }
+      .big { font-size: 3.1rem; }
+      .cal-months { grid-template-columns: 1fr 1fr; gap: 26px 30px; }
+      .scen { grid-template-columns: 220px 1fr; align-items: center; gap: 16px; }
+      .bar { position: static; border-top: 0; padding: 26px 18px 0; background: none; backdrop-filter: none; }
+      .bar-in { padding: 0; }
+      .bar button { flex: 0 0 auto; }
+      body { padding-bottom: 30px; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../../index.html">← Tutte le app</a>
+
+  <header>
+    <h1>Giorni di preavviso dimissioni: calcola il tuo ultimo giorno</h1>
+    <p class="lead">Giorni dovuti, ultimo giorno di lavoro e data di decorrenza per il modulo telematico. Senza registrazione.</p>
+  </header>
+
+  <main>
+    <section aria-labelledby="h-dati">
+      <h2 id="h-dati">I tuoi dati</h2>
+
+      <div class="field">
+        <label for="ccnl">Contratto collettivo (CCNL)</label>
+        <select id="ccnl"></select>
+      </div>
+
+      <div class="field" id="wrap-livello">
+        <label for="livello">Livello di inquadramento</label>
+        <select id="livello"></select>
+      </div>
+
+      <div class="field">
+        <label for="anzianita">Anzianità di servizio in azienda</label>
+        <select id="anzianita">
+          <option value="0">Fino a 5 anni compiuti</option>
+          <option value="1">Oltre 5 e fino a 10 anni</option>
+          <option value="2">Oltre 10 anni</option>
+        </select>
+        <p class="hint" id="hint-anzianita">Se non sei sicuro, inserisci qui sotto la data di assunzione.</p>
+      </div>
+
+      <div class="duo">
+        <div class="field">
+          <label for="assunzione">Data di assunzione</label>
+          <input type="date" id="assunzione" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="consegna">Consegna delle dimissioni</label>
+          <input type="date" id="consegna" autocomplete="off">
+        </div>
+      </div>
+
+      <fieldset>
+        <span class="legend">Da quando decorre il preavviso</span>
+        <div class="choices">
+          <label class="choice" id="ch-giorno">
+            <input type="radio" name="dec" value="giorno-dopo">
+            <span>Dal giorno dopo la consegna<small>Regola ordinaria: il conteggio parte il giorno successivo alla ricezione delle dimissioni.</small></span>
+          </label>
+          <label class="choice" id="ch-quind">
+            <input type="radio" name="dec" value="quindicina">
+            <span>Dal 1° o dal 16 del mese<small>Prevista da Commercio e Studi professionali: si attende la quindicina successiva alla consegna.</small></span>
+          </label>
+        </div>
+      </fieldset>
+
+      <div class="duo">
+        <div class="field">
+          <label for="mesi">Mesi di preavviso</label>
+          <input type="number" id="mesi" inputmode="numeric" min="0" max="24" step="1" value="0" enterkeyhint="done">
+        </div>
+        <div class="field">
+          <label for="giorni">Giorni di preavviso</label>
+          <input type="number" id="giorni" inputmode="numeric" min="0" max="400" step="1" value="30" enterkeyhint="done">
+        </div>
+      </div>
+      <p class="hint" id="hint-durata">Compilati in automatico dalla tabella del CCNL: puoi correggerli se il tuo contratto prevede altro.</p>
+    </section>
+
+    <section class="out" id="risultato" aria-live="polite" aria-labelledby="h-ris">
+      <h2 id="h-ris">Il risultato</h2>
+      <p class="headline">Preavviso da rispettare</p>
+      <p class="big" id="out-durata">30 giorni<small id="out-durata-nota">di calendario, sabati e festivi compresi</small></p>
+      <dl class="rows" id="out-rows"></dl>
+      <div class="stamp" id="out-stamp"></div>
+      <p class="fonte" id="out-fonte"></p>
+    </section>
+
+    <div data-ad="top"></div>
+
+    <section aria-labelledby="h-cal">
+      <h2 id="h-cal">Il preavviso sul calendario</h2>
+      <div class="cal-months" id="calendario"></div>
+      <p class="legend">
+        <span><i style="background:var(--wash)"></i>giorni di preavviso</span>
+        <span><i style="background:var(--accent)"></i>ultimo giorno di lavoro</span>
+        <span><i style="box-shadow:inset 0 0 0 1.5px var(--accent)"></i>data di decorrenza</span>
+      </p>
+      <p class="hint" id="cal-nota"></p>
+    </section>
+
+    <section data-pro="Indennità di mancato preavviso" aria-labelledby="h-pro1">
+      <span class="pro-tag">Pro</span>
+      <h2 id="h-pro1">Se esci prima: quanto ti trattengono</h2>
+      <p class="hint" style="margin-top:-8px">Se non lavori tutto il preavviso, il datore può trattenere dalle ultime competenze la retribuzione dei giorni mancanti. Qui vedi la stima lorda.</p>
+      <div class="duo">
+        <div class="field">
+          <label for="uscita">Ultimo giorno che vuoi lavorare</label>
+          <input type="date" id="uscita" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="lordo">Retribuzione mensile lorda (€)</label>
+          <input type="number" id="lordo" inputmode="decimal" min="0" step="10" value="1800" enterkeyhint="done">
+        </div>
+      </div>
+      <div class="field">
+        <label for="mensilita">Mensilità previste dal contratto</label>
+        <select id="mensilita">
+          <option value="12">12 mensilità</option>
+          <option value="13" selected>13 mensilità (con tredicesima)</option>
+          <option value="14">14 mensilità (tredicesima e quattordicesima)</option>
+        </select>
+      </div>
+      <p class="total" id="pro1-out"></p>
+      <ul class="calcolo" id="pro1-calc"></ul>
+    </section>
+
+    <section data-pro="Confronto tra date di consegna" aria-labelledby="h-pro2">
+      <span class="pro-tag">Pro</span>
+      <h2 id="h-pro2">Conviene consegnare oggi o domani?</h2>
+      <p class="hint" style="margin-top:-8px">Con la regola del 1° e del 16 un solo giorno di ritardo può spostare l&rsquo;uscita di due settimane. Confronta le date prima di consegnare la lettera.</p>
+      <div class="scenari" id="scenari"></div>
+      <button type="button" class="mini" id="add-scen">+ Aggiungi una data</button>
+      <p class="hint" id="pro2-nota"></p>
+    </section>
+
+    <section id="guida" aria-labelledby="h-guida">
+      <h2 id="h-guida">Guida al calcolo</h2>
+
+      <h3>Come si calcolano i giorni di preavviso dimissioni</h3>
+      <p>Il preavviso è il periodo che devi ancora lavorare fra il momento in cui comunichi le dimissioni e l&rsquo;ultimo giorno in azienda. Non esiste un numero unico valido per tutti: la durata la fissa il tuo contratto collettivo e cambia in base a due variabili, il livello di inquadramento e l&rsquo;anzianità di servizio maturata presso quel datore di lavoro. Un sesto livello del Commercio assunto da due anni deve 15 giorni; un quadro con dodici anni di anzianità nello stesso contratto arriva a 120 giorni. Per questo la prima cosa da guardare è la busta paga: lì trovi il CCNL applicato e il livello.</p>
+      <p>Il secondo punto, quello che manda fuori strada più persone, è che i giorni si contano <strong>di calendario</strong> e non lavorativi: sabati, domeniche e festivi sono dentro il conteggio. Trenta giorni di preavviso sono trenta giorni consecutivi, non sei settimane di lavoro. Quando invece il contratto parla di <em>mesi</em> di calendario — succede spesso per impiegati e quadri dei metalmeccanici o del turismo — non si moltiplica per trenta: si sposta la data di un mese esatto, quindi dal 10 marzo si arriva al 10 aprile, anche se febbraio ha ventotto giorni.</p>
+
+      <h3>Da quando parte il conteggio: le due regole</h3>
+      <p>Qui i contratti si dividono in due famiglie e sbagliare significa sbagliare l&rsquo;ultimo giorno di lavoro di due settimane.</p>
+      <p>La regola ordinaria è che il preavviso decorre dal giorno successivo alla ricezione delle dimissioni: consegni il 12, il conteggio parte il 13. È il caso, per esempio, dei metalmeccanici dell&rsquo;industria.</p>
+      <p>Diversi CCNL del mondo Confcommercio e gli Studi professionali prevedono invece una <strong>decorrenza fissa dal 1° o dal 16 di ogni mese</strong>: il preavviso non parte quando consegni la lettera, ma alla quindicina successiva. Se consegni il 5 non si parte il 6, si parte il 16; se consegni il 20 si parte il 1° del mese dopo. Sono giorni in cui lavori comunque, ma che non vengono scalati dal preavviso: è il motivo per cui aspettare un giorno in più può costare due settimane, o farti risparmiare due settimane.</p>
+
+      <h3>Un esempio con i numeri</h3>
+      <div class="esempio">
+        <p>Commessa al 4° livello del CCNL Terziario, assunta nel maggio 2019, quindi con più di cinque anni di anzianità: la tabella prevede <strong>30 giorni</strong> di calendario.</p>
+        <p>Consegna la lettera il <strong>26 settembre 2026</strong>. Siamo dopo il 16, quindi il preavviso decorre dal <strong>1° ottobre</strong>.</p>
+        <p>Trenta giorni da quella data portano all&rsquo;ultimo giorno di lavoro: <strong>30 ottobre 2026</strong>. La data di decorrenza da scrivere nel modulo è il <strong>31 ottobre 2026</strong>.</p>
+        <p>Se avesse consegnato il 15 settembre, il preavviso sarebbe partito il 16 settembre e l&rsquo;ultimo giorno sarebbe stato il 15 ottobre: quindici giorni prima, a parità di giorni dovuti.</p>
+      </div>
+
+      <h3>La data di decorrenza: l&rsquo;errore più comune del modulo</h3>
+      <p>Le dimissioni si presentano per via telematica sul portale del Ministero del Lavoro (o tramite un intermediario abilitato: sindacato, consulente del lavoro, ente bilaterale). Il modulo chiede la <strong>data di decorrenza</strong> e non è la data in cui invii la pratica: è il giorno successivo all&rsquo;ultimo giorno di lavoro, cioè il primo giorno in cui il rapporto non esiste più. Se l&rsquo;ultimo giorno in azienda è il 31 ottobre, nel modulo va il 1° novembre. Indicare per sbaglio la data di invio significa dichiarare di uscire senza preavviso, con il rischio della trattenuta. Hai sette giorni dall&rsquo;invio per revocare le dimissioni, e in quella finestra l&rsquo;errore si corregge revocando e rifacendo la pratica.</p>
+
+      <h3>Errori comuni da evitare</h3>
+      <ul>
+        <li><strong>Contare solo i giorni lavorativi</strong>: il preavviso è in giorni di calendario, quindi finisce prima di quanto si crede.</li>
+        <li><strong>Trasformare i mesi in multipli di 30</strong>: due mesi di calendario dal 31 dicembre non fanno il 1° marzo, fanno il 28 febbraio.</li>
+        <li><strong>Dimenticare la quindicina</strong>: nel Commercio e negli Studi professionali il preavviso parte dal 1° o dal 16, non dal giorno dopo la lettera.</li>
+        <li><strong>Pensare di coprire il preavviso con le ferie</strong>: di regola le ferie non sospendono né sostituiscono il preavviso, servono accordo e autorizzazione del datore. Le ferie residue vengono pagate a parte nella busta finale.</li>
+        <li><strong>Calcolare l&rsquo;anzianità sbagliata</strong>: contano gli anni presso quel datore di lavoro, non gli anni di contributi totali; e per i passaggi di fascia contano gli anni compiuti.</li>
+      </ul>
+
+      <h3>Le tabelle usate da questo calcolatore</h3>
+      <p>I giorni proposti in automatico vengono dalle tabelle dei CCNL più diffusi, riportate per gruppi di livelli e per le tre fasce di anzianità (fino a 5 anni, oltre 5 e fino a 10, oltre 10 anni):</p>
+      <table class="tab" id="tab-fonti">
+        <thead><tr><th>Contratto</th><th>Riferimento</th><th class="n">Range</th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <p class="hint">I contratti vengono rinnovati e le tabelle possono cambiare: prima di consegnare la lettera controlla l&rsquo;articolo sul preavviso del tuo CCNL, oppure fatti confermare il numero dall&rsquo;ufficio del personale o da un sindacato. Se il tuo contratto non è in elenco, scegli <em>Altro CCNL</em> e inserisci mesi e giorni a mano: il calcolo delle date funziona allo stesso modo.</p>
+
+      <h3>Se non rispetti il preavviso</h3>
+      <p>Uscire prima non è vietato, ma ha un prezzo: il datore di lavoro può trattenere dalle ultime competenze una somma pari alla retribuzione dei giorni di preavviso non lavorati, compresi i ratei di tredicesima ed eventuale quattordicesima. La trattenuta può toccare busta paga finale, ferie non godute e TFR. Il calcolo Pro qui sopra stima quell&rsquo;importo al lordo. Il datore, dall&rsquo;altra parte, può anche rinunciare al preavviso e lasciarti andare subito: è una sua facoltà e conviene farsela mettere per iscritto.</p>
+
+      <h3>Domande frequenti</h3>
+      <h4 style="margin:18px 0 .3em;font-size:1rem">Quanti giorni di preavviso devo dare se mi dimetto?</h4>
+      <p>Dipende da CCNL, livello e anzianità: si va da 15 giorni per i livelli più bassi con pochi anni di servizio fino a 4 o 6 mesi per quadri e figure direttive con oltre dieci anni di anzianità. Il calcolatore qui sopra parte dalle tabelle contrattuali e ti dà il numero già applicato al tuo caso.</p>
+      <h4 style="margin:18px 0 .3em;font-size:1rem">Il preavviso si conta in giorni lavorativi o di calendario?</h4>
+      <p>Di calendario, salvo diversa previsione del contratto: sabati, domeniche e festivi sono compresi. Se il CCNL indica mesi, si ragiona in mesi di calendario e non in blocchi di trenta giorni.</p>
+      <h4 style="margin:18px 0 .3em;font-size:1rem">Che data devo mettere come decorrenza nelle dimissioni telematiche?</h4>
+      <p>Il giorno successivo all&rsquo;ultimo giorno di lavoro, mai la data di invio della pratica. Il calcolatore la mostra già pronta accanto all&rsquo;ultimo giorno.</p>
+      <h4 style="margin:18px 0 .3em;font-size:1rem">Posso usare le ferie per coprire il preavviso?</h4>
+      <p>Di norma no, perché il preavviso serve a garantire un periodo di lavoro effettivo. Se le ferie erano già state concordate e autorizzate prima della comunicazione la situazione cambia, ma serve l&rsquo;accordo del datore di lavoro.</p>
+      <h4 style="margin:18px 0 .3em;font-size:1rem">Cosa rischio se non rispetto il preavviso?</h4>
+      <p>L&rsquo;indennità di mancato preavviso: una trattenuta pari alla retribuzione dei giorni non lavorati, ratei di tredicesima e quattordicesima inclusi, che il datore può recuperare su busta paga finale, ferie residue e TFR.</p>
+    </section>
+
+    <div data-ad="bottom"></div>
+
+    <section aria-labelledby="h-rel">
+      <h2 id="h-rel">Altri strumenti utili</h2>
+      <ul class="related">
+        <li><a href="../2026-09-20-calcolo-tfr/">Calcola il TFR che ti spetta alla fine del rapporto</a></li>
+        <li><a href="../2026-09-22-giorni-lavorativi/">Conta i giorni lavorativi tra due date</a></li>
+        <li><a href="../2026-09-20-netto-da-lordo/">Stipendio netto dal lordo: quanto resta in busta paga</a></li>
+      </ul>
+    </section>
+
+    <div data-support></div>
+
+    <p class="foot">
+      Calcolo indicativo a scopo informativo: non sostituisce il testo del tuo CCNL né il parere di un consulente del lavoro.<br>
+      Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a>
+    </p>
+  </main>
+</div>
+
+<div class="bar">
+  <div class="bar-in">
+    <button type="button" id="copia">Copia il riepilogo</button>
+    <button type="button" class="ghost" id="reset">Azzera</button>
+  </div>
+</div>
+<p class="sr" id="say" role="status"></p>
+
+<script src="../../assets/monetize.js"></script>
+<script>
+/* Modello dati: ogni CCNL è { id, nome, fonte, decorrenza, note, livelli:[{nome, d:[D,D,D]}] }
+ * dove D = { m: mesi di calendario, g: giorni di calendario } e l'indice 0/1/2 è la fascia di
+ * anzianità (fino a 5 anni | oltre 5 fino a 10 | oltre 10). Lo stato utente sta in `stato` e
+ * viene serializzato in localStorage con la chiave "preavviso-dimissioni:v1".
+ */
+(() => {
+  "use strict";
+  const CHIAVE = "preavviso-dimissioni:v1";
+  const gg = (n) => ({ m: 0, g: n });
+  const mm = (n, g) => ({ m: n, g: g || 0 });
+
+  const CCNL = [
+    {
+      id: "commercio",
+      nome: "Commercio e Terziario (Confcommercio)",
+      fonte: "CCNL Terziario, distribuzione e servizi — art. 254 (dimissioni e preavviso)",
+      decorrenza: "quindicina",
+      livelli: [
+        { nome: "Quadri e 1° livello", d: [gg(60), gg(90), gg(120)] },
+        { nome: "2° e 3° livello", d: [gg(30), gg(45), gg(60)] },
+        { nome: "4° e 5° livello", d: [gg(20), gg(30), gg(45)] },
+        { nome: "6° e 7° livello", d: [gg(15), gg(20), gg(20)] },
+      ],
+    },
+    {
+      id: "studi",
+      nome: "Studi professionali",
+      fonte: "CCNL Studi professionali — termini di preavviso per dimissioni",
+      decorrenza: "quindicina",
+      livelli: [
+        { nome: "Quadri e 1° livello", d: [gg(90), gg(120), gg(150)] },
+        { nome: "2° livello", d: [gg(60), gg(90), gg(120)] },
+        { nome: "3° e 3° super", d: [gg(30), gg(40), gg(50)] },
+        { nome: "4° e 4° super", d: [gg(20), gg(30), gg(30)] },
+        { nome: "5° livello", d: [gg(15), gg(20), gg(25)] },
+      ],
+    },
+    {
+      id: "metalmeccanici",
+      nome: "Metalmeccanici industria (Federmeccanica)",
+      fonte: "CCNL Metalmeccanici industria — Titolo VIII, art. 1 (preavviso)",
+      decorrenza: "giorno-dopo",
+      livelli: [
+        { nome: "D1, D2, C1 (operai e impiegati esecutivi)", d: [gg(10), gg(20), gg(25)] },
+        { nome: "C2, C3, B1 (tecnici e specializzati)", d: [mm(1, 15), mm(2), mm(2, 15)] },
+        { nome: "B2, B3, A1 (alte specializzazioni e quadri)", d: [mm(2), mm(3), mm(4)] },
+      ],
+    },
+    {
+      id: "turismo",
+      nome: "Turismo, pubblici esercizi e ristorazione",
+      fonte: "CCNL Turismo / Pubblici esercizi — termini di preavviso",
+      decorrenza: "giorno-dopo",
+      nota: "In questo settore verifica sul tuo contratto se il preavviso decorre dal giorno dopo la consegna oppure dal 1° o dal 16 del mese.",
+      livelli: [
+        { nome: "Quadri A e B", d: [mm(4), mm(5), mm(6)] },
+        { nome: "1° livello", d: [mm(2), mm(3), mm(4)] },
+        { nome: "2° e 3° livello", d: [mm(1), gg(45), mm(2)] },
+        { nome: "4° e 5° livello", d: [gg(20), gg(30), gg(45)] },
+        { nome: "6°, 6S e 7° livello", d: [gg(15), gg(20), gg(20)] },
+      ],
+    },
+    {
+      id: "altro",
+      nome: "Altro CCNL (inserisco io i giorni)",
+      fonte: "Valori inseriti a mano: controllali sull'articolo del tuo CCNL dedicato al preavviso.",
+      decorrenza: "giorno-dopo",
+      livelli: null,
+    },
+  ];
+
+  const FASCE = ["fino a 5 anni", "oltre 5 e fino a 10 anni", "oltre 10 anni"];
+  const MESI = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"];
+  const GIORNI = ["domenica", "lunedì", "martedì", "mercoledì", "giovedì", "venerdì", "sabato"];
+
+  // ---------- date (tutto in ora locale, nessun fuso di mezzo) ----------
+  const iso = (d) => d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  function leggi(v) {
+    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(v || ""));
+    if (!m) return null;
+    const d = new Date(+m[1], +m[2] - 1, +m[3]);
+    if (d.getFullYear() !== +m[1] || d.getMonth() !== +m[2] - 1 || d.getDate() !== +m[3]) return null;
+    return d;
+  }
+  const piuGiorni = (d, n) => new Date(d.getFullYear(), d.getMonth(), d.getDate() + n);
+  function piuMesi(d, n) {
+    const y = d.getFullYear(), m = d.getMonth() + n;
+    const ultimo = new Date(y, m + 1, 0).getDate();
+    return new Date(y, m, Math.min(d.getDate(), ultimo));
+  }
+  const distanza = (a, b) => Math.round((b - a) / 86400000);
+  const lungo = (d) => GIORNI[d.getDay()] + " " + d.getDate() + " " + MESI[d.getMonth()] + " " + d.getFullYear();
+  const breve = (d) => String(d.getDate()).padStart(2, "0") + "/" + String(d.getMonth() + 1).padStart(2, "0") + "/" + d.getFullYear();
+  const euro = (n) => n.toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €";
+
+  function anniCompiuti(da, a) {
+    let anni = a.getFullYear() - da.getFullYear();
+    const m = a.getMonth() - da.getMonth();
+    if (m < 0 || (m === 0 && a.getDate() < da.getDate())) anni--;
+    return anni;
+  }
+  const fasciaDaAnni = (anni) => (anni <= 5 ? 0 : anni <= 10 ? 1 : 2);
+
+  function durataTesto(d) {
+    const parti = [];
+    if (d.m) parti.push(d.m === 1 ? "1 mese" : d.m + " mesi");
+    if (d.g) parti.push(d.g === 1 ? "1 giorno" : d.g + " giorni");
+    return parti.length ? parti.join(" e ") : "0 giorni";
+  }
+
+  // Inizio del preavviso secondo la regola di decorrenza scelta.
+  function inizioPreavviso(consegna, regola) {
+    if (regola === "quindicina") {
+      return consegna.getDate() <= 15
+        ? new Date(consegna.getFullYear(), consegna.getMonth(), 16)
+        : new Date(consegna.getFullYear(), consegna.getMonth() + 1, 1);
+    }
+    return piuGiorni(consegna, 1);
+  }
+  // L'ultimo giorno di lavoro è l'ultimo giorno del periodo: inizio + durata - 1 giorno.
+  function calcola(consegna, regola, durata) {
+    const inizio = inizioPreavviso(consegna, regola);
+    let fine = inizio;
+    if (durata.m) fine = piuMesi(fine, durata.m);
+    if (durata.g) fine = piuGiorni(fine, durata.g);
+    const ultimo = piuGiorni(fine, -1);
+    return { inizio, ultimo, decorrenza: piuGiorni(ultimo, 1) };
+  }
+
+  // ---------- stato ----------
+  const oggi = new Date();
+  const stato = {
+    ccnl: "commercio", livello: 2, fascia: 0, assunzione: "",
+    consegna: iso(oggi), regola: "quindicina", mesi: 0, giorni: 20, manuale: false,
+    uscita: "", lordo: 1800, mensilita: 13, scenari: [],
+  };
+  try {
+    const salvato = JSON.parse(localStorage.getItem(CHIAVE) || "null");
+    if (salvato && typeof salvato === "object") Object.assign(stato, salvato);
+  } catch (_) { /* storage non disponibile o dato corrotto: si parte dai default */ }
+  function salva() {
+    try { localStorage.setItem(CHIAVE, JSON.stringify(stato)); } catch (_) { /* quota o modalità privata */ }
+  }
+
+  const $ = (s) => document.querySelector(s);
+  const elCcnl = $("#ccnl"), elLiv = $("#livello"), elAnz = $("#anzianita"), elAss = $("#assunzione"),
+    elCons = $("#consegna"), elMesi = $("#mesi"), elGiorni = $("#giorni"), elWrapLiv = $("#wrap-livello");
+
+  const ccnlCorrente = () => CCNL.find((c) => c.id === stato.ccnl) || CCNL[0];
+  function livelloCorrente() {
+    const c = ccnlCorrente();
+    if (!c.livelli) return null;
+    return c.livelli[Math.min(stato.livello, c.livelli.length - 1)];
+  }
+  const durataCorrente = () => ({ m: Math.max(0, stato.mesi | 0), g: Math.max(0, stato.giorni | 0) });
+
+  // ---------- costruzione dei menu ----------
+  for (const c of CCNL) elCcnl.append(new Option(c.nome, c.id));
+  function riempiLivelli() {
+    const c = ccnlCorrente();
+    elLiv.replaceChildren();
+    if (!c.livelli) { elWrapLiv.hidden = true; return; }
+    elWrapLiv.hidden = false;
+    c.livelli.forEach((l, i) => elLiv.append(new Option(l.nome, String(i))));
+    stato.livello = Math.min(stato.livello, c.livelli.length - 1);
+    elLiv.value = String(stato.livello);
+  }
+  function applicaTabella() {
+    const l = livelloCorrente();
+    if (!l) return; // "Altro CCNL": i valori restano quelli dell'utente
+    const d = l.d[stato.fascia];
+    stato.mesi = d.m; stato.giorni = d.g; stato.manuale = false;
+  }
+
+  // ---------- tabella delle fonti nella guida ----------
+  (function tabellaFonti() {
+    const corpo = document.querySelector("#tab-fonti tbody");
+    for (const c of CCNL) {
+      if (!c.livelli) continue;
+      const durate = c.livelli.flatMap((l) => l.d);
+      const peso = (d) => d.m * 30.44 + d.g;
+      const min = durate.reduce((a, b) => (peso(b) < peso(a) ? b : a));
+      const max = durate.reduce((a, b) => (peso(b) > peso(a) ? b : a));
+      const tr = document.createElement("tr");
+      const td = (t, cls) => { const n = document.createElement("td"); n.textContent = t; if (cls) n.className = cls; return n; };
+      tr.append(td(c.nome), td(c.fonte.replace(/^CCNL [^—]+— /, "")), td(durataTesto(min) + " – " + durataTesto(max), "n"));
+      corpo.append(tr);
+    }
+  })();
+
+  // ---------- rendering ----------
+  function render() {
+    const c = ccnlCorrente();
+    const consegna = leggi(stato.consegna);
+    const durata = durataCorrente();
+
+    elCcnl.value = stato.ccnl;
+    elAnz.value = String(stato.fascia);
+    elAss.value = stato.assunzione;
+    elCons.value = stato.consegna;
+    if (document.activeElement !== elMesi) elMesi.value = String(durata.m);
+    if (document.activeElement !== elGiorni) elGiorni.value = String(durata.g);
+    for (const r of document.querySelectorAll('input[name="dec"]')) {
+      r.checked = r.value === stato.regola;
+      r.closest(".choice").classList.toggle("on", r.checked);
+    }
+
+    // suggerimento sull'anzianità calcolata dalla data di assunzione
+    const ass = leggi(stato.assunzione);
+    const hint = $("#hint-anzianita");
+    if (ass && consegna && ass <= consegna) {
+      const anni = anniCompiuti(ass, consegna);
+      hint.textContent = "Alla consegna avrai " + anni + (anni === 1 ? " anno" : " anni") + " di anzianità: fascia “" + FASCE[fasciaDaAnni(anni)] + "”.";
+    } else if (ass && consegna) {
+      hint.textContent = "La data di assunzione è successiva alla consegna: controllala.";
+    } else {
+      hint.textContent = "Se non sei sicuro, inserisci qui sotto la data di assunzione.";
+    }
+
+    $("#hint-durata").textContent = c.livelli
+      ? (stato.manuale ? "Valore inserito a mano: cambia CCNL o livello per tornare alla tabella." : "Compilati in automatico dalla tabella del CCNL: puoi correggerli se il tuo contratto prevede altro.")
+      : "Contratto non in elenco: scrivi qui i mesi o i giorni indicati dall'articolo sul preavviso del tuo CCNL.";
+
+    const durNota = $("#out-durata-nota");
+    if (!consegna) {
+      $("#out-durata").firstChild.textContent = "—";
+      durNota.textContent = "Inserisci la data di consegna delle dimissioni.";
+      $("#out-rows").replaceChildren();
+      $("#out-stamp").hidden = true;
+      $("#out-fonte").textContent = "";
+      $("#calendario").replaceChildren();
+      $("#cal-nota").textContent = "";
+      renderPro(null, durata);
+      return;
+    }
+    if (durata.m === 0 && durata.g === 0) {
+      $("#out-durata").firstChild.textContent = "—";
+      durNota.textContent = "Indica quanti mesi o giorni di preavviso prevede il tuo contratto.";
+      $("#out-rows").replaceChildren();
+      $("#out-stamp").hidden = true;
+      $("#out-fonte").textContent = c.fonte;
+      $("#calendario").replaceChildren();
+      $("#cal-nota").textContent = "";
+      renderPro(null, durata);
+      return;
+    }
+
+    const r = calcola(consegna, stato.regola, durata);
+    $("#out-durata").firstChild.textContent = durataTesto(durata);
+    durNota.textContent = durata.m
+      ? "di calendario: si spostano le date di " + (durata.m === 1 ? "un mese" : durata.m + " mesi") + ", non di blocchi di 30 giorni"
+      : "di calendario, sabati e festivi compresi";
+
+    const righe = [
+      ["Dimissioni consegnate il", breve(consegna), false],
+      ["Il preavviso decorre dal", lungo(r.inizio), false],
+      ["Ultimo giorno di lavoro", lungo(r.ultimo), true],
+      ["Data di decorrenza da indicare nel modulo", lungo(r.decorrenza), true],
+      ["In tutto, dalla consegna", distanza(consegna, r.ultimo) + " giorni di calendario", false],
+    ];
+    const dl = $("#out-rows");
+    dl.replaceChildren();
+    for (const [k, v, chiave] of righe) {
+      const div = document.createElement("div");
+      if (chiave) div.className = "key";
+      const dt = document.createElement("dt"); dt.textContent = k;
+      const dd = document.createElement("dd"); dd.textContent = v;
+      div.append(dt, dd); dl.append(div);
+    }
+
+    const attesa = distanza(consegna, r.inizio) - 1;
+    const stamp = $("#out-stamp");
+    stamp.hidden = false;
+    stamp.replaceChildren();
+    const b = document.createElement("b"); b.textContent = "Attenzione";
+    const p = document.createElement("span");
+    if (stato.regola === "quindicina" && attesa > 0) {
+      p.textContent = "Con la decorrenza dal 1° o dal 16, tra la consegna e l'inizio del preavviso ci sono " + attesa +
+        (attesa === 1 ? " giorno" : " giorni") + " che lavori senza che vengano scalati. Consegnando il " +
+        breve(piuGiorni(r.inizio, -1)) + " uscirebbe lo stesso giorno: " + breve(r.ultimo) + ".";
+    } else {
+      p.textContent = "Nel modulo delle dimissioni telematiche va la data di decorrenza (" + breve(r.decorrenza) +
+        "), cioè il giorno dopo l'ultimo giorno di lavoro, non la data di invio della pratica.";
+    }
+    stamp.append(b, p);
+
+    const liv = livelloCorrente();
+    $("#out-fonte").textContent = "Fonte: " + c.fonte + (liv ? " — " + liv.nome + ", " + FASCE[stato.fascia] + "." : "") + (c.nota ? " " + c.nota : "");
+
+    renderCalendario(r);
+    renderPro(r, durata);
+    salva();
+  }
+
+  // ---------- calendario ----------
+  function renderCalendario(r) {
+    const box = $("#calendario");
+    box.replaceChildren();
+    const primoMese = new Date(r.inizio.getFullYear(), r.inizio.getMonth(), 1);
+    const ultimoMese = new Date(r.decorrenza.getFullYear(), r.decorrenza.getMonth(), 1);
+    const totale = (ultimoMese.getFullYear() - primoMese.getFullYear()) * 12 + (ultimoMese.getMonth() - primoMese.getMonth()) + 1;
+    const mostrati = Math.min(totale, 4);
+    for (let i = 0; i < mostrati; i++) {
+      const mese = new Date(primoMese.getFullYear(), primoMese.getMonth() + (i < 3 || totale <= 4 ? i : totale - 1), 1);
+      box.append(meseHTML(mese, r));
+    }
+    $("#cal-nota").textContent = totale > 4
+      ? "Il preavviso attraversa " + totale + " mesi: qui sono disegnati i primi tre e quello dell'uscita."
+      : "";
+  }
+  function meseHTML(mese, r) {
+    const wrap = document.createElement("div");
+    wrap.className = "month";
+    const h = document.createElement("h4");
+    h.textContent = MESI[mese.getMonth()].replace(/^./, (s) => s.toUpperCase()) + " " + mese.getFullYear();
+    const grid = document.createElement("div");
+    grid.className = "grid";
+    for (const w of ["L", "M", "M", "G", "V", "S", "D"]) {
+      const e = document.createElement("div"); e.className = "wd"; e.textContent = w; grid.append(e);
+    }
+    const primo = new Date(mese.getFullYear(), mese.getMonth(), 1);
+    const vuoti = (primo.getDay() + 6) % 7; // settimana che parte da lunedì
+    for (let i = 0; i < vuoti; i++) grid.append(document.createElement("div"));
+    const giorniMese = new Date(mese.getFullYear(), mese.getMonth() + 1, 0).getDate();
+    for (let d = 1; d <= giorniMese; d++) {
+      const data = new Date(mese.getFullYear(), mese.getMonth(), d);
+      const cell = document.createElement("div");
+      cell.className = "day";
+      cell.textContent = String(d);
+      const dentro = data >= r.inizio && data <= r.ultimo;
+      if (dentro) cell.classList.add("in");
+      if (+data === +r.inizio) cell.classList.add("start");
+      if (+data === +r.ultimo) { cell.classList.remove("in"); cell.classList.add("last"); cell.title = "Ultimo giorno di lavoro"; }
+      if (+data === +r.decorrenza) { cell.classList.add("dec"); cell.title = "Data di decorrenza delle dimissioni"; }
+      if (!dentro && +data !== +r.decorrenza) cell.classList.add("off");
+      grid.append(cell);
+    }
+    wrap.append(h, grid);
+    return wrap;
+  }
+
+  // ---------- funzioni Pro ----------
+  function renderPro(r, durata) {
+    // 1. indennità di mancato preavviso
+    const out = $("#pro1-out"), calc = $("#pro1-calc");
+    const elUsc = $("#uscita"), elLordo = $("#lordo"), elMens = $("#mensilita");
+    if (document.activeElement !== elLordo) elLordo.value = String(stato.lordo);
+    elMens.value = String(stato.mensilita);
+    if (!stato.uscita && r) stato.uscita = iso(r.ultimo);
+    elUsc.value = stato.uscita;
+    calc.replaceChildren();
+    if (!r) {
+      out.textContent = "Completa i dati qui sopra per vedere la stima.";
+    } else {
+      const uscita = leggi(stato.uscita);
+      const lordo = Number(stato.lordo) || 0;
+      const mens = Number(stato.mensilita) || 12;
+      if (!uscita) {
+        out.textContent = "Indica l'ultimo giorno che vuoi lavorare.";
+      } else if (uscita >= r.ultimo) {
+        out.textContent = "Rispetti tutto il preavviso: nessuna trattenuta.";
+      } else if (uscita < r.inizio) {
+        out.textContent = "Data troppo anticipata: mettila tra " + breve(r.inizio) + " e " + breve(r.ultimo) + ".";
+      } else {
+        const mancanti = distanza(uscita, r.ultimo);
+        const giornaliera = (lordo * mens) / 12 / 30;
+        const tot = giornaliera * mancanti;
+        out.replaceChildren(document.createTextNode("Trattenuta stimata (lorda)"), Object.assign(document.createElement("b"), { textContent: euro(tot) }));
+        for (const t of [
+          "Giorni di preavviso non lavorati: " + mancanti + " (dal " + breve(piuGiorni(uscita, 1)) + " al " + breve(r.ultimo) + ")",
+          "Retribuzione di fatto giornaliera: " + euro(lordo) + " × " + mens + " mensilità ÷ 12 ÷ 30 = " + euro(giornaliera),
+          "Totale: " + euro(giornaliera) + " × " + mancanti + " giorni = " + euro(tot),
+          "Stima al lordo, da confermare con la busta paga: nella retribuzione di fatto entrano anche superminimi e voci fisse.",
+        ]) {
+          const li = document.createElement("li"); li.textContent = t; calc.append(li);
+        }
+      }
+    }
+
+    // 2. confronto tra date di consegna
+    if (!stato.scenari.length && r) {
+      const consegna = leggi(stato.consegna);
+      const prima = piuGiorni(consegna, 1);
+      const dopo = stato.regola === "quindicina" ? piuGiorni(inizioPreavviso(consegna, "quindicina"), -1) : piuGiorni(consegna, 7);
+      stato.scenari = [iso(consegna), iso(prima), iso(dopo)].filter((v, i, a) => a.indexOf(v) === i).slice(0, 3);
+    }
+    const box = $("#scenari");
+    box.replaceChildren();
+    stato.scenari.forEach((val, i) => {
+      const riga = document.createElement("div");
+      riga.className = "scen";
+      const row2 = document.createElement("div");
+      row2.className = "row2";
+      const input = document.createElement("input");
+      input.type = "date"; input.value = val; input.autocomplete = "off";
+      input.setAttribute("aria-label", "Data di consegna, ipotesi " + (i + 1));
+      input.addEventListener("change", () => { stato.scenari[i] = input.value; render(); });
+      row2.append(input);
+      if (stato.scenari.length > 1) {
+        const del = document.createElement("button");
+        del.type = "button"; del.className = "mini"; del.textContent = "×";
+        del.setAttribute("aria-label", "Rimuovi l'ipotesi " + (i + 1));
+        del.addEventListener("click", () => { stato.scenari.splice(i, 1); render(); });
+        row2.append(del);
+      }
+      const res = document.createElement("div");
+      res.className = "res";
+      const d = leggi(val);
+      if (!d || (durata.m === 0 && durata.g === 0)) {
+        res.textContent = "—";
+      } else {
+        const s = calcola(d, stato.regola, durata);
+        const strong = document.createElement("b");
+        strong.textContent = breve(s.ultimo);
+        res.append(document.createTextNode("ultimo giorno "), strong,
+          document.createTextNode(" · decorrenza " + breve(s.decorrenza) + " · preavviso dal " + breve(s.inizio)));
+      }
+      riga.append(row2, res);
+      box.append(riga);
+    });
+    const valide = stato.scenari.map(leggi).filter(Boolean);
+    if (valide.length > 1 && (durata.m || durata.g)) {
+      const fini = valide.map((d) => calcola(d, stato.regola, durata).ultimo);
+      const min = new Date(Math.min.apply(null, fini)), max = new Date(Math.max.apply(null, fini));
+      const delta = distanza(min, max);
+      $("#pro2-nota").textContent = delta
+        ? "Tra l'ipotesi migliore e la peggiore ballano " + delta + (delta === 1 ? " giorno" : " giorni") + ": si esce il " + breve(min) + " oppure il " + breve(max) + "."
+        : "Tutte le ipotesi portano allo stesso ultimo giorno di lavoro.";
+    } else {
+      $("#pro2-nota").textContent = "";
+    }
+  }
+
+  // ---------- riepilogo ----------
+  function riepilogo() {
+    const consegna = leggi(stato.consegna), durata = durataCorrente();
+    if (!consegna || (!durata.m && !durata.g)) return null;
+    const c = ccnlCorrente(), liv = livelloCorrente(), r = calcola(consegna, stato.regola, durata);
+    return [
+      "Preavviso dimissioni",
+      "CCNL: " + c.nome + (liv ? " — " + liv.nome : ""),
+      "Anzianità: " + FASCE[stato.fascia],
+      "Preavviso dovuto: " + durataTesto(durata) + " di calendario",
+      "Dimissioni consegnate il: " + breve(consegna),
+      "Preavviso dal: " + breve(r.inizio),
+      "Ultimo giorno di lavoro: " + breve(r.ultimo),
+      "Data di decorrenza da indicare nel modulo: " + breve(r.decorrenza),
+      "",
+      "Calcolo indicativo, da verificare sul CCNL.",
+    ].join("\n");
+  }
+  function avvisa(testo) {
+    const say = $("#say");
+    say.textContent = testo;
+    const btn = $("#copia"), prima = btn.textContent;
+    btn.textContent = testo;
+    setTimeout(() => { btn.textContent = prima; }, 1800);
+  }
+
+  // ---------- eventi ----------
+  elCcnl.addEventListener("change", () => {
+    stato.ccnl = elCcnl.value; stato.livello = 0;
+    riempiLivelli(); applicaTabella();
+    const c = ccnlCorrente();
+    if (c.decorrenza) stato.regola = c.decorrenza;
+    stato.scenari = [];
+    render();
+  });
+  elLiv.addEventListener("change", () => { stato.livello = +elLiv.value || 0; applicaTabella(); render(); });
+  elAnz.addEventListener("change", () => { stato.fascia = +elAnz.value || 0; applicaTabella(); render(); });
+  elAss.addEventListener("change", () => {
+    stato.assunzione = elAss.value;
+    const ass = leggi(stato.assunzione), cons = leggi(stato.consegna);
+    if (ass && cons && ass <= cons) { stato.fascia = fasciaDaAnni(anniCompiuti(ass, cons)); applicaTabella(); }
+    render();
+  });
+  elCons.addEventListener("change", () => {
+    stato.consegna = elCons.value;
+    const ass = leggi(stato.assunzione), cons = leggi(stato.consegna);
+    if (ass && cons && ass <= cons) { stato.fascia = fasciaDaAnni(anniCompiuti(ass, cons)); applicaTabella(); }
+    stato.scenari = []; stato.uscita = "";
+    render();
+  });
+  for (const el of [elMesi, elGiorni]) {
+    el.addEventListener("input", () => {
+      stato.mesi = Math.max(0, Math.min(24, parseInt(elMesi.value, 10) || 0));
+      stato.giorni = Math.max(0, Math.min(400, parseInt(elGiorni.value, 10) || 0));
+      stato.manuale = true;
+      render();
+    });
+  }
+  for (const r of document.querySelectorAll('input[name="dec"]')) {
+    r.addEventListener("change", () => { stato.regola = r.value; stato.scenari = []; render(); });
+  }
+  $("#uscita").addEventListener("change", (e) => { stato.uscita = e.target.value; render(); });
+  $("#lordo").addEventListener("input", (e) => { stato.lordo = Math.max(0, parseFloat(e.target.value) || 0); render(); });
+  $("#mensilita").addEventListener("change", (e) => { stato.mensilita = +e.target.value || 12; render(); });
+  $("#add-scen").addEventListener("click", () => {
+    if (stato.scenari.length >= 5) { avvisa("Massimo 5 ipotesi"); return; }
+    const ultima = leggi(stato.scenari[stato.scenari.length - 1]) || leggi(stato.consegna) || new Date();
+    stato.scenari.push(iso(piuGiorni(ultima, 1)));
+    render();
+  });
+  $("#copia").addEventListener("click", async () => {
+    const testo = riepilogo();
+    if (!testo) { avvisa("Completa prima i dati"); return; }
+    try {
+      if (navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(testo);
+      else throw new Error("clipboard non disponibile");
+      avvisa("Riepilogo copiato");
+    } catch (_) {
+      // fallback per file:// e browser senza permesso: selezione manuale
+      const ta = document.createElement("textarea");
+      ta.value = testo;
+      ta.setAttribute("readonly", "");
+      ta.style.cssText = "position:fixed;left:0;bottom:0;width:100%;height:9rem;font-size:16px;z-index:9";
+      document.body.append(ta);
+      ta.select();
+      avvisa("Copia a mano il testo");
+      ta.addEventListener("blur", () => ta.remove(), { once: true });
+    }
+  });
+  $("#reset").addEventListener("click", () => {
+    try { localStorage.removeItem(CHIAVE); } catch (_) { /* niente storage */ }
+    Object.assign(stato, {
+      ccnl: "commercio", livello: 2, fascia: 0, assunzione: "", consegna: iso(new Date()),
+      regola: "quindicina", mesi: 0, giorni: 20, manuale: false, uscita: "", lordo: 1800,
+      mensilita: 13, scenari: [],
+    });
+    riempiLivelli(); applicaTabella(); render();
+    avvisa("Dati azzerati");
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && document.activeElement && document.activeElement.blur) document.activeElement.blur();
+  });
+
+  // ---------- avvio ----------
+  riempiLivelli();
+  if (!stato.manuale) applicaTabella();
+  render();
+  if (window.Monetize && Monetize.onPro) Monetize.onPro(() => render());
+})();
+</script>
+</body>
+</html>
