@@ -1,7 +1,7 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 15,
+  "count": 16,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -50,6 +50,52 @@ window.__APPS__ = {
     ]
   },
   "apps": [
+    {
+      "title": "Interessi Conto Deposito",
+      "slug": "2026-09-27-interessi-conto-deposito",
+      "date": "2026-09-27",
+      "description": "Calcola gli interessi netti di un conto deposito dopo ritenuta del 26% e imposta di bollo dello 0,20%, con interessi anticipati o posticipati.",
+      "category": "finanza-personale",
+      "tags": [
+        "conto deposito",
+        "interessi",
+        "risparmio",
+        "tasse"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "canvas",
+        "palette": "nero-neon",
+        "font": "mono-tecnico"
+      },
+      "business": {
+        "keyword": "calcolo interessi conto deposito",
+        "keywords": [
+          "quanto rende un conto deposito",
+          "interessi netti conto deposito",
+          "simulatore conto deposito vincolato",
+          "tassazione conto deposito"
+        ],
+        "intent": "Chi ha una somma ferma sul conto corrente, vede una pubblicità con un TAN al 3% e vuole sapere in trenta secondi quanto gli resta davvero in tasca dopo tasse e bollo.",
+        "target": "Risparmiatori 30-65 anni che confrontano offerte di conti deposito dal telefono, spesso senza dimestichezza con la fiscalità.",
+        "edge": "Gestisce interessi anticipati e posticipati, bollo a carico della banca e reinvestimento: casi veri delle offerte in circolazione che gli altri calcolatori ignorano. Mostra il rendimento netto annuo effettivo, l'unico numero che rende confrontabili vincoli di durata diversa.",
+        "monetization": [
+          "adsense",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto tra più offerte",
+          "Calendario delle scadenze"
+        ],
+        "affiliate": []
+      },
+      "size": 52888
+    },
     {
       "title": "Preavviso Dimissioni",
       "slug": "2026-09-26-preavviso-dimissioni",

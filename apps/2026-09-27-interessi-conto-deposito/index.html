@@ -1,0 +1,958 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#07090a">
+  <title>Interessi Conto Deposito: calcolo netto online gratis</title>
+  <meta name="description" content="Calcolo interessi conto deposito al netto della ritenuta del 26% e del bollo dello 0,20%: inserisci capitale, TAN e durata e scopri quanto ti resta davvero.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-27-interessi-conto-deposito/">
+  <meta property="og:title" content="Interessi Conto Deposito: calcolo netto online gratis">
+  <meta property="og:description" content="Metti capitale, TAN e durata del vincolo: vedi interessi netti, imposta di bollo e rendimento netto annuo effettivo. Gestisce interessi anticipati e posticipati.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-27-interessi-conto-deposito/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Interessi Conto Deposito",
+    "description": "Calcolatore gratuito degli interessi di un conto deposito: applica la ritenuta del 26% e l'imposta di bollo dello 0,20% annuo, gestisce interessi anticipati o posticipati, bollo a carico della banca e reinvestimento, e mostra il rendimento netto annuo effettivo.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-27-interessi-conto-deposito/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Come si calcolano gli interessi di un conto deposito?", "acceptedAnswer": { "@type": "Answer", "text": "Si moltiplica il capitale per il TAN lordo e per la frazione di anno del vincolo: 20.000 euro al 3,50% per 12 mesi danno 700 euro lordi. Da lì si toglie la ritenuta del 26% (182 euro) e si arriva a 518 euro netti. Infine si sottrae l'imposta di bollo dello 0,20% sul capitale, cioè 40 euro: restano 478 euro. È questo il numero che finisce davvero sul conto, non i 700 euro del calcolo iniziale." } },
+      { "@type": "Question", "name": "Quanto si paga di tasse su un conto deposito?", "acceptedAnswer": { "@type": "Answer", "text": "Due prelievi distinti. Il primo è la ritenuta a titolo d'imposta del 26% sugli interessi maturati, trattenuta direttamente dalla banca che agisce da sostituto d'imposta: non va dichiarata nel 730. Il secondo è l'imposta di bollo dello 0,20% annuo, che però non si calcola sugli interessi ma sul saldo del conto: si paga anche se il rendimento è basso e cresce insieme al capitale depositato." } },
+      { "@type": "Question", "name": "L'imposta di bollo sul conto deposito è 34,20 euro?", "acceptedAnswer": { "@type": "Answer", "text": "No, quella è l'imposta fissa del conto corrente, dovuta dalle persone fisiche solo con giacenza media sopra i 5.000 euro. Il conto deposito è classificato come prodotto finanziario e sconta un'imposta proporzionale dello 0,20% annuo sul saldo di fine periodo, senza soglia di esenzione e senza tetto per le persone fisiche. Su 50.000 euro sono 100 euro l'anno, non 34,20." } },
+      { "@type": "Question", "name": "Conviene di più un conto deposito con interessi anticipati o posticipati?", "acceptedAnswer": { "@type": "Answer", "text": "A parità di TAN conviene l'anticipato, perché incassi gli interessi il giorno dell'apertura e puoi usarli o reinvestirli subito. Su 20.000 euro al 3,50% per 12 mesi gli interessi netti sono 518 euro in entrambi i casi, ma nell'anticipato il tuo esborso reale è 19.482 euro invece di 20.000: il rendimento netto effettivo sale dal 2,39% al 2,45% circa. La differenza cresce con la durata del vincolo." } },
+      { "@type": "Question", "name": "Se svincolo prima della scadenza perdo gli interessi?", "acceptedAnswer": { "@type": "Answer", "text": "Quasi sempre sì, almeno in parte. Il foglio informativo prevede di norma il ricalcolo degli interessi a un tasso ridotto, spesso quello del conto libero o addirittura zero, e nei conti a interessi anticipati la banca trattiene la differenza già accreditata. Prima di vincolare somme che potrebbero servirti, controlla la voce svincolo anticipato del foglio informativo: è lì che si decide se l'offerta è adatta a te." } }
+    ]
+  }
+  </script>
+  <style>
+    /* Palette "nero-neon": console scura con un solo accento fluo (lime) e un secondario ciano.
+       Font "mono-tecnico": monospace per numeri, controlli e titoli; prosa della guida in system-ui. */
+    :root {
+      --bg: #07090a; --panel: #10161a; --panel-2: #161f24; --sunken: #0b1013;
+      --line: #222f35; --line-strong: #35474f;
+      --text: #e9f3f0; --dim: #8fa5a3; --dimmer: #66807e;
+      --neon: #b8ff29; --neon-bg: rgba(184, 255, 41, .13); --neon-ink: #0b1002;
+      --cyan: #3fe4ff; --cyan-bg: rgba(63, 228, 255, .12);
+      --bad: #ff7a6b;
+      --font-ui: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+      --font-read: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      --r: 10px;
+      color-scheme: dark;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #eef2ef; --panel: #ffffff; --panel-2: #f3f7f2; --sunken: #e7ece7;
+        --line: #d3ddd4; --line-strong: #adbcae;
+        --text: #0d1412; --dim: #566460; --dimmer: #6f7d79;
+        --neon: #2f7d00; --neon-bg: rgba(120, 200, 0, .17); --neon-ink: #f7fff0;
+        --cyan: #00738c; --cyan-bg: rgba(0, 150, 180, .12);
+        --bad: #b3341f;
+        color-scheme: light;
+      }
+    }
+    * { box-sizing: border-box; }
+    html, body { overflow-x: hidden; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font-family: var(--font-ui); font-size: 16px; line-height: 1.55;
+      -webkit-text-size-adjust: 100%;
+      padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
+    }
+    .wrap { width: 100%; max-width: 760px; margin: 0 auto; padding: 0 16px; }
+    a { color: var(--neon); }
+
+    /* ---- testata ---- */
+    .top { display: flex; align-items: center; gap: .75rem; padding: .6rem 0; }
+    .back {
+      display: inline-flex; align-items: center; gap: .4rem; min-height: 44px; padding: .4rem .2rem;
+      color: var(--dim); text-decoration: none; font-size: .85rem; letter-spacing: .04em;
+    }
+    .back:hover, .back:focus-visible { color: var(--neon); }
+    h1 {
+      font-size: 1.45rem; line-height: 1.2; margin: .4rem 0 .5rem; letter-spacing: -.02em;
+      font-weight: 700;
+    }
+    h1 .accent { color: var(--neon); }
+    .lead { margin: 0 0 1rem; color: var(--dim); font-size: .95rem; }
+
+    /* ---- console (layout canvas) ---- */
+    .console {
+      background: var(--panel); border: 1px solid var(--line); border-radius: 16px;
+      overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+    }
+    .toolbar { padding: .9rem; display: grid; gap: .8rem; background: var(--panel-2); border-bottom: 1px solid var(--line); }
+    .fields { display: grid; grid-template-columns: 1.45fr 1fr; gap: .6rem; }
+    .field { display: grid; gap: .3rem; }
+    .field > label { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); }
+    .inputbox { display: flex; align-items: center; background: var(--sunken); border: 1.5px solid var(--line-strong); border-radius: var(--r); }
+    .inputbox:focus-within { border-color: var(--neon); box-shadow: 0 0 0 3px var(--neon-bg); }
+    .inputbox input {
+      font: inherit; font-size: 18px; font-weight: 700; width: 100%; min-width: 0; min-height: 48px;
+      padding: .3rem .1rem .3rem .65rem; border: 0; background: transparent; color: var(--text);
+      letter-spacing: -.01em;
+    }
+    .inputbox input::-webkit-outer-spin-button, .inputbox input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    .inputbox input[type=number] { -moz-appearance: textfield; appearance: textfield; }
+    .inputbox .unit { padding: 0 .7rem 0 .35rem; color: var(--dim); font-size: .95rem; }
+    .inputbox.err { border-color: var(--bad); }
+    #err-input:empty { display: none; }
+
+    .chips { display: grid; grid-template-columns: repeat(4, 1fr); gap: .4rem; }
+    .chips .lab { grid-column: 1 / -1; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); }
+    .chip {
+      font: inherit; font-size: .95rem; min-height: 46px; min-width: 44px; padding: .2rem .4rem; cursor: pointer;
+      border: 1.5px solid var(--line-strong); border-radius: 999px; background: transparent; color: var(--text);
+    }
+    .chip[aria-pressed="true"] { background: var(--neon); border-color: var(--neon); color: var(--neon-ink); font-weight: 700; }
+    .chip:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+
+    /* ---- lettura risultato ---- */
+    .readout { padding: 1rem .9rem .5rem; }
+    .readout .cap { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--dim); }
+    .big { font-size: clamp(2.3rem, 13vw, 3.4rem); line-height: 1; font-weight: 700; letter-spacing: -.03em; color: var(--neon); margin: .2rem 0 .1rem; }
+    .big.zero { color: var(--dim); }
+    .sub { color: var(--dim); font-size: .9rem; }
+    .sub b { color: var(--text); font-weight: 700; }
+    .kpis { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; margin-top: .9rem; }
+    .kpi { background: var(--sunken); border: 1px solid var(--line); border-radius: var(--r); padding: .55rem .65rem; }
+    .kpi .k { font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; color: var(--dim); display: block; }
+    .kpi .v { font-size: 1.1rem; font-weight: 700; letter-spacing: -.02em; }
+    .kpi .v.cy { color: var(--cyan); }
+    .kpis .kpi:nth-child(3) { grid-column: 1 / -1; }
+
+    /* ---- grafico ---- */
+    .chart { margin: 0; padding: .2rem .35rem .6rem; }
+    .chart svg { display: block; width: 100%; max-width: 100%; height: auto; }
+    .chart figcaption { color: var(--dimmer); font-size: .75rem; padding: 0 .55rem; letter-spacing: .03em; }
+    .g-grid { stroke: var(--line); stroke-width: 1; }
+    .g-axis { fill: var(--dimmer); font-family: var(--font-ui); }
+    .g-area { fill: var(--neon-bg); }
+    .g-line { fill: none; stroke: var(--neon); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+    .g-dot { fill: var(--bg); stroke: var(--cyan); stroke-width: 2; }
+    .g-zero { stroke: var(--line-strong); stroke-width: 1; stroke-dasharray: 3 3; }
+
+    /* ---- interruttori ---- */
+    .switches { border-top: 1px solid var(--line); background: var(--panel-2); padding: .8rem .9rem; display: grid; gap: .7rem; }
+    .seg { display: grid; gap: .3rem; }
+    .seg > span:first-child { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); }
+    .seg .row { display: flex; gap: .35rem; background: var(--sunken); border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
+    .seg button {
+      font: inherit; font-size: .85rem; flex: 1; min-height: 44px; padding: .2rem .4rem; cursor: pointer;
+      border: 0; border-radius: 999px; background: transparent; color: var(--dim);
+    }
+    .seg button[aria-pressed="true"] { background: var(--neon); color: var(--neon-ink); font-weight: 700; }
+    .seg button:disabled { opacity: .45; cursor: not-allowed; }
+    .seg .hint { font-size: .78rem; color: var(--dimmer); }
+
+    /* ---- dettaglio ---- */
+    .detail { margin: 1rem 0; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); overflow: hidden; }
+    .detail > summary { cursor: pointer; padding: .85rem 1rem; min-height: 48px; display: flex; align-items: center; gap: .5rem; font-weight: 700; font-size: .95rem; }
+    .detail > summary::-webkit-details-marker { display: none; }
+    .detail > summary::after { content: "+"; margin-left: auto; color: var(--neon); font-size: 1.3rem; line-height: 1; }
+    .detail[open] > summary::after { content: "–"; }
+    .detail .body { padding: 0 1rem 1rem; }
+    .lines { list-style: none; margin: 0; padding: 0; }
+    .lines li { display: flex; justify-content: space-between; gap: 1rem; padding: .5rem 0; border-bottom: 1px dashed var(--line); font-size: .92rem; }
+    .lines li:last-child { border-bottom: 0; }
+    .lines .n { font-weight: 700; white-space: nowrap; }
+    .lines .neg .n { color: var(--bad); }
+    .lines .tot { border-top: 1.5px solid var(--line-strong); border-bottom: 0; margin-top: .3rem; padding-top: .6rem; }
+    .lines .tot .n { color: var(--neon); font-size: 1.05rem; }
+    .bar { display: flex; height: 12px; border-radius: 999px; overflow: hidden; margin: .8rem 0 .5rem; background: var(--sunken); }
+    .bar i { display: block; height: 100%; }
+    .bar .s-net { background: var(--neon); }
+    .bar .s-rit { background: var(--cyan); }
+    .bar .s-bol { background: var(--bad); }
+    .legend { display: flex; flex-wrap: wrap; gap: .3rem 1rem; font-size: .78rem; color: var(--dim); }
+    .legend i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: .3rem; }
+    .note { font-size: .82rem; color: var(--dimmer); margin: .7rem 0 0; }
+
+    /* ---- sezioni Pro ---- */
+    .pro { margin: 1rem 0; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); padding: 1rem; }
+    .pro h2 { font-size: 1rem; margin: 0 0 .2rem; letter-spacing: -.01em; }
+    .pro .why { margin: 0 0 .8rem; font-size: .85rem; color: var(--dim); }
+    .offers { list-style: none; margin: 0 0 .7rem; padding: 0; display: grid; gap: .5rem; }
+    .offers li { background: var(--sunken); border: 1px solid var(--line); border-radius: var(--r); padding: .6rem .7rem; display: grid; grid-template-columns: 1fr auto; gap: .2rem .6rem; align-items: center; }
+    .offers li.best { border-color: var(--neon); }
+    .offers .nome { font-weight: 700; font-size: .95rem; word-break: break-word; }
+    .offers .meta { grid-column: 1; font-size: .78rem; color: var(--dim); }
+    .offers .res { grid-row: 1 / span 2; text-align: right; }
+    .offers .res b { display: block; color: var(--neon); font-size: 1.05rem; }
+    .offers .res span { font-size: .75rem; color: var(--dim); }
+    .offers .rm { grid-row: 1 / span 2; }
+    .btn {
+      font: inherit; font-size: .88rem; min-height: 44px; padding: .5rem .9rem; cursor: pointer;
+      border: 1.5px solid var(--line-strong); border-radius: 999px; background: transparent; color: var(--text); font-weight: 700;
+    }
+    .btn.primary { background: var(--neon); border-color: var(--neon); color: var(--neon-ink); }
+    .btn.icon { min-width: 44px; padding: .4rem .6rem; border: 0; color: var(--dim); }
+    .btn:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+    .btnrow { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .named { display: grid; grid-template-columns: 1fr auto; gap: .5rem; margin-bottom: .7rem; }
+    .named input { font: inherit; font-size: 16px; min-height: 44px; padding: .4rem .7rem; border-radius: var(--r); border: 1.5px solid var(--line-strong); background: var(--sunken); color: var(--text); min-width: 0; }
+    .named input:focus-visible { outline: 0; border-color: var(--neon); }
+    .empty { color: var(--dimmer); font-size: .88rem; padding: .6rem 0; }
+    .cal { list-style: none; margin: 0; padding: 0; }
+    .cal li { display: grid; grid-template-columns: auto 1fr auto; gap: .2rem .7rem; padding: .55rem 0; border-bottom: 1px dashed var(--line); font-size: .88rem; align-items: baseline; }
+    .cal li:last-child { border-bottom: 0; }
+    .cal .d { color: var(--cyan); white-space: nowrap; font-size: .82rem; }
+    .cal .n { font-weight: 700; white-space: nowrap; }
+    .cal .n.neg { color: var(--bad); }
+    .live { font-size: .85rem; color: var(--neon); min-height: 1.2em; }
+
+    /* ---- guida ---- */
+    #guida { margin: 2rem 0 0; font-family: var(--font-read); }
+    #guida h2 { font-family: var(--font-ui); font-size: 1.15rem; margin: 1.8rem 0 .5rem; letter-spacing: -.01em; }
+    #guida h2:first-of-type { margin-top: .6rem; }
+    #guida h3 { font-family: var(--font-ui); font-size: .98rem; margin: 1.2rem 0 .3rem; color: var(--neon); }
+    #guida p, #guida li { font-size: 1rem; line-height: 1.7; color: var(--text); }
+    #guida p { margin: .6rem 0; }
+    #guida ul { padding-left: 1.1rem; }
+    #guida li { margin: .35rem 0; }
+    #guida .esempio {
+      background: var(--panel); border-left: 3px solid var(--neon); border-radius: 0 var(--r) var(--r) 0;
+      padding: .8rem 1rem; margin: 1rem 0; font-family: var(--font-ui); font-size: .9rem;
+    }
+    #guida .esempio b { color: var(--neon); }
+    .fonte { font-size: .82rem; color: var(--dimmer); font-family: var(--font-ui); }
+    footer { margin: 2.5rem 0 0; padding-top: 1.2rem; border-top: 1px solid var(--line); font-size: .85rem; color: var(--dim); }
+    footer p { margin: .5rem 0; line-height: 1.8; }
+    footer a { display: inline-block; padding: .55rem 0; }
+    footer a { color: var(--dim); }
+    footer a:hover { color: var(--neon); }
+    .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+    /* ---- desktop: miglioramento progressivo ---- */
+    @media (min-width: 700px) {
+      .wrap { padding: 0 24px; }
+      h1 { font-size: 2rem; }
+      .toolbar { padding: 1.1rem 1.2rem; }
+      .fields { grid-template-columns: 1.4fr 1fr 1fr; }
+      .readout { padding: 1.3rem 1.2rem .6rem; }
+      .kpis { grid-template-columns: repeat(3, 1fr); }
+      .kpis .kpi:nth-child(3) { grid-column: auto; }
+      .switches { grid-template-columns: repeat(3, 1fr); padding: 1rem 1.2rem; align-items: start; }
+      .chart { padding: .2rem .8rem .8rem; }
+      .chips { grid-template-columns: repeat(8, 1fr); }
+      .chips .lab { grid-column: 1 / -1; }
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .g-line, .g-area { transition: d .25s ease; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top"><a class="back" href="../../index.html">← Tutte le app</a></div>
+
+  <h1>Calcolo interessi <span class="accent">conto deposito</span></h1>
+  <p class="lead">Quanto resta davvero dopo la ritenuta del 26% e il bollo dello 0,20%. Nessuna registrazione.</p>
+
+  <!-- ===== console: strumento ===== -->
+  <section class="console" aria-label="Calcolatore">
+    <div class="toolbar">
+      <div class="fields">
+        <div class="field wide">
+          <label for="capitale">Capitale depositato</label>
+          <div class="inputbox" id="box-capitale">
+            <input id="capitale" type="text" inputmode="decimal" enterkeyhint="done" autocomplete="off"
+                   value="20.000" aria-describedby="err-input">
+            <span class="unit">€</span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="tan">TAN lordo</label>
+          <div class="inputbox" id="box-tan">
+            <input id="tan" type="text" inputmode="decimal" enterkeyhint="done" autocomplete="off" value="3,50">
+            <span class="unit">%</span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="mesi">Durata</label>
+          <div class="inputbox" id="box-mesi">
+            <input id="mesi" type="number" inputmode="numeric" enterkeyhint="done" autocomplete="off"
+                   value="12" min="1" max="120" step="1">
+            <span class="unit">mesi</span>
+          </div>
+        </div>
+      </div>
+      <div class="chips" id="chips-durata">
+        <span class="lab" id="lab-durata">Vincoli più comuni, in mesi</span>
+      </div>
+      <p id="err-input" class="sub" role="status"></p>
+    </div>
+
+    <div class="readout">
+      <span class="cap">Ti resta in tasca</span>
+      <div class="big" id="out-guadagno">–</div>
+      <p class="sub" id="out-sintesi">Inserisci capitale, TAN e durata del vincolo.</p>
+      <div class="kpis">
+        <div class="kpi"><span class="k">Montante finale</span><span class="v" id="out-montante">–</span></div>
+        <div class="kpi"><span class="k">Rendimento netto annuo</span><span class="v cy" id="out-rendimento">–</span></div>
+        <div class="kpi"><span class="k">Interessi lordi</span><span class="v" id="out-lordi">–</span></div>
+      </div>
+    </div>
+
+    <figure class="chart">
+      <svg id="grafico" viewBox="0 0 360 170" role="img"
+           aria-labelledby="cap-grafico"></svg>
+      <figcaption id="cap-grafico">Guadagno netto maturato mese per mese, al netto di tasse e bollo.</figcaption>
+    </figure>
+
+    <div class="switches">
+      <div class="seg">
+        <span id="lab-liq">Liquidazione interessi</span>
+        <div class="row" role="group" aria-labelledby="lab-liq">
+          <button type="button" id="sw-post" aria-pressed="true">Posticipati</button>
+          <button type="button" id="sw-ant" aria-pressed="false">Anticipati</button>
+        </div>
+        <span class="hint" id="hint-liq">A scadenza del vincolo.</span>
+      </div>
+      <div class="seg">
+        <span id="lab-bollo">Imposta di bollo</span>
+        <div class="row" role="group" aria-labelledby="lab-bollo">
+          <button type="button" id="sw-bollo-io" aria-pressed="true">La pago io</button>
+          <button type="button" id="sw-bollo-banca" aria-pressed="false">La paga la banca</button>
+        </div>
+        <span class="hint">Molte offerte promozionali se ne fanno carico.</span>
+      </div>
+      <div class="seg">
+        <span id="lab-rein">Interessi annuali</span>
+        <div class="row" role="group" aria-labelledby="lab-rein">
+          <button type="button" id="sw-incasso" aria-pressed="true">Li incasso</button>
+          <button type="button" id="sw-reinv" aria-pressed="false">Li reinvesto</button>
+        </div>
+        <span class="hint" id="hint-rein">Solo per vincoli oltre i 12 mesi.</span>
+      </div>
+    </div>
+  </section>
+
+  <div data-ad="top"></div>
+
+  <!-- ===== dettaglio del conteggio ===== -->
+  <details class="detail" id="dettaglio">
+    <summary>Dettaglio del conteggio</summary>
+    <div class="body">
+      <ul class="lines" id="righe"></ul>
+      <div class="bar" id="barra" aria-hidden="true"></div>
+      <div class="legend">
+        <span><i style="background:var(--neon)"></i>netto a te</span>
+        <span><i style="background:var(--cyan)"></i>ritenuta 26%</span>
+        <span><i style="background:var(--bad)"></i>imposta di bollo</span>
+      </div>
+      <p class="note" id="nota-metodo"></p>
+      <p class="note fonte">Aliquote applicate: ritenuta a titolo d'imposta 26% sugli interessi (art. 26 DPR 600/1973) e imposta di bollo 0,20% annuo sul saldo (art. 13 Tariffa DPR 642/1972). Valori in vigore a settembre 2026.</p>
+    </div>
+  </details>
+
+  <!-- ===== Pro 1 ===== -->
+  <section class="pro" data-pro="Confronto tra più offerte">
+    <h2>Confronto tra più offerte</h2>
+    <p class="why">Salva le offerte che stai valutando e mettile in fila per rendimento netto annuo, l'unico dato confrontabile fra durate e condizioni diverse.</p>
+    <div class="named">
+      <label class="sr" for="nome-offerta">Nome della banca o dell'offerta</label>
+      <input id="nome-offerta" type="text" placeholder="Es. Banca X 12 mesi" maxlength="40" autocomplete="off" enterkeyhint="done">
+      <button class="btn primary" type="button" id="add-offerta">Aggiungi</button>
+    </div>
+    <ul class="offers" id="lista-offerte"></ul>
+    <p class="empty" id="vuoto-offerte">Imposta i valori qui sopra, dai un nome all'offerta e aggiungila: ne puoi confrontare fino a sei.</p>
+    <div class="btnrow">
+      <button class="btn" type="button" id="copia-confronto">Copia il confronto</button>
+      <button class="btn" type="button" id="svuota-offerte">Svuota</button>
+    </div>
+    <p class="live" id="live-confronto" role="status"></p>
+  </section>
+
+  <!-- ===== Pro 2 ===== -->
+  <section class="pro" data-pro="Calendario delle scadenze">
+    <h2>Calendario delle scadenze</h2>
+    <p class="why">Le date esatte in cui la banca accredita gli interessi, addebita il bollo e restituisce il capitale.</p>
+    <div class="named">
+      <label class="sr" for="data-inizio">Data di apertura del vincolo</label>
+      <input id="data-inizio" type="date" autocomplete="off">
+      <button class="btn" type="button" id="copia-calendario">Copia</button>
+    </div>
+    <ul class="cal" id="lista-calendario"></ul>
+    <p class="live" id="live-calendario" role="status"></p>
+  </section>
+
+  <!-- ===== guida ===== -->
+  <section id="guida">
+    <h2>Come funziona il calcolo interessi conto deposito</h2>
+    <p>Il rendimento pubblicizzato da una banca è sempre lordo. Fra quel numero e i soldi che ti ritrovi
+      sul conto ci sono due prelievi, e nessuno dei due è trascurabile: la ritenuta del 26% sugli interessi
+      e l'imposta di bollo dello 0,20% annuo sul capitale. Il calcolo completo è questo:</p>
+    <ul>
+      <li><b>Interessi lordi</b> = capitale × TAN × mesi ÷ 12.</li>
+      <li><b>Ritenuta</b> = 26% degli interessi lordi, trattenuta dalla banca come sostituto d'imposta.</li>
+      <li><b>Imposta di bollo</b> = 0,20% annuo del saldo, in proporzione ai giorni di giacenza.</li>
+      <li><b>Guadagno netto</b> = interessi lordi − ritenuta − bollo.</li>
+    </ul>
+
+    <div class="esempio">
+      <p>Esempio: <b>20.000 €</b> vincolati a <b>3,50%</b> per <b>12 mesi</b>.<br>
+        Interessi lordi 700,00 € → ritenuta 182,00 € → interessi netti 518,00 € → bollo 40,00 €.<br>
+        In tasca restano <b>478,00 €</b>, cioè un rendimento netto del <b>2,39%</b> e non del 3,50%.</p>
+    </div>
+
+    <h2>Perché il rendimento netto annuo è il numero da guardare</h2>
+    <p>Confrontare due offerte guardando il TAN funziona solo se hanno la stessa durata e la stessa
+      modalità di pagamento degli interessi. Un vincolo a 18 mesi al 3,60% e uno a 12 mesi al 3,50% non
+      sono paragonabili così come sono: bisogna ridurre entrambi a un tasso annuo. Il calcolatore lo fa
+      per te con il campo <b>rendimento netto annuo</b>, che tiene dentro tasse, bollo e durata effettiva.
+      È l'unico valore che puoi mettere in fila senza sbagliarti.</p>
+
+    <h3>Interessi anticipati o posticipati</h3>
+    <p>Alcuni conti deposito pagano gli interessi il giorno stesso in cui vincoli la somma, altri alla
+      scadenza. A parità di TAN l'anticipato conviene sempre, perché quei soldi tornano subito a tua
+      disposizione: nell'esempio sopra il tuo esborso reale scende da 20.000 a 19.482 €, e il rendimento
+      netto annuo sale dal 2,39% al 2,45%. Non è una differenza enorme su un anno, ma su vincoli lunghi e
+      capitali importanti pesa. Attenzione però al rovescio: se svincoli in anticipo, la banca si riprende
+      gli interessi che ti aveva già accreditato.</p>
+
+    <h3>Chi paga l'imposta di bollo</h3>
+    <p>Il bollo è spesso la voce che ribalta un confronto. Su 50.000 € sono 100 € l'anno, che su un TAN al
+      3% valgono circa un quinto del guadagno netto. Molte offerte promozionali si fanno carico del bollo
+      per tutta la durata del vincolo: con l'interruttore "la paga la banca" vedi immediatamente quanto
+      vale quella clausola, ed è frequente che un conto al 3,20% con bollo pagato batta un conto al 3,40%
+      con bollo a carico tuo.</p>
+
+    <h3>Reinvestire gli interessi</h3>
+    <p>Sui vincoli oltre i dodici mesi la banca in genere liquida gli interessi ogni anno accreditandoli sul
+      conto di appoggio, dove restano fermi. Se invece li rivincoli, l'anno successivo maturano interessi
+      anche su quella somma: è l'interesse composto. Il calcolatore mostra le due strade separatamente,
+      perché la differenza su tre o cinque anni è concreta e quasi nessuna simulazione bancaria te la
+      fa vedere.</p>
+
+    <h2>Errori comuni</h2>
+    <ul>
+      <li><b>Confondere TAN e rendimento netto.</b> Il TAN è il punto di partenza, non quello che incassi.
+        Come regola veloce, il netto è circa tre quarti del lordo, meno il bollo.</li>
+      <li><b>Credere che il bollo sia 34,20 €.</b> Quella è l'imposta fissa del conto corrente. Il conto
+        deposito è un prodotto finanziario e paga lo 0,20% proporzionale, senza soglie né tetti.</li>
+      <li><b>Dimenticare il bollo sui capitali grandi.</b> È l'unica voce che cresce con il capitale
+        indipendentemente dal rendimento: su somme alte e tassi bassi può mangiarsi metà del guadagno.</li>
+      <li><b>Vincolare soldi che potrebbero servire.</b> Lo svincolo anticipato azzera o riduce fortemente
+        il tasso promozionale: leggi sempre quella riga del foglio informativo prima di firmare.</li>
+      <li><b>Guardare solo il TAN nelle offerte a scaglioni.</b> Alcune banche applicano il tasso pieno solo
+        oltre una certa soglia di deposito o solo su denaro nuovo.</li>
+    </ul>
+
+    <h2>Domande frequenti</h2>
+    <h3>Gli interessi del conto deposito vanno dichiarati nel 730?</h3>
+    <p>No. La ritenuta del 26% è a titolo d'imposta: la banca la versa per tuo conto e la partita fiscale si
+      chiude lì. Non devi riportare nulla nella dichiarazione dei redditi e quegli interessi non fanno
+      cumulo con il tuo reddito da lavoro.</p>
+    <h3>Il bollo si paga anche se il conto rende poco?</h3>
+    <p>Sì, perché si calcola sul saldo e non sul rendimento. Con un TAN sotto lo 0,27% lordo il bollo supera
+      addirittura gli interessi netti: in quel caso il conto deposito ti fa perdere denaro rispetto a
+      lasciarlo fermo, e il calcolatore te lo mostra con un guadagno netto negativo.</p>
+    <h3>Il conto deposito è sicuro?</h3>
+    <p>I depositi bancari sono coperti dal Fondo Interbancario di Tutela dei Depositi fino a 100.000 € per
+      depositante e per banca. Sopra quella soglia conviene ripartire le somme su istituti diversi: è il
+      motivo per cui molti risparmiatori confrontano più offerte contemporaneamente.</p>
+    <h3>Posso aggiungere altri soldi a un vincolo già aperto?</h3>
+    <p>Di norma no: il vincolo è una somma fissa per una durata fissa. Si apre semmai un secondo vincolo,
+      che avrà il tasso in vigore in quel momento e una sua scadenza. Per questo il calendario delle
+      scadenze diventa utile appena hai più di un deposito attivo.</p>
+    <h3>Questo calcolatore salva i miei dati?</h3>
+    <p>No. Tutti i conti avvengono nel browser del tuo telefono e le offerte che salvi restano in memoria
+      locale sul dispositivo: non partono richieste verso nessun server e la pagina funziona anche
+      offline.</p>
+
+    <div data-ad="bottom"></div>
+  </section>
+
+  <div data-support></div>
+
+  <footer>
+    <p>Strumento informativo: i risultati sono stime basate sulle aliquote in vigore e sui dati che inserisci.
+      Fanno fede le condizioni del foglio informativo della banca.</p>
+    <p>Ti può servire anche: <a href="../2026-09-21-rata-mutuo/">il calcolo della rata del mutuo</a> oppure
+      <a href="../2026-09-20-netto-da-lordo/">lo stipendio netto partendo dal lordo</a>.</p>
+    <p>Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a></p>
+  </footer>
+</div>
+
+<script src="../../assets/monetize.js"></script>
+<script>
+/* Modello dati: lo stato è { capitale, tan, mesi, anticipati, bolloBanca, reinvesto }, salvato in
+   localStorage sotto "interessi-conto-deposito:v1". simula(stato) lo trasforma in un risultato
+   (lordi, ritenuta, bollo, netti, guadagno, montante, rendimento annuo, serie mensile, eventi):
+   da quell'unico oggetto derivano lettura grande, grafico, dettaglio, confronto offerte e calendario. */
+(() => {
+  "use strict";
+
+  const KEY = "interessi-conto-deposito:v1";
+  const KEY_OFFERTE = "interessi-conto-deposito:offerte-v1";
+  const RITENUTA = 0.26;      // ritenuta a titolo d'imposta sugli interessi
+  const BOLLO = 0.002;        // imposta di bollo annua sul saldo
+  const MAX_OFFERTE = 6;
+  const DURATE = [3, 6, 12, 18, 24, 36, 48, 60];
+
+  const $ = (sel) => document.querySelector(sel);
+  const eur = new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const eur0 = new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
+  const num = new Intl.NumberFormat("it-IT", { maximumFractionDigits: 0 });
+  // spazio unificatore prima del segno: "3,50 %" non deve andare a capo
+  const pct = (v, d) => (v * 100).toLocaleString("it-IT", { minimumFractionDigits: d ?? 2, maximumFractionDigits: d ?? 2 }) + "\u00A0%";
+
+  // Accetta sia "20.000" sia "20000,50" sia "3.5": distingue separatore di migliaia e decimale.
+  function parseNum(raw) {
+    let t = String(raw ?? "").replace(/[^\d.,-]/g, "").trim();
+    if (!t) return NaN;
+    const virgola = t.includes(","), punto = t.includes(".");
+    if (virgola && punto) t = t.replace(/\./g, "").replace(",", ".");
+    else if (virgola) t = t.replace(",", ".");
+    else if (punto && /^-?\d{1,3}(\.\d{3})+$/.test(t)) t = t.replace(/\./g, "");
+    const v = parseFloat(t);
+    return Number.isFinite(v) ? v : NaN;
+  }
+
+  // ---------- stato ----------
+  const stato = { capitale: 20000, tan: 3.5, mesi: 12, anticipati: false, bolloBanca: false, reinvesto: false };
+  function carica() {
+    try {
+      const s = JSON.parse(localStorage.getItem(KEY) || "null");
+      if (s && typeof s === "object") Object.assign(stato, s);
+    } catch (_) { /* storage bloccato o dato corrotto */ }
+  }
+  function salva() {
+    try { localStorage.setItem(KEY, JSON.stringify(stato)); } catch (_) { /* storage bloccato */ }
+  }
+
+  // ---------- motore di calcolo ----------
+  // Periodi di rendicontazione annuali (l'ultimo può essere più corto): a ogni chiusura la banca
+  // liquida gli interessi netti e addebita il bollo sul saldo di fine periodo.
+  function simula(s) {
+    const C = s.capitale, tan = s.tan / 100, mesi = s.mesi;
+    const reinvesto = s.reinvesto && !s.anticipati && mesi > 12;
+    let base = C, rimborso = C, lordi = 0, ritenuta = 0, netti = 0, bollo = 0;
+    const eventi = [], serie = [];
+
+    if (s.anticipati) {
+      lordi = C * tan * mesi / 12;
+      ritenuta = lordi * RITENUTA;
+      netti = lordi - ritenuta;
+      eventi.push({ m: 0, tipo: "interessi", testo: "Accredito interessi netti (anticipati)", importo: netti });
+    }
+    serie.push({ m: 0, v: s.anticipati ? netti : 0 });
+
+    let inizioPeriodo = 0;
+    for (let m = 1; m <= mesi; m++) {
+      const frazione = (m - inizioPeriodo) / 12;
+      const bolloInCorso = s.bolloBanca ? 0 : base * BOLLO * frazione;
+      const maturato = s.anticipati ? netti : netti + base * tan * frazione * (1 - RITENUTA);
+      serie.push({ m, v: maturato - bollo - bolloInCorso });
+
+      if (m % 12 === 0 || m === mesi) {
+        const durata = (m - inizioPeriodo) / 12;
+        if (!s.anticipati) {
+          const l = base * tan * durata;
+          const r = l * RITENUTA;
+          lordi += l; ritenuta += r; netti += l - r;
+          const dentro = reinvesto && m < mesi;   // l'ultima liquidazione esce sempre dal deposito
+          eventi.push({
+            m, tipo: dentro ? "reinvestito" : "interessi",
+            testo: dentro ? "Interessi netti reinvestiti nel deposito" : "Accredito interessi netti",
+            importo: l - r,
+          });
+          if (reinvesto) base += l - r;
+          if (dentro) rimborso += l - r;
+        }
+        if (!s.bolloBanca) {
+          const b = base * BOLLO * durata;
+          bollo += b;
+          eventi.push({ m, tipo: "bollo", testo: "Addebito imposta di bollo", importo: -b });
+        }
+        serie[serie.length - 1].v = netti - bollo;
+        inizioPeriodo = m;
+      }
+    }
+    eventi.push({
+      m: mesi, tipo: "capitale",
+      testo: rimborso > C ? "Rimborso del capitale e degli interessi reinvestiti" : "Rimborso del capitale vincolato",
+      importo: rimborso,
+    });
+
+    const guadagno = netti - bollo;
+    const anni = mesi / 12;
+    let rendimento;
+    if (s.anticipati) {
+      const esborso = C - netti;
+      rendimento = esborso > 0 ? Math.pow((C - bollo) / esborso, 1 / anni) - 1 : 0;
+    } else {
+      rendimento = Math.pow((C + guadagno) / C, 1 / anni) - 1;
+    }
+    return { lordi, ritenuta, bollo, netti, guadagno, montante: C + guadagno, rendimento, serie, eventi, reinvesto };
+  }
+
+  // ---------- input ----------
+  const inCapitale = $("#capitale"), inTan = $("#tan"), inMesi = $("#mesi"), erroreEl = $("#err-input");
+
+  function leggiInput() {
+    const errori = [];
+    const c = parseNum(inCapitale.value), t = parseNum(inTan.value), m = parseInt(inMesi.value, 10);
+    const ok = (el, valido) => { el.classList.toggle("err", !valido); return valido; };
+
+    if (ok($("#box-capitale"), Number.isFinite(c) && c > 0 && c <= 10000000)) stato.capitale = c;
+    else errori.push("Indica un capitale fra 1 € e 10.000.000 €.");
+
+    if (ok($("#box-tan"), Number.isFinite(t) && t >= 0 && t <= 20)) stato.tan = t;
+    else errori.push("Il TAN lordo deve essere fra 0% e 20%.");
+
+    if (ok($("#box-mesi"), Number.isInteger(m) && m >= 1 && m <= 120)) stato.mesi = m;
+    else errori.push("La durata deve essere fra 1 e 120 mesi.");
+
+    erroreEl.textContent = errori[0] || "";
+    erroreEl.style.color = errori.length ? "var(--bad)" : "";
+    return errori.length === 0;
+  }
+
+  // ---------- grafico ----------
+  const SVG_NS = "http://www.w3.org/2000/svg";
+  const PAD = { l: 46, r: 12, t: 14, b: 26 };
+  function nodo(tag, attrs) {
+    const n = document.createElementNS(SVG_NS, tag);
+    for (const k in attrs) n.setAttribute(k, attrs[k]);
+    return n;
+  }
+  const breve = (v) => Math.abs(v) >= 1000
+    ? (v / 1000).toLocaleString("it-IT", { maximumFractionDigits: 1 }) + "k"
+    : Math.round(v).toLocaleString("it-IT");
+
+  function disegna(res) {
+    const svg = $("#grafico");
+    // il disegno segue la larghezza reale del contenitore: niente testo ingigantito sul desktop
+    const W = Math.max(320, Math.round(svg.clientWidth || 360));
+    const H = W > 640 ? 230 : 170;
+    svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+    svg.replaceChildren();
+    const serie = res.serie;
+    const valori = serie.map(p => p.v);
+    const minV = Math.min(0, ...valori), maxV = Math.max(...valori, minV + 1);
+    const span = maxV - minV || 1;
+    const x = (m) => PAD.l + (stato.mesi ? m / stato.mesi : 0) * (W - PAD.l - PAD.r);
+    const y = (v) => PAD.t + (1 - (v - minV) / span) * (H - PAD.t - PAD.b);
+
+    for (let i = 0; i <= 3; i++) {
+      const v = minV + (span * i) / 3;
+      const yy = y(v);
+      svg.append(nodo("line", { class: "g-grid", x1: PAD.l, x2: W - PAD.r, y1: yy.toFixed(1), y2: yy.toFixed(1) }));
+      const t = nodo("text", { class: "g-axis", "font-size": "11", x: PAD.l - 6, y: (yy + 3).toFixed(1), "text-anchor": "end" });
+      t.textContent = breve(v);
+      svg.append(t);
+    }
+    if (minV < 0) svg.append(nodo("line", { class: "g-zero", x1: PAD.l, x2: W - PAD.r, y1: y(0).toFixed(1), y2: y(0).toFixed(1) }));
+
+    const punti = serie.map(p => `${x(p.m).toFixed(1)},${y(p.v).toFixed(1)}`);
+    svg.append(nodo("path", { class: "g-area", d: `M${x(0).toFixed(1)},${y(Math.max(minV, 0)).toFixed(1)} L${punti.join(" L")} L${x(stato.mesi).toFixed(1)},${y(Math.max(minV, 0)).toFixed(1)} Z` }));
+    svg.append(nodo("path", { class: "g-line", d: `M${punti.join(" L")}` }));
+
+    for (const ev of res.eventi) {
+      if (ev.tipo !== "interessi" && ev.tipo !== "reinvestito") continue;
+      const p = serie[Math.min(ev.m, serie.length - 1)];
+      svg.append(nodo("circle", { class: "g-dot", cx: x(p.m).toFixed(1), cy: y(p.v).toFixed(1), r: 3.5 }));
+    }
+
+    for (const m of [0, stato.mesi]) {
+      const t = nodo("text", { class: "g-axis", "font-size": "11", x: x(m).toFixed(1), y: H - 8, "text-anchor": m === 0 ? "start" : "end" });
+      t.textContent = m === 0 ? "apertura" : stato.mesi + " mesi";
+      svg.append(t);
+    }
+    svg.setAttribute("aria-label", `Guadagno netto maturato: da 0 € a ${eur.format(res.guadagno)} in ${stato.mesi} mesi.`);
+  }
+
+  // ---------- dettaglio ----------
+  function riga(testo, valore, classe) {
+    const li = document.createElement("li");
+    if (classe) li.className = classe;
+    const a = document.createElement("span"); a.textContent = testo;
+    const b = document.createElement("span"); b.className = "n"; b.textContent = valore;
+    li.append(a, b);
+    return li;
+  }
+  function dettaglio(res) {
+    const ul = $("#righe");
+    ul.replaceChildren(
+      riga("Capitale depositato", eur.format(stato.capitale)),
+      riga(`Interessi lordi (TAN ${pct(stato.tan / 100)})`, eur.format(res.lordi)),
+      riga("Ritenuta fiscale 26%", "− " + eur.format(res.ritenuta), "neg"),
+      riga("Imposta di bollo 0,20% annuo", res.bollo ? "− " + eur.format(res.bollo) : "a carico della banca", res.bollo ? "neg" : ""),
+      riga("Guadagno netto", eur.format(res.guadagno), "tot"),
+    );
+    const barra = $("#barra");
+    barra.replaceChildren();
+    const tot = res.lordi || 1;
+    const parti = [["s-net", Math.max(res.guadagno, 0)], ["s-rit", res.ritenuta], ["s-bol", res.bollo]];
+    for (const [cls, v] of parti) {
+      if (v <= 0) continue;
+      const i = document.createElement("i");
+      i.className = cls;
+      i.style.width = Math.min(100, (v / tot) * 100).toFixed(2) + "%";
+      barra.append(i);
+    }
+    const pezzi = [stato.anticipati ? "interessi anticipati all'apertura" : "interessi posticipati a scadenza"];
+    if (stato.bolloBanca) pezzi.push("bollo a carico della banca");
+    if (res.reinvesto) pezzi.push("interessi annuali reinvestiti allo stesso tasso");
+    else if (stato.mesi > 12 && !stato.anticipati) pezzi.push("interessi annuali incassati e non reinvestiti");
+    $("#nota-metodo").textContent = "Ipotesi del calcolo: " + pezzi.join(", ") + ". Anno commerciale di 12 mesi uguali.";
+  }
+
+  // ---------- lettura principale ----------
+  function mostra(res) {
+    const g = $("#out-guadagno");
+    g.textContent = eur.format(res.guadagno);
+    g.classList.toggle("zero", res.guadagno <= 0);
+    $("#out-montante").textContent = eur.format(res.montante);
+    $("#out-rendimento").textContent = pct(res.rendimento);
+    $("#out-lordi").textContent = eur.format(res.lordi);
+    const perso = res.lordi > 0 ? (res.ritenuta + res.bollo) / res.lordi : 0;
+    $("#out-sintesi").innerHTML = res.guadagno > 0
+      ? `Su <b>${eur.format(res.lordi)}</b> di interessi lordi, fra ritenuta e bollo se ne vanno <b>${pct(perso, 0)}</b>.`
+      : "Con questi valori il bollo supera gli interessi: il deposito ti costa più di quanto renda.";
+  }
+
+  // ---------- date ----------
+  function piuMesi(data, n) {
+    const d = new Date(data.getTime());
+    const giorno = d.getDate();
+    d.setDate(1);
+    d.setMonth(d.getMonth() + n);
+    d.setDate(Math.min(giorno, new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate()));
+    return d;
+  }
+  const dataIt = new Intl.DateTimeFormat("it-IT", { day: "2-digit", month: "short", year: "numeric" });
+  const iso = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+
+  // ---------- Pro 1: confronto offerte ----------
+  let offerte = [];
+  function caricaOfferte() {
+    try {
+      const v = JSON.parse(localStorage.getItem(KEY_OFFERTE) || "[]");
+      offerte = Array.isArray(v) ? v.slice(0, MAX_OFFERTE) : [];
+    } catch (_) { offerte = []; }
+  }
+  function salvaOfferte() {
+    try { localStorage.setItem(KEY_OFFERTE, JSON.stringify(offerte)); } catch (_) { /* storage bloccato */ }
+  }
+  function descrizione(o) {
+    const pezzi = [`TAN ${pct(o.tan / 100)}`, `${o.mesi} mesi`, o.anticipati ? "anticipati" : "posticipati", eur0.format(o.capitale)];
+    if (o.bolloBanca) pezzi.push("bollo pagato dalla banca");
+    if (o.reinvesto && o.mesi > 12 && !o.anticipati) pezzi.push("reinvestiti");
+    return pezzi.join(" · ");
+  }
+  function classifica() {
+    return offerte
+      .map(o => ({ o, r: simula(o) }))
+      .sort((a, b) => b.r.rendimento - a.r.rendimento);
+  }
+  function renderOfferte() {
+    const ul = $("#lista-offerte");
+    const ordinate = classifica();
+    ul.replaceChildren();
+    $("#vuoto-offerte").hidden = ordinate.length > 0;
+    ordinate.forEach(({ o, r }, i) => {
+      const li = document.createElement("li");
+      if (i === 0 && ordinate.length > 1) li.className = "best";
+      const nome = document.createElement("span");
+      nome.className = "nome";
+      nome.textContent = (i === 0 && ordinate.length > 1 ? "★ " : "") + o.nome;
+      const meta = document.createElement("span");
+      meta.className = "meta";
+      meta.textContent = descrizione(o);
+      const res = document.createElement("span");
+      res.className = "res";
+      const b = document.createElement("b"); b.textContent = eur.format(r.guadagno);
+      const sp = document.createElement("span"); sp.textContent = pct(r.rendimento) + " netto annuo";
+      res.append(b, sp);
+      const rm = document.createElement("button");
+      rm.type = "button"; rm.className = "btn icon rm"; rm.textContent = "✕";
+      rm.setAttribute("aria-label", "Rimuovi " + o.nome);
+      rm.addEventListener("click", () => {
+        offerte = offerte.filter(x => x.id !== o.id);
+        salvaOfferte(); renderOfferte();
+        $("#live-confronto").textContent = "Offerta rimossa.";
+      });
+      li.append(nome, res, rm, meta);
+      ul.append(li);
+    });
+  }
+  function testoConfronto() {
+    const ordinate = classifica();
+    if (!ordinate.length) return "";
+    const righe = ordinate.map(({ o, r }, i) =>
+      `${i + 1}. ${o.nome} — ${descrizione(o)} → ${eur.format(r.guadagno)} netti (${pct(r.rendimento)} annuo)`);
+    return "Confronto conti deposito\n" + righe.join("\n") + "\n(calcolato con interessiconto deposito, ritenuta 26% e bollo 0,20%)";
+  }
+
+  // ---------- Pro 2: calendario ----------
+  function renderCalendario(res) {
+    const ul = $("#lista-calendario");
+    const base = $("#data-inizio").valueAsDate || new Date();
+    ul.replaceChildren();
+    for (const ev of res.eventi) {
+      const li = document.createElement("li");
+      const d = document.createElement("span"); d.className = "d";
+      d.textContent = dataIt.format(piuMesi(base, ev.m));
+      const t = document.createElement("span"); t.textContent = ev.testo;
+      const n = document.createElement("span");
+      n.className = "n" + (ev.importo < 0 ? " neg" : "");
+      n.textContent = (ev.importo < 0 ? "− " : "+ ") + eur.format(Math.abs(ev.importo));
+      li.append(d, t, n);
+      ul.append(li);
+    }
+  }
+  function testoCalendario(res) {
+    const base = $("#data-inizio").valueAsDate || new Date();
+    return "Scadenze del conto deposito\n" + res.eventi
+      .map(ev => `${dataIt.format(piuMesi(base, ev.m))} — ${ev.testo}: ${(ev.importo < 0 ? "− " : "+ ")}${eur.format(Math.abs(ev.importo))}`)
+      .join("\n");
+  }
+
+  async function copia(testo, dove) {
+    const avviso = $(dove);
+    if (!testo) { avviso.textContent = "Non c'è ancora nulla da copiare."; return; }
+    try {
+      if (navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(testo);
+      else {
+        const ta = document.createElement("textarea");
+        ta.value = testo; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
+        document.body.append(ta); ta.select(); document.execCommand("copy"); ta.remove();
+      }
+      avviso.textContent = "Copiato negli appunti.";
+    } catch (_) {
+      avviso.textContent = "Il browser ha bloccato la copia: seleziona il testo a mano.";
+    }
+    setTimeout(() => { avviso.textContent = ""; }, 3000);
+  }
+
+  // ---------- aggiornamento ----------
+  let ultimo = null;
+  function aggiorna() {
+    if (!leggiInput()) return;
+    sincronizzaChips();
+    aggiornaInterruttori();
+    const res = simula(stato);
+    ultimo = res;
+    mostra(res); disegna(res); dettaglio(res); renderCalendario(res);
+    salva();
+  }
+
+  // ---------- controlli ----------
+  const chipsBox = $("#chips-durata");
+  for (const d of DURATE) {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "chip"; b.dataset.mesi = String(d);
+    b.textContent = String(d);
+    b.setAttribute("aria-label", d + " mesi");
+    b.setAttribute("aria-pressed", "false");
+    b.addEventListener("click", () => { inMesi.value = String(d); aggiorna(); });
+    chipsBox.append(b);
+  }
+  function sincronizzaChips() {
+    for (const b of chipsBox.querySelectorAll(".chip")) {
+      b.setAttribute("aria-pressed", Number(b.dataset.mesi) === stato.mesi ? "true" : "false");
+    }
+  }
+
+  function coppia(aEl, bEl, campo, valoreB) {
+    const applica = (v) => { stato[campo] = v; aggiorna(); };
+    aEl.addEventListener("click", () => applica(!valoreB));
+    bEl.addEventListener("click", () => applica(valoreB));
+  }
+  coppia($("#sw-post"), $("#sw-ant"), "anticipati", true);
+  coppia($("#sw-bollo-io"), $("#sw-bollo-banca"), "bolloBanca", true);
+  coppia($("#sw-incasso"), $("#sw-reinv"), "reinvesto", true);
+
+  function aggiornaInterruttori() {
+    const set = (el, on) => el.setAttribute("aria-pressed", on ? "true" : "false");
+    set($("#sw-ant"), stato.anticipati); set($("#sw-post"), !stato.anticipati);
+    set($("#sw-bollo-banca"), stato.bolloBanca); set($("#sw-bollo-io"), !stato.bolloBanca);
+    const reinvestibile = stato.mesi > 12 && !stato.anticipati;
+    $("#sw-reinv").disabled = !reinvestibile;
+    $("#sw-incasso").disabled = !reinvestibile;
+    set($("#sw-reinv"), stato.reinvesto && reinvestibile);
+    set($("#sw-incasso"), !(stato.reinvesto && reinvestibile));
+    $("#hint-rein").textContent = reinvestibile
+      ? "Rivincolare gli interessi fa lavorare anche quelli."
+      : "Serve un vincolo posticipato oltre i 12 mesi.";
+    $("#hint-liq").textContent = stato.anticipati
+      ? "Accreditati subito: il tuo esborso reale scende."
+      : "Accreditati alla chiusura di ogni anno di vincolo.";
+  }
+
+  for (const el of [inCapitale, inTan, inMesi]) {
+    el.addEventListener("input", aggiorna);
+    el.addEventListener("keydown", (ev) => { if (ev.key === "Enter") el.blur(); });
+  }
+  inCapitale.addEventListener("blur", () => {
+    if (Number.isFinite(stato.capitale)) inCapitale.value = num.format(stato.capitale);
+  });
+  inCapitale.addEventListener("focus", () => { inCapitale.select(); });
+
+  $("#add-offerta").addEventListener("click", () => {
+    if (!leggiInput()) return;
+    const avviso = $("#live-confronto");
+    if (offerte.length >= MAX_OFFERTE) { avviso.textContent = `Massimo ${MAX_OFFERTE} offerte: rimuovine una.`; return; }
+    const campo = $("#nome-offerta");
+    const nome = campo.value.trim() || `Offerta ${offerte.length + 1}`;
+    offerte.push({
+      id: (crypto.randomUUID ? crypto.randomUUID() : String(Date.now())),
+      nome, capitale: stato.capitale, tan: stato.tan, mesi: stato.mesi,
+      anticipati: stato.anticipati, bolloBanca: stato.bolloBanca, reinvesto: stato.reinvesto,
+    });
+    salvaOfferte(); renderOfferte();
+    campo.value = "";
+    avviso.textContent = `"${nome}" aggiunta al confronto.`;
+  });
+  $("#nome-offerta").addEventListener("keydown", (ev) => { if (ev.key === "Enter") { ev.preventDefault(); $("#add-offerta").click(); } });
+  $("#svuota-offerte").addEventListener("click", () => {
+    offerte = []; salvaOfferte(); renderOfferte();
+    $("#live-confronto").textContent = "Confronto svuotato.";
+  });
+  $("#copia-confronto").addEventListener("click", () => copia(testoConfronto(), "#live-confronto"));
+  $("#copia-calendario").addEventListener("click", () => copia(ultimo ? testoCalendario(ultimo) : "", "#live-calendario"));
+  $("#data-inizio").addEventListener("change", () => { if (ultimo) renderCalendario(ultimo); });
+
+  let attesaResize = 0;
+  window.addEventListener("resize", () => {
+    clearTimeout(attesaResize);
+    attesaResize = setTimeout(() => { if (ultimo) disegna(ultimo); }, 150);
+  });
+
+  document.addEventListener("keydown", (ev) => {
+    if (ev.key === "Escape" && document.activeElement && document.activeElement.blur) document.activeElement.blur();
+  });
+
+  // ---------- avvio ----------
+  carica();
+  caricaOfferte();
+  inCapitale.value = num.format(stato.capitale);
+  inTan.value = stato.tan.toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  inMesi.value = String(stato.mesi);
+  $("#data-inizio").value = iso(new Date());
+  renderOfferte();
+  aggiorna();
+  if (window.Monetize && typeof Monetize.onPro === "function") {
+    Monetize.onPro(() => { renderOfferte(); if (ultimo) renderCalendario(ultimo); });
+  }
+})();
+</script>
+</body>
+</html>
