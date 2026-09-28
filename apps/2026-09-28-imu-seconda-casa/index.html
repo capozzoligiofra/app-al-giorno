@@ -1,0 +1,1211 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#a8382a">
+  <title>IMU Seconda Casa: calcolo IMU 2026 online gratis</title>
+  <meta name="description" content="Calcolo IMU seconda casa 2026 dalla rendita catastale: acconto del 16 giugno, saldo del 16 dicembre, mesi di possesso, quote tra comproprietari e riduzioni.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-28-imu-seconda-casa/">
+  <meta property="og:title" content="IMU Seconda Casa: calcolo IMU 2026 online gratis">
+  <meta property="og:description" content="Metti rendita catastale, categoria e aliquota del tuo comune: ottieni imposta annua, acconto di giugno e saldo di dicembre, con mesi di possesso e quota.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-28-imu-seconda-casa/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "IMU Seconda Casa",
+    "description": "Calcolatore gratuito dell'IMU per la seconda casa e per gli altri immobili: parte dalla rendita catastale, applica il moltiplicatore della categoria, l'aliquota comunale, la quota di possesso e i mesi con la regola dei 15 giorni, e divide l'imposta in acconto di giugno e saldo di dicembre.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-28-imu-seconda-casa/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Come si calcola l'IMU sulla seconda casa?", "acceptedAnswer": { "@type": "Answer", "text": "Si parte dalla rendita catastale che trovi sulla visura, la si aumenta del 5% e la si moltiplica per il coefficiente della categoria catastale: 160 per le abitazioni, i garage e le cantine, 55 per i negozi, 80 per gli uffici. Il risultato è la base imponibile. Su quella si applica l'aliquota deliberata dal tuo comune, espressa per mille, e poi si riduce il tutto in proporzione alla quota di proprietà e ai mesi in cui hai posseduto l'immobile. Una rendita di 700 euro diventa 735 euro, per 160 fa 117.600 euro di base: con aliquota 10,6 per mille l'IMU dell'anno è 1.246,56 euro." } },
+      { "@type": "Question", "name": "Dove trovo la rendita catastale della mia casa?", "acceptedAnswer": { "@type": "Answer", "text": "In tre posti, tutti gratuiti. Nell'atto di acquisto dal notaio, dove i dati catastali sono riportati per intero. Nella tua dichiarazione dei redditi, nel quadro dei fabbricati. Oppure nell'area riservata dell'Agenzia delle Entrate, servizio Consultazione rendite catastali, entrando con SPID o CIE: per gli immobili di cui sei titolare la consultazione non costa nulla. Se non hai nulla sottomano puoi anche ricavare la rendita al contrario partendo dall'IMU che hai versato l'anno scorso." } },
+      { "@type": "Question", "name": "Qual è l'aliquota IMU della seconda casa nel 2026?", "acceptedAnswer": { "@type": "Answer", "text": "La legge fissa un'aliquota base dello 0,86% (8,6 per mille) per gli immobili diversi dall'abitazione principale, ma ogni comune può portarla fino all'1,06% (10,6 per mille), e fino all'1,14% in alcuni comuni che avevano la maggiorazione della vecchia TASI, oppure azzerarla. Non esiste quindi un'aliquota nazionale: devi leggere la delibera del tuo comune, pubblicata sul sito del Dipartimento delle Finanze nella sezione regolamenti e aliquote. Molti comuni applicano il massimo." } },
+      { "@type": "Question", "name": "Chi paga l'IMU se ho venduto casa a metà anno?", "acceptedAnswer": { "@type": "Answer", "text": "Ognuno paga per i mesi in cui è stato proprietario. Il mese si conta per intero a chi lo ha posseduto per più della metà dei giorni, e in caso di parità esatta il mese resta all'acquirente. Se il rogito è del 10 aprile, aprile è dell'acquirente, che paga 9 mesi, mentre il venditore paga i 3 mesi da gennaio a marzo. Se il rogito è del 20 aprile, aprile resta al venditore, che paga 4 mesi. È il punto in cui sbagliano più spesso i calcoli fatti a mano." } },
+      { "@type": "Question", "name": "Si paga l'IMU sul garage e sulla cantina?", "acceptedAnswer": { "@type": "Answer", "text": "Sì, se non sono pertinenze dell'abitazione principale esente. Garage e posti auto sono in categoria C/6, le cantine e le soffitte in C/2: entrambe usano il moltiplicatore 160 e la stessa aliquota degli altri immobili. Hanno una rendita propria, quindi vanno calcolati come un immobile a sé e sommati alla casa. Nell'F24 finiscono nello stesso rigo con codice tributo 3918, aumentando il numero di immobili indicato." } },
+      { "@type": "Question", "name": "Se l'IMU viene pochi euro devo pagarla?", "acceptedAnswer": { "@type": "Answer", "text": "Molti comuni prevedono un importo minimo, spesso 12 euro all'anno, sotto il quale il versamento non è dovuto. Non è però una regola nazionale: la soglia sta nel regolamento comunale e in alcuni comuni è più bassa o non esiste. Se il totale annuo ti viene sotto i 12 euro conviene controllare il regolamento del tuo comune prima di lasciare l'F24 nel cassetto." } }
+    ]
+  }
+  </script>
+  <style>
+    /* Palette "rosso-mattone": carta calda, griglia a filo sottile e un solo accento mattone,
+       come un modulo fiscale ben stampato. Font "condensed": Arial Narrow per etichette, numeri e
+       titoli in maiuscoletto; la prosa della guida passa al system stack per leggibilità. */
+    :root {
+      --bg: #f5efe9; --panel: #fffdfb; --panel-2: #f2e7dd; --sunken: #ece0d4;
+      --line: #ddc8b7; --line-strong: #c3a48c;
+      --text: #24170f; --dim: #6d5548; --dimmer: #8d7566;
+      --brick: #a8382a; --brick-2: #87281c; --brick-bg: #f8e3dd; --on-brick: #fff7f4;
+      --ok: #2c6b42; --ok-bg: #e3f0e6; --warn: #8a5510; --warn-bg: #fbeed8;
+      --font-ui: "Arial Narrow", "Roboto Condensed", "Helvetica Neue", Arial, sans-serif;
+      --font-read: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      --r: 4px;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #17100d; --panel: #211713; --panel-2: #2a1d17; --sunken: #140e0b;
+        --line: #3c2a21; --line-strong: #5a4033;
+        --text: #f3e7e0; --dim: #b39e93; --dimmer: #8f7a6e;
+        --brick: #e8705c; --brick-2: #ff8a74; --brick-bg: #37190f; --on-brick: #1a0c08;
+        --ok: #77c78f; --ok-bg: #16281c; --warn: #e0ab5c; --warn-bg: #2c2011;
+        color-scheme: dark;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font-family: var(--font-ui); font-size: 1.0625rem; line-height: 1.45;
+      overflow-x: hidden;
+      padding: 0 0 calc(1.5rem + env(safe-area-inset-bottom));
+    }
+    .wrap { max-width: 44rem; margin: 0 auto; padding: 0 1rem; }
+
+    a { color: var(--brick); }
+    .back {
+      display: inline-flex; align-items: center; min-height: 44px; gap: .3rem;
+      text-decoration: none; color: var(--dim); font-size: .9375rem; letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .back:hover { color: var(--brick); }
+
+    h1 {
+      font-size: 1.6rem; line-height: 1.1; margin: .1rem 0 .4rem;
+      text-transform: uppercase; letter-spacing: .005em; font-weight: 700;
+    }
+    h1 .anno { color: var(--brick); }
+    .lead { margin: 0 0 .8rem; color: var(--dim); font-size: 1rem; line-height: 1.5; }
+
+    /* ---- modulo di input: righe a filo, come un prospetto ---- */
+    .modulo {
+      background: var(--panel); border: 1px solid var(--line-strong); border-radius: var(--r);
+      overflow: hidden;
+    }
+    .riga { border-bottom: 1px solid var(--line); padding: .55rem .75rem; }
+    .riga:last-child { border-bottom: 0; }
+    .riga > label, .etichetta {
+      display: block; font-size: .9375rem; text-transform: uppercase; letter-spacing: .06em;
+      color: var(--dim); margin-bottom: .25rem; font-weight: 700;
+    }
+    .aiuto { font-size: .875rem; color: var(--dimmer); line-height: 1.45; margin: .3rem 0 0; }
+    .aiuto a { color: var(--brick); }
+
+    input[type="number"], input[type="text"], input[type="date"], select {
+      width: 100%; font-family: var(--font-ui); font-size: 16px; line-height: 1.3;
+      min-height: 48px; padding: .5rem .6rem;
+      border: 1.5px solid var(--line-strong); border-radius: var(--r);
+      background: var(--panel); color: var(--text);
+    }
+    input:focus-visible, select:focus-visible, button:focus-visible, summary:focus-visible, a:focus-visible {
+      outline: 2.5px solid var(--brick); outline-offset: 2px;
+    }
+    .con-unita { display: flex; align-items: stretch; gap: .4rem; }
+    .con-unita input { flex: 1 1 auto; }
+    .unita {
+      display: flex; align-items: center; padding: 0 .6rem; font-size: 1.0625rem;
+      background: var(--sunken); border: 1.5px solid var(--line-strong); border-radius: var(--r);
+      color: var(--dim); white-space: nowrap; font-weight: 700;
+    }
+
+    /* chip: scelte rapide toccabili */
+    .chips { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .5rem; }
+    .chip {
+      font: inherit; font-size: .9375rem; min-height: 44px; padding: .3rem .7rem;
+      border: 1.5px solid var(--line-strong); border-radius: 999px;
+      background: var(--panel); color: var(--text); cursor: pointer;
+      text-transform: uppercase; letter-spacing: .04em; font-weight: 700;
+    }
+    .chip[aria-pressed="true"], .chip.on {
+      background: var(--brick); border-color: var(--brick); color: var(--on-brick);
+    }
+    .chip small { display: block; font-size: .8125rem; text-transform: none; letter-spacing: 0; font-weight: 400; opacity: .8; }
+
+    .interruttore {
+      display: flex; align-items: center; gap: .6rem; min-height: 44px; cursor: pointer;
+      font-size: 1.0625rem;
+    }
+    .interruttore input { width: 24px; height: 24px; accent-color: var(--brick); flex: 0 0 auto; }
+
+    details.avanzate { margin-top: .9rem; border: 1px solid var(--line-strong); border-radius: var(--r); background: var(--panel); }
+    details.avanzate > summary {
+      min-height: 48px; display: flex; align-items: center; gap: .4rem; padding: .6rem .8rem;
+      cursor: pointer; font-size: 1rem; text-transform: uppercase; letter-spacing: .06em;
+      font-weight: 700; color: var(--dim); list-style: none;
+    }
+    details.avanzate > summary::-webkit-details-marker { display: none; }
+    details.avanzate > summary::before { content: "+"; color: var(--brick); font-size: 1.3rem; line-height: 1; }
+    details.avanzate[open] > summary::before { content: "–"; }
+    details.avanzate > summary::after { content: ""; }
+    details.avanzate .corpo { border-top: 1px solid var(--line); }
+    details.avanzate .corpo .riga:last-child { border-bottom: 0; }
+
+    /* ---- dashboard: griglia di riquadri a filo con i numeri grandi ---- */
+    .dash {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+      background: var(--line-strong); border: 1px solid var(--line-strong);
+      border-radius: var(--r); overflow: hidden; margin: 1rem 0 0;
+    }
+    .cella { background: var(--panel); padding: .7rem .8rem; min-width: 0; }
+    .cella.piena { grid-column: 1 / -1; }
+    .cella .k {
+      font-size: 1rem; text-transform: uppercase; letter-spacing: .07em; color: var(--dim);
+      font-weight: 700; display: block; margin-bottom: .1rem;
+    }
+    .cella .v { font-size: 1.5rem; font-weight: 700; line-height: 1.1; letter-spacing: -.01em; }
+    .cella .n { font-size: 1rem; color: var(--dimmer); display: block; margin-top: .15rem; line-height: 1.35; }
+    .cella.totale { background: var(--brick); color: var(--on-brick); }
+    .cella.totale .k { color: var(--on-brick); opacity: .85; }
+    .cella.totale .v { font-size: 2.6rem; }
+    .cella.totale .n { color: var(--on-brick); opacity: .85; }
+    .cella.rata { background: var(--panel-2); }
+    .cella.rata .v { font-size: 1.9rem; color: var(--brick); }
+
+    .formula {
+      margin: .7rem 0 0; padding: .6rem .7rem; background: var(--sunken);
+      border-left: 3px solid var(--brick); border-radius: 0 var(--r) var(--r) 0;
+      font-size: 1rem; line-height: 1.55; color: var(--dim); overflow-wrap: break-word;
+    }
+    .formula b { color: var(--text); }
+
+    .nota {
+      margin: .7rem 0 0; padding: .6rem .7rem; border-radius: var(--r);
+      font-size: 1rem; line-height: 1.5;
+    }
+    .nota.info { background: var(--brick-bg); color: var(--text); }
+    .nota.ok { background: var(--ok-bg); color: var(--text); }
+    .nota.attenzione { background: var(--warn-bg); color: var(--text); }
+    .nota b { font-weight: 700; }
+    .nota[hidden] { display: none; }
+
+    .azioni { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .9rem; }
+    button.btn {
+      font: inherit; font-size: 1.0625rem; min-height: 48px; padding: .5rem 1rem;
+      border: 1.5px solid var(--brick); border-radius: var(--r);
+      background: var(--brick); color: var(--on-brick); cursor: pointer;
+      font-weight: 700; text-transform: uppercase; letter-spacing: .05em;
+    }
+    button.btn.vuoto { background: transparent; color: var(--brick); }
+    button.btn:disabled { opacity: .45; cursor: default; }
+
+    section.blocco { margin-top: 1.6rem; }
+    section.blocco > h2 {
+      font-size: 1.15rem; text-transform: uppercase; letter-spacing: .06em;
+      margin: 0 0 .6rem; padding-bottom: .3rem; border-bottom: 2px solid var(--brick);
+    }
+
+    /* ---- funzioni Pro ---- */
+    section.pro {
+      border: 1px solid var(--line-strong); border-radius: var(--r);
+      background: var(--panel); padding: .8rem; margin-top: 1rem; min-height: 8rem;
+    }
+    section.pro > h3 {
+      font-size: 1.0625rem; text-transform: uppercase; letter-spacing: .06em;
+      margin: 0 0 .5rem; color: var(--brick);
+    }
+
+    .prospetto { border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; }
+    .prospetto .pr-riga { display: grid; grid-template-columns: 1fr auto; gap: .2rem .6rem; padding: .55rem .65rem; border-bottom: 1px solid var(--line); }
+    .prospetto .pr-riga:last-child { border-bottom: 0; }
+    .prospetto .pr-riga.testa { background: var(--sunken); font-size: 1rem; text-transform: uppercase; letter-spacing: .06em; color: var(--dim); font-weight: 700; }
+    .prospetto .pr-et { font-weight: 700; }
+    .prospetto .pr-sub { grid-column: 1 / -1; font-size: 1rem; color: var(--dimmer); }
+    .prospetto .pr-im { font-weight: 700; font-size: 1.15rem; white-space: nowrap; }
+
+    ul.elenco { list-style: none; margin: 0; padding: 0; }
+    ul.elenco li {
+      display: grid; grid-template-columns: 1fr auto auto; gap: .2rem .6rem; align-items: center;
+      padding: .55rem .1rem; border-bottom: 1px solid var(--line);
+    }
+    ul.elenco li:last-child { border-bottom: 0; }
+    ul.elenco .et { font-weight: 700; min-width: 0; overflow-wrap: break-word; }
+    ul.elenco .im { white-space: nowrap; font-weight: 700; }
+    ul.elenco .sub { grid-column: 1 / -1; font-size: 1rem; color: var(--dimmer); }
+    button.via {
+      font: inherit; font-size: 1.25rem; line-height: 1; width: 44px; height: 44px;
+      border: 1.5px solid var(--line-strong); border-radius: var(--r);
+      background: transparent; color: var(--dim); cursor: pointer;
+    }
+    .vuotostato { color: var(--dimmer); font-size: 1rem; margin: .2rem 0 0; line-height: 1.5; }
+
+    /* ---- guida ---- */
+    #guida { margin-top: 2rem; font-family: var(--font-read); }
+    #guida h2 {
+      font-family: var(--font-ui); font-size: 1.25rem; text-transform: uppercase;
+      letter-spacing: .05em; margin: 1.7rem 0 .5rem; padding-bottom: .25rem;
+      border-bottom: 1px solid var(--line-strong);
+    }
+    #guida h2:first-of-type { margin-top: .4rem; }
+    #guida h3 { font-family: var(--font-read); font-size: 1.0625rem; margin: 1.1rem 0 .25rem; color: var(--brick); }
+    #guida p, #guida li { font-size: 1rem; line-height: 1.7; }
+    #guida p { margin: .6rem 0; }
+    #guida ul { padding-left: 1.2rem; }
+    #guida li { margin: .4rem 0; }
+    #guida .esempio {
+      background: var(--panel); border: 1px solid var(--line-strong); border-left: 3px solid var(--brick);
+      border-radius: 0 var(--r) var(--r) 0; padding: .7rem .8rem; margin: .8rem 0;
+    }
+    #guida .esempio b { color: var(--brick); }
+    table.tab { width: 100%; border-collapse: collapse; margin: .8rem 0; font-family: var(--font-ui); }
+    table.tab th, table.tab td { text-align: left; padding: .4rem .5rem; border-bottom: 1px solid var(--line); font-size: 1rem; }
+    table.tab th { text-transform: uppercase; letter-spacing: .05em; color: var(--dim); }
+    table.tab td:last-child, table.tab th:last-child { text-align: right; white-space: nowrap; }
+
+    footer { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--line-strong); font-family: var(--font-read); }
+    footer p { font-size: 1rem; color: var(--dim); line-height: 1.6; margin: .5rem 0; }
+
+    .solo-stampa { display: none; }
+
+    @media (min-width: 700px) {
+      body { font-size: 1.125rem; }
+      .wrap { padding: 0 1.5rem; }
+      h1 { font-size: 2.4rem; }
+      .dash { grid-template-columns: repeat(3, 1fr); }
+      .cella.totale { grid-column: 1 / -1; }
+      .cella.totale .v { font-size: 3.2rem; }
+      .modulo { display: grid; grid-template-columns: 1fr 1fr; }
+      .riga.larga { grid-column: 1 / -1; }
+      .riga { border-right: 1px solid var(--line); }
+      .riga:nth-child(even) { border-right: 0; }
+    }
+
+    @media print {
+      body { background: #fff; color: #000; }
+      .no-stampa, #guida, footer, .back, [data-ad], [data-support] { display: none !important; }
+      .solo-stampa { display: block; }
+      section.pro { border: 0; padding: 0; }
+      .prospetto { border: 1px solid #000; }
+    }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back" href="../../index.html">← Tutte le app</a>
+
+  <h1>Calcolo IMU seconda casa <span class="anno" data-anno>2026</span></h1>
+  <p class="lead">Rendita catastale, categoria e aliquota del tuo comune: ottieni l'imposta
+    dell'anno divisa in acconto del 16 giugno e saldo del 16 dicembre.</p>
+
+  <!-- ===== tool ===== -->
+  <form class="modulo no-stampa" id="modulo" autocomplete="off">
+    <div class="riga larga">
+      <label for="cat">Categoria catastale</label>
+      <select id="cat" name="cat"></select>
+      <p class="aiuto" id="aiuto-cat"></p>
+    </div>
+
+    <div class="riga">
+      <label for="rendita" id="lab-rendita">Rendita catastale</label>
+      <div class="con-unita">
+        <input id="rendita" name="rendita" type="number" inputmode="decimal" step="0.01" min="0"
+               placeholder="700" enterkeyhint="done">
+        <span class="unita">€</span>
+      </div>
+      <p class="aiuto">Il valore scritto sulla visura, non il prezzo di mercato.
+        <a href="#rendita-sconosciuta">Non la conosci?</a></p>
+    </div>
+
+    <div class="riga">
+      <label for="aliquota">Aliquota del comune</label>
+      <div class="con-unita">
+        <input id="aliquota" name="aliquota" type="number" inputmode="decimal" step="0.01" min="0" max="20"
+               placeholder="10,6" enterkeyhint="done">
+        <span class="unita">‰</span>
+      </div>
+      <div class="chips" id="chips-aliquota"></div>
+      <p class="aiuto">La trovi nella delibera del tuo comune sul
+        <a href="https://www.finanze.gov.it/it/fiscalita/fiscalita-regionale-e-locale/Imposta-municipale-propria-IMU/Regolamenti-e-aliquote-ricerca/" target="_blank" rel="noopener">portale del Dipartimento delle Finanze</a>.</p>
+    </div>
+
+  </form>
+
+  <!-- risultato: dashboard -->
+  <div class="dash" id="dash" aria-live="polite">
+    <div class="cella totale piena">
+      <span class="k">IMU dell'anno <span data-anno>2026</span></span>
+      <span class="v" id="v-totale">—</span>
+      <span class="n" id="n-totale">Inserisci rendita e aliquota</span>
+    </div>
+    <div class="cella rata">
+      <span class="k">Acconto · 16 giugno</span>
+      <span class="v" id="v-acconto">—</span>
+      <span class="n">metà dell'imposta</span>
+    </div>
+    <div class="cella rata">
+      <span class="k">Saldo · 16 dicembre</span>
+      <span class="v" id="v-saldo">—</span>
+      <span class="n">conguaglio</span>
+    </div>
+    <div class="cella">
+      <span class="k">Base imponibile</span>
+      <span class="v" id="v-base">—</span>
+      <span class="n" id="n-base">rendita × 1,05 × moltiplicatore</span>
+    </div>
+    <div class="cella">
+      <span class="k">Mesi di possesso</span>
+      <span class="v" id="v-mesi">—</span>
+      <span class="n" id="n-mesi">su 12</span>
+    </div>
+    <div class="cella">
+      <span class="k">Moltiplicatore</span>
+      <span class="v" id="v-molt">—</span>
+      <span class="n" id="n-molt">della categoria</span>
+    </div>
+    <div class="cella">
+      <span class="k">Codice tributo F24</span>
+      <span class="v" id="v-tributo">—</span>
+      <span class="n" id="n-tributo">per il versamento</span>
+    </div>
+  </div>
+
+  <p class="formula" id="formula" hidden></p>
+  <p class="nota info" id="nota-info" hidden></p>
+  <p class="nota attenzione" id="nota-avviso" hidden></p>
+
+  <details class="avanzate" id="avanzate">
+      <summary>Quota, mesi di possesso e riduzioni</summary>
+      <div class="corpo">
+        <div class="riga">
+          <label for="quota">La tua quota di proprietà</label>
+          <div class="con-unita">
+            <input id="quota" name="quota" type="number" inputmode="decimal" step="0.01" min="0" max="100" value="100">
+            <span class="unita">%</span>
+          </div>
+          <div class="chips" id="chips-quota"></div>
+          <p class="aiuto">Ogni comproprietario versa solo la propria quota, con un F24 separato.</p>
+        </div>
+
+        <div class="riga">
+          <span class="etichetta">Periodo di possesso</span>
+          <div class="chips" id="chips-periodo">
+            <button type="button" class="chip" data-periodo="anno" aria-pressed="true">Tutto l'anno</button>
+            <button type="button" class="chip" data-periodo="parte" aria-pressed="false">Solo un periodo</button>
+          </div>
+          <div id="date-possesso" hidden>
+            <div style="margin-top:.5rem">
+              <label class="etichetta" for="dal">Posseduto dal</label>
+              <input id="dal" type="date">
+            </div>
+            <div style="margin-top:.5rem">
+              <label class="etichetta" for="al">fino al (compreso)</label>
+              <input id="al" type="date">
+            </div>
+            <p class="aiuto">Metti la data del rogito: chi compra il 10 aprile paga anche aprile,
+              chi compra il 20 aprile no.</p>
+          </div>
+        </div>
+
+        <div class="riga">
+          <span class="etichetta">Riduzioni</span>
+          <div class="chips" id="chips-riduzione"></div>
+          <p class="aiuto" id="aiuto-riduzione"></p>
+        </div>
+
+        <div class="riga" id="riga-principale" hidden>
+          <label class="interruttore" for="principale">
+            <input id="principale" type="checkbox">
+            <span>È la mia abitazione principale (detrazione di 200 €)</span>
+          </label>
+          <p class="aiuto">Vale solo per A/1, A/8 e A/9: le altre prime case sono esenti.</p>
+        </div>
+
+        <div class="riga">
+          <label for="aliqPrec">Aliquota dell'anno scorso, se diversa</label>
+          <div class="con-unita">
+            <input id="aliqPrec" type="number" inputmode="decimal" step="0.01" min="0" max="20" placeholder="—">
+            <span class="unita">‰</span>
+          </div>
+          <p class="aiuto">L'acconto di giugno si calcola per legge con le aliquote dell'anno prima;
+            il saldo di dicembre fa da conguaglio. Lascia vuoto se l'aliquota non è cambiata.</p>
+        </div>
+
+        <div class="riga">
+          <label for="etichetta">Etichetta (per l'elenco immobili)</label>
+          <input id="etichetta" type="text" maxlength="40" placeholder="Casa al mare" enterkeyhint="done">
+        </div>
+      </div>
+    </details>
+
+  <div class="azioni no-stampa">
+    <button type="button" class="btn" id="btn-copia">Copia il riepilogo</button>
+    <button type="button" class="btn vuoto" id="btn-azzera">Azzera</button>
+  </div>
+
+  <div data-ad="top"></div>
+
+  <!-- ===== funzioni Pro ===== -->
+  <section class="blocco no-stampa" id="pro">
+    <h2>Con il Pass Pro</h2>
+
+    <section class="pro" data-pro="Prospetto per il modello F24">
+      <h3>Prospetto per il modello F24</h3>
+      <p class="aiuto" style="margin-top:0">I righi pronti da ricopiare nella sezione IMU e altri
+        tributi locali, con gli importi già arrotondati all'euro rigo per rigo.</p>
+      <div class="riga" style="padding:.5rem 0;border:0">
+        <label class="etichetta" for="codComune">Codice catastale del comune</label>
+        <input id="codComune" type="text" maxlength="4" placeholder="H501" style="text-transform:uppercase">
+      </div>
+      <div class="prospetto" id="prospetto"></div>
+      <div class="azioni">
+        <button type="button" class="btn" id="btn-stampa">Stampa il prospetto</button>
+        <button type="button" class="btn vuoto" id="btn-copia-f24">Copia i righi</button>
+      </div>
+    </section>
+
+    <section class="pro" data-pro="Più immobili e totale">
+      <h3>Più immobili e totale</h3>
+      <p class="aiuto" style="margin-top:0">Salva casa, garage e cantina e vedi quanto versi in tutto
+        a giugno e a dicembre. I dati restano sul tuo telefono.</p>
+      <div class="azioni" style="margin-top:.6rem">
+        <button type="button" class="btn" id="btn-aggiungi">Aggiungi questo immobile</button>
+      </div>
+      <ul class="elenco" id="elenco"></ul>
+      <p class="vuotostato" id="elenco-vuoto">Nessun immobile salvato.</p>
+      <div class="dash" id="dash-tot" hidden style="margin-top:.8rem">
+        <div class="cella rata"><span class="k">Totale acconto</span><span class="v" id="t-acconto">—</span></div>
+        <div class="cella rata"><span class="k">Totale saldo</span><span class="v" id="t-saldo">—</span></div>
+        <div class="cella piena"><span class="k">Totale anno</span><span class="v" id="t-anno">—</span></div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ===== non conosci la rendita: gratis ===== -->
+  <section class="blocco no-stampa" id="rendita-sconosciuta">
+    <h2>Non hai la rendita catastale?</h2>
+    <p class="aiuto" style="font-size:1.0625rem">Cercala in uno di questi tre posti, tutti gratuiti:
+      l'atto di acquisto del notaio, il quadro dei fabbricati della tua dichiarazione dei redditi,
+      oppure il servizio
+      <a href="https://www.agenziaentrate.gov.it/portale/schede/fabbricatiterreni/visura-catastale/consultazione-rendite-catastali" target="_blank" rel="noopener">Consultazione rendite catastali</a>
+      dell'Agenzia delle Entrate, che per i tuoi immobili non costa nulla e si apre con SPID o CIE.</p>
+
+    <details class="avanzate">
+      <summary>Ricavala dall'IMU che hai già pagato</summary>
+      <div class="corpo">
+        <div class="riga">
+          <label for="imuPagata">IMU pagata in un anno (acconto + saldo)</label>
+          <div class="con-unita">
+            <input id="imuPagata" type="number" inputmode="decimal" step="0.01" min="0" placeholder="1247">
+            <span class="unita">€</span>
+          </div>
+        </div>
+        <div class="riga">
+          <label for="aliqPagata">Aliquota applicata quell'anno</label>
+          <div class="con-unita">
+            <input id="aliqPagata" type="number" inputmode="decimal" step="0.01" min="0" max="20" placeholder="10,6">
+            <span class="unita">‰</span>
+          </div>
+          <p class="aiuto">Si usano la categoria, la quota e i mesi impostati qui sopra.</p>
+        </div>
+        <div class="riga">
+          <p class="nota ok" id="esito-inverso" style="margin:0">Compila i due campi per stimare la rendita.</p>
+          <div class="azioni">
+            <button type="button" class="btn" id="btn-usa-rendita" disabled>Usa questa rendita</button>
+          </div>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ===== guida ===== -->
+  <section id="guida">
+    <h2>Come funziona il calcolo dell'IMU sulla seconda casa</h2>
+    <p>L'IMU non si calcola sul prezzo che hai pagato la casa né sul suo valore di mercato, ma su un
+      valore fiscale che parte dalla <b>rendita catastale</b>. Il percorso è sempre lo stesso, in
+      quattro passaggi: si aumenta la rendita del 5%, si moltiplica per il coefficiente della
+      categoria catastale, si applica l'aliquota del comune e infine si riduce il risultato in
+      proporzione alla quota di proprietà e ai mesi dell'anno in cui hai posseduto l'immobile.</p>
+    <p>Il primo moltiplicatore è quello che sposta di più il risultato. Un'abitazione e le sue
+      pertinenze usano 160, un negozio 55, un ufficio 80, un capannone 65: a parità di rendita, la
+      base imponibile di un negozio è quasi un terzo di quella di un appartamento. Ecco la tabella
+      completa, che il calcolatore applica da solo quando scegli la categoria.</p>
+    <table class="tab">
+      <thead><tr><th>Categoria catastale</th><th>Moltiplicatore</th></tr></thead>
+      <tbody>
+        <tr><td>Gruppo A (abitazioni) tranne A/10, più C/2, C/6 e C/7</td><td>160</td></tr>
+        <tr><td>Gruppo B, più C/3, C/4 e C/5</td><td>140</td></tr>
+        <tr><td>A/10 (uffici e studi privati) e D/5 (banche e assicurazioni)</td><td>80</td></tr>
+        <tr><td>Gruppo D tranne D/5 (capannoni, alberghi, cinema)</td><td>65</td></tr>
+        <tr><td>C/1 (negozi e botteghe)</td><td>55</td></tr>
+        <tr><td>Terreni agricoli (sul reddito dominicale aumentato del 25%)</td><td>135</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Un esempio con numeri veri</h2>
+    <p>Prendiamo un appartamento in categoria A/3 con rendita catastale di <b>700 €</b>, posseduto al
+      100% per tutto l'anno, in un comune che ha deliberato l'aliquota massima del 10,6 per mille.</p>
+    <div class="esempio">
+      <p>Rendita 700 € aumentata del 5% → <b>735 €</b><br>
+        735 × 160 → base imponibile <b>117.600 €</b><br>
+        117.600 × 10,6‰ → IMU dell'anno <b>1.246,56 €</b><br>
+        Acconto entro il 16 giugno <b>623 €</b> · saldo entro il 16 dicembre <b>623 €</b></p>
+    </div>
+    <p>Ogni rata si arrotonda all'euro per conto proprio: fino a 49 centesimi si scende, da 50
+      centesimi si sale. La somma delle due rate può quindi scostarsi di un euro dall'imposta annua,
+      come qui, dove si versano 1.246 € contro i 1.246,56 € calcolati. Acconto e saldo risultano
+      invece diversi tra loro quando l'aliquota del comune cambia da un anno all'altro. Se lo stesso
+      appartamento fosse di due fratelli al 50% ciascuno, ognuno verserebbe 623,28 € l'anno con un
+      proprio F24: l'IMU non è un debito solidale, ognuno risponde della sua quota.</p>
+
+    <h2>Acconto di giugno e saldo di dicembre</h2>
+    <p>Le scadenze sono due e non cambiano: <b>16 giugno</b> per l'acconto e <b>16 dicembre</b> per il
+      saldo. La regola che quasi nessun calcolatore rispetta è che l'acconto si determina con le
+      aliquote e le detrazioni dell'anno precedente, perché a giugno molti comuni non hanno ancora
+      pubblicato la delibera nuova. Il saldo di dicembre è un conguaglio: si ricalcola l'imposta di
+      tutto l'anno con le aliquote definitive e si sottrae quanto già versato. Se l'aliquota è
+      aumentata, il saldo sarà più alto dell'acconto; se è scesa, più basso. Nel campo dedicato puoi
+      indicare l'aliquota dell'anno scorso e vedere le due rate calcolate correttamente.</p>
+
+    <h2>Se hai comprato o venduto durante l'anno</h2>
+    <p>L'IMU si paga per mesi interi e il mese va a chi lo ha posseduto per <b>più della metà dei
+      giorni</b>. In caso di parità esatta il mese spetta all'acquirente. Con un rogito del 10 aprile
+      l'acquirente possiede 21 giorni su 30 e paga aprile: 9 mesi a lui, 3 al venditore. Con un rogito
+      del 20 aprile l'acquirente ha 11 giorni e aprile resta al venditore: 4 mesi al venditore, 8
+      all'acquirente. Lo stesso vale per le successioni, dove i mesi si contano dalla data di apertura
+      della successione, e per la donazione.</p>
+
+    <h2>Le riduzioni che si dimenticano</h2>
+    <ul>
+      <li><b>Comodato a un figlio o a un genitore</b>: base imponibile dimezzata, ma serve il contratto
+        registrato, la residenza del comodatario nell'immobile e la parentela in linea retta di primo
+        grado. Non vale per A/1, A/8 e A/9.</li>
+      <li><b>Fabbricato inagibile o inabitabile</b> e di fatto non utilizzato: base dimezzata per il
+        periodo dell'anno in cui la condizione esiste, dietro dichiarazione al comune.</li>
+      <li><b>Immobile di interesse storico o artistico</b>: base dimezzata.</li>
+      <li><b>Affitto a canone concordato</b>: qui la riduzione è del 25% e si applica all'imposta già
+        calcolata, non alla base. Vale per legge, senza che il comune debba deliberarla.</li>
+    </ul>
+    <p>Sulla prima casa, invece, non serve nessun calcolo: l'abitazione principale con la residenza e
+      la dimora abituale è esente, con una sola pertinenza per ciascuna delle categorie C/2, C/6 e
+      C/7. Restano tassate solo le abitazioni di lusso A/1, A/8 e A/9, con aliquota base del 5 per
+      mille e una detrazione di 200 € da ripartire tra i proprietari che vi abitano.</p>
+
+    <h2>Errori comuni</h2>
+    <ul>
+      <li>Usare il valore di mercato o il prezzo d'acquisto invece della rendita catastale.</li>
+      <li>Dimenticare il garage e la cantina: hanno una rendita propria e, se non sono pertinenze di
+        una prima casa esente, si pagano a parte.</li>
+      <li>Applicare l'8,6 per mille perché "è l'aliquota della seconda casa": è solo il minimo di
+        legge, la maggior parte dei comuni delibera valori più alti fino al 10,6 per mille.</li>
+      <li>Versare l'intero importo a nome di un solo comproprietario: ogni quota vuole il suo F24.</li>
+      <li>Arrotondare il totale dell'anno invece di arrotondare ogni rata.</li>
+    </ul>
+    <p>Un'ultima cosa sul minimo: molti comuni non richiedono il versamento sotto i 12 € annui, ma la
+      soglia sta nel regolamento comunale e non è uguale per tutti. Se il tuo risultato è di pochi
+      euro, vale la pena controllare prima di lasciar perdere.</p>
+
+    <h2>Domande frequenti</h2>
+    <h3>Come si calcola l'IMU sulla seconda casa?</h3>
+    <p>Rendita catastale aumentata del 5%, moltiplicata per il coefficiente della categoria (160 per
+      le abitazioni), poi per l'aliquota comunale espressa per mille, infine in proporzione alla quota
+      e ai mesi di possesso. Su una rendita di 700 € con aliquota 10,6‰ l'imposta annua è 1.246,56 €.</p>
+
+    <h3>Dove trovo la rendita catastale della mia casa?</h3>
+    <p>Nell'atto di acquisto, nella dichiarazione dei redditi o gratuitamente nell'area riservata
+      dell'Agenzia delle Entrate con SPID o CIE. Se non hai nulla a portata di mano, in questa pagina
+      puoi ricavarla al contrario partendo dall'IMU che hai versato l'anno scorso.</p>
+
+    <h3>Qual è l'aliquota IMU della seconda casa?</h3>
+    <p>L'aliquota base di legge è lo 0,86% (8,6 per mille) e ogni comune può portarla fino all'1,06%,
+      in alcuni casi all'1,14%, oppure azzerarla. Non esiste un valore nazionale: va letta nella
+      delibera del tuo comune, pubblicata sul portale del Dipartimento delle Finanze.</p>
+
+    <h3>Chi paga l'IMU se ho venduto la casa a metà anno?</h3>
+    <p>Ciascuno per i propri mesi, contando il mese a chi lo ha posseduto per più di metà dei giorni e
+      assegnandolo all'acquirente in caso di parità. Imposta il periodo di possesso e il calcolatore
+      mostra anche i mesi che restano all'altra parte.</p>
+
+    <h3>Quale codice tributo si usa nell'F24?</h3>
+    <p>3918 per gli immobili diversi dall'abitazione principale, quindi la seconda casa, il garage e
+      la cantina; 3912 per l'abitazione principale di lusso; 3914 per i terreni agricoli; 3916 per le
+      aree fabbricabili. Il codice catastale del comune si indica nella stessa riga del modello.</p>
+
+    <h3>Questo calcolatore salva i miei dati?</h3>
+    <p>No. Tutto avviene nel browser del tuo telefono e gli immobili che salvi restano in memoria
+      locale sul dispositivo: non parte nessuna richiesta verso un server e la pagina funziona anche
+      offline.</p>
+
+    <div data-ad="bottom"></div>
+  </section>
+
+  <div data-support></div>
+
+  <footer>
+    <p>Strumento informativo. Gli importi sono stime calcolate sui dati che inserisci: fanno fede la
+      delibera delle aliquote e il regolamento del tuo comune. Normativa di riferimento: legge
+      160/2019, commi 738 e seguenti.</p>
+    <p>Ti può servire anche: <a href="../2026-09-24-cedolare-secca-o-irpef/">capire se conviene la cedolare secca sull'affitto</a>
+      oppure <a href="../2026-09-21-rata-mutuo/">il calcolo della rata del mutuo</a>.</p>
+    <p>Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a></p>
+  </footer>
+</div>
+
+<script src="../../assets/monetize.js"></script>
+<script>
+/* Modello dati: un solo oggetto S descrive l'immobile in lavorazione (categoria, rendita, aliquota,
+   quota, periodo di possesso, riduzione, detrazione, aliquota dell'anno prima) e viene salvato in
+   localStorage sotto "imu-seconda-casa:v1". calcola(S) lo trasforma in un risultato immutabile
+   { base, mesi, imposta, acconto, saldo, tributo, ... }: da quell'unico oggetto derivano la
+   dashboard, la formula, il prospetto F24 e l'elenco degli immobili salvati ("…:immobili:v1"). */
+(() => {
+  "use strict";
+
+  const ANNO = new Date().getFullYear();
+  const CHIAVE = "imu-seconda-casa:v1";
+  const CHIAVE_LISTA = "imu-seconda-casa:immobili:v1";
+
+  const CAT = [
+    { id: "A",   nome: "Abitazione (A/2, A/3, A/4, A/5, A/6, A/7)", molt: 160, riv: 1.05, tipo: "altro" },
+    { id: "A1",  nome: "Abitazione di lusso (A/1, A/8, A/9)",       molt: 160, riv: 1.05, tipo: "lusso" },
+    { id: "C6",  nome: "Garage o posto auto (C/6)",                 molt: 160, riv: 1.05, tipo: "altro" },
+    { id: "C2",  nome: "Cantina, soffitta, magazzino (C/2)",        molt: 160, riv: 1.05, tipo: "altro" },
+    { id: "C7",  nome: "Tettoia o posto auto coperto (C/7)",        molt: 160, riv: 1.05, tipo: "altro" },
+    { id: "A10", nome: "Ufficio o studio privato (A/10)",           molt: 80,  riv: 1.05, tipo: "altro" },
+    { id: "C1",  nome: "Negozio o bottega (C/1)",                   molt: 55,  riv: 1.05, tipo: "altro" },
+    { id: "C3",  nome: "Laboratorio artigiano (C/3)",               molt: 140, riv: 1.05, tipo: "altro" },
+    { id: "C4",  nome: "Fabbricato sportivo senza lucro (C/4)",     molt: 140, riv: 1.05, tipo: "altro" },
+    { id: "C5",  nome: "Stabilimento balneare o di cura (C/5)",     molt: 140, riv: 1.05, tipo: "altro" },
+    { id: "B",   nome: "Gruppo B (collegi, scuole, uffici pubblici)", molt: 140, riv: 1.05, tipo: "altro" },
+    { id: "D",   nome: "Gruppo D tranne D/5 (capannone, albergo)",  molt: 65,  riv: 1.05, tipo: "altro" },
+    { id: "D5",  nome: "Banca o assicurazione (D/5)",               molt: 80,  riv: 1.05, tipo: "altro" },
+    { id: "T",   nome: "Terreno agricolo (reddito dominicale)",     molt: 135, riv: 1.25, tipo: "terreno" },
+  ];
+  const catById = (id) => CAT.find(c => c.id === id) || CAT[0];
+
+  const RIDUZIONI = [
+    { id: "",           et: "Nessuna",                 su: null,
+      aiuto: "Nessuna riduzione applicata." },
+    { id: "comodato",   et: "Comodato a figlio/genitore", su: "base",
+      aiuto: "Base imponibile dimezzata. Serve il contratto registrato, la parentela in linea retta di primo grado e la residenza di chi la usa. Esclusi A/1, A/8 e A/9." },
+    { id: "inagibile",  et: "Inagibile o inabitabile", su: "base",
+      aiuto: "Base dimezzata per il periodo in cui l'immobile è inagibile e di fatto non utilizzato, dietro dichiarazione al comune." },
+    { id: "storico",    et: "Interesse storico",       su: "base",
+      aiuto: "Base dimezzata per i fabbricati di interesse storico o artistico." },
+    { id: "concordato", et: "Affitto a canone concordato", su: "imposta",
+      aiuto: "Riduzione del 25% dell'imposta, prevista per legge: si applica dopo il calcolo, non sulla base." },
+  ];
+  const ridById = (id) => RIDUZIONI.find(r => r.id === id) || RIDUZIONI[0];
+
+  const ALIQUOTE = {
+    altro:   [{ v: 8.6, et: "8,6", n: "base di legge" }, { v: 10.6, et: "10,6", n: "massimo usuale" }, { v: 11.4, et: "11,4", n: "max ex TASI" }],
+    lusso:   [{ v: 5,   et: "5,0", n: "base di legge" }, { v: 6,    et: "6,0",  n: "massimo" }],
+    terreno: [{ v: 7.6, et: "7,6", n: "base di legge" }, { v: 10.6, et: "10,6", n: "massimo usuale" }],
+  };
+
+  // ---------- util ----------
+  const $ = (sel) => document.querySelector(sel);
+  const $$ = (sel) => Array.from(document.querySelectorAll(sel));
+  const num = (v) => { const n = parseFloat(String(v ?? "").replace(",", ".")); return Number.isFinite(n) ? n : 0; };
+  const pieno = (v) => String(v ?? "").trim() !== "";
+  const clamp = (n, a, b) => Math.min(b, Math.max(a, n));
+  const euro = (n) => n.toLocaleString("it-IT", { style: "currency", currency: "EUR", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const euroTondo = (n) => n.toLocaleString("it-IT", { style: "currency", currency: "EUR", minimumFractionDigits: 0, maximumFractionDigits: 0 });
+  const dec = (n, d = 2) => n.toLocaleString("it-IT", { minimumFractionDigits: 0, maximumFractionDigits: d });
+  const allEuro = (n) => Math.round(n); // fino a 49 centesimi si scende, da 50 si sale
+
+  // ---------- stato ----------
+  const DEFAULT = {
+    cat: "A", rendita: "", aliquota: "", quota: "100", periodo: "anno",
+    dal: ANNO + "-01-01", al: ANNO + "-12-31", riduzione: "", principale: false,
+    aliqPrec: "", etichetta: "", codComune: "",
+  };
+  let S = { ...DEFAULT };
+  let lista = [];
+
+  function leggi(chiave, fallback) {
+    try { const raw = localStorage.getItem(chiave); return raw ? JSON.parse(raw) : fallback; }
+    catch { return fallback; }
+  }
+  function salva() {
+    try {
+      localStorage.setItem(CHIAVE, JSON.stringify(S));
+      localStorage.setItem(CHIAVE_LISTA, JSON.stringify(lista));
+    } catch { /* memoria piena o negata: l'app continua a funzionare senza persistenza */ }
+  }
+
+  // ---------- calcolo ----------
+  // Mesi da conteggiare: il mese va a chi lo possiede per più della metà dei giorni;
+  // a parità esatta resta all'acquirente, cioè a chi entra in possesso durante quel mese.
+  function mesiPossesso(dal, al) {
+    const gdal = new Date(dal + "T00:00:00Z").getTime();
+    const gal = new Date(al + "T00:00:00Z").getTime();
+    if (!Number.isFinite(gdal) || !Number.isFinite(gal) || gal < gdal) return null;
+    const inizio = Math.max(gdal, Date.UTC(ANNO, 0, 1));
+    const fine = Math.min(gal, Date.UTC(ANNO, 11, 31));
+    if (fine < inizio) return 0;
+    let mesi = 0;
+    for (let m = 0; m < 12; m++) {
+      const giorniMese = new Date(Date.UTC(ANNO, m + 1, 0)).getUTCDate();
+      const primo = Date.UTC(ANNO, m, 1), ultimo = Date.UTC(ANNO, m, giorniMese);
+      const a = Math.max(inizio, primo), b = Math.min(fine, ultimo);
+      if (b < a) continue;
+      const miei = Math.round((b - a) / 86400000) + 1;
+      const altri = giorniMese - miei;
+      if (miei > altri) mesi++;
+      else if (miei === altri && inizio > primo && inizio <= ultimo) mesi++; // sono l'acquirente
+    }
+    return mesi;
+  }
+
+  function calcola(s) {
+    const cat = catById(s.cat);
+    const rid = ridById(s.riduzione);
+    const rendita = num(s.rendita);
+    const aliquota = num(s.aliquota);
+    const quota = clamp(num(s.quota), 0, 100) / 100;
+    const mesi = s.periodo === "parte" ? mesiPossesso(s.dal, s.al) : 12;
+    const dateErrate = mesi === null;
+    const mesiOk = dateErrate ? 0 : mesi;
+    const frazione = mesiOk / 12;
+
+    const basePiena = rendita * cat.riv * cat.molt;
+    const dimezzata = rid.su === "base";
+    const base = dimezzata ? basePiena / 2 : basePiena;
+
+    const principale = s.principale && cat.tipo === "lusso";
+    const detrazione = principale ? 200 * quota * frazione : 0;
+
+    const impostaCon = (al) => {
+      let i = base * (al / 1000) * quota * frazione;
+      if (rid.su === "imposta") i *= 0.75;
+      return Math.max(0, i - detrazione);
+    };
+
+    const imposta = impostaCon(aliquota);
+    const aliqPrec = num(s.aliqPrec);
+    const usaPrec = pieno(s.aliqPrec) && aliqPrec > 0 && Math.abs(aliqPrec - aliquota) > 1e-9;
+    const acconto = (usaPrec ? impostaCon(aliqPrec) : imposta) / 2;
+    const saldo = imposta - acconto;
+
+    const tributo = cat.tipo === "terreno" ? "3914" : (principale ? "3912" : "3918");
+
+    return {
+      valido: rendita > 0 && pieno(s.aliquota) && !dateErrate,
+      dateErrate, rendita, cat, rid, aliquota, quota, mesi: mesiOk, frazione,
+      rivalutata: rendita * cat.riv, basePiena, base, dimezzata, principale, detrazione,
+      imposta, acconto, saldo, usaPrec, aliqPrec,
+      accontoTondo: allEuro(acconto),
+      saldoTondo: Math.max(0, allEuro(saldo)),
+      credito: saldo < -0.004 ? -saldo : 0,
+      tributo,
+      etichetta: pieno(s.etichetta) ? s.etichetta.trim() : cat.nome.replace(/\s*\(.*\)$/, ""),
+    };
+  }
+
+  // ---------- costruzione controlli ----------
+  const selCat = $("#cat");
+  for (const c of CAT) {
+    const o = document.createElement("option");
+    o.value = c.id; o.textContent = c.nome;
+    selCat.append(o);
+  }
+
+  function chipsAliquota() {
+    const box = $("#chips-aliquota");
+    box.textContent = "";
+    for (const a of ALIQUOTE[catById(S.cat).tipo]) {
+      const b = document.createElement("button");
+      b.type = "button"; b.className = "chip";
+      b.innerHTML = a.et + "‰<small>" + a.n + "</small>";
+      b.setAttribute("aria-pressed", String(Math.abs(num(S.aliquota) - a.v) < 1e-9 && pieno(S.aliquota)));
+      b.addEventListener("click", () => { S.aliquota = String(a.v).replace(".", ","); $("#aliquota").value = a.v; aggiorna(); });
+      box.append(b);
+    }
+  }
+
+  function chipsQuota() {
+    const box = $("#chips-quota");
+    box.textContent = "";
+    for (const q of [100, 50, 33.33, 25]) {
+      const b = document.createElement("button");
+      b.type = "button"; b.className = "chip";
+      b.textContent = dec(q) + "%";
+      b.setAttribute("aria-pressed", String(Math.abs(num(S.quota) - q) < 0.01));
+      b.addEventListener("click", () => { S.quota = String(q); $("#quota").value = q; aggiorna(); });
+      box.append(b);
+    }
+  }
+
+  function chipsRiduzione() {
+    const box = $("#chips-riduzione");
+    box.textContent = "";
+    for (const r of RIDUZIONI) {
+      const b = document.createElement("button");
+      b.type = "button"; b.className = "chip";
+      b.textContent = r.et;
+      b.setAttribute("aria-pressed", String(S.riduzione === r.id));
+      b.addEventListener("click", () => { S.riduzione = r.id; aggiorna(); });
+      box.append(b);
+    }
+    $("#aiuto-riduzione").textContent = ridById(S.riduzione).aiuto;
+  }
+
+  function aiutoCategoria() {
+    const c = catById(S.cat);
+    let t = "Moltiplicatore " + c.molt + ".";
+    if (c.id === "A") t += " La prima casa con residenza e dimora abituale è esente: qui calcoli la seconda casa o quella affittata.";
+    else if (c.id === "A1") t += " Sono le sole abitazioni principali che pagano ancora l'IMU, con la detrazione di 200 €.";
+    else if (c.id === "T") t += " Per i terreni si parte dal reddito dominicale aumentato del 25%, non dalla rendita.";
+    else if (c.id === "C6" || c.id === "C2" || c.id === "C7") t += " Si paga a parte, se non è pertinenza di una prima casa esente.";
+    $("#aiuto-cat").textContent = t;
+    $("#lab-rendita").textContent = c.tipo === "terreno" ? "Reddito dominicale" : "Rendita catastale";
+    $("#riga-principale").hidden = c.tipo !== "lusso";
+    if (c.tipo !== "lusso") { S.principale = false; $("#principale").checked = false; }
+  }
+
+  // ---------- resa ----------
+  let R = null;
+
+  function aggiorna() {
+    aiutoCategoria();
+    chipsAliquota(); chipsQuota(); chipsRiduzione();
+    $("#date-possesso").hidden = S.periodo !== "parte";
+    for (const b of $$("#chips-periodo .chip")) b.setAttribute("aria-pressed", String(b.dataset.periodo === S.periodo));
+
+    R = calcola(S);
+    const info = $("#nota-info"), avviso = $("#nota-avviso"), formula = $("#formula");
+
+    if (!R.valido) {
+      $("#v-totale").textContent = "—";
+      $("#v-acconto").textContent = "—";
+      $("#v-saldo").textContent = "—";
+      $("#v-base").textContent = R.rendita > 0 ? euroTondo(R.base) : "—";
+      $("#v-mesi").textContent = R.dateErrate ? "—" : String(R.mesi);
+      $("#v-molt").textContent = String(R.cat.molt);
+      $("#n-molt").textContent = R.cat.riv === 1.25 ? "reddito dominicale × 1,25" : "rendita × 1,05";
+      $("#v-tributo").textContent = R.tributo;
+      $("#n-totale").textContent = R.dateErrate
+        ? "Le date di possesso non sono in ordine."
+        : (R.rendita > 0 ? "Manca l'aliquota del tuo comune." : "Inserisci la rendita catastale e l'aliquota.");
+      formula.hidden = true;
+      info.hidden = true;
+      avviso.hidden = !R.dateErrate;
+      if (R.dateErrate) avviso.innerHTML = "<b>Date incoerenti:</b> la data finale del possesso è precedente a quella iniziale.";
+      $("#btn-copia").disabled = true;
+      $("#btn-aggiungi").disabled = true;
+      prospetto(); inverso(); salva(); return;
+    }
+
+    $("#btn-copia").disabled = false;
+    $("#btn-aggiungi").disabled = false;
+    $("#v-totale").textContent = euro(R.imposta);
+    $("#v-acconto").textContent = euroTondo(R.accontoTondo);
+    $("#v-saldo").textContent = euroTondo(R.saldoTondo);
+    $("#v-base").textContent = euroTondo(R.base);
+    $("#v-mesi").textContent = String(R.mesi);
+    $("#v-molt").textContent = String(R.cat.molt);
+    $("#n-molt").textContent = R.cat.riv === 1.25 ? "reddito dominicale × 1,25" : "rendita × 1,05";
+    $("#v-tributo").textContent = R.tributo;
+    $("#n-totale").textContent = dec(R.quota * 100) + "% di quota · " + R.mesi + " mesi su 12 · " + dec(R.aliquota) + "‰";
+    $("#n-base").textContent = R.dimezzata
+      ? euroTondo(R.basePiena) + " dimezzata dalla riduzione"
+      : dec(R.rivalutata) + " × " + R.cat.molt;
+    $("#n-mesi").textContent = S.periodo === "parte"
+      ? "all'altra parte restano " + (12 - R.mesi) + " mesi"
+      : "tutto l'anno";
+    $("#n-tributo").textContent = R.tributo === "3918" ? "immobili diversi dall'abitazione principale"
+      : R.tributo === "3912" ? "abitazione principale A/1, A/8, A/9" : "terreni agricoli";
+
+    const passi = [];
+    passi.push("<b>" + dec(R.rendita) + " €</b> × " + (R.cat.riv === 1.25 ? "1,25" : "1,05") + " = " + dec(R.rivalutata) + " €");
+    passi.push("× " + R.cat.molt + " = <b>" + euroTondo(R.basePiena) + "</b> di base");
+    if (R.dimezzata) passi.push("÷ 2 per la riduzione = " + euroTondo(R.base));
+    passi.push("× " + dec(R.aliquota) + "‰");
+    if (R.quota !== 1) passi.push("× " + dec(R.quota * 100) + "% di quota");
+    if (R.mesi !== 12) passi.push("× " + R.mesi + "/12 mesi");
+    if (R.rid.su === "imposta") passi.push("× 75% (canone concordato)");
+    if (R.detrazione > 0) passi.push("− " + euro(R.detrazione) + " di detrazione");
+    passi.push("= <b>" + euro(R.imposta) + "</b>");
+    formula.innerHTML = passi.join(" ");
+    formula.hidden = false;
+
+    const messaggi = [];
+    if (R.aliquota === 0) messaggi.push("<b>Aliquota a zero:</b> il comune ha azzerato l'imposta per questa categoria, non devi versare nulla.");
+    else if (R.imposta > 0 && R.imposta < 12) messaggi.push("<b>Importo sotto i 12 €:</b> molti comuni non richiedono il versamento sotto questa soglia, ma va verificata nel regolamento comunale.");
+    if (R.credito > 0) messaggi.push("<b>Hai versato più del dovuto:</b> l'acconto calcolato con l'aliquota dell'anno scorso supera l'imposta dell'anno di " + euro(R.credito) + ". A dicembre non versi nulla e puoi chiedere il rimborso al comune.");
+    else if (R.usaPrec) messaggi.push("Acconto calcolato con l'aliquota dell'anno scorso (" + dec(R.aliqPrec) + "‰), come prevede la legge; il saldo di dicembre fa da conguaglio.");
+    info.innerHTML = messaggi.join("<br>");
+    info.hidden = messaggi.length === 0;
+
+    const avvisi = [];
+    if (num(S.quota) <= 0) avvisi.push("<b>Quota a zero:</b> senza una quota di proprietà non c'è imposta da versare.");
+    if (num(S.quota) > 100) avvisi.push("<b>Quota oltre il 100%:</b> è stata riportata a 100%.");
+    if (S.riduzione === "comodato" && R.cat.tipo === "lusso") avvisi.push("<b>Attenzione:</b> la riduzione per comodato non si applica alle abitazioni A/1, A/8 e A/9.");
+    avviso.innerHTML = avvisi.join("<br>");
+    avviso.hidden = avvisi.length === 0;
+
+    prospetto();
+    inverso();
+    salva();
+  }
+
+  // ---------- Pro 1: prospetto per l'F24 ----------
+  // Un rigo per codice tributo, come nel modello: importo arrotondato all'euro sul totale del rigo.
+  function vociF24() {
+    const voci = lista.slice();
+    if (R && R.valido) voci.push({ etichetta: R.etichetta, tributo: R.tributo, imposta: R.imposta, acconto: R.acconto, saldo: Math.max(0, R.saldo) });
+    const gruppi = new Map();
+    for (const v of voci) {
+      const g = gruppi.get(v.tributo) || { tributo: v.tributo, n: 0, acconto: 0, saldo: 0 };
+      g.n++; g.acconto += v.acconto; g.saldo += v.saldo;
+      gruppi.set(v.tributo, g);
+    }
+    return Array.from(gruppi.values()).sort((a, b) => a.tributo.localeCompare(b.tributo));
+  }
+
+  function prospetto() {
+    const box = $("#prospetto");
+    box.textContent = "";
+    const gruppi = vociF24();
+    const testa = document.createElement("div");
+    testa.className = "pr-riga testa";
+    testa.innerHTML = "<span>Rigo</span><span>Importo</span>";
+    box.append(testa);
+    if (!gruppi.length) {
+      const v = document.createElement("div");
+      v.className = "pr-riga";
+      v.innerHTML = "<span class='pr-sub'>Completa il calcolo per vedere i righi.</span>";
+      box.append(v);
+      return;
+    }
+    const com = (S.codComune || "").toUpperCase().trim() || "····";
+    for (const g of gruppi) {
+      for (const rata of [["Acconto", g.acconto, "Acc"], ["Saldo", g.saldo, "Saldo"]]) {
+        const r = document.createElement("div");
+        r.className = "pr-riga";
+        const et = document.createElement("span");
+        et.className = "pr-et";
+        et.textContent = g.tributo + " · " + rata[0];
+        const im = document.createElement("span");
+        im.className = "pr-im";
+        im.textContent = euroTondo(allEuro(rata[1]));
+        const sub = document.createElement("span");
+        sub.className = "pr-sub";
+        sub.textContent = "codice comune " + com + " · anno " + ANNO + " · immobili " + g.n +
+          " · barra la casella " + rata[2];
+        r.append(et, im, sub);
+        box.append(r);
+      }
+    }
+  }
+
+  function testoF24() {
+    const com = (S.codComune || "").toUpperCase().trim() || "(codice comune)";
+    const righe = ["IMU " + ANNO + " — righi per il modello F24", "Comune: " + com];
+    for (const g of vociF24()) {
+      righe.push("Tributo " + g.tributo + " · immobili " + g.n +
+        " · acconto " + allEuro(g.acconto) + " € · saldo " + allEuro(g.saldo) + " €");
+    }
+    righe.push("Scadenze: 16 giugno e 16 dicembre. Importi arrotondati all'euro per rigo.");
+    return righe.join("\n");
+  }
+
+  // ---------- Pro 2: elenco immobili ----------
+  function disegnaElenco() {
+    const ul = $("#elenco");
+    ul.textContent = "";
+    $("#elenco-vuoto").hidden = lista.length > 0;
+    $("#dash-tot").hidden = lista.length === 0;
+    let ta = 0, ts = 0, tt = 0;
+    lista.forEach((v, i) => {
+      ta += v.acconto; ts += v.saldo; tt += v.imposta;
+      const li = document.createElement("li");
+      const et = document.createElement("span");
+      et.className = "et"; et.textContent = v.etichetta;
+      const im = document.createElement("span");
+      im.className = "im"; im.textContent = euro(v.imposta);
+      const via = document.createElement("button");
+      via.type = "button"; via.className = "via"; via.textContent = "×";
+      via.setAttribute("aria-label", "Togli " + v.etichetta);
+      via.addEventListener("click", () => { lista.splice(i, 1); salva(); disegnaElenco(); prospetto(); });
+      const sub = document.createElement("span");
+      sub.className = "sub";
+      sub.textContent = "tributo " + v.tributo + " · acconto " + euroTondo(allEuro(v.acconto)) +
+        " · saldo " + euroTondo(allEuro(v.saldo));
+      li.append(et, im, via, sub);
+      ul.append(li);
+    });
+    $("#t-acconto").textContent = lista.length ? euroTondo(allEuro(ta)) : "—";
+    $("#t-saldo").textContent = lista.length ? euroTondo(allEuro(ts)) : "—";
+    $("#t-anno").textContent = lista.length ? euro(tt) : "—";
+    const agg = $("#btn-aggiungi");
+    if (lista.length >= 12) { agg.disabled = true; agg.textContent = "Elenco pieno (12 immobili)"; }
+    else if (agg.textContent.startsWith("Elenco pieno")) { agg.disabled = false; agg.textContent = "Aggiungi questo immobile"; }
+  }
+
+  // ---------- calcolo inverso della rendita ----------
+  function inverso() {
+    const esito = $("#esito-inverso");
+    const btn = $("#btn-usa-rendita");
+    const pagata = num($("#imuPagata").value);
+    const al = num($("#aliqPagata").value);
+    if (pagata <= 0 || al <= 0) {
+      esito.textContent = "Compila i due campi per stimare la rendita.";
+      btn.disabled = true; btn.dataset.rendita = "";
+      return;
+    }
+    const c = catById(S.cat);
+    const rid = ridById(S.riduzione);
+    const quota = clamp(num(S.quota), 0, 100) / 100;
+    const mesi = S.periodo === "parte" ? (mesiPossesso(S.dal, S.al) ?? 0) : 12;
+    let fattore = c.riv * c.molt * (al / 1000) * quota * (mesi / 12);
+    if (rid.su === "base") fattore /= 2;
+    if (rid.su === "imposta") fattore *= 0.75;
+    if (fattore <= 0) {
+      esito.textContent = "Con quota o mesi a zero non è possibile risalire alla rendita.";
+      btn.disabled = true; btn.dataset.rendita = "";
+      return;
+    }
+    const detr = (S.principale && c.tipo === "lusso") ? 200 * quota * (mesi / 12) : 0;
+    const rendita = (pagata + detr) / fattore;
+    esito.innerHTML = "Rendita catastale stimata: <b>" + dec(rendita) + " €</b>. " +
+      "È attendibile solo se aliquota, quota e mesi sono quelli davvero usati quell'anno.";
+    btn.disabled = false;
+    btn.dataset.rendita = rendita.toFixed(2);
+  }
+
+  // ---------- riepilogo da copiare ----------
+  function riepilogo() {
+    if (!R || !R.valido) return "";
+    const r = ["IMU " + ANNO + " — " + R.etichetta,
+      "Rendita " + dec(R.rendita) + " € · moltiplicatore " + R.cat.molt + " · base " + dec(R.base) + " €",
+      "Aliquota " + dec(R.aliquota) + "‰ · quota " + dec(R.quota * 100) + "% · mesi " + R.mesi + "/12"];
+    if (R.dimezzata) r.push("Riduzione: " + R.rid.et + " (base dimezzata)");
+    if (R.rid.su === "imposta") r.push("Riduzione: " + R.rid.et + " (−25% dell'imposta)");
+    if (R.detrazione > 0) r.push("Detrazione abitazione principale: " + euro(R.detrazione));
+    r.push("Imposta dell'anno: " + euro(R.imposta));
+    r.push("Acconto 16 giugno: " + allEuro(R.acconto) + " € · saldo 16 dicembre: " + Math.max(0, allEuro(R.saldo)) + " €");
+    r.push("Codice tributo F24: " + R.tributo);
+    return r.join("\n");
+  }
+
+  async function negliAppunti(testo, bottone, etichetta) {
+    let fatto = false;
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) { await navigator.clipboard.writeText(testo); fatto = true; }
+    } catch { fatto = false; }
+    if (!fatto) {
+      const ta = document.createElement("textarea");
+      ta.value = testo;
+      ta.setAttribute("readonly", "");
+      ta.style.cssText = "position:fixed;left:-9999px;top:0";
+      document.body.append(ta);
+      ta.select();
+      try { fatto = document.execCommand("copy"); } catch { fatto = false; }
+      ta.remove();
+    }
+    bottone.textContent = fatto ? "Copiato ✓" : "Copia non riuscita";
+    setTimeout(() => { bottone.textContent = etichetta; }, 2200);
+  }
+
+  // ---------- avvio e collegamenti ----------
+  function inDOM() {
+    selCat.value = S.cat;
+    $("#rendita").value = S.rendita;
+    $("#aliquota").value = S.aliquota;
+    $("#quota").value = S.quota;
+    $("#dal").value = S.dal;
+    $("#al").value = S.al;
+    $("#aliqPrec").value = S.aliqPrec;
+    $("#etichetta").value = S.etichetta;
+    $("#codComune").value = S.codComune;
+    $("#principale").checked = !!S.principale;
+  }
+
+  function avvia() {
+    const salvato = leggi(CHIAVE, null);
+    if (salvato && typeof salvato === "object") {
+      S = { ...DEFAULT, ...salvato };
+      if (!CAT.some(c => c.id === S.cat)) S.cat = DEFAULT.cat;
+      if (!RIDUZIONI.some(r => r.id === S.riduzione)) S.riduzione = "";
+      if (S.periodo !== "parte") S.periodo = "anno";
+    }
+    const salvata = leggi(CHIAVE_LISTA, []);
+    lista = Array.isArray(salvata)
+      ? salvata.filter(v => v && typeof v.etichetta === "string" && Number.isFinite(v.imposta)).slice(0, 12)
+      : [];
+
+    for (const s of $$("[data-anno]")) s.textContent = String(ANNO);
+    for (const id of ["#dal", "#al"]) {
+      $(id).min = ANNO + "-01-01";
+      $(id).max = ANNO + "-12-31";
+    }
+    inDOM();
+
+    $("#modulo").addEventListener("submit", (e) => { e.preventDefault(); });
+    selCat.addEventListener("change", () => { S.cat = selCat.value; aggiorna(); });
+    const lega = (sel, campo) => $(sel).addEventListener("input", () => { S[campo] = $(sel).value; aggiorna(); });
+    lega("#rendita", "rendita");
+    lega("#aliquota", "aliquota");
+    lega("#quota", "quota");
+    lega("#aliqPrec", "aliqPrec");
+    lega("#etichetta", "etichetta");
+    $("#dal").addEventListener("change", () => { S.dal = $("#dal").value; aggiorna(); });
+    $("#al").addEventListener("change", () => { S.al = $("#al").value; aggiorna(); });
+    $("#principale").addEventListener("change", () => { S.principale = $("#principale").checked; aggiorna(); });
+    for (const b of $$("#chips-periodo .chip")) {
+      b.addEventListener("click", () => {
+        S.periodo = b.dataset.periodo;
+        aggiorna();
+        if (S.periodo === "parte") $("#dal").focus();
+      });
+    }
+
+    $("#codComune").addEventListener("input", () => { S.codComune = $("#codComune").value; prospetto(); salva(); });
+    $("#btn-stampa").addEventListener("click", () => window.print());
+    $("#btn-copia-f24").addEventListener("click", (e) => negliAppunti(testoF24(), e.currentTarget, "Copia i righi"));
+    $("#btn-copia").addEventListener("click", (e) => negliAppunti(riepilogo(), e.currentTarget, "Copia il riepilogo"));
+
+    $("#btn-azzera").addEventListener("click", () => {
+      S = { ...DEFAULT };
+      inDOM();
+      aggiorna();
+      $("#rendita").focus();
+    });
+
+    $("#btn-aggiungi").addEventListener("click", (e) => {
+      if (!R || !R.valido || lista.length >= 12) return;
+      lista.push({ etichetta: R.etichetta, tributo: R.tributo, imposta: R.imposta, acconto: R.acconto, saldo: Math.max(0, R.saldo) });
+      salva(); disegnaElenco(); prospetto();
+      const b = e.currentTarget;
+      b.textContent = "Aggiunto ✓";
+      setTimeout(() => { if (!b.disabled) b.textContent = "Aggiungi questo immobile"; }, 1800);
+    });
+
+    for (const id of ["#imuPagata", "#aliqPagata"]) $(id).addEventListener("input", inverso);
+    $("#btn-usa-rendita").addEventListener("click", (e) => {
+      const v = e.currentTarget.dataset.rendita;
+      if (!v) return;
+      S.rendita = v;
+      $("#rendita").value = v;
+      aggiorna();
+      $("#rendita").scrollIntoView({ block: "center" });
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && e.target instanceof HTMLElement && /^(INPUT|SELECT)$/.test(e.target.tagName)) e.target.blur();
+    });
+
+    disegnaElenco();
+    aggiorna();
+  }
+
+  avvia();
+})();
+</script>
+</body>
+</html>

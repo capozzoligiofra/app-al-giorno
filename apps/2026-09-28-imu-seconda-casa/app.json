@@ -1,0 +1,34 @@
+{
+  "title": "IMU Seconda Casa",
+  "slug": "2026-09-28-imu-seconda-casa",
+  "date": "2026-09-28",
+  "description": "Calcola l'IMU della seconda casa dalla rendita catastale: acconto di giugno, saldo di dicembre, mesi di possesso e quote.",
+  "category": "finanza-personale",
+  "tags": ["imu", "casa", "tasse", "catasto"],
+  "source": "autonoma",
+  "request": null,
+  "status": "pronta",
+  "version": 1,
+  "changelog": [],
+  "design": { "layout": "dashboard", "palette": "rosso-mattone", "font": "condensed" },
+  "business": {
+    "keyword": "calcolo imu seconda casa",
+    "keywords": [
+      "calcolo imu",
+      "imu seconda casa 2026",
+      "come si calcola l'imu dalla rendita catastale",
+      "quanto pago di imu sul garage"
+    ],
+    "intent": "Chi possiede una seconda casa e a giugno o a dicembre vuole sapere in un minuto quanto versare di acconto e di saldo, partendo dalla rendita catastale che ha sulla visura.",
+    "target": "Proprietari di una seconda casa, eredi con quote, chi ha comprato o venduto nell'anno, chi affitta; 30-65 anni, quasi sempre da telefono.",
+    "competitors": [
+      "calcolatoreimu.app (aliquote precaricate ma form lungo)",
+      "riscotel.it (calcolo + F24, interfaccia da desktop)",
+      "idealista e tuttoimu (calcolatori dentro articoli con molta pubblicità)"
+    ],
+    "edge": "Gestisce i casi che i calcolatori generici saltano: mesi di possesso con la regola dei 15 giorni in caso di compravendita, quote tra comproprietari, riduzioni del 50% e del 25%, acconto con l'aliquota dell'anno prima. E ricava la rendita catastale dall'IMU già pagata se non hai la visura sottomano.",
+    "monetization": ["adsense", "pro", "support"],
+    "pro": ["Prospetto per il modello F24", "Più immobili e totale"],
+    "affiliate": []
+  }
+}
