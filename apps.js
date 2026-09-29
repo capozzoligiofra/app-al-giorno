@@ -1,7 +1,7 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 17,
+  "count": 18,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -50,6 +50,70 @@ window.__APPS__ = {
     ]
   },
   "apps": [
+    {
+      "title": "Quanta Pittura Serve",
+      "slug": "2026-09-29-quanta-pittura-serve",
+      "date": "2026-09-29",
+      "description": "Misure della stanza, mani e tipo di pittura: litri necessari, barattoli da comprare e costo, con porte e finestre già sottratte.",
+      "category": "calcolatori-convertitori",
+      "tags": [
+        "pittura",
+        "imbiancare",
+        "casa",
+        "fai da te"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "sheet",
+        "palette": "arancio-caldo",
+        "font": "rounded"
+      },
+      "business": {
+        "keyword": "quanta pittura serve per una stanza",
+        "keywords": [
+          "calcolo quantità pittura",
+          "quanti litri di pittura per una stanza",
+          "con 1 litro di pittura quanti mq",
+          "quanta vernice serve per imbiancare"
+        ],
+        "intent": "Chi sta per imbiancare e prima di andare in ferramenta vuole sapere quanti litri e quanti barattoli comprare, senza sbagliare per difetto.",
+        "target": "Chi imbianca da solo casa o una singola stanza, 25-60 anni, spesso dal telefono mentre è davanti alla parete o in negozio.",
+        "edge": "Sottrae porte e finestre con le misure standard italiane, distingue la resa per tipo di pittura e stato del muro, e arriva fino a cosa comprare: quanti barattoli di quale formato e quanto si spende.",
+        "monetization": [
+          "adsense",
+          "affiliate",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Progetto con più stanze e lista della spesa",
+          "Scheda di cantiere da stampare"
+        ],
+        "affiliate": [
+          {
+            "t": "Kit rullo e vassoio per pittura murale",
+            "q": "kit rullo vassoio pittura murale"
+          },
+          {
+            "t": "Nastro carta per bordi e cornici",
+            "q": "nastro carta mascheratura pittura"
+          },
+          {
+            "t": "Teli in plastica per coprire mobili e pavimento",
+            "q": "teli protettivi plastica imbianchino"
+          },
+          {
+            "t": "Asta telescopica per rullo",
+            "q": "asta telescopica rullo pittura"
+          }
+        ]
+      },
+      "size": 48217
+    },
     {
       "title": "IMU Seconda Casa",
       "slug": "2026-09-28-imu-seconda-casa",

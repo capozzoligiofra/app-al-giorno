@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#d9590c">
+  <title>Quanta pittura serve per una stanza: calcolo gratis</title>
+  <meta name="description" content="Quanta pittura serve per una stanza: inserisci le misure e sai subito litri, barattoli da comprare e costo. Porte e finestre già sottratte, resa per tipo.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-29-quanta-pittura-serve/">
+  <meta property="og:title" content="Quanta pittura serve per una stanza: calcolo gratis">
+  <meta property="og:description" content="Misure, mani e tipo di pittura: litri necessari, quanti barattoli comprare e quanto spendi. Senza registrazione, funziona anche offline.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-29-quanta-pittura-serve/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Quanta Pittura Serve",
+    "description": "Calcolatore gratuito per sapere quanta pittura serve per una stanza: metri quadri netti, litri per il numero di mani, barattoli da acquistare e costo stimato.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-29-quanta-pittura-serve/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Quanta pittura serve per una stanza di 20 m²?", "acceptedAnswer": { "@type": "Answer", "text": "Una stanza di 20 m² di pavimento (circa 4x5 m) con soffitto a 2,7 m ha 48,6 m² di pareti lorde; togliendo una porta e una finestra restano circa 45 m². Con una idropittura lavabile da 11 m² al litro per mano e due mani servono 8,2 litri, che con il 10% di margine diventano 9,1: in ferramenta un barattolo da 10 litri, circa 70 €." } },
+      { "@type": "Question", "name": "Con 1 litro di pittura quanti mq si fanno?" , "acceptedAnswer": { "@type": "Answer", "text": "Dipende dal prodotto e dal muro: una idropittura lavabile copre 10-12 m² per mano su muro liscio, una traspirante 7-9, una pittura decorativa o per esterni 4-6. Su muro ruvido o nuovo e assorbente la resa scende del 15-20%. Il dato esatto è sul barattolo, alla voce resa per mano." } },
+      { "@type": "Question", "name": "Quante mani di pittura servono?", "acceptedAnswer": { "@type": "Answer", "text": "Due mani sono lo standard e danno un colore uniforme. Ne servono tre se copri un colore molto più scuro, se il muro è nuovo o appena stuccato, o se usi un bianco molto coprente su una parete macchiata. Con una sola mano si rischia di vedere il fondo." } },
+      { "@type": "Question", "name": "Devo comprare anche il fissativo?", "acceptedAnswer": { "@type": "Answer", "text": "Sì se il muro è nuovo, rasato a stucco o molto assorbente: il fissativo uniforma l'assorbimento e fa durare la finitura, e ne serve circa un litro ogni 8 m². Su una parete già dipinta e in buono stato si può saltare." } },
+      { "@type": "Question", "name": "Meglio comprare un barattolo grande o più piccoli?", "acceptedAnswer": { "@type": "Answer", "text": "Il prezzo al litro scende con il formato, quindi conviene il barattolo più grande che non ti lascia troppo prodotto inutilizzato. Il calcolo propone la combinazione con il minor avanzo: se il residuo è di pochi decilitri tienilo per i ritocchi, si conserva chiuso per mesi." } }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #fff8f2; --surface: #ffffff; --text: #22190f; --muted: #79685a; --line: #f0e1d1;
+      --accent: #d9590c; --accent-ink: #ffffff; --soft: #fdeede; --danger: #b3403a;
+      --r: 20px; --r-s: 14px;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #181411; --surface: #221c17; --text: #f4ece4; --muted: #a89887; --line: #362a20;
+        --accent: #ff9147; --accent-ink: #2b1200; --soft: #2c231b; --danger: #ff8078;
+        color-scheme: dark;
+      }
+    }
+    * { box-sizing: border-box; }
+    html, body { overflow-x: hidden; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font: 17px/1.55 "Segoe UI", -apple-system, system-ui, Roboto, sans-serif;
+      padding-bottom: calc(96px + env(safe-area-inset-bottom));
+    }
+    .wrap { max-width: 1060px; margin: 0 auto; padding: max(12px, env(safe-area-inset-top)) 16px 24px; }
+    a { color: var(--accent); }
+    .back { display: inline-flex; align-items: center; min-height: 44px; font-size: .95rem; color: var(--muted); text-decoration: none; }
+    h1 { margin: .6rem 0 .3rem; font-size: 1.75rem; line-height: 1.15; letter-spacing: -.02em; font-weight: 700; }
+    .lead { margin: 0 0 1.3rem; color: var(--muted); }
+    h2 { font-size: 1.15rem; margin: 2rem 0 .7rem; font-weight: 700; }
+    h3 { font-size: 1.02rem; margin: 1.4rem 0 .35rem; font-weight: 700; }
+    .box { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 1.1rem 1.05rem; margin: 0 0 .9rem; }
+    .box > h2 { margin: 0 0 .9rem; font-size: 1.05rem; }
+    .box > h2 .n { display: inline-grid; place-items: center; width: 1.6rem; height: 1.6rem; margin-right: .5rem; border-radius: 50%; background: var(--soft); color: var(--accent); font-size: .9rem; vertical-align: -.22rem; }
+    label { display: block; font-size: .92rem; color: var(--muted); margin-bottom: .3rem; }
+    .griglia { display: grid; grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); gap: .7rem; align-items: end; }
+    input[type=number], input[type=text], select {
+      width: 100%; font: inherit; font-size: 16px; color: inherit; min-height: 48px;
+      padding: .55rem .7rem; border: 1.5px solid var(--line); border-radius: var(--r-s);
+      background: var(--bg); -moz-appearance: textfield;
+    }
+    input:focus-visible, select:focus-visible, button:focus-visible, summary:focus-visible {
+      outline: 3px solid var(--accent); outline-offset: 2px;
+    }
+    .chips { display: flex; flex-wrap: wrap; gap: .45rem; }
+    .chip {
+      font: inherit; font-size: .95rem; cursor: pointer; min-height: 44px; padding: .5rem .95rem;
+      border: 1.5px solid var(--line); background: var(--surface); color: var(--text);
+      border-radius: 999px; font-weight: 600;
+    }
+    .chip[aria-pressed=true] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+    .stepper { display: flex; align-items: center; gap: .3rem; }
+    .stepper button {
+      font: inherit; font-size: 1.3rem; line-height: 1; cursor: pointer; width: 46px; height: 46px;
+      border: 1.5px solid var(--line); background: var(--surface); color: var(--text); border-radius: 50%; font-weight: 700;
+    }
+    .stepper output { flex: 1; text-align: center; font-size: 1.15rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .sw { display: flex; align-items: center; gap: .7rem; min-height: 48px; cursor: pointer; margin: 0; font-size: 1rem; color: var(--text); }
+    .sw input { appearance: none; margin: 0; flex: 0 0 auto; width: 52px; height: 30px; border-radius: 999px; background: var(--line); position: relative; cursor: pointer; transition: background .15s; }
+    .sw input::after { content: ""; position: absolute; top: 3px; left: 3px; width: 24px; height: 24px; border-radius: 50%; background: var(--surface); transition: transform .15s; box-shadow: 0 1px 3px rgba(0,0,0,.25); }
+    .sw input:checked { background: var(--accent); }
+    .sw input:checked::after { transform: translateX(22px); }
+    .sw span small { display: block; color: var(--muted); font-size: .85rem; line-height: 1.3; }
+    details { margin-top: .9rem; border-top: 1px solid var(--line); padding-top: .7rem; }
+    summary { cursor: pointer; font-size: .95rem; font-weight: 600; color: var(--accent); min-height: 32px; list-style: none; }
+    summary::-webkit-details-marker { display: none; }
+    summary::before { content: "+ "; }
+    details[open] summary::before { content: "– "; }
+    .nota { color: var(--muted); font-size: .88rem; margin: .6rem 0 0; }
+    .pill-line { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .7rem; }
+
+    /* barra fissa: il risultato è sempre sotto il pollice */
+    .barra {
+      position: fixed; z-index: 30; left: 8px; right: 8px; bottom: calc(8px + env(safe-area-inset-bottom));
+      display: flex; align-items: center; gap: .8rem; width: auto; text-align: left;
+      font: inherit; cursor: pointer; padding: .7rem .9rem .7rem 1.05rem;
+      background: var(--accent); color: var(--accent-ink); border: 0; border-radius: var(--r);
+      box-shadow: 0 6px 22px rgba(0,0,0,.24);
+    }
+    .barra .litri { font-size: 1.5rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+    .barra .sotto { display: block; font-size: .85rem; opacity: .9; font-weight: 600; }
+    .barra .freccia { margin-left: auto; font-size: 1.1rem; font-weight: 700; flex: 0 0 auto; }
+
+    /* foglio che sale dal basso */
+    .velo { position: fixed; inset: 0; z-index: 40; background: rgba(0,0,0,.45); opacity: 0; pointer-events: none; transition: opacity .2s; }
+    .velo.su { opacity: 1; pointer-events: auto; }
+    .foglio {
+      position: fixed; z-index: 50; left: 0; right: 0; bottom: 0; max-height: 88dvh; overflow-y: auto;
+      background: var(--surface); border-top: 1px solid var(--line);
+      border-radius: 24px 24px 0 0; padding: .5rem 16px calc(20px + env(safe-area-inset-bottom));
+      transform: translateY(102%); transition: transform .24s ease; box-shadow: 0 -8px 30px rgba(0,0,0,.2);
+      overscroll-behavior: contain;
+    }
+    .foglio.su { transform: translateY(0); }
+    .maniglia { width: 44px; height: 5px; border-radius: 999px; background: var(--line); margin: .35rem auto .8rem; }
+    .foglio h2 { margin: 0 0 .2rem; font-size: 1.25rem; }
+    .chiudi { position: absolute; top: .6rem; right: .8rem; font: inherit; font-size: 1.3rem; line-height: 1; width: 44px; height: 44px; border: 0; border-radius: 50%; background: var(--soft); color: var(--text); cursor: pointer; }
+    .grande { display: flex; align-items: baseline; gap: .5rem; margin: .8rem 0 .2rem; }
+    .grande b { font-size: 2.6rem; line-height: 1; font-weight: 800; font-variant-numeric: tabular-nums; color: var(--accent); }
+    .grande span { font-size: 1.05rem; color: var(--muted); font-weight: 600; }
+    .voci { list-style: none; margin: 1rem 0 0; padding: 0; }
+    .voci li { display: flex; justify-content: space-between; gap: 1rem; padding: .55rem 0; border-bottom: 1px dashed var(--line); font-size: .98rem; }
+    .voci li b { font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .voci li.tot { border-bottom: 0; font-weight: 700; font-size: 1.05rem; padding-top: .8rem; }
+    .voci li span small { display: block; color: var(--muted); font-size: .84rem; }
+    .compra { background: var(--soft); border-radius: var(--r-s); padding: .85rem 1rem; margin-top: 1rem; }
+    .compra h3 { margin: 0 0 .4rem; font-size: .95rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+    .compra ul { margin: 0; padding-left: 1.2rem; }
+    .compra li { margin: .2rem 0; }
+    .vuoto { color: var(--muted); padding: 1.4rem 0 .6rem; }
+    .btn { font: inherit; font-size: 1rem; font-weight: 700; cursor: pointer; min-height: 48px; padding: .6rem 1.2rem; border: 0; border-radius: 999px; background: var(--accent); color: var(--accent-ink); }
+    .btn-ghost { background: var(--soft); color: var(--text); border: 1.5px solid var(--line); }
+    .btn[disabled] { opacity: .55; cursor: default; }
+
+    /* Pro */
+    .stanze { list-style: none; margin: .8rem 0 0; padding: 0; }
+    .stanze li { display: flex; align-items: center; gap: .6rem; padding: .6rem 0; border-bottom: 1px solid var(--line); }
+    .stanze .nome { flex: 1; min-width: 0; }
+    .stanze .nome b { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .stanze .nome small { color: var(--muted); font-size: .86rem; }
+    .stanze .via { font: inherit; font-size: 1.1rem; width: 44px; height: 44px; border: 0; border-radius: 50%; background: transparent; color: var(--muted); cursor: pointer; flex: 0 0 auto; }
+    .stanze .via:hover { background: var(--soft); color: var(--danger); }
+    .scheda { border: 1px solid var(--line); border-radius: var(--r-s); padding: .9rem; font-size: .95rem; }
+    .scheda table { width: 100%; border-collapse: collapse; }
+    .scheda th, .scheda td { text-align: left; padding: .35rem .2rem; border-bottom: 1px solid var(--line); font-size: .92rem; }
+    .scheda td.num, .scheda th.num { text-align: right; font-variant-numeric: tabular-nums; }
+    #guida p, #guida li { max-width: 68ch; }
+    #guida ul { padding-left: 1.2rem; }
+    .esempio { background: var(--soft); border-radius: var(--r-s); padding: .9rem 1.05rem; margin: .9rem 0; }
+    .esempio p { margin: .35rem 0; }
+    footer { margin-top: 2.2rem; padding-top: 1rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+    footer ul { padding-left: 1.2rem; }
+
+    @media (min-width: 700px) {
+      body { padding-bottom: 24px; }
+      .wrap { padding: 20px 24px 40px; }
+      h1 { font-size: 2.3rem; }
+      .colonne { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 1.4rem; align-items: start; }
+      .barra { display: none; }
+      .velo { display: none; }
+      .foglio {
+        position: sticky; top: 20px; transform: none; max-height: none; overflow: visible;
+        border: 1px solid var(--line); border-radius: var(--r); padding: 1.1rem;
+        box-shadow: none;
+      }
+      .maniglia, .chiudi { display: none; }
+    }
+    @media print {
+      .back, .barra, .velo, #guida, footer, details, .pill-line, [data-ad], [data-support], [data-affiliate], .no-stampa { display: none !important; }
+      .foglio { position: static; transform: none; max-height: none; box-shadow: none; border: 0; padding: 0; }
+      body { padding: 0; background: #fff; color: #000; }
+    }
+    @media (prefers-reduced-motion: reduce) { .foglio, .velo, .sw input, .sw input::after { transition: none; } }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../../index.html">← Tutte le app</a>
+  <h1>Quanta pittura serve per una stanza</h1>
+  <p class="lead">Metti le misure: ti dico i metri quadri netti, i litri per il numero di mani che hai scelto e quanti barattoli comprare. Niente registrazione, i dati restano sul telefono.</p>
+
+  <div class="colonne">
+  <div>
+    <section id="tool" class="no-stampa">
+      <div class="box">
+        <h2><span class="n" aria-hidden="true">1</span>La stanza</h2>
+        <p class="nota" style="margin:0 0 .6rem">Le misure sono in metri, come le leggi sul metro a nastro.</p>
+        <div class="griglia">
+          <div>
+            <label for="lung">Lunghezza</label>
+            <input id="lung" type="number" inputmode="decimal" min="0.5" max="60" step="0.05" value="4" enterkeyhint="done">
+          </div>
+          <div>
+            <label for="larg">Larghezza</label>
+            <input id="larg" type="number" inputmode="decimal" min="0.5" max="60" step="0.05" value="3" enterkeyhint="done">
+          </div>
+          <div>
+            <label for="alt">Altezza</label>
+            <input id="alt" type="number" inputmode="decimal" min="1.5" max="8" step="0.05" value="2.7" enterkeyhint="done">
+          </div>
+        </div>
+        <label class="sw" style="margin-top:.6rem">
+          <input id="soffitto" type="checkbox">
+          <span>Dipingo anche il soffitto<small>Aggiunge la superficie del pavimento al conto</small></span>
+        </label>
+        <details>
+          <summary>Stanza irregolare o a L</summary>
+          <p class="nota" style="margin-top:.5rem">Se la pianta non è rettangolare, misura il perimetro con il metro (la somma della base di tutte le pareti) e inseriscilo qui: prende il posto di lunghezza e larghezza.</p>
+          <div class="griglia" style="margin-top:.6rem">
+            <div>
+              <label for="perim">Perimetro (m)</label>
+              <input id="perim" type="number" inputmode="decimal" min="0" max="400" step="0.1" placeholder="auto">
+            </div>
+            <div>
+              <label for="areaSoff">Soffitto (m²)</label>
+              <input id="areaSoff" type="number" inputmode="decimal" min="0" max="400" step="0.1" placeholder="auto">
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <div class="box">
+        <h2><span class="n" aria-hidden="true">2</span>Porte e finestre</h2>
+        <div class="griglia" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr))">
+          <div>
+            <label for="nPorte">Porte</label>
+            <div class="stepper" data-stepper="nPorte">
+              <button type="button" data-d="-1" aria-label="Una porta in meno">−</button>
+              <output id="nPorte" aria-live="polite">1</output>
+              <button type="button" data-d="1" aria-label="Una porta in più">+</button>
+            </div>
+          </div>
+          <div>
+            <label for="nFin">Finestre</label>
+            <div class="stepper" data-stepper="nFin">
+              <button type="button" data-d="-1" aria-label="Una finestra in meno">−</button>
+              <output id="nFin" aria-live="polite">1</output>
+              <button type="button" data-d="1" aria-label="Una finestra in più">+</button>
+            </div>
+          </div>
+        </div>
+        <p class="nota">Misure standard: porta 0,80 × 2,10 m, finestra 1,20 × 1,30 m. Le aperture si sottraggono dalle pareti.</p>
+        <details>
+          <summary>Misure diverse dallo standard</summary>
+          <div class="griglia" style="margin-top:.6rem">
+            <div>
+              <label for="pL">Porta: base (m)</label>
+              <input id="pL" type="number" inputmode="decimal" min="0.3" max="4" step="0.05" value="0.8">
+            </div>
+            <div>
+              <label for="pH">Porta: altezza (m)</label>
+              <input id="pH" type="number" inputmode="decimal" min="0.5" max="4" step="0.05" value="2.1">
+            </div>
+            <div>
+              <label for="fL">Finestra: base (m)</label>
+              <input id="fL" type="number" inputmode="decimal" min="0.3" max="6" step="0.05" value="1.2">
+            </div>
+            <div>
+              <label for="fH">Finestra: altezza (m)</label>
+              <input id="fH" type="number" inputmode="decimal" min="0.3" max="4" step="0.05" value="1.3">
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <div class="box">
+        <h2><span class="n" aria-hidden="true">3</span>La pittura</h2>
+        <label for="tipo">Tipo di prodotto</label>
+        <select id="tipo">
+          <option value="lavabile" selected>Idropittura lavabile (interni)</option>
+          <option value="traspirante">Idropittura traspirante</option>
+          <option value="antimuffa">Antimuffa / anticondensa</option>
+          <option value="superlavabile">Superlavabile / smalto murale</option>
+          <option value="decorativa">Decorativa (sabbiato, marmorino)</option>
+          <option value="esterni">Esterni al quarzo o silossanica</option>
+        </select>
+
+        <div class="griglia" style="margin-top:.8rem;grid-template-columns:repeat(auto-fit,minmax(140px,1fr))">
+          <div>
+            <label for="resa">Resa per mano (m²/l)</label>
+            <input id="resa" type="number" inputmode="decimal" min="1" max="30" step="0.5" value="11">
+          </div>
+          <div>
+            <label for="prezzo">Prezzo al litro (€)</label>
+            <input id="prezzo" type="number" inputmode="decimal" min="0" max="200" step="0.5" value="7">
+          </div>
+        </div>
+        <p class="nota">La resa esatta è stampata sul barattolo (“resa per mano”): se ce l'hai davanti, correggila qui.</p>
+
+        <label style="margin-top:1rem">Mani di finitura</label>
+        <div class="chips" role="group" aria-label="Numero di mani" id="mani">
+          <button type="button" class="chip" data-v="1">1 mano</button>
+          <button type="button" class="chip" data-v="2" aria-pressed="true">2 mani</button>
+          <button type="button" class="chip" data-v="3">3 mani</button>
+        </div>
+
+        <label style="margin-top:1rem">Com'è il muro</label>
+        <div class="chips" role="group" aria-label="Stato del muro" id="muro">
+          <button type="button" class="chip" data-v="liscio" aria-pressed="true">Liscio, già dipinto</button>
+          <button type="button" class="chip" data-v="ruvido">Ruvido</button>
+          <button type="button" class="chip" data-v="nuovo">Nuovo o stuccato</button>
+        </div>
+
+        <label class="sw" style="margin-top:1rem">
+          <input id="fissativo" type="checkbox">
+          <span>Serve anche il fissativo<small>Consigliato su muro nuovo, rasato o molto assorbente</small></span>
+        </label>
+
+        <label style="margin-top:.6rem">Margine per ritocchi e sprechi</label>
+        <div class="chips" role="group" aria-label="Margine" id="sfrido">
+          <button type="button" class="chip" data-v="0">0%</button>
+          <button type="button" class="chip" data-v="10" aria-pressed="true">10%</button>
+          <button type="button" class="chip" data-v="20">20%</button>
+        </div>
+      </div>
+    </section>
+
+    <div data-ad="top"></div>
+
+    <section class="box" data-pro="Progetto con più stanze e lista della spesa">
+      <h2>Tutta la casa, non una stanza</h2>
+      <p class="nota" style="margin:0">Aggiungi al progetto le stanze una dopo l'altra: resta il totale dei litri per tipo di pittura e la lista di cosa comprare in un solo viaggio in ferramenta.</p>
+      <div class="pill-line">
+        <input id="nomeStanza" type="text" placeholder="Nome della stanza" maxlength="40" style="flex:1 1 150px;width:auto" enterkeyhint="done">
+        <button type="button" class="btn" id="aggiungi">Aggiungi</button>
+      </div>
+      <p class="nota" id="msgStanza" role="status" aria-live="polite"></p>
+      <ul class="stanze" id="listaStanze"></ul>
+      <div id="totaleProgetto"></div>
+    </section>
+
+    <section class="box" data-pro="Scheda di cantiere da stampare">
+      <h2>Scheda di cantiere</h2>
+      <p class="nota" style="margin:0 0 .8rem">Un foglio con misure, quantità e costi da portare in ferramenta o lasciare all'imbianchino, e lo stesso dato in CSV per il foglio di calcolo.</p>
+      <div class="scheda" id="scheda"></div>
+      <div class="pill-line">
+        <button type="button" class="btn" id="stampa">Stampa la scheda</button>
+        <button type="button" class="btn btn-ghost" id="csv">Scarica CSV</button>
+      </div>
+    </section>
+
+    <div data-affiliate data-title="Cosa serve oltre alla pittura" data-items='[{"t":"Kit rullo e vassoio per pittura murale","q":"kit rullo vassoio pittura murale"},{"t":"Nastro carta per bordi e cornici","q":"nastro carta mascheratura pittura"},{"t":"Teli in plastica per coprire mobili e pavimento","q":"teli protettivi plastica imbianchino"},{"t":"Asta telescopica per rullo","q":"asta telescopica rullo pittura"}]'></div>
+
+    <section id="guida">
+      <h2>Come si calcola quanta pittura serve per una stanza</h2>
+      <p>Il conto è sempre lo stesso e sta in tre passaggi. Primo: la superficie da dipingere. Si somma la base di tutte le pareti (il perimetro della stanza) e si moltiplica per l'altezza; in una stanza rettangolare il perimetro è <em>2 × (lunghezza + larghezza)</em>. Secondo: si sottraggono porte e finestre, perché quei metri quadri non li dipingi. Terzo: si divide la superficie netta per la resa del prodotto e si moltiplica per il numero di mani.</p>
+      <p>La formula completa è: <strong>litri = (metri quadri netti × mani) ÷ resa</strong>, più un margine per i ritocchi. La resa è il numero stampato sul barattolo e indica quanti metri quadri copre un litro <em>in una sola mano</em>: è il valore che sbaglia più spesso chi fa il conto a mano, perché prende la resa per due mani e la usa come se fosse per una.</p>
+
+      <h3>Un esempio con i numeri</h3>
+      <div class="esempio">
+        <p>Camera da letto di 4 × 3 m, alta 2,70 m, una porta e una finestra, idropittura lavabile da 11 m²/l, due mani.</p>
+        <p>Perimetro: 2 × (4 + 3) = <strong>14 m</strong>. Pareti lorde: 14 × 2,70 = <strong>37,8 m²</strong>.</p>
+        <p>Aperture: porta 0,80 × 2,10 = 1,68 m², finestra 1,20 × 1,30 = 1,56 m², in tutto <strong>3,24 m²</strong>. Superficie netta: <strong>34,56 m²</strong>.</p>
+        <p>Litri: (34,56 × 2) ÷ 11 = 6,28 l, più il 10% di margine fa <strong>6,9 litri</strong>. In ferramenta: un barattolo da 5 l più uno da 2,5 l, cioè 7,5 litri, circa 53 € a 7 €/l.</p>
+        <p>Se dipingi anche il soffitto aggiungi 12 m² e i litri diventano 9,2: lì conviene direttamente il formato da 10 litri.</p>
+      </div>
+
+      <h3>La resa cambia con il prodotto e con il muro</h3>
+      <p>Una idropittura lavabile per interni sta su 10-12 m² per litro a mano, una traspirante su 7-9, un antimuffa intorno a 8, una decorativa a effetto o una pittura per esterni al quarzo scende a 4-6 m² per litro. Sopra il prodotto pesa il supporto: un muro ruvido ha più superficie reale di quella che misuri e assorbe di più, e un intonaco nuovo o appena stuccato beve la prima mano. Per questo il calcolatore riduce la resa del 20% sul ruvido e del 15% sul nuovo: sono le correzioni che usano gli imbianchini a occhio, e servono a non tornare in negozio a metà lavoro.</p>
+
+      <h3>Errori comuni che fanno sbagliare la spesa</h3>
+      <ul>
+        <li><strong>Dividere per la resa senza moltiplicare per le mani.</strong> È l'errore che porta a comprare metà della pittura necessaria.</li>
+        <li><strong>Non sottrarre le aperture.</strong> In un bagno con porta e finestra grande sono 4-5 m² su venti: un litro buttato.</li>
+        <li><strong>Dimenticare il soffitto.</strong> Se lo dipingi è la superficie più faticosa, e in una stanza quadrata pesa quasi un terzo del totale.</li>
+        <li><strong>Comprare esatto.</strong> Serve sempre un margine: un rullo nuovo trattiene prodotto, e per i ritocchi dopo sei mesi vuoi lo stesso barattolo, non una tinta rifatta che non attacca.</li>
+        <li><strong>Saltare il fissativo sul muro nuovo.</strong> Si risparmiano venti euro e si perde una mano di finitura, che costa di più.</li>
+      </ul>
+
+      <h3>Quanti barattoli e quale formato</h3>
+      <p>I formati in commercio per le idropitture sono 1, 2,5, 5, 10 e 14 litri, e il prezzo al litro scende salendo di formato. Il calcolatore propone la combinazione che copre il fabbisogno tenendo insieme le due cose che contano: pochi barattoli grandi (costano meno al litro) e avanzo contenuto. Per 15 litri consiglia un 14 più un 2,5, non quindici latte da un litro. Se ti restano meno di due litri va bene: chiusi bene e tenuti al riparo dal gelo durano mesi e sono la tua riserva per i ritocchi.</p>
+
+      <h3>Domande frequenti</h3>
+      <h3>Quanta pittura serve per una stanza di 20 m²?</h3>
+      <p>Per una stanza con 20 m² di pavimento (circa 4 × 5 m) alta 2,70 m le pareti lorde sono 48,6 m²; togliendo una porta e una finestra restano circa 45 m². Con una lavabile da 11 m²/l e due mani servono 8,2 litri, 9,1 con il margine: un solo barattolo da 10 litri.</p>
+      <h3>Con 1 litro di pittura quanti metri quadri si fanno?</h3>
+      <p>Da 10 a 12 m² in una mano con una lavabile su muro liscio, 7-9 con una traspirante, 4-6 con una decorativa o una pittura per esterni. Su muro ruvido togli un 20%.</p>
+      <h3>Quante mani servono?</h3>
+      <p>Due sono lo standard. Tre se copri un colore molto più scuro, se il muro è nuovo o se passi dal grigio al bianco. Una mano sola si vede, soprattutto in controluce.</p>
+      <h3>Il fissativo è obbligatorio?</h3>
+      <p>No, ma su intonaco nuovo, rasature a stucco e pareti molto assorbenti è quello che fa durare il lavoro: circa un litro ogni 8 m², una mano sola. Su una parete già dipinta e sana si può saltare.</p>
+      <h3>I dati restano sul mio telefono?</h3>
+      <p>Sì: il progetto con le stanze è salvato nel browser del dispositivo, non su un server, e la pagina funziona anche senza connessione.</p>
+    </section>
+
+    <div data-ad="bottom"></div>
+    <div data-support></div>
+
+    <footer>
+      <p>Le rese indicate sono valori tipici delle schede tecniche dei prodotti in commercio: il dato che vale è quello stampato sul tuo barattolo. Il costo è una stima sul prezzo al litro che inserisci.</p>
+      <p>Altri strumenti per la casa:</p>
+      <ul>
+        <li><a href="../2026-09-20-consumo-condizionatore/">quanto consuma un condizionatore in bolletta</a></li>
+        <li><a href="../2026-09-28-imu-seconda-casa/">calcolo dell'IMU sulla seconda casa</a></li>
+      </ul>
+      <p>Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a></p>
+    </footer>
+  </div>
+
+  <div class="velo" id="velo" hidden></div>
+  <section class="foglio" id="foglio" aria-labelledby="titoloFoglio">
+    <div class="maniglia" aria-hidden="true"></div>
+    <button type="button" class="chiudi" id="chiudi" aria-label="Chiudi il dettaglio">✕</button>
+    <h2 id="titoloFoglio">Ti serve</h2>
+    <div id="risultato"></div>
+  </section>
+  </div>
+</div>
+
+<button type="button" class="barra" id="barra" aria-controls="foglio" aria-expanded="false">
+  <span>
+    <span class="litri" id="barraLitri">—</span>
+    <span class="sotto" id="barraSotto">inserisci le misure</span>
+  </span>
+  <span class="freccia" aria-hidden="true">▲</span>
+</button>
+
+<script src="../../assets/monetize.js"></script>
+<script>
+/* Modello dati: `leggi()` raccoglie i campi in un oggetto misure (perimetro, altezza, aperture,
+ * resa, mani, muro, sfrido, prezzo); `calcola()` lo trasforma in un risultato (m² netti, litri di
+ * finitura e di fissativo, barattoli, costo). Il progetto Pro è un array di risultati con nome,
+ * salvato in localStorage sotto "quanta-pittura-serve:v1". */
+(() => {
+  "use strict";
+  const CHIAVE = "quanta-pittura-serve:v1";
+  const $ = (id) => document.getElementById(id);
+
+  // Resa per mano (m²/l), prezzo indicativo al litro e formati in commercio, per tipo di prodotto.
+  const PRODOTTI = {
+    lavabile:     { resa: 11,  prezzo: 7,  formati: [14, 10, 5, 2.5, 1] },
+    traspirante:  { resa: 8,   prezzo: 6,  formati: [14, 10, 5, 2.5, 1] },
+    antimuffa:    { resa: 8,   prezzo: 11, formati: [10, 5, 2.5, 1] },
+    superlavabile:{ resa: 12,  prezzo: 14, formati: [10, 5, 2.5, 1] },
+    decorativa:   { resa: 5,   prezzo: 22, formati: [10, 5, 2.5, 1] },
+    esterni:      { resa: 4.5, prezzo: 9,  formati: [14, 10, 5, 2.5] },
+  };
+  const FATTORE_MURO = { liscio: 1, ruvido: 0.8, nuovo: 0.85 };
+  const RESA_FISSATIVO = 8;      // m²/l, una mano
+  const PREZZO_FISSATIVO = 5;    // €/l indicativo
+  const FORMATI_FISSATIVO = [10, 5, 2.5, 1];
+
+  const num = (id, min, max) => {
+    const v = parseFloat(String($(id).value).replace(",", "."));
+    if (!isFinite(v)) return null;
+    return Math.min(max, Math.max(min, v));
+  };
+  const nf = (v, d = 1) => v.toLocaleString("it-IT", { minimumFractionDigits: d, maximumFractionDigits: d });
+  const eur = (v) => v.toLocaleString("it-IT", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
+  const litri = (v) => nf(v, 1) + " l";
+
+  // ---------- stato dei controlli a chip / stepper ----------
+  const chipValore = (gruppo) => {
+    const b = $(gruppo).querySelector('[aria-pressed="true"]');
+    return b ? b.dataset.v : null;
+  };
+  const conta = { nPorte: 1, nFin: 1 };
+
+  // ---------- calcolo ----------
+  function leggi() {
+    const L = num("lung", 0, 60), W = num("larg", 0, 60), H = num("alt", 0, 8);
+    const perimOver = num("perim", 0, 400), soffOver = num("areaSoff", 0, 400);
+    const perimetro = perimOver && perimOver > 0 ? perimOver : (L && W ? 2 * (L + W) : null);
+    const areaSoffitto = soffOver && soffOver > 0 ? soffOver : (L && W ? L * W : null);
+    const tipo = $("tipo").value;
+    return {
+      perimetro, altezza: H, areaSoffitto,
+      soffitto: $("soffitto").checked,
+      porte: conta.nPorte, finestre: conta.nFin,
+      areaPorta: (num("pL", 0.3, 4) || 0.8) * (num("pH", 0.5, 4) || 2.1),
+      areaFinestra: (num("fL", 0.3, 6) || 1.2) * (num("fH", 0.3, 4) || 1.3),
+      tipo, etichetta: $("tipo").selectedOptions[0].textContent,
+      resa: num("resa", 1, 30) || PRODOTTI[tipo].resa,
+      prezzo: num("prezzo", 0, 200) ?? PRODOTTI[tipo].prezzo,
+      mani: parseInt(chipValore("mani"), 10) || 2,
+      muro: chipValore("muro") || "liscio",
+      sfrido: (parseInt(chipValore("sfrido"), 10) || 0) / 100,
+      fissativo: $("fissativo").checked,
+      formati: PRODOTTI[tipo].formati,
+    };
+  }
+
+  // Combinazione di barattoli che copre il fabbisogno nel modo in cui si compra davvero: conta
+  // l'avanzo, ma penalizza ogni barattolo in più (i formati piccoli costano più al litro), così
+  // per 15 litri propone 14+2,5 e non quindici latte da un litro.
+  const PENALITA_PEZZO = 0.6; // "litri equivalenti" di costo per ogni barattolo aggiuntivo
+  function barattoli(necessari, formati) {
+    if (!(necessari > 0)) return { pezzi: [], totale: 0 };
+    const f = formati.slice().sort((a, b) => b - a);
+    const punteggio = (tot, pezzi) => tot + pezzi * PENALITA_PEZZO;
+    // partenza: solo barattoli del formato più grande. Serve come limite per potare la ricerca.
+    let n0 = Math.ceil(necessari / f[0] - 1e-9);
+    let best = { conta: f.map((_, i) => (i === 0 ? n0 : 0)), totale: n0 * f[0], pezzi: n0 };
+    if (necessari <= 400) {
+      const max = f.map((v) => Math.min(30, Math.ceil(necessari / v) + 1));
+      const cur = new Array(f.length).fill(0);
+      const visita = (i, tot, pezzi) => {
+        if (punteggio(tot, pezzi) >= punteggio(best.totale, best.pezzi) - 1e-9) return; // già peggio del migliore
+        if (tot + 1e-9 >= necessari) { best = { conta: cur.slice(), totale: tot, pezzi }; return; }
+        if (i === f.length) return;
+        for (let n = 0; n <= max[i]; n++) {
+          cur[i] = n;
+          visita(i + 1, tot + n * f[i], pezzi + n);
+        }
+        cur[i] = 0;
+      };
+      visita(0, 0, 0);
+    }
+    const pezzi = best.conta.map((n, i) => ({ n, l: f[i] })).filter((p) => p.n > 0)
+      .sort((a, b) => b.l - a.l);
+    return { pezzi, totale: best.totale };
+  }
+
+  function calcola(d) {
+    if (!d.perimetro || !d.altezza) return null;
+    const lorda = d.perimetro * d.altezza;
+    const aperture = d.porte * d.areaPorta + d.finestre * d.areaFinestra;
+    const pareti = Math.max(0, lorda - aperture);
+    const soff = d.soffitto ? (d.areaSoffitto || 0) : 0;
+    const netta = pareti + soff;
+    const resaEff = d.resa * (FATTORE_MURO[d.muro] || 1);
+    const litriFinitura = netta > 0 ? (netta * d.mani) / resaEff * (1 + d.sfrido) : 0;
+    const litriFissativo = d.fissativo && netta > 0 ? netta / RESA_FISSATIVO * (1 + d.sfrido) : 0;
+    const bF = barattoli(litriFinitura, d.formati);
+    const bP = barattoli(litriFissativo, FORMATI_FISSATIVO);
+    const costo = bF.totale * d.prezzo + bP.totale * PREZZO_FISSATIVO;
+    return { ...d, lorda, aperture, pareti, soff, netta, resaEff, litriFinitura, litriFissativo, bF, bP, costo };
+  }
+
+  const plurale = (n, uno, molti) => `${n} ${n === 1 ? uno : molti}`;
+  const elencoPezzi = (b) => b.pezzi.map((p) => `${p.n} × ${nf(p.l, p.l % 1 ? 1 : 0)} l`).join(" + ");
+
+  // ---------- resa a schermo ----------
+  function disegna(r) {
+    const box = $("risultato");
+    if (!r || r.netta <= 0) {
+      box.innerHTML = '<p class="vuoto">Inserisci lunghezza, larghezza e altezza della stanza (o il perimetro) e qui compare quanta pittura comprare.</p>';
+      $("barraLitri").textContent = "—";
+      $("barraSotto").textContent = "inserisci le misure";
+      aggiornaScheda(null);
+      return;
+    }
+    const righe = [];
+    righe.push(`<li><span>Pareti <small>${nf(r.perimetro, 2)} m di perimetro × ${nf(r.altezza, 2)} m</small></span><b>${nf(r.lorda)} m²</b></li>`);
+    if (r.aperture > 0) righe.push(`<li><span>Porte e finestre <small>${plurale(r.porte, "porta", "porte")}, ${plurale(r.finestre, "finestra", "finestre")}</small></span><b>− ${nf(r.aperture)} m²</b></li>`);
+    if (r.soff > 0) righe.push(`<li><span>Soffitto</span><b>+ ${nf(r.soff)} m²</b></li>`);
+    else if (r.soffitto) righe.push('<li><span>Soffitto <small>indica la sua superficie in “Stanza irregolare”</small></span><b>non conteggiato</b></li>');
+    righe.push(`<li class="tot"><span>Superficie da dipingere</span><b>${nf(r.netta)} m²</b></li>`);
+    righe.push(`<li><span>Resa effettiva <small>${nf(r.resa)} m²/l ${r.muro === "liscio" ? "da scheda tecnica" : r.muro === "ruvido" ? "− 20% muro ruvido" : "− 15% muro nuovo"}</small></span><b>${nf(r.resaEff)} m²/l</b></li>`);
+    righe.push(`<li><span>Finitura <small>${r.mani} ${r.mani === 1 ? "mano" : "mani"}${r.sfrido ? `, margine ${Math.round(r.sfrido * 100)}%` : ""}</small></span><b>${litri(r.litriFinitura)}</b></li>`);
+    if (r.litriFissativo > 0) righe.push(`<li><span>Fissativo <small>1 mano, ${RESA_FISSATIVO} m²/l</small></span><b>${litri(r.litriFissativo)}</b></li>`);
+    righe.push(`<li class="tot"><span>Spesa stimata</span><b>${eur(r.costo)}</b></li>`);
+
+    box.innerHTML = `
+      <div class="grande"><b>${nf(r.litriFinitura)}</b><span>litri di ${r.etichetta.toLowerCase().replace(/ \(.*\)$/, "")}</span></div>
+      <p class="nota" style="margin:0">per ${nf(r.netta)} m² in ${r.mani} ${r.mani === 1 ? "mano" : "mani"}${r.litriFissativo > 0 ? `, più ${litri(r.litriFissativo)} di fissativo` : ""}</p>
+      <div class="compra">
+        <h3>Da comprare</h3>
+        <ul>
+          <li><strong>${elencoPezzi(r.bF)}</strong> di finitura (${litri(r.bF.totale)}, ne avanzano ${nf(Math.max(0, r.bF.totale - r.litriFinitura))} l)</li>
+          ${r.litriFissativo > 0 ? `<li><strong>${elencoPezzi(r.bP)}</strong> di fissativo</li>` : ""}
+        </ul>
+      </div>
+      <ul class="voci">${righe.join("")}</ul>`;
+
+    $("barraLitri").textContent = nf(r.litriFinitura) + " l";
+    $("barraSotto").textContent = `${elencoPezzi(r.bF)} · ${eur(r.costo)}`;
+    aggiornaScheda(r);
+  }
+
+  // ---------- Pro: progetto con più stanze ----------
+  let progetto = [];
+  try { progetto = JSON.parse(localStorage.getItem(CHIAVE) || "[]"); } catch (_) { progetto = []; }
+  if (!Array.isArray(progetto)) progetto = [];
+  const salva = () => { try { localStorage.setItem(CHIAVE, JSON.stringify(progetto)); } catch (_) { /* storage pieno o negato */ } };
+
+  function disegnaProgetto() {
+    const lista = $("listaStanze"), tot = $("totaleProgetto");
+    if (!progetto.length) {
+      lista.innerHTML = "";
+      tot.innerHTML = '<p class="nota">Nessuna stanza nel progetto: calcola una stanza qui sopra e premi Aggiungi.</p>';
+      return;
+    }
+    lista.innerHTML = progetto.map((s, i) => `
+      <li>
+        <span class="nome"><b>${esc(s.nome)}</b><small>${nf(s.netta)} m² · ${litri(s.litriFinitura)} · ${esc(s.etichetta)}</small></span>
+        <button type="button" class="via" data-i="${i}" aria-label="Togli ${esc(s.nome)} dal progetto">✕</button>
+      </li>`).join("");
+
+    // somma i litri per tipo di prodotto: la lista della spesa è per barattolo, non per stanza
+    const perTipo = new Map();
+    for (const s of progetto) {
+      const k = s.tipo;
+      const v = perTipo.get(k) || { litri: 0, etichetta: s.etichetta, formati: PRODOTTI[k] ? PRODOTTI[k].formati : [10, 5, 2.5, 1], prezzo: s.prezzo, mq: 0 };
+      v.litri += s.litriFinitura; v.mq += s.netta;
+      perTipo.set(k, v);
+    }
+    const fiss = progetto.reduce((a, s) => a + (s.litriFissativo || 0), 0);
+    let costo = 0;
+    const voci = [];
+    for (const [, v] of perTipo) {
+      const b = barattoli(v.litri, v.formati);
+      costo += b.totale * v.prezzo;
+      voci.push(`<li><strong>${elencoPezzi(b)}</strong> di ${esc(v.etichetta.toLowerCase().replace(/ \(.*\)$/, ""))} <small>(${nf(v.litri)} l per ${nf(v.mq)} m²)</small></li>`);
+    }
+    if (fiss > 0) {
+      const b = barattoli(fiss, FORMATI_FISSATIVO);
+      costo += b.totale * PREZZO_FISSATIVO;
+      voci.push(`<li><strong>${elencoPezzi(b)}</strong> di fissativo <small>(${nf(fiss)} l)</small></li>`);
+    }
+    const mq = progetto.reduce((a, s) => a + s.netta, 0);
+    tot.innerHTML = `
+      <div class="compra">
+        <h3>Lista della spesa · ${progetto.length} ${progetto.length === 1 ? "stanza" : "stanze"}</h3>
+        <ul>${voci.join("")}</ul>
+        <p class="nota" style="margin:.6rem 0 0">${nf(mq)} m² in tutto, spesa stimata <strong>${eur(costo)}</strong>. Comprare insieme conviene: i litri si sommano e si sale di formato.</p>
+      </div>`;
+  }
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+  $("aggiungi").addEventListener("click", () => {
+    if (window.Monetize && !Monetize.isPro()) { Monetize.unlock(); return; }
+    const r = calcola(leggi());
+    const msg = $("msgStanza");
+    if (!r || r.netta <= 0) { msg.textContent = "Completa prima le misure della stanza."; return; }
+    const nome = ($("nomeStanza").value || "").trim() || `Stanza ${progetto.length + 1}`;
+    progetto.push({
+      nome, netta: r.netta, litriFinitura: r.litriFinitura, litriFissativo: r.litriFissativo,
+      tipo: r.tipo, etichetta: r.etichetta, prezzo: r.prezzo, mani: r.mani,
+      perimetro: r.perimetro, altezza: r.altezza,
+    });
+    salva();
+    giaAggiunta = true;
+    $("nomeStanza").value = "";
+    msg.textContent = `${nome} aggiunta al progetto.`;
+    disegnaProgetto();
+    aggiornaScheda(calcola(leggi()));
+  });
+  $("nomeStanza").addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); $("aggiungi").click(); } });
+  $("listaStanze").addEventListener("click", (e) => {
+    const b = e.target.closest(".via");
+    if (!b) return;
+    const i = parseInt(b.dataset.i, 10);
+    const via = progetto[i];
+    progetto.splice(i, 1); salva(); disegnaProgetto();
+    $("msgStanza").textContent = via ? `${via.nome} rimossa dal progetto.` : "";
+    aggiornaScheda(calcola(leggi()));
+  });
+
+  // ---------- Pro: scheda di cantiere ----------
+  let ultimaScheda = [];
+  let giaAggiunta = false; // la stanza a schermo è già nel progetto: non va sommata di nuovo
+  function aggiornaScheda(r) {
+    const box = $("scheda");
+    const righe = progetto.map((s) => ({
+      nome: s.nome, mq: s.netta, mani: s.mani, prodotto: s.etichetta,
+      fin: s.litriFinitura, fis: s.litriFissativo || 0, costo: s.litriFinitura * s.prezzo,
+    }));
+    if (r && r.netta > 0 && !giaAggiunta) righe.push({
+      nome: "Stanza in corso", mq: r.netta, mani: r.mani, prodotto: r.etichetta,
+      fin: r.litriFinitura, fis: r.litriFissativo, costo: r.bF.totale * r.prezzo,
+    });
+    ultimaScheda = righe;
+    if (!righe.length) { box.innerHTML = '<p class="nota" style="margin:0">Compila le misure: la scheda si riempie da sola.</p>'; return; }
+    const tot = righe.reduce((a, x) => ({ mq: a.mq + x.mq, fin: a.fin + x.fin, fis: a.fis + x.fis, costo: a.costo + x.costo }), { mq: 0, fin: 0, fis: 0, costo: 0 });
+    box.innerHTML = `
+      <table>
+        <caption style="text-align:left;font-size:.9rem;color:var(--muted);padding-bottom:.4rem">Scheda pittura — ${new Date().toLocaleDateString("it-IT")}</caption>
+        <thead><tr><th>Ambiente</th><th class="num">m²</th><th class="num">Mani</th><th class="num">Finitura</th><th class="num">Fissativo</th></tr></thead>
+        <tbody>${righe.map((x) => `<tr><td>${esc(x.nome)}<br><small style="color:var(--muted)">${esc(x.prodotto)}</small></td><td class="num">${nf(x.mq)}</td><td class="num">${x.mani}</td><td class="num">${nf(x.fin)} l</td><td class="num">${x.fis ? nf(x.fis) + " l" : "—"}</td></tr>`).join("")}</tbody>
+        <tfoot><tr><th>Totale</th><th class="num">${nf(tot.mq)}</th><th class="num"></th><th class="num">${nf(tot.fin)} l</th><th class="num">${tot.fis ? nf(tot.fis) + " l" : "—"}</th></tr></tfoot>
+      </table>
+      <p class="nota" style="margin:.7rem 0 0">Spesa stimata della finitura: <strong>${eur(tot.costo)}</strong>. Le quantità includono il margine scelto.</p>`;
+  }
+  $("stampa").addEventListener("click", () => {
+    if (window.Monetize && !Monetize.isPro()) { Monetize.unlock(); return; }
+    window.print();
+  });
+  $("csv").addEventListener("click", () => {
+    if (window.Monetize && !Monetize.isPro()) { Monetize.unlock(); return; }
+    if (!ultimaScheda.length) return;
+    const sep = ";";
+    const head = ["Ambiente", "Prodotto", "Metri quadri", "Mani", "Litri finitura", "Litri fissativo", "Costo stimato EUR"];
+    const corpo = ultimaScheda.map((x) => [x.nome, x.prodotto, nf(x.mq), x.mani, nf(x.fin), x.fis ? nf(x.fis) : "0", nf(x.costo, 2)]);
+    const csv = "﻿" + [head, ...corpo].map((r) => r.map((c) => `"${String(c).replace(/"/g, '""')}"`).join(sep)).join("\r\n");
+    const url = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+    const a = document.createElement("a");
+    a.href = url; a.download = "pittura-scheda.csv";
+    document.body.append(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  });
+
+  // ---------- foglio che sale ----------
+  const foglio = $("foglio"), velo = $("velo"), barra = $("barra");
+  const apri = () => {
+    velo.hidden = false;
+    foglio.classList.add("su");
+    requestAnimationFrame(() => velo.classList.add("su"));
+    barra.setAttribute("aria-expanded", "true");
+    $("chiudi").focus();
+  };
+  const chiudi = () => {
+    foglio.classList.remove("su"); velo.classList.remove("su");
+    barra.setAttribute("aria-expanded", "false");
+    setTimeout(() => { if (!foglio.classList.contains("su")) velo.hidden = true; }, 240);
+    barra.focus();
+  };
+  barra.addEventListener("click", () => (foglio.classList.contains("su") ? chiudi() : apri()));
+  $("chiudi").addEventListener("click", chiudi);
+  velo.addEventListener("click", chiudi);
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && foglio.classList.contains("su")) chiudi(); });
+
+  // ---------- eventi dei controlli ----------
+  const ricalcola = () => { giaAggiunta = false; disegna(calcola(leggi())); };
+
+  for (const g of ["mani", "muro", "sfrido"]) {
+    $(g).addEventListener("click", (e) => {
+      const b = e.target.closest(".chip");
+      if (!b) return;
+      for (const c of $(g).querySelectorAll(".chip")) c.setAttribute("aria-pressed", String(c === b));
+      ricalcola();
+    });
+    for (const c of $(g).querySelectorAll(".chip")) if (!c.hasAttribute("aria-pressed")) c.setAttribute("aria-pressed", "false");
+  }
+  for (const st of document.querySelectorAll("[data-stepper]")) {
+    const id = st.dataset.stepper;
+    st.addEventListener("click", (e) => {
+      const b = e.target.closest("button");
+      if (!b) return;
+      conta[id] = Math.max(0, Math.min(20, conta[id] + parseInt(b.dataset.d, 10)));
+      $(id).textContent = String(conta[id]);
+      ricalcola();
+    });
+  }
+  $("tipo").addEventListener("change", () => {
+    const p = PRODOTTI[$("tipo").value];
+    $("resa").value = p.resa;
+    $("prezzo").value = p.prezzo;
+    ricalcola();
+  });
+  for (const id of ["lung", "larg", "alt", "perim", "areaSoff", "pL", "pH", "fL", "fH", "resa", "prezzo"]) {
+    $(id).addEventListener("input", ricalcola);
+    $(id).addEventListener("keydown", (e) => {
+      if (e.key !== "Enter") return;
+      e.preventDefault(); e.target.blur();
+      if (getComputedStyle(barra).display !== "none") apri();
+    });
+  }
+  for (const id of ["soffitto", "fissativo"]) $(id).addEventListener("change", ricalcola);
+
+  disegnaProgetto();
+  ricalcola();
+})();
+</script>
+</body>
+</html>
