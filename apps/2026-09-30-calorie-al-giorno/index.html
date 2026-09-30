@@ -1,0 +1,733 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0d9174">
+  <title>Quante Calorie Devo Mangiare al Giorno: calcolo gratis</title>
+  <meta name="description" content="Quante calorie devo mangiare al giorno? Inserisci età, peso, altezza e attività: ottieni subito le calorie giuste per il tuo obiettivo e la ripartizione dei macro.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-30-calorie-al-giorno/">
+  <meta property="og:title" content="Quante Calorie Devo Mangiare al Giorno: calcolo gratis">
+  <meta property="og:description" content="Calorie giornaliere e grammi di proteine, grassi e carboidrati per mantenere, perdere o aumentare peso. Senza registrazione, funziona anche offline.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-30-calorie-al-giorno/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Calorie al Giorno",
+    "description": "Calcolatore gratuito del fabbisogno calorico giornaliero con formula Mifflin-St Jeor: calorie per mantenere, perdere o aumentare peso e ripartizione di proteine, grassi e carboidrati.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-09-30-calorie-al-giorno/",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Quante calorie devo mangiare al giorno per dimagrire?", "acceptedAnswer": { "@type": "Answer", "text": "Circa 500 kcal in meno del tuo fabbisogno giornaliero: è il deficit che fa perdere in media mezzo chilo a settimana. Su un fabbisogno di 2.200 kcal significa mangiarne circa 1.700. Scendere sotto 1.200 kcal per una donna o 1.500 per un uomo non accelera nulla e va fatto solo sotto controllo medico." } },
+      { "@type": "Question", "name": "Quale formula usa il calcolatore?", "acceptedAnswer": { "@type": "Answer", "text": "Mifflin-St Jeor per il metabolismo basale, cioè 10 x peso in kg + 6,25 x altezza in cm - 5 x età, meno 161 per le donne e più 5 per gli uomini. È la formula che negli studi di validazione sbaglia meno su adulti sani. Il risultato viene poi moltiplicato per il fattore di attività." } },
+      { "@type": "Question", "name": "Perché le calorie cambiano mentre perdo peso?", "acceptedAnswer": { "@type": "Answer", "text": "Perché il metabolismo basale dipende dal peso: con 5 kg in meno il corpo consuma circa 50 kcal al giorno in meno. Se non si aggiorna il calcolo, il deficit si assottiglia e la perdita di peso si ferma. Per questo il piano a 12 settimane ricalcola le calorie settimana per settimana." } },
+      { "@type": "Question", "name": "Devo pesare tutto quello che mangio?", "acceptedAnswer": { "@type": "Answer", "text": "No, non per sempre. Pesare gli alimenti per due o tre settimane serve a capire quanto sono grandi davvero le tue porzioni; dopo basta riconoscerle a occhio. Le proteine sono l'unico macro che vale la pena tenere d'occhio con precisione, perché è il più facile da sottostimare." } },
+      { "@type": "Question", "name": "Il numero che ottengo è esatto?", "acceptedAnswer": { "@type": "Answer", "text": "È una stima con un margine di circa il 10 per cento, perché la formula non conosce la tua composizione corporea né la tua genetica. Il modo per verificarla è pesarsi una volta a settimana sempre nelle stesse condizioni per tre settimane: se il peso non si muove come previsto, si correggono le calorie di 100-150 kcal." } }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #eef7f3; --surface: #ffffff; --panel: #ffffff; --text: #10241e; --muted: #5c7a70;
+      --line: #cfe4dc; --accent: #0d9174; --accent-ink: #ffffff; --accent-soft: #d8f0e7;
+      --warn: #a4530c; --warn-bg: #fdf1e0; --prot: #0d9174; --gras: #e0a63c; --carb: #4f8fd6;
+      --r: 10px; --r-big: 16px;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c1714; --surface: #14231f; --panel: #162722; --text: #e4f0ec; --muted: #8fa9a1;
+        --line: #26403a; --accent: #4fd8b0; --accent-ink: #052019; --accent-soft: #1b3830;
+        --warn: #f0b76a; --warn-bg: #2d2011; --prot: #4fd8b0; --gras: #e8bd66; --carb: #7fb4ef;
+        color-scheme: dark;
+      }
+    }
+    * { box-sizing: border-box; }
+    html, body { overflow-x: hidden; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font: 1rem/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      -webkit-text-size-adjust: 100%;
+    }
+    a { color: var(--accent); }
+
+    /* ---------- layout split: pannello dati in alto (sticky), risultati scorrevoli sotto ---------- */
+    .testata { padding: max(10px, env(safe-area-inset-top)) 16px 0; }
+    .back { display: inline-flex; align-items: center; min-height: 44px; font-size: 0.875rem; color: var(--muted); text-decoration: none; }
+    .back:hover { color: var(--text); }
+    h1 { margin: 0.35rem 0 0.25rem; font-size: 1.45rem; line-height: 1.2; letter-spacing: -0.02em; font-weight: 700; }
+    .lead { margin: 0 0 0.9rem; color: var(--muted); font-size: 0.95rem; }
+
+    .pannello {
+      position: sticky; top: 0; z-index: 20;
+      background: var(--panel); border-bottom: 1px solid var(--line);
+      box-shadow: 0 6px 18px -14px rgba(0,0,0,.45);
+    }
+    .pannello-inner { padding: 12px 16px 14px; max-height: 66dvh; overflow-y: auto; }
+    .pannello.chiuso .pannello-inner { display: none; }
+    .riepilogo {
+      display: none; align-items: center; gap: 8px; width: 100%;
+      padding: 11px 16px; background: none; border: 0; color: var(--text);
+      font: inherit; font-size: 0.9rem; text-align: left; cursor: pointer; min-height: 44px;
+    }
+    .pannello.chiuso .riepilogo { display: flex; }
+    .riepilogo b { font-weight: 600; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .riepilogo span { margin-left: auto; color: var(--accent); font-weight: 600; white-space: nowrap; }
+    .chiudi-pannello {
+      display: block; width: 100%; min-height: 44px; margin-top: 10px;
+      background: var(--accent-soft); color: var(--accent); border: 0; border-radius: var(--r);
+      font: inherit; font-weight: 600; font-size: 0.9rem; cursor: pointer;
+    }
+
+    fieldset { border: 0; margin: 0 0 12px; padding: 0; }
+    legend, .etichetta {
+      padding: 0; margin-bottom: 6px; font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted);
+    }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      flex: 1 1 auto; min-height: 48px; padding: 7px 8px;
+      display: inline-flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 1px; text-align: center; line-height: 1.25;
+      background: var(--surface); border: 1px solid var(--line); border-radius: var(--r);
+      color: var(--text); font: inherit; font-size: 0.9rem; cursor: pointer;
+    }
+    .chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 600; }
+    .chip small { font-size: 0.7rem; opacity: .78; font-weight: 400; }
+    /* Due per riga: così il pannello resta corto e il risultato è a un pollice di distanza. */
+    .chips.due { display: grid; grid-template-columns: 1fr 1fr; }
+    .chips.due .chip { width: 100%; }
+    .chips.due .larga-chip { grid-column: 1 / -1; }
+
+    .griglia { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .campo { display: flex; flex-direction: column; gap: 4px; }
+    .campo label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); }
+    .campo input {
+      width: 100%; min-height: 48px; padding: 10px 12px;
+      background: var(--surface); color: var(--text);
+      border: 1px solid var(--line); border-radius: var(--r);
+      font: inherit; font-size: 1.05rem; font-variant-numeric: tabular-nums;
+    }
+    .campo input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .campo .unita { font-size: 0.7rem; color: var(--muted); min-height: 1.6em; }
+
+    /* ---------- risultati ---------- */
+    .risultati { padding: 16px 16px 0; }
+    .hero {
+      background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-big);
+      padding: 18px 16px; text-align: center;
+    }
+    .hero .kcal { font-size: 3.2rem; line-height: 1; font-weight: 800; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; color: var(--accent); }
+    .hero .kcal-unita { font-size: 1rem; font-weight: 600; letter-spacing: 0; color: var(--muted); }
+    .hero .sotto { margin: 8px 0 0; color: var(--muted); font-size: 0.92rem; }
+    .hero .obiettivo-nome { color: var(--text); font-weight: 600; }
+    .avviso {
+      margin: 12px 0 0; padding: 10px 12px; border-radius: var(--r);
+      background: var(--warn-bg); color: var(--warn); font-size: 0.88rem; text-align: left;
+    }
+    .avviso[hidden] { display: none; }
+
+    .numeri { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+    .numeri > div {
+      background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 11px 12px;
+    }
+    .numeri dt { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .numeri dd { margin: 3px 0 0; font-size: 1.25rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .numeri dd small { font-size: 0.75rem; font-weight: 400; color: var(--muted); }
+
+    .box {
+      background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-big);
+      padding: 14px 16px; margin-top: 12px;
+    }
+    .box h2, .box h3 { margin: 0 0 10px; font-size: 1.02rem; font-weight: 700; }
+    .barra-macro { display: flex; height: 12px; border-radius: 6px; overflow: hidden; margin-bottom: 12px; background: var(--line); }
+    .barra-macro > i { display: block; height: 100%; }
+    .macro-lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+    .macro-lista li { display: flex; align-items: baseline; gap: 8px; font-variant-numeric: tabular-nums; }
+    .punto { width: 10px; height: 10px; border-radius: 3px; flex: 0 0 auto; }
+    .macro-nome { font-weight: 600; }
+    .macro-g { margin-left: auto; font-weight: 700; }
+    .macro-pc { color: var(--muted); font-size: 0.85rem; min-width: 3.2em; text-align: right; }
+    .nota { margin: 10px 0 0; color: var(--muted); font-size: 0.85rem; }
+
+    .pasti { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-variant-numeric: tabular-nums; }
+    .pasti li { display: flex; gap: 10px; padding: 7px 0; border-bottom: 1px dashed var(--line); font-size: 0.93rem; }
+    .pasti li:last-child { border-bottom: 0; }
+    .pasti b { margin-left: auto; font-weight: 700; }
+
+    table.piano { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: 0.88rem; }
+    table.piano th, table.piano td { padding: 7px 4px; text-align: right; border-bottom: 1px solid var(--line); }
+    table.piano th:first-child, table.piano td:first-child { text-align: left; }
+    table.piano thead th { font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+    .tabella-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+    .azione {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 46px; padding: 10px 18px; margin-top: 12px;
+      background: var(--accent); color: var(--accent-ink); border: 0; border-radius: var(--r);
+      font: inherit; font-weight: 600; cursor: pointer;
+    }
+    .azione.vuota { background: var(--accent-soft); color: var(--accent); }
+    .esito { margin: 8px 0 0; font-size: 0.85rem; color: var(--muted); min-height: 1.2em; }
+
+    /* ---------- guida ---------- */
+    #guida { padding: 8px 16px 0; }
+    #guida h2 { margin: 26px 0 8px; font-size: 1.22rem; letter-spacing: -0.015em; }
+    #guida h3 { margin: 18px 0 4px; font-size: 1rem; }
+    #guida p, #guida li { font-size: 1rem; }
+    #guida ul, #guida ol { padding-left: 1.25rem; }
+    #guida li { margin-bottom: 0.4rem; }
+    .formula {
+      background: var(--accent-soft); border-radius: var(--r); padding: 12px 14px; margin: 12px 0;
+      font-size: 0.95rem;
+    }
+    .formula code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 0.9rem; }
+    table.tab { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.92rem; }
+    table.tab th, table.tab td { padding: 8px 6px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    table.tab th { font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+
+    footer { padding: 24px 16px calc(28px + env(safe-area-inset-bottom)); color: var(--muted); font-size: 0.88rem; border-top: 1px solid var(--line); margin-top: 28px; }
+    footer ul { padding-left: 1.1rem; }
+
+    [data-ad], [data-support], [data-affiliate] { margin: 0 16px; }
+
+    /* ---------- desktop: miglioramento progressivo ---------- */
+    @media (min-width: 700px) {
+      .testata, .pannello-inner, .risultati, #guida, footer, [data-ad], [data-support], [data-affiliate] { max-width: 760px; margin-left: auto; margin-right: auto; }
+      h1 { font-size: 2rem; }
+      .pannello-inner { max-height: none; overflow: visible; display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; align-items: start; }
+      .pannello-inner > .larga { grid-column: 1 / -1; }
+      .chiudi-pannello { display: none; }
+      .numeri { grid-template-columns: repeat(4, 1fr); }
+      .hero .kcal { font-size: 4rem; }
+    }
+    @media print {
+      .pannello, .testata, #guida, footer, [data-ad], [data-support], [data-affiliate], .azione, .avviso { display: none !important; }
+      body { background: #fff; color: #000; }
+      .box, .hero, .numeri > div { border: 1px solid #bbb; break-inside: avoid; }
+      .non-stampare { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="testata">
+    <a class="back" href="../../index.html">← Tutte le app</a>
+    <h1>Quante calorie devo mangiare al giorno</h1>
+    <p class="lead">Le calorie per il tuo obiettivo e i grammi di proteine, grassi e carboidrati. Senza registrazione, il calcolo resta sul tuo telefono.</p>
+  </div>
+
+  <div class="pannello" id="pannello">
+    <button type="button" class="riepilogo" id="riepilogo" aria-expanded="false" aria-controls="datiForm">
+      <b id="riepilogoTesto">I tuoi dati</b><span>Modifica ▾</span>
+    </button>
+    <form class="pannello-inner" id="datiForm" novalidate>
+      <fieldset class="larga">
+        <legend>Sesso</legend>
+        <div class="chips" id="chipsSesso" role="group" aria-label="Sesso">
+          <button type="button" class="chip" data-v="f" aria-pressed="true">Donna</button>
+          <button type="button" class="chip" data-v="m" aria-pressed="false">Uomo</button>
+        </div>
+      </fieldset>
+
+      <fieldset class="larga">
+        <div class="griglia">
+          <div class="campo">
+            <label for="eta">Età</label>
+            <input id="eta" type="number" inputmode="numeric" min="14" max="100" step="1" value="34" enterkeyhint="done" autocomplete="off">
+            <span class="unita">anni</span>
+          </div>
+          <div class="campo">
+            <label for="peso">Peso</label>
+            <input id="peso" type="text" inputmode="decimal" value="68" enterkeyhint="done" autocomplete="off" aria-describedby="aiutoPeso">
+            <span class="unita" id="aiutoPeso">kg (anche 68,5)</span>
+          </div>
+          <div class="campo">
+            <label for="altezza">Altezza</label>
+            <input id="altezza" type="number" inputmode="numeric" min="130" max="220" step="1" value="168" enterkeyhint="done" autocomplete="off">
+            <span class="unita">cm</span>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Quanto ti muovi</legend>
+        <div class="chips due" id="chipsAttivita" role="group" aria-label="Livello di attività">
+          <button type="button" class="chip" data-v="1.2" aria-pressed="false">Sedentaria<small>ufficio, niente sport</small></button>
+          <button type="button" class="chip" data-v="1.375" aria-pressed="false">Leggera<small>1-2 volte a settimana</small></button>
+          <button type="button" class="chip" data-v="1.55" aria-pressed="true">Media<small>3-4 volte a settimana</small></button>
+          <button type="button" class="chip" data-v="1.725" aria-pressed="false">Alta<small>5-6 volte o lavoro fisico</small></button>
+          <button type="button" class="chip larga-chip" data-v="1.9" aria-pressed="false">Atleta<small>due sedute al giorno</small></button>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Obiettivo</legend>
+        <div class="chips due" id="chipsObiettivo" role="group" aria-label="Obiettivo">
+          <button type="button" class="chip" data-v="-825" aria-pressed="false">Perdere in fretta<small>−0,75 kg a settimana</small></button>
+          <button type="button" class="chip" data-v="-550" aria-pressed="true">Perdere peso<small>−0,5 kg a settimana</small></button>
+          <button type="button" class="chip" data-v="-275" aria-pressed="false">Perdere piano<small>−0,25 kg a settimana</small></button>
+          <button type="button" class="chip" data-v="0" aria-pressed="false">Mantenere<small>peso stabile</small></button>
+          <button type="button" class="chip" data-v="275" aria-pressed="false">Aumentare<small>+0,25 kg a settimana</small></button>
+          <button type="button" class="chip" data-v="550" aria-pressed="false">Massa<small>+0,5 kg a settimana</small></button>
+        </div>
+      </fieldset>
+
+      <fieldset class="larga">
+        <div class="campo">
+          <label for="pesoTarget">Peso che vuoi raggiungere <span class="unita">facoltativo</span></label>
+          <input id="pesoTarget" type="text" inputmode="decimal" placeholder="es. 62" enterkeyhint="done" autocomplete="off">
+        </div>
+      </fieldset>
+
+      <button type="button" class="chiudi-pannello larga" id="chiudiPannello">Vedi il risultato ▴</button>
+    </form>
+  </div>
+
+  <main class="risultati">
+    <section class="hero" aria-live="polite">
+      <div class="kcal"><span id="outKcal">—</span> <span class="kcal-unita">kcal al giorno</span></div>
+      <p class="sotto" id="outSotto">Compila i dati qui sopra.</p>
+      <p class="avviso" id="outAvviso" hidden></p>
+    </section>
+
+    <dl class="numeri">
+      <div><dt>Metabolismo basale</dt><dd id="outBmr">—</dd></div>
+      <div><dt>Consumo totale</dt><dd id="outTdee">—</dd></div>
+      <div><dt>Indice di massa</dt><dd id="outBmi">—</dd></div>
+      <div><dt>Fascia di normopeso</dt><dd id="outPesoForma">—</dd></div>
+    </dl>
+
+    <div data-ad="top"></div>
+
+    <section class="box">
+      <h2>Come dividere le calorie: proteine, grassi e carboidrati</h2>
+      <div class="barra-macro" id="barraMacro" aria-hidden="true">
+        <i style="width:33%;background:var(--prot)"></i><i style="width:27%;background:var(--gras)"></i><i style="width:40%;background:var(--carb)"></i>
+      </div>
+      <ul class="macro-lista">
+        <li><span class="punto" style="background:var(--prot)"></span><span class="macro-nome">Proteine</span><span class="macro-g" id="outProtG">—</span><span class="macro-pc" id="outProtPc"></span></li>
+        <li><span class="punto" style="background:var(--gras)"></span><span class="macro-nome">Grassi</span><span class="macro-g" id="outGrasG">—</span><span class="macro-pc" id="outGrasPc"></span></li>
+        <li><span class="punto" style="background:var(--carb)"></span><span class="macro-nome">Carboidrati</span><span class="macro-g" id="outCarbG">—</span><span class="macro-pc" id="outCarbPc"></span></li>
+      </ul>
+      <p class="nota" id="notaMacro">Le proteine sono calcolate sui chili di corpo, i grassi al 27% delle calorie, i carboidrati sono il resto.</p>
+    </section>
+
+    <section class="box" data-pro="Piano su 12 settimane con ricalcolo">
+      <h3>Piano su 12 settimane, con le calorie che si aggiornano</h3>
+      <p class="nota" style="margin-top:0">Man mano che il peso scende il corpo consuma meno: qui le calorie vengono ricalcolate ogni settimana sul peso previsto, così il deficit non si assottiglia da solo.</p>
+      <div class="tabella-scroll">
+        <table class="piano">
+          <thead><tr><th>Settimana</th><th>Peso previsto</th><th>Calorie</th><th>Proteine</th></tr></thead>
+          <tbody id="corpoPiano"><tr><td colspan="4">Compila i dati.</td></tr></tbody>
+        </table>
+      </div>
+      <p class="nota" id="notaPiano"></p>
+    </section>
+
+    <section class="box" data-pro="Scheda con i pasti da stampare">
+      <h3>La tua scheda, divisa nei pasti</h3>
+      <ul class="pasti" id="listaPasti">
+        <li>Compila i dati.</li>
+      </ul>
+      <p class="nota">Divisione indicativa: colazione 25%, pranzo 35%, cena 30%, spuntini 10%. Spostala come ti viene comodo, conta il totale della giornata.</p>
+      <button type="button" class="azione non-stampare" id="btnStampa">Stampa la scheda</button>
+      <button type="button" class="azione vuota non-stampare" id="btnCopia">Copia il riepilogo</button>
+      <p class="esito" id="esitoCopia"></p>
+    </section>
+
+    <div data-affiliate data-title="Cosa aiuta davvero a tenere il conto" data-items='[{"t":"Bilancia da cucina digitale al grammo","q":"bilancia da cucina digitale precisione 1 g"},{"t":"Bilancia pesapersone con misura della massa grassa","q":"bilancia pesapersone impedenziometrica bluetooth"},{"t":"Contenitori per preparare i pasti in anticipo","q":"contenitori meal prep con scomparti"},{"t":"Shaker con misurino per le proteine","q":"shaker proteine con misurino graduato"}]'></div>
+  </main>
+  <section id="guida">
+    <h2>Come si calcola quante calorie mangiare al giorno</h2>
+    <p>Il numero che cerchi nasce da due pezzi. Il primo è il <strong>metabolismo basale</strong>: le calorie che il corpo spende per restare in vita, cioè respirare, tenere il cuore che batte e il cervello accesso, anche passando la giornata a letto. Il secondo è il <strong>fattore di attività</strong>: un moltiplicatore che tiene conto di quanto ti muovi, dal camminare per casa all'allenamento in palestra. Moltiplicando i due si ottiene il consumo totale della giornata; da lì si toglie o si aggiunge qualcosa in base all'obiettivo.</p>
+    <p>Per il metabolismo basale questo calcolatore usa l'equazione di <strong>Mifflin-St Jeor</strong>, pubblicata nel 1990 e da allora la più affidabile sugli adulti sani: sbaglia in media meno della vecchia Harris-Benedict, che tende a sovrastimare di un centinaio di calorie.</p>
+    <div class="formula">
+      <code>Donne: 10 × peso(kg) + 6,25 × altezza(cm) − 5 × età − 161</code><br>
+      <code>Uomini: 10 × peso(kg) + 6,25 × altezza(cm) − 5 × età + 5</code>
+    </div>
+    <p>Il fattore di attività va scelto con onestà, ed è il punto dove quasi tutti si sbagliano. "Media" vuol dire tre o quattro allenamenti veri a settimana, non l'intenzione di farli. Chi lavora seduto e va in palestra due volte è nella fascia leggera, non in quella alta, anche se quelle due volte sono faticose.</p>
+
+    <h3>Un esempio con i numeri</h3>
+    <p>Donna, 34 anni, 68 kg, 168 cm, tre allenamenti a settimana, vuole perdere mezzo chilo a settimana.</p>
+    <ul>
+      <li>Metabolismo basale: 10 × 68 + 6,25 × 168 − 5 × 34 − 161 = <strong>1.399 kcal</strong>.</li>
+      <li>Consumo totale: 1.399 × 1,55 = <strong>2.168 kcal</strong>. Sono le calorie con cui il peso resta dov'è.</li>
+      <li>Per perdere mezzo chilo a settimana servono circa 550 kcal in meno al giorno: <strong>1.618 kcal</strong>.</li>
+      <li>Proteine 1,6 g per chilo = 109 g; grassi il 27% delle calorie = 49 g; carboidrati quel che resta = 185 g.</li>
+    </ul>
+    <p>Da dove viene il 550? Un chilo di grasso corporeo vale intorno a 7.700 kcal: diviso sette giorni fa 1.100 kcal al giorno per un chilo a settimana, quindi 550 per mezzo chilo. È aritmetica, non magia: per questo i deficit enormi promessi da certe diete non stanno in piedi.</p>
+
+    <h3>Come si legge il risultato</h3>
+    <p>Il numero grande in cima è quanto mangiare oggi. Il <strong>consumo totale</strong> è il tuo punto di equilibrio: memorizzalo, perché è il numero a cui tornare quando smetti di dimagrire e vuoi solo mantenere. Il <strong>metabolismo basale</strong> serve da pavimento: restare a lungo sotto quella cifra significa mangiare meno di quanto il corpo consuma stando fermo, e il prezzo si paga in stanchezza, capelli e umore prima che in chili.</p>
+    <p>Il calcolatore non scende comunque sotto 1.200 kcal per una donna e 1.500 per un uomo: sono i limiti sotto i quali diventa difficile coprire vitamine e minerali con il cibo normale, e sotto i quali si va solo seguiti da un medico o da un dietista.</p>
+
+    <h3>Gli errori che rovinano il conto</h3>
+    <ol>
+      <li><strong>Sovrastimare l'attività.</strong> È l'errore numero uno: una fascia di troppo vale 200-300 kcal al giorno, cioè tutto il deficit.</li>
+      <li><strong>Non aggiornare il calcolo.</strong> Con 6 kg in meno il metabolismo basale cala di circa 60 kcal al giorno: rifai il conto ogni 4-5 kg.</li>
+      <li><strong>Dimenticare l'olio.</strong> Un cucchiaio sono 90 kcal; tre cucchiai al giorno "a occhio" sono 270 kcal invisibili.</li>
+      <li><strong>Pesarsi ogni mattina e disperare.</strong> Il peso oscilla di uno o due chili per acqua, sale e intestino. Conta la media settimanale, non il singolo numero.</li>
+      <li><strong>Tagliare le proteine.</strong> In deficit sono la cosa che protegge il muscolo: se togli calorie, toglile ai grassi e ai carboidrati, non alle proteine.</li>
+      <li><strong>Mangiare "poco" senza contare.</strong> Chi si sente in deficit da mesi e non perde peso di solito sta mangiando al proprio mantenimento: due settimane di pesata degli alimenti lo chiariscono.</li>
+    </ol>
+
+    <h3>Domande frequenti</h3>
+    <h3>Quante calorie devo mangiare al giorno per dimagrire?</h3>
+    <p>Circa 500 in meno del tuo consumo totale, che è il deficit da mezzo chilo a settimana. Su 2.200 kcal di consumo significa mangiarne 1.700. Un taglio più profondo fa scendere il peso più in fretta all'inizio, ma è più difficile da tenere e porta con sé più fame e più perdita di muscolo.</p>
+    <h3>Perché due persone con lo stesso peso hanno fabbisogni diversi?</h3>
+    <p>Perché contano anche altezza, età e soprattutto quanto muscolo hanno addosso, che la formula può solo stimare. Due persone di 70 kg possono differire di 200-300 kcal al giorno. Per questo il numero va usato come punto di partenza e corretto con la bilancia dopo tre settimane.</p>
+    <h3>Devo contare le calorie per sempre?</h3>
+    <p>No. Contare serve a imparare le porzioni: dopo due o tre settimane riconosci a occhio quanto pesa un piatto di pasta o una fetta di formaggio e puoi smettere. Chi torna a contare lo fa solo quando si accorge di essere andato alla deriva.</p>
+    <h3>E se faccio molto sport?</h3>
+    <p>Il fattore di attività include già gli allenamenti: non sommare anche le calorie che ti dice l'orologio, perché le conteggeresti due volte. Gli orologi da polso, tra l'altro, sovrastimano il consumo dell'attività spesso del 20-30%.</p>
+    <h3>Il conteggio vale in gravidanza o allattamento?</h3>
+    <p>No. In gravidanza e in allattamento il fabbisogno cambia e non si stima con questa formula, così come non vale per i bambini, per chi ha problemi di tiroide, reni o cuore e per chi soffre o ha sofferto di disturbi alimentari. In tutti questi casi il numero giusto lo dà solo chi ti segue.</p>
+    <p><em>Questo strumento dà una stima informativa e non sostituisce il parere di un medico o di un dietista.</em></p>
+  </section>
+
+  <div data-ad="bottom"></div>
+  <div data-support></div>
+
+  <footer>
+    <p>La formula usata è Mifflin-St Jeor (1990) per il metabolismo basale, con fattori di attività standard da 1,2 a 1,9. Le indicazioni sui macronutrienti seguono gli intervalli dei LARN italiani: proteine 0,9-2 g per chilo, grassi 20-35% e carboidrati 45-60% delle calorie. Tutti i calcoli avvengono nel tuo browser: nessun dato viene inviato da nessuna parte.</p>
+    <p>Altri strumenti utili:</p>
+    <ul>
+      <li><a href="../2026-09-17-piano-dei-pasti/">piano dei pasti della settimana con lista della spesa</a></li>
+      <li><a href="../2026-09-17-timer-pasta/">timer per la cottura della pasta</a></li>
+    </ul>
+    <p>Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a></p>
+  </footer>
+
+  <script src="../../assets/monetize.js"></script>
+  <script>
+  /* Modello dati: un unico oggetto `dati` = { sesso, eta, peso, altezza, laf, delta, pesoTarget },
+     salvato in localStorage sotto "calorie-al-giorno:v1". Da lì si derivano per calcolo puro il
+     metabolismo basale (Mifflin-St Jeor), il consumo totale (basale x laf), le calorie obiettivo
+     (consumo + delta, con un pavimento di sicurezza) e i macronutrienti in grammi. */
+  (() => {
+    "use strict";
+
+    const CHIAVE = "calorie-al-giorno:v1";
+    const KCAL_PER_KG = 7700;         // energia di un chilo di grasso corporeo
+    const QUOTA_GRASSI = 0.27;        // dei LARN: 20-35% delle calorie
+    const PASTI = [["Colazione", .25], ["Pranzo", .35], ["Cena", .30], ["Spuntini", .10]];
+
+    const $ = (id) => document.getElementById(id);
+    const nf = new Intl.NumberFormat("it-IT");
+    const n1 = new Intl.NumberFormat("it-IT", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+    const kcal = (v) => nf.format(Math.round(v));
+    const nkg = (v) => (Number.isInteger(v) ? nf.format(v) : n1.format(v));
+
+    const dati = { sesso: "f", eta: 34, peso: 68, altezza: 168, laf: 1.55, delta: -550, pesoTarget: null };
+
+    // ---------- calcolo ----------
+    const basale = (sesso, peso, altezza, eta) =>
+      10 * peso + 6.25 * altezza - 5 * eta + (sesso === "m" ? 5 : -161);
+
+    const pavimento = (sesso) => (sesso === "m" ? 1500 : 1200);
+
+    // Sopra il normopeso le proteine e i grassi si calcolano sul peso corrispondente a un BMI di 25:
+    // altrimenti su una persona molto sopra peso i grammi risulterebbero irrealistici.
+    const pesoRiferimento = (peso, altezza) => Math.min(peso, 25 * (altezza / 100) ** 2);
+
+    function macro(kcalObiettivo, peso, altezza, delta, laf) {
+      const rif = pesoRiferimento(peso, altezza);
+      const gkgProt = delta < 0 ? 1.6 : delta > 0 ? 1.8 : (laf >= 1.55 ? 1.4 : 1.1);
+      const prot = Math.round(gkgProt * rif);
+      const gras = Math.round(Math.max((kcalObiettivo * QUOTA_GRASSI) / 9, 0.7 * rif));
+      const carb = Math.max(0, Math.round((kcalObiettivo - prot * 4 - gras * 9) / 4));
+      const tot = prot * 4 + gras * 9 + carb * 4;
+      const pc = (g, k) => Math.round((g * k * 100) / (tot || 1));
+      return { prot, gras, carb, gkgProt, pcProt: pc(prot, 4), pcGras: pc(gras, 9), pcCarb: pc(carb, 4) };
+    }
+
+    function calcola(d) {
+      const bmr = basale(d.sesso, d.peso, d.altezza, d.eta);
+      const tdee = bmr * d.laf;
+      const minimo = pavimento(d.sesso);
+      let obiettivo = tdee + d.delta;
+      let limitato = false, senzaMargine = false;
+      // Il pavimento di sicurezza vale solo quando si vuole perdere peso: il mantenimento è il
+      // consumo reale, anche quando è basso. Se il consumo è già sotto il minimo, nessun deficit
+      // è difendibile: si mostra il mantenimento e si dice perché.
+      if (d.delta < 0 && obiettivo < minimo) {
+        limitato = true;
+        senzaMargine = tdee < minimo;
+        obiettivo = senzaMargine ? tdee : minimo;
+      }
+      const deltaReale = obiettivo - tdee;
+      return {
+        bmr, tdee, obiettivo, limitato, senzaMargine, minimo, deltaReale,
+        sottoBasale: obiettivo < bmr - 1,
+        kgSettimana: (deltaReale * 7) / KCAL_PER_KG,
+        bmi: d.peso / (d.altezza / 100) ** 2,
+        pesoMin: 18.5 * (d.altezza / 100) ** 2,
+        pesoMax: 24.9 * (d.altezza / 100) ** 2,
+        macro: macro(obiettivo, d.peso, d.altezza, d.delta, d.laf),
+      };
+    }
+
+    // Piano settimanale: a ogni settimana il peso cambia e il basale con lui, quindi le calorie
+    // vengono ricalcolate sul peso previsto invece di restare ferme.
+    function piano(d, settimane) {
+      const righe = [];
+      let peso = d.peso;
+      for (let s = 1; s <= settimane; s++) {
+        const r = calcola({ ...d, peso });
+        const kgSett = r.kgSettimana;
+        peso = Math.round((peso + kgSett) * 10) / 10;
+        righe.push({ s, peso, kcal: r.obiettivo, prot: r.macro.prot, fermo: Math.abs(kgSett) < 0.02 });
+        if (d.pesoTarget && d.delta < 0 && peso <= d.pesoTarget) break;
+        if (d.pesoTarget && d.delta > 0 && peso >= d.pesoTarget) break;
+        if (peso < 18.5 * (d.altezza / 100) ** 2) break;
+      }
+      return righe;
+    }
+
+    // ---------- lettura del form ----------
+    function leggiCampo(el, min, max) {
+      const v = parseFloat(String(el.value).replace(",", "."));
+      if (!Number.isFinite(v) || v < min || v > max) return null;
+      return v;
+    }
+
+    function leggi() {
+      const eta = leggiCampo($("eta"), 14, 100);
+      const peso = leggiCampo($("peso"), 35, 250);
+      const altezza = leggiCampo($("altezza"), 130, 220);
+      const mancanti = [];
+      if (eta === null) mancanti.push("l'età (14-100 anni)");
+      if (peso === null) mancanti.push("il peso (35-250 kg)");
+      if (altezza === null) mancanti.push("l'altezza (130-220 cm)");
+      if (mancanti.length) return { errore: "Controlla " + mancanti.join(", ") + "." };
+      const t = leggiCampo($("pesoTarget"), 35, 250);
+      Object.assign(dati, { eta, peso, altezza, pesoTarget: t });
+      return { ok: true };
+    }
+
+    // ---------- resa ----------
+    const NOMI_LAF = { "1.2": "sedentaria", "1.375": "attività leggera", "1.55": "attività media", "1.725": "attività alta", "1.9": "da atleta" };
+
+    function testoObiettivo(r) {
+      if (r.senzaMargine) return "il massimo che puoi mangiare restando al tuo consumo";
+      if (dati.delta === 0 || Math.abs(r.kgSettimana) < 0.03) return "per mantenere il peso attuale";
+      const verso = dati.delta < 0 ? "perdere" : "aumentare";
+      return `per ${verso} circa ${n1.format(Math.abs(r.kgSettimana))} kg a settimana`;
+    }
+
+    function previsione(r) {
+      if (!dati.pesoTarget || Math.abs(r.kgSettimana) < 0.02) return "";
+      const diff = dati.pesoTarget - dati.peso;
+      if (Math.abs(diff) < 0.2) return " Sei già al peso che hai indicato.";
+      if (Math.sign(diff) !== Math.sign(r.kgSettimana)) {
+        return ` Attenzione: hai scritto ${nkg(dati.pesoTarget)} kg come traguardo, ma l'obiettivo scelto va nella direzione opposta.`;
+      }
+      const bmiTarget = dati.pesoTarget / (dati.altezza / 100) ** 2;
+      const sett = Math.ceil(Math.abs(diff / r.kgSettimana));
+      const quando = new Date(Date.now() + sett * 7 * 86400000);
+      const data = quando.toLocaleDateString("it-IT", { day: "numeric", month: "long", year: "numeric" });
+      const sotto = bmiTarget < 18.5
+        ? ` Tieni presente che ${nkg(dati.pesoTarget)} kg per ${dati.altezza} cm sono sotto la soglia del sottopeso: rivedi il traguardo o parlane con un medico.`
+        : "";
+      return ` A questo ritmo arrivi a ${nkg(dati.pesoTarget)} kg in circa ${sett} settimane, intorno al ${data}.${sotto}`;
+    }
+
+    function avviso(r) {
+      if (r.senzaMargine) return `Il tuo consumo totale stimato (${kcal(r.tdee)} kcal) è già sotto le ${kcal(r.minimo)} kcal: da qui non si può ricavare un deficit tagliando il cibo senza rischiare carenze. Il numero mostrato è quello di mantenimento; per perdere peso la strada è muoversi di più, meglio con l'aiuto di un medico o di un dietista.`;
+      if (r.limitato) return `Con questo obiettivo il calcolo scenderebbe sotto le ${kcal(r.minimo)} kcal, il minimo sotto cui è difficile coprire vitamine e minerali: il valore è stato fermato lì, quindi perderai circa ${n1.format(Math.abs(r.kgSettimana))} kg a settimana invece di quelli scelti.`;
+      if (r.sottoBasale) return `Queste calorie sono sotto il tuo metabolismo basale (${kcal(r.bmr)} kcal): va bene per poche settimane, non come abitudine. Se puoi, scegli un obiettivo più lento o aumenta il movimento.`;
+      if (r.macro.pcCarb < 40) return "Con queste calorie i carboidrati scendono sotto il 40%: è accettabile, ma se ti senti senza energia negli allenamenti togli qualche grammo di grassi e rimettilo nei carboidrati.";
+      return "";
+    }
+
+    function mostra() {
+      const stato = leggi();
+      if (stato.errore) {
+        $("outKcal").textContent = "—";
+        $("outSotto").textContent = stato.errore;
+        $("outAvviso").hidden = true;
+        for (const id of ["outBmr", "outTdee", "outBmi", "outPesoForma", "outProtG", "outGrasG", "outCarbG"]) $(id).textContent = "—";
+        for (const id of ["outProtPc", "outGrasPc", "outCarbPc"]) $(id).textContent = "";
+        $("corpoPiano").innerHTML = '<tr><td colspan="4">Completa i dati per vedere il piano.</td></tr>';
+        $("listaPasti").innerHTML = "<li>Completa i dati.</li>";
+        $("riepilogoTesto").textContent = "I tuoi dati";
+        return;
+      }
+      const r = calcola(dati);
+
+      $("outKcal").textContent = kcal(r.obiettivo);
+      $("outSotto").innerHTML = `<span class="obiettivo-nome">${testoObiettivo(r)}</span>.${previsione(r)}`;
+      const av = avviso(r);
+      $("outAvviso").hidden = !av;
+      $("outAvviso").textContent = av;
+
+      $("outBmr").innerHTML = kcal(r.bmr) + " <small>kcal</small>";
+      $("outTdee").innerHTML = kcal(r.tdee) + " <small>kcal</small>";
+      $("outBmi").innerHTML = n1.format(r.bmi) + ` <small>${etichettaBmi(r.bmi)}</small>`;
+      $("outPesoForma").innerHTML = `${Math.round(r.pesoMin)}–${Math.round(r.pesoMax)} <small>kg</small>`;
+
+      const m = r.macro;
+      $("outProtG").textContent = m.prot + " g";
+      $("outGrasG").textContent = m.gras + " g";
+      $("outCarbG").textContent = m.carb + " g";
+      $("outProtPc").textContent = m.pcProt + "%";
+      $("outGrasPc").textContent = m.pcGras + "%";
+      $("outCarbPc").textContent = m.pcCarb + "%";
+      const barre = $("barraMacro").children;
+      barre[0].style.width = m.pcProt + "%";
+      barre[1].style.width = m.pcGras + "%";
+      barre[2].style.width = m.pcCarb + "%";
+      $("notaMacro").textContent = `Proteine a ${n1.format(m.gkgProt)} g per chilo di peso${dati.peso > pesoRiferimento(dati.peso, dati.altezza) + 0.5 ? " di riferimento" : ""}, grassi al ${Math.round(QUOTA_GRASSI * 100)}% delle calorie, carboidrati per differenza. Una porzione da 100 g di petto di pollo dà circa 23 g di proteine, un uovo 6 g, 100 g di legumi cotti 7 g.`;
+
+      // piano Pro
+      const righe = piano(dati, 12);
+      $("corpoPiano").innerHTML = righe.map(x =>
+        `<tr><td>${x.s}ª</td><td>${nkg(x.peso)} kg</td><td>${kcal(x.kcal)}</td><td>${x.prot} g</td></tr>`
+      ).join("");
+      const ultima = righe[righe.length - 1];
+      $("notaPiano").textContent = righe[0].fermo
+        ? "Con l'obiettivo “mantenere” il peso resta dov'è: il piano serve quando c'è un deficit o un surplus."
+        : `Dopo ${righe.length} settimane il peso previsto è ${nkg(ultima.peso)} kg e le calorie sono scese a ${kcal(ultima.kcal)}: ${kcal(Math.abs(righe[0].kcal - ultima.kcal))} in meno rispetto a oggi, proprio perché un corpo più leggero consuma meno.`;
+
+      // scheda pasti Pro
+      $("listaPasti").innerHTML = PASTI.map(([nome, q]) =>
+        `<li>${nome} <span class="macro-pc">${Math.round(q * 100)}%</span> <b>${kcal(r.obiettivo * q)} kcal</b></li>`
+      ).join("");
+
+      $("riepilogoTesto").textContent =
+        `${dati.sesso === "m" ? "Uomo" : "Donna"} · ${dati.eta} anni · ${nkg(dati.peso)} kg · ${dati.altezza} cm`;
+
+      salva();
+    }
+
+    function etichettaBmi(b) {
+      if (b < 18.5) return "sottopeso";
+      if (b < 25) return "normopeso";
+      if (b < 30) return "sovrappeso";
+      return "obesità";
+    }
+
+    function riepilogoTesto() {
+      const r = calcola(dati);
+      const m = r.macro;
+      return [
+        "Le mie calorie al giorno",
+        `${dati.sesso === "m" ? "Uomo" : "Donna"}, ${dati.eta} anni, ${nkg(dati.peso)} kg, ${dati.altezza} cm, ${NOMI_LAF[String(dati.laf)]}`,
+        `Metabolismo basale: ${kcal(r.bmr)} kcal — Consumo totale: ${kcal(r.tdee)} kcal`,
+        `Obiettivo: ${kcal(r.obiettivo)} kcal al giorno (${testoObiettivo(r)})`,
+        `Proteine ${m.prot} g · Grassi ${m.gras} g · Carboidrati ${m.carb} g`,
+        ...PASTI.map(([nome, q]) => `${nome}: ${kcal(r.obiettivo * q)} kcal`),
+        "Calcolato con Calorie al Giorno (formula Mifflin-St Jeor).",
+      ].join("\n");
+    }
+
+    // ---------- persistenza ----------
+    function salva() {
+      try { localStorage.setItem(CHIAVE, JSON.stringify(dati)); } catch (e) { /* modalità privata: si continua senza salvare */ }
+    }
+    function ripristina() {
+      let s = null;
+      try { s = JSON.parse(localStorage.getItem(CHIAVE) || "null"); } catch (e) { s = null; }
+      if (!s || typeof s !== "object") return;
+      Object.assign(dati, {
+        sesso: s.sesso === "m" ? "m" : "f",
+        eta: Number(s.eta) || dati.eta,
+        peso: Number(s.peso) || dati.peso,
+        altezza: Number(s.altezza) || dati.altezza,
+        laf: NOMI_LAF[String(s.laf)] ? Number(s.laf) : dati.laf,
+        delta: Number.isFinite(Number(s.delta)) ? Number(s.delta) : dati.delta,
+        pesoTarget: Number(s.pesoTarget) || null,
+      });
+      $("eta").value = dati.eta;
+      $("peso").value = dati.peso;
+      $("altezza").value = dati.altezza;
+      if (dati.pesoTarget) $("pesoTarget").value = dati.pesoTarget;
+      segna("chipsSesso", dati.sesso);
+      segna("chipsAttivita", String(dati.laf));
+      segna("chipsObiettivo", String(dati.delta));
+    }
+
+    // ---------- interazione ----------
+    function segna(gruppo, valore) {
+      for (const b of $(gruppo).children) b.setAttribute("aria-pressed", String(b.dataset.v === valore));
+    }
+    function gruppo(id, campo, converti) {
+      $(id).addEventListener("click", (e) => {
+        const b = e.target.closest(".chip");
+        if (!b) return;
+        segna(id, b.dataset.v);
+        dati[campo] = converti(b.dataset.v);
+        mostra();
+      });
+    }
+    gruppo("chipsSesso", "sesso", (v) => v);
+    gruppo("chipsAttivita", "laf", Number);
+    gruppo("chipsObiettivo", "delta", Number);
+
+    for (const id of ["eta", "peso", "altezza", "pesoTarget"]) {
+      $(id).addEventListener("input", mostra);
+      $(id).addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); e.target.blur(); chiudi(true); } });
+    }
+    $("datiForm").addEventListener("submit", (e) => e.preventDefault());
+
+    const pannello = $("pannello");
+    function chiudi(vaiAlRisultato) {
+      pannello.classList.add("chiuso");
+      $("riepilogo").setAttribute("aria-expanded", "false");
+      if (vaiAlRisultato) window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+    $("chiudiPannello").addEventListener("click", () => chiudi(true));
+    $("riepilogo").addEventListener("click", () => {
+      pannello.classList.remove("chiuso");
+      $("riepilogo").setAttribute("aria-expanded", "true");
+      $("peso").focus({ preventScroll: true });
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !pannello.classList.contains("chiuso")) chiudi(false);
+    });
+
+    // ---------- funzioni Pro ----------
+    function richiedePro() {
+      if (window.Monetize && !Monetize.isPro()) { Monetize.unlock(); return false; }
+      return true;
+    }
+    $("btnStampa").addEventListener("click", () => { if (richiedePro()) window.print(); });
+    $("btnCopia").addEventListener("click", async () => {
+      if (!richiedePro()) return;
+      const testo = riepilogoTesto();
+      let fatto = false;
+      try {
+        if (navigator.clipboard && window.isSecureContext) { await navigator.clipboard.writeText(testo); fatto = true; }
+      } catch (e) { fatto = false; }
+      if (!fatto) {
+        const ta = document.createElement("textarea");
+        ta.value = testo;
+        ta.setAttribute("readonly", "");
+        ta.style.cssText = "position:fixed;left:-9999px;top:0";
+        document.body.append(ta);
+        ta.select();
+        try { fatto = document.execCommand("copy"); } catch (e) { fatto = false; }
+        ta.remove();
+      }
+      $("esitoCopia").textContent = fatto ? "Riepilogo copiato: incollalo dove vuoi." : "Copia non riuscita: seleziona il testo della scheda a mano.";
+      window.setTimeout(() => { $("esitoCopia").textContent = ""; }, 4000);
+    });
+
+    ripristina();
+    mostra();
+  })();
+  </script>
+</body>
+</html>

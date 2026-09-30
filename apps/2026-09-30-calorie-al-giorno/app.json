@@ -1,0 +1,30 @@
+{
+  "title": "Calorie al Giorno",
+  "slug": "2026-09-30-calorie-al-giorno",
+  "date": "2026-09-30",
+  "description": "Calcola quante calorie mangiare al giorno per mantenere, perdere o aumentare peso, con i grammi di proteine, grassi e carboidrati.",
+  "category": "salute-benessere",
+  "tags": ["calorie", "dieta", "macronutrienti", "peso"],
+  "source": "autonoma",
+  "request": null,
+  "status": "pronta",
+  "version": 1,
+  "changelog": [],
+  "design": { "layout": "split", "palette": "verde-menta", "font": "sans-geometrico" },
+  "business": {
+    "keyword": "quante calorie devo mangiare al giorno",
+    "keywords": ["calcolo fabbisogno calorico giornaliero", "quante calorie per dimagrire", "calcolo calorie giornaliere", "calcolo macronutrienti"],
+    "intent": "Chi ha deciso di mettersi a dieta o a massa e vuole subito il numero di calorie da cui partire, senza leggere un articolo di duemila parole.",
+    "target": "Adulti 20-55 anni che si pesano da telefono, spesso la sera o dopo un allenamento.",
+    "competitors": ["my-personaltrainer.it (articolo lungo, calcolatore sepolto)", "Omni Calculator (traduzione automatica, nessuna guida italiana)", "dica33.it e dilei.it (solo calorie, senza macro)", "app come MyFitnessPal (registrazione obbligatoria)"],
+    "edge": "Risultato in due tocchi con i macro in grammi, il pavimento di sicurezza a 1.200/1.500 kcal, la previsione della data in cui arrivi al peso obiettivo e il ricalcolo settimanale che nessun concorrente fa. Zero account, funziona offline.",
+    "monetization": ["adsense", "affiliate", "pro", "support"],
+    "pro": ["Piano su 12 settimane con ricalcolo", "Scheda con i pasti da stampare"],
+    "affiliate": [
+      { "t": "Bilancia da cucina digitale al grammo", "q": "bilancia da cucina digitale precisione 1 g" },
+      { "t": "Bilancia pesapersone con misura della massa grassa", "q": "bilancia pesapersone impedenziometrica bluetooth" },
+      { "t": "Contenitori per preparare i pasti in anticipo", "q": "contenitori meal prep con scomparti" },
+      { "t": "Shaker con misurino per le proteine", "q": "shaker proteine con misurino graduato" }
+    ]
+  }
+}
