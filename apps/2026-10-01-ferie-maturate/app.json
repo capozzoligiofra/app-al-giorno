@@ -1,0 +1,25 @@
+{
+  "title": "Ferie Maturate",
+  "slug": "2026-10-01-ferie-maturate",
+  "date": "2026-10-01",
+  "description": "Calcola quanti giorni di ferie e quante ore di permessi ROL hai maturato alla data di oggi, mese per mese, e quanti te ne restano.",
+  "category": "calcolatori-convertitori",
+  "tags": ["ferie", "lavoro", "busta paga", "permessi"],
+  "source": "autonoma",
+  "request": null,
+  "status": "pronta",
+  "version": 1,
+  "changelog": [],
+  "design": { "layout": "list-detail", "palette": "azzurro-cielo", "font": "condensed" },
+  "business": {
+    "keyword": "calcolo ferie maturate",
+    "keywords": ["quante ferie ho maturato", "calcolo ferie residue", "ferie maturate e non godute", "calcolo permessi rol maturati", "rateo ferie mensile"],
+    "intent": "Chi guarda la busta paga o sta per cambiare lavoro e vuole sapere adesso quanti giorni di ferie ha accumulato e quanti gliene restano, senza leggere un articolo di CCNL.",
+    "target": "Lavoratori dipendenti 20-60 anni, spesso da telefono, con la busta paga in mano o in procinto di dimettersi.",
+    "competitors": ["money.it e partitaiva.it (articoli lunghi, nessun calcolatore)", "randstad.it e factorial.it (blog di software gestionali, call to action commerciale)", "quifinanza.it (solo spiegazione teorica)", "fogli Excel scaricabili e tabelle di CCNL in PDF"],
+    "edge": "Il conto arriva in due tocchi e mostra il prospetto mese per mese con il motivo di ogni rateo: nessun concorrente spiega perché un mese non matura (regola dei 15 giorni) né gestisce ROL, residuo dell'anno precedente, part-time verticale e mesi di aspettativa. Zero registrazione, funziona offline.",
+    "monetization": ["adsense", "pro", "support"],
+    "pro": ["Più rapporti di lavoro salvati", "Prospetto mese per mese da stampare"],
+    "affiliate": []
+  }
+}

@@ -1,0 +1,790 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b6ea9">
+  <title>Ferie Maturate: calcolo ferie maturate online gratis</title>
+  <meta name="description" content="Calcolo ferie maturate in due tocchi: data di assunzione, giorni da contratto e scopri quanti giorni di ferie e ore di ROL hai accumulato, mese per mese.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-01-ferie-maturate/">
+  <meta property="og:title" content="Ferie Maturate: calcolo ferie maturate online gratis">
+  <meta property="og:description" content="Quanti giorni di ferie hai maturato oggi e quanti te ne restano: prospetto mese per mese, con ROL, residuo dell'anno scorso e part-time.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-01-ferie-maturate/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Ferie Maturate",
+    "description": "Calcolatore gratuito delle ferie maturate e dei permessi ROL: dalla data di assunzione e dai giorni previsti dal contratto calcola il maturato mese per mese e i giorni residui.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-01-ferie-maturate/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Come si calcolano le ferie maturate?", "acceptedAnswer": { "@type": "Answer", "text": "Si divide il numero di giorni di ferie previsti dal contratto per 12 e si moltiplica per i mesi di servizio prestati nell'anno. Ogni mese in cui si è stati in forza almeno 15 giorni vale un rateo intero; sotto i 15 giorni il mese non matura nulla." } },
+      { "@type": "Question", "name": "Quanti giorni di ferie si maturano al mese?", "acceptedAnswer": { "@type": "Answer", "text": "Con 26 giorni annui si maturano 2,17 giorni al mese; con 24 giorni annui 2 giorni al mese; con 22 giorni annui 1,83; con 20 giorni annui 1,67. Il minimo di legge in Italia è di quattro settimane all'anno (D.Lgs. 66/2003)." } },
+      { "@type": "Question", "name": "Le ferie maturano durante la malattia o la maternità?", "acceptedAnswer": { "@type": "Answer", "text": "Sì: malattia, infortunio, maternità obbligatoria, congedo matrimoniale e permessi retribuiti non interrompono la maturazione. Non maturano invece i periodi di aspettativa e di congedo non retribuito, che nel calcolatore puoi escludere mese per mese." } },
+      { "@type": "Question", "name": "Cosa succede alle ferie maturate e non godute se mi licenzio?", "acceptedAnswer": { "@type": "Answer", "text": "Le ferie maturate e non godute vengono pagate in busta paga nell'ultima mensilità, sotto la voce indennità per ferie non godute. Imposta la data di cessazione come giorno di calcolo per sapere quanti giorni ti devono liquidare." } },
+      { "@type": "Question", "name": "Perché le ferie in busta paga sono indicate in ore e non in giorni?", "acceptedAnswer": { "@type": "Answer", "text": "Molti CCNL contabilizzano ferie e permessi in ore: un giorno vale di norma le ore medie giornaliere (8 ore su cinque giorni). Il calcolatore mostra il residuo sia in giorni sia in ore, così puoi confrontarlo con il cedolino." } }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #eef6fc; --surface: #ffffff; --surface-2: #f6fbff; --text: #0f2230; --muted: #577487;
+      --line: #cde0ee; --accent: #0b6ea9; --accent-ink: #ffffff; --accent-soft: #dcecf8;
+      --good: #0f7a52; --warn: #a35a06; --radius: 10px;
+      --font: "Arial Narrow", "Roboto Condensed", "Avenir Next Condensed", "Helvetica Neue Condensed", "Liberation Sans Narrow", Arial, sans-serif;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b1620; --surface: #132330; --surface-2: #172b3a; --text: #e7f1f8; --muted: #93adbf;
+        --line: #26404f; --accent: #5cb8ea; --accent-ink: #06202e; --accent-soft: #1b3545;
+        --good: #5bd3a0; --warn: #e8ab5e;
+        color-scheme: dark;
+      }
+    }
+    * { box-sizing: border-box; }
+    html, body { overflow-x: hidden; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font: 1.0625rem/1.5 var(--font); font-stretch: 92%; -webkit-text-size-adjust: 100%;
+    }
+    .wrap { padding: max(10px, env(safe-area-inset-top)) 14px calc(32px + env(safe-area-inset-bottom)); }
+    a { color: var(--accent); }
+    .back { display: inline-flex; align-items: center; min-height: 44px; font-size: 1rem; color: var(--muted); text-decoration: none; padding: 4px 2px; }
+    h1 { margin: .2rem 0 .25rem; font-size: 1.55rem; line-height: 1.15; letter-spacing: .01em; text-transform: uppercase; }
+    h2 { font-size: 1.15rem; margin: 1.6rem 0 .6rem; text-transform: uppercase; letter-spacing: .04em; }
+    h3 { font-size: 1.05rem; margin: 1.2rem 0 .35rem; }
+    .lead { color: var(--muted); margin: 0 0 .9rem; font-size: 1rem; }
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; margin-bottom: 12px; }
+    .card > h2 { margin-top: 0; font-size: .95rem; }
+
+    /* ---- form ---- */
+    .campo { display: block; margin-bottom: 10px; }
+    .campo > span { display: block; font-size: .95rem; color: var(--muted); letter-spacing: .03em; text-transform: uppercase; margin-bottom: 4px; }
+    .campo .nota { text-transform: none; letter-spacing: 0; font-size: .95rem; }
+    input[type="date"], input[type="text"], input[type="number"], select {
+      width: 100%; font: inherit; font-size: 1.0625rem; min-height: 46px; padding: 8px 10px;
+      border: 1.5px solid var(--line); border-radius: 8px; background: var(--surface-2); color: var(--text);
+    }
+    input:focus-visible, select:focus-visible, button:focus-visible, .mese:focus-visible { outline: 3px solid var(--accent); outline-offset: 1px; }
+    .due { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+    .chip {
+      font: inherit; font-size: 1rem; min-height: 44px; min-width: 52px; padding: 4px 12px; cursor: pointer;
+      border: 1.5px solid var(--line); border-radius: 999px; background: var(--surface-2); color: var(--text);
+    }
+    .chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 700; }
+    .seg { display: flex; gap: 0; border: 1.5px solid var(--line); border-radius: 999px; overflow: hidden; }
+    .seg button { flex: 1; font: inherit; font-size: 1rem; min-height: 44px; border: 0; background: var(--surface-2); color: var(--text); cursor: pointer; padding: 4px 8px; }
+    .seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); font-weight: 700; }
+    details.extra { border-top: 1px solid var(--line); margin-top: 4px; padding-top: 10px; }
+    details.extra > summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; font-size: 1rem; color: var(--accent); letter-spacing: .03em; text-transform: uppercase; }
+    .errore { color: var(--warn); font-size: 1rem; margin: 0 0 10px; }
+    .errore:empty { display: none; }
+
+    /* ---- risultato ---- */
+    .risultato { background: var(--accent); color: var(--accent-ink); border-radius: var(--radius); padding: 16px 14px; margin-bottom: 14px; }
+    .risultato .etichetta { font-size: 1rem; letter-spacing: .06em; text-transform: uppercase; opacity: .9; }
+    .cifra { font-size: 3.2rem; line-height: 1; font-weight: 700; letter-spacing: -.02em; display: block; margin: 2px 0; }
+    .cifra small { font-size: 1.15rem; font-weight: 400; letter-spacing: 0; }
+    .sotto { font-size: 1rem; opacity: .92; margin: 2px 0 0; }
+    .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin-bottom: 14px; }
+    .stat { background: var(--surface); padding: 10px 12px; }
+    .stat dt { font-size: .95rem; color: var(--muted); text-transform: uppercase; letter-spacing: .03em; }
+    .stat dd { margin: 2px 0 0; font-size: 1.4rem; font-weight: 700; }
+    .stat dd span { font-size: .95rem; font-weight: 400; color: var(--muted); }
+    .metodo { font-size: 1rem; color: var(--muted); margin: -4px 0 14px; }
+
+    /* ---- list-detail: i mesi ---- */
+    .ld { display: grid; gap: 12px; }
+    .mesi { list-style: none; margin: 0; padding: 0; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--surface); }
+    .mesi li + li { border-top: 1px solid var(--line); }
+    .mese {
+      width: 100%; min-height: 52px; display: flex; align-items: center; gap: 10px; text-align: left;
+      font: inherit; font-size: 1.0625rem; padding: 8px 12px; border: 0; background: transparent; color: inherit; cursor: pointer;
+    }
+    .mese[aria-pressed="true"] { background: var(--accent-soft); box-shadow: inset 4px 0 0 var(--accent); }
+    .mese .nome { flex: 1; text-transform: uppercase; letter-spacing: .03em; }
+    .mese .val { font-weight: 700; font-variant-numeric: tabular-nums; }
+    .mese .tot { color: var(--muted); font-size: 1rem; min-width: 76px; text-align: right; font-variant-numeric: tabular-nums; }
+    .mese.zero .nome, .mese.zero .val { color: var(--muted); }
+    .dettaglio { border: 1.5px solid var(--accent); border-radius: var(--radius); background: var(--surface); padding: 14px; }
+    .dettaglio h3 { margin: 0 0 .5rem; font-size: 1.15rem; text-transform: uppercase; letter-spacing: .03em; }
+    .dettaglio p { margin: 0 0 .6rem; }
+    .dettaglio .righe { list-style: none; margin: 0 0 .8rem; padding: 0; }
+    .dettaglio .righe li { display: flex; justify-content: space-between; gap: 10px; padding: 5px 0; border-bottom: 1px dotted var(--line); font-size: 1rem; }
+    .dettaglio .righe b { font-variant-numeric: tabular-nums; }
+    .vuoto { color: var(--muted); }
+    button.azione {
+      font: inherit; font-size: 1.0625rem; min-height: 48px; padding: 10px 16px; cursor: pointer; width: 100%;
+      border: 1.5px solid var(--accent); border-radius: 999px; background: transparent; color: var(--accent); font-weight: 700;
+      letter-spacing: .03em; text-transform: uppercase;
+    }
+    button.azione.piena { background: var(--accent); color: var(--accent-ink); }
+    button.azione + button.azione { margin-top: 8px; }
+    .toast {
+      position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(16px + env(safe-area-inset-bottom));
+      background: var(--text); color: var(--bg); padding: 10px 16px; border-radius: 999px; font-size: 1rem; z-index: 50;
+    }
+    .toast[hidden] { display: none; }
+
+    /* ---- pro ---- */
+    section[data-pro] { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; margin-bottom: 14px; min-height: 160px; }
+    section[data-pro] > h2 { margin-top: 0; font-size: .95rem; }
+    .salvati { list-style: none; margin: 10px 0 0; padding: 0; }
+    .salvati li { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-top: 1px solid var(--line); }
+    .salvati .nome { flex: 1; }
+    .salvati button { font: inherit; font-size: 1rem; min-height: 44px; padding: 4px 12px; border: 1.5px solid var(--line); border-radius: 999px; background: var(--surface-2); color: var(--text); cursor: pointer; }
+    .prospetto { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 1rem; }
+    .prospetto th, .prospetto td { text-align: right; padding: 5px 6px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+    .prospetto th:first-child, .prospetto td:first-child { text-align: left; }
+    .prospetto thead th { font-size: .95rem; text-transform: uppercase; letter-spacing: .03em; color: var(--muted); }
+    .prospetto tfoot td { font-weight: 700; border-top: 2px solid var(--line); }
+
+    /* ---- guida ---- */
+    #guida p, #guida li { max-width: 68ch; }
+    #guida ul { padding-left: 1.1rem; }
+    .esempio { background: var(--surface-2); border-left: 4px solid var(--accent); border-radius: 6px; padding: 10px 12px; margin: .8rem 0; }
+    footer { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--line); color: var(--muted); font-size: 1rem; }
+    footer p { margin: .4rem 0; }
+    [data-ad], [data-support] { margin-bottom: 14px; }
+
+    @media (min-width: 700px) {
+      .wrap { max-width: 860px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
+      h1 { font-size: 2.1rem; }
+      .cifra { font-size: 4rem; }
+      .stat-grid { grid-template-columns: repeat(4, 1fr); }
+      .ld { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
+      .dettaglio { position: sticky; top: 14px; }
+      button.azione { width: auto; min-width: 220px; }
+      button.azione + button.azione { margin-top: 0; margin-left: 8px; }
+    }
+
+    @media print {
+      body { background: #fff; color: #000; }
+      .back, form, .risultato, .stat-grid, .metodo, .ld, [data-ad], [data-support], #guida, footer, .toast, .mz-top, #pro-profili, #errore, .no-print { display: none !important; }
+      section[data-pro] { border: 0; padding: 0; }
+      .prospetto th, .prospetto td { border-color: #999; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p style="margin:0"><a class="back" href="../../index.html">← Tutte le app</a></p>
+
+    <h1>Calcolo ferie maturate</h1>
+    <p class="lead">Quanti giorni di ferie hai maturato finora e quanti te ne restano, con il prospetto mese per mese. Anche i permessi ROL. Senza registrarsi.</p>
+
+    <form id="dati" class="card" novalidate>
+      <h2>Il tuo rapporto di lavoro</h2>
+      <div class="due">
+        <label class="campo"><span>Assunto il</span>
+          <input type="date" id="assunzione" autocomplete="off" required>
+        </label>
+        <label class="campo"><span>Calcola al</span>
+          <input type="date" id="riferimento" autocomplete="off">
+        </label>
+      </div>
+      <label class="campo" for="giorni-annui"><span>Giorni di ferie all'anno <span class="nota">(dal contratto)</span></span>
+        <input type="number" id="giorni-annui" inputmode="decimal" min="0" max="60" step="0.5" enterkeyhint="done">
+      </label>
+      <div class="chips" id="chip-giorni" role="group" aria-label="Giorni di ferie annui più comuni"></div>
+      <label class="campo" for="godute" style="margin-top:12px"><span>Ferie già godute quest'anno <span class="nota">(giorni)</span></span>
+        <input type="number" id="godute" inputmode="decimal" placeholder="0" min="0" step="0.5" enterkeyhint="done">
+      </label>
+
+      <details class="extra">
+        <summary>Altre voci: residuo, ROL, part-time</summary>
+        <div style="padding-top:10px">
+          <label class="campo" for="residuo-prec"><span>Ferie residue dell'anno precedente <span class="nota">(giorni)</span></span>
+            <input type="number" id="residuo-prec" inputmode="decimal" placeholder="0" min="0" step="0.5">
+          </label>
+          <div class="due">
+            <label class="campo" for="rol-ore"><span>ROL all'anno (ore)</span>
+              <input type="number" id="rol-ore" inputmode="decimal" placeholder="0" min="0" step="1">
+            </label>
+            <label class="campo" for="rol-godute"><span>ROL godute (ore)</span>
+              <input type="number" id="rol-godute" inputmode="decimal" placeholder="0" min="0" step="0.5">
+            </label>
+          </div>
+          <label class="campo" for="ore-giorno"><span>Ore di lavoro al giorno</span>
+            <input type="number" id="ore-giorno" inputmode="decimal" min="1" max="12" step="0.5">
+          </label>
+          <label class="campo" for="pt-tipo"><span>Orario</span>
+            <select id="pt-tipo">
+              <option value="pieno">Tempo pieno</option>
+              <option value="orizzontale">Part-time orizzontale (tutti i giorni, meno ore)</option>
+              <option value="verticale">Part-time verticale (meno giorni a settimana)</option>
+            </select>
+          </label>
+          <label class="campo" for="pt-giorni" id="campo-pt-giorni" hidden><span>Giorni lavorati a settimana</span>
+            <input type="number" id="pt-giorni" inputmode="decimal" min="1" max="6" step="0.5">
+          </label>
+          <div class="campo"><span>Il mese in corso</span>
+            <div class="seg" id="seg-regime" role="group" aria-label="Come contare il mese in corso">
+              <button type="button" data-regime="15" aria-pressed="true">Conta dai 15 giorni</button>
+              <button type="button" data-regime="completi" aria-pressed="false">Solo mesi completi</button>
+            </div>
+          </div>
+        </div>
+      </details>
+    </form>
+
+    <p class="errore" id="errore" role="status" aria-live="polite"></p>
+
+    <div class="risultato" id="risultato" aria-live="polite">
+      <span class="etichetta">Ferie disponibili oggi</span>
+      <span class="cifra" id="cifra-residuo">—</span>
+      <p class="sotto" id="sotto-residuo">Inserisci la data di assunzione per vedere il conto.</p>
+    </div>
+
+    <dl class="stat-grid">
+      <div class="stat"><dt>Maturate <span id="lab-anno"></span></dt><dd id="st-maturate">—</dd></div>
+      <div class="stat"><dt>Rateo al mese</dt><dd id="st-rateo">—</dd></div>
+      <div class="stat"><dt>Godute</dt><dd id="st-godute">—</dd></div>
+      <div class="stat"><dt>Al 31/12 <span id="lab-anno-2"></span></dt><dd id="st-proiezione">—</dd></div>
+    </dl>
+
+    <div class="card" id="card-rol" hidden>
+      <h2>Permessi ROL</h2>
+      <dl class="stat-grid" style="margin-bottom:0">
+        <div class="stat"><dt>ROL maturate</dt><dd id="st-rol-maturate">—</dd></div>
+        <div class="stat"><dt>ROL residue</dt><dd id="st-rol-residue">—</dd></div>
+      </dl>
+    </div>
+
+    <p class="metodo" id="metodo">Metodo: un dodicesimo delle ferie annue per ogni mese con almeno 15 giorni di servizio (minimo di legge: 4 settimane l'anno, D.Lgs. 66/2003). Il tuo CCNL può essere più generoso: confronta sempre con la busta paga.</p>
+
+    <button type="button" class="azione no-print" id="copia">Copia il riepilogo</button>
+
+    <div data-ad="top"></div>
+
+    <h2 id="titolo-mesi">Mese per mese</h2>
+    <div class="ld">
+      <ol class="mesi" id="lista-mesi" aria-labelledby="titolo-mesi"></ol>
+      <div class="dettaglio" id="dettaglio" aria-live="polite">
+        <h3>Dettaglio del mese</h3>
+        <p class="vuoto">Tocca un mese della lista per vedere quanti giorni di servizio ha, quale rateo ha prodotto e perché.</p>
+      </div>
+    </div>
+
+    <section data-pro="Prospetto mese per mese da stampare" id="pro-prospetto">
+      <h2>Prospetto da stampare</h2>
+      <p class="vuoto" id="prospetto-vuoto">Il prospetto compare quando inserisci la data di assunzione.</p>
+      <div id="prospetto-box" hidden>
+        <p id="prospetto-intestazione" style="margin:0 0 .4rem"></p>
+        <table class="prospetto" id="prospetto">
+          <thead></thead>
+          <tbody></tbody>
+          <tfoot></tfoot>
+        </table>
+        <p style="font-size:1rem;color:var(--muted);margin:.6rem 0 .8rem">Prospetto generato con il calcolatore Ferie Maturate di Un'App al Giorno. Valore indicativo, da confrontare con il cedolino.</p>
+        <button type="button" class="azione piena no-print" id="stampa">Stampa il prospetto</button>
+      </div>
+    </section>
+
+    <section data-pro="Più rapporti di lavoro salvati" id="pro-profili">
+      <h2>Più rapporti di lavoro salvati</h2>
+      <p style="margin:.2rem 0 .6rem">Salva più situazioni (il tuo contratto, quello del partner, il lavoro precedente da liquidare) e passa da una all'altra con un tocco.</p>
+      <label class="campo" for="nome-profilo"><span>Nome di questo rapporto</span>
+        <input type="text" id="nome-profilo" maxlength="40" placeholder="Es. Contratto attuale" autocomplete="off">
+      </label>
+      <button type="button" class="azione" id="salva-profilo">Salva questo rapporto</button>
+      <ul class="salvati" id="lista-profili"></ul>
+    </section>
+
+    <div data-ad="bottom"></div>
+
+    <section id="guida">
+      <h2>Come funziona il calcolo delle ferie maturate</h2>
+      <p>Le ferie non si ricevono il primo gennaio in blocco: si accumulano un pezzo al mese. Il calcolo delle ferie maturate parte sempre dai giorni che il tuo contratto collettivo riconosce in un anno di lavoro a tempo pieno. Quel numero diviso dodici è il <strong>rateo mensile</strong>, cioè la quota che entra nel tuo monte ferie ogni mese che lavori. La legge italiana (D.Lgs. 66/2003) fissa un minimo di quattro settimane all'anno, ma la maggior parte dei CCNL arriva a 26 giorni se il contratto conta le giornate su sei giorni la settimana, oppure a 20-22 giorni se le conta su cinque.</p>
+      <p>Il secondo pezzo è il tempo: quanti mesi hai effettivamente alle spalle in questo anno. Se sei stato assunto a metà anno, il calcolatore parte dal mese di assunzione; se stai per lasciare, imposta la data di cessazione nel campo «Calcola al» e ottieni i giorni che l'azienda ti deve liquidare. Il terzo pezzo sono le sottrazioni: i giorni già goduti e, in positivo, il residuo che ti sei portato dall'anno precedente.</p>
+
+      <h3>La regola dei 15 giorni</h3>
+      <p>È il punto che manda in confusione quasi tutti. Un mese produce il rateo intero solo se sei stato in forza per almeno 15 giorni; se sei stato assunto il 20 marzo, marzo non matura nulla e il conto inizia da aprile. Non esistono mezzi ratei: o il mese conta per intero, o non conta. Nella lista «Mese per mese» ogni riga dice quanti giorni di servizio ha quel mese e, se il rateo è zero, perché. Toccando un mese puoi anche escluderlo a mano: serve per i periodi di aspettativa o di congedo non retribuito, che non fanno maturare ferie. Malattia, infortunio, maternità obbligatoria, congedo matrimoniale e permessi retribuiti invece continuano a far maturare: quei mesi vanno lasciati così come sono.</p>
+
+      <h3>Un esempio con i numeri</h3>
+      <div class="esempio">
+        <p>Assunzione il <strong>12 marzo 2026</strong>, contratto con <strong>26 giorni</strong> di ferie l'anno, calcolo al <strong>30 settembre 2026</strong>, <strong>6 giorni</strong> già presi ad agosto.</p>
+        <p>Rateo mensile: 26 ÷ 12 = <strong>2,17 giorni</strong>. Marzo conta (dal 12 al 31 sono 20 giorni, più di 15), quindi i mesi utili sono sette, da marzo a settembre: 7 × 2,17 = <strong>15,17 giorni maturati</strong>. Togliendo i 6 goduti restano <strong>9,17 giorni</strong>, cioè circa 73 ore su una giornata da 8 ore. Se resti fino al 31 dicembre arrivi a 10 mesi utili, 21,67 giorni maturati e 15,67 residui.</p>
+        <p>Stessa situazione ma assunzione il <strong>20 marzo</strong>: marzo vale 12 giorni, sotto la soglia, quindi non matura. I mesi utili diventano sei e il maturato scende a 13,00 giorni. Otto giorni di differenza nella data di assunzione valgono più di due giorni di ferie.</p>
+      </div>
+
+      <h3>Ferie e ROL non sono la stessa cosa</h3>
+      <p>Molti CCNL prevedono, oltre alle ferie, i permessi per riduzione dell'orario di lavoro (ROL o ex festività), contabilizzati in ore e non in giorni: 32, 64 o 72 ore l'anno sono valori frequenti. Maturano con la stessa logica (un dodicesimo al mese) ma viaggiano su un contatore separato, hanno scadenze proprie e spesso non si possono accumulare per anni. Nel calcolatore li trovi sotto «Altre voci»: indica le ore annue e le ore già usate e ottieni il residuo ROL accanto a quello delle ferie. Se la tua busta paga esprime anche le ferie in ore, imposta le ore di lavoro al giorno e confronta il valore in ore che compare sotto il numero grande.</p>
+
+      <h3>Errori comuni</h3>
+      <ul>
+        <li><strong>Confondere giorni e settimane.</strong> «Quattro settimane» diventano 20 o 24 giorni a seconda di come il contratto conta la settimana. Prendi il numero di giorni scritto sul cedolino, non la tua stima.</li>
+        <li><strong>Dimenticare il residuo dell'anno prima.</strong> È la voce che fa sembrare sbagliato il conto: in busta paga il saldo include i giorni arretrati.</li>
+        <li><strong>Contare il mese in corso come già maturato.</strong> Molte aziende accreditano il rateo solo a fine mese: con il selettore «Solo mesi completi» vedi la versione prudente del conto.</li>
+        <li><strong>Trattare la malattia come un periodo che blocca le ferie.</strong> Non lo è. Lo sono l'aspettativa e i congedi non retribuiti.</li>
+        <li><strong>Pensare che le ferie scadano subito.</strong> Due settimane vanno godute nell'anno di maturazione, il resto di norma entro i 18 mesi successivi: controlla il tuo CCNL prima di perdere giorni.</li>
+      </ul>
+
+      <h3>Domande frequenti</h3>
+      <h3>Quanti giorni di ferie si maturano al mese?</h3>
+      <p>Con 26 giorni annui si maturano 2,17 giorni al mese, con 24 giorni 2 giorni esatti, con 22 giorni 1,83 e con 20 giorni 1,67. Basta dividere per dodici i giorni previsti dal contratto.</p>
+      <h3>Le ferie maturano durante la malattia o la maternità?</h3>
+      <p>Sì. Malattia, infortunio sul lavoro, maternità obbligatoria, congedo matrimoniale e permessi retribuiti non interrompono la maturazione. Si fermano invece aspettativa e congedi non retribuiti: escludi quei mesi dalla lista.</p>
+      <h3>Cosa succede alle ferie maturate e non godute se mi licenzio?</h3>
+      <p>Vengono pagate nell'ultima busta paga come indennità per ferie non godute. Imposta la data di cessazione nel campo «Calcola al»: il numero che ottieni è quello da confrontare con il cedolino finale.</p>
+      <h3>Il part-time cambia i giorni di ferie?</h3>
+      <p>Nel part-time orizzontale (lavori tutti i giorni con orario ridotto) i giorni di ferie restano quelli del tempo pieno, anche se valgono meno ore. Nel part-time verticale (lavori solo alcuni giorni la settimana) si riducono in proporzione: il calcolatore lo fa per te quando indichi quanti giorni la settimana lavori.</p>
+      <h3>I dati che inserisco finiscono su internet?</h3>
+      <p>No. Il calcolo avviene dentro il browser e i valori restano in memoria locale sul tuo dispositivo: la pagina funziona anche senza connessione e nessun dato viene inviato.</p>
+
+      <h2>Strumenti collegati</h2>
+      <p>Se stai pianificando il rientro o l'uscita: <a href="../2026-09-22-giorni-lavorativi/">calcolare i giorni lavorativi tra due date</a> serve per capire quante giornate di ferie consumi davvero in un periodo, mentre <a href="../2026-09-26-preavviso-dimissioni/">il calcolo dei giorni di preavviso per le dimissioni</a> dice fino a quando resti in forza — e quindi fino a quando continui a maturare ferie.</p>
+    </section>
+
+    <div data-support></div>
+
+    <footer>
+      <p>Il risultato è una stima basata sulla regola generale del rateo mensile: il tuo CCNL può prevedere criteri diversi. Fa sempre fede la busta paga.</p>
+      <p>Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a></p>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast" hidden role="status"></div>
+
+  <script src="../../assets/monetize.js"></script>
+  <script>
+    // Modello dati: `dati` = i parametri del rapporto di lavoro (date, giorni annui, ROL, part-time,
+    // mesi esclusi come chiavi "AAAA-M"), salvato in localStorage con la chiave ferie-maturate:v1.
+    // `profili` = elenco di rapporti salvati (funzione Pro). Il calcolo è una funzione pura
+    // `maturazione(dati, fine)` che restituisce una riga per ogni mese del periodo di competenza.
+    (() => {
+      "use strict";
+      const $ = (s) => document.querySelector(s);
+      const CHIAVE = "ferie-maturate:v1";
+      const MESI = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"];
+      const PRESET = [20, 22, 24, 26, 28];
+
+      const oggiISO = () => new Date().toISOString().slice(0, 10);
+      const DEFAULT = () => ({
+        assunzione: "", riferimento: oggiISO(), giorniAnnui: 26, godute: 0, residuoPrec: 0,
+        rolOre: 0, rolGodute: 0, oreGiorno: 8, ptTipo: "pieno", ptGiorni: 3, regime: "15", esclusi: [],
+      });
+
+      let dati = DEFAULT();
+      let profili = [];
+      let meseSelezionato = null;
+
+      // ---------- persistenza ----------
+      function carica() {
+        try {
+          const raw = localStorage.getItem(CHIAVE);
+          if (!raw) return;
+          const salvato = JSON.parse(raw);
+          if (salvato && typeof salvato === "object") {
+            dati = Object.assign(DEFAULT(), salvato.dati || {});
+            if (!Array.isArray(dati.esclusi)) dati.esclusi = [];
+            profili = Array.isArray(salvato.profili) ? salvato.profili : [];
+          }
+        } catch (_) { /* storage non disponibile o dato corrotto */ }
+      }
+      function salva() {
+        try { localStorage.setItem(CHIAVE, JSON.stringify({ dati, profili })); } catch (_) { /* storage pieno o bloccato */ }
+      }
+
+      // ---------- utilità ----------
+      const num = (v, fallback = 0) => {
+        const n = parseFloat(String(v).replace(",", ".").trim());
+        return Number.isFinite(n) ? n : fallback;
+      };
+      const g = (n) => n.toFixed(2).replace(".", ",");
+      const ore = (n) => (Math.round(n * 10) / 10).toFixed(1).replace(".", ",");
+      function dataDa(iso) {
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(iso || "")) return null;
+        const [a, m, d] = iso.split("-").map(Number);
+        const dt = new Date(a, m - 1, d);
+        return dt.getFullYear() === a && dt.getMonth() === m - 1 && dt.getDate() === d ? dt : null;
+      }
+      const giorniTra = (da, a) => Math.round((a - da) / 86400000) + 1;
+      const itDate = (dt) => `${String(dt.getDate()).padStart(2, "0")}/${String(dt.getMonth() + 1).padStart(2, "0")}/${dt.getFullYear()}`;
+
+      // ---------- calcolo ----------
+      function giorniAnnuiEffettivi(d) {
+        if (d.ptTipo === "verticale") {
+          const settimana = Math.min(6, Math.max(1, num(d.ptGiorni, 5)));
+          return d.giorniAnnui * (settimana / 5);
+        }
+        return d.giorniAnnui;
+      }
+      // Righe mensili del periodo di competenza (anno di `fine`, a partire dall'assunzione se successiva).
+      function maturazione(d, fine) {
+        const inizio = dataDa(d.assunzione);
+        if (!inizio || !fine || fine < inizio) return null;
+        const anno = fine.getFullYear();
+        const primoGennaio = new Date(anno, 0, 1);
+        const inizioPeriodo = inizio > primoGennaio ? inizio : primoGennaio;
+        if (inizioPeriodo > fine) return null;
+        const rateo = giorniAnnuiEffettivi(d) / 12;
+        const rateoRol = Math.max(0, num(d.rolOre, 0)) / 12;
+        const righe = [];
+        let cumulo = 0, cumuloRol = 0;
+        for (let m = inizioPeriodo.getMonth(); m <= fine.getMonth(); m++) {
+          const primo = new Date(anno, m, 1), ultimo = new Date(anno, m + 1, 0);
+          const da = inizioPeriodo > primo ? inizioPeriodo : primo;
+          const a = fine < ultimo ? fine : ultimo;
+          const inForza = giorniTra(da, a);
+          const completo = a.getTime() >= ultimo.getTime();
+          const escluso = d.esclusi.includes(`${anno}-${m}`);
+          let motivo = "";
+          let matura = true;
+          if (escluso) { matura = false; motivo = "escluso a mano: periodo non retribuito, non matura"; }
+          else if (inForza < 15) { matura = false; motivo = `solo ${inForza} giorni in forza: sotto i 15 giorni il mese non matura`; }
+          else if (!completo && d.regime === "completi") { matura = false; motivo = "mese non ancora concluso (stai contando solo i mesi completi)"; }
+          else if (!completo) { motivo = `mese in corso, ma hai già superato i 15 giorni: il rateo conta`; }
+          else motivo = "mese intero di servizio: rateo pieno";
+          if (matura) { cumulo += rateo; cumuloRol += rateoRol; }
+          righe.push({ m, anno, inForza, completo, escluso, matura, motivo, ferie: matura ? rateo : 0, rol: matura ? rateoRol : 0, cumulo, cumuloRol, da, a });
+        }
+        return { anno, righe, rateo, rateoRol, maturate: cumulo, rolMaturate: cumuloRol };
+      }
+      function calcola(d) {
+        const fine = dataDa(d.riferimento);
+        const base = maturazione(d, fine);
+        if (!base) return null;
+        const dicembre = new Date(base.anno, 11, 31);
+        const annuale = maturazione(d, dicembre) || base;
+        const residuo = num(d.residuoPrec, 0) + base.maturate - num(d.godute, 0);
+        return {
+          ...base, fine,
+          residuo,
+          proiezione: num(d.residuoPrec, 0) + annuale.maturate - num(d.godute, 0),
+          maturateAnno: annuale.maturate,
+          rolResidue: base.rolMaturate - num(d.rolGodute, 0),
+        };
+      }
+
+      // ---------- form ----------
+      const campi = {
+        assunzione: $("#assunzione"), riferimento: $("#riferimento"), giorniAnnui: $("#giorni-annui"),
+        godute: $("#godute"), residuoPrec: $("#residuo-prec"), rolOre: $("#rol-ore"),
+        rolGodute: $("#rol-godute"), oreGiorno: $("#ore-giorno"), ptTipo: $("#pt-tipo"), ptGiorni: $("#pt-giorni"),
+      };
+      function formDaDati() {
+        campi.assunzione.value = dati.assunzione || "";
+        campi.riferimento.value = dati.riferimento || oggiISO();
+        campi.giorniAnnui.value = dati.giorniAnnui;
+        const opz = (v) => (num(v, 0) ? String(v) : "");
+        campi.godute.value = opz(dati.godute);
+        campi.residuoPrec.value = opz(dati.residuoPrec);
+        campi.rolOre.value = opz(dati.rolOre);
+        campi.rolGodute.value = opz(dati.rolGodute);
+        campi.oreGiorno.value = dati.oreGiorno;
+        campi.ptTipo.value = dati.ptTipo;
+        campi.ptGiorni.value = dati.ptGiorni;
+        sincronizzaUI();
+      }
+      // Solo gli stati derivati (chip, segmenti, campi condizionali): i valori digitati non si toccano,
+      // altrimenti il campo si riscrive sotto le dita mentre si cancella per ribattere un numero.
+      function sincronizzaUI() {
+        $("#campo-pt-giorni").hidden = dati.ptTipo !== "verticale";
+        for (const b of document.querySelectorAll("#seg-regime button")) b.setAttribute("aria-pressed", String(b.dataset.regime === dati.regime));
+        for (const c of document.querySelectorAll("#chip-giorni .chip")) c.setAttribute("aria-pressed", String(num(c.dataset.v) === num(dati.giorniAnnui)));
+      }
+      function datiDaForm() {
+        dati.assunzione = campi.assunzione.value;
+        dati.riferimento = campi.riferimento.value || oggiISO();
+        dati.giorniAnnui = Math.min(60, Math.max(0, num(campi.giorniAnnui.value, 0)));
+        dati.godute = Math.max(0, num(campi.godute.value, 0));
+        dati.residuoPrec = Math.max(0, num(campi.residuoPrec.value, 0));
+        dati.rolOre = Math.max(0, num(campi.rolOre.value, 0));
+        dati.rolGodute = Math.max(0, num(campi.rolGodute.value, 0));
+        dati.oreGiorno = Math.min(12, Math.max(1, num(campi.oreGiorno.value, 8)));
+        dati.ptTipo = campi.ptTipo.value;
+        dati.ptGiorni = Math.min(6, Math.max(1, num(campi.ptGiorni.value, 3)));
+      }
+
+      // ---------- chip giorni annui ----------
+      const boxChip = $("#chip-giorni");
+      for (const v of PRESET) {
+        const b = document.createElement("button");
+        b.type = "button"; b.className = "chip"; b.dataset.v = v; b.textContent = v;
+        b.setAttribute("aria-pressed", "false");
+        b.setAttribute("aria-label", `${v} giorni di ferie all'anno`);
+        b.addEventListener("click", () => { campi.giorniAnnui.value = v; aggiorna(); });
+        boxChip.append(b);
+      }
+
+      // ---------- render ----------
+      function validazione() {
+        const inizio = dataDa(dati.assunzione), fine = dataDa(dati.riferimento);
+        if (!dati.assunzione) return "vuoto";
+        if (!inizio) return "La data di assunzione non è valida.";
+        if (!fine) return "La data di calcolo non è valida.";
+        if (fine < inizio) return "La data di calcolo è precedente all'assunzione: controlla i due campi.";
+        if (!(dati.giorniAnnui > 0)) return "Indica quanti giorni di ferie prevede il tuo contratto in un anno.";
+        return "";
+      }
+
+      function aggiorna() {
+        datiDaForm();
+        sincronizzaUI();
+        salva();
+        const errore = validazione();
+        const res = errore === "" ? calcola(dati) : null;
+        $("#errore").textContent = errore === "vuoto" ? "" : errore;
+
+        const annoLabel = res ? String(res.anno) : "";
+        $("#lab-anno").textContent = annoLabel;
+        $("#lab-anno-2").textContent = annoLabel;
+
+        if (!res) {
+          $("#cifra-residuo").textContent = "—";
+          $("#sotto-residuo").textContent = errore === "vuoto"
+            ? "Inserisci la data di assunzione per vedere il conto."
+            : "Correggi i dati per vedere il conto.";
+          for (const id of ["#st-maturate", "#st-rateo", "#st-godute", "#st-proiezione"]) $(id).textContent = "—";
+          $("#card-rol").hidden = true;
+          $("#lista-mesi").replaceChildren();
+          mostraDettaglio(null);
+          $("#prospetto-vuoto").hidden = false;
+          $("#prospetto-box").hidden = true;
+          return;
+        }
+
+        const oreRes = res.residuo * dati.oreGiorno;
+        $("#cifra-residuo").innerHTML = `${g(res.residuo)} <small>giorni</small>`;
+        $("#sotto-residuo").textContent = res.residuo < 0
+          ? `Hai usato ${g(-res.residuo)} giorni più di quelli maturati: sono ferie anticipate.`
+          : `Pari a circa ${ore(oreRes)} ore, con giornate da ${g(dati.oreGiorno).replace(",00", "")} ore. Calcolo al ${itDate(res.fine)}.`;
+        $("#st-maturate").innerHTML = `${g(res.maturate)} <span>gg</span>`;
+        $("#st-rateo").innerHTML = `${g(res.rateo)} <span>gg</span>`;
+        $("#st-godute").innerHTML = `${g(num(dati.godute, 0))} <span>gg</span>`;
+        $("#st-proiezione").innerHTML = `${g(res.proiezione)} <span>gg</span>`;
+
+        const haRol = dati.rolOre > 0;
+        $("#card-rol").hidden = !haRol;
+        if (haRol) {
+          $("#st-rol-maturate").innerHTML = `${ore(res.rolMaturate)} <span>ore</span>`;
+          $("#st-rol-residue").innerHTML = `${ore(res.rolResidue)} <span>ore</span>`;
+        }
+
+        renderMesi(res);
+        renderProspetto(res);
+      }
+
+      function renderMesi(res) {
+        const ol = $("#lista-mesi");
+        const nodi = res.righe.map((r) => {
+          const li = document.createElement("li");
+          const b = document.createElement("button");
+          b.type = "button"; b.className = "mese" + (r.matura ? "" : " zero");
+          b.setAttribute("aria-pressed", String(meseSelezionato === r.m));
+          const nome = document.createElement("span");
+          nome.className = "nome"; nome.textContent = `${MESI[r.m]} ${r.anno}`;
+          const val = document.createElement("span");
+          val.className = "val"; val.textContent = r.matura ? `+${g(r.ferie)}` : "0,00";
+          const tot = document.createElement("span");
+          tot.className = "tot"; tot.textContent = `tot ${g(r.cumulo)}`;
+          b.append(nome, val, tot);
+          b.addEventListener("click", () => {
+            meseSelezionato = meseSelezionato === r.m ? null : r.m;
+            aggiorna();
+            if (meseSelezionato !== null) $("#dettaglio").scrollIntoView({ block: "nearest", behavior: "smooth" });
+          });
+          li.append(b);
+          return li;
+        });
+        ol.replaceChildren(...nodi);
+        const riga = res.righe.find((r) => r.m === meseSelezionato);
+        mostraDettaglio(riga || null, res);
+      }
+
+      function mostraDettaglio(r, res) {
+        const box = $("#dettaglio");
+        if (!r) {
+          box.replaceChildren(
+            Object.assign(document.createElement("h3"), { textContent: "Dettaglio del mese" }),
+            Object.assign(document.createElement("p"), {
+              className: "vuoto",
+              textContent: "Tocca un mese della lista per vedere quanti giorni di servizio ha, quale rateo ha prodotto e perché.",
+            }));
+          return;
+        }
+        const h3 = document.createElement("h3");
+        h3.textContent = `${MESI[r.m]} ${r.anno}`;
+        const p = document.createElement("p");
+        p.textContent = r.motivo.charAt(0).toUpperCase() + r.motivo.slice(1) + ".";
+        const ul = document.createElement("ul");
+        ul.className = "righe";
+        const righe = [
+          ["In forza dal", `${itDate(r.da)} al ${itDate(r.a)}`],
+          ["Giorni di servizio nel mese", String(r.inForza)],
+          ["Ferie maturate nel mese", `${g(r.ferie)} gg`],
+          ["Totale ferie a fine mese", `${g(r.cumulo)} gg`],
+        ];
+        if (dati.rolOre > 0) righe.push(["ROL maturate nel mese", `${ore(r.rol)} ore`]);
+        for (const [k, v] of righe) {
+          const li = document.createElement("li");
+          const s = document.createElement("span"); s.textContent = k;
+          const b = document.createElement("b"); b.textContent = v;
+          li.append(s, b); ul.append(li);
+        }
+        const btn = document.createElement("button");
+        btn.type = "button"; btn.className = "azione";
+        btn.textContent = r.escluso ? "Rimetti questo mese nel conto" : "Escludi: aspettativa o congedo non retribuito";
+        btn.addEventListener("click", () => {
+          const chiave = `${r.anno}-${r.m}`;
+          dati.esclusi = r.escluso ? dati.esclusi.filter((x) => x !== chiave) : dati.esclusi.concat(chiave);
+          aggiorna();
+          toast(r.escluso ? "Mese rimesso nel conto" : "Mese escluso dalla maturazione");
+        });
+        const chiudi = document.createElement("button");
+        chiudi.type = "button"; chiudi.className = "azione no-print";
+        chiudi.textContent = "Chiudi il dettaglio";
+        chiudi.addEventListener("click", () => { meseSelezionato = null; aggiorna(); });
+        box.replaceChildren(h3, p, ul, btn, chiudi);
+      }
+
+      // ---------- Pro: prospetto ----------
+      function renderProspetto(res) {
+        $("#prospetto-vuoto").hidden = true;
+        $("#prospetto-box").hidden = false;
+        const nome = ($("#nome-profilo").value || "").trim();
+        $("#prospetto-intestazione").textContent =
+          `${nome ? nome + " — " : ""}assunzione ${itDate(dataDa(dati.assunzione))}, ${g(giorniAnnuiEffettivi(dati)).replace(",00", "")} giorni di ferie l'anno, calcolo al ${itDate(res.fine)}.`;
+        const haRol = dati.rolOre > 0;
+        const intestazioni = ["Mese", "Giorni in forza", "Ferie", ...(haRol ? ["ROL (ore)"] : []), "Ferie cumulate"];
+        const trHead = document.createElement("tr");
+        for (const t of intestazioni) { const th = document.createElement("th"); th.textContent = t; trHead.append(th); }
+        $("#prospetto thead").replaceChildren(trHead);
+        const tbody = $("#prospetto tbody");
+        tbody.replaceChildren(...res.righe.map((r) => {
+          const tr = document.createElement("tr");
+          for (const v of [`${MESI[r.m]} ${r.anno}`, String(r.inForza), g(r.ferie), ...(haRol ? [ore(r.rol)] : []), g(r.cumulo)]) {
+            const td = document.createElement("td"); td.textContent = v; tr.append(td);
+          }
+          return tr;
+        }));
+        const tfoot = $("#prospetto tfoot");
+        const righeTot = [
+          ["Maturate nell'anno", g(res.maturate) + " gg"],
+          ["Residuo anno precedente", g(num(dati.residuoPrec, 0)) + " gg"],
+          ["Ferie godute", "−" + g(num(dati.godute, 0)) + " gg"],
+          ["Disponibili al " + itDate(res.fine), g(res.residuo) + " gg"],
+        ];
+        if (haRol) righeTot.push(["ROL residue", ore(res.rolResidue) + " ore"]);
+        tfoot.replaceChildren(...righeTot.map(([k, v]) => {
+          const tr = document.createElement("tr");
+          const td1 = document.createElement("td"); td1.textContent = k; td1.colSpan = intestazioni.length - 1;
+          const td2 = document.createElement("td"); td2.textContent = v;
+          tr.append(td1, td2); return tr;
+        }));
+      }
+      $("#stampa").addEventListener("click", () => {
+        if (!window.Monetize?.isPro()) { window.Monetize?.unlock(); return; }
+        window.print();
+      });
+
+      // ---------- Pro: profili salvati ----------
+      function renderProfili() {
+        const ul = $("#lista-profili");
+        if (!profili.length) {
+          const li = document.createElement("li");
+          li.className = "vuoto"; li.textContent = "Nessun rapporto salvato.";
+          ul.replaceChildren(li);
+          return;
+        }
+        ul.replaceChildren(...profili.map((p) => {
+          const li = document.createElement("li");
+          const nome = document.createElement("span");
+          nome.className = "nome"; nome.textContent = p.nome;
+          const carica = document.createElement("button");
+          carica.type = "button"; carica.textContent = "Carica";
+          carica.addEventListener("click", () => {
+            dati = Object.assign(DEFAULT(), p.dati);
+            if (!Array.isArray(dati.esclusi)) dati.esclusi = [];
+            $("#nome-profilo").value = p.nome;
+            meseSelezionato = null;
+            formDaDati(); aggiorna(); toast(`Caricato: ${p.nome}`);
+          });
+          const elimina = document.createElement("button");
+          elimina.type = "button"; elimina.textContent = "Elimina";
+          elimina.setAttribute("aria-label", `Elimina ${p.nome}`);
+          elimina.addEventListener("click", () => {
+            profili = profili.filter((x) => x.id !== p.id);
+            salva(); renderProfili(); toast("Rapporto eliminato");
+          });
+          li.append(nome, carica, elimina);
+          return li;
+        }));
+      }
+      $("#salva-profilo").addEventListener("click", () => {
+        if (!window.Monetize?.isPro()) { window.Monetize?.unlock(); return; }
+        const nome = ($("#nome-profilo").value || "").trim() || `Rapporto del ${itDate(new Date())}`;
+        const esistente = profili.find((p) => p.nome.toLowerCase() === nome.toLowerCase());
+        if (esistente) esistente.dati = JSON.parse(JSON.stringify(dati));
+        else profili.push({ id: (crypto.randomUUID ? crypto.randomUUID() : String(Date.now())), nome, dati: JSON.parse(JSON.stringify(dati)) });
+        salva(); renderProfili();
+        toast(esistente ? `Aggiornato: ${nome}` : `Salvato: ${nome}`);
+      });
+
+      // ---------- riepilogo ----------
+      $("#copia").addEventListener("click", async () => {
+        const res = validazione() === "" ? calcola(dati) : null;
+        if (!res) { toast("Inserisci prima la data di assunzione"); return; }
+        const righe = [
+          `Ferie maturate al ${itDate(res.fine)}`,
+          `Contratto: ${g(giorniAnnuiEffettivi(dati)).replace(",00", "")} giorni l'anno (rateo ${g(res.rateo)} al mese)`,
+          `Maturate nel ${res.anno}: ${g(res.maturate)} gg`,
+          `Residuo anno precedente: ${g(num(dati.residuoPrec, 0))} gg`,
+          `Godute: ${g(num(dati.godute, 0))} gg`,
+          `Disponibili: ${g(res.residuo)} gg (circa ${ore(res.residuo * dati.oreGiorno)} ore)`,
+        ];
+        if (dati.rolOre > 0) righe.push(`ROL residue: ${ore(res.rolResidue)} ore`);
+        righe.push("", "Mese per mese:", ...res.righe.map((r) => `- ${MESI[r.m]}: ${r.matura ? "+" + g(r.ferie) : "0,00"} (tot ${g(r.cumulo)})`));
+        try { await navigator.clipboard.writeText(righe.join("\n")); toast("Riepilogo copiato"); }
+        catch (_) { toast("Copia non riuscita: seleziona il testo a mano"); }
+      });
+
+      let timerToast = null;
+      function toast(testo) {
+        const t = $("#toast");
+        t.textContent = testo; t.hidden = false;
+        clearTimeout(timerToast);
+        timerToast = setTimeout(() => { t.hidden = true; }, 2600);
+      }
+
+      // ---------- eventi ----------
+      $("#dati").addEventListener("submit", (e) => e.preventDefault());
+      $("#dati").addEventListener("input", aggiorna);
+      $("#dati").addEventListener("change", aggiorna);
+      for (const b of document.querySelectorAll("#seg-regime button")) {
+        b.addEventListener("click", () => { dati.regime = b.dataset.regime; aggiorna(); });
+      }
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && meseSelezionato !== null) { meseSelezionato = null; aggiorna(); }
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" && e.target instanceof HTMLInputElement && e.target.closest("#dati")) {
+          e.preventDefault(); e.target.blur(); aggiorna();
+        }
+      });
+
+      // ---------- avvio ----------
+      carica();
+      formDaDati();
+      renderProfili();
+      aggiorna();
+      window.Monetize?.onPro?.(() => renderProfili());
+    })();
+  </script>
+</body>
+</html>
