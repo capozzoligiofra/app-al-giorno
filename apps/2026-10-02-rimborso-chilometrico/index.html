@@ -1,0 +1,1201 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#5b21d6">
+  <title>Rimborso Chilometrico: calcolo ACI 2026 online gratis</title>
+  <meta name="description" content="Calcolo rimborso chilometrico con il costo per km ACI: registra le trasferte, separa la quota esente da quella tassata, aggiungi pedaggi e parcheggi.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-02-rimborso-chilometrico/">
+  <meta property="og:title" content="Rimborso Chilometrico: calcolo ACI 2026 online gratis">
+  <meta property="og:description" content="Quanto ti spetta per le trasferte con la tua auto: costo/km ACI, pedaggi, parcheggi e la parte esente IRPEF. Senza registrazione.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-02-rimborso-chilometrico/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Rimborso Chilometrico",
+    "description": "Calcolatore gratuito del rimborso chilometrico: inserisci il costo per km ACI del tuo veicolo e le trasferte fatte, ottieni l'importo che ti spetta diviso tra quota esente e quota imponibile.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-02-rimborso-chilometrico/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Come si calcola il rimborso chilometrico?", "acceptedAnswer": { "@type": "Answer", "text": "Si moltiplicano i chilometri realmente percorsi per il costo chilometrico che l'ACI pubblica per quel modello di veicolo. A questa indennità si sommano a parte le spese documentate del viaggio, come pedaggi autostradali e parcheggi, che non sono comprese nel costo/km." } },
+      { "@type": "Question", "name": "Il rimborso chilometrico è tassato?", "acceptedAnswer": { "@type": "Answer", "text": "Per le trasferte fuori dal comune della sede di lavoro, il rimborso calcolato con le tabelle ACI non concorre a formare reddito ed è esente IRPEF (art. 51 comma 5 del TUIR). Per gli spostamenti all'interno dello stesso comune il rimborso è invece imponibile e finisce in busta paga." } },
+      { "@type": "Question", "name": "Dove trovo il costo per km ACI del mio veicolo?", "acceptedAnswer": { "@type": "Answer", "text": "Sul servizio ufficiale costikm.aci.it, cercando marca, modello e allestimento. Le tabelle sono pubblicate in Gazzetta Ufficiale e aggiornate due volte l'anno: due allestimenti dello stesso modello possono avere un costo/km diverso." } },
+      { "@type": "Question", "name": "Il costo/km ACI comprende il carburante?", "acceptedAnswer": { "@type": "Answer", "text": "Sì. Comprende carburante, pneumatici, manutenzione ordinaria e straordinaria, assicurazione RC, bollo e la quota di ammortamento del veicolo, su una percorrenza convenzionale di 15.000 km all'anno. Per questo non si chiede il rimborso del pieno in aggiunta ai chilometri." } },
+      { "@type": "Question", "name": "C'è un limite per l'azienda che paga il rimborso?", "acceptedAnswer": { "@type": "Answer", "text": "Sì: l'art. 95 comma 3 del TUIR consente all'azienda di dedurre il rimborso fino al costo chilometrico di un veicolo di potenza non superiore a 17 cavalli fiscali, che diventano 20 per i veicoli diesel. Oltre quella soglia la parte eccedente resta a carico dell'impresa." } }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f4f2fb;
+      --surface: #ffffff;
+      --surface-2: #f7f5fe;
+      --text: #171526;
+      --muted: #61597f;
+      --line: #ded8f2;
+      --accent: #5b21d6;
+      --accent-soft: #ece5ff;
+      --accent-ink: #ffffff;
+      --ok: #117a53;
+      --warn: #8a4b00;
+      --warn-bg: #fff4e2;
+      --danger: #b22250;
+      --r: 14px;
+      --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        color-scheme: dark;
+        --bg: #100e1a;
+        --surface: #191628;
+        --surface-2: #1f1b33;
+        --text: #eceaf6;
+        --muted: #a39cc0;
+        --line: #2e2846;
+        --accent: #b08cff;
+        --accent-soft: #241d3d;
+        --accent-ink: #150f29;
+        --ok: #4fd3a0;
+        --warn: #ffc470;
+        --warn-bg: #2d2214;
+        --danger: #ff86ab;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-padding-bottom: 96px; }
+    body {
+      margin: 0;
+      font: 16px/1.6 var(--mono);
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+    .wrap {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: max(10px, env(safe-area-inset-top)) 16px calc(96px + env(safe-area-inset-bottom));
+    }
+    a { color: var(--accent); }
+    .back {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 10px 2px;
+      font-size: .85rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: .02em;
+    }
+    .kicker {
+      margin: .4rem 0 .3rem;
+      font-size: .75rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    h1 { margin: 0 0 .5rem; font-size: 1.7rem; line-height: 1.2; font-weight: 700; letter-spacing: -.02em; }
+    h2 { margin: 0 0 .9rem; font-size: 1.05rem; letter-spacing: .01em; }
+    h3 { margin: 1.6rem 0 .4rem; font-size: 1rem; }
+    .lead { margin: 0 0 1.4rem; color: var(--muted); font-size: .95rem; }
+
+    /* card-stack: ogni blocco è una scheda impilata con numero e banda laterale */
+    .card {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      border-radius: var(--r);
+      padding: 1.1rem 1rem 1.15rem;
+      margin: 0 0 14px;
+      box-shadow: 0 2px 0 var(--line), 0 10px 24px -20px #2a1a5e;
+    }
+    .num {
+      position: absolute;
+      top: -10px;
+      right: 12px;
+      min-width: 26px;
+      height: 26px;
+      padding: 0 6px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--accent-ink);
+      font-size: .8rem;
+      font-weight: 700;
+    }
+    .field { margin-bottom: 1rem; }
+    .field:last-child { margin-bottom: 0; }
+    label { display: block; margin-bottom: .35rem; font-size: .88rem; color: var(--muted); }
+    input, select, textarea, button {
+      font-family: inherit;
+      font-size: 16px;
+    }
+    input[type="text"], input[type="number"], input[type="date"], select {
+      width: 100%;
+      min-height: 48px;
+      padding: .6rem .7rem;
+      background: var(--surface-2);
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font-variant-numeric: tabular-nums;
+    }
+    input:focus-visible, select:focus-visible, button:focus-visible, a:focus-visible, summary:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .suffix { position: relative; }
+    .suffix > span {
+      position: absolute;
+      right: .7rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-size: .85rem;
+      pointer-events: none;
+    }
+    .suffix input { padding-right: 3.2rem; }
+
+    button {
+      min-height: 48px;
+      padding: .7rem 1rem;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: var(--surface-2);
+      color: var(--text);
+      cursor: pointer;
+    }
+    button.primary { background: var(--accent); color: var(--accent-ink); border-color: transparent; font-weight: 700; }
+    button.block { width: 100%; }
+    button.small { min-height: 44px; padding: .5rem .8rem; font-size: .85rem; }
+    .btnrow { display: flex; flex-wrap: wrap; gap: 8px; }
+    .btnrow > * { flex: 1 1 auto; }
+
+    /* segmenti e chip */
+    .seg { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .seg label {
+      margin: 0;
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: .4rem;
+      padding: .5rem;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--surface-2);
+      font-size: .82rem;
+      color: var(--text);
+      cursor: pointer;
+      line-height: 1.25;
+    }
+    .seg input { position: absolute; opacity: 0; pointer-events: none; }
+    .seg input:checked + span { font-weight: 700; }
+    .seg label:has(input:checked) { background: var(--accent-soft); border-color: var(--accent); }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      gap: .45rem;
+      padding: .4rem .75rem;
+      margin: 0 8px 8px 0;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface-2);
+      font-size: .85rem;
+      cursor: pointer;
+      text-align: left;
+    }
+    .chip.on { background: var(--accent-soft); border-color: var(--accent); font-weight: 700; }
+    .chip b { font-variant-numeric: tabular-nums; }
+
+    details.ref { margin-top: .6rem; border-top: 1px dashed var(--line); padding-top: .7rem; }
+    details.ref summary { cursor: pointer; font-size: .85rem; color: var(--accent); padding: 6px 0; }
+    .reflist { display: flex; flex-wrap: wrap; margin: .7rem 0 0; padding: 0; list-style: none; }
+    .reflist li { margin: 0; }
+    .src { margin: .5rem 0 0; font-size: .78rem; color: var(--muted); line-height: 1.5; }
+
+    .hint { margin: .45rem 0 0; font-size: .82rem; color: var(--muted); }
+    .err { margin: .5rem 0 0; font-size: .85rem; color: var(--danger); min-height: 1.2em; }
+    .note {
+      margin: .8rem 0 0;
+      padding: .6rem .7rem;
+      border-radius: 10px;
+      background: var(--warn-bg);
+      color: var(--warn);
+      font-size: .82rem;
+      line-height: 1.5;
+    }
+
+    /* pila delle trasferte */
+    .stack { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: 10px; }
+    .trip {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface-2);
+      padding: .7rem .8rem;
+    }
+    .trip-top { display: flex; justify-content: space-between; align-items: baseline; gap: .5rem; }
+    .trip-date { font-size: .78rem; color: var(--muted); letter-spacing: .03em; }
+    .trip-sum { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .trip-name { margin: .15rem 0 .35rem; font-size: .95rem; word-break: break-word; }
+    .trip-meta { display: flex; flex-wrap: wrap; gap: .3rem .5rem; font-size: .78rem; color: var(--muted); }
+    .tag { padding: .1rem .45rem; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+    .tag.tax { background: var(--warn-bg); color: var(--warn); }
+    .trip-act { margin-top: .5rem; display: flex; gap: 8px; }
+    .trip-act button { min-height: 44px; font-size: .8rem; padding: .4rem .7rem; }
+    .empty { margin: 1rem 0 0; padding: 1rem; border: 1px dashed var(--line); border-radius: 12px; color: var(--muted); font-size: .88rem; text-align: center; }
+
+    /* totali */
+    .big { font-size: 2.3rem; font-weight: 700; letter-spacing: -.03em; font-variant-numeric: tabular-nums; line-height: 1.1; }
+    .big small { display: block; font-size: .8rem; font-weight: 400; color: var(--muted); letter-spacing: 0; margin-top: .2rem; }
+    .rows { margin: 1rem 0 0; padding: 0; display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+    .rows > div { display: flex; justify-content: space-between; gap: .6rem; padding: .6rem .7rem; background: var(--surface); font-size: .88rem; }
+    .rows dt { margin: 0; color: var(--muted); }
+    .rows dd { margin: 0; font-variant-numeric: tabular-nums; font-weight: 700; white-space: nowrap; }
+    .rows > div.sub dd { font-weight: 400; }
+    .rows > div.sub dt { padding-left: .9rem; }
+    .ok { color: var(--ok); }
+    .tax { color: var(--warn); }
+
+    /* barra fissa col totale, raggiungibile col pollice */
+    .bar {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      z-index: 20;
+      display: none;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px calc(8px + env(safe-area-inset-bottom));
+      background: var(--surface);
+      border-top: 1px solid var(--line);
+    }
+    .bar.on { display: flex; }
+    .bar-info { flex: 1 1 auto; min-width: 0; }
+    .bar-info b { display: block; font-size: 1.15rem; font-variant-numeric: tabular-nums; }
+    .bar-info span { font-size: .75rem; color: var(--muted); }
+    .bar button { min-height: 46px; }
+
+    [data-ad], [data-support] { margin: 14px 0; }
+
+    #guida { margin-top: 2rem; }
+    #guida h2 { font-size: 1.25rem; margin-top: 2rem; }
+    #guida p, #guida li { font-size: .95rem; line-height: 1.75; }
+    #guida ul { padding-left: 1.2rem; }
+    #guida table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+    #guida td, #guida th { border-bottom: 1px solid var(--line); padding: .45rem .3rem; text-align: left; }
+    #guida td + td, #guida th + th { text-align: right; font-variant-numeric: tabular-nums; }
+    .faq { margin-top: 1rem; }
+    .faq h3 { margin-bottom: .2rem; }
+    footer { margin-top: 2.2rem; padding-top: 1.2rem; border-top: 1px solid var(--line); font-size: .82rem; color: var(--muted); line-height: 1.7; }
+    footer a { color: var(--accent); }
+    .toast {
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%) translateY(14px);
+      bottom: calc(76px + env(safe-area-inset-bottom));
+      opacity: 0;
+      visibility: hidden;
+      z-index: 30;
+      max-width: calc(100% - 32px);
+      padding: .6rem .9rem;
+      border-radius: 999px;
+      background: var(--text);
+      color: var(--bg);
+      font-size: .85rem;
+      transition: transform .22s ease, opacity .22s ease, visibility .22s;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+    .toast.on { transform: translateX(-50%) translateY(0); opacity: 1; visibility: visible; }
+    .toast button { min-height: 36px; padding: .2rem .6rem; font-size: .8rem; background: transparent; color: inherit; border-color: currentColor; }
+
+    .solo-stampa { display: none; }
+
+    @media (min-width: 700px) {
+      .wrap { padding-bottom: calc(40px + env(safe-area-inset-bottom)); }
+      h1 { font-size: 2.1rem; }
+      .card { padding: 1.3rem 1.3rem 1.4rem; }
+      .big { font-size: 2.8rem; }
+      .seg { grid-template-columns: 1fr 1fr 1fr; }
+      .bar { display: none !important; }
+      .toast { bottom: 24px; }
+    }
+
+    @media print {
+      .wrap, .bar, .toast { display: none !important; }
+      .solo-stampa { display: block !important; }
+      body { background: #fff; color: #000; font-size: 11pt; }
+      .solo-stampa table { width: 100%; border-collapse: collapse; }
+      .solo-stampa th, .solo-stampa td { border: 1px solid #999; padding: 4px 6px; font-size: 9.5pt; }
+      .solo-stampa td + td, .solo-stampa th + th { text-align: right; }
+      .solo-stampa h2 { font-size: 14pt; margin: 0 0 .2cm; }
+      .solo-stampa .firme { margin-top: 1.4cm; display: flex; justify-content: space-between; }
+      .solo-stampa .firme div { width: 45%; border-top: 1px solid #000; padding-top: 4px; font-size: 9pt; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../../index.html">← Tutte le app</a>
+
+  <header>
+    <p class="kicker">Trasferte · nota spese</p>
+    <h1>Calcolo rimborso chilometrico</h1>
+    <p class="lead">Inserisci il costo per km ACI del tuo veicolo e le trasferte che hai fatto: ottieni l'importo che ti spetta, con la quota esente e quella tassata già separate. Tutto resta sul tuo telefono.</p>
+  </header>
+
+  <section class="card" aria-labelledby="h-veicolo">
+    <span class="num">1</span>
+    <h2 id="h-veicolo">Il tuo veicolo</h2>
+    <div class="field">
+      <label for="euroKm">Costo chilometrico ACI</label>
+      <div class="suffix">
+        <input id="euroKm" type="text" inputmode="decimal" enterkeyhint="done" autocomplete="off" placeholder="0,3674" aria-describedby="euroKmHint">
+        <span>€/km</span>
+      </div>
+      <p class="hint" id="euroKmHint">Il valore esatto del tuo modello si trova su <a href="https://costikm.aci.it" target="_blank" rel="noopener nofollow">costikm.aci.it</a>. Comprende già carburante, bollo, assicurazione e usura.</p>
+      <details class="ref">
+        <summary>Non lo so: mostrami dei valori di riferimento</summary>
+        <ul class="reflist" id="riferimenti"></ul>
+        <p class="src">Valori tratti dalle tabelle ACI 2026 (Gazzetta Ufficiale n. 297 del 23 dicembre 2025), percorrenza convenzionale 15.000 km/anno. Servono solo per farsi un'idea: allestimenti diversi dello stesso modello hanno costi diversi, quindi per un rimborso da mettere in nota spese usa il valore ufficiale del tuo veicolo.</p>
+      </details>
+    </div>
+    <div class="field duo">
+      <div>
+        <label for="alim">Alimentazione</label>
+        <select id="alim">
+          <option value="benzina">Benzina</option>
+          <option value="diesel">Diesel</option>
+          <option value="ibrida-b">Ibrida benzina</option>
+          <option value="ibrida-d">Ibrida diesel</option>
+          <option value="gpl">GPL o metano</option>
+          <option value="elettrica">Elettrica</option>
+          <option value="moto">Moto o scooter</option>
+        </select>
+      </div>
+      <div>
+        <label for="cv">Cavalli fiscali</label>
+        <input id="cv" type="text" inputmode="numeric" autocomplete="off" placeholder="es. 16">
+      </div>
+    </div>
+    <div class="field">
+      <label for="nomeVeicolo">Veicolo (per la nota spese)</label>
+      <input id="nomeVeicolo" type="text" autocomplete="off" placeholder="es. Fiat Panda 1.2 — AB123CD">
+    </div>
+    <p class="note" id="cvNota" hidden></p>
+  </section>
+
+  <section class="card" aria-labelledby="h-trasferte">
+    <span class="num">2</span>
+    <h2 id="h-trasferte">Le trasferte</h2>
+    <form id="form" novalidate>
+      <div class="field duo">
+        <div>
+          <label for="data">Data</label>
+          <input id="data" type="date" required>
+        </div>
+        <div>
+          <label for="km">Chilometri</label>
+          <input id="km" type="text" inputmode="decimal" autocomplete="off" placeholder="es. 84" required>
+        </div>
+      </div>
+      <div class="field">
+        <label for="descr">Destinazione o motivo</label>
+        <input id="descr" type="text" autocomplete="off" enterkeyhint="done" placeholder="es. Cliente Rossi, Bologna">
+      </div>
+      <div class="field">
+        <label id="l-ar">Percorso</label>
+        <div class="seg" role="group" aria-labelledby="l-ar">
+          <label><input type="radio" name="ar" value="1"><span>Solo andata</span></label>
+          <label><input type="radio" name="ar" value="2" checked><span>Andata e ritorno</span></label>
+        </div>
+      </div>
+      <div class="field">
+        <label id="l-fc">Dove</label>
+        <div class="seg" role="group" aria-labelledby="l-fc">
+          <label><input type="radio" name="fc" value="1" checked><span>Fuori comune (esente)</span></label>
+          <label><input type="radio" name="fc" value="0"><span>Stesso comune (tassato)</span></label>
+        </div>
+      </div>
+      <div class="field duo">
+        <div>
+          <label for="pedaggi">Pedaggi</label>
+          <div class="suffix"><input id="pedaggi" type="text" inputmode="decimal" autocomplete="off" placeholder="0,00"><span>€</span></div>
+        </div>
+        <div>
+          <label for="parcheggi">Parcheggi</label>
+          <div class="suffix"><input id="parcheggi" type="text" inputmode="decimal" autocomplete="off" placeholder="0,00"><span>€</span></div>
+        </div>
+      </div>
+      <p class="err" id="errore" role="alert"></p>
+      <button class="primary block" type="submit" id="btnAdd">Aggiungi trasferta</button>
+    </form>
+    <ul class="stack" id="lista"></ul>
+    <p class="empty" id="vuoto">Nessuna trasferta inserita. Aggiungi la prima qui sopra: puoi registrarne quante vuoi e restano salvate su questo dispositivo.</p>
+  </section>
+
+  <section class="card" aria-labelledby="h-tot">
+    <span class="num">3</span>
+    <h2 id="h-tot">Quanto ti spetta</h2>
+    <div aria-live="polite">
+      <p class="big" id="totale">— <small id="totaleNota">Inserisci il costo/km e almeno una trasferta.</small></p>
+      <dl class="rows" id="dettaglio" hidden>
+        <div><dt>Indennità chilometrica</dt><dd id="rIndennita">—</dd></div>
+        <div class="sub"><dt id="rKmLabel">chilometri percorsi</dt><dd id="rKm">—</dd></div>
+        <div><dt>Pedaggi e parcheggi</dt><dd id="rSpese">—</dd></div>
+        <div><dt class="ok">Esente IRPEF (fuori comune)</dt><dd class="ok" id="rEsente">—</dd></div>
+        <div><dt class="tax">Imponibile (stesso comune)</dt><dd class="tax" id="rImponibile">—</dd></div>
+      </dl>
+    </div>
+    <div class="btnrow" style="margin-top:1rem">
+      <button type="button" id="btnCopia">Copia riepilogo</button>
+      <button type="button" id="btnReset">Svuota elenco</button>
+    </div>
+    <p class="hint">La quota esente è quella che l'azienda può rimborsarti senza che finisca nel reddito, perché calcolata con le tabelle ACI per trasferte fuori dal comune della sede di lavoro (art. 51 comma 5 del TUIR).</p>
+  </section>
+
+  <div data-ad="top"></div>
+
+  <section class="card" data-pro="Nota spese da stampare" aria-labelledby="h-pro1">
+    <span class="num">PRO</span>
+    <h2 id="h-pro1">Nota spese da stampare</h2>
+    <p class="hint" style="margin-top:0">Genera il prospetto mensile da consegnare all'amministrazione: tabella delle trasferte, totali divisi tra esente e imponibile, spazio per le firme. Oppure scarica il CSV da aprire in Excel.</p>
+    <div class="field" style="margin-top:1rem">
+      <label for="mese">Periodo</label>
+      <select id="mese"><option value="">Tutte le trasferte</option></select>
+    </div>
+    <div class="btnrow">
+      <button type="button" class="primary" id="btnStampa">Stampa o salva in PDF</button>
+      <button type="button" id="btnCsv">Scarica CSV</button>
+    </div>
+  </section>
+
+  <section class="card" data-pro="Più veicoli salvati" aria-labelledby="h-pro2">
+    <span class="num">PRO</span>
+    <h2 id="h-pro2">Più veicoli salvati</h2>
+    <p class="hint" style="margin-top:0">Se usi due mezzi (l'auto di famiglia e lo scooter, o la tua auto e quella del coniuge) salva ogni profilo con il suo costo/km e passa dall'uno all'altro con un tocco.</p>
+    <div id="garage" style="margin-top:1rem"></div>
+    <button type="button" class="block" id="btnSalvaVeicolo">Salva il veicolo attuale nel garage</button>
+  </section>
+
+  <section id="guida">
+    <h2>Come funziona il calcolo del rimborso chilometrico</h2>
+    <p>Quando usi la tua auto per lavoro, l'azienda non ti rimborsa il pieno di benzina: ti paga un'indennità che copre <em>tutto</em> quello che quel viaggio è costato al veicolo. La formula è una moltiplicazione sola:</p>
+    <p><strong>chilometri percorsi × costo chilometrico ACI = indennità</strong></p>
+    <p>Il costo chilometrico lo pubblica l'Automobile Club d'Italia per ogni modello e allestimento, due volte l'anno, in Gazzetta Ufficiale. Non è il prezzo del carburante: dentro ci sono anche pneumatici, manutenzione ordinaria e straordinaria, assicurazione RC, bollo e la quota di svalutazione del mezzo, tutto spalmato su una percorrenza convenzionale di 15.000 km all'anno. Per questo non puoi chiedere i chilometri <em>e</em> lo scontrino del distributore: sarebbe pagato due volte.</p>
+    <p>Restano fuori dal costo/km solo le spese che non dipendono dall'uso dell'auto in sé, e che quindi vanno aggiunte a parte con la ricevuta: <strong>pedaggi autostradali e parcheggi</strong>. Questo strumento le tiene su una riga separata proprio per quel motivo.</p>
+
+    <h2>Esempio con numeri veri</h2>
+    <p>Marco è dipendente a Modena e va da un cliente a Bologna: 42 km di strada, andata e ritorno, quindi 84 km. Guida una Fiat Panda 1.2 da 69 CV, il cui costo chilometrico nelle tabelle ACI 2026 è di 0,3674 €/km. Al rientro ha 9,70 € di pedaggio e 3,50 € di parcheggio, con le ricevute.</p>
+    <ul>
+      <li>Indennità chilometrica: 84 × 0,3674 = <strong>30,86 €</strong></li>
+      <li>Pedaggi e parcheggi documentati: 9,70 + 3,50 = <strong>13,20 €</strong></li>
+      <li>Totale da chiedere in nota spese: <strong>44,06 €</strong></li>
+    </ul>
+    <p>Bologna non è il comune della sede di lavoro, quindi l'intero importo è esente IRPEF: Marco lo incassa pulito e all'azienda non costa contributi. Se invece lo stesso giorno avesse fatto 12 km per andare in un ufficio dentro Modena, quei 4,41 € sarebbero stati reddito imponibile, tassati in busta paga come uno stipendio.</p>
+
+    <h2>Quando è esente e quando è tassato</h2>
+    <p>È la parte che quasi nessun calcolatore spiega, ed è quella che fa litigare con l'amministrazione. L'art. 51 comma 5 del TUIR distingue due casi:</p>
+    <ul>
+      <li><strong>Trasferta fuori dal comune della sede di lavoro</strong>: il rimborso calcolato con le tabelle ACI non concorre a formare reddito. Niente IRPEF per te, niente contributi per l'azienda.</li>
+      <li><strong>Spostamento all'interno dello stesso comune</strong>: il fisco presume un uso ordinario del mezzo, quindi il rimborso è imponibile e va in busta paga. Fanno eccezione solo le spese di trasporto documentate dal vettore, come il biglietto del bus o la ricevuta del taxi.</li>
+    </ul>
+    <p>Per il datore di lavoro c'è un secondo limite, stavolta sulla deducibilità: l'art. 95 comma 3 del TUIR consente di dedurre il rimborso fino al costo chilometrico di un veicolo di potenza non superiore a <strong>17 cavalli fiscali</strong>, che diventano <strong>20 per i diesel</strong>. Se vai in trasferta con un'auto più potente il rimborso ti spetta comunque, ma l'eccedenza l'azienda non la scarica: è il motivo per cui molte aziende mettono un tetto in regolamento. Il calcolatore ti avvisa se superi la soglia.</p>
+
+    <h2>Errori che costano soldi (o un rimborso respinto)</h2>
+    <ul>
+      <li><strong>Usare la tabella dell'anno sbagliato.</strong> Le tabelle valgono per i viaggi fatti nell'anno di riferimento, non per l'anno in cui chiedi il rimborso: una trasferta di dicembre si calcola con i valori di quell'anno.</li>
+      <li><strong>Prendere il costo/km di un allestimento diverso.</strong> Tra due versioni dello stesso modello possono passare 5 centesimi al km: su 1.200 km all'anno sono 60 €.</li>
+      <li><strong>Sommare i rifornimenti all'indennità.</strong> Il carburante è già dentro il costo/km: allegare anche gli scontrini è il modo più rapido per farsi respingere la nota spese.</li>
+      <li><strong>Contare i chilometri da casa.</strong> Di regola si parte dalla sede di lavoro, salvo accordo diverso scritto nel regolamento aziendale o nella lettera di trasferta.</li>
+      <li><strong>Non scrivere il motivo del viaggio.</strong> Data, destinazione, chilometri e ragione della trasferta sono quello che rende la nota spese documentata e difendibile in caso di controllo.</li>
+    </ul>
+
+    <h2>Valori di riferimento ACI 2026</h2>
+    <p>Qualche costo chilometrico per farsi un'idea dell'ordine di grandezza, prima di cercare il proprio su costikm.aci.it:</p>
+    <table>
+      <thead><tr><th>Veicolo</th><th>€/km</th></tr></thead>
+      <tbody>
+        <tr><td>Dacia Sandero 1.0 SCe 75 CV benzina</td><td>0,3283</td></tr>
+        <tr><td>Fiat Panda 1.2 69 CV benzina</td><td>0,3674</td></tr>
+        <tr><td>Toyota Yaris 1.5 ibrida</td><td>0,4289</td></tr>
+        <tr><td>Jeep Renegade 1.6 MJT 120 CV diesel</td><td>0,4497</td></tr>
+        <tr><td>Volkswagen Golf 2.0 TDI diesel</td><td>0,4672</td></tr>
+      </tbody>
+    </table>
+
+    <div class="faq">
+      <h2>Domande frequenti</h2>
+      <h3>Vale anche per le partite IVA e gli amministratori?</h3>
+      <p>Sì, il meccanismo del costo/km ACI è lo stesso. Cambia il lato fiscale: per il professionista il rimborso ricevuto dal cliente segue le regole della sua contabilità, mentre la società che rimborsa l'amministratore applica gli stessi limiti di deducibilità visti sopra.</p>
+      <h3>Ogni quanto cambiano le tabelle ACI?</h3>
+      <p>Sono aggiornate due volte l'anno e pubblicate in Gazzetta Ufficiale. Conviene ricontrollare il proprio valore a inizio anno, perché le variazioni dei prezzi dei carburanti e dei costi assicurativi lo spostano di qualche centesimo.</p>
+      <h3>Posso usarlo per il fringe benefit dell'auto aziendale?</h3>
+      <p>No: il fringe benefit è un calcolo diverso, basato su una percorrenza convenzionale di 15.000 km e su una percentuale che dipende dalle emissioni del veicolo. Qui si calcola il rimborso per l'uso del <em>tuo</em> mezzo in trasferta.</p>
+      <h3>I dati che inserisco finiscono su internet?</h3>
+      <p>No. Il calcolo avviene nel browser e le trasferte restano in memoria locale sul dispositivo: la pagina funziona anche senza connessione e nessun dato viene inviato da nessuna parte.</p>
+      <h3>Come arrotondo gli importi?</h3>
+      <p>Si tiene il costo/km con tutti i decimali pubblicati dall'ACI e si arrotonda solo il risultato finale ai centesimi. Arrotondare prima, su decine di trasferte, porta a differenze di qualche euro con il conteggio dell'amministrazione.</p>
+    </div>
+  </section>
+
+  <div data-ad="bottom"></div>
+  <div data-support></div>
+
+  <footer>
+    <p>Altri strumenti utili: <a href="../2026-09-19-costo-viaggio-auto/">calcolare il costo di un viaggio in auto</a> se vuoi la spesa reale di carburante e pedaggi, e <a href="../2026-09-22-giorni-lavorativi/">contare i giorni lavorativi tra due date</a> per i conteggi delle trasferte.</p>
+    <p>Strumento informativo, non sostituisce il parere del tuo consulente del lavoro. Riferimenti: art. 51 comma 5 e art. 95 comma 3 del TUIR; tabelle ACI pubblicate in Gazzetta Ufficiale.</p>
+    <p>Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a></p>
+  </footer>
+</div>
+
+<div class="bar" id="bar">
+  <div class="bar-info"><b id="barTot">—</b><span id="barSub">0 trasferte</span></div>
+  <button type="button" id="barCopia">Copia</button>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><span id="toastMsg"></span></div>
+
+<div class="solo-stampa" id="stampa"></div>
+
+<script src="../../assets/monetize.js"></script>
+<script>
+/* Modello dati (localStorage, chiave "rimborso-chilometrico:v1"):
+   { veicolo: {nome, euroKm, alim, cv}, garage: [veicolo...],
+     trasferte: [{id, data:"YYYY-MM-DD", descr, km, ar:1|2, pedaggi, parcheggi, fc:true|false}] }
+   Nulla lascia il dispositivo: tutti i calcoli sono locali. */
+(function () {
+  "use strict";
+  var CHIAVE = "rimborso-chilometrico:v1";
+
+  // Riferimenti reali dalle tabelle ACI 2026 (per aiutare chi non conosce il proprio costo/km).
+  var RIFERIMENTI = [
+    { n: "Dacia Sandero 1.0 SCe",   v: 0.3283, a: "benzina" },
+    { n: "Fiat Panda 1.2 69 CV",    v: 0.3674, a: "benzina" },
+    { n: "Toyota Yaris 1.0 72 CV",  v: 0.3777, a: "benzina" },
+    { n: "Fiat 500 1.2 69 CV",      v: 0.3782, a: "benzina" },
+    { n: "Toyota Yaris 1.5 ibrida", v: 0.4289, a: "ibrida-b" },
+    { n: "Jeep Renegade 1.6 MJT",   v: 0.4497, a: "diesel" },
+    { n: "VW Golf 2.0 TDI",         v: 0.4672, a: "diesel" },
+    { n: "Tesla Model 3 Long Range",v: 0.3198, a: "elettrica" }
+  ];
+  var LIMITE_CV = { benzina: 17, gpl: 17, "ibrida-b": 17, diesel: 20, "ibrida-d": 20 };
+  var ALIM_NOME = {
+    benzina: "benzina", diesel: "diesel", "ibrida-b": "ibrida benzina",
+    "ibrida-d": "ibrida diesel", gpl: "GPL o metano", elettrica: "elettrica", moto: "moto o scooter"
+  };
+
+  var $ = function (id) { return document.getElementById(id); };
+  var stato = { veicolo: { nome: "", euroKm: "", alim: "benzina", cv: "" }, garage: [], trasferte: [] };
+
+  // ---------- numeri ----------
+  // Accetta "0,3674" e "0.3674"; se ci sono entrambi i separatori il punto è delle migliaia.
+  function leggiNum(testo) {
+    var s = String(testo == null ? "" : testo).trim().replace(/\s|€/g, "");
+    if (!s) return NaN;
+    if (s.indexOf(",") > -1 && s.indexOf(".") > -1) s = s.replace(/\./g, "").replace(",", ".");
+    else if (s.indexOf(",") > -1) s = s.replace(",", ".");
+    var n = parseFloat(s);
+    return isFinite(n) ? n : NaN;
+  }
+  function eur(n) {
+    return n.toLocaleString("it-IT", { style: "currency", currency: "EUR", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+  function num(n, d) {
+    return n.toLocaleString("it-IT", { minimumFractionDigits: d || 0, maximumFractionDigits: d === undefined ? 2 : d });
+  }
+  function dataIt(iso) {
+    var p = String(iso).split("-");
+    return p.length === 3 ? p[2] + "/" + p[1] + "/" + p[0] : iso;
+  }
+  function meseIt(ym) {
+    var mesi = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"];
+    var p = ym.split("-");
+    return (mesi[parseInt(p[1], 10) - 1] || p[1]) + " " + p[0];
+  }
+  function oggiIso() {
+    var d = new Date();
+    return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  }
+
+  // ---------- persistenza ----------
+  function carica() {
+    try {
+      var raw = localStorage.getItem(CHIAVE);
+      if (!raw) return;
+      var d = JSON.parse(raw);
+      if (d && typeof d === "object") {
+        if (d.veicolo && typeof d.veicolo === "object") {
+          stato.veicolo = {
+            nome: String(d.veicolo.nome || ""),
+            euroKm: String(d.veicolo.euroKm || ""),
+            alim: ALIM_NOME[d.veicolo.alim] ? d.veicolo.alim : "benzina",
+            cv: String(d.veicolo.cv || "")
+          };
+        }
+        if (Array.isArray(d.garage)) stato.garage = d.garage.slice(0, 12);
+        if (Array.isArray(d.trasferte)) stato.trasferte = d.trasferte.filter(function (t) { return t && t.data; });
+      }
+    } catch (e) { /* storage pieno, disabilitato o dati di una versione vecchia: si parte da zero */ }
+  }
+  function salva() {
+    try { localStorage.setItem(CHIAVE, JSON.stringify(stato)); } catch (e) { /* in navigazione privata si lavora senza salvare */ }
+  }
+
+  // ---------- calcolo ----------
+  function calcola(trasferte) {
+    var ek = leggiNum(stato.veicolo.euroKm);
+    var valido = isFinite(ek) && ek > 0;
+    var r = { euroKm: valido ? ek : 0, valido: valido, km: 0, indennita: 0, spese: 0, esente: 0, imponibile: 0, totale: 0, n: trasferte.length };
+    for (var i = 0; i < trasferte.length; i++) {
+      var t = trasferte[i];
+      var km = (Number(t.km) || 0) * (t.ar === 2 ? 2 : 1);
+      var ind = valido ? km * ek : 0;
+      var sp = (Number(t.pedaggi) || 0) + (Number(t.parcheggi) || 0);
+      r.km += km; r.indennita += ind; r.spese += sp;
+      if (t.fc) r.esente += ind + sp; else r.imponibile += ind + sp;
+    }
+    r.totale = r.indennita + r.spese;
+    return r;
+  }
+  function trasferteDelMese(ym) {
+    if (!ym) return stato.trasferte.slice();
+    return stato.trasferte.filter(function (t) { return String(t.data).slice(0, 7) === ym; });
+  }
+  function ordinate(lista) {
+    return lista.slice().sort(function (a, b) { return a.data < b.data ? 1 : a.data > b.data ? -1 : 0; });
+  }
+
+  // ---------- avviso cavalli fiscali ----------
+  function aggiornaNotaCv() {
+    var box = $("cvNota");
+    var cv = leggiNum(stato.veicolo.cv);
+    var lim = LIMITE_CV[stato.veicolo.alim];
+    if (!lim || !isFinite(cv) || cv <= 0) { box.hidden = true; box.textContent = ""; return; }
+    if (cv > lim) {
+      box.hidden = false;
+      box.textContent = "Attenzione: " + num(cv, 0) + " CV superano il limite di " + lim + " CV previsto per i veicoli " +
+        ALIM_NOME[stato.veicolo.alim] + ". Il rimborso ti spetta per intero, ma l'azienda può dedurre solo la parte corrispondente a un veicolo di " +
+        lim + " CV (art. 95 comma 3 del TUIR): controlla il regolamento aziendale.";
+    } else {
+      box.hidden = true; box.textContent = "";
+    }
+  }
+
+  // ---------- rendering ----------
+  function disegnaRiferimenti() {
+    var ul = $("riferimenti");
+    ul.textContent = "";
+    RIFERIMENTI.forEach(function (r) {
+      var li = document.createElement("li");
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "chip";
+      b.innerHTML = "";
+      b.appendChild(document.createTextNode(r.n + " "));
+      var strong = document.createElement("b");
+      strong.textContent = num(r.v, 4) + " €/km";
+      b.appendChild(strong);
+      b.addEventListener("click", function () {
+        $("euroKm").value = num(r.v, 4);
+        $("alim").value = r.a;
+        stato.veicolo.euroKm = num(r.v, 4);
+        stato.veicolo.alim = r.a;
+        salva(); aggiornaNotaCv(); disegnaTotali();
+        avviso("Costo/km impostato a " + num(r.v, 4) + " €/km");
+      });
+      li.appendChild(b);
+      ul.appendChild(li);
+    });
+  }
+
+  function disegnaLista() {
+    var ul = $("lista");
+    ul.textContent = "";
+    var lista = ordinate(stato.trasferte);
+    $("vuoto").hidden = lista.length > 0;
+    var ek = leggiNum(stato.veicolo.euroKm);
+    var valido = isFinite(ek) && ek > 0;
+
+    lista.forEach(function (t) {
+      var km = (Number(t.km) || 0) * (t.ar === 2 ? 2 : 1);
+      var ind = valido ? km * ek : 0;
+      var sp = (Number(t.pedaggi) || 0) + (Number(t.parcheggi) || 0);
+
+      var li = document.createElement("li");
+      li.className = "trip";
+
+      var top = document.createElement("div");
+      top.className = "trip-top";
+      var d = document.createElement("span");
+      d.className = "trip-date";
+      d.textContent = dataIt(t.data);
+      var s = document.createElement("span");
+      s.className = "trip-sum";
+      s.textContent = valido ? eur(ind + sp) : "—";
+      top.appendChild(d); top.appendChild(s);
+      li.appendChild(top);
+
+      var nome = document.createElement("p");
+      nome.className = "trip-name";
+      nome.textContent = t.descr || "Trasferta";
+      li.appendChild(nome);
+
+      var meta = document.createElement("div");
+      meta.className = "trip-meta";
+      function tag(testo, classe) {
+        var el = document.createElement("span");
+        el.className = classe || "tag";
+        el.textContent = testo;
+        meta.appendChild(el);
+      }
+      tag(num(km, 0) + " km" + (t.ar === 2 ? " (A/R)" : ""));
+      if (sp > 0) tag("spese " + eur(sp));
+      tag(t.fc ? "esente" : "imponibile", t.fc ? "tag" : "tag tax");
+      li.appendChild(meta);
+
+      var act = document.createElement("div");
+      act.className = "trip-act";
+      var del = document.createElement("button");
+      del.type = "button";
+      del.textContent = "Elimina";
+      del.setAttribute("aria-label", "Elimina la trasferta del " + dataIt(t.data));
+      del.addEventListener("click", function () { elimina(t.id); });
+      var dup = document.createElement("button");
+      dup.type = "button";
+      dup.textContent = "Duplica";
+      dup.addEventListener("click", function () { duplica(t); });
+      act.appendChild(dup); act.appendChild(del);
+      li.appendChild(act);
+
+      ul.appendChild(li);
+    });
+  }
+
+  function disegnaTotali() {
+    var r = calcola(stato.trasferte);
+    var bar = $("bar");
+    if (!r.n || !r.valido) {
+      $("totale").firstChild.nodeValue = "— ";
+      $("totaleNota").textContent = !r.n
+        ? "Inserisci il costo/km e almeno una trasferta."
+        : "Manca il costo chilometrico ACI: inseriscilo nella scheda 1.";
+      $("dettaglio").hidden = true;
+      bar.classList.remove("on");
+    } else {
+      $("totale").firstChild.nodeValue = eur(r.totale) + " ";
+      $("totaleNota").textContent = r.n + (r.n === 1 ? " trasferta" : " trasferte") + " · " + num(r.km, 0) + " km · " + num(r.euroKm, 4) + " €/km";
+      $("dettaglio").hidden = false;
+      $("rIndennita").textContent = eur(r.indennita);
+      $("rKmLabel").textContent = num(r.km, 0) + " km × " + num(r.euroKm, 4) + " €/km";
+      $("rKm").textContent = eur(r.indennita);
+      $("rSpese").textContent = eur(r.spese);
+      $("rEsente").textContent = eur(r.esente);
+      $("rImponibile").textContent = eur(r.imponibile);
+      bar.classList.add("on");
+      $("barTot").textContent = eur(r.totale);
+      $("barSub").textContent = r.n + (r.n === 1 ? " trasferta" : " trasferte") + " · " + num(r.km, 0) + " km";
+    }
+    disegnaMesi();
+    disegnaGarage();
+  }
+
+  function disegnaMesi() {
+    var sel = $("mese");
+    var scelto = sel.value;
+    var mesi = {};
+    stato.trasferte.forEach(function (t) { mesi[String(t.data).slice(0, 7)] = true; });
+    var elenco = Object.keys(mesi).sort().reverse();
+    sel.textContent = "";
+    var tutte = document.createElement("option");
+    tutte.value = ""; tutte.textContent = "Tutte le trasferte";
+    sel.appendChild(tutte);
+    elenco.forEach(function (ym) {
+      var o = document.createElement("option");
+      o.value = ym; o.textContent = meseIt(ym);
+      sel.appendChild(o);
+    });
+    sel.value = mesi[scelto] ? scelto : "";
+  }
+
+  function disegnaGarage() {
+    var box = $("garage");
+    box.textContent = "";
+    if (!stato.garage.length) {
+      var p = document.createElement("p");
+      p.className = "hint";
+      p.style.marginTop = "0";
+      p.textContent = "Garage vuoto. Compila la scheda 1 e salva: il profilo resterà qui.";
+      box.appendChild(p);
+      return;
+    }
+    stato.garage.forEach(function (v, i) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "chip" + (v.euroKm === stato.veicolo.euroKm && v.nome === stato.veicolo.nome ? " on" : "");
+      b.appendChild(document.createTextNode((v.nome || "Veicolo " + (i + 1)) + " "));
+      var strong = document.createElement("b");
+      strong.textContent = num(leggiNum(v.euroKm) || 0, 4) + " €/km";
+      b.appendChild(strong);
+      b.addEventListener("click", function () {
+        stato.veicolo = { nome: v.nome, euroKm: v.euroKm, alim: v.alim, cv: v.cv };
+        scriviVeicolo(); salva(); aggiornaNotaCv(); disegnaLista(); disegnaTotali();
+        avviso("Veicolo attivo: " + (v.nome || "senza nome"));
+      });
+      box.appendChild(b);
+      var x = document.createElement("button");
+      x.type = "button";
+      x.className = "chip";
+      x.textContent = "✕";
+      x.setAttribute("aria-label", "Togli " + (v.nome || "il veicolo") + " dal garage");
+      x.addEventListener("click", function () {
+        stato.garage.splice(i, 1); salva(); disegnaGarage();
+        avviso("Veicolo rimosso dal garage");
+      });
+      box.appendChild(x);
+    });
+  }
+
+  function scriviVeicolo() {
+    $("euroKm").value = stato.veicolo.euroKm;
+    $("alim").value = stato.veicolo.alim;
+    $("cv").value = stato.veicolo.cv;
+    $("nomeVeicolo").value = stato.veicolo.nome;
+  }
+
+  // ---------- azioni sulle trasferte ----------
+  var ultimaEliminata = null;
+  function elimina(id) {
+    var i = stato.trasferte.findIndex(function (t) { return t.id === id; });
+    if (i < 0) return;
+    ultimaEliminata = stato.trasferte.splice(i, 1)[0];
+    salva(); disegnaLista(); disegnaTotali();
+    avviso("Trasferta eliminata", "Annulla", function () {
+      if (!ultimaEliminata) return;
+      stato.trasferte.push(ultimaEliminata);
+      ultimaEliminata = null;
+      salva(); disegnaLista(); disegnaTotali();
+    });
+  }
+  function duplica(t) {
+    var copia = JSON.parse(JSON.stringify(t));
+    copia.id = nuovoId();
+    copia.data = oggiIso();
+    stato.trasferte.push(copia);
+    salva(); disegnaLista(); disegnaTotali();
+    avviso("Trasferta duplicata con la data di oggi");
+  }
+  function nuovoId() {
+    if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+    return "t" + Date.now() + Math.random().toString(36).slice(2, 7);
+  }
+
+  // ---------- avvisi ----------
+  var timerToast = null;
+  function avviso(testo, azione, fn) {
+    var t = $("toast");
+    $("toastMsg").textContent = testo;
+    var vecchio = t.querySelector("button");
+    if (vecchio) vecchio.remove();
+    if (azione && fn) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.textContent = azione;
+      b.addEventListener("click", function () { fn(); t.classList.remove("on"); });
+      t.appendChild(b);
+    }
+    t.classList.add("on");
+    if (timerToast) clearTimeout(timerToast);
+    timerToast = setTimeout(function () { t.classList.remove("on"); }, azione ? 6500 : 2600);
+  }
+
+  // ---------- riepilogo testuale ----------
+  function riepilogo() {
+    var r = calcola(stato.trasferte);
+    var righe = ["Rimborso chilometrico" + (stato.veicolo.nome ? " — " + stato.veicolo.nome : "")];
+    righe.push("Costo/km ACI: " + num(r.euroKm, 4) + " €/km");
+    righe.push("");
+    ordinate(stato.trasferte).forEach(function (t) {
+      var km = (Number(t.km) || 0) * (t.ar === 2 ? 2 : 1);
+      var sp = (Number(t.pedaggi) || 0) + (Number(t.parcheggi) || 0);
+      righe.push(dataIt(t.data) + " · " + (t.descr || "trasferta") + " · " + num(km, 0) + " km" +
+        (sp > 0 ? " + " + eur(sp) + " di spese" : "") + " = " + eur(km * r.euroKm + sp) + (t.fc ? "" : " (imponibile)"));
+    });
+    righe.push("");
+    righe.push("Indennità chilometrica: " + eur(r.indennita) + " (" + num(r.km, 0) + " km)");
+    righe.push("Pedaggi e parcheggi: " + eur(r.spese));
+    righe.push("TOTALE: " + eur(r.totale));
+    righe.push("di cui esente IRPEF: " + eur(r.esente) + " · imponibile: " + eur(r.imponibile));
+    return righe.join("\n");
+  }
+  function copia() {
+    var r = calcola(stato.trasferte);
+    if (!r.n || !r.valido) { avviso("Serve il costo/km e almeno una trasferta"); return; }
+    var testo = riepilogo();
+    function fallback() {
+      var ta = document.createElement("textarea");
+      ta.value = testo;
+      ta.setAttribute("readonly", "readonly");
+      ta.style.position = "fixed";
+      ta.style.top = "-1000px";
+      document.body.appendChild(ta);
+      ta.select();
+      var ok = false;
+      try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+      ta.remove();
+      avviso(ok ? "Riepilogo copiato" : "Copia non disponibile su questo browser");
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(testo).then(function () { avviso("Riepilogo copiato"); }, fallback);
+    } else fallback();
+  }
+
+  // ---------- Pro: nota spese da stampare e CSV ----------
+  function bloccato() {
+    return !!(window.Monetize && window.Monetize.isPro && !window.Monetize.isPro());
+  }
+  function costruisciStampa(ym) {
+    var lista = ordinate(trasferteDelMese(ym));
+    var r = calcola(lista);
+    var box = $("stampa");
+    box.textContent = "";
+    var h = document.createElement("h2");
+    h.textContent = "Nota spese chilometriche" + (ym ? " — " + meseIt(ym) : "");
+    box.appendChild(h);
+
+    var intro = document.createElement("p");
+    intro.textContent = "Veicolo: " + (stato.veicolo.nome || "non indicato") +
+      " · alimentazione " + ALIM_NOME[stato.veicolo.alim] +
+      (leggiNum(stato.veicolo.cv) > 0 ? " · " + num(leggiNum(stato.veicolo.cv), 0) + " CV fiscali" : "") +
+      " · costo chilometrico ACI " + num(r.euroKm, 4) + " €/km";
+    box.appendChild(intro);
+
+    var tab = document.createElement("table");
+    var thead = document.createElement("thead");
+    var trh = document.createElement("tr");
+    ["Data", "Destinazione / motivo", "Km", "Indennità", "Pedaggi", "Parcheggi", "Totale"].forEach(function (t) {
+      var th = document.createElement("th");
+      th.textContent = t;
+      trh.appendChild(th);
+    });
+    thead.appendChild(trh);
+    tab.appendChild(thead);
+    var tb = document.createElement("tbody");
+    lista.forEach(function (t) {
+      var km = (Number(t.km) || 0) * (t.ar === 2 ? 2 : 1);
+      var ind = km * r.euroKm;
+      var pe = Number(t.pedaggi) || 0, pa = Number(t.parcheggi) || 0;
+      var tr = document.createElement("tr");
+      [dataIt(t.data),
+       (t.descr || "Trasferta") + (t.fc ? "" : " [stesso comune: imponibile]"),
+       num(km, 0), eur(ind), pe ? eur(pe) : "—", pa ? eur(pa) : "—", eur(ind + pe + pa)
+      ].forEach(function (v) {
+        var td = document.createElement("td");
+        td.textContent = v;
+        tr.appendChild(td);
+      });
+      tb.appendChild(tr);
+    });
+    if (!lista.length) {
+      var tr0 = document.createElement("tr");
+      var td0 = document.createElement("td");
+      td0.setAttribute("colspan", "7");
+      td0.textContent = "Nessuna trasferta nel periodo selezionato.";
+      tr0.appendChild(td0);
+      tb.appendChild(tr0);
+    }
+    tab.appendChild(tb);
+    box.appendChild(tab);
+
+    var tot = document.createElement("p");
+    tot.innerHTML = "";
+    tot.appendChild(document.createTextNode("Totale chilometri: " + num(r.km, 0) + " · indennità " + eur(r.indennita) +
+      " · pedaggi e parcheggi " + eur(r.spese)));
+    box.appendChild(tot);
+    var tot2 = document.createElement("p");
+    var b = document.createElement("strong");
+    b.textContent = "Totale da rimborsare: " + eur(r.totale);
+    tot2.appendChild(b);
+    tot2.appendChild(document.createTextNode(" — di cui esente IRPEF " + eur(r.esente) + " e imponibile " + eur(r.imponibile) + "."));
+    box.appendChild(tot2);
+
+    var nota = document.createElement("p");
+    nota.style.fontSize = "9pt";
+    nota.textContent = "Indennità calcolata con le tabelle ACI del costo chilometrico di esercizio; pedaggi e parcheggi documentati da ricevuta. Trasferte fuori dal comune della sede di lavoro: art. 51 comma 5 del TUIR.";
+    box.appendChild(nota);
+
+    var firme = document.createElement("div");
+    firme.className = "firme";
+    ["Firma del dipendente", "Visto per approvazione"].forEach(function (t) {
+      var d = document.createElement("div");
+      d.textContent = t;
+      firme.appendChild(d);
+    });
+    box.appendChild(firme);
+  }
+  function stampa() {
+    if (bloccato()) return;
+    costruisciStampa($("mese").value);
+    window.print();
+  }
+  function csv() {
+    if (bloccato()) return;
+    var ym = $("mese").value;
+    var lista = ordinate(trasferteDelMese(ym));
+    var r = calcola(lista);
+    function cella(v) {
+      var s = String(v).replace(/"/g, '""');
+      return /[";\n]/.test(s) ? '"' + s + '"' : s;
+    }
+    function dec(n) { return String(n.toFixed(2)).replace(".", ","); }
+    var righe = [["Data", "Destinazione", "Km", "Euro/km", "Indennita", "Pedaggi", "Parcheggi", "Totale", "Trattamento"].join(";")];
+    lista.forEach(function (t) {
+      var km = (Number(t.km) || 0) * (t.ar === 2 ? 2 : 1);
+      var ind = km * r.euroKm;
+      var pe = Number(t.pedaggi) || 0, pa = Number(t.parcheggi) || 0;
+      righe.push([dataIt(t.data), t.descr || "Trasferta", num(km, 0), String(r.euroKm).replace(".", ","),
+        dec(ind), dec(pe), dec(pa), dec(ind + pe + pa), t.fc ? "esente" : "imponibile"].map(cella).join(";"));
+    });
+    righe.push(["TOTALE", "", num(r.km, 0), "", dec(r.indennita), "", "", dec(r.totale), "esente " + dec(r.esente) + " / imponibile " + dec(r.imponibile)].map(cella).join(";"));
+    var testo = "﻿" + righe.join("\r\n");
+    var nome = "nota-spese-km" + (ym ? "-" + ym : "") + ".csv";
+    try {
+      var blob = new Blob([testo], { type: "text/csv;charset=utf-8" });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement("a");
+      a.href = url; a.download = nome;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+      avviso("CSV scaricato: " + nome);
+    } catch (e) {
+      avviso("Download non disponibile su questo browser");
+    }
+  }
+
+  // ---------- form ----------
+  function aggiungi(ev) {
+    ev.preventDefault();
+    var err = $("errore");
+    var data = $("data").value;
+    var km = leggiNum($("km").value);
+    var pedaggi = $("pedaggi").value.trim() ? leggiNum($("pedaggi").value) : 0;
+    var parcheggi = $("parcheggi").value.trim() ? leggiNum($("parcheggi").value) : 0;
+
+    if (!data) { err.textContent = "Indica la data della trasferta."; $("data").focus(); return; }
+    if (!isFinite(km) || km <= 0) { err.textContent = "I chilometri devono essere un numero maggiore di zero."; $("km").focus(); return; }
+    if (km > 5000) { err.textContent = "Più di 5.000 km in una sola trasferta: controlla il dato."; $("km").focus(); return; }
+    if (!isFinite(pedaggi) || pedaggi < 0) { err.textContent = "I pedaggi non sono un importo valido."; $("pedaggi").focus(); return; }
+    if (!isFinite(parcheggi) || parcheggi < 0) { err.textContent = "I parcheggi non sono un importo valido."; $("parcheggi").focus(); return; }
+    err.textContent = "";
+
+    stato.trasferte.push({
+      id: nuovoId(),
+      data: data,
+      descr: $("descr").value.trim().slice(0, 120),
+      km: km,
+      ar: document.querySelector('input[name="ar"]:checked').value === "2" ? 2 : 1,
+      pedaggi: pedaggi,
+      parcheggi: parcheggi,
+      fc: document.querySelector('input[name="fc"]:checked').value === "1"
+    });
+    salva(); disegnaLista(); disegnaTotali();
+    $("km").value = ""; $("descr").value = ""; $("pedaggi").value = ""; $("parcheggi").value = "";
+    $("km").focus();
+    avviso("Trasferta aggiunta");
+  }
+
+  function svuota() {
+    if (!stato.trasferte.length) { avviso("L'elenco è già vuoto"); return; }
+    var copia = stato.trasferte.slice();
+    stato.trasferte = [];
+    salva(); disegnaLista(); disegnaTotali();
+    avviso("Elenco svuotato", "Annulla", function () {
+      stato.trasferte = copia;
+      salva(); disegnaLista(); disegnaTotali();
+    });
+  }
+
+  // ---------- avvio ----------
+  function avvia() {
+    carica();
+    scriviVeicolo();
+    $("data").value = oggiIso();
+    disegnaRiferimenti();
+    aggiornaNotaCv();
+    disegnaLista();
+    disegnaTotali();
+
+    $("form").addEventListener("submit", aggiungi);
+    $("btnCopia").addEventListener("click", copia);
+    $("barCopia").addEventListener("click", copia);
+    $("btnReset").addEventListener("click", svuota);
+    $("btnStampa").addEventListener("click", stampa);
+    $("btnCsv").addEventListener("click", csv);
+    $("btnSalvaVeicolo").addEventListener("click", function () {
+      if (bloccato()) return;
+      var v = stato.veicolo;
+      if (!leggiNum(v.euroKm)) { avviso("Inserisci prima un costo/km valido"); return; }
+      var nome = v.nome || "Veicolo " + (stato.garage.length + 1);
+      var esiste = stato.garage.findIndex(function (g) { return g.nome === nome; });
+      var voce = { nome: nome, euroKm: v.euroKm, alim: v.alim, cv: v.cv };
+      if (esiste > -1) stato.garage[esiste] = voce;
+      else if (stato.garage.length >= 12) { avviso("Garage pieno: togli un veicolo"); return; }
+      else stato.garage.push(voce);
+      salva(); disegnaGarage();
+      avviso("Salvato nel garage: " + nome);
+    });
+
+    $("euroKm").addEventListener("input", function () {
+      stato.veicolo.euroKm = this.value;
+      salva(); disegnaLista(); disegnaTotali();
+    });
+    $("alim").addEventListener("change", function () {
+      stato.veicolo.alim = this.value;
+      salva(); aggiornaNotaCv();
+    });
+    $("cv").addEventListener("input", function () {
+      stato.veicolo.cv = this.value;
+      salva(); aggiornaNotaCv();
+    });
+    $("nomeVeicolo").addEventListener("input", function () {
+      stato.veicolo.nome = this.value.slice(0, 80);
+      salva(); disegnaGarage();
+    });
+    $("mese").addEventListener("change", function () { /* il periodo serve a stampa e CSV */ });
+
+    document.addEventListener("keydown", function (ev) {
+      if (ev.key !== "Escape") return;
+      var dentro = $("form").contains(document.activeElement);
+      if (!dentro) return;
+      $("km").value = ""; $("descr").value = ""; $("pedaggi").value = ""; $("parcheggi").value = "";
+      $("errore").textContent = "";
+    });
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", avvia);
+  else avvia();
+})();
+</script>
+</body>
+</html>

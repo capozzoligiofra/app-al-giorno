@@ -1,0 +1,25 @@
+{
+  "title": "Rimborso Chilometrico",
+  "slug": "2026-10-02-rimborso-chilometrico",
+  "date": "2026-10-02",
+  "description": "Calcola il rimborso chilometrico con il costo/km ACI: registra le trasferte, separa la parte esente da quella imponibile, aggiungi pedaggi e parcheggi.",
+  "category": "finanza-personale",
+  "tags": ["trasferte", "nota spese", "aci", "lavoro"],
+  "source": "autonoma",
+  "request": null,
+  "status": "pronta",
+  "version": 1,
+  "changelog": [],
+  "design": { "layout": "card-stack", "palette": "viola-elettrico", "font": "mono-tecnico" },
+  "business": {
+    "keyword": "calcolo rimborso chilometrico",
+    "keywords": ["rimborso chilometrico tabelle aci", "quanto mi spetta di rimborso chilometrico", "costo per km aci 2026", "nota spese chilometrica"],
+    "intent": "Dipendente o professionista che è stato in trasferta con la propria auto e vuole sapere subito quanto gli spetta, trasferta per trasferta, per mettere la cifra in nota spese.",
+    "target": "Dipendenti in trasferta, agenti di commercio, tecnici, partite IVA e amministratori, 25-60 anni, dal telefono subito dopo il viaggio.",
+    "competitors": ["Tabelle ACI ufficiali (PDF ed Excel da leggere a mano)", "Articoli di blog di software per note spese (N2F, Factorial, Finom)", "Calcolatori generici che moltiplicano km × €/km e si fermano lì", "Gestionali note spese con registrazione e abbonamento"],
+    "edge": "Non è una sola moltiplicazione: tiene l'elenco delle trasferte, separa la parte esente IRPEF (fuori comune) da quella imponibile, somma pedaggi e parcheggi a parte e avvisa sul limite di 17/20 CV per la deducibilità aziendale. Nessuna registrazione, funziona offline.",
+    "monetization": ["adsense", "pro", "support"],
+    "pro": ["Nota spese da stampare", "Più veicoli salvati"],
+    "affiliate": []
+  }
+}

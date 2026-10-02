@@ -1,7 +1,7 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 20,
+  "count": 21,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -50,6 +50,52 @@ window.__APPS__ = {
     ]
   },
   "apps": [
+    {
+      "title": "Rimborso Chilometrico",
+      "slug": "2026-10-02-rimborso-chilometrico",
+      "date": "2026-10-02",
+      "description": "Calcola il rimborso chilometrico con il costo/km ACI: registra le trasferte, separa la parte esente da quella imponibile, aggiungi pedaggi e parcheggi.",
+      "category": "finanza-personale",
+      "tags": [
+        "trasferte",
+        "nota spese",
+        "aci",
+        "lavoro"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "card-stack",
+        "palette": "viola-elettrico",
+        "font": "mono-tecnico"
+      },
+      "business": {
+        "keyword": "calcolo rimborso chilometrico",
+        "keywords": [
+          "rimborso chilometrico tabelle aci",
+          "quanto mi spetta di rimborso chilometrico",
+          "costo per km aci 2026",
+          "nota spese chilometrica"
+        ],
+        "intent": "Dipendente o professionista che è stato in trasferta con la propria auto e vuole sapere subito quanto gli spetta, trasferta per trasferta, per mettere la cifra in nota spese.",
+        "target": "Dipendenti in trasferta, agenti di commercio, tecnici, partite IVA e amministratori, 25-60 anni, dal telefono subito dopo il viaggio.",
+        "edge": "Non è una sola moltiplicazione: tiene l'elenco delle trasferte, separa la parte esente IRPEF (fuori comune) da quella imponibile, somma pedaggi e parcheggi a parte e avvisa sul limite di 17/20 CV per la deducibilità aziendale. Nessuna registrazione, funziona offline.",
+        "monetization": [
+          "adsense",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Nota spese da stampare",
+          "Più veicoli salvati"
+        ],
+        "affiliate": []
+      },
+      "size": 56624
+    },
     {
       "title": "Ferie Maturate",
       "slug": "2026-10-01-ferie-maturate",
