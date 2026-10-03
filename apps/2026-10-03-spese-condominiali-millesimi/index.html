@@ -1,0 +1,1100 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#b4552f">
+  <title>Spese Condominiali: calcolo per millesimi online gratis</title>
+  <meta name="description" content="Calcolo spese condominiali per millesimi: inserisci le unità e le spese e ottieni subito la quota di ogni condomino, con scale e ascensore secondo l'art. 1124.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-03-spese-condominiali-millesimi/">
+  <meta property="og:title" content="Spese Condominiali: calcolo per millesimi online gratis">
+  <meta property="og:description" content="Verifica il riparto dell'amministratore o dividi tu le spese: millesimi, parti uguali, scale e ascensore. Niente registrazione, funziona offline.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-03-spese-condominiali-millesimi/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Spese Condominiali Millesimi",
+    "description": "Calcolatore gratuito per il riparto delle spese condominiali: quota per millesimi di proprietà, parti uguali, tabella personalizzata e criterio di legge per scale e ascensore.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-03-spese-condominiali-millesimi/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Come si calcola la quota di spese condominiali in base ai millesimi?", "acceptedAnswer": { "@type": "Answer", "text": "Si moltiplica la spesa per i millesimi dell'unità e si divide per 1.000. Su una spesa di 2.400 euro, un appartamento da 85 millesimi paga 2.400 × 85 / 1.000 = 204 euro." } },
+      { "@type": "Question", "name": "Le spese dell'ascensore si dividono solo per millesimi?", "acceptedAnswer": { "@type": "Answer", "text": "No. L'articolo 1124 del codice civile prevede un criterio misto: metà della spesa in proporzione ai millesimi di proprietà e metà in proporzione all'altezza di piano, quindi i piani alti pagano di più. Il calcolatore applica questo criterio quando scegli Scale e ascensore." } },
+      { "@type": "Question", "name": "Dove trovo i millesimi del mio appartamento?", "acceptedAnswer": { "@type": "Answer", "text": "Nelle tabelle millesimali allegate al regolamento di condominio, nel rendiconto annuale che l'amministratore invia insieme al riparto, oppure nell'atto di acquisto. Se il condominio ha più tabelle, controlla di usare quella giusta per quel tipo di spesa." } },
+      { "@type": "Question", "name": "I millesimi si possono cambiare?", "acceptedAnswer": { "@type": "Answer", "text": "Di regola serve l'unanimità. L'articolo 69 delle disposizioni di attuazione del codice civile consente la revisione a maggioranza solo in due casi: se le tabelle sono sbagliate per un errore, oppure se opere sull'edificio hanno alterato di oltre un quinto il valore proporzionale di almeno un'unità." } },
+      { "@type": "Question", "name": "I dati inseriti restano sul mio telefono?", "acceptedAnswer": { "@type": "Answer", "text": "Sì. Il calcolo avviene nel browser e unità e spese sono salvate solo nella memoria locale del dispositivo: la pagina funziona anche senza connessione e nulla viene inviato a un server." } }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #faf5f1; --surface: #ffffff; --text: #2a1d17; --muted: #7c6353; --line: #e7d8cd;
+      --accent: #b4552f; --accent-ink: #ffffff; --soft: #f4e5da; --danger: #9d2f26; --ok: #2f6b4f;
+      --r: 6px;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1a1412; --surface: #241b17; --text: #f0e6df; --muted: #ab978b; --line: #3b2d25;
+        --accent: #e0865a; --accent-ink: #231208; --soft: #33231c; --danger: #f08a80; --ok: #7fc3a1;
+        color-scheme: dark;
+      }
+    }
+    * { box-sizing: border-box; }
+    html, body { overflow-x: hidden; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font: 16px/1.55 Georgia, "Times New Roman", Times, serif;
+      -webkit-text-size-adjust: 100%;
+    }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: max(10px, env(safe-area-inset-top)) 16px calc(96px + env(safe-area-inset-bottom)); }
+    a { color: var(--accent); }
+    .back { display: inline-flex; align-items: center; min-height: 44px; font-size: .95rem; color: var(--muted); text-decoration: none; }
+    .back:hover, .back:focus { color: var(--text); }
+
+    h1 { font-size: 1.7rem; line-height: 1.2; margin: .4rem 0 .3rem; letter-spacing: -.01em; }
+    h2 { font-size: 1.22rem; margin: 0; }
+    h3 { font-size: 1.04rem; margin: 1.3rem 0 .3rem; }
+    .lead { color: var(--muted); margin: 0 0 1.2rem; font-size: 1.02rem; }
+
+    /* ---- dashboard: griglia di riquadri con numeri grandi ---- */
+    .quadri { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 0 0 18px; }
+    .q { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 12px 13px; }
+    .q .et { display: block; font-size: .72rem; text-transform: uppercase; letter-spacing: .09em; color: var(--muted); font-family: system-ui, -apple-system, sans-serif; }
+    .q .nu { display: block; font-size: 1.6rem; font-weight: 700; line-height: 1.15; margin-top: 4px; font-variant-numeric: tabular-nums; }
+    .q .su { display: block; font-size: .84rem; color: var(--muted); }
+    .q.big { grid-column: 1 / -1; background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+    .q.big .et, .q.big .su { color: var(--accent-ink); opacity: .82; }
+    .q.big .nu { font-size: 2.5rem; }
+    .q .nu.warn { color: var(--danger); }
+
+    section.blocco { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 14px; margin: 0 0 16px; }
+    .cap { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; border-bottom: 2px solid var(--line); padding-bottom: 8px; margin-bottom: 12px; }
+    .cap .conta { font-size: .8rem; color: var(--muted); font-family: system-ui, sans-serif; white-space: nowrap; }
+
+    label { display: block; font-size: .8rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); font-family: system-ui, -apple-system, sans-serif; margin-bottom: 3px; }
+    input, select, button, textarea { font-family: inherit; }
+    input[type="text"], input[type="number"], select {
+      width: 100%; font-size: 16px; min-height: 46px; padding: 8px 10px;
+      border: 1px solid var(--line); border-radius: var(--r); background: var(--bg); color: var(--text);
+    }
+    input:focus-visible, select:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    input[inputmode="decimal"] { font-variant-numeric: tabular-nums; }
+
+    .riga { display: grid; grid-template-columns: 1fr; gap: 10px; border: 1px solid var(--line); border-left: 4px solid var(--soft); border-radius: var(--r); padding: 11px; margin-bottom: 10px; background: var(--bg); }
+    .riga.mia { border-left-color: var(--accent); }
+    .riga .due { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .riga .azioni { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    button { cursor: pointer; }
+    .btn { min-height: 44px; padding: 10px 16px; border-radius: var(--r); border: 1px solid var(--accent); background: var(--accent); color: var(--accent-ink); font-size: 1rem; font-weight: 700; }
+    .btn.sec { background: transparent; color: var(--accent); }
+    .btn.gh { background: transparent; color: var(--muted); border-color: var(--line); font-weight: 400; }
+    .btn.full { width: 100%; }
+    .btn.sm { min-height: 44px; padding: 8px 12px; font-size: .95rem; }
+    .btn[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { min-height: 44px; display: inline-flex; align-items: center; padding: 6px 13px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg); color: var(--text); font-size: .95rem; }
+    .chip[aria-pressed="true"] { background: var(--soft); border-color: var(--accent); font-weight: 700; }
+
+    details { border-top: 1px dashed var(--line); padding-top: 8px; }
+    summary { min-height: 44px; display: flex; align-items: center; font-size: .9rem; color: var(--muted); font-family: system-ui, sans-serif; cursor: pointer; }
+    details[open] summary { color: var(--text); }
+    .sotto { padding: 4px 0 8px; display: grid; gap: 8px; }
+    .mini { display: grid; grid-template-columns: 1fr 104px; gap: 8px; align-items: center; }
+    .mini span { font-size: .95rem; }
+
+    .esito { border: 1px solid var(--line); border-radius: var(--r); padding: 11px; margin-bottom: 10px; background: var(--bg); }
+    .esito.mia { border-color: var(--accent); background: var(--soft); }
+    .esito .testa { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+    .esito .nome { font-weight: 700; }
+    .esito .cifra { font-size: 1.3rem; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .esito .mill { font-size: .84rem; color: var(--muted); font-family: system-ui, sans-serif; }
+    .dett { list-style: none; margin: 8px 0 0; padding: 0; font-size: .92rem; }
+    .dett li { display: flex; justify-content: space-between; gap: 10px; padding: 3px 0; border-top: 1px dotted var(--line); }
+    .dett li span:last-child { font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .dett .nota { color: var(--muted); font-size: .84rem; font-family: system-ui, sans-serif; display: block; }
+
+    .avviso { border-left: 4px solid var(--danger); background: var(--soft); padding: 9px 11px; border-radius: var(--r); font-size: .93rem; margin: 0 0 12px; }
+    .vuoto { color: var(--muted); font-size: .95rem; padding: 6px 0 10px; }
+    .nota-p { color: var(--muted); font-size: .9rem; margin: 10px 0 0; }
+
+    /* ---- barra pollice ---- */
+    .barra {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
+      display: flex; align-items: center; gap: 12px;
+      padding: 9px 14px calc(9px + env(safe-area-inset-bottom));
+      background: var(--surface); border-top: 1px solid var(--line);
+    }
+    .barra .info { min-width: 0; flex: 1; }
+    .barra b { display: block; font-size: 1.15rem; font-variant-numeric: tabular-nums; }
+    .barra span { display: block; font-size: .82rem; color: var(--muted); font-family: system-ui, sans-serif; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+    .toast {
+      position: fixed; left: 50%; transform: translateX(-50%) translateY(20px);
+      bottom: calc(76px + env(safe-area-inset-bottom)); z-index: 40;
+      background: var(--text); color: var(--bg); padding: 10px 16px; border-radius: 999px;
+      font-size: .95rem; opacity: 0; pointer-events: none; transition: opacity .18s, transform .18s; max-width: 90vw;
+    }
+    .toast.on { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    #guida p, #guida li { max-width: 68ch; }
+    #guida ul { padding-left: 1.2rem; }
+    .tabellina { width: 100%; border-collapse: collapse; font-size: .95rem; margin: .6rem 0; }
+    .tabellina th, .tabellina td { border: 1px solid var(--line); padding: 6px 8px; text-align: left; }
+    .tabellina td:last-child, .tabellina th:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+
+    footer { border-top: 1px solid var(--line); margin-top: 24px; padding-top: 14px; color: var(--muted); font-size: .92rem; }
+    footer p { margin: .5rem 0; }
+
+    .solo-stampa { display: none; }
+    @media print {
+      .wrap, .barra, .toast { display: none !important; }
+      .solo-stampa { display: block; color: #000; font: 11pt/1.4 Georgia, serif; }
+      .solo-stampa h2 { font-size: 15pt; margin: 0 0 2pt; }
+      .solo-stampa .sub { font-size: 9pt; color: #444; margin: 0 0 10pt; }
+      .solo-stampa table { width: 100%; border-collapse: collapse; font-size: 9.5pt; }
+      .solo-stampa th, .solo-stampa td { border: 1px solid #999; padding: 3pt 5pt; text-align: right; }
+      .solo-stampa th:first-child, .solo-stampa td:first-child { text-align: left; }
+      .solo-stampa tfoot td { font-weight: 700; }
+    }
+
+    @media (min-width: 700px) {
+      .wrap { padding-bottom: 40px; }
+      h1 { font-size: 2.2rem; }
+      .quadri { grid-template-columns: repeat(4, 1fr); }
+      .q.big { grid-column: 1 / 3; }
+      .riga { grid-template-columns: 1fr; }
+      .riga .due { grid-template-columns: 200px 1fr; }
+      .riga.unita .due { grid-template-columns: 180px 180px; justify-content: start; }
+      .barra { position: static; border: 1px solid var(--line); border-radius: var(--r); padding: 12px 14px; margin-top: 16px; }
+      .toast { bottom: 28px; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <p style="margin:0"><a class="back" href="../../index.html">← Tutte le app</a></p>
+
+  <h1>Calcolo spese condominiali per millesimi</h1>
+  <p class="lead">Inserisci le unità con i loro millesimi e le spese da ripartire: ottieni la quota di ciascun condomino, voce per voce. Scale e ascensore seguono il criterio di legge (metà millesimi, metà altezza di piano).</p>
+
+  <div class="quadri">
+    <div class="q big">
+      <span class="et">La mia quota</span>
+      <span class="nu" id="qMia">—</span>
+      <span class="su" id="qMiaSub">scegli la tua unità nell'elenco</span>
+    </div>
+    <div class="q">
+      <span class="et">Spese totali</span>
+      <span class="nu" id="qTot">—</span>
+      <span class="su" id="qTotSub">0 voci</span>
+    </div>
+    <div class="q">
+      <span class="et">Somma millesimi</span>
+      <span class="nu" id="qMill">—</span>
+      <span class="su" id="qMillSub">deve fare 1.000</span>
+    </div>
+  </div>
+
+  <div id="avvisi"></div>
+
+  <section class="blocco" aria-labelledby="h-unita">
+    <div class="cap">
+      <h2 id="h-unita">Unità immobiliari</h2>
+      <span class="conta" id="contaUnita">0 unità</span>
+    </div>
+    <div id="listaUnita"></div>
+    <p class="vuoto" id="vuotoUnita" hidden>Nessuna unità: aggiungi almeno due appartamenti con i loro millesimi per vedere il riparto.</p>
+    <button type="button" class="btn sec full" id="addUnita">+ Aggiungi unità</button>
+    <p class="nota-p">Tocca <strong>“La mia”</strong> sull'unità che ti interessa: la sua quota compare in grande in alto e nella barra in basso.</p>
+  </section>
+
+  <section class="blocco" aria-labelledby="h-spese">
+    <div class="cap">
+      <h2 id="h-spese">Spese da ripartire</h2>
+      <span class="conta" id="contaSpese">0 voci</span>
+    </div>
+    <div id="listaSpese"></div>
+    <p class="vuoto" id="vuotoSpese" hidden>Nessuna spesa: aggiungi una voce (per esempio “Pulizia scale 1.200 €”) e scegli con quale criterio va divisa.</p>
+    <button type="button" class="btn sec full" id="addSpesa">+ Aggiungi spesa</button>
+  </section>
+
+  <section class="blocco" aria-labelledby="h-riparto">
+    <div class="cap">
+      <h2 id="h-riparto">Riparto per unità</h2>
+      <span class="conta" id="contaRiparto">—</span>
+    </div>
+    <div id="listaRiparto"></div>
+    <p class="nota-p">Gli importi sono arrotondati al centesimo e la somma delle quote corrisponde esattamente al totale delle spese: gli eventuali centesimi di resto sono assegnati alle quote con la frazione più alta, come si fa nei riparti reali.</p>
+    <div class="azioni" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
+      <button type="button" class="btn sm gh" id="btnEsempio">Carica l'esempio</button>
+      <button type="button" class="btn sm gh" id="btnSvuota">Svuota tutto</button>
+    </div>
+  </section>
+
+  <div data-ad="top"></div>
+
+  <section class="blocco" data-pro="Riparto completo da stampare" aria-labelledby="h-pro1">
+    <div class="cap"><h2 id="h-pro1">Riparto completo da stampare</h2></div>
+    <p style="margin:.2rem 0 .9rem">Tabella spese × unità su una pagina sola, con totali di riga e di colonna: quella da portare in assemblea o da allegare al rendiconto. Puoi anche scaricarla in CSV e aprirla in Excel o in Fogli Google.</p>
+    <div class="azioni" style="display:flex;gap:8px;flex-wrap:wrap">
+      <button type="button" class="btn" id="btnStampa">Stampa il riparto</button>
+      <button type="button" class="btn sec" id="btnCsv">Scarica CSV</button>
+    </div>
+    <p class="nota-p">Nell'intestazione finiscono il nome del condominio e il periodo che indichi qui sotto.</p>
+    <div class="due" style="display:grid;grid-template-columns:1fr;gap:10px;margin-top:8px">
+      <div>
+        <label for="nomeCondominio">Condominio</label>
+        <input type="text" id="nomeCondominio" placeholder="Es. Condominio Via Verdi 12" autocomplete="off" maxlength="70">
+      </div>
+      <div>
+        <label for="periodo">Periodo / esercizio</label>
+        <input type="text" id="periodo" placeholder="Es. esercizio 2026" autocomplete="off" maxlength="40">
+      </div>
+    </div>
+  </section>
+
+  <section class="blocco" data-pro="Più condomìni salvati" aria-labelledby="h-pro2">
+    <div class="cap"><h2 id="h-pro2">Più condomìni salvati</h2></div>
+    <p style="margin:.2rem 0 .9rem">Se gestisci più di un edificio (o segui quello di casa e quello dei tuoi genitori), salva ogni tabella millesimale con un nome e richiamala in un tocco, senza reinserire nulla.</p>
+    <div class="azioni" style="display:flex;gap:8px;flex-wrap:wrap">
+      <button type="button" class="btn sm" id="btnSalvaSet">Salva questo condominio</button>
+    </div>
+    <div id="listaSet" style="margin-top:10px"></div>
+    <p class="vuoto" id="vuotoSet">Nessun condominio salvato: inserisci il nome qui sopra e tocca “Salva questo condominio”.</p>
+  </section>
+
+  <section id="guida">
+    <h2 style="font-size:1.4rem;margin-top:28px">Come funziona il calcolo delle spese condominiali per millesimi</h2>
+    <p>Il riparto delle spese condominiali parte da un'idea semplice: ogni unità immobiliare vale una frazione dell'intero edificio, e quella frazione si esprime in millesimi. La somma dei millesimi di tutte le unità deve fare esattamente 1.000. Per sapere quanto ti spetta di una spesa basta quindi la formula dell'articolo 1123 del codice civile: <strong>spesa × millesimi ÷ 1.000</strong>. Se il condominio spende 2.400 € per la pulizia delle parti comuni e il tuo appartamento ha 85 millesimi, la tua quota è 2.400 × 85 ÷ 1.000 = <strong>204 €</strong>. Il calcolatore qui sopra fa questo conto su tutte le voci insieme, così vedi subito sia il totale annuale sia il dettaglio voce per voce.</p>
+
+    <h3>I quattro criteri di ripartizione</h3>
+    <p>Non tutte le spese si dividono allo stesso modo, ed è qui che i riparti sbagliati nascono. Per ogni voce puoi scegliere:</p>
+    <ul>
+      <li><strong>Millesimi di proprietà</strong>: il criterio generale per le spese di conservazione e godimento delle parti comuni (tetto, facciata, amministratore, assicurazione).</li>
+      <li><strong>Parti uguali</strong>: una quota identica per ogni unità. Si usa quando il regolamento lo prevede o per servizi che non dipendono dal valore dell'immobile.</li>
+      <li><strong>Scale e ascensore</strong>: il criterio misto dell'articolo 1124 del codice civile. Metà della spesa si divide per millesimi di proprietà, l'altra metà in proporzione all'altezza di piano. Chi sta più in alto paga di più, perché usa la scala e l'ascensore per un tratto maggiore.</li>
+      <li><strong>Tabella personalizzata</strong>: inserisci tu i millesimi di una tabella specifica (riscaldamento, acqua, autorimessa). Molti condomini hanno quattro o cinque tabelle diverse e usarne una al posto dell'altra cambia il conto di decine di euro.</li>
+    </ul>
+
+    <h3>Esempio con i numeri: la spesa dell'ascensore</h3>
+    <p>Un condominio con quattro appartamenti deve ripartire 1.600 € di manutenzione dell'ascensore. I millesimi sono 200 (piano terra), 250 (primo piano), 270 (secondo) e 280 (terzo). Per l'articolo 1124 si divide la spesa in due metà da 800 € ciascuna. La prima metà segue i millesimi: il terzo piano paga 800 × 280 ÷ 1.000 = 224 €. La seconda metà segue l'altezza di piano, cioè i pesi 0, 1, 2 e 3, che sommati fanno 6: il terzo piano paga 800 × 3 ÷ 6 = 400 €, mentre il piano terra non partecipa a questa metà. Totale: 624 € per il terzo piano e soltanto 160 € per il piano terra. Se avessi usato solo i millesimi di proprietà, il piano terra avrebbe pagato 320 €, il doppio del dovuto.</p>
+
+    <h3>Errori comuni nei riparti</h3>
+    <ul>
+      <li><strong>Millesimi che non fanno 1.000</strong>: se la somma è 980 o 1.020, la tabella è incompleta o trascritta male. Il calcolatore te lo segnala subito, perché su una spesa di 10.000 € un errore del 2% vale 200 €.</li>
+      <li><strong>Ascensore diviso per millesimi</strong>: è la contestazione più frequente in assemblea. Senza una delibera unanime che preveda un criterio diverso, vale il criterio misto di legge.</li>
+      <li><strong>Unità che non dovrebbero partecipare</strong>: un negozio con ingresso autonomo non paga le scale che non usa (articolo 1123, terzo comma). Nel calcolatore puoi escludere le unità non interessate da una singola voce.</li>
+      <li><strong>Arrotondamenti che non quadrano</strong>: arrotondando ogni quota per conto proprio, la somma non torna mai al centesimo. Qui il resto viene distribuito, quindi il totale delle quote è identico al totale delle spese.</li>
+      <li><strong>Confondere proprietario e inquilino</strong>: verso il condominio risponde il proprietario; la ripartizione con l'inquilino (per esempio le spese ordinarie a suo carico) è un conto separato che dipende dal contratto di locazione.</li>
+    </ul>
+
+    <h3>Domande frequenti</h3>
+    <h3>Come verifico se la quota chiesta dall'amministratore è giusta?</h3>
+    <p>Prendi il rendiconto, inserisci qui le voci con l'importo totale di ciascuna e il criterio indicato nel riparto, poi confronta la cifra che ottieni con quella della tua colonna. Se la differenza è di pochi centesimi è solo arrotondamento; se è di euro, quasi sempre il criterio usato per una voce è diverso da quello che ti aspetti, e puoi chiedere chiarimenti per iscritto prima dell'assemblea.</p>
+
+    <h3>Dove trovo i millesimi del mio appartamento?</h3>
+    <p>Nelle tabelle millesimali allegate al regolamento di condominio, nel rendiconto annuale e, in genere, nell'atto di acquisto. Se non hai nulla in mano, l'amministratore è tenuto a darti copia delle tabelle su richiesta.</p>
+
+    <h3>L'ascensore lo paga anche chi abita al piano terra?</h3>
+    <p>Sì, ma solo la metà della spesa legata ai millesimi di proprietà, perché l'impianto fa parte dei beni comuni. Non partecipa invece alla metà calcolata sull'altezza di piano. Resta fuori del tutto soltanto chi non ha accesso a quella scala o a quell'ascensore.</p>
+
+    <h3>Ho comprato casa a metà anno: chi paga le spese?</h3>
+    <p>Verso il condominio chi compra risponde in solido con chi vende per i contributi dell'anno in corso e di quello precedente (articolo 63 delle disposizioni di attuazione del codice civile). Tra venditore e acquirente, invece, la divisione dipende dal momento in cui la spesa è maturata o è stata deliberata: è una delle cose da mettere nero su bianco nel rogito.</p>
+
+    <h3>I millesimi si possono cambiare?</h3>
+    <p>Di regola serve l'unanimità. L'articolo 69 delle disposizioni di attuazione del codice civile ammette la revisione a maggioranza in due soli casi: quando le tabelle sono il frutto di un errore, oppure quando opere sull'edificio hanno alterato di oltre un quinto il valore proporzionale di almeno un'unità. In quest'ultimo caso la spesa della revisione è di chi ha causato la variazione.</p>
+
+    <h3>Serve registrarsi? I dati restano sul telefono?</h3>
+    <p>Nessuna registrazione. Il calcolo avviene interamente nel browser e la tabella resta nella memoria locale del dispositivo: la pagina funziona anche senza connessione e nessun dato viene inviato altrove.</p>
+    <p class="nota-p">Strumento informativo: per le decisioni e le contestazioni formali fai sempre riferimento al regolamento del tuo condominio e al parere dell'amministratore o di un legale.</p>
+  </section>
+
+  <div data-affiliate data-title="Per chi gestisce un condominio" data-items='[{"t":"Manuale pratico del condominio","q":"manuale pratico del condominio"},{"t":"Registro dei verbali di assemblea","q":"registro verbali assemblea condominio"}]'></div>
+
+  <div data-ad="bottom"></div>
+  <div data-support></div>
+
+  <footer>
+    <p>Altri strumenti utili: <a href="../2026-09-28-imu-seconda-casa/">calcolare l'IMU sulla seconda casa</a> se l'immobile non è la tua abitazione principale, e <a href="../2026-09-20-consumo-condizionatore/">stimare quanto consuma un condizionatore</a> per capire il peso delle utenze in bolletta.</p>
+    <p>Riferimenti normativi citati: articoli 1123, 1124 e 1126 del codice civile; articoli 63 e 69 delle disposizioni di attuazione del codice civile.</p>
+    <p>Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a></p>
+  </footer>
+</div>
+
+<div class="barra">
+  <div class="info">
+    <b id="barCifra">—</b>
+    <span id="barNome">nessuna unità selezionata</span>
+  </div>
+  <button type="button" class="btn sm" id="barCopia">Copia riepilogo</button>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="solo-stampa" id="stampa" aria-hidden="true"></div>
+
+<script src="../../assets/monetize.js"></script>
+<script>
+/* Modello dati: un condominio = { nome, periodo, mia, unita: [{id,nome,mill,piano}],
+ * spese: [{id,desc,euro,criterio,escluse:[idUnita],tab:{idUnita:millesimi}}] }, più "set" = mappa
+ * nome -> copia del condominio (funzione Pro). Gli importi si ripartiscono in centesimi interi
+ * col metodo dei resti più grandi, così la somma delle quote torna esatta al centesimo. */
+(function () {
+  "use strict";
+
+  var STORE = "spese-condominiali-millesimi:v1";
+  var CRITERI = {
+    proprieta: "Millesimi di proprietà",
+    uguali: "Parti uguali",
+    scale: "Scale e ascensore (art. 1124)",
+    tabella: "Tabella personalizzata"
+  };
+
+  var stato = { nome: "", periodo: "", mia: null, unita: [], spese: [], set: {} };
+  var ultimo = null; // ultimo riparto calcolato, usato da stampa, CSV e copia
+
+  var $ = function (id) { return document.getElementById(id); };
+  var aperti = {}; // quali pannelli <details> l'utente ha aperto: sopravvivono ai re-render
+  function ricorda(det, chiave, apertoPerDefault) {
+    det.open = aperti[chiave] === undefined ? !!apertoPerDefault : aperti[chiave];
+    det.addEventListener("toggle", function () { aperti[chiave] = det.open; });
+  }
+  var eur = new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR" });
+  var dec = new Intl.NumberFormat("it-IT", { maximumFractionDigits: 2 });
+
+  function uid() {
+    if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+    return "u" + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+  }
+  function num(v) {
+    var n = parseFloat(String(v === null || v === undefined ? "" : v).replace(/\s/g, "").replace(",", "."));
+    return isFinite(n) ? n : 0;
+  }
+  function somma(a) { var t = 0; for (var i = 0; i < a.length; i++) t += a[i]; return t; }
+
+  // Ripartisce un importo in centesimi secondo i pesi dati, assegnando i centesimi di resto
+  // alle quote con la frazione più alta: la somma dei risultati è esattamente "cent".
+  function riparti(cent, pesi) {
+    var out = pesi.map(function () { return 0; });
+    var tot = somma(pesi);
+    if (!(tot > 0) || !(cent > 0)) return out;
+    var grezzi = pesi.map(function (p) { return cent * (p > 0 ? p : 0) / tot; });
+    out = grezzi.map(Math.floor);
+    var resto = cent - somma(out);
+    var ordine = grezzi.map(function (g, i) { return { f: g - Math.floor(g), i: i }; })
+      .sort(function (a, b) { return b.f - a.f || a.i - b.i; });
+    for (var k = 0; k < ordine.length && resto > 0; k++, resto--) out[ordine[k].i]++;
+    return out;
+  }
+
+  // ---------- calcolo ----------
+  function calcola() {
+    var unita = stato.unita;
+    var quote = {}, dettagli = {}, nonRipartite = [], totale = 0;
+    unita.forEach(function (u) { quote[u.id] = 0; dettagli[u.id] = []; });
+
+    stato.spese.forEach(function (s) {
+      var cent = Math.round(Math.max(0, num(s.euro)) * 100);
+      totale += cent;
+      if (!cent) return;
+      var escluse = s.escluse || [];
+      var attive = unita.filter(function (u) { return escluse.indexOf(u.id) < 0; });
+      if (!attive.length) { nonRipartite.push(s); return; }
+      var parti = attive.map(function () { return 0; });
+      var nota = "";
+
+      if (s.criterio === "scale") {
+        var meta1 = Math.floor(cent / 2), meta2 = cent - meta1;
+        var pm = attive.map(function (u) { return Math.max(0, num(u.mill)); });
+        var ph = attive.map(function (u) { return Math.max(0, num(u.piano)); });
+        var soloTerra = !(somma(ph) > 0);
+        if (soloTerra) ph = pm.slice();
+        var q1 = riparti(meta1, pm), q2 = riparti(meta2, ph);
+        parti = attive.map(function (u, i) { return q1[i] + q2[i]; });
+        nota = soloTerra
+          ? "metà per millesimi, metà per altezza: tutte le unità sono allo stesso livello, quindi vale il solo criterio dei millesimi"
+          : "metà per millesimi di proprietà, metà per altezza di piano";
+      } else {
+        var pesi;
+        if (s.criterio === "uguali") pesi = attive.map(function () { return 1; });
+        else if (s.criterio === "tabella") pesi = attive.map(function (u) { return Math.max(0, num((s.tab || {})[u.id])); });
+        else pesi = attive.map(function (u) { return Math.max(0, num(u.mill)); });
+        parti = riparti(cent, pesi);
+        if (s.criterio === "uguali") nota = "quota uguale per " + attive.length + " unità";
+        else if (s.criterio === "tabella") nota = "tabella personalizzata";
+      }
+
+      if (somma(parti) !== cent) { nonRipartite.push(s); return; }
+      attive.forEach(function (u, i) {
+        quote[u.id] += parti[i];
+        dettagli[u.id].push({ id: s.id, desc: s.desc || "Voce senza nome", criterio: s.criterio, cent: parti[i], nota: nota });
+      });
+    });
+
+    var righe = unita.map(function (u) {
+      return { u: u, cent: quote[u.id], voci: dettagli[u.id] };
+    });
+    return { righe: righe, totale: totale, nonRipartite: nonRipartite, millTot: somma(unita.map(function (u) { return num(u.mill); })) };
+  }
+
+  // ---------- persistenza ----------
+  function salva() {
+    try {
+      localStorage.setItem(STORE, JSON.stringify({
+        nome: stato.nome, periodo: stato.periodo, mia: stato.mia,
+        unita: stato.unita, spese: stato.spese, set: stato.set
+      }));
+    } catch (e) { /* storage pieno o bloccato: l'app continua a funzionare in memoria */ }
+  }
+  function carica() {
+    var raw = null;
+    try { raw = localStorage.getItem(STORE); } catch (e) { raw = null; }
+    if (!raw) return false;
+    try {
+      var d = JSON.parse(raw);
+      if (!d || !Array.isArray(d.unita)) return false;
+      stato.nome = typeof d.nome === "string" ? d.nome : "";
+      stato.periodo = typeof d.periodo === "string" ? d.periodo : "";
+      stato.unita = d.unita.filter(function (u) { return u && u.id; });
+      stato.spese = (Array.isArray(d.spese) ? d.spese : []).filter(function (s) { return s && s.id; });
+      stato.mia = d.mia || null;
+      stato.set = (d.set && typeof d.set === "object") ? d.set : {};
+      return true;
+    } catch (e) { return false; }
+  }
+  function esempio() {
+    var u = [
+      { id: uid(), nome: "Interno 1 — piano terra", mill: "200", piano: "0" },
+      { id: uid(), nome: "Interno 2 — 1° piano", mill: "250", piano: "1" },
+      { id: uid(), nome: "Interno 3 — 2° piano", mill: "270", piano: "2" },
+      { id: uid(), nome: "Interno 4 — 3° piano", mill: "280", piano: "3" }
+    ];
+    stato.nome = "Condominio Via Verdi 12";
+    stato.periodo = "esercizio 2026";
+    stato.unita = u;
+    stato.mia = u[1].id;
+    stato.spese = [
+      { id: uid(), desc: "Pulizia e amministrazione", euro: "2400", criterio: "proprieta", escluse: [], tab: {} },
+      { id: uid(), desc: "Manutenzione ascensore", euro: "1600", criterio: "scale", escluse: [], tab: {} }
+    ];
+  }
+
+  // ---------- messaggi ----------
+  var tTimer = null;
+  function toast(msg) {
+    var t = $("toast");
+    t.textContent = msg;
+    t.classList.add("on");
+    if (tTimer) clearTimeout(tTimer);
+    tTimer = setTimeout(function () { t.classList.remove("on"); }, 2400);
+  }
+  function proOk() {
+    if (window.Monetize && !Monetize.isPro()) { Monetize.unlock(); return false; }
+    return true;
+  }
+
+  // ---------- render: unità ----------
+  function campo(etichetta, valore, attrs) {
+    var wrap = document.createElement("div");
+    var id = "f" + uid().slice(0, 8);
+    var lab = document.createElement("label");
+    lab.setAttribute("for", id); lab.textContent = etichetta;
+    var inp = document.createElement("input");
+    inp.id = id; inp.type = "text"; inp.value = valore === undefined || valore === null ? "" : valore;
+    Object.keys(attrs || {}).forEach(function (k) { inp.setAttribute(k, attrs[k]); });
+    wrap.append(lab, inp);
+    return { box: wrap, input: inp };
+  }
+
+  function renderUnita() {
+    var cont = $("listaUnita");
+    cont.textContent = "";
+    stato.unita.forEach(function (u, idx) {
+      var riga = document.createElement("div");
+      riga.className = "riga unita" + (stato.mia === u.id ? " mia" : "");
+
+      var nome = campo("Unità " + (idx + 1), u.nome, { placeholder: "Es. Interno 3 — 2° piano", autocomplete: "off", maxlength: "60", enterkeyhint: "done" });
+      nome.input.addEventListener("input", function () { u.nome = this.value; salva(); aggiorna(); });
+      nome.input.addEventListener("change", renderSpese);
+
+      var due = document.createElement("div");
+      due.className = "due";
+      var mill = campo("Millesimi", u.mill, { inputmode: "decimal", placeholder: "85", enterkeyhint: "done", "aria-describedby": "qMillSub" });
+      mill.input.addEventListener("input", function () { u.mill = this.value; salva(); aggiorna(); });
+      var piano = campo("Piano (0 = terra)", u.piano, { inputmode: "decimal", placeholder: "2", enterkeyhint: "done" });
+      piano.input.addEventListener("input", function () { u.piano = this.value; salva(); aggiorna(); });
+      due.append(mill.box, piano.box);
+
+      var azioni = document.createElement("div");
+      azioni.className = "azioni";
+      var bMia = document.createElement("button");
+      bMia.type = "button"; bMia.className = "btn sm sec"; bMia.textContent = stato.mia === u.id ? "★ La mia" : "☆ La mia";
+      bMia.setAttribute("aria-pressed", stato.mia === u.id ? "true" : "false");
+      bMia.addEventListener("click", function () {
+        stato.mia = stato.mia === u.id ? null : u.id;
+        salva(); renderUnita(); aggiorna();
+      });
+      var bDel = document.createElement("button");
+      bDel.type = "button"; bDel.className = "btn sm gh"; bDel.textContent = "Elimina";
+      bDel.setAttribute("aria-label", "Elimina l'unità " + (u.nome || idx + 1));
+      bDel.addEventListener("click", function () {
+        stato.unita = stato.unita.filter(function (x) { return x.id !== u.id; });
+        if (stato.mia === u.id) stato.mia = null;
+        stato.spese.forEach(function (s) {
+          if (s.escluse) s.escluse = s.escluse.filter(function (x) { return x !== u.id; });
+          if (s.tab) delete s.tab[u.id];
+        });
+        salva(); renderUnita(); renderSpese(); aggiorna();
+        toast("Unità eliminata");
+      });
+      azioni.append(bMia, bDel);
+
+      riga.append(nome.box, due, azioni);
+      cont.append(riga);
+    });
+
+    $("vuotoUnita").hidden = stato.unita.length > 0;
+    $("contaUnita").textContent = stato.unita.length === 1 ? "1 unità" : stato.unita.length + " unità";
+  }
+
+  // ---------- render: spese ----------
+  function renderSpese() {
+    var cont = $("listaSpese");
+    cont.textContent = "";
+    stato.spese.forEach(function (s, idx) {
+      var riga = document.createElement("div");
+      riga.className = "riga";
+
+      var desc = campo("Voce " + (idx + 1), s.desc, { placeholder: "Es. Pulizia scale", autocomplete: "off", maxlength: "70", enterkeyhint: "done" });
+      desc.input.addEventListener("input", function () { s.desc = this.value; salva(); aggiorna(); });
+
+      var due = document.createElement("div");
+      due.className = "due";
+      var imp = campo("Importo in €", s.euro, { inputmode: "decimal", placeholder: "1200", enterkeyhint: "done" });
+      imp.input.addEventListener("input", function () { s.euro = this.value; salva(); aggiorna(); });
+
+      var cbox = document.createElement("div");
+      var cid = "c" + s.id.slice(0, 8);
+      var clab = document.createElement("label");
+      clab.setAttribute("for", cid); clab.textContent = "Criterio";
+      var sel = document.createElement("select");
+      sel.id = cid;
+      Object.keys(CRITERI).forEach(function (k) {
+        var o = document.createElement("option");
+        o.value = k; o.textContent = CRITERI[k];
+        if (s.criterio === k) o.selected = true;
+        sel.append(o);
+      });
+      sel.addEventListener("change", function () {
+        s.criterio = this.value;
+        if (s.criterio === "tabella") {
+          s.tab = s.tab || {};
+          stato.unita.forEach(function (u) { if (s.tab[u.id] === undefined) s.tab[u.id] = u.mill; });
+        }
+        salva(); renderSpese(); aggiorna();
+      });
+      cbox.append(clab, sel);
+      due.append(imp.box, cbox);
+      riga.append(desc.box, due);
+
+      // unità coinvolte
+      var dett = document.createElement("details");
+      var sum = document.createElement("summary");
+      var escluse = s.escluse || [];
+      var dentro = stato.unita.length - escluse.filter(function (id) {
+        return stato.unita.some(function (u) { return u.id === id; });
+      }).length;
+      sum.textContent = escluse.length
+        ? "Unità coinvolte: " + dentro + " di " + stato.unita.length + " — tocca per cambiare"
+        : "Unità coinvolte: tutte (" + stato.unita.length + ")";
+      var sotto = document.createElement("div");
+      sotto.className = "sotto";
+      var chips = document.createElement("div");
+      chips.className = "chips";
+      stato.unita.forEach(function (u) {
+        var c = document.createElement("button");
+        c.type = "button"; c.className = "chip";
+        var attiva = escluse.indexOf(u.id) < 0;
+        c.setAttribute("aria-pressed", attiva ? "true" : "false");
+        c.textContent = (attiva ? "✓ " : "— ") + (u.nome || "unità");
+        c.addEventListener("click", function () {
+          s.escluse = s.escluse || [];
+          if (s.escluse.indexOf(u.id) < 0) s.escluse.push(u.id);
+          else s.escluse = s.escluse.filter(function (x) { return x !== u.id; });
+          aperti["coinvolte:" + s.id] = true;
+          salva(); renderSpese(); aggiorna();
+        });
+        chips.append(c);
+      });
+      var nota = document.createElement("p");
+      nota.className = "nota-p";
+      nota.textContent = "Escludi le unità che non usano quel bene o servizio (art. 1123, terzo comma): per esempio un negozio con ingresso autonomo dalle spese della scala.";
+      sotto.append(chips, nota);
+      dett.append(sum, sotto);
+      ricorda(dett, "coinvolte:" + s.id, false);
+      riga.append(dett);
+
+      // tabella personalizzata
+      if (s.criterio === "tabella") {
+        var dt = document.createElement("details");
+        var st = document.createElement("summary");
+        st.textContent = "Millesimi di questa tabella";
+        var box = document.createElement("div");
+        box.className = "sotto";
+        s.tab = s.tab || {};
+        stato.unita.forEach(function (u) {
+          var row = document.createElement("div");
+          row.className = "mini";
+          var sp = document.createElement("span");
+          sp.textContent = u.nome || "unità";
+          var inp = document.createElement("input");
+          inp.type = "text"; inp.setAttribute("inputmode", "decimal");
+          inp.setAttribute("aria-label", "Millesimi di " + (u.nome || "unità"));
+          inp.value = s.tab[u.id] === undefined ? "" : s.tab[u.id];
+          inp.addEventListener("input", function () { s.tab[u.id] = this.value; salva(); aggiorna(); });
+          row.append(sp, inp);
+          box.append(row);
+        });
+        var nt = document.createElement("p");
+        nt.className = "nota-p";
+        nt.textContent = "Usa i valori della tabella specifica (riscaldamento, acqua, autorimessa). Non devono necessariamente sommare 1.000: contano solo in proporzione tra loro.";
+        box.append(nt);
+        dt.append(st, box);
+        ricorda(dt, "tab:" + s.id, true);
+        riga.append(dt);
+      }
+
+      var az = document.createElement("div");
+      az.className = "azioni";
+      var bDel = document.createElement("button");
+      bDel.type = "button"; bDel.className = "btn sm gh"; bDel.textContent = "Elimina voce";
+      bDel.addEventListener("click", function () {
+        stato.spese = stato.spese.filter(function (x) { return x.id !== s.id; });
+        salva(); renderSpese(); aggiorna();
+        toast("Voce eliminata");
+      });
+      az.append(bDel);
+      riga.append(az);
+
+      cont.append(riga);
+    });
+
+    $("vuotoSpese").hidden = stato.spese.length > 0;
+    $("contaSpese").textContent = stato.spese.length === 1 ? "1 voce" : stato.spese.length + " voci";
+  }
+
+  // ---------- render: riparto, quadri, avvisi, barra ----------
+  function renderRiparto(r) {
+    var cont = $("listaRiparto");
+    cont.textContent = "";
+    if (!stato.unita.length || !r.totale) {
+      var p = document.createElement("p");
+      p.className = "vuoto";
+      p.textContent = stato.unita.length
+        ? "Aggiungi almeno una spesa con un importo per vedere le quote."
+        : "Aggiungi le unità e le spese: qui comparirà la quota di ciascun condomino.";
+      cont.append(p);
+      $("contaRiparto").textContent = "—";
+      return;
+    }
+    r.righe.forEach(function (riga) {
+      var box = document.createElement("div");
+      box.className = "esito" + (stato.mia === riga.u.id ? " mia" : "");
+      var testa = document.createElement("div");
+      testa.className = "testa";
+      var sx = document.createElement("div");
+      var nome = document.createElement("div");
+      nome.className = "nome";
+      nome.textContent = riga.u.nome || "Unità senza nome";
+      var mill = document.createElement("div");
+      mill.className = "mill";
+      var perc = r.millTot > 0 ? " · " + dec.format(num(riga.u.mill) / r.millTot * 100) + "% del totale" : "";
+      mill.textContent = dec.format(num(riga.u.mill)) + " millesimi" + perc;
+      sx.append(nome, mill);
+      var cifra = document.createElement("div");
+      cifra.className = "cifra";
+      cifra.textContent = eur.format(riga.cent / 100);
+      testa.append(sx, cifra);
+      box.append(testa);
+
+      if (riga.voci.length) {
+        var det = document.createElement("details");
+        var sm = document.createElement("summary");
+        sm.textContent = "Dettaglio delle " + riga.voci.length + (riga.voci.length === 1 ? " voce" : " voci");
+        var ul = document.createElement("ul");
+        ul.className = "dett";
+        riga.voci.forEach(function (v) {
+          var li = document.createElement("li");
+          var a = document.createElement("span");
+          a.textContent = v.desc;
+          if (v.nota) {
+            var n = document.createElement("span");
+            n.className = "nota";
+            n.textContent = v.nota;
+            a.append(n);
+          }
+          var b = document.createElement("span");
+          b.textContent = eur.format(v.cent / 100);
+          li.append(a, b);
+          ul.append(li);
+        });
+        det.append(sm, ul);
+        ricorda(det, "dett:" + riga.u.id, false);
+        box.append(det);
+      }
+      cont.append(box);
+    });
+    $("contaRiparto").textContent = eur.format(r.totale / 100) + " ripartiti";
+  }
+
+  function renderQuadri(r) {
+    var mia = r.righe.filter(function (x) { return x.u.id === stato.mia; })[0];
+    $("qMia").textContent = mia ? eur.format(mia.cent / 100) : "—";
+    $("qMiaSub").textContent = mia
+      ? (mia.u.nome || "unità selezionata") + " · " + dec.format(num(mia.u.mill)) + " millesimi"
+      : "tocca ☆ La mia sull'unità che ti interessa";
+
+    $("qTot").textContent = r.totale ? eur.format(r.totale / 100) : "—";
+    $("qTotSub").textContent = stato.spese.length === 1 ? "1 voce di spesa" : stato.spese.length + " voci di spesa";
+
+    var nu = $("qMill");
+    if (!stato.unita.length) {
+      nu.textContent = "—"; nu.classList.remove("warn");
+      $("qMillSub").textContent = "deve fare 1.000";
+    } else {
+      nu.textContent = dec.format(r.millTot);
+      var scarto = r.millTot - 1000;
+      var fuori = Math.abs(scarto) > 0.005;
+      nu.classList.toggle("warn", fuori);
+      $("qMillSub").textContent = fuori
+        ? (scarto > 0 ? "+" : "") + dec.format(scarto) + " rispetto a 1.000"
+        : "la tabella quadra";
+    }
+  }
+
+  function renderAvvisi(r) {
+    var cont = $("avvisi");
+    cont.textContent = "";
+    var msg = [];
+    if (stato.unita.length && Math.abs(r.millTot - 1000) > 0.005) {
+      msg.push("La somma dei millesimi è " + dec.format(r.millTot) + " invece di 1.000: la tabella è incompleta o trascritta male. Le quote restano proporzionali, ma controllala prima di usare il risultato.");
+    }
+    var zero = stato.unita.filter(function (u) { return !(num(u.mill) > 0); }).length;
+    if (zero && stato.unita.length > zero) {
+      msg.push(zero === 1
+        ? "Un'unità ha i millesimi a zero: non partecipa alle spese divise per millesimi."
+        : zero + " unità hanno i millesimi a zero: non partecipano alle spese divise per millesimi.");
+    }
+    if (stato.unita.length) r.nonRipartite.forEach(function (s) {
+      msg.push("La voce “" + (s.desc || "senza nome") + "” non è stata ripartita: non ci sono unità coinvolte con un peso maggiore di zero.");
+    });
+    msg.forEach(function (m) {
+      var d = document.createElement("div");
+      d.className = "avviso";
+      d.textContent = m;
+      cont.append(d);
+    });
+  }
+
+  function renderBarra(r) {
+    var mia = r.righe.filter(function (x) { return x.u.id === stato.mia; })[0];
+    if (mia) {
+      $("barCifra").textContent = eur.format(mia.cent / 100);
+      $("barNome").textContent = "quota di " + (mia.u.nome || "unità selezionata");
+    } else {
+      $("barCifra").textContent = r.totale ? eur.format(r.totale / 100) : "—";
+      $("barNome").textContent = r.totale ? "totale da ripartire" : "nessun dato inserito";
+    }
+  }
+
+  // ---------- stampa e CSV (Pro) ----------
+  function quotaDi(riga, speseId) {
+    var v = riga.voci.filter(function (x) { return x.id === speseId; })[0];
+    return v ? v.cent : 0;
+  }
+
+  function renderStampa(r) {
+    var box = $("stampa");
+    box.textContent = "";
+    var h = document.createElement("h2");
+    h.textContent = stato.nome || "Riparto delle spese condominiali";
+    var sub = document.createElement("p");
+    sub.className = "sub";
+    sub.textContent = (stato.periodo ? stato.periodo + " — " : "") + "totale ripartito " + eur.format(r.totale / 100)
+      + " — millesimi " + dec.format(r.millTot);
+    var tab = document.createElement("table");
+    var thead = document.createElement("thead");
+    var tr = document.createElement("tr");
+    ["Unità", "Mill."].concat(stato.spese.map(function (s) { return s.desc || "Voce"; })).concat(["Totale"])
+      .forEach(function (t) { var th = document.createElement("th"); th.textContent = t; tr.append(th); });
+    thead.append(tr);
+    var tbody = document.createElement("tbody");
+    r.righe.forEach(function (riga) {
+      var row = document.createElement("tr");
+      var c1 = document.createElement("td"); c1.textContent = riga.u.nome || "—";
+      var c2 = document.createElement("td"); c2.textContent = dec.format(num(riga.u.mill));
+      row.append(c1, c2);
+      stato.spese.forEach(function (s) {
+        var td = document.createElement("td");
+        td.textContent = eur.format(quotaDi(riga, s.id) / 100);
+        row.append(td);
+      });
+      var ct = document.createElement("td"); ct.textContent = eur.format(riga.cent / 100);
+      row.append(ct);
+      tbody.append(row);
+    });
+    var tfoot = document.createElement("tfoot");
+    var fr = document.createElement("tr");
+    var f1 = document.createElement("td"); f1.textContent = "Totale";
+    var f2 = document.createElement("td"); f2.textContent = dec.format(r.millTot);
+    fr.append(f1, f2);
+    stato.spese.forEach(function (s) {
+      var td = document.createElement("td");
+      var t = somma(r.righe.map(function (riga) { return quotaDi(riga, s.id); }));
+      td.textContent = eur.format(t / 100);
+      fr.append(td);
+    });
+    var ft = document.createElement("td");
+    ft.textContent = eur.format(somma(r.righe.map(function (x) { return x.cent; })) / 100);
+    fr.append(ft);
+    tfoot.append(fr);
+    tab.append(thead, tbody, tfoot);
+    box.append(h, sub, tab);
+  }
+
+  function csvTesto(r) {
+    var vir = function (n) { return String(n).replace(".", ","); };
+    var cella = function (t) { return '"' + String(t).replace(/"/g, '""') + '"'; };
+    var out = [];
+    out.push([cella(stato.nome || "Riparto spese condominiali"), cella(stato.periodo || "")].join(";"));
+    out.push(["Unità", "Millesimi"].concat(stato.spese.map(function (s) { return s.desc || "Voce"; })).concat(["Totale"]).map(cella).join(";"));
+    r.righe.forEach(function (riga) {
+      var row = [cella(riga.u.nome || ""), vir(num(riga.u.mill))];
+      stato.spese.forEach(function (s) { row.push(vir((quotaDi(riga, s.id) / 100).toFixed(2))); });
+      row.push(vir((riga.cent / 100).toFixed(2)));
+      out.push(row.join(";"));
+    });
+    var tot = [cella("Totale"), vir(r.millTot)];
+    stato.spese.forEach(function (s) {
+      tot.push(vir((somma(r.righe.map(function (riga) { return quotaDi(riga, s.id); })) / 100).toFixed(2)));
+    });
+    tot.push(vir((somma(r.righe.map(function (x) { return x.cent; })) / 100).toFixed(2)));
+    out.push(tot.join(";"));
+    return out.join("\r\n");
+  }
+
+  function scaricaCsv() {
+    if (!proOk()) return;
+    if (!ultimo || !stato.unita.length) { toast("Inserisci prima unità e spese"); return; }
+    try {
+      var blob = new Blob(["﻿" + csvTesto(ultimo)], { type: "text/csv;charset=utf-8" });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement("a");
+      a.href = url;
+      a.download = "riparto-" + (stato.nome || "condominio").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") + ".csv";
+      document.body.append(a);
+      a.click();
+      a.remove();
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+      toast("CSV scaricato");
+    } catch (e) { toast("Download non disponibile in questo browser"); }
+  }
+
+  // ---------- condomìni salvati (Pro) ----------
+  function renderSet() {
+    var cont = $("listaSet");
+    cont.textContent = "";
+    var nomi = Object.keys(stato.set);
+    $("vuotoSet").hidden = nomi.length > 0;
+    nomi.sort().forEach(function (n) {
+      var riga = document.createElement("div");
+      riga.className = "esito";
+      var testa = document.createElement("div");
+      testa.className = "testa";
+      var sx = document.createElement("div");
+      var nm = document.createElement("div");
+      nm.className = "nome"; nm.textContent = n;
+      var ds = document.createElement("div");
+      ds.className = "mill";
+      var s = stato.set[n];
+      ds.textContent = (s.unita || []).length + " unità · " + (s.spese || []).length + " voci";
+      sx.append(nm, ds);
+      var az = document.createElement("div");
+      az.className = "azioni";
+      var bApri = document.createElement("button");
+      bApri.type = "button"; bApri.className = "btn sm sec"; bApri.textContent = "Apri";
+      bApri.addEventListener("click", function () {
+        if (!proOk()) return;
+        stato.nome = n;
+        stato.periodo = s.periodo || "";
+        stato.unita = JSON.parse(JSON.stringify(s.unita || []));
+        stato.spese = JSON.parse(JSON.stringify(s.spese || []));
+        stato.mia = s.mia || null;
+        $("nomeCondominio").value = stato.nome;
+        $("periodo").value = stato.periodo;
+        salva(); renderUnita(); renderSpese(); aggiorna();
+        toast("Aperto: " + n);
+      });
+      var bDel = document.createElement("button");
+      bDel.type = "button"; bDel.className = "btn sm gh"; bDel.textContent = "Elimina";
+      bDel.addEventListener("click", function () {
+        if (!proOk()) return;
+        delete stato.set[n];
+        salva(); renderSet();
+        toast("Eliminato: " + n);
+      });
+      az.append(bApri, bDel);
+      testa.append(sx, az);
+      riga.append(testa);
+      cont.append(riga);
+    });
+  }
+
+  // ---------- copia riepilogo ----------
+  function riepilogo(r) {
+    var out = [];
+    out.push((stato.nome || "Riparto spese condominiali") + (stato.periodo ? " — " + stato.periodo : ""));
+    out.push("Spese ripartite: " + eur.format(r.totale / 100));
+    out.push("");
+    r.righe.forEach(function (riga) {
+      out.push("• " + (riga.u.nome || "unità") + " (" + dec.format(num(riga.u.mill)) + " mill.): " + eur.format(riga.cent / 100));
+    });
+    var mia = r.righe.filter(function (x) { return x.u.id === stato.mia; })[0];
+    if (mia) { out.push(""); out.push("La mia quota: " + eur.format(mia.cent / 100)); }
+    return out.join("\n");
+  }
+
+  function copia() {
+    if (!ultimo || !stato.unita.length) { toast("Non c'è ancora nulla da copiare"); return; }
+    var testo = riepilogo(ultimo);
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(testo).then(function () { toast("Riepilogo copiato"); }, fallback);
+    } else fallback();
+    function fallback() {
+      try {
+        var ta = document.createElement("textarea");
+        ta.value = testo;
+        ta.setAttribute("readonly", "");
+        ta.style.cssText = "position:fixed;opacity:0;top:0";
+        document.body.append(ta);
+        ta.select();
+        var ok = document.execCommand("copy");
+        ta.remove();
+        toast(ok ? "Riepilogo copiato" : "Copia non riuscita");
+      } catch (e) { toast("Copia non riuscita"); }
+    }
+  }
+
+  // ---------- avvio ----------
+  function aggiorna() {
+    var r = calcola();
+    ultimo = r;
+    renderRiparto(r);
+    renderQuadri(r);
+    renderAvvisi(r);
+    renderBarra(r);
+    renderStampa(r);
+  }
+
+  function nuovaUnita() {
+    stato.unita.push({ id: uid(), nome: "", mill: "", piano: "" });
+    salva(); renderUnita(); renderSpese(); aggiorna();
+    var campi = $("listaUnita").querySelectorAll('input[type="text"]');
+    var ultimoCampo = campi[campi.length - 3];
+    if (ultimoCampo) ultimoCampo.focus();
+  }
+  function nuovaSpesa() {
+    stato.spese.push({ id: uid(), desc: "", euro: "", criterio: "proprieta", escluse: [], tab: {} });
+    salva(); renderSpese(); aggiorna();
+    var campi = $("listaSpese").querySelectorAll('input[type="text"]');
+    var ultimoCampo = campi[campi.length - 2];
+    if (ultimoCampo) ultimoCampo.focus();
+  }
+
+  var svuotaArmato = false, svuotaTimer = null;
+  function svuota() {
+    var b = $("btnSvuota");
+    if (!svuotaArmato) {
+      svuotaArmato = true;
+      b.textContent = "Tocca di nuovo per confermare";
+      if (svuotaTimer) clearTimeout(svuotaTimer);
+      svuotaTimer = setTimeout(function () { svuotaArmato = false; b.textContent = "Svuota tutto"; }, 4000);
+      return;
+    }
+    svuotaArmato = false;
+    if (svuotaTimer) clearTimeout(svuotaTimer);
+    b.textContent = "Svuota tutto";
+    stato.unita = []; stato.spese = []; stato.mia = null;
+    salva(); renderUnita(); renderSpese(); aggiorna();
+    toast("Tabella svuotata");
+  }
+
+  function init() {
+    if (!carica()) esempio();
+    $("nomeCondominio").value = stato.nome;
+    $("periodo").value = stato.periodo;
+    renderUnita(); renderSpese(); renderSet(); aggiorna();
+
+    $("addUnita").addEventListener("click", nuovaUnita);
+    $("addSpesa").addEventListener("click", nuovaSpesa);
+    $("btnEsempio").addEventListener("click", function () {
+      esempio();
+      $("nomeCondominio").value = stato.nome;
+      $("periodo").value = stato.periodo;
+      salva(); renderUnita(); renderSpese(); aggiorna();
+      toast("Esempio caricato");
+    });
+    $("btnSvuota").addEventListener("click", svuota);
+    $("barCopia").addEventListener("click", copia);
+    $("btnCsv").addEventListener("click", scaricaCsv);
+    $("btnStampa").addEventListener("click", function () {
+      if (!proOk()) return;
+      if (!stato.unita.length) { toast("Inserisci prima le unità"); return; }
+      window.print();
+    });
+    $("btnSalvaSet").addEventListener("click", function () {
+      if (!proOk()) return;
+      var nome = ($("nomeCondominio").value || "").trim();
+      if (!nome) { toast("Scrivi prima il nome del condominio"); $("nomeCondominio").focus(); return; }
+      if (!stato.unita.length) { toast("Non c'è nessuna unità da salvare"); return; }
+      stato.nome = nome;
+      stato.set[nome] = {
+        periodo: stato.periodo, mia: stato.mia,
+        unita: JSON.parse(JSON.stringify(stato.unita)),
+        spese: JSON.parse(JSON.stringify(stato.spese))
+      };
+      salva(); renderSet(); aggiorna();
+      toast("Salvato: " + nome);
+    });
+    $("nomeCondominio").addEventListener("input", function () { stato.nome = this.value; salva(); aggiorna(); });
+    $("periodo").addEventListener("input", function () { stato.periodo = this.value; salva(); aggiorna(); });
+
+    // Tastiera: Invio conferma e chiude la tastiera del telefono, Esc toglie il fuoco.
+    document.addEventListener("keydown", function (ev) {
+      var t = ev.target;
+      if (!t || t.tagName !== "INPUT") return;
+      if (ev.key === "Enter") { ev.preventDefault(); t.blur(); }
+      else if (ev.key === "Escape") { t.blur(); }
+    });
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();
+</script>
+</body>
+</html>

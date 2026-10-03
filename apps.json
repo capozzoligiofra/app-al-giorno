@@ -1,6 +1,6 @@
 {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 21,
+  "count": 22,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -49,6 +49,62 @@
     ]
   },
   "apps": [
+    {
+      "title": "Spese Condominiali Millesimi",
+      "slug": "2026-10-03-spese-condominiali-millesimi",
+      "date": "2026-10-03",
+      "description": "Ripartisce le spese condominiali per millesimi, parti uguali o criterio di legge per scale e ascensore, e mostra la quota di ogni unità.",
+      "category": "finanza-personale",
+      "tags": [
+        "condominio",
+        "millesimi",
+        "spese",
+        "casa"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "dashboard",
+        "palette": "terracotta",
+        "font": "serif-editoriale"
+      },
+      "business": {
+        "keyword": "calcolo spese condominiali millesimi",
+        "keywords": [
+          "ripartizione spese condominiali",
+          "come si calcolano i millesimi condominiali",
+          "spese ascensore art 1124",
+          "calcolo quota condominio"
+        ],
+        "intent": "Chi riceve il riparto dell'amministratore e vuole verificare se la propria quota è giusta, e chi gestisce un condominio piccolo e deve dividere le spese senza software.",
+        "target": "Proprietari di appartamento 30-70 anni e amministratori di condomini autogestiti, soprattutto da telefono.",
+        "edge": "Più spese insieme, ognuna con il suo criterio, incluso quello di legge per scale e ascensore (metà millesimi, metà altezza di piano) che i concorrenti non fanno; controllo della somma dei millesimi e quote che quadrano al centesimo.",
+        "monetization": [
+          "adsense",
+          "affiliate",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Riparto completo da stampare",
+          "Più condomìni salvati"
+        ],
+        "affiliate": [
+          {
+            "t": "Manuale pratico del condominio",
+            "q": "manuale pratico del condominio"
+          },
+          {
+            "t": "Registro dei verbali di assemblea",
+            "q": "registro verbali assemblea condominio"
+          }
+        ]
+      },
+      "size": 58839
+    },
     {
       "title": "Rimborso Chilometrico",
       "slug": "2026-10-02-rimborso-chilometrico",
