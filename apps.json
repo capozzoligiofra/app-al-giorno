@@ -1,6 +1,6 @@
 {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 22,
+  "count": 23,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -49,6 +49,52 @@
     ]
   },
   "apps": [
+    {
+      "title": "Calcolo Straordinari",
+      "slug": "2026-10-04-calcolo-straordinari",
+      "date": "2026-10-04",
+      "description": "Calcola quanto valgono le ore di straordinario in busta paga: paga oraria, maggiorazione del CCNL e netto stimato.",
+      "category": "finanza-personale",
+      "tags": [
+        "lavoro",
+        "stipendio",
+        "ccnl",
+        "busta paga"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "wizard",
+        "palette": "blu-notte",
+        "font": "condensed"
+      },
+      "business": {
+        "keyword": "calcolo straordinari busta paga",
+        "keywords": [
+          "quanto si guadagna con gli straordinari",
+          "maggiorazione straordinario ccnl",
+          "come si calcola la paga oraria dallo stipendio",
+          "straordinari netto in busta paga"
+        ],
+        "intent": "Chi ha fatto ore in più e vuole sapere subito quanto gli spetta, e soprattutto verificare se la cifra che compare in busta paga è quella giusta.",
+        "target": "Lavoratori dipendenti 20-60 anni, operai e impiegati con CCNL industria, commercio, edilizia e turismo, da telefono.",
+        "edge": "Percentuali precaricate dei principali CCNL, divisore orario corretto, netto stimato con scaglioni IRPEF 2026 e imposta sostitutiva, e il confronto diretto con la cifra pagata in busta paga. Nessuna registrazione, funziona offline.",
+        "monetization": [
+          "adsense",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Prospetto mensile da stampare",
+          "Più contratti salvati"
+        ],
+        "affiliate": []
+      },
+      "size": 63429
+    },
     {
       "title": "Spese Condominiali Millesimi",
       "slug": "2026-10-03-spese-condominiali-millesimi",

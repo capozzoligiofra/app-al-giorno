@@ -1,0 +1,1131 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1d3f7a">
+  <title>Calcolo Straordinari Busta Paga: quanto ti spetta</title>
+  <meta name="description" content="Calcolo straordinari busta paga: inserisci paga mensile e ore fatte, ottieni lordo, maggiorazione e netto stimato. Verifica se ti hanno pagato il giusto.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-04-calcolo-straordinari/">
+  <meta property="og:title" content="Calcolo Straordinari Busta Paga: quanto ti spetta">
+  <meta property="og:description" content="Paga oraria, maggiorazione del tuo CCNL e netto stimato in tre passi. Confronta con la cifra che ti hanno pagato e scopri se torna. Niente registrazione.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-04-calcolo-straordinari/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Calcolo Straordinari in Busta Paga",
+    "description": "Calcolatore gratuito degli straordinari in busta paga: paga oraria dal divisore CCNL, maggiorazioni per feriale, notturno e festivo, lordo, netto stimato e confronto con quanto ti è stato pagato.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-04-calcolo-straordinari/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Come si calcola un’ora di straordinario?", "acceptedAnswer": { "@type": "Answer", "text": "Si divide la retribuzione mensile lorda per il divisore orario del CCNL (spesso 173) e si ottiene la paga oraria. Su quella paga oraria si applica la maggiorazione prevista dal contratto per quel tipo di ora. Con 1.800 euro al mese e divisore 173 la paga oraria è 10,40 euro: un’ora di straordinario feriale al 25% vale 13 euro." } },
+      { "@type": "Question", "name": "Qual è la percentuale di maggiorazione dello straordinario?", "acceptedAnswer": { "@type": "Answer", "text": "Non esiste una percentuale fissata dalla legge: la stabilisce il CCNL applicato, con valori diversi per feriale diurno, notturno e festivo. Si va da circa il 15% dello straordinario diurno nel commercio e negli studi professionali al 55% dello straordinario festivo nei metalmeccanici e nell’edilizia." } },
+      { "@type": "Question", "name": "Quante ore di straordinario si possono fare?", "acceptedAnswer": { "@type": "Answer", "text": "Il D.Lgs. 66/2003 fissa il limite di 250 ore di straordinario all’anno e impone che la durata media settimanale, straordinari compresi, non superi 48 ore calcolate su un periodo di 4 mesi, che i contratti collettivi possono estendere fino a 6 o 12 mesi. I CCNL possono prevedere limiti più bassi." } },
+      { "@type": "Question", "name": "Perché in busta paga il netto degli straordinari sembra basso?", "acceptedAnswer": { "@type": "Answer", "text": "Perché sul compenso lordo si pagano prima i contributi INPS a carico del lavoratore (di norma il 9,19%) e poi l’IRPEF con l’aliquota marginale, cioè quella dello scaglione più alto che hai raggiunto, più le addizionali regionali e comunali. Su molti stipendi resta in tasca tra il 55% e il 70% del lordo." } },
+      { "@type": "Question", "name": "Nel 2026 gli straordinari sono detassati?", "acceptedAnswer": { "@type": "Answer", "text": "Solo in parte. Per il 2026 è prevista un’imposta sostitutiva del 15% sulle maggiorazioni per lavoro notturno, festivo e domenicale e sulle indennità di turno, entro un tetto annuo e per chi nel 2025 ha avuto un reddito non superiore a 40.000 euro. La circolare 2/2026 dell’Agenzia delle Entrate esclude lo straordinario feriale diurno." } },
+      { "@type": "Question", "name": "I dati inseriti restano sul mio telefono?", "acceptedAnswer": { "@type": "Answer", "text": "Sì. Il calcolo avviene interamente nel browser e paga, ore e profili salvati restano nella memoria locale del dispositivo: la pagina funziona anche senza connessione e nessun dato viene inviato a un server." } }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #f3f6fb; --surface: #ffffff; --text: #0f1a2d; --muted: #5a6880; --line: #d6ddee;
+      --accent: #1d3f7a; --accent-ink: #ffffff; --soft: #e6edfa; --warn: #8a5300; --warn-bg: #fdf3e0;
+      --ok: #1f6b4d; --bad: #9c2a22;
+      --r: 4px; --r-big: 10px;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0a1020; --surface: #121b30; --text: #e9eefb; --muted: #94a3c1; --line: #233253;
+        --accent: #7aa5ff; --accent-ink: #06101f; --soft: #17233c; --warn: #e8b461; --warn-bg: #2a2110;
+        --ok: #74cba4; --bad: #f28b80;
+        color-scheme: dark;
+      }
+    }
+    * { box-sizing: border-box; }
+    html, body { overflow-x: hidden; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font: 16px/1.5 "Arial Narrow", "Roboto Condensed", "Liberation Sans Narrow", Arial, sans-serif;
+      -webkit-text-size-adjust: 100%;
+      letter-spacing: .01em;
+      padding-bottom: 7rem;
+    }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 14px 16px 0; }
+    a { color: var(--accent); }
+    .back { display: inline-flex; align-items: center; min-height: 44px; font-size: .95rem; text-decoration: none; letter-spacing: .04em; text-transform: uppercase; }
+    .back:hover { text-decoration: underline; }
+    h1 {
+      font-size: 1.6rem; line-height: 1.12; margin: .2rem 0 .5rem;
+      text-transform: uppercase; letter-spacing: .02em; font-weight: 700;
+    }
+    .lead { margin: 0 0 16px; color: var(--muted); font-size: 1.02rem; }
+
+    /* ---- barra dei passi (wizard) ---- */
+    .rail { display: flex; gap: 6px; margin: 0 0 14px; }
+    .rail button {
+      flex: 1; font: inherit; font-size: .9rem; min-height: 46px; padding: 4px 2px 6px;
+      background: var(--surface); color: var(--muted); border: 1px solid var(--line);
+      border-bottom: 3px solid var(--line); border-radius: var(--r) var(--r) 0 0;
+      cursor: pointer; text-transform: uppercase; letter-spacing: .06em; display: grid; gap: 1px;
+    }
+    .rail button b { display: block; font-size: 1.05rem; letter-spacing: 0; }
+    .rail button[aria-current="step"] { color: var(--text); border-bottom-color: var(--accent); background: var(--soft); }
+    .rail button.fatto { color: var(--text); }
+    .rail button.fatto b::after { content: " \2713"; color: var(--ok); }
+
+    .passo {
+      background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-big);
+      padding: 16px 14px; margin-bottom: 14px;
+    }
+    .passo > h2 {
+      font-size: .8rem; text-transform: uppercase; letter-spacing: .12em; color: var(--muted);
+      margin: 0 0 12px; font-weight: 700;
+    }
+    label { display: block; font-size: .92rem; color: var(--muted); margin-bottom: 4px; }
+    input, select {
+      font: inherit; font-size: 16px; width: 100%; min-height: 48px; padding: 8px 10px;
+      border: 1px solid var(--line); border-radius: var(--r); background: var(--bg); color: var(--text);
+    }
+    input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .campo { margin-bottom: 14px; }
+    .due { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .hint { font-size: .88rem; color: var(--muted); margin: 4px 0 0; }
+    .unita { position: relative; }
+    .unita input { padding-right: 2.4rem; }
+    .unita span { position: absolute; right: 10px; bottom: 13px; color: var(--muted); font-size: .95rem; pointer-events: none; }
+
+    .oraria {
+      display: flex; justify-content: space-between; align-items: baseline; gap: 10px;
+      background: var(--soft); border-radius: var(--r); padding: 10px 12px; margin-top: 2px;
+    }
+    .oraria .et { font-size: .82rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+    .oraria .nu { font-size: 1.5rem; font-weight: 700; }
+
+    /* ---- righe ore ---- */
+    .tipo { border-top: 1px solid var(--line); padding: 12px 0; }
+    .tipo:first-of-type { border-top: 0; padding-top: 0; }
+    .tipo .nome { font-weight: 700; font-size: 1.02rem; }
+    .tipo .nota { font-size: .88rem; color: var(--muted); margin: 1px 0 8px; }
+    .tipo .campi { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: end; }
+    .tipo .esito { font-size: .92rem; color: var(--muted); margin: 8px 0 0; min-height: 1.4em; }
+    .tipo .esito b { color: var(--text); }
+    .tipo.attiva { background: var(--soft); margin: 0 -14px; padding: 12px 14px; border-radius: var(--r); border-top-color: transparent; }
+
+    .btn {
+      font: inherit; min-height: 48px; padding: 10px 18px; border-radius: 999px; cursor: pointer;
+      background: var(--accent); color: var(--accent-ink); border: 1.5px solid var(--accent);
+      font-weight: 700; text-transform: uppercase; letter-spacing: .06em; font-size: .92rem;
+    }
+    .btn.sec { background: transparent; color: var(--accent); }
+    .btn.gh { background: transparent; color: var(--muted); border-color: var(--line); }
+    .btn.sm { min-height: 44px; padding: 8px 14px; font-size: .86rem; }
+    .btn:disabled { opacity: .45; cursor: default; }
+    .azioni { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+
+    /* ---- risultato ---- */
+    .totale { text-align: center; padding: 6px 0 12px; }
+    .totale .et { display: block; font-size: .8rem; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); }
+    .totale .nu { display: block; font-size: 3rem; line-height: 1.05; font-weight: 700; letter-spacing: -.01em; }
+    .totale .su { display: block; font-size: .95rem; color: var(--muted); margin-top: 2px; }
+    .coppia { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+    .cella { background: var(--soft); border-radius: var(--r); padding: 10px 12px; }
+    .cella .et { display: block; font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+    .cella .nu { display: block; font-size: 1.3rem; font-weight: 700; }
+    .cella .su { display: block; font-size: .85rem; color: var(--muted); }
+
+    .prow { display: grid; grid-template-columns: 1fr auto; gap: 2px 10px; padding: 8px 0; border-bottom: 1px dashed var(--line); font-size: .98rem; }
+    .prow .d { color: var(--muted); font-size: .86rem; grid-column: 1 / -1; margin-top: -2px; }
+    .prow .v { font-weight: 700; white-space: nowrap; }
+    .prow.somma { border-bottom: 0; border-top: 2px solid var(--line); font-weight: 700; padding-top: 10px; }
+    .prow.neg .v { color: var(--bad); }
+
+    .vuoto { color: var(--muted); font-size: .95rem; margin: 10px 0 0; }
+    .avviso { background: var(--warn-bg); border-left: 3px solid var(--warn); border-radius: var(--r); padding: 10px 12px; font-size: .93rem; margin: 12px 0 0; }
+    .avviso b { color: var(--warn); }
+    .ok { color: var(--ok); }
+    .bad { color: var(--bad); }
+    .riscontro { margin-top: 6px; font-size: 1rem; }
+
+    fieldset { border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px 12px; margin: 14px 0 0; }
+    legend { font-size: .82rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); padding: 0 6px; }
+    .check { display: flex; gap: 10px; align-items: flex-start; min-height: 44px; }
+    .check input { width: 28px; height: 28px; min-height: 28px; margin: 8px 0 0; flex: 0 0 auto; accent-color: var(--accent); }
+    .check label { margin: 0; padding: 10px 0; color: var(--text); font-size: .96rem; cursor: pointer; }
+
+    /* ---- barra fissa in basso ---- */
+    .barra {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+      background: var(--surface); border-top: 1px solid var(--line);
+      padding: 8px 16px calc(8px + env(safe-area-inset-bottom));
+      display: flex; align-items: center; gap: 10px;
+      box-shadow: 0 -4px 16px rgba(10, 16, 32, .1);
+    }
+    .barra .info { flex: 1 1 auto; min-width: 0; }
+    .barra .et { display: block; font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+    .barra .nu { display: block; font-size: 1.3rem; font-weight: 700; line-height: 1.1; }
+    .barra .su { display: block; font-size: .82rem; color: var(--muted); }
+    .barra .nav { display: flex; gap: 6px; flex: 0 0 auto; }
+
+    .toast {
+      position: fixed; left: 50%; transform: translate(-50%, 12px); bottom: calc(5.5rem + env(safe-area-inset-bottom));
+      background: var(--text); color: var(--bg); padding: 10px 16px; border-radius: 999px;
+      font-size: .93rem; opacity: 0; pointer-events: none; transition: opacity .18s, transform .18s; z-index: 40; max-width: 88vw; text-align: center;
+    }
+    .toast.on { opacity: 1; transform: translate(-50%, 0); }
+
+    #guida { margin-top: 26px; }
+    #guida h2 { font-size: 1.3rem; text-transform: uppercase; letter-spacing: .02em; margin: 26px 0 8px; }
+    #guida h3 { font-size: 1.08rem; margin: 20px 0 6px; }
+    #guida p, #guida li { font-size: 1.02rem; }
+    #guida a, footer a { padding: 3px 0; }
+    #guida ul { padding-left: 1.15rem; }
+    #guida li { margin-bottom: 6px; }
+    .nota-p { font-size: .9rem; color: var(--muted); }
+    footer { margin: 28px 0 10px; font-size: .92rem; line-height: 1.8; color: var(--muted); border-top: 1px solid var(--line); padding-top: 14px; }
+    footer a { color: var(--accent); }
+    [data-pro] { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-big); padding: 16px 14px; margin-bottom: 14px; }
+    [data-pro] h2 { font-size: 1.05rem; text-transform: uppercase; letter-spacing: .06em; margin: 0 0 6px; }
+    .salvati { display: grid; gap: 8px; margin-top: 10px; }
+    .salvato { display: flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: var(--r); padding: 6px 6px 6px 12px; }
+    .salvato .n { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 700; }
+    .salvato button { font: inherit; font-size: .85rem; min-height: 44px; min-width: 44px; padding: 4px 10px; border-radius: var(--r); border: 1px solid var(--line); background: transparent; color: var(--text); cursor: pointer; }
+
+    @media (min-width: 820px) {
+      body { padding-bottom: 6rem; }
+      .wrap { padding-top: 22px; }
+      h1 { font-size: 2.1rem; }
+      .rail { display: none; }
+      .passo[hidden] { display: block; }
+      .passo { padding: 20px 22px; }
+      .tipo .campi { grid-template-columns: 160px 160px; justify-content: start; }
+      .tipo.attiva { margin: 0 -22px; padding: 12px 22px; }
+      .barra .nav { display: none; }
+      .barra { justify-content: center; }
+      .barra .info { flex: 0 1 760px; display: flex; gap: 32px; }
+      .totale .nu { font-size: 3.6rem; }
+    }
+    @media print {
+      body { padding: 0; background: #fff; color: #000; }
+      .barra, .rail, .back, [data-ad], .mz-support-wrap, .mz-box, .mz-lock, footer, #guida, .noprint, .toast { display: none !important; }
+      [data-pro] { border: 0; padding: 0; }
+      [data-pro].mz-locked > :not(.mz-lock) { filter: none; }
+      .passo[hidden] { display: block; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <p style="margin:0"><a class="back" href="../../index.html">&larr; Tutte le app</a></p>
+
+  <h1>Calcolo straordinari in busta paga</h1>
+  <p class="lead">Tre passi: la tua paga, le ore che hai fatto, quanto ti spetta. Con le maggiorazioni del tuo CCNL, il netto stimato e il confronto con la cifra che ti hanno pagato davvero.</p>
+
+  <nav class="rail" aria-label="Passi del calcolo">
+    <button type="button" id="r1" data-passo="1" aria-current="step"><b>1</b> Paga</button>
+    <button type="button" id="r2" data-passo="2"><b>2</b> Ore</button>
+    <button type="button" id="r3" data-passo="3"><b>3</b> Spettanze</button>
+  </nav>
+
+  <section class="passo" id="p1" aria-labelledby="t1">
+    <h2 id="t1">Passo 1 &middot; la tua paga</h2>
+
+    <div class="campo">
+      <label for="ccnl">Contratto applicato</label>
+      <select id="ccnl"></select>
+      <p class="hint" id="notaCcnl"></p>
+    </div>
+
+    <div class="campo">
+      <label for="mensile">Retribuzione mensile lorda</label>
+      <div class="unita">
+        <input type="text" id="mensile" inputmode="decimal" enterkeyhint="next" autocomplete="off" placeholder="Es. 1800" aria-describedby="hintMensile">
+        <span>&euro;</span>
+      </div>
+      <p class="hint" id="hintMensile">La base su cui il contratto calcola lo straordinario: di norma paga base pi&ugrave; contingenza (ed EDR, scatti e superminimo se il tuo CCNL li include). La trovi nella parte alta della busta paga.</p>
+    </div>
+
+    <div class="due">
+      <div class="campo">
+        <label for="divisore">Divisore orario CCNL</label>
+        <input type="text" id="divisore" inputmode="numeric" enterkeyhint="next" autocomplete="off" placeholder="173">
+      </div>
+      <div class="campo">
+        <label for="mensilita">Mensilit&agrave; all&rsquo;anno</label>
+        <select id="mensilita">
+          <option value="12">12</option>
+          <option value="13" selected>13</option>
+          <option value="14">14</option>
+          <option value="15">15</option>
+        </select>
+      </div>
+    </div>
+    <p class="hint">Il divisore &egrave; il numero convenzionale di ore mensili indicato dal CCNL: 173 nella maggior parte dei contratti, 168 nel commercio con 40 ore settimanali. Le mensilit&agrave; servono solo a stimare il reddito annuo e quindi l&rsquo;aliquota IRPEF.</p>
+
+    <div class="campo" style="margin-top:14px">
+      <label for="oreSett">Ore settimanali da contratto</label>
+      <input type="text" id="oreSett" inputmode="numeric" enterkeyhint="done" autocomplete="off" placeholder="40">
+      <p class="hint">Serve a controllare il tetto di 48 ore settimanali medie previsto dalla legge.</p>
+    </div>
+
+    <div class="oraria">
+      <span class="et">Paga oraria lorda</span>
+      <span class="nu" id="pagaOraria">&mdash;</span>
+    </div>
+    <p class="hint" id="formulaOraria">Inserisci la retribuzione mensile per vedere la paga oraria.</p>
+
+    <div class="azioni noprint">
+      <button type="button" class="btn" id="vai2">Ore fatte &rarr;</button>
+    </div>
+  </section>
+
+  <section class="passo" id="p2" hidden aria-labelledby="t2">
+    <h2 id="t2">Passo 2 &middot; le ore straordinarie</h2>
+    <p class="hint" style="margin:-6px 0 14px">Scrivi le ore di ciascun tipo (anche con la virgola: 2,5 vale due ore e mezza). Le percentuali arrivano dal contratto scelto: se nel tuo CCNL sono diverse, correggile.</p>
+    <div id="listaTipi"></div>
+    <div class="azioni noprint">
+      <button type="button" class="btn gh sm" id="azzeraOre">Azzera le ore</button>
+      <button type="button" class="btn" id="vai3">Vedi quanto ti spetta &rarr;</button>
+    </div>
+  </section>
+
+  <section class="passo" id="p3" hidden aria-labelledby="t3">
+    <h2 id="t3">Passo 3 &middot; quanto ti spetta</h2>
+
+    <div class="totale">
+      <span class="et">Lordo straordinari</span>
+      <span class="nu" id="totLordo">&mdash;</span>
+      <span class="su" id="totSub">nessuna ora inserita</span>
+    </div>
+
+    <div class="coppia">
+      <div class="cella">
+        <span class="et">Maggiorazione</span>
+        <span class="nu" id="totMagg">&mdash;</span>
+        <span class="su">la parte in pi&ugrave; rispetto a un&rsquo;ora normale</span>
+      </div>
+      <div class="cella">
+        <span class="et">Netto stimato</span>
+        <span class="nu" id="totNetto">&mdash;</span>
+        <span class="su" id="nettoSub">dopo contributi e tasse</span>
+      </div>
+    </div>
+
+    <div id="dettaglio"></div>
+    <p class="vuoto" id="vuotoDettaglio">Torna al passo 2 e inserisci almeno un&rsquo;ora di straordinario.</p>
+
+    <div id="avvisi"></div>
+
+    <fieldset class="noprint">
+      <legend>Dal lordo al netto</legend>
+      <div class="due">
+        <div class="campo" style="margin-bottom:0">
+          <label for="inps">Contributi INPS</label>
+          <div class="unita">
+            <input type="text" id="inps" inputmode="decimal" autocomplete="off" placeholder="9,19">
+            <span>%</span>
+          </div>
+        </div>
+        <div class="campo" style="margin-bottom:0">
+          <label for="addiz">Addizionali locali</label>
+          <div class="unita">
+            <input type="text" id="addiz" inputmode="decimal" autocomplete="off" placeholder="1,9">
+            <span>%</span>
+          </div>
+        </div>
+      </div>
+      <div class="check" style="margin-top:10px">
+        <input type="checkbox" id="detax">
+        <label for="detax">Applica l&rsquo;imposta sostitutiva del 15% prevista per il 2026 su notturno, festivo e domenicale</label>
+      </div>
+      <div class="campo" id="boxTetto" hidden style="margin:8px 0 0">
+        <label for="tetto">Tetto agevolabile ancora disponibile nell&rsquo;anno</label>
+        <div class="unita">
+          <input type="text" id="tetto" inputmode="decimal" autocomplete="off" placeholder="1500">
+          <span>&euro;</span>
+        </div>
+        <p class="hint">1.500 &euro; nel settore privato, 800 &euro; nel pubblico: togli quanto hai gi&agrave; usato nei mesi scorsi. L&rsquo;agevolazione spetta a chi nel 2025 ha avuto un reddito fino a 40.000 &euro;.</p>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Verifica la busta paga</legend>
+      <div class="campo" style="margin-bottom:0">
+        <label for="pagato">Straordinari lordi che ti hanno pagato</label>
+        <div class="unita">
+          <input type="text" id="pagato" inputmode="decimal" autocomplete="off" placeholder="Es. 240,50">
+          <span>&euro;</span>
+        </div>
+        <p class="hint">Somma le voci di straordinario della busta paga, al lordo. Qui sotto vedi se tornano.</p>
+      </div>
+      <p class="riscontro" id="riscontro"></p>
+    </fieldset>
+
+    <div class="azioni noprint">
+      <button type="button" class="btn sec" id="copia">Copia il riepilogo</button>
+    </div>
+  </section>
+
+  <div data-ad="top"></div>
+
+  <section data-pro="Prospetto mensile da stampare" aria-labelledby="hp1">
+    <h2 id="hp1">Prospetto mensile da stampare</h2>
+    <p style="margin:.2rem 0 .8rem">Una pagina sola con mese, contratto, paga oraria, ore per tipo e importi: quella da allegare alla richiesta di chiarimenti all&rsquo;ufficio paghe o da conservare per il controllo di fine anno. In alternativa scaricala in CSV e apri il file in Excel o in Fogli Google.</p>
+    <div class="due">
+      <div class="campo" style="margin-bottom:0">
+        <label for="nomeProfilo">Nome o riferimento</label>
+        <input type="text" id="nomeProfilo" autocomplete="off" maxlength="60" placeholder="Es. Marco &mdash; magazzino">
+      </div>
+      <div class="campo" style="margin-bottom:0">
+        <label for="mese">Mese di riferimento</label>
+        <input type="month" id="mese" autocomplete="off">
+      </div>
+    </div>
+    <div id="prospetto" style="margin-top:12px"></div>
+    <div class="azioni noprint">
+      <button type="button" class="btn sm" id="stampa">Stampa il prospetto</button>
+      <button type="button" class="btn sm sec" id="csv">Scarica CSV</button>
+    </div>
+  </section>
+
+  <section data-pro="Più contratti salvati" aria-labelledby="hp2">
+    <h2 id="hp2">Pi&ugrave; contratti salvati</h2>
+    <p style="margin:.2rem 0 .8rem">Se segui pi&ugrave; situazioni &mdash; la tua e quella di tua moglie, due livelli dello stesso CCNL, il prima e il dopo di un passaggio di categoria &mdash; salva ogni impostazione con un nome e richiamala in un tocco, senza reinserire paga e percentuali.</p>
+    <div class="azioni noprint" style="margin-top:0">
+      <button type="button" class="btn sm" id="salvaProfilo">Salva questa impostazione</button>
+    </div>
+    <div class="salvati" id="listaProfili"></div>
+    <p class="vuoto" id="vuotoProfili">Nessuna impostazione salvata: scrivi un nome qui sopra e tocca &ldquo;Salva questa impostazione&rdquo;.</p>
+  </section>
+
+  <section id="guida">
+    <h2>Come funziona il calcolo degli straordinari in busta paga</h2>
+    <p>Lo straordinario &egrave; il lavoro prestato oltre l&rsquo;orario normale, e in busta paga non vale come un&rsquo;ora qualunque: vale un&rsquo;ora normale pi&ugrave; una maggiorazione. Il calcolo degli straordinari in busta paga si fa quindi in due mosse. Prima si ricava la <strong>paga oraria</strong> dividendo la retribuzione mensile lorda per il <strong>divisore convenzionale</strong> indicato dal CCNL; poi si applica a quella paga oraria la <strong>percentuale di maggiorazione</strong> prevista dal contratto per quel tipo di ora. La legge non fissa nessuna percentuale: &egrave; il contratto collettivo a stabilirla, e distingue in base al momento in cui l&rsquo;ora &egrave; stata prestata e a quante ore si sono accumulate nella settimana.</p>
+
+    <h3>Esempio con i numeri</h3>
+    <p>Prendiamo un operaio metalmeccanico con 1.800 &euro; lordi al mese e divisore 173. La paga oraria &egrave; 1.800 &divide; 173 = <strong>10,40 &euro;</strong>. In un mese fa 6 ore di straordinario feriale diurno nelle prime due ore giornaliere (maggiorazione 25%) e 4 ore di domenica (straordinario festivo, 55%). Le prime valgono 6 &times; 10,40 &times; 1,25 = <strong>78,03 &euro;</strong>, le seconde 4 &times; 10,40 &times; 1,55 = <strong>64,51 &euro;</strong>. Il totale lordo &egrave; <strong>142,54 &euro;</strong>, di cui 38,50 &euro; sono soltanto maggiorazione. Dal lordo vanno poi via i contributi INPS a carico del lavoratore (9,19% = 13,10 &euro;) e l&rsquo;IRPEF sull&rsquo;imponibile residuo: con un reddito annuo intorno ai 23.400 &euro; l&rsquo;aliquota marginale &egrave; il 23%, quindi restano in tasca circa <strong>97 &euro;</strong>. &Egrave; il motivo per cui &ldquo;ho fatto dieci ore&rdquo; e &ldquo;mi sono arrivati tanti soldi&rdquo; non coincidono quasi mai.</p>
+
+    <h3>Le maggiorazioni dei principali CCNL</h3>
+    <p>Le percentuali caricate nel calcolatore sono quelle pi&ugrave; diffuse, da usare come riferimento e sempre da confrontare con l&rsquo;articolo sullo straordinario del contratto che ti viene applicato (lo trovi citato in busta paga, in alto):</p>
+    <ul>
+      <li><strong>Metalmeccanici industria</strong>: 25% sulle prime due ore, 30% sulle successive, 55% lo straordinario festivo. Chi lavora a turni ha regole proprie per il notturno.</li>
+      <li><strong>Commercio e terziario</strong>: 15% dalla 41&ordf; alla 48&ordf; ora settimanale, 20% oltre, 30% festivo e domenicale, 50% il notturno fuori dai turni. Il divisore qui &egrave; 168 con 40 ore settimanali, 182 con 42, 195 con 45.</li>
+      <li><strong>Edilizia industria</strong>: 35% lo straordinario, 45% il lavoro festivo, 55% lo straordinario festivo, 28% il notturno non inserito in turni regolari.</li>
+      <li><strong>Turismo e pubblici esercizi</strong>: 30% il diurno, fino al 60% il notturno prestato nelle ore centrali della notte.</li>
+      <li><strong>Studi professionali</strong>: 15% il diurno, 30% il notturno e il festivo, 50% il festivo notturno.</li>
+    </ul>
+
+    <h3>I limiti di legge da conoscere</h3>
+    <p>Il D.Lgs. 66/2003 pone due paletti. Il primo &egrave; il tetto di <strong>250 ore di straordinario all&rsquo;anno</strong>, che i CCNL possono abbassare. Il secondo, pi&ugrave; importante nella pratica, &egrave; che la durata media del lavoro settimanale &mdash; straordinari compresi &mdash; non pu&ograve; superare le <strong>48 ore</strong>: la media si calcola su un periodo di quattro mesi, che la contrattazione collettiva pu&ograve; portare a sei o dodici. Si possono quindi fare settimane da 52 ore, purch&eacute; siano bilanciate da settimane pi&ugrave; corte. Il calcolatore ti segnala quando il ritmo che stai inserendo, proiettato sull&rsquo;anno, supera queste soglie.</p>
+
+    <h3>Errori comuni</h3>
+    <ul>
+      <li><strong>Usare lo stipendio netto come base.</strong> La paga oraria si ricava dal lordo contrattuale, non da quello che ti arriva sul conto.</li>
+      <li><strong>Dividere per le ore realmente lavorate nel mese.</strong> Il divisore &egrave; convenzionale e fisso: usare 160 invece di 173 gonfia la paga oraria dell&rsquo;8% e porta a pretendere cifre che non spettano.</li>
+      <li><strong>Confondere maggiorazione e totale.</strong> Se il CCNL dice 25%, l&rsquo;ora vale 125% della paga oraria, non il 25%. Alcune buste paga espongono le due parti su righe separate: in quel caso vanno sommate.</li>
+      <li><strong>Non distinguere festivo e domenicale.</strong> In diversi contratti la domenica lavorata con riposo compensativo in un altro giorno ha una maggiorazione molto pi&ugrave; bassa di quella senza riposo compensativo.</li>
+      <li><strong>Dimenticare che lo straordinario entra nell&rsquo;imponibile.</strong> Pu&ograve; farti superare uno scaglione IRPEF e riduce le detrazioni da lavoro dipendente: il netto reale pu&ograve; essere un po&rsquo; inferiore alla stima.</li>
+      <li><strong>Pensare che il forfait copra tutto.</strong> Se hai un superminimo o un&rsquo;indennit&agrave; &ldquo;a forfait per lo straordinario&rdquo;, le ore eccedenti quel forfait vanno comunque pagate.</li>
+    </ul>
+
+    <h3>Domande frequenti</h3>
+
+    <h3>Quale importo devo scrivere come retribuzione mensile?</h3>
+    <p>Quello che il tuo CCNL indica come base per lo straordinario. Molti contratti dicono &ldquo;paga base pi&ugrave; contingenza&rdquo;, altri parlano di &ldquo;retribuzione globale di fatto&rdquo; e includono scatti di anzianit&agrave;, superminimo ed EDR. Nel dubbio prova entrambe le ipotesi: la differenza tra le due cifre ti dice quanto pesa questa scelta sul conto finale.</p>
+
+    <h3>Lo straordinario &egrave; obbligatorio?</h3>
+    <p>Di regola no: serve l&rsquo;accordo tra le parti, e il rifiuto non &egrave; sanzionabile se non ci sono esigenze eccezionali o un obbligo previsto dal contratto collettivo. Resta il fatto che le ore prestate, anche se non autorizzate per iscritto, se provate vanno retribuite.</p>
+
+    <h3>Nel 2026 gli straordinari sono detassati?</h3>
+    <p>Solo una parte. Per il 2026 &egrave; prevista un&rsquo;imposta sostitutiva del 15% sulle maggiorazioni per lavoro notturno, festivo e domenicale e sulle indennit&agrave; di turno, entro un tetto annuo (1.500 &euro; nel privato, 800 &euro; nel pubblico) e per chi nel 2025 ha avuto un reddito non superiore a 40.000 &euro;. La circolare 2/2026 dell&rsquo;Agenzia delle Entrate esclude invece lo straordinario feriale diurno. Nel calcolatore puoi attivare l&rsquo;agevolazione con la casella dedicata e vedere la differenza sul netto.</p>
+
+    <h3>Posso farmi pagare lo straordinario come permesso?</h3>
+    <p>Molti CCNL prevedono la cosiddetta banca ore: invece del compenso accumuli riposi, spesso con la sola maggiorazione pagata in denaro. Conviene quando il tempo vale pi&ugrave; dei soldi e quando l&rsquo;aliquota marginale &egrave; alta, perch&eacute; un&rsquo;ora di riposo non viene tassata.</p>
+
+    <h3>Quanto tempo ho per contestare uno straordinario non pagato?</h3>
+    <p>In linea generale i crediti retributivi si prescrivono in cinque anni, che per il rapporto di lavoro a tempo indeterminato decorrono dalla fine del rapporto. Prima di arrivare l&igrave;, per&ograve;, conviene mandare un conteggio scritto all&rsquo;ufficio paghe: nella maggior parte dei casi si tratta di una voce inserita con la percentuale sbagliata.</p>
+
+    <h3>Serve registrarsi? I dati restano sul telefono?</h3>
+    <p>Nessuna registrazione. Il calcolo avviene interamente nel browser e paga, ore e impostazioni salvate restano nella memoria locale del dispositivo: la pagina funziona anche senza connessione e nulla viene inviato a un server.</p>
+    <p class="nota-p">Strumento informativo con valori di riferimento: per le contestazioni formali fai fede al testo del tuo CCNL e al parere dell&rsquo;ufficio paghe, di un consulente del lavoro o del sindacato.</p>
+  </section>
+
+  <div data-ad="bottom"></div>
+  <div data-support></div>
+
+  <footer>
+    <p>Altri strumenti utili: <a href="../2026-09-20-netto-da-lordo/">calcolare lo stipendio netto dal lordo</a> per capire quanto pesano contributi e IRPEF sulla busta paga, e <a href="../2026-10-01-ferie-maturate/">contare le ferie maturate</a> se le ore in pi&ugrave; le converti in riposi.</p>
+    <p>Riferimenti: D.Lgs. 66/2003 (orario di lavoro, limiti allo straordinario); articolo 2108 del codice civile; percentuali di maggiorazione dei CCNL citati; circolare 2/2026 dell&rsquo;Agenzia delle Entrate per l&rsquo;imposta sostitutiva.</p>
+    <p>Questa pagina pu&ograve; contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a></p>
+  </footer>
+</div>
+
+<div class="barra noprint">
+  <div class="info">
+    <div>
+      <span class="et">Lordo straordinari</span>
+      <span class="nu" id="barLordo">&mdash;</span>
+    </div>
+    <div>
+      <span class="et">Netto stimato</span>
+      <span class="su" id="barNetto">inserisci paga e ore</span>
+    </div>
+  </div>
+  <div class="nav">
+    <button type="button" class="btn gh sm" id="navPrev" disabled>&larr;</button>
+    <button type="button" class="btn sm" id="navNext">Avanti</button>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="../../assets/monetize.js"></script>
+<script>
+(function () {
+  "use strict";
+  // Modello dati: `stato` tiene i parametri del contratto (ccnl, mensile, divisore, mensilita, oreSett),
+  // le ore e la percentuale per ciascun tipo di straordinario (stato.ore[id] = {h, p}), i parametri
+  // fiscali (inps, addiz, detax, tetto) e i profili salvati (stato.profili[nome]). Tutto in localStorage
+  // sotto la chiave "calcolo-straordinari:v1"; il calcolo e il render sono funzioni pure su questo oggetto.
+
+  var CHIAVE = "calcolo-straordinari:v1";
+
+  var TIPI = [
+    { id: "fd1", nome: "Feriale diurno — prime ore", nota: "le prime ore oltre l’orario normale (nei metalmeccanici le prime due al giorno)", agevolato: false },
+    { id: "fd2", nome: "Feriale diurno — ore successive", nota: "oltre la soglia giornaliera o settimanale fissata dal CCNL", agevolato: false },
+    { id: "not", nome: "Notturno", nota: "di norma tra le 22 e le 6, fuori dai turni regolari", agevolato: true },
+    { id: "fes", nome: "Festivo o domenicale", nota: "domeniche e festività, senza riposo compensativo", agevolato: true },
+    { id: "fn", nome: "Festivo notturno", nota: "la notte di una domenica o di una festività", agevolato: true }
+  ];
+
+  var CCNL = [
+    { id: "metalmeccanici", nome: "Metalmeccanici industria", div: 173, p: { fd1: 25, fd2: 30, not: 30, fes: 55, fn: 55 },
+      nota: "Art. 7 CCNL: 25% le prime due ore, 30% le successive, 55% lo straordinario festivo. Il lavoro a turni ha percentuali proprie." },
+    { id: "commercio", nome: "Commercio e terziario", div: 168, p: { fd1: 15, fd2: 20, not: 50, fes: 30, fn: 50 },
+      nota: "15% dalla 41ª alla 48ª ora settimanale, 20% oltre. Divisore 168 con 40 ore settimanali, 182 con 42, 195 con 45." },
+    { id: "edilizia", nome: "Edilizia industria", div: 173, p: { fd1: 35, fd2: 35, not: 28, fes: 55, fn: 55 },
+      nota: "35% lo straordinario, 45% il festivo, 55% lo straordinario festivo, 28% il notturno fuori dai turni avvicendati." },
+    { id: "turismo", nome: "Turismo e pubblici esercizi", div: 173, p: { fd1: 30, fd2: 30, not: 60, fes: 30, fn: 60 },
+      nota: "Confcommercio: 30% il diurno, fino al 60% il notturno nelle ore centrali della notte. Altri accordi del settore partono dal 15%." },
+    { id: "studi", nome: "Studi professionali", div: 173, p: { fd1: 15, fd2: 15, not: 30, fes: 30, fn: 50 },
+      nota: "15% il diurno, 30% il notturno e il festivo, 50% il festivo notturno." },
+    { id: "altro", nome: "Altro CCNL — percentuali mie", div: 173, p: { fd1: 15, fd2: 20, not: 30, fes: 30, fn: 50 },
+      nota: "Copia le percentuali dall’articolo sul lavoro straordinario del tuo contratto collettivo." }
+  ];
+
+  var SCAGLIONI = [[28000, 0.23], [50000, 0.33], [Infinity, 0.43]];
+
+  var stato = {
+    ccnl: "metalmeccanici", mensile: null, divisore: 173, mensilita: 13, oreSett: 40,
+    ore: {}, inps: 9.19, addiz: 1.9, detax: false, tetto: 1500,
+    nome: "", mese: "", profili: {}, passo: 1
+  };
+
+  // ---------- util ----------
+  function $(id) { return document.getElementById(id); }
+  function num(v) {
+    if (v === null || v === undefined) return null;
+    var s = String(v).trim().replace(/\s/g, "").replace(/\./g, "").replace(",", ".");
+    if (s === "") return null;
+    var n = parseFloat(s);
+    return isFinite(n) ? n : null;
+  }
+  function eur(n) {
+    if (n === null || n === undefined || !isFinite(n)) return "—";
+    return n.toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €";
+  }
+  function ore(n) {
+    if (!isFinite(n)) return "0";
+    return n.toLocaleString("it-IT", { maximumFractionDigits: 2 });
+  }
+  var toastT = null;
+  function toast(msg) {
+    var t = $("toast");
+    if (!t) return;
+    t.textContent = msg; t.classList.add("on");
+    if (toastT) clearTimeout(toastT);
+    toastT = setTimeout(function () { t.classList.remove("on"); }, 2400);
+  }
+  function ccnlOf(id) {
+    for (var i = 0; i < CCNL.length; i++) if (CCNL[i].id === id) return CCNL[i];
+    return CCNL[0];
+  }
+
+  // ---------- persistenza ----------
+  function salva() {
+    try { localStorage.setItem(CHIAVE, JSON.stringify(stato)); } catch (e) { /* quota o modalita privata */ }
+  }
+  function carica() {
+    var raw = null;
+    try { raw = localStorage.getItem(CHIAVE); } catch (e) { return; }
+    if (!raw) return;
+    try {
+      var d = JSON.parse(raw);
+      if (d && typeof d === "object") {
+        for (var k in stato) if (Object.prototype.hasOwnProperty.call(d, k) && d[k] !== null) stato[k] = d[k];
+        if (!stato.ore || typeof stato.ore !== "object") stato.ore = {};
+        if (!stato.profili || typeof stato.profili !== "object") stato.profili = {};
+      }
+    } catch (e) { /* dato illeggibile: si riparte dai default */ }
+  }
+
+  // ---------- calcolo ----------
+  function pagaOraria() {
+    var m = stato.mensile, d = stato.divisore;
+    if (!m || m <= 0 || !d || d <= 0) return null;
+    return m / d;
+  }
+  function irpef(reddito) {
+    var t = 0, prec = 0;
+    for (var i = 0; i < SCAGLIONI.length; i++) {
+      var lim = SCAGLIONI[i][0], al = SCAGLIONI[i][1];
+      if (reddito <= prec) break;
+      t += (Math.min(reddito, lim) - prec) * al;
+      prec = lim;
+    }
+    return t;
+  }
+  function aliquotaMarginale(reddito) {
+    for (var i = 0; i < SCAGLIONI.length; i++) if (reddito <= SCAGLIONI[i][0]) return SCAGLIONI[i][1];
+    return 0.43;
+  }
+
+  function calcola() {
+    var ph = pagaOraria();
+    var r = {
+      ph: ph, righe: [], oreTot: 0, lordo: 0, magg: 0, agevolabile: 0,
+      contributi: 0, imponibile: 0, irpef: 0, addiz: 0, sostitutiva: 0, netto: 0,
+      marginale: null, annuo: null
+    };
+    for (var i = 0; i < TIPI.length; i++) {
+      var t = TIPI[i], v = stato.ore[t.id] || {};
+      var h = num(v.h), p = v.p === undefined || v.p === null ? null : num(v.p);
+      if (p === null) p = ccnlOf(stato.ccnl).p[t.id];
+      if (!h || h <= 0) continue;
+      var base = ph ? h * ph : 0;
+      var magg = base * (p / 100);
+      r.righe.push({ id: t.id, nome: t.nome, h: h, p: p, base: base, magg: magg, tot: base + magg, agevolato: t.agevolato });
+      r.oreTot += h; r.lordo += base + magg; r.magg += magg;
+      if (t.agevolato) r.agevolabile += magg;
+    }
+    if (!ph || !r.lordo) return r;
+
+    var aliqInps = (stato.inps || 0) / 100;
+    if (!isFinite(aliqInps) || aliqInps < 0) aliqInps = 0;
+    r.contributi = r.lordo * aliqInps;
+    r.imponibile = r.lordo - r.contributi;
+
+    r.annuo = stato.mensile * stato.mensilita;
+    var baseAnnuaImp = r.annuo * (1 - aliqInps);
+    r.marginale = aliquotaMarginale(baseAnnuaImp);
+
+    // Quota agevolata al 15% (solo maggiorazioni di notturno/festivo, entro il tetto residuo).
+    var agevolataLorda = 0;
+    if (stato.detax) {
+      var tetto = stato.tetto === null ? 0 : stato.tetto;
+      agevolataLorda = Math.max(0, Math.min(r.agevolabile, tetto));
+    }
+    var agevolataImp = agevolataLorda * (1 - aliqInps);
+    var ordinariaImp = Math.max(0, r.imponibile - agevolataImp);
+
+    r.sostitutiva = agevolataImp * 0.15;
+    r.irpef = irpef(baseAnnuaImp + ordinariaImp) - irpef(baseAnnuaImp);
+    var aliqAdd = (stato.addiz || 0) / 100;
+    if (!isFinite(aliqAdd) || aliqAdd < 0) aliqAdd = 0;
+    r.addiz = ordinariaImp * aliqAdd;
+    r.netto = r.imponibile - r.irpef - r.addiz - r.sostitutiva;
+    r.agevolataLorda = agevolataLorda;
+    return r;
+  }
+
+  // ---------- render ----------
+  function renderCcnl() {
+    var sel = $("ccnl");
+    if (!sel.options.length) {
+      for (var i = 0; i < CCNL.length; i++) {
+        var o = document.createElement("option");
+        o.value = CCNL[i].id; o.textContent = CCNL[i].nome;
+        sel.appendChild(o);
+      }
+    }
+    sel.value = stato.ccnl;
+    $("notaCcnl").textContent = ccnlOf(stato.ccnl).nota;
+  }
+
+  function renderTipi() {
+    var box = $("listaTipi");
+    if (box.childElementCount) return; // creato una volta sola, poi si aggiornano i valori
+    for (var i = 0; i < TIPI.length; i++) {
+      var t = TIPI[i];
+      var d = document.createElement("div");
+      d.className = "tipo"; d.id = "tipo-" + t.id;
+      d.innerHTML =
+        '<div class="nome">' + t.nome + '</div>' +
+        '<p class="nota">' + t.nota + '</p>' +
+        '<div class="campi">' +
+          '<div><label for="h-' + t.id + '">Ore</label>' +
+          '<div class="unita"><input type="text" id="h-' + t.id + '" inputmode="decimal" enterkeyhint="next" autocomplete="off" placeholder="0"><span>h</span></div></div>' +
+          '<div><label for="p-' + t.id + '">Maggiorazione</label>' +
+          '<div class="unita"><input type="text" id="p-' + t.id + '" inputmode="decimal" enterkeyhint="next" autocomplete="off"><span>%</span></div></div>' +
+        '</div>' +
+        '<p class="esito" id="e-' + t.id + '"></p>';
+      box.appendChild(d);
+    }
+  }
+
+  function aggiornaTipi(r) {
+    var ph = r.ph;
+    for (var i = 0; i < TIPI.length; i++) {
+      var t = TIPI[i], v = stato.ore[t.id] || {};
+      var hi = $("h-" + t.id), pi = $("p-" + t.id), ei = $("e-" + t.id), box = $("tipo-" + t.id);
+      if (!hi || !pi) continue;
+      if (document.activeElement !== hi) hi.value = v.h === undefined || v.h === null ? "" : v.h;
+      if (document.activeElement !== pi) pi.value = v.p === undefined || v.p === null ? String(ccnlOf(stato.ccnl).p[t.id]).replace(".", ",") : v.p;
+      var h = num(v.h), p = v.p === undefined || v.p === null ? ccnlOf(stato.ccnl).p[t.id] : num(v.p);
+      if (h && h > 0 && ph && p !== null) {
+        var unit = ph * (1 + p / 100);
+        ei.innerHTML = ore(h) + " h &times; " + eur(unit) + " = <b>" + eur(h * unit) + "</b>";
+        box.classList.add("attiva");
+      } else if (h && h > 0 && !ph) {
+        ei.textContent = "Manca la retribuzione mensile: torna al passo 1.";
+        box.classList.add("attiva");
+      } else {
+        ei.textContent = ph && p !== null ? "Un’ora vale " + eur(ph * (1 + p / 100)) : "";
+        box.classList.remove("attiva");
+      }
+    }
+  }
+
+  function renderDettaglio(r) {
+    var box = $("dettaglio"), vuoto = $("vuotoDettaglio");
+    box.innerHTML = "";
+    if (!r.righe.length || !r.ph) {
+      vuoto.hidden = false;
+      vuoto.textContent = !r.ph
+        ? "Manca la retribuzione mensile lorda: torna al passo 1."
+        : "Torna al passo 2 e inserisci almeno un’ora di straordinario.";
+      return;
+    }
+    vuoto.hidden = true;
+    var html = "";
+    for (var i = 0; i < r.righe.length; i++) {
+      var g = r.righe[i];
+      html += '<div class="prow"><span>' + g.nome + '</span><span class="v">' + eur(g.tot) + '</span>' +
+        '<span class="d">' + ore(g.h) + " h a +" + ore(g.p) + "% — ore normali " + eur(g.base) + ", maggiorazione " + eur(g.magg) + '</span></div>';
+    }
+    html += '<div class="prow somma"><span>Totale lordo (' + ore(r.oreTot) + ' h)</span><span class="v">' + eur(r.lordo) + '</span></div>';
+    html += '<div class="prow neg"><span>Contributi INPS (' + ore(stato.inps || 0) + '%)</span><span class="v">− ' + eur(r.contributi) + '</span></div>';
+    if (r.sostitutiva > 0) {
+      html += '<div class="prow neg"><span>Imposta sostitutiva 15%</span><span class="v">− ' + eur(r.sostitutiva) + '</span>' +
+        '<span class="d">su ' + eur(r.agevolataLorda) + ' di maggiorazioni agevolabili</span></div>';
+    }
+    html += '<div class="prow neg"><span>IRPEF (aliquota ' + Math.round(r.marginale * 100) + '%)</span><span class="v">− ' + eur(r.irpef) + '</span>' +
+      '<span class="d">reddito annuo stimato ' + eur(r.annuo) + '</span></div>';
+    if (r.addiz > 0) html += '<div class="prow neg"><span>Addizionali locali (' + ore(stato.addiz || 0) + '%)</span><span class="v">− ' + eur(r.addiz) + '</span></div>';
+    html += '<div class="prow somma"><span>Netto stimato in busta</span><span class="v">' + eur(r.netto) + '</span></div>';
+    box.innerHTML = html;
+  }
+
+  function renderAvvisi(r) {
+    var box = $("avvisi");
+    var out = "";
+    if (r.oreTot > 0) {
+      var annue = r.oreTot * 12;
+      if (annue > 250) {
+        out += '<p class="avviso"><b>Attenzione al tetto annuo.</b> ' + ore(r.oreTot) + " h al mese fanno circa " +
+          ore(Math.round(annue)) + " h all’anno: oltre le 250 ore che il D.Lgs. 66/2003 fissa come limite (molti CCNL ne prevedono meno).</p>";
+      }
+      var sett = stato.oreSett ? stato.oreSett + r.oreTot / 4.33 : null;
+      if (sett && sett > 48) {
+        out += '<p class="avviso"><b>Media settimanale sopra le 48 ore.</b> Con ' + ore(stato.oreSett) + " h da contratto arrivi a circa " +
+          ore(Math.round(sett * 10) / 10) + " h a settimana. Il limite medio di 48 ore si calcola su quattro mesi (sei o dodici se lo prevede il CCNL): va compensato con settimane più corte.</p>";
+      }
+    }
+    if (stato.detax && r.agevolabile > 0 && r.agevolataLorda < r.agevolabile) {
+      out += '<p class="avviso"><b>Tetto agevolabile esaurito.</b> Solo ' + eur(r.agevolataLorda) +
+        " delle " + eur(r.agevolabile) + " di maggiorazioni notturne e festive rientra nell’imposta sostitutiva: il resto è tassato in modo ordinario.</p>";
+    }
+    if (stato.detax && r.agevolabile === 0 && r.lordo > 0) {
+      out += '<p class="avviso"><b>Nessuna ora agevolabile.</b> L’imposta sostitutiva del 15% riguarda notturno, festivo e domenicale: lo straordinario feriale diurno ne resta fuori (circolare 2/2026).</p>';
+    }
+    box.innerHTML = out;
+  }
+
+  function renderRiscontro(r) {
+    var el = $("riscontro");
+    var pagato = num($("pagato").value);
+    if (pagato === null || !r.lordo) { el.textContent = ""; return; }
+    var diff = pagato - r.lordo;
+    var perc = r.lordo ? Math.abs(diff) / r.lordo * 100 : 0;
+    if (Math.abs(diff) < 0.5) {
+      el.innerHTML = '<span class="ok">Torna.</span> La cifra in busta paga coincide con il calcolo (' + eur(r.lordo) + ").";
+    } else if (diff < 0) {
+      el.innerHTML = '<span class="bad">Mancano ' + eur(-diff) + "</span> rispetto ai " + eur(r.lordo) + " calcolati (" + ore(Math.round(perc * 10) / 10) +
+        "% in meno). Controlla la base di calcolo indicata dal CCNL e le percentuali applicate; se la differenza resta, chiedi il dettaglio all’ufficio paghe.";
+    } else {
+      el.innerHTML = '<span class="ok">Ti hanno pagato ' + eur(diff) + " in più</span> dei " + eur(r.lordo) +
+        " calcolati. Spesso dipende da una base di calcolo più ampia (scatti, superminimo) o da una maggiorazione più alta di quella impostata qui.";
+    }
+  }
+
+  function renderProspetto(r) {
+    var box = $("prospetto");
+    if (!r.righe.length || !r.ph) {
+      box.innerHTML = '<p class="vuoto">Il prospetto compare quando ci sono ore e paga oraria.</p>';
+      return;
+    }
+    var mese = stato.mese ? mesePretty(stato.mese) : "mese non indicato";
+    var html = '<div style="font-weight:700;font-size:1.05rem">' + (stato.nome ? escapeHtml(stato.nome) + " — " : "") + mese + '</div>' +
+      '<div class="prow"><span>Contratto</span><span class="v">' + ccnlOf(stato.ccnl).nome + '</span></div>' +
+      '<div class="prow"><span>Retribuzione mensile / divisore</span><span class="v">' + eur(stato.mensile) + " / " + ore(stato.divisore) + '</span></div>' +
+      '<div class="prow"><span>Paga oraria lorda</span><span class="v">' + eur(r.ph) + '</span></div>';
+    for (var i = 0; i < r.righe.length; i++) {
+      var g = r.righe[i];
+      html += '<div class="prow"><span>' + g.nome + " (+" + ore(g.p) + "%)</span><span class=\"v\">" + eur(g.tot) + '</span>' +
+        '<span class="d">' + ore(g.h) + " h — di cui maggiorazione " + eur(g.magg) + '</span></div>';
+    }
+    html += '<div class="prow somma"><span>Totale lordo</span><span class="v">' + eur(r.lordo) + '</span></div>' +
+      '<div class="prow somma"><span>Netto stimato</span><span class="v">' + eur(r.netto) + '</span></div>' +
+      '<p class="nota-p">Prospetto generato da Un’App al Giorno. Valori di riferimento: fa fede la busta paga.</p>';
+    box.innerHTML = html;
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; });
+  }
+  function mesePretty(v) {
+    var m = /^(\d{4})-(\d{2})$/.exec(v || "");
+    if (!m) return v || "";
+    var nomi = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"];
+    return nomi[parseInt(m[2], 10) - 1] + " " + m[1];
+  }
+
+  function renderProfili() {
+    var box = $("listaProfili"), vuoto = $("vuotoProfili");
+    box.innerHTML = "";
+    var nomi = Object.keys(stato.profili);
+    vuoto.hidden = nomi.length > 0;
+    nomi.sort();
+    for (var i = 0; i < nomi.length; i++) {
+      (function (nome) {
+        var row = document.createElement("div");
+        row.className = "salvato";
+        var n = document.createElement("span");
+        n.className = "n"; n.textContent = nome;
+        var bApri = document.createElement("button");
+        bApri.type = "button"; bApri.textContent = "Apri";
+        bApri.addEventListener("click", function () { apriProfilo(nome); });
+        var bDel = document.createElement("button");
+        bDel.type = "button"; bDel.textContent = "Elimina"; bDel.setAttribute("aria-label", "Elimina " + nome);
+        bDel.addEventListener("click", function () {
+          delete stato.profili[nome]; salva(); renderProfili(); toast("Eliminato: " + nome);
+        });
+        row.appendChild(n); row.appendChild(bApri); row.appendChild(bDel);
+        box.appendChild(row);
+      })(nomi[i]);
+    }
+  }
+
+  function apriProfilo(nome) {
+    var p = stato.profili[nome];
+    if (!p) return;
+    stato.ccnl = p.ccnl; stato.mensile = p.mensile; stato.divisore = p.divisore;
+    stato.mensilita = p.mensilita; stato.oreSett = p.oreSett;
+    stato.inps = p.inps; stato.addiz = p.addiz; stato.detax = !!p.detax; stato.tetto = p.tetto;
+    stato.ore = JSON.parse(JSON.stringify(p.ore || {}));
+    stato.nome = nome;
+    salva(); scriviCampi(); aggiorna(); vaiA(1);
+    toast("Aperto: " + nome);
+  }
+
+  // ---------- wizard ----------
+  function vaiA(n, scorri) {
+    stato.passo = n; salva();
+    for (var i = 1; i <= 3; i++) {
+      var p = $("p" + i), r = $("r" + i);
+      p.hidden = i !== n;
+      if (i === n) r.setAttribute("aria-current", "step"); else r.removeAttribute("aria-current");
+    }
+    $("navPrev").disabled = n === 1;
+    $("navNext").textContent = n === 3 ? "Inizio" : "Avanti";
+    if (scorri === false) return;
+    if (window.matchMedia && window.matchMedia("(min-width: 820px)").matches) return;
+    var top = $("p" + n);
+    if (top && top.scrollIntoView) top.scrollIntoView({ block: "start", behavior: "smooth" });
+  }
+
+  function marcaFatti(r) {
+    $("r1").classList.toggle("fatto", !!r.ph);
+    $("r2").classList.toggle("fatto", r.righe.length > 0);
+    $("r3").classList.toggle("fatto", r.lordo > 0);
+  }
+
+  // ---------- aggiornamento generale ----------
+  function aggiorna() {
+    var r = calcola();
+    var ph = r.ph;
+    $("pagaOraria").textContent = ph ? eur(ph) : "—";
+    $("formulaOraria").textContent = ph
+      ? eur(stato.mensile) + " ÷ " + ore(stato.divisore) + " ore = " + eur(ph) + " l’ora, prima della maggiorazione."
+      : "Inserisci la retribuzione mensile per vedere la paga oraria.";
+
+    aggiornaTipi(r);
+
+    $("totLordo").textContent = r.lordo ? eur(r.lordo) : "—";
+    $("totSub").textContent = r.lordo
+      ? ore(r.oreTot) + " ore in totale, paga oraria " + eur(ph)
+      : (ph ? "nessuna ora inserita" : "manca la retribuzione mensile");
+    $("totMagg").textContent = r.lordo ? eur(r.magg) : "—";
+    $("totNetto").textContent = r.lordo ? eur(r.netto) : "—";
+    $("nettoSub").textContent = r.lordo
+      ? "dopo contributi e tasse (" + Math.round(r.netto / r.lordo * 100) + "% del lordo)"
+      : "dopo contributi e tasse";
+
+    $("barLordo").textContent = r.lordo ? eur(r.lordo) : "—";
+    $("barNetto").textContent = r.lordo ? "netto " + eur(r.netto) : (ph ? "inserisci le ore" : "inserisci paga e ore");
+
+    renderDettaglio(r);
+    renderAvvisi(r);
+    renderRiscontro(r);
+    renderProspetto(r);
+    marcaFatti(r);
+    $("boxTetto").hidden = !stato.detax;
+  }
+
+  function scriviCampi() {
+    renderCcnl();
+    $("mensile").value = stato.mensile === null ? "" : String(stato.mensile).replace(".", ",");
+    $("divisore").value = stato.divisore === null ? "" : stato.divisore;
+    $("mensilita").value = String(stato.mensilita);
+    $("oreSett").value = stato.oreSett === null ? "" : stato.oreSett;
+    $("inps").value = stato.inps === null ? "" : String(stato.inps).replace(".", ",");
+    $("addiz").value = stato.addiz === null ? "" : String(stato.addiz).replace(".", ",");
+    $("detax").checked = !!stato.detax;
+    $("tetto").value = stato.tetto === null ? "" : stato.tetto;
+    $("nomeProfilo").value = stato.nome || "";
+    $("mese").value = stato.mese || "";
+  }
+
+  // ---------- CSV ----------
+  function scaricaCsv() {
+    var r = calcola();
+    if (!r.righe.length || !r.ph) { toast("Serve almeno un’ora e la retribuzione mensile"); return; }
+    var sep = ";";
+    var righe = [
+      ["Riferimento", stato.nome || ""],
+      ["Mese", stato.mese ? mesePretty(stato.mese) : ""],
+      ["Contratto", ccnlOf(stato.ccnl).nome],
+      ["Retribuzione mensile lorda", f(stato.mensile)],
+      ["Divisore orario", String(stato.divisore)],
+      ["Paga oraria lorda", f(r.ph)],
+      [],
+      ["Tipo di ora", "Ore", "Maggiorazione %", "Ore normali", "Maggiorazione", "Totale lordo"]
+    ];
+    for (var i = 0; i < r.righe.length; i++) {
+      var g = r.righe[i];
+      righe.push([g.nome, f(g.h), f(g.p), f(g.base), f(g.magg), f(g.tot)]);
+    }
+    righe.push([]);
+    righe.push(["Totale lordo", f(r.lordo)]);
+    righe.push(["Contributi INPS", f(-r.contributi)]);
+    if (r.sostitutiva > 0) righe.push(["Imposta sostitutiva 15%", f(-r.sostitutiva)]);
+    righe.push(["IRPEF stimata", f(-r.irpef)]);
+    if (r.addiz > 0) righe.push(["Addizionali locali", f(-r.addiz)]);
+    righe.push(["Netto stimato", f(r.netto)]);
+
+    var csv = "﻿" + righe.map(function (row) {
+      return row.map(function (c) {
+        var s = String(c === undefined ? "" : c);
+        return /[";\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+      }).join(sep);
+    }).join("\r\n");
+
+    function f(n) { return n === null || n === undefined || !isFinite(n) ? "" : (Math.round(n * 100) / 100).toString().replace(".", ","); }
+
+    try {
+      var blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement("a");
+      a.href = url;
+      a.download = "straordinari-" + (stato.mese || "mese") + ".csv";
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+      toast("CSV scaricato");
+    } catch (e) { toast("Il browser non consente il download"); }
+  }
+
+  function riepilogo() {
+    var r = calcola();
+    if (!r.righe.length || !r.ph) return null;
+    var out = "Straordinari " + (stato.mese ? mesePretty(stato.mese) : "") + "\n";
+    out += "Paga oraria: " + eur(r.ph) + " (" + eur(stato.mensile) + " / " + ore(stato.divisore) + ")\n";
+    for (var i = 0; i < r.righe.length; i++) {
+      var g = r.righe[i];
+      out += "- " + g.nome + ": " + ore(g.h) + " h +" + ore(g.p) + "% = " + eur(g.tot) + "\n";
+    }
+    out += "Totale lordo: " + eur(r.lordo) + " (maggiorazione " + eur(r.magg) + ")\n";
+    out += "Netto stimato: " + eur(r.netto);
+    return out;
+  }
+
+  function copia() {
+    var txt = riepilogo();
+    if (!txt) { toast("Prima inserisci paga e ore"); return; }
+    function fallback() {
+      var ta = document.createElement("textarea");
+      ta.value = txt; ta.setAttribute("readonly", "");
+      ta.style.cssText = "position:fixed;top:-1000px;left:0;opacity:0";
+      document.body.appendChild(ta); ta.select();
+      var ok = false;
+      try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+      ta.remove();
+      toast(ok ? "Riepilogo copiato" : "Copia non riuscita: selezionalo a mano");
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt).then(function () { toast("Riepilogo copiato"); }, fallback);
+    } else fallback();
+  }
+
+  function proOk() {
+    var M = window.Monetize;
+    if (M && !M.isPro()) { toast("Funzione del Pass Pro"); return false; }
+    return true;
+  }
+
+  // ---------- eventi ----------
+  function init() {
+    carica();
+    renderTipi();
+    scriviCampi();
+    if (!stato.mese) {
+      var d = new Date();
+      stato.mese = d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0");
+      $("mese").value = stato.mese;
+    }
+    renderProfili();
+    vaiA(stato.passo === 2 || stato.passo === 3 ? stato.passo : 1, false);
+    aggiorna();
+
+    $("ccnl").addEventListener("change", function () {
+      stato.ccnl = this.value;
+      var c = ccnlOf(stato.ccnl);
+      stato.divisore = c.div;
+      // cambiando contratto le percentuali tornano a quelle del nuovo CCNL
+      for (var id in stato.ore) if (stato.ore[id]) stato.ore[id].p = null;
+      $("divisore").value = c.div;
+      $("notaCcnl").textContent = c.nota;
+      salva(); aggiorna();
+    });
+
+    function campoNum(id, chiave, min, max) {
+      var el = $(id);
+      el.addEventListener("input", function () {
+        var v = num(this.value);
+        // fuori intervallo = dato non utilizzabile: meglio "\u2014" che un numero corretto di nascosto
+        if (v !== null && ((min !== undefined && v < min) || (max !== undefined && v > max))) v = null;
+        stato[chiave] = v;
+        salva(); aggiorna();
+      });
+    }
+    campoNum("mensile", "mensile", 0, 200000);
+    campoNum("divisore", "divisore", 1, 400);
+    campoNum("oreSett", "oreSett", 0, 80);
+    campoNum("inps", "inps", 0, 60);
+    campoNum("addiz", "addiz", 0, 15);
+    campoNum("tetto", "tetto", 0, 100000);
+
+    $("mensilita").addEventListener("change", function () { stato.mensilita = parseInt(this.value, 10) || 13; salva(); aggiorna(); });
+    $("detax").addEventListener("change", function () { stato.detax = this.checked; salva(); aggiorna(); });
+    $("pagato").addEventListener("input", function () { aggiorna(); });
+
+    for (var i = 0; i < TIPI.length; i++) {
+      (function (t) {
+        $("h-" + t.id).addEventListener("input", function () {
+          if (!stato.ore[t.id]) stato.ore[t.id] = { h: null, p: null };
+          stato.ore[t.id].h = this.value.trim() === "" ? null : this.value;
+          salva(); aggiorna();
+        });
+        $("p-" + t.id).addEventListener("input", function () {
+          if (!stato.ore[t.id]) stato.ore[t.id] = { h: null, p: null };
+          stato.ore[t.id].p = this.value.trim() === "" ? null : this.value;
+          salva(); aggiorna();
+        });
+      })(TIPI[i]);
+    }
+
+    $("azzeraOre").addEventListener("click", function () {
+      stato.ore = {};
+      for (var i = 0; i < TIPI.length; i++) { $("h-" + TIPI[i].id).value = ""; }
+      salva(); aggiorna(); toast("Ore azzerate");
+    });
+    $("vai2").addEventListener("click", function () {
+      if (!pagaOraria()) { toast("Inserisci la retribuzione mensile lorda"); $("mensile").focus(); return; }
+      vaiA(2);
+    });
+    $("vai3").addEventListener("click", function () { vaiA(3); });
+
+    $("r1").addEventListener("click", function () { vaiA(1); });
+    $("r2").addEventListener("click", function () { vaiA(2); });
+    $("r3").addEventListener("click", function () { vaiA(3); });
+    $("navPrev").addEventListener("click", function () { vaiA(Math.max(1, stato.passo - 1)); });
+    $("navNext").addEventListener("click", function () { vaiA(stato.passo >= 3 ? 1 : stato.passo + 1); });
+
+    $("copia").addEventListener("click", copia);
+
+    $("nomeProfilo").addEventListener("input", function () { stato.nome = this.value; salva(); renderProspetto(calcola()); });
+    $("mese").addEventListener("change", function () { stato.mese = this.value; salva(); renderProspetto(calcola()); });
+
+    $("stampa").addEventListener("click", function () {
+      if (!proOk()) return;
+      var r = calcola();
+      if (!r.righe.length || !r.ph) { toast("Serve almeno un’ora e la retribuzione mensile"); return; }
+      window.print();
+    });
+    $("csv").addEventListener("click", function () { if (proOk()) scaricaCsv(); });
+
+    $("salvaProfilo").addEventListener("click", function () {
+      if (!proOk()) return;
+      var nome = ($("nomeProfilo").value || "").trim();
+      if (!nome) { toast("Scrivi prima un nome nel campo qui sopra"); $("nomeProfilo").focus(); return; }
+      if (!pagaOraria()) { toast("Inserisci la retribuzione mensile lorda"); return; }
+      stato.profili[nome] = {
+        ccnl: stato.ccnl, mensile: stato.mensile, divisore: stato.divisore, mensilita: stato.mensilita,
+        oreSett: stato.oreSett, inps: stato.inps, addiz: stato.addiz, detax: stato.detax, tetto: stato.tetto,
+        ore: JSON.parse(JSON.stringify(stato.ore))
+      };
+      stato.nome = nome;
+      salva(); renderProfili(); toast("Salvato: " + nome);
+    });
+
+    // Tastiera: Invio passa al campo successivo o chiude la tastiera, Esc toglie il fuoco.
+    document.addEventListener("keydown", function (ev) {
+      var t = ev.target;
+      if (!t || (t.tagName !== "INPUT" && t.tagName !== "SELECT")) return;
+      if (ev.key === "Enter" && t.type !== "checkbox") { ev.preventDefault(); t.blur(); }
+      else if (ev.key === "Escape") { t.blur(); }
+    });
+
+    if (window.Monetize && window.Monetize.onPro) {
+      window.Monetize.onPro(function () { renderProspetto(calcola()); });
+    }
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();
+</script>
+</body>
+</html>
