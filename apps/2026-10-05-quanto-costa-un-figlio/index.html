@@ -1,0 +1,836 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#b07d10">
+  <title>Quanto Costa un Figlio: calcolo al mese e fino ai 18 anni</title>
+  <meta name="description" content="Quanto costa mantenere un figlio davvero: inserisci le tue spese, scala assegno unico e bonus nido e scopri il costo netto al mese e per anno.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-05-quanto-costa-un-figlio/">
+  <meta property="og:title" content="Quanto Costa un Figlio: calcolo al mese e fino ai 18 anni">
+  <meta property="og:description" content="Non la media nazionale: il conto sulle tue spese, al netto di assegno unico e bonus nido. Senza registrazione, funziona offline.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-05-quanto-costa-un-figlio/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Quanto Costa un Figlio",
+    "description": "Calcolatore gratuito del costo di un figlio: spese voce per voce per fascia d'età, al netto dell'assegno unico 2026 e del bonus asilo nido, con proiezione fino ai 18 anni.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-05-quanto-costa-un-figlio/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Quanto costa mantenere un figlio al mese in Italia?", "acceptedAnswer": { "@type": "Answer", "text": "Le stime più citate parlano di circa 600-640 euro al mese di media sui primi diciotto anni, cioè intorno ai 140.000 euro in tutto. Ma la media nasconde differenze enormi: un bambino al nido privato costa più del doppio di uno accudito dai nonni. Per questo il calcolatore parte da valori indicativi per fascia d'età e ti chiede di correggerli con le tue cifre." } },
+      { "@type": "Question", "name": "L'assegno unico va sottratto dal costo del figlio?", "acceptedAnswer": { "@type": "Answer", "text": "Sì, perché è denaro che entra ogni mese proprio per quel figlio. Nel 2026 va da 58,30 euro al mese per chi non presenta l'ISEE o supera i 46.582,71 euro, fino a 203,80 euro per ISEE fino a 17.468,51 euro, con importi intermedi calcolati in proporzione. Il calcolatore lo stima e lo scala dal totale." } },
+      { "@type": "Question", "name": "Il bonus asilo nido copre tutta la retta?", "acceptedAnswer": { "@type": "Answer", "text": "No: rimborsa la retta effettivamente pagata fino a un massimale. Per i bambini nati dal 1° gennaio 2024 sono 3.600 euro l'anno con ISEE fino a 40.000 euro (327,27 euro per undici mensilità) e 1.500 euro l'anno sopra quella soglia o senza ISEE. Se la retta è più bassa del massimale, ti torna solo quanto hai speso." } },
+      { "@type": "Question", "name": "Perché il costo non cala crescendo, visto che finiscono pannolini e nido?", "acceptedAnswer": { "@type": "Answer", "text": "Cala tra i tre e i cinque anni, quando sparisce la retta del nido, poi risale: dalle medie in su crescono cibo, abbigliamento, sport, telefono, trasporti e svago. Nella proiezione fino ai 18 anni la curva ha una gobba all'inizio, una valle intorno ai cinque anni e una salita costante dopo gli undici." } },
+      { "@type": "Question", "name": "I dati che inserisco restano privati?", "acceptedAnswer": { "@type": "Answer", "text": "Sì. Il calcolo avviene nel browser e le cifre sono salvate solo sul tuo dispositivo, nella memoria locale del browser. Non c'è registrazione, non viene inviato nulla e la pagina funziona anche senza connessione." } }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #faf6ea; --surface: #ffffff; --raised: #fffdf6; --text: #221d0e; --muted: #6f6646;
+      --line: #e6ddc4; --accent: #a8740c; --accent-soft: #f4e4b8; --accent-ink: #ffffff;
+      --good: #2f6f46; --warn: #a33c13;
+      --r: 20px; --r-sm: 14px; --r-pill: 999px;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #17150e; --surface: #221f16; --raised: #2a261a; --text: #f1ecdd; --muted: #a39878;
+        --line: #38331f; --accent: #e8bb45; --accent-soft: #3d3418; --accent-ink: #231d08;
+        --good: #6fc48e; --warn: #f09a63;
+        color-scheme: dark;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font: 16px/1.55 "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+      overflow-x: hidden;
+    }
+    .wrap { max-width: 720px; margin: 0 auto; padding: max(10px, env(safe-area-inset-top)) 16px 0; }
+    .back { display: inline-block; margin: 4px 0 10px; font-size: .95rem; color: var(--muted); text-decoration: none; }
+    .back:focus-visible, .back:hover { color: var(--accent); }
+    h1 { margin: 0 0 .3rem; font-size: 1.65rem; line-height: 1.2; letter-spacing: -.015em; font-weight: 700; }
+    .lead { margin: 0 0 1rem; color: var(--muted); font-size: 1rem; }
+
+    /* ---- esito sempre visibile (sticky in alto) ---- */
+    .esito {
+      position: sticky; top: 0; z-index: 20;
+      background: var(--accent); color: var(--accent-ink);
+      border-radius: var(--r); padding: 14px 16px; margin-bottom: 14px;
+      box-shadow: 0 6px 18px rgba(80, 56, 0, .16);
+    }
+    .esito .et { display: block; font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; opacity: .85; }
+    .esito .big { font-size: 2.1rem; font-weight: 800; line-height: 1.1; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+    .esito .big small { font-size: .95rem; font-weight: 600; opacity: .85; }
+    .esito .riga { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 8px; font-size: .9rem; }
+    .esito .riga b { font-variant-numeric: tabular-nums; }
+
+    /* ---- pannelli a tab ---- */
+    .tool { position: relative; }
+    .pannello { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 16px 14px; }
+    .pannello[hidden] { display: none; }
+    .pannello h2 { margin: 0 0 .2rem; font-size: 1.15rem; font-weight: 700; }
+    .pannello .sub { margin: 0 0 1rem; color: var(--muted); font-size: .92rem; }
+    fieldset { border: 0; margin: 0 0 1.1rem; padding: 0; }
+    legend { padding: 0; font-size: .82rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); font-weight: 700; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .chip { position: relative; }
+    .chip input { position: absolute; inset: 0; opacity: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+    .chip span {
+      display: flex; align-items: center; justify-content: center;
+      min-height: 44px; padding: 0 14px; border-radius: var(--r-pill);
+      border: 1.5px solid var(--line); background: var(--raised); color: var(--text);
+      font-size: .95rem; font-weight: 600; transition: background .12s, border-color .12s, color .12s;
+    }
+    .chip input:checked + span { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+    .chip input:focus-visible + span { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+    label.campo { display: block; margin-bottom: .9rem; }
+    label.campo > span { display: block; font-size: .92rem; font-weight: 600; margin-bottom: .3rem; }
+    label.campo .hint { display: block; font-weight: 400; color: var(--muted); font-size: .85rem; margin-top: .15rem; }
+    input[type="number"], input[type="text"], select {
+      width: 100%; font: inherit; font-size: 16px; min-height: 48px; padding: .5rem .8rem;
+      border: 1.5px solid var(--line); border-radius: var(--r-sm);
+      background: var(--raised); color: var(--text);
+    }
+    input:focus-visible, select:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+    input[type="number"] { font-variant-numeric: tabular-nums; }
+    input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    input[type="number"] { -moz-appearance: textfield; appearance: textfield; }
+
+    /* ---- voci di spesa con stepper ---- */
+    .voci { list-style: none; margin: 10px 0 0; padding: 0; }
+    .voce { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 4px 10px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .voce:last-child { border-bottom: 0; }
+    .voce .nome { font-weight: 600; font-size: .98rem; }
+    .voce .nota { grid-column: 1; color: var(--muted); font-size: .84rem; }
+    .stepper { grid-column: 2; grid-row: 1 / span 2; display: flex; align-items: center; gap: 2px; }
+    .stepper button {
+      width: 44px; height: 44px; flex: none; font: inherit; font-size: 1.3rem; font-weight: 700;
+      border: 1.5px solid var(--line); background: var(--raised); color: var(--accent);
+      border-radius: var(--r-pill); cursor: pointer; line-height: 1;
+    }
+    .stepper button:active { background: var(--accent-soft); }
+    .stepper input {
+      width: 76px; min-height: 44px; text-align: center; font-size: 16px; font-weight: 700;
+      border: 1.5px solid var(--line); border-radius: var(--r-sm); background: var(--raised); color: var(--text);
+      font-variant-numeric: tabular-nums; padding: 0 4px;
+    }
+    .tot-voci { display: flex; justify-content: space-between; gap: 10px; margin-top: 14px; padding-top: 12px; border-top: 2px solid var(--accent-soft); font-weight: 700; }
+    .tot-voci b { font-variant-numeric: tabular-nums; }
+
+    /* ---- righe riepilogo ---- */
+    .rows { list-style: none; margin: 0; padding: 0; }
+    .rows li { display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: .97rem; }
+    .rows li:last-child { border-bottom: 0; }
+    .rows .v { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .rows .meno .v { color: var(--good); }
+    .rows li.somma { border-top: 2px solid var(--accent-soft); border-bottom: 0; margin-top: 6px; padding-top: 12px; font-size: 1.1rem; font-weight: 800; }
+
+    .nota-box { background: var(--accent-soft); border-radius: var(--r-sm); padding: 10px 12px; font-size: .88rem; color: var(--text); margin-top: 12px; }
+    .nota-box p { margin: 0 0 .4rem; }
+    .nota-box p:last-child { margin: 0; }
+
+    button.azione {
+      font: inherit; font-weight: 700; min-height: 48px; padding: .6rem 1.2rem; width: 100%;
+      border-radius: var(--r-pill); border: 1.5px solid var(--accent); background: var(--accent); color: var(--accent-ink);
+      cursor: pointer; margin-top: 10px;
+    }
+    button.azione.secondaria { background: transparent; color: var(--accent); }
+
+    /* ---- tabbar (sticky in basso, scorre via alla guida) ---- */
+    .tabbar {
+      position: sticky; bottom: 0; z-index: 20;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px;
+      margin-top: 14px; padding: 6px 6px calc(6px + env(safe-area-inset-bottom));
+      background: var(--surface); border: 1px solid var(--line); border-radius: var(--r);
+      box-shadow: 0 -4px 16px rgba(80, 56, 0, .10);
+    }
+    .tabbar button {
+      font: inherit; font-size: .88rem; font-weight: 700; min-height: 48px; padding: 4px;
+      border: 0; border-radius: var(--r-sm); background: transparent; color: var(--muted); cursor: pointer;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+    }
+    .tabbar button .ico { font-size: 1.15rem; line-height: 1; }
+    .tabbar button[aria-selected="true"] { background: var(--accent-soft); color: var(--accent); }
+
+    /* ---- Pro ---- */
+    [data-pro] { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 16px 14px; margin-top: 14px; }
+    [data-pro] h2 { margin: 0 0 .2rem; font-size: 1.1rem; font-weight: 700; }
+    [data-pro] .sub { margin: 0 0 .9rem; color: var(--muted); font-size: .9rem; }
+    [data-pro].mz-locked { min-height: 220px; }
+
+    /* grafico a barre inline (nessuna libreria) */
+    .barre { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+    .barre li { display: grid; grid-template-columns: 3.2rem 1fr auto; align-items: center; gap: 8px; font-size: .9rem; }
+    .barre .anno { color: var(--muted); font-variant-numeric: tabular-nums; }
+    .barre .tratto { height: 18px; border-radius: var(--r-pill); background: var(--accent-soft); overflow: hidden; }
+    .barre .tratto i { display: block; height: 100%; background: var(--accent); border-radius: var(--r-pill); }
+    .barre .val { font-weight: 700; font-variant-numeric: tabular-nums; }
+
+    /* ---- guida ---- */
+    #guida { margin-top: 28px; }
+    #guida h2 { font-size: 1.3rem; margin: 1.8rem 0 .5rem; }
+    #guida h3 { font-size: 1.05rem; margin: 1.3rem 0 .3rem; }
+    #guida p, #guida li { color: var(--text); }
+    #guida p { margin: 0 0 .8rem; }
+    #guida ul { margin: 0 0 .8rem; padding-left: 1.2rem; }
+    #guida li { margin-bottom: .35rem; }
+    .esempio { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: var(--r-sm); padding: 12px 14px; margin: 0 0 1rem; }
+    .esempio p { margin: 0 0 .5rem; }
+    .esempio p:last-child { margin: 0; }
+    footer { margin: 2rem 0 0; padding: 1.2rem 0 calc(1.5rem + env(safe-area-inset-bottom)); border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+    footer a { color: var(--accent); }
+    .toast {
+      position: fixed; left: 50%; bottom: calc(86px + env(safe-area-inset-bottom)); transform: translateX(-50%);
+      background: var(--text); color: var(--bg); padding: .6rem 1rem; border-radius: var(--r-pill);
+      font-size: .92rem; font-weight: 600; z-index: 60; max-width: 90vw; text-align: center;
+    }
+    .toast[hidden] { display: none; }
+    .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+    @media (min-width: 700px) {
+      .wrap { padding-top: 24px; }
+      h1 { font-size: 2.1rem; }
+      .esito { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 18px 22px; }
+      .esito .riga { margin-top: 0; flex-direction: column; gap: 4px; text-align: right; }
+      .pannello { padding: 22px 24px; }
+      .tabbar { position: static; grid-template-columns: repeat(3, auto); justify-content: start; box-shadow: none; margin: 0 0 14px; padding: 6px; }
+      .tabbar button { flex-direction: row; gap: 8px; padding: 4px 18px; }
+      .tool { display: flex; flex-direction: column-reverse; }
+      .voce { grid-template-columns: 1fr auto; }
+    }
+    @media print {
+      .back, .tabbar, [data-ad], .mz-support-wrap, .mz-box, .mz-lock, .toast, #guida, footer, .noprint { display: none !important; }
+      .esito { position: static; box-shadow: none; color: #000; background: #fff; border: 2px solid #000; }
+      .pannello, [data-pro] { border: 1px solid #666; break-inside: avoid; }
+      [data-pro].mz-locked > :not(.mz-lock) { filter: none; }
+      .pannello[hidden] { display: block !important; }
+      body { background: #fff; color: #000; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../../index.html">&larr; Tutte le app</a>
+
+  <h1>Quanto costa mantenere un figlio</h1>
+  <p class="lead">Le classifiche dicono &laquo;640 euro al mese&raquo;. Ma tu non sei la media: qui metti le <strong>tue</strong> spese, l&rsquo;app sottrae assegno unico e bonus nido e ti dice quanto esce davvero dal conto ogni mese.</p>
+
+  <div class="esito" id="esito" role="status" aria-live="polite">
+    <div>
+      <span class="et">Costo netto al mese</span>
+      <span class="big" id="netoMese">&mdash;</span>
+    </div>
+    <div class="riga">
+      <span>All&rsquo;anno <b id="netoAnno">&mdash;</b></span>
+      <span>Spese <b id="lordoMese">&mdash;</b></span>
+      <span>Aiuti <b id="aiutiMese">&mdash;</b></span>
+    </div>
+  </div>
+
+  <div class="tool">
+    <!-- ============ TAB 1: SPESE ============ -->
+    <section class="pannello" id="p-spese" role="tabpanel" aria-labelledby="t-spese">
+      <h2>Le spese del bambino</h2>
+      <p class="sub">Parti dai valori indicativi della fascia d&rsquo;et&agrave; e correggili con le tue cifre: &egrave; qui che il conto diventa tuo.</p>
+
+      <label class="campo" for="eta">
+        <span>Quanti anni ha (o avr&agrave;)</span>
+        <select id="eta" autocomplete="off"></select>
+        <span class="hint" id="etaFascia"></span>
+      </label>
+
+      <fieldset>
+        <legend>Dove vivete</legend>
+        <div class="chips" id="zona" role="radiogroup" aria-label="Zona"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Tenore di spesa</legend>
+        <div class="chips" id="livello" role="radiogroup" aria-label="Tenore di spesa"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Voci di spesa &mdash; euro al mese</legend>
+        <ul class="voci" id="voci"></ul>
+        <div class="tot-voci"><span>Totale spese</span><b id="totVoci">&mdash;</b></div>
+        <button type="button" class="azione secondaria noprint" id="ripristina">Ripristina i valori della fascia d&rsquo;et&agrave;</button>
+      </fieldset>
+    </section>
+
+    <!-- ============ TAB 2: AIUTI ============ -->
+    <section class="pannello" id="p-aiuti" role="tabpanel" aria-labelledby="t-aiuti" hidden>
+      <h2>Assegno unico e bonus</h2>
+      <p class="sub">Sono soldi che rientrano ogni mese per questo figlio: vanno scalati dalla spesa, altrimenti il conto &egrave; gonfiato.</p>
+
+      <label class="campo" for="isee">
+        <span>ISEE del nucleo familiare</span>
+        <input type="number" id="isee" inputmode="decimal" min="0" max="200000" step="100" enterkeyhint="done" autocomplete="off" placeholder="es. 24000">
+        <span class="hint">Lascia vuoto o metti 0 se non lo presenti: ti verr&agrave; calcolato l&rsquo;importo minimo.</span>
+      </label>
+
+      <label class="campo" for="ordine">
+        <span>Questo figlio &egrave; il</span>
+        <select id="ordine" autocomplete="off">
+          <option value="1">primo figlio</option>
+          <option value="2">secondo figlio</option>
+          <option value="3">terzo figlio</option>
+          <option value="4">quarto figlio o successivo</option>
+        </select>
+        <span class="hint">Dal terzo figlio l&rsquo;assegno unico aumenta.</span>
+      </label>
+
+      <fieldset>
+        <legend>Situazione dei genitori</legend>
+        <div class="chips">
+          <label class="chip"><input type="checkbox" id="lavorano"><span>Lavoriamo entrambi</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset id="boxNido">
+        <legend>Asilo nido</legend>
+        <div class="chips">
+          <label class="chip"><input type="checkbox" id="nido"><span>Va al nido a pagamento</span></label>
+        </div>
+        <p class="sub" style="margin:.7rem 0 0" id="nidoNota"></p>
+      </fieldset>
+
+      <ul class="rows" id="dettaglioAiuti"></ul>
+
+      <div class="nota-box">
+        <p><strong>Come sono stimati.</strong> Assegno unico 2026: da 58,30 &euro; al mese (ISEE oltre 46.582,71 &euro; o non presentato) a 203,80 &euro; (ISEE fino a 17.468,51 &euro;), in proporzione nelle fasce intermedie; met&agrave; importo a 18 anni compiuti.</p>
+        <p>Bonus nido 2026 per i nati dal 1&deg; gennaio 2024: fino a 3.600 &euro; l&rsquo;anno con ISEE entro 40.000 &euro;, 1.500 &euro; sopra la soglia, su 11 mensilit&agrave; e sempre nel limite della retta pagata.</p>
+        <p>Sono stime per orientarsi: l&rsquo;importo ufficiale lo d&agrave; l&rsquo;INPS sulla tua domanda.</p>
+      </div>
+    </section>
+
+    <!-- ============ TAB 3: TOTALE ============ -->
+    <section class="pannello" id="p-totale" role="tabpanel" aria-labelledby="t-totale" hidden>
+      <h2>Il conto completo</h2>
+      <p class="sub" id="sottoTotale"></p>
+      <ul class="rows" id="riepilogo"></ul>
+      <button type="button" class="azione noprint" id="copia">Copia il riepilogo</button>
+      <button type="button" class="azione secondaria noprint" id="azzera">Ricomincia da zero</button>
+    </section>
+
+    <nav class="tabbar noprint" role="tablist" aria-label="Sezioni del calcolatore">
+      <button type="button" role="tab" id="t-spese" aria-controls="p-spese" aria-selected="true" data-tab="spese"><span class="ico" aria-hidden="true">&#9636;</span>Spese</button>
+      <button type="button" role="tab" id="t-aiuti" aria-controls="p-aiuti" aria-selected="false" data-tab="aiuti"><span class="ico" aria-hidden="true">&#43;</span>Aiuti</button>
+      <button type="button" role="tab" id="t-totale" aria-controls="p-totale" aria-selected="false" data-tab="totale"><span class="ico" aria-hidden="true">&#8721;</span>Totale</button>
+    </nav>
+  </div>
+
+  <div data-ad="top"></div>
+
+  <!-- ============ PRO ============ -->
+  <section data-pro="Proiezione fino ai 18 anni" aria-labelledby="pro1">
+    <h2 id="pro1">Proiezione fino ai 18 anni</h2>
+    <p class="sub">Anno per anno, dalla sua et&agrave; attuale ai 18 anni, con le fasce che cambiano e l&rsquo;assegno unico gi&agrave; scalato.</p>
+    <ul class="rows">
+      <li><span>Spese totali da qui ai 18 anni</span><span class="v" id="prLordo">&mdash;</span></li>
+      <li class="meno"><span>Assegno unico e bonus incassati</span><span class="v" id="prAiuti">&mdash;</span></li>
+      <li class="somma"><span>Costo netto totale</span><span class="v" id="prNetto">&mdash;</span></li>
+    </ul>
+    <p class="sub" style="margin:1rem 0 .5rem">Costo netto per anno di et&agrave;</p>
+    <ul class="barre" id="prBarre"></ul>
+    <button type="button" class="azione secondaria noprint" id="stampa">Stampa il prospetto</button>
+  </section>
+
+  <section data-pro="Confronto tra fasce d'età" aria-labelledby="pro2">
+    <h2 id="pro2">Confronto tra fasce d&rsquo;et&agrave;</h2>
+    <p class="sub">Con le tue impostazioni, quanto costa lo stesso figlio in ogni fascia: utile per capire quando arriva la botta.</p>
+    <ul class="rows" id="cfFasce"></ul>
+  </section>
+
+  <section id="guida">
+    <h2>Come funziona il calcolo</h2>
+    <p>Quando cerchi quanto costa mantenere un figlio trovi sempre la stessa cifra: circa 640 euro al mese secondo la Banca d&rsquo;Italia, intorno ai 140.000 euro per arrivare ai diciotto anni. &Egrave; una media nazionale, e come tutte le medie non descrive nessuna famiglia reale. Un bambino di un anno al nido privato a Milano e un bambino di un anno accudito dai nonni in provincia costano cifre che non si somigliano nemmeno: la prima pu&ograve; superare i 1.000 euro al mese, la seconda stare sotto i 400.</p>
+    <p>Questo calcolatore fa il percorso opposto. Parte dalla fascia d&rsquo;et&agrave; e propone dieci voci di spesa con un valore indicativo di partenza, perch&eacute; davanti a una casella vuota nessuno sa cosa scrivere. Poi tocca a te: ogni voce si alza e si abbassa di dieci euro per volta con i due bottoni, oppure si scrive dentro la cifra esatta. Alla fine il totale non &egrave; una stima statistica, &egrave; il tuo budget.</p>
+    <p>La seconda met&agrave; del conto &egrave; quella che gli articoli dimenticano: i soldi che <em>rientrano</em>. L&rsquo;assegno unico universale arriva ogni mese per ogni figlio a carico e nel 2026 vale da 58,30 a 203,80 euro, a scalare sull&rsquo;ISEE. Se il bambino va al nido c&rsquo;&egrave; anche il bonus asilo nido, fino a 3.600 euro l&rsquo;anno. Sono cifre che cambiano il risultato in modo pesante, e un conto che le ignora &egrave; semplicemente sbagliato.</p>
+
+    <h2>Come si legge il risultato</h2>
+    <p>In alto, sempre visibile mentre modifichi le voci, ci sono tre numeri. <strong>Spese</strong> &egrave; la somma lorda di quello che esce per il bambino. <strong>Aiuti</strong> &egrave; la stima di quanto rientra tra assegno unico e bonus nido. Il numero grande &egrave; la differenza: quello che davvero sparisce dal conto ogni mese. Il valore annuale a fianco moltiplica per dodici, tranne il bonus nido che per legge viene erogato su undici mensilit&agrave;.</p>
+    <div class="esempio">
+      <p><strong>Esempio con numeri.</strong> Bambino di un anno, famiglia al Nord, tenore medio, nido a pagamento, ISEE 24.000 &euro;, primo figlio, genitori entrambi occupati.</p>
+      <p>Le voci di partenza sommano <strong>776 &euro; al mese</strong>: 99 di alimentazione, 50 di abbigliamento, 77 tra pannolini, salute e igiene, 330 di retta del nido, 11 di trasporti, 44 di svago e regali, 55 di babysitter e aiuti, 110 come quota di casa e utenze.</p>
+      <p>L&rsquo;assegno unico con ISEE 24.000 &euro; cade nella fascia intermedia e vale 171,16 &euro; al mese, pi&ugrave; 26,45 &euro; di maggiorazione perch&eacute; lavorano entrambi i genitori: <strong>197,61 &euro;</strong> in tutto. Il bonus nido rimborsa la retta fino a 327,27 &euro; mensili su undici mensilit&agrave;; qui il rimborso &egrave; pieno, 3.600 &euro; l&rsquo;anno, cio&egrave; <strong>300 &euro; al mese</strong> spalmati su dodici.</p>
+      <p>Risultato: <strong>278 &euro; netti al mese, 3.341 &euro; l&rsquo;anno</strong>. Dalla media di 640 &euro; siamo lontanissimi, ed &egrave; esattamente il punto. La proiezione da un anno ai diciotto, con le stesse impostazioni, arriva a circa 100.000 &euro; netti: le spese lorde sfiorano i 149.000 &euro;, ma quasi 49.000 rientrano tra assegno unico e bonus.</p>
+    </div>
+
+    <h2>Gli errori che falsano il conto</h2>
+    <ul>
+      <li><strong>Contare la spesa della famiglia invece di quella del figlio.</strong> Alla voce alimentazione va la quota in pi&ugrave; che il bambino aggiunge alla spesa, non il totale del carrello diviso per il numero di teste: i costi fissi di casa non raddoppiano con un figlio in pi&ugrave;.</li>
+      <li><strong>Dimenticare la casa.</strong> Una stanza in pi&ugrave; o un trasloco in un appartamento pi&ugrave; grande &egrave; spesso la voce pi&ugrave; pesante di tutte, e non compare quasi mai nelle stime che si leggono in giro. La voce &laquo;quota di casa e utenze&raquo; serve proprio a questo.</li>
+      <li><strong>Mettere il bonus nido a occhi chiusi.</strong> Non &egrave; un assegno: &egrave; un rimborso di quello che hai gi&agrave; pagato, documentato con le ricevute, e non pu&ograve; superare la retta. Se paghi 150 euro di retta, non ti tornano 327.</li>
+      <li><strong>Pensare che il costo scenda con l&rsquo;et&agrave;.</strong> Scende tra i tre e i cinque anni, quando finisce il nido, poi risale: dalle medie in su crescono cibo, scarpe, telefono, sport, trasporti e uscite. La proiezione fino ai 18 anni mostra bene questa curva a doppia gobba.</li>
+      <li><strong>Usare un ISEE vecchio.</strong> L&rsquo;assegno unico si aggancia all&rsquo;ISEE in corso di validit&agrave;: se scade e non lo rinnovi entro i termini, l&rsquo;importo scivola al minimo di 58,30 euro anche se il tuo reddito &egrave; basso.</li>
+    </ul>
+
+    <h2>Domande frequenti</h2>
+    <h3>Quanto costa mantenere un figlio al mese in Italia?</h3>
+    <p>Le stime pi&ugrave; citate parlano di 600-640 euro al mese di media sui primi diciotto anni, circa 140.000 euro in tutto. La forchetta reale per&ograve; va da poco pi&ugrave; di 100.000 a oltre 200.000 euro, e dipende quasi tutta da tre scelte: nido s&igrave; o no, zona in cui vivete, e quanto pesa la casa.</p>
+    <h3>L&rsquo;assegno unico va sottratto dal costo del figlio?</h3>
+    <p>S&igrave;: &egrave; denaro che entra ogni mese proprio per quel figlio, quindi riduce il costo effettivo. Nel 2026 va da 58,30 euro per chi non presenta l&rsquo;ISEE o supera 46.582,71 euro, fino a 203,80 euro con ISEE entro 17.468,51 euro. Dal terzo figlio e quando lavorano entrambi i genitori ci sono maggiorazioni.</p>
+    <h3>Il bonus asilo nido copre tutta la retta?</h3>
+    <p>Fino al massimale della tua fascia e non oltre la spesa documentata. Per i nati dal 1&deg; gennaio 2024 sono 3.600 euro l&rsquo;anno con ISEE entro 40.000 euro, cio&egrave; 327,27 euro per undici mensilit&agrave;, e 1.500 euro sopra la soglia o senza ISEE. Dal 2026 la domanda non va rifatta ogni anno: resta valida fino ai tre anni del bambino.</p>
+    <h3>Vale anche per un figlio che non &egrave; ancora nato?</h3>
+    <p>S&igrave;, imposta l&rsquo;et&agrave; su &laquo;appena nato&raquo; e usa la proiezione fino ai 18 anni: &egrave; il modo pi&ugrave; onesto di farsi un&rsquo;idea prima di decidere. Tieni presente che il primo anno ha spese una volta sola, come passeggino, seggiolino auto e lettino, che qui non rientrano nelle voci mensili.</p>
+    <h3>I dati che inserisco restano privati?</h3>
+    <p>S&igrave;. Tutto il calcolo avviene nel browser, le cifre vengono salvate solo nella memoria locale del tuo dispositivo e non viene inviato niente a nessuno. La pagina funziona anche offline e non c&rsquo;&egrave; nessuna registrazione.</p>
+
+    <div data-affiliate data-title="Le spese una volta sola del primo anno" data-items='[{"t":"Seggiolino auto gruppo 0+","q":"seggiolino auto gruppo 0+ i-size"},{"t":"Passeggino leggero","q":"passeggino leggero compatto"},{"t":"Lettino con materasso","q":"lettino neonato con materasso"}]'></div>
+  </section>
+
+  <div data-ad="bottom"></div>
+  <div data-support></div>
+
+  <footer>
+    <p>Altri conti della famiglia: <a href="../2026-09-20-netto-da-lordo/">calcolare lo stipendio netto dal lordo</a> per sapere con quanto parti ogni mese, e <a href="../2026-09-21-rata-mutuo/">calcolare la rata del mutuo</a>, che insieme al figlio &egrave; la voce che pesa di pi&ugrave;.</p>
+    <p>Riferimenti: importi e soglie dell&rsquo;assegno unico universale 2026 rivalutati INPS (minimo 58,30 &euro;, massimo 203,80 &euro;; soglie ISEE 17.468,51 &euro; e 46.582,71 &euro;); bonus asilo nido 2026 per i nati dal 1&deg; gennaio 2024 (3.600 &euro; e 1.500 &euro; su 11 mensilit&agrave;); stime di spesa media per figlio di Banca d&rsquo;Italia e Istat. Le cifre sono indicative: l&rsquo;importo ufficiale degli aiuti lo determina l&rsquo;INPS sulla tua domanda.</p>
+    <p>Questa pagina pu&ograve; contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a></p>
+  </footer>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<script src="../../assets/monetize.js"></script>
+<script>
+(() => {
+  "use strict";
+  /* Modello dati: state = { eta, zona, livello, isee, ordine, lavorano, nido, voci, manuali }.
+   * `voci` tiene l'importo mensile di ogni voce; `manuali` elenca le voci che l'utente ha
+   * toccato a mano, le sole che non vengono riscritte quando cambiano età, zona o tenore.
+   * Gli aiuti (assegno unico, bonus nido) sono ricalcolati sempre e scalati dalle spese. */
+
+  const CHIAVE = "quanto-costa-un-figlio:v1";
+  const $ = (s) => document.querySelector(s);
+
+  const VOCI = [
+    { k: "cibo",       nome: "Alimentazione",            nota: "la spesa in più che aggiunge al carrello" },
+    { k: "vestiti",    nome: "Abbigliamento e scarpe",   nota: "cresce in fretta, anche due taglie l'anno" },
+    { k: "salute",     nome: "Salute e igiene",          nota: "pannolini, farmaci, dentista, occhiali" },
+    { k: "scuola",     nome: "Nido, scuola e mensa",     nota: "retta e mensa; il bonus nido si scala dopo" },
+    { k: "materiale",  nome: "Libri e materiale",        nota: "testi, quaderni, zaino, cancelleria" },
+    { k: "sport",      nome: "Sport e attività",    nota: "corsi, palestra, musica, piscina" },
+    { k: "trasporti",  nome: "Trasporti",                nota: "abbonamento o benzina per accompagnarlo" },
+    { k: "svago",      nome: "Svago, regali e vacanze",  nota: "giochi, compleanni, gite, telefono" },
+    { k: "babysitter", nome: "Babysitter e aiuti",       nota: "ore pagate a chi lo tiene" },
+    { k: "casa",       nome: "Quota di casa e utenze",   nota: "la stanza in più e i consumi che aggiunge" },
+  ];
+
+  // Valori indicativi di partenza (euro/mese) per fascia d'età, coerenti con una media
+  // complessiva intorno ai 630 euro al mese sui primi diciotto anni.
+  const BANDE = [
+    { da: 0,  a: 2,  nome: "0-2 anni",   d: { cibo: 90,  vestiti: 45, salute: 70, scuola: 300, materiale: 0,  sport: 0,  trasporti: 10, svago: 40, babysitter: 50, casa: 100 } },
+    { da: 3,  a: 5,  nome: "3-5 anni",   d: { cibo: 110, vestiti: 45, salute: 25, scuola: 130, materiale: 10, sport: 35, trasporti: 15, svago: 45, babysitter: 40, casa: 100 } },
+    { da: 6,  a: 10, nome: "6-10 anni",  d: { cibo: 130, vestiti: 50, salute: 25, scuola: 100, materiale: 25, sport: 55, trasporti: 20, svago: 55, babysitter: 30, casa: 105 } },
+    { da: 11, a: 13, nome: "11-13 anni", d: { cibo: 150, vestiti: 60, salute: 30, scuola: 55,  materiale: 40, sport: 60, trasporti: 30, svago: 70, babysitter: 10, casa: 110 } },
+    { da: 14, a: 18, nome: "14-18 anni", d: { cibo: 170, vestiti: 75, salute: 30, scuola: 35,  materiale: 45, sport: 55, trasporti: 45, svago: 95, babysitter: 0,  casa: 115 } },
+  ];
+  const ZONE = [{ k: "nord", nome: "Nord", f: 1.10 }, { k: "centro", nome: "Centro", f: 1.03 }, { k: "sud", nome: "Sud e isole", f: 0.88 }];
+  const LIVELLI = [{ k: "essenziale", nome: "Essenziale", f: 0.75 }, { k: "medio", nome: "Medio", f: 1 }, { k: "generoso", nome: "Senza badare", f: 1.35 }];
+
+  // Assegno unico universale 2026 (importi e soglie rivalutati) e bonus asilo nido 2026.
+  const AUU = { min: 58.30, max: 203.80, iseeMin: 17468.51, iseeMax: 46582.71, lavoro: 34.10, terzoMax: 96.90, terzoMin: 17.10 };
+  const NIDO = { capBasso: 327.27, capAlto: 136.37, soglia: 40000, mensilita: 11 };
+
+  const banda = (eta) => BANDE.find(b => eta >= b.da && eta <= b.a) || BANDE[BANDE.length - 1];
+  const zonaF = () => (ZONE.find(z => z.k === state.zona) || ZONE[1]).f;
+  const livelloF = () => (LIVELLI.find(l => l.k === state.livello) || LIVELLI[1]).f;
+  const difetto = (eta, k) => Math.round(banda(eta).d[k] * zonaF() * livelloF());
+  const totDifetti = (eta) => VOCI.reduce((s, v) => s + difetto(eta, v.k), 0);
+
+  const eur = (n) => Math.round(n).toLocaleString("it-IT") + " €";
+  const eur2 = (n) => n.toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €";
+
+  let state = carica();
+
+  function base() {
+    return { eta: 1, zona: "centro", livello: "medio", isee: null, ordine: 1, lavorano: true, nido: true, voci: {}, manuali: [] };
+  }
+  function carica() {
+    const s = base();
+    try {
+      const raw = JSON.parse(localStorage.getItem(CHIAVE) || "null");
+      if (raw && typeof raw === "object") {
+        if (Number.isInteger(raw.eta) && raw.eta >= 0 && raw.eta <= 18) s.eta = raw.eta;
+        if (ZONE.some(z => z.k === raw.zona)) s.zona = raw.zona;
+        if (LIVELLI.some(l => l.k === raw.livello)) s.livello = raw.livello;
+        if (typeof raw.isee === "number" && isFinite(raw.isee) && raw.isee >= 0) s.isee = raw.isee;
+        if ([1, 2, 3, 4].includes(Number(raw.ordine))) s.ordine = Number(raw.ordine);
+        if (typeof raw.lavorano === "boolean") s.lavorano = raw.lavorano;
+        if (typeof raw.nido === "boolean") s.nido = raw.nido;
+        if (Array.isArray(raw.manuali)) s.manuali = raw.manuali.filter(k => VOCI.some(v => v.k === k));
+        if (raw.voci && typeof raw.voci === "object") {
+          for (const v of VOCI) {
+            const n = Number(raw.voci[v.k]);
+            if (isFinite(n) && n >= 0) s.voci[v.k] = Math.min(9999, Math.round(n));
+          }
+        }
+      }
+    } catch (_) { /* memoria non disponibile o dati illeggibili: si parte dai valori base */ }
+    return s;
+  }
+  function salva() {
+    try { localStorage.setItem(CHIAVE, JSON.stringify(state)); } catch (_) { /* in privata può fallire: non è un errore */ }
+  }
+
+  // Riallinea le voci non toccate a mano ai valori della fascia d'età corrente.
+  function riallinea() {
+    for (const v of VOCI) {
+      if (!state.manuali.includes(v.k)) state.voci[v.k] = difetto(state.eta, v.k);
+      else if (!isFinite(state.voci[v.k])) state.voci[v.k] = difetto(state.eta, v.k);
+    }
+  }
+
+  // ---- conti ----
+  const speseMese = () => VOCI.reduce((s, v) => s + (state.voci[v.k] || 0), 0);
+
+  function quotaIsee(isee) {
+    if (!isee || isee <= 0) return 0;                     // ISEE assente: importo minimo
+    if (isee <= AUU.iseeMin) return 1;
+    if (isee >= AUU.iseeMax) return 0;
+    return 1 - (isee - AUU.iseeMin) / (AUU.iseeMax - AUU.iseeMin);
+  }
+  function auuMese(eta) {
+    const q = quotaIsee(state.isee);
+    const parti = {
+      base: AUU.min + (AUU.max - AUU.min) * q,
+      lavoro: state.lavorano ? AUU.lavoro * q : 0,
+      terzo: state.ordine >= 3 ? AUU.terzoMin + (AUU.terzoMax - AUU.terzoMin) * q : 0,
+    };
+    let tot = parti.base + parti.lavoro + parti.terzo;
+    if (eta >= 18) { tot /= 2; parti.base /= 2; parti.lavoro /= 2; parti.terzo /= 2; }  // 18-21 anni: importi dimezzati
+    return { tot, parti };
+  }
+  // Rimborso del bonus nido riportato a equivalente mensile su dodici mesi (è erogato su undici).
+  function nidoMese(eta, retta) {
+    if (!state.nido || eta > 2 || !(retta > 0)) return 0;
+    const cap = (state.isee > 0 && state.isee <= NIDO.soglia) ? NIDO.capBasso : NIDO.capAlto;
+    return Math.min(retta, cap) * NIDO.mensilita / 12;
+  }
+  function conto() {
+    const spese = speseMese();
+    const a = auuMese(state.eta);
+    const nido = nidoMese(state.eta, state.voci.scuola || 0);
+    const aiuti = a.tot + nido;
+    return { spese, auu: a.tot, auuParti: a.parti, nido, aiuti, netto: spese - aiuti };
+  }
+  // Scostamento delle tue cifre dai valori indicativi: serve a proiettare gli anni futuri.
+  function fattore() {
+    const d = totDifetti(state.eta);
+    if (!d) return 1;
+    return Math.max(0, speseMese() / d);
+  }
+
+  // ---- render: controlli ----
+  function etichettaEta(n) {
+    if (n === 0) return "appena nato (meno di 1 anno)";
+    if (n === 1) return "1 anno";
+    if (n === 18) return "18 anni";
+    return n + " anni";
+  }
+  (function costruisciEta() {
+    const sel = $("#eta");
+    for (let n = 0; n <= 18; n++) sel.append(new Option(etichettaEta(n), String(n)));
+  })();
+
+  function chips(host, lista, nomeGruppo, attuale, onPick) {
+    host.textContent = "";
+    for (const it of lista) {
+      const lab = document.createElement("label");
+      lab.className = "chip";
+      const inp = document.createElement("input");
+      inp.type = "radio"; inp.name = nomeGruppo; inp.value = it.k; inp.checked = it.k === attuale;
+      inp.addEventListener("change", () => { if (inp.checked) onPick(it.k); });
+      const sp = document.createElement("span");
+      sp.textContent = it.nome;
+      lab.append(inp, sp);
+      host.append(lab);
+    }
+  }
+
+  function costruisciVoci() {
+    const host = $("#voci");
+    host.textContent = "";
+    for (const v of VOCI) {
+      const li = document.createElement("li");
+      li.className = "voce";
+      const nome = document.createElement("span");
+      nome.className = "nome"; nome.textContent = v.nome;
+      const nota = document.createElement("span");
+      nota.className = "nota"; nota.textContent = v.nota;
+      const st = document.createElement("div");
+      st.className = "stepper";
+
+      const giu = document.createElement("button");
+      giu.type = "button"; giu.textContent = "−";
+      giu.setAttribute("aria-label", "Riduci " + v.nome + " di 10 euro");
+      const inp = document.createElement("input");
+      inp.type = "number"; inp.min = "0"; inp.max = "9999"; inp.step = "5";
+      inp.inputMode = "numeric"; inp.enterKeyHint = "done"; inp.autocomplete = "off";
+      inp.id = "v-" + v.k;
+      inp.setAttribute("aria-label", v.nome + ", euro al mese");
+      const su = document.createElement("button");
+      su.type = "button"; su.textContent = "+";
+      su.setAttribute("aria-label", "Aumenta " + v.nome + " di 10 euro");
+
+      const applica = (n) => {
+        const val = Math.max(0, Math.min(9999, Math.round(n || 0)));
+        state.voci[v.k] = val;
+        if (!state.manuali.includes(v.k)) state.manuali.push(v.k);
+        inp.value = String(val);
+        aggiorna();
+      };
+      giu.addEventListener("click", () => applica((state.voci[v.k] || 0) - 10));
+      su.addEventListener("click", () => applica((state.voci[v.k] || 0) + 10));
+      inp.addEventListener("input", () => { if (inp.value !== "") applica(Number(inp.value)); });
+      inp.addEventListener("blur", () => { if (inp.value === "") applica(0); });
+      inp.addEventListener("keydown", (e) => { if (e.key === "Enter") inp.blur(); });
+
+      st.append(giu, inp, su);
+      li.append(nome, nota, st);
+      host.append(li);
+    }
+  }
+
+  function scriviVoci() {
+    for (const v of VOCI) {
+      const inp = document.getElementById("v-" + v.k);
+      if (inp && document.activeElement !== inp) inp.value = String(state.voci[v.k] || 0);
+    }
+  }
+
+  // ---- render: esito e pannelli ----
+  function aggiorna() {
+    riallinea();
+    scriviVoci();
+    const c = conto();
+
+    $("#netoMese").innerHTML = eur(c.netto) + " <small>al mese</small>";
+    $("#netoAnno").textContent = eur(c.netto * 12);
+    $("#lordoMese").textContent = eur(c.spese);
+    $("#aiutiMese").textContent = "−" + eur(c.aiuti);
+    $("#totVoci").textContent = eur(c.spese);
+    $("#etaFascia").textContent = "Fascia " + banda(state.eta).nome + ": i valori di partenza qui sotto sono quelli tipici di questa età.";
+
+    // pannello aiuti
+    const righe = [["Assegno unico, importo base", c.auuParti.base, true]];
+    if (c.auuParti.lavoro > 0) righe.push(["Maggiorazione genitori entrambi occupati", c.auuParti.lavoro, true]);
+    if (c.auuParti.terzo > 0) righe.push(["Maggiorazione dal terzo figlio", c.auuParti.terzo, true]);
+    if (c.nido > 0) righe.push(["Bonus asilo nido (su 11 mensilità, qui spalmato su 12)", c.nido, true]);
+    const ul = $("#dettaglioAiuti");
+    ul.textContent = "";
+    for (const [nome, val] of righe) ul.append(riga(nome, "+" + eur2(val) + " / mese", "meno"));
+    ul.append(riga("Totale aiuti al mese", eur2(c.aiuti), "somma"));
+
+    const perNido = state.eta <= 2;
+    $("#boxNido").hidden = !perNido;
+    $("#nidoNota").textContent = perNido
+      ? (state.nido
+          ? "Rimborso calcolato sulla voce «Nido, scuola e mensa» (" + eur(state.voci.scuola || 0) + " al mese), nel limite di " + eur2(state.isee > 0 && state.isee <= NIDO.soglia ? NIDO.capBasso : NIDO.capAlto) + " mensili."
+          : "Se non frequenta il nido a pagamento non c'è nessun rimborso da scalare.")
+      : "";
+
+    // pannello totale
+    $("#sottoTotale").textContent = "Figlio di " + etichettaEta(state.eta) + ", " + (ZONE.find(z => z.k === state.zona) || ZONE[1]).nome + ", tenore " + (LIVELLI.find(l => l.k === state.livello) || LIVELLI[1]).nome.toLowerCase() + ".";
+    const r = $("#riepilogo");
+    r.textContent = "";
+    for (const v of VOCI) if ((state.voci[v.k] || 0) > 0) r.append(riga(v.nome, eur(state.voci[v.k]) + " / mese"));
+    r.append(riga("Totale spese", eur(c.spese) + " / mese", "somma"));
+    r.append(riga("Assegno unico stimato", "−" + eur2(c.auu) + " / mese", "meno"));
+    if (c.nido > 0) r.append(riga("Bonus asilo nido stimato", "−" + eur2(c.nido) + " / mese", "meno"));
+    r.append(riga("Costo netto", eur(c.netto) + " / mese", "somma"));
+    r.append(riga("Costo netto all'anno", eur(c.netto * 12), "somma"));
+
+    proiezione();
+    confronto();
+    salva();
+  }
+
+  function riga(nome, valore, cls) {
+    const li = document.createElement("li");
+    if (cls) li.className = cls;
+    const a = document.createElement("span"); a.textContent = nome;
+    const b = document.createElement("span"); b.className = "v"; b.textContent = valore;
+    li.append(a, b);
+    return li;
+  }
+
+  // ---- Pro: proiezione fino ai 18 anni ----
+  function proiezione() {
+    const f = fattore();
+    const anni = [];
+    let lordo = 0, aiuti = 0;
+    for (let y = state.eta; y <= 18; y++) {
+      const spese = y === state.eta ? speseMese() : totDifetti(y) * f;
+      const retta = y === state.eta ? (state.voci.scuola || 0) : Math.round(banda(y).d.scuola * zonaF() * livelloF() * f);
+      const a = auuMese(y).tot + nidoMese(y, retta);
+      anni.push({ y, netto: (spese - a) * 12 });
+      lordo += spese * 12;
+      aiuti += a * 12;
+    }
+    $("#prLordo").textContent = eur(lordo);
+    $("#prAiuti").textContent = "−" + eur(aiuti);
+    $("#prNetto").textContent = eur(lordo - aiuti);
+
+    const max = Math.max(1, ...anni.map(a => Math.abs(a.netto)));
+    const host = $("#prBarre");
+    host.textContent = "";
+    for (const a of anni) {
+      const li = document.createElement("li");
+      const et = document.createElement("span"); et.className = "anno"; et.textContent = a.y + (a.y === 1 ? " anno" : " anni");
+      const tr = document.createElement("span"); tr.className = "tratto";
+      const i = document.createElement("i"); i.style.width = Math.max(2, Math.abs(a.netto) / max * 100) + "%";
+      tr.append(i);
+      const vv = document.createElement("span"); vv.className = "val"; vv.textContent = eur(a.netto);
+      li.append(et, tr, vv);
+      host.append(li);
+    }
+  }
+
+  // ---- Pro: confronto tra fasce d'età ----
+  function confronto() {
+    const f = fattore();
+    const host = $("#cfFasce");
+    host.textContent = "";
+    for (const b of BANDE) {
+      const eta = b.da === state.eta ? state.eta : Math.round((b.da + b.a) / 2);
+      const spese = (b.da <= state.eta && state.eta <= b.a) ? speseMese() : totDifetti(eta) * f;
+      const retta = (b.da <= state.eta && state.eta <= b.a) ? (state.voci.scuola || 0) : Math.round(b.d.scuola * zonaF() * livelloF() * f);
+      const netto = spese - auuMese(eta).tot - nidoMese(eta, retta);
+      const li = riga(b.nome + ((b.da <= state.eta && state.eta <= b.a) ? " — la sua fascia ora" : ""), eur(netto) + " / mese");
+      if (b.da <= state.eta && state.eta <= b.a) li.className = "somma";
+      host.append(li);
+    }
+  }
+
+  // ---- tab ----
+  const tabs = Array.from(document.querySelectorAll(".tabbar button"));
+  function apri(nome) {
+    for (const t of tabs) {
+      const on = t.dataset.tab === nome;
+      t.setAttribute("aria-selected", on ? "true" : "false");
+      document.getElementById("p-" + t.dataset.tab).hidden = !on;
+    }
+  }
+  tabs.forEach((t, i) => {
+    t.addEventListener("click", () => apri(t.dataset.tab));
+    t.addEventListener("keydown", (e) => {
+      const d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+      if (!d) return;
+      e.preventDefault();
+      const n = tabs[(i + d + tabs.length) % tabs.length];
+      n.focus(); apri(n.dataset.tab);
+    });
+  });
+
+  // ---- toast ----
+  let tToast;
+  function toast(msg) {
+    const t = $("#toast");
+    t.textContent = msg; t.hidden = false;
+    clearTimeout(tToast);
+    tToast = setTimeout(() => { t.hidden = true; }, 2600);
+  }
+
+  // ---- collegamenti ----
+  chips($("#zona"), ZONE, "zona", state.zona, (k) => { state.zona = k; aggiorna(); });
+  chips($("#livello"), LIVELLI, "livello", state.livello, (k) => { state.livello = k; aggiorna(); });
+  costruisciVoci();
+
+  $("#eta").value = String(state.eta);
+  $("#eta").addEventListener("change", (e) => { state.eta = Number(e.target.value); aggiorna(); });
+
+  $("#isee").value = state.isee ? String(state.isee) : "";
+  $("#isee").addEventListener("input", (e) => {
+    const n = Number(String(e.target.value).replace(",", "."));
+    state.isee = e.target.value === "" || !isFinite(n) || n <= 0 ? null : Math.min(200000, n);
+    aggiorna();
+  });
+  $("#isee").addEventListener("keydown", (e) => { if (e.key === "Enter") e.target.blur(); });
+
+  $("#ordine").value = String(state.ordine);
+  $("#ordine").addEventListener("change", (e) => { state.ordine = Number(e.target.value); aggiorna(); });
+  $("#lavorano").checked = state.lavorano;
+  $("#lavorano").addEventListener("change", (e) => { state.lavorano = e.target.checked; aggiorna(); });
+  $("#nido").checked = state.nido;
+  $("#nido").addEventListener("change", (e) => { state.nido = e.target.checked; aggiorna(); });
+
+  $("#ripristina").addEventListener("click", () => {
+    state.manuali = [];
+    aggiorna();
+    toast("Rimessi i valori della fascia " + banda(state.eta).nome);
+  });
+
+  $("#copia").addEventListener("click", async () => {
+    const c = conto();
+    const righe = [
+      "Quanto costa mio figlio di " + etichettaEta(state.eta),
+      "",
+      ...VOCI.filter(v => (state.voci[v.k] || 0) > 0).map(v => "- " + v.nome + ": " + eur(state.voci[v.k]) + "/mese"),
+      "",
+      "Totale spese: " + eur(c.spese) + "/mese",
+      "Assegno unico stimato: -" + eur2(c.auu) + "/mese",
+      ...(c.nido > 0 ? ["Bonus nido stimato: -" + eur2(c.nido) + "/mese"] : []),
+      "COSTO NETTO: " + eur(c.netto) + "/mese, " + eur(c.netto * 12) + "/anno",
+    ];
+    try { await navigator.clipboard.writeText(righe.join("\n")); toast("Riepilogo copiato"); }
+    catch (_) { toast("Impossibile copiare: seleziona e copia a mano"); }
+  });
+
+  let confermaAzzera = 0;
+  $("#azzera").addEventListener("click", (e) => {
+    const ora = Date.now();
+    if (ora - confermaAzzera > 4000) {
+      confermaAzzera = ora;
+      e.target.textContent = "Tocca di nuovo per confermare";
+      toast("Tocca di nuovo entro 4 secondi per azzerare");
+      setTimeout(() => { if (Date.now() - confermaAzzera >= 4000) e.target.textContent = "Ricomincia da zero"; }, 4100);
+      return;
+    }
+    confermaAzzera = 0;
+    state = base();
+    try { localStorage.removeItem(CHIAVE); } catch (_) { /* niente da fare */ }
+    e.target.textContent = "Ricomincia da zero";
+    $("#eta").value = String(state.eta);
+    $("#isee").value = "";
+    $("#ordine").value = String(state.ordine);
+    $("#lavorano").checked = state.lavorano;
+    $("#nido").checked = state.nido;
+    chips($("#zona"), ZONE, "zona", state.zona, (k) => { state.zona = k; aggiorna(); });
+    chips($("#livello"), LIVELLI, "livello", state.livello, (k) => { state.livello = k; aggiorna(); });
+    aggiorna();
+    toast("Tutto azzerato");
+  });
+
+  $("#stampa").addEventListener("click", () => {
+    if (!window.Monetize || !window.Monetize.isPro()) { if (window.Monetize) window.Monetize.unlock(); return; }
+    window.print();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && document.activeElement && document.activeElement.blur) document.activeElement.blur();
+  });
+
+  aggiorna();
+})();
+</script>
+</body>
+</html>

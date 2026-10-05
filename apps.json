@@ -1,6 +1,6 @@
 {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 23,
+  "count": 24,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -49,6 +49,66 @@
     ]
   },
   "apps": [
+    {
+      "title": "Quanto Costa un Figlio",
+      "slug": "2026-10-05-quanto-costa-un-figlio",
+      "date": "2026-10-05",
+      "description": "Calcola quanto costa mantenere un figlio al mese e all'anno, al netto dell'assegno unico e del bonus nido.",
+      "category": "finanza-personale",
+      "tags": [
+        "figli",
+        "famiglia",
+        "assegno unico",
+        "bilancio"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "tabs",
+        "palette": "giallo-senape",
+        "font": "rounded"
+      },
+      "business": {
+        "keyword": "quanto costa mantenere un figlio",
+        "keywords": [
+          "quanto costa un figlio al mese",
+          "costo di un figlio fino a 18 anni",
+          "quanto costa un figlio il primo anno",
+          "spese per un figlio calcolo"
+        ],
+        "intent": "Chi sta per avere un figlio, o ne ha uno piccolo, e vuole una cifra sulla propria situazione invece della media nazionale letta sui giornali.",
+        "target": "Futuri e nuovi genitori 25-45 anni, da telefono, spesso la sera; anche chi valuta un secondo figlio.",
+        "edge": "Nessuno dei primi risultati fa un conto: sono articoli con la media nazionale. Qui l'utente mette le sue dieci voci di spesa e l'app sottrae assegno unico 2026 e bonus nido, che gli articoli ignorano e che cambiano il risultato del 30-50%.",
+        "monetization": [
+          "adsense",
+          "affiliate",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Proiezione fino ai 18 anni",
+          "Confronto tra fasce d'età"
+        ],
+        "affiliate": [
+          {
+            "t": "Seggiolino auto gruppo 0+",
+            "q": "seggiolino auto gruppo 0+ i-size"
+          },
+          {
+            "t": "Passeggino leggero",
+            "q": "passeggino leggero compatto"
+          },
+          {
+            "t": "Lettino con materasso",
+            "q": "lettino neonato con materasso"
+          }
+        ]
+      },
+      "size": 50732
+    },
     {
       "title": "Calcolo Straordinari",
       "slug": "2026-10-04-calcolo-straordinari",
