@@ -1,0 +1,993 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#b4546b">
+  <title>Giorni Fertili: calcolo del periodo fertile e ovulazione</title>
+  <meta name="description" content="Calcolo giorni fertili dal primo giorno del ciclo: ovulazione stimata, finestra fertile giorno per giorno e calendario di sei mesi, anche con ciclo irregolare.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-06-giorni-fertili/">
+  <meta property="og:title" content="Giorni Fertili: calcolo del periodo fertile e ovulazione">
+  <meta property="og:description" content="Dalla data dell'ultimo ciclo al calendario dei tuoi giorni fertili, con l'intervallo giusto se il ciclo è irregolare. Senza registrazione, i dati restano sul telefono.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-06-giorni-fertili/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Giorni Fertili",
+    "description": "Calcolatore gratuito dei giorni fertili e dell'ovulazione: dalla data del primo giorno dell'ultimo ciclo stima la finestra fertile, il giorno di massima probabilità e le date dei sei cicli successivi, gestendo anche i cicli irregolari con un intervallo minimo-massimo.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-06-giorni-fertili/",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Quali sono i giorni fertili di un ciclo di 28 giorni?", "acceptedAnswer": { "@type": "Answer", "text": "Con un ciclo di 28 giorni e una fase luteale di 14, l'ovulazione cade intorno al quattordicesimo giorno contando dal primo giorno delle mestruazioni. La finestra fertile va dal nono al quindicesimo giorno: cinque giorni prima dell'ovulazione, il giorno stesso e quello successivo. I due giorni con più probabilità sono il tredicesimo e il quattordicesimo." } },
+      { "@type": "Question", "name": "Come si calcolano i giorni fertili se il ciclo è irregolare?", "acceptedAnswer": { "@type": "Answer", "text": "Non si usa un numero medio ma un intervallo. Prendi la durata del ciclo più corto e quella del più lungo degli ultimi sei mesi: l'ovulazione può cadere in qualsiasi giorno tra ciclo più corto meno 14 e ciclo più lungo meno 14. Con cicli da 26 a 34 giorni la finestra fertile si allarga dal settimo al ventunesimo giorno. In questa pagina basta attivare l'opzione ciclo irregolare e inserire i due valori." } },
+      { "@type": "Question", "name": "Quanto durano i giorni fertili?", "acceptedAnswer": { "@type": "Answer", "text": "L'ovulocita vive 12-24 ore, ma gli spermatozoi possono sopravvivere fino a cinque giorni nelle vie genitali: per questo la finestra utile è di circa sei o sette giorni, non uno. Avere rapporti ogni uno o due giorni in quella settimana copre la finestra senza bisogno di indovinare il giorno esatto." } },
+      { "@type": "Question", "name": "Il calcolo dei giorni fertili funziona come metodo contraccettivo?", "acceptedAnswer": { "@type": "Answer", "text": "No. Il calcolo del calendario è una stima statistica: l'ovulazione si sposta facilmente per stress, viaggi, malattie o cambi di peso, e in un ciclo su cinque cade fuori dalla finestra prevista. Per evitare una gravidanza servono metodi contraccettivi veri: i metodi naturali vanno imparati con un consulente e hanno comunque un margine di errore molto più alto." } },
+      { "@type": "Question", "name": "I dati del mio ciclo restano privati?", "acceptedAnswer": { "@type": "Answer", "text": "Sì. Il calcolo avviene nel browser e le date che inserisci sono salvate solo nella memoria locale del tuo dispositivo. Non c'è registrazione, non c'è nessun account e non viene inviato niente a nessun server: la pagina funziona anche senza connessione." } }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #fdf5f4; --surface: #ffffff; --raised: #fffafa; --text: #2b1a1f; --muted: #7b6066;
+      --line: #eedcdd; --rule: #d9bcc0;
+      --accent: #b0485f; --accent-soft: #f8e4e8; --accent-ink: #ffffff;
+      --mestr: #c0566f; --mestr-soft: #fadfe4;
+      --fert: #4f8f74; --fert-soft: #dff0e7;
+      --ovul: #a4612c; --ovul-soft: #f7e6d4;
+      --r: 8px; --r-sm: 5px;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #190f12; --surface: #221619; --raised: #2a1c20; --text: #f3e7e9; --muted: #ad9094;
+        --line: #3a272c; --rule: #4e353a;
+        --accent: #ea8fa4; --accent-soft: #3a2228; --accent-ink: #1d0f13;
+        --mestr: #ef90a5; --mestr-soft: #40222a;
+        --fert: #79c5a3; --fert-soft: #1e3a30;
+        --ovul: #e0a86e; --ovul-soft: #3c2a19;
+        color-scheme: dark;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font-family: Georgia, "Times New Roman", "Liberation Serif", serif;
+      font-size: 17px; line-height: 1.6;
+      padding-bottom: calc(76px + env(safe-area-inset-bottom));
+      overflow-x: hidden;
+    }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+    a { color: var(--accent); }
+    .back {
+      display: inline-flex; align-items: center; margin: 8px 0 2px; font-size: .95rem;
+      text-decoration: none; color: var(--muted); min-height: 44px;
+    }
+    h1 {
+      font-size: 1.85rem; line-height: 1.15; margin: .4rem 0 .3rem; font-weight: 400;
+      letter-spacing: -.01em;
+    }
+    h1 em { font-style: italic; color: var(--accent); }
+    .intro { margin: 0 0 1.1rem; color: var(--muted); font-size: 1rem; }
+
+    /* ---- pannello dati ---- */
+    .dati {
+      background: var(--surface); border: 1px solid var(--line); border-radius: var(--r);
+      padding: 14px; margin-bottom: 18px;
+    }
+    .dati h2 { font-size: .78rem; text-transform: uppercase; letter-spacing: .12em; color: var(--muted);
+      margin: 0 0 .8rem; font-weight: 400; font-family: system-ui, sans-serif; }
+    label { display: block; font-size: .95rem; margin-bottom: .3rem; }
+    .riga { margin-bottom: 14px; }
+    .riga:last-child { margin-bottom: 0; }
+    input[type="date"], input[type="number"] {
+      font-family: inherit; font-size: 16px; width: 100%; min-height: 48px;
+      padding: .5rem .7rem; border: 1px solid var(--rule); border-radius: var(--r-sm);
+      background: var(--raised); color: var(--text);
+    }
+    input:focus-visible, button:focus-visible, .giorno:focus-visible {
+      outline: 2px solid var(--accent); outline-offset: 2px;
+    }
+    .stepper { display: flex; align-items: stretch; gap: 8px; }
+    .stepper input { text-align: center; }
+    .stepper button {
+      font-family: inherit; font-size: 1.3rem; line-height: 1; min-width: 48px; min-height: 48px;
+      border: 1px solid var(--rule); border-radius: var(--r-sm); background: var(--raised);
+      color: var(--text); cursor: pointer;
+    }
+    .stepper button:active { background: var(--accent-soft); }
+    .aiuto { font-size: .88rem; color: var(--muted); margin: .35rem 0 0; }
+    .due { display: grid; gap: 14px; }
+    .toggle {
+      display: flex; align-items: center; gap: 10px; min-height: 48px; cursor: pointer;
+      font-size: .95rem; padding: 2px 0;
+    }
+    .toggle input { width: 24px; height: 24px; accent-color: var(--accent); margin: 0; flex: 0 0 auto; }
+    .avanzate { border-top: 1px solid var(--line); margin-top: 12px; }
+    .avanzate summary {
+      display: flex; align-items: center; gap: 8px; min-height: 48px; cursor: pointer;
+      font-size: .95rem; color: var(--accent); list-style: none;
+    }
+    .avanzate summary::-webkit-details-marker { display: none; }
+    .avanzate summary::before { content: "+"; font-size: 1.1rem; width: 1em; }
+    .avanzate[open] summary::before { content: "\2212"; }
+    .avanzate .riga:first-of-type { margin-top: 4px; }
+    .avviso-dati { color: var(--ovul); font-size: .88rem; margin: .5rem 0 0; }
+    .avviso-dati:empty { display: none; }
+
+    /* ---- esito ---- */
+    .esito {
+      border: 1px solid var(--rule); border-radius: var(--r); background: var(--surface);
+      padding: 16px 14px; margin-bottom: 18px;
+    }
+    .esito .occhiello {
+      font-family: system-ui, sans-serif; font-size: .74rem; text-transform: uppercase;
+      letter-spacing: .12em; color: var(--muted); margin: 0 0 .5rem;
+    }
+    .esito .grande { font-size: 1.5rem; line-height: 1.25; margin: 0 0 .2rem; }
+    .esito .grande b { font-weight: 700; color: var(--accent); }
+    .esito .sotto { margin: .1rem 0 0; color: var(--muted); font-size: .95rem; }
+    .esito.vuoto .grande { font-size: 1.1rem; color: var(--muted); }
+    .cifre { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-top: 14px;
+      background: var(--line); border: 1px solid var(--line); border-radius: var(--r-sm); overflow: hidden; }
+    .cifra { background: var(--surface); padding: 10px 12px; }
+    .cifra span { display: block; font-family: system-ui, sans-serif; font-size: .72rem;
+      text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+    .cifra strong { font-weight: 700; font-size: 1.02rem; }
+
+    /* ---- calendario (canvas) ---- */
+    .canvas { margin: 0 -16px 18px; background: var(--surface);
+      border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .barra {
+      display: flex; align-items: center; gap: 6px; padding: 8px 10px;
+      border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 3;
+      background: var(--surface);
+    }
+    .barra .mese { flex: 1; text-align: center; font-size: 1.05rem; text-transform: capitalize; }
+    .barra button {
+      font-family: inherit; font-size: 1rem; min-width: 48px; min-height: 44px;
+      border: 1px solid var(--rule); border-radius: var(--r-sm);
+      background: var(--raised); color: var(--text); cursor: pointer;
+    }
+    .barra .oggi { font-size: .85rem; min-width: 60px; }
+    .barra button[disabled] { opacity: .35; cursor: default; }
+    .settimana, .griglia { display: grid; grid-template-columns: repeat(7, 1fr); }
+    .settimana { padding: 8px 6px 2px; }
+    .settimana span { text-align: center; font-family: system-ui, sans-serif; font-size: .72rem;
+      text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+    .griglia { gap: 3px; padding: 4px 6px 10px; }
+    .giorno {
+      font-family: inherit; font-size: 1rem; aspect-ratio: 1 / 1; min-height: 44px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      border: 1px solid transparent; border-radius: var(--r-sm);
+      background: transparent; color: var(--text); cursor: pointer; padding: 0;
+    }
+    .giorno.fuori { visibility: hidden; }
+    .giorno .pallino { width: 5px; height: 5px; border-radius: 50%; margin-top: 2px; background: transparent; }
+    .giorno.mestr { background: var(--mestr-soft); color: var(--mestr); }
+    .giorno.fertile { background: var(--fert-soft); color: var(--fert); }
+    .giorno.ovul { background: var(--ovul-soft); color: var(--ovul); font-weight: 700; }
+    .giorno.ovul .pallino { background: var(--ovul); }
+    .giorno.picco .pallino { background: var(--fert); }
+    .giorno.oggi { border-color: var(--accent); }
+    .giorno.scelto { box-shadow: inset 0 0 0 2px var(--accent); }
+    .dettaglio {
+      border-top: 1px solid var(--line); padding: 12px 16px; font-size: .95rem;
+      min-height: 76px; background: var(--raised);
+    }
+    .dettaglio b { color: var(--accent); }
+    .dettaglio .data { display: block; font-family: system-ui, sans-serif; font-size: .74rem;
+      text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: .25rem; }
+    .legenda { display: flex; flex-wrap: wrap; gap: 6px 14px; padding: 10px 16px 14px;
+      font-size: .9rem; color: var(--muted); border-top: 1px solid var(--line); }
+    .legenda i { display: inline-block; width: 12px; height: 12px; border-radius: 3px;
+      margin-right: 6px; vertical-align: -1px; }
+
+    /* ---- pro ---- */
+    [data-pro] {
+      background: var(--surface); border: 1px solid var(--line); border-radius: var(--r);
+      padding: 16px 14px; margin-bottom: 18px;
+    }
+    [data-pro] h2 { font-size: 1.15rem; margin: 0 0 .15rem; font-weight: 400; }
+    [data-pro] .sub { margin: 0 0 .9rem; color: var(--muted); font-size: .9rem; }
+    [data-pro].mz-locked { min-height: 230px; }
+    .diario-lista { list-style: none; margin: 0 0 12px; padding: 0; }
+    .diario-lista li {
+      display: flex; align-items: center; gap: 10px; padding: 8px 0;
+      border-bottom: 1px solid var(--line); font-size: .95rem;
+    }
+    .diario-lista .gap { margin-left: auto; color: var(--muted); font-size: .88rem; }
+    .diario-lista button {
+      font-family: inherit; min-width: 44px; min-height: 44px; border: 1px solid var(--rule);
+      border-radius: var(--r-sm); background: var(--raised); color: var(--muted); cursor: pointer;
+      font-size: 1rem;
+    }
+    .add-riga { display: flex; gap: 8px; align-items: stretch; }
+    .add-riga input { flex: 1; }
+    .media-box { margin-top: 12px; padding: 10px 12px; background: var(--accent-soft);
+      border-radius: var(--r-sm); font-size: .95rem; }
+    .media-box p { margin: 0 0 .5rem; }
+    .media-box p:last-child { margin: 0; }
+    table.piano { width: 100%; border-collapse: collapse; font-size: .9rem; }
+    table.piano th, table.piano td { text-align: left; padding: 7px 4px; border-bottom: 1px solid var(--line); }
+    table.piano th { font-family: system-ui, sans-serif; font-size: .74rem; text-transform: uppercase;
+      letter-spacing: .06em; color: var(--muted); font-weight: 400; }
+    .solo-largo { display: none; }
+
+    /* ---- bottoni ---- */
+    .btn {
+      font-family: inherit; font-size: 1rem; min-height: 48px; padding: .6rem 1.1rem;
+      border: 1px solid var(--accent); border-radius: var(--r-sm); background: var(--accent);
+      color: var(--accent-ink); cursor: pointer; font-weight: 700;
+    }
+    .btn.secondario { background: var(--raised); color: var(--text); border-color: var(--rule); font-weight: 400; }
+    .btn-riga { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    /* ---- barra pollice ---- */
+    .pollice {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 14px calc(8px + env(safe-area-inset-bottom));
+      background: var(--surface); border-top: 1px solid var(--rule);
+    }
+    .pollice .testo { flex: 1; min-width: 0; font-size: .9rem; line-height: 1.3; }
+    .pollice .testo b { display: block; font-size: .98rem; }
+    .pollice .testo span { color: var(--muted); font-size: .84rem; }
+    .pollice .btn { min-height: 44px; padding: .45rem .9rem; font-size: .92rem; flex: 0 0 auto; }
+
+    /* ---- guida ---- */
+    #guida { margin-top: 26px; }
+    #guida h2 { font-size: 1.4rem; font-weight: 400; margin: 1.8rem 0 .5rem;
+      padding-bottom: .3rem; border-bottom: 1px solid var(--rule); }
+    #guida h3 { font-size: 1.08rem; font-weight: 700; margin: 1.3rem 0 .3rem; }
+    #guida p, #guida li { font-size: 1.02rem; }
+    #guida ul { padding-left: 1.2rem; }
+    .nota {
+      border-left: 3px solid var(--accent); background: var(--surface);
+      padding: 12px 14px; margin: 1.2rem 0; font-size: .97rem; border-radius: 0 var(--r-sm) var(--r-sm) 0;
+    }
+    footer { margin: 30px 0 10px; font-size: .9rem; color: var(--muted); }
+    footer p { margin: .6rem 0; }
+    .toast {
+      position: fixed; left: 50%; transform: translateX(-50%);
+      bottom: calc(86px + env(safe-area-inset-bottom)); z-index: 30;
+      background: var(--text); color: var(--bg); padding: .55rem 1rem; border-radius: 999px;
+      font-size: .9rem; font-family: system-ui, sans-serif;
+    }
+
+    /* deve venire dopo le regole display:grid, altrimenti l'attributo hidden non nasconde */
+    [hidden] { display: none; }
+
+    @media (min-width: 700px) {
+      body { font-size: 18px; padding-bottom: 20px; }
+      .wrap { padding: 0 24px; }
+      h1 { font-size: 2.4rem; }
+      .canvas { margin: 0 0 22px; border: 1px solid var(--line); border-radius: var(--r); }
+      .due { grid-template-columns: 1fr 1fr; }
+      .cifre { grid-template-columns: repeat(4, 1fr); }
+      .giorno { font-size: 1.05rem; }
+      .pollice { position: static; border: 1px solid var(--line); border-radius: var(--r);
+        padding: 12px 16px; margin-bottom: 18px; }
+      .solo-largo { display: table-cell; }
+    }
+    @media print {
+      .back, .dati, .canvas, .pollice, [data-ad], .mz-support-wrap, .mz-box, .mz-lock,
+      .toast, #guida, footer, .noprint { display: none !important; }
+      body { background: #fff; color: #000; padding: 0; font-size: 12pt; }
+      [data-pro] { border: 1px solid #666; break-inside: avoid; }
+      [data-pro].mz-locked > :not(.mz-lock) { filter: none !important; }
+      #pro-diario { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../../index.html"><span>&larr; Tutte le app</span></a>
+  <h1>Calcolo <em>giorni fertili</em></h1>
+  <p class="intro">Primo giorno dell'ultimo ciclo e durata: sotto trovi la finestra fertile, il giorno di massima probabilità e il calendario. Niente registrazione.</p>
+
+  <section class="dati" aria-labelledby="h-dati">
+    <h2 id="h-dati">I tuoi dati</h2>
+    <div class="riga">
+      <label for="inizio">Primo giorno dell'ultimo ciclo</label>
+      <input type="date" id="inizio" autocomplete="off">
+    </div>
+    <div class="due">
+      <div class="riga">
+        <label for="ciclo">Durata del ciclo (giorni)</label>
+        <div class="stepper">
+          <button type="button" id="ciclo-giu" aria-label="Diminuisci la durata del ciclo">&minus;</button>
+          <input type="number" id="ciclo" value="28" min="19" max="45" step="1" inputmode="numeric" enterkeyhint="done">
+          <button type="button" id="ciclo-su" aria-label="Aumenta la durata del ciclo">+</button>
+        </div>
+        <p class="aiuto">Dal primo giorno di un ciclo al primo giorno del successivo. In media 28.</p>
+      </div>
+    </div>
+    <div class="riga">
+      <label class="toggle" for="irregolare">
+        <input type="checkbox" id="irregolare">
+        <span>Il mio ciclo è irregolare (uso un intervallo)</span>
+      </label>
+      <div class="due" id="box-irregolare" hidden>
+        <div>
+          <label for="ciclo-min">Ciclo più corto</label>
+          <input type="number" id="ciclo-min" value="26" min="19" max="45" step="1" inputmode="numeric">
+        </div>
+        <div>
+          <label for="ciclo-max">Ciclo più lungo</label>
+          <input type="number" id="ciclo-max" value="32" min="19" max="45" step="1" inputmode="numeric">
+        </div>
+      </div>
+    </div>
+    <details class="avanzate">
+      <summary>Impostazioni fini</summary>
+      <div class="riga">
+        <label for="mestruazioni">Durata delle mestruazioni</label>
+        <div class="stepper">
+          <button type="button" id="mestr-giu" aria-label="Diminuisci i giorni di mestruazioni">&minus;</button>
+          <input type="number" id="mestruazioni" value="5" min="1" max="10" step="1" inputmode="numeric" enterkeyhint="done">
+          <button type="button" id="mestr-su" aria-label="Aumenta i giorni di mestruazioni">+</button>
+        </div>
+        <p class="aiuto">Serve solo a disegnare le mestruazioni sul calendario.</p>
+      </div>
+      <div class="riga">
+        <label for="luteale">Fase luteale (giorni tra ovulazione e ciclo)</label>
+        <div class="stepper">
+          <button type="button" id="lut-giu" aria-label="Diminuisci la fase luteale">&minus;</button>
+          <input type="number" id="luteale" value="14" min="9" max="17" step="1" inputmode="numeric">
+          <button type="button" id="lut-su" aria-label="Aumenta la fase luteale">+</button>
+        </div>
+        <p class="aiuto">Lasciala a 14 se non la conosci: è la parte del ciclo che varia meno.</p>
+      </div>
+    </details>
+    <p class="avviso-dati" id="avviso" role="status" aria-live="polite"></p>
+  </section>
+
+  <section class="esito vuoto" id="esito" aria-labelledby="h-esito" aria-live="polite">
+    <p class="occhiello" id="h-esito">Finestra fertile</p>
+    <p class="grande" id="esito-grande">Scegli la data del primo giorno dell'ultimo ciclo per vedere il calcolo.</p>
+    <p class="sotto" id="esito-sotto"></p>
+    <div class="cifre" id="cifre" hidden>
+      <div class="cifra"><span>Ovulazione stimata</span><strong id="c-ovul">&mdash;</strong></div>
+      <div class="cifra"><span>Giorni di massima probabilità</span><strong id="c-picco">&mdash;</strong></div>
+      <div class="cifra"><span>Prossimo ciclo atteso</span><strong id="c-prossimo">&mdash;</strong></div>
+      <div class="cifra"><span>Test di gravidanza dal</span><strong id="c-test">&mdash;</strong></div>
+    </div>
+  </section>
+
+  <div data-ad="top"></div>
+
+  <section class="canvas" aria-labelledby="h-cal">
+    <h2 id="h-cal" class="visually-hidden" hidden>Calendario</h2>
+    <div class="barra">
+      <button type="button" id="prec" aria-label="Mese precedente">&larr;</button>
+      <div class="mese" id="etichetta-mese" aria-live="polite">&nbsp;</div>
+      <button type="button" class="oggi" id="vai-oggi">Oggi</button>
+      <button type="button" id="succ" aria-label="Mese successivo">&rarr;</button>
+    </div>
+    <div class="settimana" aria-hidden="true">
+      <span>Lun</span><span>Mar</span><span>Mer</span><span>Gio</span><span>Ven</span><span>Sab</span><span>Dom</span>
+    </div>
+    <div class="griglia" id="griglia" role="grid" aria-label="Calendario dei giorni fertili"></div>
+    <div class="dettaglio" id="dettaglio" role="status" aria-live="polite">
+      <span class="data">Tocca un giorno</span>
+      Tocca una casella del calendario per sapere a che giorno del ciclo corrisponde.
+    </div>
+    <div class="legenda">
+      <span><i style="background:var(--mestr-soft);border:1px solid var(--mestr)"></i>Mestruazioni</span>
+      <span><i style="background:var(--fert-soft);border:1px solid var(--fert)"></i>Giorni fertili</span>
+      <span><i style="background:var(--ovul-soft);border:1px solid var(--ovul)"></i>Ovulazione</span>
+    </div>
+  </section>
+
+  <section data-pro="Diario dei cicli con media automatica" id="pro-diario" aria-labelledby="h-pro1">
+    <h2 id="h-pro1">Diario dei cicli con media automatica</h2>
+    <p class="sub">Registra il primo giorno di ogni ciclo: calcolo io la tua durata media, il minimo e il massimo, e li porto nel calcolatore.</p>
+    <ul class="diario-lista" id="diario-lista"></ul>
+    <div class="add-riga">
+      <input type="date" id="diario-data" aria-label="Primo giorno di un ciclo passato">
+      <button type="button" class="btn secondario" id="diario-add">Aggiungi</button>
+    </div>
+    <div class="media-box" id="diario-media" hidden></div>
+  </section>
+
+  <section data-pro="Calendario di sei mesi da stampare" id="pro-piano" aria-labelledby="h-pro2">
+    <h2 id="h-pro2">Calendario di sei mesi da stampare</h2>
+    <p class="sub">I prossimi sei cicli in tabella: finestra fertile, ovulazione e data utile per il test. Da stampare o salvare in PDF.</p>
+    <table class="piano" id="tabella-piano">
+      <thead>
+        <tr><th>Ciclo</th><th>Giorni fertili</th><th>Ovulazione</th><th class="solo-largo">Test dal</th></tr>
+      </thead>
+      <tbody id="piano-corpo"></tbody>
+    </table>
+    <div class="btn-riga noprint" style="margin-top:14px">
+      <button type="button" class="btn secondario" id="stampa">Stampa il calendario</button>
+    </div>
+  </section>
+
+  <div data-affiliate data-title="Per capire meglio il tuo ciclo" data-items='[{"t":"Test di ovulazione (stick LH)","q":"test ovulazione stick lh"},{"t":"Termometro basale digitale","q":"termometro basale digitale due decimali"},{"t":"Acido folico 400 mcg","q":"acido folico 400 mcg gravidanza"}]'></div>
+
+  <section id="guida">
+    <h2>Come funziona il calcolo dei giorni fertili</h2>
+    <p>Il calcolo parte da un fatto fisiologico: la seconda metà del ciclo, quella che va dall'ovulazione all'arrivo delle mestruazioni, è la parte più stabile. Si chiama fase luteale e in quasi tutte le donne dura tra i 12 e i 14 giorni, indipendentemente dalla lunghezza totale del ciclo. Quello che cambia da donna a donna, e da mese a mese, è la prima metà: l'ovaio può metterci dieci giorni o venti a portare a maturazione l'ovocita.</p>
+    <p>Da qui la regola che usa questa pagina: <strong>ovulazione = durata del ciclo meno la fase luteale</strong>, contando dal primo giorno delle mestruazioni. Attorno a quel giorno si costruisce la finestra fertile, che non è un giorno solo: gli spermatozoi sopravvivono fino a cinque giorni nelle vie genitali, l'ovocita dodici-ventiquattro ore. Risultato: sono utili i cinque giorni prima dell'ovulazione, il giorno stesso e quello successivo. Sette caselle, con la probabilità più alta nei due giorni che precedono immediatamente l'ovulazione.</p>
+
+    <h3>Un esempio con i numeri</h3>
+    <p>Ultimo ciclo iniziato il 1° ottobre, durata media 30 giorni, fase luteale 14. L'ovulazione cade al giorno 30 &minus; 14 = 16, cioè il 16 ottobre. La finestra fertile va dall'11 al 17 ottobre, i due giorni migliori sono il 15 e il 16, il ciclo successivo è atteso per il 31 ottobre e un test di gravidanza diventa attendibile dal 30 ottobre, cioè quattordici giorni dopo l'ovulazione. Se invece il ciclo fosse di 26 giorni, con la stessa fase luteale l'ovulazione si sposterebbe al 12 ottobre: dodici giorni di differenza nella finestra fertile a parità di data di partenza. È il motivo per cui la durata del ciclo va inserita con attenzione e non lasciata a 28 per abitudine.</p>
+
+    <h3>Se il ciclo è irregolare</h3>
+    <p>Qui la media è una trappola: se i tuoi cicli vanno da 26 a 34 giorni, un ciclo "medio" di 30 ti farebbe guardare un solo giorno di ovulazione quando in realtà può cadere in un arco di nove. Attivando l'opzione <em>ciclo irregolare</em> il calcolo usa i due estremi: l'ovulazione viene cercata tra il giorno 12 e il giorno 20, e la finestra fertile si allarga dal giorno 7 al giorno 21. È una finestra meno comoda, ma onesta. Per restringerla servono i segnali del corpo: il muco cervicale che diventa chiaro ed elastico come l'albume, un lieve rialzo della temperatura basale il giorno dopo l'ovulazione, oppure gli stick che misurano il picco dell'ormone LH nelle urine.</p>
+
+    <h3>Gli errori più comuni</h3>
+    <ul>
+      <li><strong>Contare dalla fine delle mestruazioni.</strong> Il giorno 1 del ciclo è il primo giorno di flusso vero, non l'ultimo e non quello delle perdite leggere che a volte lo precedono.</li>
+      <li><strong>Usare 28 giorni per inerzia.</strong> Solo una minoranza di donne ha cicli esattamente di 28 giorni: inserire la propria durata reale sposta la finestra anche di una settimana.</li>
+      <li><strong>Concentrare tutto su un giorno.</strong> Puntare al "giorno dell'ovulazione" è fragile, perché la stima ha un margine. Rapporti ogni uno o due giorni lungo tutta la finestra coprono il margine senza stress.</li>
+      <li><strong>Fare il test troppo presto.</strong> Prima di dodici-quattordici giorni dall'ovulazione l'ormone beta hCG può essere ancora troppo basso: un negativo precoce non significa niente.</li>
+      <li><strong>Usare il calendario per non restare incinta.</strong> Il calcolo nasce per individuare i giorni fertili, non per evitarli: come contraccettivo è inaffidabile.</li>
+    </ul>
+
+    <div class="nota">
+      <p>Questo strumento fa una stima statistica sulle date che inserisci: non è un dispositivo medico, non diagnostica nulla e non sostituisce il parere del ginecologo. Se cerchi una gravidanza da più di dodici mesi (o da sei, se hai più di 35 anni), se i cicli sono molto irregolari o assenti, parlane con un medico.</p>
+    </div>
+
+    <h2>Domande frequenti</h2>
+    <h3>Quali sono i giorni fertili di un ciclo di 28 giorni?</h3>
+    <p>Con un ciclo di 28 giorni e fase luteale di 14, l'ovulazione cade intorno al quattordicesimo giorno dal primo giorno delle mestruazioni. La finestra fertile va dal nono al quindicesimo giorno, con massima probabilità il tredicesimo e il quattordicesimo.</p>
+    <h3>Come si calcolano i giorni fertili se il ciclo è irregolare?</h3>
+    <p>Con un intervallo, non con una media: prendi il ciclo più corto e il più lungo degli ultimi sei mesi e sottrai 14 a entrambi. Ottieni il primo e l'ultimo giorno possibile di ovulazione; la finestra fertile parte cinque giorni prima del primo e finisce un giorno dopo l'ultimo.</p>
+    <h3>Quanto durano i giorni fertili?</h3>
+    <p>Circa sei o sette giorni per ciclo. L'ovocita è fecondabile per meno di un giorno, ma gli spermatozoi arrivano in anticipo e aspettano: per questo i giorni che precedono l'ovulazione contano più di quelli successivi.</p>
+    <h3>Il calcolo funziona come metodo contraccettivo?</h3>
+    <p>No. L'ovulazione si sposta per stress, viaggi, febbre, cambi di peso o di sonno, e una stima da calendario sbaglia abbastanza spesso da rendere il metodo inadatto a evitare una gravidanza. Per quello servono metodi contraccettivi veri.</p>
+    <h3>I dati del mio ciclo restano privati?</h3>
+    <p>Sì. Tutto il calcolo avviene nel browser e le date restano nella memoria locale del dispositivo: nessun account, nessun invio, nessun permesso richiesto. La pagina funziona anche offline e puoi cancellare le date dal diario quando vuoi.</p>
+  </section>
+
+  <div data-ad="bottom"></div>
+  <div data-support></div>
+
+  <footer>
+    <p>Altri strumenti utili in questo periodo: <a href="../2026-10-05-quanto-costa-un-figlio/">quanto costa mantenere un figlio</a>, per farsi un'idea delle spese, e <a href="../2026-09-30-calorie-al-giorno/">quante calorie mangiare al giorno</a>, se stai sistemando l'alimentazione.</p>
+    <p>Metodo: regola del calendario (ovulazione = durata del ciclo meno la fase luteale) con finestra fertile di cinque giorni prima e uno dopo, basata sulla sopravvivenza di spermatozoi e ovocita; data presunta del parto a 266 giorni dall'ovulazione. Stime indicative, non un consulto medico.</p>
+    <p>Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a></p>
+  </footer>
+</div>
+
+<div class="pollice" id="pollice">
+  <div class="testo" id="pollice-testo"><b>Giorni fertili</b><span>Inserisci la data dell'ultimo ciclo</span></div>
+  <button type="button" class="btn" id="copia">Copia</button>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<script src="../../assets/monetize.js"></script>
+<script>
+(() => {
+  "use strict";
+  // Modello dati: uno stato unico salvato in localStorage "giorni-fertili:v1" con la data del primo
+  // giorno dell'ultimo ciclo (ISO), le durate (ciclo, mestruazioni, fase luteale, intervallo min-max
+  // se irregolare) e il diario = array di date ISO di inizi di ciclo passati. Da lì derivo una lista
+  // di cicli proiettati { start, ovMin, ovMax, fertStart, fertEnd, prossimo, test } e disegno tutto.
+
+  const CHIAVE = "giorni-fertili:v1";
+  const CICLI_PROIETTATI = 10;
+  const el = (id) => document.getElementById(id);
+
+  const stato = {
+    inizio: "", ciclo: 28, mestruazioni: 5, luteale: 14,
+    irregolare: false, cicloMin: 26, cicloMax: 32, diario: [],
+  };
+  let meseVisto = null;   // { a, m }
+  let giornoScelto = null; // ISO
+
+  // ---------- date ----------
+  const GIORNO = 86400000;
+  const daIso = (s) => { const p = String(s || "").split("-"); return p.length === 3 ? new Date(+p[0], +p[1] - 1, +p[2]) : null; };
+  const aIso = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  const piu = (d, n) => new Date(d.getFullYear(), d.getMonth(), d.getDate() + n);
+  const distanza = (a, b) => Math.round((new Date(b.getFullYear(), b.getMonth(), b.getDate()) - new Date(a.getFullYear(), a.getMonth(), a.getDate())) / GIORNO);
+  const oggi = () => { const n = new Date(); return new Date(n.getFullYear(), n.getMonth(), n.getDate()); };
+  const fBreve = new Intl.DateTimeFormat("it-IT", { day: "numeric", month: "short" });
+  const fMedia = new Intl.DateTimeFormat("it-IT", { weekday: "short", day: "numeric", month: "long" });
+  const fLunga = new Intl.DateTimeFormat("it-IT", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+  const fMese = new Intl.DateTimeFormat("it-IT", { month: "long", year: "numeric" });
+  const fParto = new Intl.DateTimeFormat("it-IT", { day: "numeric", month: "long", year: "numeric" });
+  const breve = (d) => fBreve.format(d);
+  const media = (d) => fMedia.format(d);
+
+  // ---------- numeri ----------
+  const limita = (v, min, max, pre) => {
+    const n = parseInt(v, 10);
+    return Number.isFinite(n) ? Math.min(max, Math.max(min, n)) : pre;
+  };
+
+  // ---------- persistenza ----------
+  function carica() {
+    try {
+      const salvato = JSON.parse(localStorage.getItem(CHIAVE) || "null");
+      if (salvato && typeof salvato === "object") {
+        for (const k of ["inizio", "ciclo", "mestruazioni", "luteale", "irregolare", "cicloMin", "cicloMax"]) {
+          if (salvato[k] !== undefined && salvato[k] !== null) stato[k] = salvato[k];
+        }
+        if (Array.isArray(salvato.diario)) stato.diario = salvato.diario.filter((d) => daIso(d));
+      }
+    } catch (e) { /* memoria non disponibile: si parte dai valori di default */ }
+  }
+  function salva() {
+    try { localStorage.setItem(CHIAVE, JSON.stringify(stato)); } catch (e) { /* ignorato */ }
+  }
+
+  // ---------- calcolo ----------
+  function cicli() {
+    const inizio = daIso(stato.inizio);
+    if (!inizio) return [];
+    const lut = stato.luteale;
+    const min = stato.irregolare ? Math.min(stato.cicloMin, stato.cicloMax) : stato.ciclo;
+    const max = stato.irregolare ? Math.max(stato.cicloMin, stato.cicloMax) : stato.ciclo;
+    const passo = stato.irregolare ? Math.round((min + max) / 2) : stato.ciclo;
+    // Parto dal ciclo in corso (uno indietro, per avere il contesto sul calendario) e proietto avanti:
+    // se la data inserita è di mesi fa, l'utente deve vedere la finestra di adesso, non quella di allora.
+    const trascorsi = Math.max(0, Math.floor(distanza(inizio, oggi()) / passo) - 1);
+    const lista = [];
+    for (let i = 0; i < CICLI_PROIETTATI; i++) {
+      const n = trascorsi + i;
+      const start = piu(inizio, n * passo);
+      const ovMin = piu(start, Math.max(1, min - lut) - 1);
+      const ovMax = piu(start, Math.max(1, max - lut) - 1);
+      lista.push({
+        n, start,
+        ovMin, ovMax,
+        fertStart: piu(ovMin, -5),
+        fertEnd: piu(ovMax, 1),
+        prossimo: piu(start, passo),
+        test: piu(ovMax, 14),
+        parto: piu(ovMin, 266),
+      });
+    }
+    return lista;
+  }
+
+  // Il ciclo da mostrare: il primo la cui finestra fertile non è ancora finita.
+  function cicloAttivo(lista) {
+    const o = oggi();
+    return lista.find((c) => c.fertEnd >= o) || lista[lista.length - 1] || null;
+  }
+
+  function infoGiorno(d, lista) {
+    const out = { mestr: false, fertile: false, ovul: false, picco: false, giornoCiclo: null, ciclo: null };
+    for (const c of lista) {
+      const dal = distanza(c.start, d);
+      if (dal >= 0 && dal < stato.mestruazioni) { out.mestr = true; }
+      if (d >= c.fertStart && d <= c.fertEnd) out.fertile = true;
+      if (d >= c.ovMin && d <= c.ovMax) out.ovul = true;
+      if (d >= piu(c.ovMin, -1) && d <= c.ovMax) out.picco = true;
+      const passo = distanza(c.start, c.prossimo);
+      if (dal >= 0 && dal < passo) { out.giornoCiclo = dal + 1; out.ciclo = c; }
+    }
+    return out;
+  }
+
+  // ---------- disegno: esito ----------
+  function disegnaEsito(lista) {
+    const box = el("esito"), grande = el("esito-grande"), sotto = el("esito-sotto"), cifre = el("cifre");
+    const c = cicloAttivo(lista);
+    if (!c) {
+      box.classList.add("vuoto");
+      grande.textContent = "Scegli la data del primo giorno dell'ultimo ciclo per vedere il calcolo.";
+      sotto.textContent = "";
+      cifre.hidden = true;
+      el("pollice-testo").innerHTML = "<b>Giorni fertili</b><span>Inserisci la data dell'ultimo ciclo</span>";
+      return;
+    }
+    box.classList.remove("vuoto");
+    const o = oggi();
+    const dentro = o >= c.fertStart && o <= c.fertEnd;
+    const mancano = distanza(o, c.fertStart);
+    const finestra = `${media(c.fertStart)} &ndash; ${media(c.fertEnd)}`;
+
+    if (dentro) {
+      const quale = distanza(c.fertStart, o) + 1;
+      const totali = distanza(c.fertStart, c.fertEnd) + 1;
+      grande.innerHTML = `Sei nei giorni fertili: <b>giorno ${quale} di ${totali}</b>`;
+    } else if (mancano === 1) {
+      grande.innerHTML = "I giorni fertili iniziano <b>domani</b>";
+    } else if (mancano > 1) {
+      grande.innerHTML = `I giorni fertili iniziano tra <b>${mancano} giorni</b>`;
+    } else {
+      grande.innerHTML = `Prossima finestra fertile dal <b>${breve(c.fertStart)}</b>`;
+    }
+
+    let nota = `Finestra fertile: ${finestra}.`;
+    if (c.n > 0) nota += ` Ciclo stimato n. ${c.n + 1} a partire dalla data che hai inserito.`;
+    if (stato.irregolare) nota += " Con ciclo irregolare la finestra è più larga: oltre il primo ciclo le date sono indicative.";
+    sotto.innerHTML = nota;
+
+    cifre.hidden = false;
+    el("c-ovul").textContent = stato.irregolare && distanza(c.ovMin, c.ovMax) > 0
+      ? `tra ${breve(c.ovMin)} e ${breve(c.ovMax)}`
+      : media(c.ovMin);
+    el("c-picco").textContent = `${breve(piu(c.ovMin, -1))} e ${breve(c.ovMax)}`;
+    el("c-prossimo").textContent = media(c.prossimo);
+    el("c-test").textContent = breve(c.test);
+
+    el("pollice-testo").innerHTML = dentro
+      ? `<b>Sei nei giorni fertili</b><span>fino al ${breve(c.fertEnd)}</span>`
+      : `<b>Fertile dal ${breve(c.fertStart)} al ${breve(c.fertEnd)}</b><span>ovulazione ${breve(c.ovMin)}${distanza(c.ovMin, c.ovMax) ? " &ndash; " + breve(c.ovMax) : ""}</span>`;
+  }
+
+  // ---------- disegno: calendario ----------
+  function disegnaCalendario(lista) {
+    const griglia = el("griglia");
+    const base = meseVisto || { a: oggi().getFullYear(), m: oggi().getMonth() };
+    const primo = new Date(base.a, base.m, 1);
+    el("etichetta-mese").textContent = fMese.format(primo);
+    const giorniMese = new Date(base.a, base.m + 1, 0).getDate();
+    const offset = (primo.getDay() + 6) % 7; // lunedì = 0
+    const o = oggi();
+    const frag = document.createDocumentFragment();
+
+    for (let i = 0; i < offset; i++) {
+      const vuoto = document.createElement("div");
+      vuoto.className = "giorno fuori";
+      frag.append(vuoto);
+    }
+    for (let g = 1; g <= giorniMese; g++) {
+      const d = new Date(base.a, base.m, g);
+      const info = infoGiorno(d, lista);
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "giorno";
+      if (info.mestr) b.classList.add("mestr");
+      else if (info.ovul) b.classList.add("ovul");
+      else if (info.fertile) b.classList.add("fertile");
+      if (info.picco && !info.mestr) b.classList.add("picco");
+      if (distanza(d, o) === 0) b.classList.add("oggi");
+      if (giornoScelto === aIso(d)) b.classList.add("scelto");
+      b.dataset.iso = aIso(d);
+      b.setAttribute("aria-label", etichetta(d, info));
+      const n = document.createElement("span");
+      n.textContent = String(g);
+      const p = document.createElement("span");
+      p.className = "pallino";
+      b.append(n, p);
+      frag.append(b);
+    }
+    griglia.replaceChildren(frag);
+  }
+
+  function etichetta(d, info) {
+    const parti = [fLunga.format(d)];
+    if (info.giornoCiclo) parti.push(`giorno ${info.giornoCiclo} del ciclo`);
+    if (info.mestr) parti.push("mestruazioni previste");
+    if (info.ovul) parti.push("ovulazione stimata");
+    else if (info.fertile) parti.push("giorno fertile");
+    return parti.join(", ");
+  }
+
+  function disegnaDettaglio(iso, lista) {
+    const d = daIso(iso);
+    const box = el("dettaglio");
+    if (!d) return;
+    const info = infoGiorno(d, lista);
+    const righe = [];
+    if (info.giornoCiclo) righe.push(`Giorno <b>${info.giornoCiclo}</b> del ciclo.`);
+    if (info.mestr) righe.push("Mestruazioni previste.");
+    if (info.ovul) righe.push("È il giorno dell'<b>ovulazione stimata</b>.");
+    if (info.fertile && !info.ovul) righe.push(info.picco ? "Giorno fertile, tra quelli a <b>massima probabilità</b>." : "Giorno <b>fertile</b>.");
+    if (!info.fertile && !info.mestr) righe.push("Fuori dalla finestra fertile.");
+    if (info.ovul) righe.push(`Se il concepimento avviene oggi, parto previsto intorno al ${fParto.format(piu(d, 266))}.`);
+    box.innerHTML = `<span class="data">${fLunga.format(d)}</span>${righe.join(" ") || "Nessun dato per questo giorno."}`;
+  }
+
+  // ---------- disegno: piano Pro ----------
+  function disegnaPiano(lista) {
+    const corpo = el("piano-corpo");
+    const attivo = cicloAttivo(lista);
+    const partenza = attivo ? Math.max(0, lista.indexOf(attivo)) : 0;
+    const righe = lista.slice(partenza, partenza + 6);
+    if (!righe.length) {
+      corpo.innerHTML = '<tr><td colspan="4">Inserisci la data dell\'ultimo ciclo per generare il calendario.</td></tr>';
+      return;
+    }
+    corpo.replaceChildren(...righe.map((c, i) => {
+      const tr = document.createElement("tr");
+      const celle = [
+        i === 0 ? "In corso" : `+${i}`,
+        `${breve(c.fertStart)} &ndash; ${breve(c.fertEnd)}`,
+        distanza(c.ovMin, c.ovMax) ? `${breve(c.ovMin)} &ndash; ${breve(c.ovMax)}` : breve(c.ovMin),
+        breve(c.test),
+      ];
+      celle.forEach((testo, k) => {
+        const td = document.createElement("td");
+        td.innerHTML = testo;
+        if (k === 3) td.className = "solo-largo";
+        tr.append(td);
+      });
+      return tr;
+    }));
+  }
+
+  // ---------- disegno: diario Pro ----------
+  function disegnaDiario() {
+    const lista = el("diario-lista");
+    const date = stato.diario.map(daIso).filter(Boolean).sort((a, b) => b - a);
+    stato.diario = date.map(aIso);
+    if (!date.length) {
+      lista.innerHTML = '<li style="color:var(--muted)">Nessuna data registrata: aggiungi almeno due inizi di ciclo per calcolare la media.</li>';
+    } else {
+      lista.replaceChildren(...date.map((d, i) => {
+        const li = document.createElement("li");
+        const nome = document.createElement("span");
+        nome.textContent = media(d);
+        li.append(nome);
+        const succ = date[i - 1];
+        if (succ) {
+          const gap = document.createElement("span");
+          gap.className = "gap";
+          gap.textContent = `${distanza(d, succ)} gg`;
+          li.append(gap);
+        } else {
+          const gap = document.createElement("span");
+          gap.className = "gap";
+          gap.textContent = "più recente";
+          li.append(gap);
+        }
+        const via = document.createElement("button");
+        via.type = "button";
+        via.setAttribute("aria-label", `Elimina ${media(d)}`);
+        via.textContent = "×";
+        via.addEventListener("click", () => {
+          stato.diario = stato.diario.filter((x) => x !== aIso(d));
+          salva(); disegnaDiario();
+        });
+        li.append(via);
+        return li;
+      }));
+    }
+
+    const box = el("diario-media");
+    const salti = [];
+    for (let i = date.length - 1; i > 0; i--) {
+      const g = distanza(date[i], date[i - 1]);
+      if (g >= 15 && g <= 60) salti.push(g);
+    }
+    if (salti.length < 1) {
+      box.hidden = true;
+      return;
+    }
+    const mediaG = Math.round(salti.reduce((a, b) => a + b, 0) / salti.length);
+    const min = Math.min(...salti), max = Math.max(...salti);
+    const regolare = max - min <= 3;
+    box.hidden = false;
+    const quanti = salti.length > 1 ? `${salti.length} cicli registrati` : "1 ciclo registrato";
+    box.innerHTML = `<p>Su ${quanti}: durata media <b>${mediaG} giorni</b>, dal più corto di ${min} al più lungo di ${max}. ${regolare ? "Variazione contenuta: il ciclo si può considerare regolare." : "Variazione di " + (max - min) + " giorni: conviene usare l'intervallo invece della media."}</p>`;
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "btn secondario";
+    b.textContent = "Usa questi valori nel calcolo";
+    b.addEventListener("click", () => {
+      stato.ciclo = mediaG;
+      el("ciclo").value = mediaG;
+      if (!regolare) {
+        stato.irregolare = true; stato.cicloMin = min; stato.cicloMax = max;
+        el("irregolare").checked = true;
+        el("ciclo-min").value = min; el("ciclo-max").value = max;
+        el("box-irregolare").hidden = false;
+      }
+      const ultima = stato.diario[0];
+      if (ultima && (!stato.inizio || daIso(ultima) > daIso(stato.inizio))) {
+        stato.inizio = ultima; el("inizio").value = ultima;
+      }
+      salva(); aggiorna(true);
+      avvisa("Valori del diario applicati al calcolo");
+    });
+    box.append(b);
+  }
+
+  // ---------- avvisi ----------
+  function controlli() {
+    const msg = [];
+    const inizio = daIso(stato.inizio);
+    if (inizio) {
+      const giorni = distanza(inizio, oggi());
+      if (giorni < 0) msg.push("La data inserita è nel futuro: il calcolo parte da lì.");
+      else if (giorni > 120) msg.push(`L'ultimo ciclo che hai inserito è di ${giorni} giorni fa: le date mostrate sono proiezioni, aggiorna la data per una stima affidabile.`);
+    }
+    if (stato.irregolare && stato.cicloMin > stato.cicloMax) msg.push("Il ciclo più corto è maggiore del più lungo: li ho invertiti nel calcolo.");
+    if (stato.irregolare && Math.abs(stato.cicloMax - stato.cicloMin) > 12) msg.push("Intervallo molto ampio: con cicli così variabili vale la pena parlarne con il ginecologo.");
+    el("avviso").textContent = msg.join(" ");
+  }
+
+  let timerToast = null;
+  function avvisa(testo) {
+    const t = el("toast");
+    t.textContent = testo;
+    t.hidden = false;
+    clearTimeout(timerToast);
+    timerToast = setTimeout(() => { t.hidden = true; }, 2600);
+  }
+
+  // ---------- riepilogo ----------
+  function riepilogo(lista) {
+    const c = cicloAttivo(lista);
+    if (!c) return "";
+    const ov = distanza(c.ovMin, c.ovMax) ? `tra il ${breve(c.ovMin)} e il ${breve(c.ovMax)}` : `il ${breve(c.ovMin)}`;
+    return [
+      "Giorni fertili",
+      `Finestra fertile: dal ${media(c.fertStart)} al ${media(c.fertEnd)}`,
+      `Ovulazione stimata: ${ov}`,
+      `Massima probabilità: ${breve(piu(c.ovMin, -1))} e ${breve(c.ovMax)}`,
+      `Prossimo ciclo atteso: ${media(c.prossimo)}`,
+      `Test di gravidanza attendibile dal ${breve(c.test)}`,
+      "Stima da calendario, non un consulto medico.",
+    ].join("\n");
+  }
+
+  async function copia(testo) {
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(testo);
+        return true;
+      }
+    } catch (e) { /* si prova il metodo di riserva */ }
+    try {
+      const ta = document.createElement("textarea");
+      ta.value = testo;
+      ta.setAttribute("readonly", "");
+      ta.style.cssText = "position:fixed;left:-9999px;top:0";
+      document.body.append(ta);
+      ta.select();
+      const ok = document.execCommand("copy");
+      ta.remove();
+      return ok;
+    } catch (e) { return false; }
+  }
+
+  // ---------- aggiornamento generale ----------
+  function aggiorna(ricentra) {
+    const lista = cicli();
+    controlli();
+    disegnaEsito(lista);
+    const c = cicloAttivo(lista);
+    if (ricentra && c) meseVisto = { a: c.fertStart.getFullYear(), m: c.fertStart.getMonth() };
+    if (!meseVisto) meseVisto = { a: oggi().getFullYear(), m: oggi().getMonth() };
+    disegnaCalendario(lista);
+    if (giornoScelto) disegnaDettaglio(giornoScelto, lista);
+    disegnaPiano(lista);
+  }
+
+  // ---------- eventi ----------
+  function stepper(idInput, idGiu, idSu, min, max, campo) {
+    const input = el(idInput);
+    const applica = (v) => {
+      const n = limita(v, min, max, stato[campo]);
+      input.value = n;
+      stato[campo] = n;
+      salva();
+      aggiorna(true);
+    };
+    el(idGiu).addEventListener("click", () => applica(parseInt(input.value, 10) - 1));
+    el(idSu).addEventListener("click", () => applica(parseInt(input.value, 10) + 1));
+    input.addEventListener("change", () => applica(input.value));
+    input.addEventListener("keydown", (e) => { if (e.key === "Enter") { input.blur(); } });
+  }
+
+  function avvia() {
+    carica();
+    el("inizio").value = stato.inizio || "";
+    el("ciclo").value = stato.ciclo;
+    el("mestruazioni").value = stato.mestruazioni;
+    el("luteale").value = stato.luteale;
+    el("irregolare").checked = !!stato.irregolare;
+    el("ciclo-min").value = stato.cicloMin;
+    el("ciclo-max").value = stato.cicloMax;
+    el("box-irregolare").hidden = !stato.irregolare;
+    el("inizio").max = aIso(piu(oggi(), 1));
+
+    el("inizio").addEventListener("change", (e) => {
+      const d = daIso(e.target.value);
+      stato.inizio = d ? aIso(d) : "";
+      giornoScelto = null;
+      salva();
+      aggiorna(true);
+    });
+    stepper("ciclo", "ciclo-giu", "ciclo-su", 19, 45, "ciclo");
+    stepper("mestruazioni", "mestr-giu", "mestr-su", 1, 10, "mestruazioni");
+    stepper("luteale", "lut-giu", "lut-su", 9, 17, "luteale");
+
+    el("irregolare").addEventListener("change", (e) => {
+      stato.irregolare = e.target.checked;
+      el("box-irregolare").hidden = !stato.irregolare;
+      salva();
+      aggiorna(true);
+    });
+    for (const [id, campo] of [["ciclo-min", "cicloMin"], ["ciclo-max", "cicloMax"]]) {
+      el(id).addEventListener("change", (e) => {
+        const n = limita(e.target.value, 19, 45, stato[campo]);
+        e.target.value = n;
+        stato[campo] = n;
+        salva();
+        aggiorna(true);
+      });
+    }
+
+    el("prec").addEventListener("click", () => {
+      meseVisto = meseVisto.m === 0 ? { a: meseVisto.a - 1, m: 11 } : { a: meseVisto.a, m: meseVisto.m - 1 };
+      aggiorna(false);
+    });
+    el("succ").addEventListener("click", () => {
+      meseVisto = meseVisto.m === 11 ? { a: meseVisto.a + 1, m: 0 } : { a: meseVisto.a, m: meseVisto.m + 1 };
+      aggiorna(false);
+    });
+    el("vai-oggi").addEventListener("click", () => {
+      meseVisto = { a: oggi().getFullYear(), m: oggi().getMonth() };
+      aggiorna(false);
+    });
+    el("griglia").addEventListener("click", (e) => {
+      const b = e.target.closest(".giorno");
+      if (!b || !b.dataset.iso) return;
+      giornoScelto = b.dataset.iso;
+      const lista = cicli();
+      disegnaDettaglio(giornoScelto, lista);
+      disegnaCalendario(lista);
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && giornoScelto) {
+        giornoScelto = null;
+        el("dettaglio").innerHTML = '<span class="data">Tocca un giorno</span>Tocca una casella del calendario per sapere a che giorno del ciclo corrisponde.';
+        disegnaCalendario(cicli());
+      }
+    });
+
+    el("copia").addEventListener("click", async () => {
+      const testo = riepilogo(cicli());
+      if (!testo) { avvisa("Inserisci prima la data dell'ultimo ciclo"); return; }
+      avvisa(await copia(testo) ? "Riepilogo copiato" : "Copia non riuscita: seleziona il testo a mano");
+    });
+
+    el("diario-data").max = aIso(oggi());
+    el("diario-add").addEventListener("click", () => {
+      const v = el("diario-data").value;
+      const d = daIso(v);
+      if (!d) { avvisa("Scegli una data"); return; }
+      if (d > oggi()) { avvisa("La data è nel futuro"); return; }
+      if (stato.diario.includes(aIso(d))) { avvisa("Data già presente"); return; }
+      stato.diario.push(aIso(d));
+      el("diario-data").value = "";
+      salva();
+      disegnaDiario();
+      avvisa("Ciclo aggiunto al diario");
+    });
+    el("diario-data").addEventListener("keydown", (e) => { if (e.key === "Enter") el("diario-add").click(); });
+
+    el("stampa").addEventListener("click", () => {
+      if (!window.Monetize || !window.Monetize.isPro()) {
+        if (window.Monetize) window.Monetize.unlock();
+        return;
+      }
+      window.print();
+    });
+
+    disegnaDiario();
+    aggiorna(true);
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", avvia);
+  else avvia();
+})();
+</script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 24,
+  "count": 25,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -49,6 +49,66 @@
     ]
   },
   "apps": [
+    {
+      "title": "Giorni Fertili",
+      "slug": "2026-10-06-giorni-fertili",
+      "date": "2026-10-06",
+      "description": "Calcola i giorni fertili e l'ovulazione dalla data dell'ultimo ciclo, anche se il ciclo è irregolare, con calendario di sei mesi.",
+      "category": "salute-benessere",
+      "tags": [
+        "ovulazione",
+        "ciclo",
+        "fertilità",
+        "calendario"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "canvas",
+        "palette": "rosa-cipria",
+        "font": "serif-editoriale"
+      },
+      "business": {
+        "keyword": "calcolo giorni fertili",
+        "keywords": [
+          "calcolo ovulazione",
+          "quando sono i giorni fertili",
+          "calendario ovulazione",
+          "giorni fertili ciclo irregolare"
+        ],
+        "intent": "Chi sta cercando di avere un figlio e vuole sapere subito in che giorni concentrare i rapporti, partendo dalla data dell'ultimo ciclo.",
+        "target": "Donne 25-42 anni in cerca di una gravidanza, quasi sempre da telefono, spesso con cicli non perfettamente regolari.",
+        "edge": "Gestisce davvero il ciclo irregolare con un intervallo min-max, mostra un calendario navigabile di sei cicli invece di due date, e non chiede né registrazione né permessi: i dati restano sul telefono.",
+        "monetization": [
+          "adsense",
+          "affiliate",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Diario dei cicli con media automatica",
+          "Calendario di sei mesi da stampare"
+        ],
+        "affiliate": [
+          {
+            "t": "Test di ovulazione (stick LH)",
+            "q": "test ovulazione stick lh"
+          },
+          {
+            "t": "Termometro basale digitale",
+            "q": "termometro basale digitale due decimali"
+          },
+          {
+            "t": "Acido folico 400 mcg",
+            "q": "acido folico 400 mcg gravidanza"
+          }
+        ]
+      },
+      "size": 52795
+    },
     {
       "title": "Quanto Costa un Figlio",
       "slug": "2026-10-05-quanto-costa-un-figlio",
