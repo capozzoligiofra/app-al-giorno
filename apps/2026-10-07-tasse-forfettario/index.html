@@ -1,0 +1,943 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1d6b4a">
+  <title>Tasse Forfettario: quanto si paga con la partita IVA</title>
+  <meta name="description" content="Quanto si paga di tasse con la partita IVA forfettaria: scrivi quanto hai incassato e vedi imposta sostitutiva, contributi INPS 2026, netto e scadenze.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-07-tasse-forfettario/">
+  <meta property="og:title" content="Tasse Forfettario: quanto si paga con la partita IVA">
+  <meta property="og:description" content="Il conto completo sul tuo fatturato: coefficiente di redditività, contributi INPS 2026, imposta al 5% o 15% e quanto ti resta davvero ogni mese.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-07-tasse-forfettario/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Tasse del Forfettario",
+    "description": "Calcolatore gratuito delle tasse della partita IVA in regime forfettario: coefficiente di redditività, contributi INPS 2026 (gestione separata, artigiani, commercianti), imposta sostitutiva al 5% o 15%, netto in tasca e scadenze di saldo e acconti.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-07-tasse-forfettario/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Quanto si paga di tasse con la partita IVA forfettaria?", "acceptedAnswer": { "@type": "Answer", "text": "L'imposta sostitutiva è il 15% del reddito imponibile, oppure il 5% per i primi cinque anni di una nuova attività. Ma l'imposta non è l'unica uscita: i contributi INPS pesano quasi sempre più delle tasse. Un consulente che incassa 40.000 euro con coefficiente 78% e gestione separata paga circa 8.100 euro di contributi e circa 3.400 euro di imposta al 15%: in tutto il 28-29% dell'incassato." } },
+      { "@type": "Question", "name": "Come si calcola il reddito imponibile nel regime forfettario?", "acceptedAnswer": { "@type": "Answer", "text": "Si moltiplica l'incassato dell'anno per il coefficiente di redditività del proprio codice ATECO, che va dal 40% all'86%, e dal risultato si sottraggono i contributi previdenziali versati nell'anno. I costi reali non si scaricano: il coefficiente li sostituisce in blocco, anche se hai speso di più o di meno." } },
+      { "@type": "Question", "name": "Perché nel secondo anno di partita IVA si paga il doppio?", "acceptedAnswer": { "@type": "Answer", "text": "Perché nel primo anno non ci sono acconti da versare, quindi il giugno successivo arrivano insieme il saldo dell'anno appena chiuso e il primo acconto dell'anno in corso. Se l'imposta annua è 3.000 euro, nel primo giugno utile ne escono 3.000 di saldo più 1.200 di primo acconto, e a novembre altri 1.800: in un anno solare paghi circa il doppio di un anno a regime." } },
+      { "@type": "Question", "name": "I contributi INPS si pagano anche se non guadagno nulla?", "acceptedAnswer": { "@type": "Answer", "text": "Dipende dalla gestione. Nella gestione separata, cioè quasi tutti i professionisti senza cassa, i contributi sono solo una percentuale del reddito: zero reddito, zero contributi. Artigiani e commercianti invece pagano un contributo fisso annuo (4.521,36 euro gli artigiani, 4.611,64 euro i commercianti nel 2026) anche a fatturato zero, riducibile del 35% su domanda." } },
+      { "@type": "Question", "name": "Cosa succede se supero 85.000 euro di incassato?", "acceptedAnswer": { "@type": "Answer", "text": "Fino a 85.000 euro resti nel forfettario. Se superi quella soglia ma non i 100.000 euro, esci dal regime dall'anno successivo. Se superi i 100.000 euro l'uscita è immediata, nello stesso anno: devi applicare l'IVA dalle operazioni successive al superamento e il reddito dell'intero anno va tassato in modo ordinario, con IRPEF e addizionali." } },
+      { "@type": "Question", "name": "I dati che inserisco restano privati?", "acceptedAnswer": { "@type": "Answer", "text": "Sì. Tutto il calcolo avviene nel browser e i valori restano salvati solo sul tuo dispositivo, nella memoria locale. Non c'è registrazione, non viene inviato nulla a nessun server e la pagina funziona anche senza connessione." } }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #f3f6f1; --carta: #ffffff; --alzata: #fbfdfa; --riga: #d9e2d7;
+      --testo: #15261c; --tenue: #5a6f64;
+      --verde: #1d6b4a; --verde-tenue: #e2efe6; --verde-fondo: #0f4530; --ink: #ffffff;
+      --rosso: #9c2c1e; --ambra: #8a5705;
+      --r: 10px; --r-sm: 6px;
+      --mono: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f1612; --carta: #17201a; --alzata: #1d2821; --riga: #2b3a31;
+        --testo: #e5eee8; --tenue: #93a89c;
+        --verde: #52c48d; --verde-tenue: #1a2e23; --verde-fondo: #52c48d; --ink: #06160e;
+        --rosso: #e8836f; --ambra: #d9a63c;
+        color-scheme: dark;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--testo);
+      font-family: var(--mono); font-size: 16px; line-height: 1.6;
+      overflow-x: hidden;
+      font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1;
+    }
+    .pagina { max-width: 62rem; margin: 0 auto; padding: 0 16px env(safe-area-inset-bottom); }
+    a { color: var(--verde); }
+
+    /* ---- intestazione ---- */
+    .cima { display: flex; align-items: center; padding: 10px 0 4px; }
+    .indietro {
+      display: inline-flex; align-items: center; gap: .4rem; min-height: 44px;
+      text-decoration: none; font-size: .85rem; letter-spacing: .04em; text-transform: uppercase; color: var(--tenue);
+    }
+    h1 { font-size: 1.3rem; line-height: 1.25; margin: .2rem 0 .3rem; letter-spacing: -.01em; }
+    .occhiello { margin: 0 0 .2rem; font-size: .76rem; text-transform: uppercase; letter-spacing: .14em; color: var(--verde); font-weight: 700; }
+    .sommario { margin: 0 0 1rem; color: var(--tenue); font-size: .95rem; }
+
+    /* ---- layout split: pannello fisso in alto, esito scorrevole sotto ---- */
+    .split { position: relative; }
+    .pannello {
+      position: sticky; top: 0; z-index: 6;
+      background: var(--carta); border: 1px solid var(--riga); border-radius: var(--r);
+      padding: 12px 14px 14px; margin: 0 0 14px;
+      box-shadow: 0 6px 18px -14px rgba(0,0,0,.5);
+    }
+    .pannello::before {
+      content: ""; position: absolute; left: -16px; right: -16px; top: -1px; height: 1px; background: var(--bg);
+    }
+    .etichetta { display: block; font-size: .78rem; text-transform: uppercase; letter-spacing: .12em; color: var(--tenue); margin-bottom: .3rem; }
+    .campo-grande { display: flex; align-items: baseline; gap: .4rem; border-bottom: 2px solid var(--verde); padding-bottom: 2px; }
+    .pannello .campo-grande input[type=number] {
+      font: inherit; font-size: 30px; font-weight: 700; letter-spacing: -.02em;
+      width: 100%; min-width: 0; border: 0; background: transparent; color: var(--testo);
+      padding: 2px 0; min-height: 46px;
+    }
+    .pannello .campo-grande input[type=number]:focus { outline: none; }
+    .campo-grande .valuta { font-size: 1.3rem; color: var(--tenue); font-weight: 700; }
+    input[type=range] { width: 100%; height: 44px; margin: 2px 0 0; accent-color: var(--verde); background: transparent; }
+    .tacche { display: flex; justify-content: space-between; font-size: .78rem; color: var(--tenue); margin-top: -6px; }
+    .riga-profilo {
+      display: flex; align-items: center; gap: .5rem; margin-top: 10px; padding-top: 10px;
+      border-top: 1px dashed var(--riga); font-size: .85rem; color: var(--tenue);
+    }
+    .riga-profilo .testo { flex: 1; min-width: 0; line-height: 1.35; }
+    .riga-profilo strong { color: var(--testo); font-weight: 700; }
+    button {
+      font: inherit; cursor: pointer; color: inherit;
+      background: transparent; border: 1.5px solid var(--riga); border-radius: var(--r-sm);
+      min-height: 44px; padding: .4rem .8rem;
+    }
+    button.primario { background: var(--verde); border-color: var(--verde); color: var(--ink); font-weight: 700; }
+    .mini { min-height: 44px; padding: .3rem .7rem; font-size: .82rem; text-transform: uppercase; letter-spacing: .08em; white-space: nowrap; }
+    .pannello.compatto input[type=range], .pannello.compatto .tacche, .pannello.compatto .riga-profilo { display: none; }
+    .pannello.compatto { padding-bottom: 10px; }
+    .pannello.compatto .campo-grande input[type=number] { font-size: 24px; min-height: 40px; }
+
+    /* ---- profilo (impostazioni) ---- */
+    .profilo { border: 1px solid var(--riga); border-radius: var(--r); background: var(--alzata); margin: 0 0 14px; overflow: hidden; }
+    .profilo[hidden] { display: none; }
+    .profilo h2 { margin: 0; padding: 12px 14px 0; font-size: .8rem; text-transform: uppercase; letter-spacing: .12em; color: var(--verde); }
+    .profilo .corpo { padding: 10px 14px 14px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
+    .gruppo { display: grid; gap: .35rem; }
+    select, input[type=number], input[type=text] {
+      font: inherit; font-size: 16px; width: 100%; min-height: 46px; padding: .5rem .6rem;
+      border: 1.5px solid var(--riga); border-radius: var(--r-sm);
+      background: var(--carta); color: var(--testo);
+    }
+    select:focus-visible, input:focus-visible, button:focus-visible { outline: 2px solid var(--verde); outline-offset: 2px; }
+    .chips { display: flex; gap: .5rem; flex-wrap: wrap; }
+    .chips button {
+      flex: 1 1 auto; min-width: 7rem; border-radius: var(--r-sm); font-size: .9rem;
+      display: flex; flex-direction: column; align-items: flex-start; gap: 0; line-height: 1.25; padding: .35rem .7rem;
+    }
+    .chips button b { font-size: 1rem; }
+    .chips button span { font-size: .78rem; color: var(--tenue); }
+    .chips button[aria-pressed=true] { background: var(--verde-tenue); border-color: var(--verde); }
+    .chips button[aria-pressed=true] span { color: var(--testo); }
+    .spunta { display: flex; align-items: flex-start; gap: .6rem; min-height: 44px; padding: .25rem 0; cursor: pointer; font-size: .92rem; }
+    .spunta input { width: 24px; height: 24px; margin: .45rem 0 0; accent-color: var(--verde); flex: none; }
+    .spunta .nota { display: block; font-size: .82rem; color: var(--tenue); }
+    .due { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
+    .aiuto { font-size: .82rem; color: var(--tenue); margin: 0; }
+
+    /* ---- esito ---- */
+    .esito { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
+    .scheda { background: var(--carta); border: 1px solid var(--riga); border-radius: var(--r); padding: 14px; }
+    .scheda > h2, .scheda > h3 { margin: 0 0 .6rem; font-size: .8rem; text-transform: uppercase; letter-spacing: .12em; color: var(--tenue); font-weight: 700; }
+    .netto { background: var(--carta); border: 1px solid var(--verde); border-radius: var(--r); padding: 16px 14px; }
+    .netto .cifra { font-size: 2.3rem; font-weight: 700; letter-spacing: -.03em; line-height: 1.05; color: var(--verde-fondo); }
+    .netto .cifra.rosso { color: var(--rosso); }
+    .netto .mese { margin: .35rem 0 0; font-size: .95rem; color: var(--tenue); }
+    .netto .mese b { color: var(--testo); }
+    .doppia { border-top: 3px double var(--riga); margin-top: 12px; padding-top: 10px; }
+
+    /* righe del prospetto con filetto punteggiato */
+    .conto { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; margin: 0; }
+    .conto .r { display: flex; align-items: baseline; gap: .4rem; padding: .42rem 0; border-bottom: 1px solid var(--riga); }
+    .conto .r:last-child { border-bottom: 0; }
+    .conto .r .k { font-size: .88rem; color: var(--tenue); }
+    .conto .r .k small { display: block; font-size: .78rem; }
+    .conto .r .fill { flex: 1; border-bottom: 1px dotted transparent; align-self: flex-end; min-width: .8rem; transform: translateY(-.28em); }
+    .conto .r .v { font-weight: 700; white-space: nowrap; max-width: 55%; overflow-wrap: anywhere; }
+    .conto .r.tot { border-top: 3px double var(--riga); border-bottom: 0; margin-top: .3rem; padding-top: .55rem; }
+    .conto .r.tot .k, .conto .r.tot .v { color: var(--testo); font-size: 1rem; }
+    .conto .r.neg .v { color: var(--rosso); }
+    .conto .r.pos .v { color: var(--verde-fondo); }
+
+    .barra { height: 10px; border-radius: 2px; background: var(--verde-tenue); overflow: hidden; display: flex; margin-top: .6rem; }
+    .barra i { display: block; height: 100%; }
+    .barra .c { background: var(--ambra); }
+    .barra .t { background: var(--rosso); }
+    .barra .n { background: var(--verde); }
+    .legenda { display: flex; flex-wrap: wrap; gap: .4rem 1rem; margin: .5rem 0 0; font-size: .8rem; color: var(--tenue); }
+    .legenda i { display: inline-block; width: .7rem; height: .7rem; border-radius: 2px; margin-right: .3rem; vertical-align: -1px; }
+
+    .avviso { border-left: 4px solid var(--ambra); background: var(--alzata); border-radius: var(--r-sm); padding: .7rem .8rem; font-size: .88rem; }
+    .avviso.grave { border-left-color: var(--rosso); }
+    .avviso.ok { border-left-color: var(--verde); }
+    .avviso p { margin: 0; }
+    .avviso p + p { margin-top: .4rem; }
+    .vuoto { text-align: center; color: var(--tenue); padding: 1.6rem .8rem; font-size: .95rem; }
+    .fonte { font-size: .8rem; color: var(--tenue); margin: .6rem 0 0; }
+
+    /* ---- scenari (Pro) ---- */
+    .scenari { display: grid; grid-template-columns: minmax(0, 1fr); gap: .1rem; }
+    .scen { padding: .55rem 0; border-bottom: 1px solid var(--riga); }
+    .scen:last-child { border-bottom: 0; }
+    .scen .su { display: flex; align-items: baseline; gap: .5rem; flex-wrap: wrap; }
+    .scen .su .dett { flex: 1 0 100%; }
+    .scen .su .netto-riga { font-weight: 700; }
+    .scen .fatt { font-weight: 700; min-width: 5.2rem; }
+    .scen .dett { font-size: .82rem; color: var(--tenue); }
+    .scen .dett b { color: var(--testo); }
+    .scen.qui { background: var(--verde-tenue); border-radius: var(--r-sm); padding: .55rem .5rem; }
+    .scen.qui .fatt::before { content: "▸ "; color: var(--verde); }
+
+    /* ---- guida ---- */
+    #guida { margin: 1.6rem 0 0; }
+    #guida h2 { font-size: 1.15rem; margin: 1.6rem 0 .5rem; letter-spacing: -.01em; }
+    #guida h2:first-of-type { margin-top: .6rem; }
+    #guida h3 { font-size: .98rem; margin: 1.2rem 0 .35rem; }
+    #guida p, #guida li { font-size: 16px; line-height: 1.75; }
+    #guida p { margin: 0 0 .8rem; }
+    #guida ul, #guida ol { margin: 0 0 .9rem; padding-left: 1.2rem; }
+    #guida li { margin-bottom: .45rem; }
+    .tabella-coeff { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; border: 1px solid var(--riga); border-radius: var(--r); overflow: hidden; margin: 0 0 1rem; }
+    .tabella-coeff div { display: flex; gap: .6rem; align-items: baseline; padding: .55rem .7rem; border-bottom: 1px solid var(--riga); font-size: .86rem; }
+    .tabella-coeff div:last-child { border-bottom: 0; }
+    .tabella-coeff div:nth-child(odd) { background: var(--alzata); }
+    .tabella-coeff .p { font-weight: 700; color: var(--verde-fondo); min-width: 3.2rem; }
+    .tabella-coeff .d small { display: block; color: var(--tenue); font-size: .8rem; }
+    .correlate { margin: 1.4rem 0 0; font-size: .9rem; }
+    .correlate ul { padding-left: 1.2rem; }
+    footer { margin: 2rem 0 1.4rem; padding-top: 1rem; border-top: 1px solid var(--riga); font-size: .8rem; color: var(--tenue); }
+    footer p { margin: .4rem 0; }
+    .toast {
+      position: fixed; left: 50%; bottom: calc(14px + env(safe-area-inset-bottom)); transform: translateX(-50%) translateY(140%);
+      background: var(--verde-fondo); color: var(--bg); padding: .6rem 1rem; border-radius: 999px;
+      font-size: .85rem; z-index: 30; transition: transform .22s ease; max-width: calc(100vw - 32px); text-align: center;
+    }
+    @media (prefers-color-scheme: dark) { .toast { background: var(--verde); color: var(--ink); } }
+    .toast.su { transform: translateX(-50%) translateY(0); }
+
+    /* ---- desktop: miglioramento progressivo ---- */
+    @media (min-width: 700px) {
+      .pagina { padding: 0 24px; }
+      h1 { font-size: 2rem; }
+      .split { display: grid; grid-template-columns: 20rem 1fr; gap: 20px; align-items: start; }
+      .pannello { position: sticky; top: 20px; margin: 0; grid-column: 1; }
+      .pannello.compatto input[type=range], .pannello.compatto .tacche, .pannello.compatto .riga-profilo { display: revert; }
+      .pannello.compatto .campo-grande input[type=number] { font-size: 30px; min-height: 46px; }
+      .profilo { grid-column: 1; }
+      .esito { grid-column: 2; grid-row: 1 / span 2; }
+      .due { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+      .netto .cifra { font-size: 2.8rem; }
+      .conto .r .fill { border-bottom-color: var(--riga); }
+      #guida { max-width: 44rem; }
+    }
+    @media print {
+      body { background: #fff; color: #000; font-size: 12pt; }
+      .pannello, .profilo, #guida, footer, .cima, .toast, [data-ad], [data-support], .nostampa { display: none !important; }
+      .split { display: block; }
+      .scheda, .netto { border: 1px solid #999; break-inside: avoid; }
+      [data-pro] { filter: none !important; }
+      .mz-lock { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+<div class="pagina">
+  <div class="cima"><a class="indietro" href="../../index.html">← Tutte le app</a></div>
+
+  <p class="occhiello">Regime forfettario · valori 2026</p>
+  <h1>Quanto si paga di tasse con la partita IVA forfettaria</h1>
+  <p class="sommario">Coefficiente di redditività, contributi INPS 2026 e imposta sostitutiva sul tuo incassato: quanto esce e quanto ti resta al mese.</p>
+
+  <div class="split">
+    <!-- pannello fisso: l'unica cosa che si cambia spesso sta sempre sotto il pollice -->
+    <form class="pannello" id="pannello" autocomplete="off">
+      <label class="etichetta" for="ricavi">Incassato nell'anno (2026)</label>
+      <div class="campo-grande">
+        <input id="ricavi" type="number" inputmode="decimal" min="0" max="200000" step="100"
+               value="35000" enterkeyhint="done" aria-describedby="riepilogo-profilo">
+        <span class="valuta" aria-hidden="true">€</span>
+      </div>
+      <input id="slider" type="range" min="0" max="85000" step="500" value="35000" aria-label="Incassato nell'anno, cursore">
+      <div class="tacche" aria-hidden="true"><span>0</span><span>42.500</span><span>85.000 €</span></div>
+      <div class="riga-profilo">
+        <span class="testo" id="riepilogo-profilo">—</span>
+        <button type="button" class="mini" id="apri-profilo" aria-expanded="false" aria-controls="profilo">Modifica</button>
+      </div>
+    </form>
+
+    <!-- impostazioni che si mettono una volta sola -->
+    <section class="profilo" id="profilo" hidden aria-label="Il tuo profilo fiscale">
+      <h2>Il tuo profilo</h2>
+      <div class="corpo">
+        <div class="gruppo">
+          <label class="etichetta" for="attivita">Tipo di attività (coefficiente di redditività)</label>
+          <select id="attivita"></select>
+          <p class="aiuto" id="nota-ateco"></p>
+        </div>
+
+        <div class="gruppo">
+          <span class="etichetta">Imposta sostitutiva</span>
+          <div class="chips" id="chips-aliquota" role="group" aria-label="Aliquota dell'imposta sostitutiva"></div>
+        </div>
+
+        <div class="gruppo">
+          <label class="etichetta" for="gestione">Cassa previdenziale</label>
+          <select id="gestione"></select>
+          <p class="aiuto" id="nota-gestione"></p>
+        </div>
+
+        <div class="gruppo" id="box-separata" hidden>
+          <label class="spunta"><input type="checkbox" id="altra-copertura">
+            <span>Sono pensionato o ho già un'altra copertura obbligatoria
+              <span class="nota">L'aliquota scende dal 26,07% al 24%.</span></span></label>
+        </div>
+
+        <div class="gruppo" id="box-riduzione" hidden>
+          <label class="spunta"><input type="checkbox" id="riduzione35">
+            <span>Ho chiesto la riduzione contributiva del 35%
+              <span class="nota">Agevolazione per i forfettari iscritti ad artigiani o commercianti: domanda all'INPS entro il 28 febbraio.</span></span></label>
+        </div>
+
+        <div class="due" id="box-cassa" hidden>
+          <div class="gruppo">
+            <label class="etichetta" for="cassa-aliquota">Aliquota della tua cassa (%)</label>
+            <input id="cassa-aliquota" type="number" inputmode="decimal" min="0" max="40" step="0.01" value="14" enterkeyhint="done">
+          </div>
+          <div class="gruppo">
+            <label class="etichetta" for="cassa-fisso">Contributo fisso annuo (€)</label>
+            <input id="cassa-fisso" type="number" inputmode="decimal" min="0" max="20000" step="10" value="0" enterkeyhint="done">
+          </div>
+        </div>
+
+        <div class="gruppo">
+          <label class="spunta"><input type="checkbox" id="primo-anno">
+            <span>È il primo anno di attività: non ho ancora versato contributi
+              <span class="nota">Senza contributi versati non c'è nulla da dedurre, quindi l'imposta è più alta. Cambia anche le scadenze.</span></span></label>
+        </div>
+
+        <div class="due">
+          <div class="gruppo">
+            <label class="etichetta" for="versati">Contributi già versati nel 2026 (€)</label>
+            <input id="versati" type="number" inputmode="decimal" min="0" max="60000" step="10" placeholder="stima automatica" enterkeyhint="done">
+            <p class="aiuto">Lascia vuoto per usare la stima. Si deduce solo quanto hai versato nell'anno.</p>
+          </div>
+          <div class="gruppo">
+            <label class="etichetta" for="costi">Costi reali dell'anno (€)</label>
+            <input id="costi" type="number" inputmode="decimal" min="0" max="200000" step="50" placeholder="0" enterkeyhint="done">
+            <p class="aiuto">Non si scaricano, ma escono dal conto: serve per sapere cosa ti resta davvero.</p>
+          </div>
+        </div>
+
+        <div class="chips">
+          <button type="button" class="mini" id="azzera">Azzera il profilo</button>
+          <button type="button" class="mini primario" id="chiudi-profilo">Fatto</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="esito" id="esito">
+      <div class="netto" id="scheda-netto">
+        <span class="etichetta">Ti resta in tasca</span>
+        <div class="cifra" id="netto-anno">—</div>
+        <p class="mese" id="netto-mese"></p>
+        <div class="barra" aria-hidden="true"><i class="c" id="b-contributi"></i><i class="t" id="b-imposta"></i><i class="n" id="b-netto"></i></div>
+        <p class="legenda" aria-hidden="true">
+          <span><i style="background:var(--ambra)"></i>Contributi</span>
+          <span><i style="background:var(--rosso)"></i>Imposta</span>
+          <span><i style="background:var(--verde)"></i>Netto</span>
+        </p>
+      </div>
+
+      <div id="avvisi"></div>
+
+      <div class="scheda">
+        <h2>Come si arriva a quella cifra</h2>
+        <div class="conto" id="dettaglio"></div>
+        <p class="fonte" id="fonte">Coefficienti: allegato 4 della legge 190/2014. Contributi 2026: circolare INPS n. 14 del 9 febbraio 2026 (artigiani e commercianti) e n. 8 del 3 febbraio 2026 (gestione separata).</p>
+      </div>
+
+      <div data-ad="top"></div>
+
+      <section class="scheda" data-pro="Confronto fra scenari di fatturato" aria-label="Confronto fra scenari di fatturato">
+        <h2>Se incassassi di più (o di meno)</h2>
+        <div class="scenari" id="scenari"></div>
+        <p class="fonte" id="pareggio"></p>
+      </section>
+
+      <section class="scheda" data-pro="Prospetto annuale da stampare" aria-label="Prospetto annuale da stampare">
+        <h2>Prospetto annuale e scadenze</h2>
+        <div id="prospetto"></div>
+        <div class="chips nostampa" style="margin-top:12px">
+          <button type="button" class="mini primario" id="stampa">Stampa il prospetto</button>
+          <button type="button" class="mini" id="copia">Copia il riepilogo</button>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <section id="guida">
+    <h2>Come funziona il calcolo delle tasse nel forfettario</h2>
+    <p>Nel regime forfettario non si parte dall'utile, ma dall'incassato. È la differenza che spiazza chi arriva dal lavoro dipendente: le spese non si scaricano una per una, perché lo Stato decide in anticipo quale fetta del tuo fatturato considerare guadagno. Quella fetta è il <strong>coefficiente di redditività</strong>, legato al codice ATECO: va dal 40% del commercio all'86% delle costruzioni. Il resto è considerato costo in blocco, che tu abbia speso quella cifra o niente.</p>
+    <p>I passaggi sono quattro, sempre gli stessi:</p>
+    <ol>
+      <li><strong>Reddito forfettario</strong> = incassato dell'anno × coefficiente del tuo codice ATECO. Conta quanto è entrato sul conto nell'anno (principio di cassa), non quanto hai fatturato.</li>
+      <li><strong>Contributi previdenziali</strong>: si calcolano su quel reddito forfettario, prima di qualunque deduzione.</li>
+      <li><strong>Reddito imponibile</strong> = reddito forfettario − contributi effettivamente versati nell'anno. Questa sottrazione è l'unico sconto previsto.</li>
+      <li><strong>Imposta sostitutiva</strong> = reddito imponibile × 15%, oppure × 5% se sei nei primi cinque anni di una nuova attività e ne rispetti i requisiti. Sostituisce IRPEF, addizionali regionali e comunali.</li>
+    </ol>
+    <p>Un dettaglio che quasi nessun articolo spiega: i contributi si deducono <em>quando li paghi</em>, non quando maturano. Nel primo anno di attività non hai ancora versato nulla, quindi non c'è nulla da dedurre e l'imposta esce più alta del normale. È il motivo della spunta «primo anno di attività» nel profilo.</p>
+
+    <h2>Un esempio con i numeri</h2>
+    <p>Marta è una consulente di marketing, codice ATECO del gruppo 70, coefficiente 78%, iscritta alla gestione separata INPS e al terzo anno di attività, quindi ancora con l'aliquota al 5%. Nel 2026 incassa <strong>40.000 €</strong>.</p>
+    <ul>
+      <li>Reddito forfettario: 40.000 × 78% = <strong>31.200 €</strong>.</li>
+      <li>Contributi gestione separata: 31.200 × 26,07% = <strong>8.133,84 €</strong>.</li>
+      <li>Reddito imponibile: 31.200 − 8.133,84 = <strong>23.066,16 €</strong>.</li>
+      <li>Imposta sostitutiva al 5%: <strong>1.153,31 €</strong>.</li>
+      <li>Le resta: 40.000 − 8.133,84 − 1.153,31 = <strong>30.712,85 €</strong>, cioè 2.559 € al mese.</li>
+    </ul>
+    <p>Pressione complessiva: 23,2% dell'incassato. Dal sesto anno, con l'aliquota al 15%, l'imposta salirebbe a 3.459,92 € e il netto scenderebbe a 28.406 €: lo stesso lavoro, 2.300 € in meno all'anno. Si vede subito chi è il convitato di pietra del forfettario: i contributi pesano sette volte l'imposta nel primo caso, due volte e mezza nel secondo. Chi ragiona solo sul «5% di tasse» sbaglia il conto di gran lunga.</p>
+
+    <h2>La tabella dei coefficienti di redditività</h2>
+    <div class="tabella-coeff">
+      <div><span class="p">40%</span><span class="d">Industrie alimentari e delle bevande<small>codici ATECO 10 e 11</small></span></div>
+      <div><span class="p">40%</span><span class="d">Commercio all'ingrosso e al dettaglio<small>45, da 46.2 a 46.9, da 47.1 a 47.7, 47.9</small></span></div>
+      <div><span class="p">40%</span><span class="d">Commercio ambulante di alimentari e bevande<small>47.81</small></span></div>
+      <div><span class="p">40%</span><span class="d">Alloggio e ristorazione<small>55 e 56: bar, ristoranti, B&amp;B</small></span></div>
+      <div><span class="p">54%</span><span class="d">Commercio ambulante di altri prodotti<small>47.82 e 47.89</small></span></div>
+      <div><span class="p">62%</span><span class="d">Intermediari del commercio<small>46.1: agenti e rappresentanti</small></span></div>
+      <div><span class="p">67%</span><span class="d">Altre attività economiche<small>tutto ciò che non rientra negli altri gruppi: artigiani di servizi, estetisti, autoriparatori, trasporti</small></span></div>
+      <div><span class="p">78%</span><span class="d">Attività professionali, scientifiche, tecniche, sanitarie, istruzione, servizi finanziari<small>da 64 a 66, da 69 a 75, 85, da 86 a 88</small></span></div>
+      <div><span class="p">86%</span><span class="d">Costruzioni e attività immobiliari<small>41, 42, 43, 68</small></span></div>
+    </div>
+    <p>Il coefficiente dipende dal codice ATECO che hai dichiarato all'apertura, non da come descrivi il tuo lavoro. Se hai più codici con coefficienti diversi, il reddito si calcola separatamente per ciascuno e poi si somma: in quel caso usa il calcolatore una volta per attività e somma i risultati a mano. Attenzione anche al passaggio alla classificazione ATECO 2025, che ha rinumerato molti codici: il coefficiente non cambia per legge, ma vale la pena far confermare al commercialista il gruppo di appartenenza.</p>
+
+    <h2>I contributi INPS: tre situazioni diverse</h2>
+    <p><strong>Gestione separata</strong> — è il caso della maggior parte dei professionisti senza un albo con cassa propria: consulenti, sviluppatori, copywriter, formatori. Nel 2026 l'aliquota è <strong>26,07%</strong> (25% IVS, 0,72% per maternità e malattia, 0,35% ISCRO), che scende al 24% per i pensionati o per chi ha già un'altra copertura obbligatoria. Non c'è nessun minimo da versare: se incassi poco, paghi poco. Per accreditare dodici mesi di contribuzione serve però un reddito di almeno 18.808 €.</p>
+    <p><strong>Artigiani e commercianti</strong> — qui cambia tutto, perché esiste un contributo fisso dovuto anche a fatturato zero, calcolato sul minimale di reddito di 18.808 €: nel 2026 sono <strong>4.521,36 €</strong> per gli artigiani e <strong>4.611,64 €</strong> per i commercianti, divisi in quattro rate trimestrali. Sulla parte di reddito che supera il minimale si aggiunge il 24% (artigiani) o il 24,48% (commercianti), che diventano 25% e 25,48% oltre 56.224 €. I forfettari possono chiedere all'INPS la <strong>riduzione del 35%</strong> su tutto, fisso compreso: la domanda va presentata entro il 28 febbraio e vale per l'anno in corso. In cambio si riduce in proporzione l'anzianità contributiva accreditata, quindi non è una scelta ovvia a pochi anni dalla pensione.</p>
+    <p><strong>Casse professionali</strong> — avvocati, medici, ingegneri, architetti, commercialisti e altri versano alla propria cassa, con aliquote e contributi minimi che cambiano da cassa a cassa. In quel caso inserisci a mano la percentuale e l'eventuale quota fissa che trovi nel regolamento della tua cassa.</p>
+
+    <h2>Errori comuni che fanno sbagliare il conto</h2>
+    <ul>
+      <li><strong>Confondere fatturato e incassato.</strong> Nel forfettario conta il denaro entrato entro il 31 dicembre. Una fattura di dicembre pagata a gennaio finisce nell'anno dopo, e può spostare di parecchio il conto.</li>
+      <li><strong>Pensare che le spese si scarichino.</strong> Computer, affitto dell'ufficio, benzina, software: nel forfettario non entrano nel calcolo. L'unica deduzione sono i contributi previdenziali. Se hai molti costi reali, il forfettario può convenire meno del regime ordinario.</li>
+      <li><strong>Dimenticare il secondo anno.</strong> Il giugno dopo il primo anno pieno arrivano insieme il saldo e il primo acconto: in un solo anno solare esce circa il doppio dell'imposta annuale. Va messo da parte prima.</li>
+      <li><strong>Credere che il 5% duri per sempre.</strong> Vale cinque anni dall'apertura e solo se non hai svolto la stessa attività nei tre anni precedenti e non prosegui un'attività altrui. Al sesto anno l'imposta triplica.</li>
+      <li><strong>Non controllare la soglia dei 35.000 € da dipendente.</strong> Se nell'anno precedente hai percepito più di 35.000 € di redditi da lavoro dipendente o pensione, il forfettario non è accessibile, a meno che il rapporto di lavoro sia cessato.</li>
+    </ul>
+
+    <h2>Domande frequenti</h2>
+    <h3>Quanto si paga di tasse con la partita IVA forfettaria, in media?</h3>
+    <p>Sommando imposta e contributi, la pressione reale sta quasi sempre fra il 20% e il 35% dell'incassato. Dipende da tre cose: il coefficiente, la cassa previdenziale e se sei nei primi cinque anni. Un commerciante con coefficiente 40% e un professionista al 78% pagano cifre molto diverse a parità di fatturato, ed è il motivo per cui una risposta unica non esiste: il calcolatore qui sopra fa il conto sul tuo caso.</p>
+    <h3>Devo mettere da parte una percentuale fissa ogni mese?</h3>
+    <p>È la regola pratica più utile: appena incassi, accantona la percentuale che il calcolatore indica come «pressione complessiva», arrotondata per eccesso. Se il tuo conto dice 29%, metti via il 30% di ogni pagamento su un conto separato. Nel primo anno conviene accantonare di più, perché il secondo anno paghi saldo e acconto insieme.</p>
+    <h3>L'imposta sostitutiva sostituisce anche l'IVA?</h3>
+    <p>No, sono cose diverse. Nel forfettario l'IVA non si applica per natura del regime: emetti fattura senza IVA, con la dicitura dell'articolo 1 commi 54-89 della legge 190/2014, e in cambio non detrai l'IVA sugli acquisti. L'imposta sostitutiva sostituisce invece IRPEF, addizionali e IRAP. Resta dovuta l'imposta di bollo da 2 € sulle fatture oltre 77,47 €.</p>
+    <h3>I forfettari subiscono la ritenuta d'acconto?</h3>
+    <p>No. Nelle fatture si indica che il compenso non è soggetto a ritenuta ai sensi del comma 67 della legge 190/2014: incassi l'intero importo e paghi le imposte in un'unica soluzione con la dichiarazione. Se un cliente la trattiene per errore, la si recupera in dichiarazione.</p>
+    <h3>Conviene passare al regime ordinario?</h3>
+    <p>Conviene valutarlo quando i costi reali superano la quota che il coefficiente ti riconosce d'ufficio, o quando hai spese detraibili e carichi di famiglia che nel forfettario vanno perduti, perché l'imposta sostitutiva non ammette detrazioni. Inserendo i costi reali nel profilo vedi la differenza fra il netto teorico e quello che ti resta davvero: se il divario è grande, è il segnale per fare due conti col commercialista.</p>
+
+    <div data-ad="bottom"></div>
+
+    <div class="correlate">
+      <p>Altri calcolatori utili se stai facendo i conti:</p>
+      <ul>
+        <li><a href="../2026-09-20-netto-da-lordo/">calcolare lo stipendio netto dal lordo</a>, per confrontare la partita IVA con un contratto da dipendente</li>
+        <li><a href="../2026-09-24-cedolare-secca-o-irpef/">cedolare secca o IRPEF sull'affitto</a>, se hai anche un immobile locato</li>
+      </ul>
+    </div>
+  </section>
+
+  <div data-support></div>
+
+  <footer>
+    <p>Calcolo indicativo a scopo informativo, basato sui valori 2026. Non sostituisce il parere del tuo commercialista: casi particolari (più codici ATECO, redditi esteri, cassa professionale, cumulo con lavoro dipendente) possono cambiare il risultato.</p>
+    <p>Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a></p>
+  </footer>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="../../assets/monetize.js"></script>
+<script>
+(() => {
+  "use strict";
+  // Modello dati: un solo oggetto `stato` (salvato in localStorage) con l'incassato dell'anno e il
+  // profilo fiscale: attività scelta e coefficiente, aliquota 5 o 15%, cassa previdenziale, opzioni.
+  // Da `stato` la funzione pura `calcola()` deriva reddito forfettario, contributi, imponibile,
+  // imposta e netto; tutta l'interfaccia è solo una resa di quel risultato.
+
+  const CHIAVE = "tasse-forfettario:v1";
+
+  // Coefficienti di redditività: allegato 4 della legge 190/2014.
+  const ATTIVITA = [
+    { k: "prof",   n: "Professionista, consulente, servizi tecnici", c: 0.78, ateco: "ATECO da 64 a 66, da 69 a 75, 85, da 86 a 88 — consulenza, studi tecnici, sanità, istruzione, servizi finanziari.", gest: "separata" },
+    { k: "altre",  n: "Altre attività e servizi artigianali",        c: 0.67, ateco: "Gruppo residuale: tutto ciò che non rientra negli altri. Estetisti, parrucchieri, autoriparatori, trasporti, servizi alla persona.", gest: "artigiani" },
+    { k: "comm",   n: "Commercio all'ingrosso e al dettaglio",        c: 0.40, ateco: "ATECO 45, da 46.2 a 46.9, da 47.1 a 47.7, 47.9, più il commercio ambulante di alimentari (47.81).", gest: "commercianti" },
+    { k: "risto",  n: "Alloggio e ristorazione",                     c: 0.40, ateco: "ATECO 55 e 56: bar, ristoranti, pizzerie, B&B, affittacamere.", gest: "commercianti" },
+    { k: "alim",   n: "Industrie alimentari e delle bevande",         c: 0.40, ateco: "ATECO 10 e 11: produzione di alimenti e bevande.", gest: "artigiani" },
+    { k: "amb",    n: "Commercio ambulante non alimentare",          c: 0.54, ateco: "ATECO 47.82 e 47.89: mercati e posteggi, prodotti non alimentari.", gest: "commercianti" },
+    { k: "inter",  n: "Intermediari del commercio",                  c: 0.62, ateco: "ATECO 46.1: agenti, rappresentanti, procacciatori d'affari.", gest: "commercianti" },
+    { k: "costr",  n: "Costruzioni e attività immobiliari",          c: 0.86, ateco: "ATECO 41, 42, 43, 68: edilizia, impiantistica, intermediazione immobiliare.", gest: "artigiani" },
+  ];
+
+  // Valori INPS 2026: circolare n. 14 del 9/2/2026 (artigiani e commercianti), n. 8 del 3/2/2026 (gestione separata).
+  const MINIMALE = 18808, SCAGLIONE = 56224, MASSIMALE = 122295;
+  const GESTIONI = {
+    separata:    { n: "Gestione separata INPS", nota: "Aliquota 26,07% sul reddito forfettario, senza alcun contributo minimo: a reddito zero non versi nulla." },
+    artigiani:   { n: "Artigiani INPS", fisso: 4521.36, a1: 0.24, a2: 0.25, nota: "Contributo fisso di 4.521,36 € l'anno in quattro rate, dovuto anche a fatturato zero, più il 24% sulla parte di reddito oltre 18.808 €." },
+    commercianti:{ n: "Commercianti INPS", fisso: 4611.64, a1: 0.2448, a2: 0.2548, nota: "Contributo fisso di 4.611,64 € l'anno in quattro rate, dovuto anche a fatturato zero, più il 24,48% sulla parte di reddito oltre 18.808 €." },
+    cassa:       { n: "Cassa professionale (inserisci tu i valori)", nota: "Avvocati, medici, ingegneri, commercialisti e simili: copia aliquota e quota fissa dal regolamento della tua cassa." },
+    nessuna:     { n: "Nessun contributo previdenziale", nota: "Caso raro: usala solo per vedere il peso della sola imposta sostitutiva." },
+  };
+  const LIMITE = 85000, USCITA_SUBITO = 100000;
+
+  const base = () => ({
+    ricavi: 35000, attivita: "prof", aliquota: 0.15, gestione: "separata",
+    altraCopertura: false, riduzione35: false, cassaAliquota: 14, cassaFisso: 0,
+    primoAnno: false, versati: null, costi: null,
+  });
+  let stato = base();
+  try {
+    const salvato = JSON.parse(localStorage.getItem(CHIAVE) || "null");
+    if (salvato && typeof salvato === "object") stato = Object.assign(base(), salvato);
+  } catch (_) { /* storage non disponibile o dato corrotto: si parte dai valori di default */ }
+  if (!ATTIVITA.some(a => a.k === stato.attivita)) stato.attivita = "prof";
+  if (!GESTIONI[stato.gestione]) stato.gestione = "separata";
+
+  const salva = () => { try { localStorage.setItem(CHIAVE, JSON.stringify(stato)); } catch (_) { /* niente da fare */ } };
+
+  const $ = (s) => document.querySelector(s);
+  const num = (v) => { const n = parseFloat(String(v).replace(",", ".")); return Number.isFinite(n) ? n : null; };
+  const eur = (n) => Math.round(n).toLocaleString("it-IT") + " €";
+  const meno = (n) => (Math.round(n) > 0 ? "− " : "") + eur(n);
+  const eur2 = (n) => n.toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €";
+  const pct = (n, d) => (n * 100).toLocaleString("it-IT", { minimumFractionDigits: d || 0, maximumFractionDigits: d || 0 }) + "%";
+  const attivitaCorrente = () => ATTIVITA.find(a => a.k === stato.attivita);
+
+  // ---- motore di calcolo ----
+  function contributi(reddito, s) {
+    const g = s.gestione;
+    if (g === "nessuna") return 0;
+    if (g === "cassa") return Math.max(0, s.cassaFisso || 0) + reddito * Math.max(0, (s.cassaAliquota || 0) / 100);
+    if (g === "separata") return Math.min(reddito, MASSIMALE) * (s.altraCopertura ? 0.24 : 0.2607);
+    const t = GESTIONI[g];
+    const r = Math.min(reddito, MASSIMALE);
+    let c = t.fisso;
+    if (r > MINIMALE) {
+      c += (Math.min(r, SCAGLIONE) - MINIMALE) * t.a1;
+      if (r > SCAGLIONE) c += (r - SCAGLIONE) * t.a2;
+    }
+    return s.riduzione35 ? c * 0.65 : c;
+  }
+
+  function calcola(s) {
+    const ricavi = Math.max(0, s.ricavi || 0);
+    const coeff = attivitaCorrente().c;
+    const reddito = ricavi * coeff;
+    const contrib = contributi(reddito, s);
+    // Si deduce ciò che è stato versato nell'anno (principio di cassa) e non oltre il reddito stesso.
+    const versatiScelti = s.primoAnno ? 0 : (s.versati === null ? contrib : Math.max(0, s.versati));
+    const dedotti = Math.min(versatiScelti, reddito);
+    const imponibile = Math.max(0, reddito - dedotti);
+    const imposta = imponibile * s.aliquota;
+    const netto = ricavi - contrib - imposta;
+    const costi = Math.max(0, s.costi || 0);
+    return {
+      ricavi, coeff, reddito, contrib, dedotti, imponibile, imposta, netto,
+      costi, nettoReale: netto - costi,
+      totale: contrib + imposta,
+      pressione: ricavi > 0 ? (contrib + imposta) / ricavi : 0,
+    };
+  }
+
+  // ---- interfaccia ----
+  function montaSelect(el, voci) {
+    el.replaceChildren(...voci.map(v => {
+      const o = document.createElement("option");
+      o.value = v.k; o.textContent = v.n;
+      return o;
+    }));
+  }
+  montaSelect($("#attivita"), ATTIVITA);
+  montaSelect($("#gestione"), Object.entries(GESTIONI).map(([k, v]) => ({ k, n: v.n })));
+
+  const ALIQUOTE = [
+    { v: 0.05, t: "5%", d: "primi 5 anni" },
+    { v: 0.15, t: "15%", d: "dal 6° anno" },
+  ];
+  function montaAliquote() {
+    const box = $("#chips-aliquota");
+    box.replaceChildren(...ALIQUOTE.map(a => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("aria-pressed", String(stato.aliquota === a.v));
+      b.append(Object.assign(document.createElement("b"), { textContent: a.t }),
+               Object.assign(document.createElement("span"), { textContent: a.d }));
+      b.addEventListener("click", () => { stato.aliquota = a.v; montaAliquote(); aggiorna(); });
+      return b;
+    }));
+  }
+
+  let timerToast = 0;
+  function toast(msg) {
+    const t = $("#toast");
+    t.textContent = msg; t.classList.add("su");
+    clearTimeout(timerToast);
+    timerToast = setTimeout(() => t.classList.remove("su"), 2600);
+  }
+
+  function riga(contenitore, k, v, sotto, classe) {
+    const r = document.createElement("div");
+    r.className = "r" + (classe ? " " + classe : "");
+    const ek = document.createElement("span");
+    ek.className = "k"; ek.append(document.createTextNode(k));
+    if (sotto) ek.append(Object.assign(document.createElement("small"), { textContent: sotto }));
+    r.append(ek, Object.assign(document.createElement("span"), { className: "fill" }),
+             Object.assign(document.createElement("span"), { className: "v", textContent: v }));
+    contenitore.append(r);
+    return r;
+  }
+
+  function avviso(testo, tipo, extra) {
+    const d = document.createElement("div");
+    d.className = "avviso" + (tipo ? " " + tipo : "");
+    d.append(Object.assign(document.createElement("p"), { textContent: testo }));
+    if (extra) d.append(Object.assign(document.createElement("p"), { textContent: extra }));
+    return d;
+  }
+
+  function scadenze(r) {
+    const g = stato.gestione;
+    const voci = [];
+    if (g === "artigiani" || g === "commercianti") {
+      const fisso = (stato.riduzione35 ? GESTIONI[g].fisso * 0.65 : GESTIONI[g].fisso);
+      voci.push({ d: "16 mag, 20 ago e 16 nov 2026, 16 feb 2027 · ogni rata", l: "Quattro rate fisse INPS", v: eur2(fisso / 4) });
+      const oltre = Math.max(0, r.contrib - fisso);
+      if (oltre > 0) voci.push({ d: "30 giu e 30 nov 2027 · saldo e acconti", l: "Contributi oltre il minimale", v: eur2(oltre) });
+    } else if (r.contrib > 0) {
+      voci.push({ d: "30 giu e 30 nov 2027 · saldo e acconti", l: "Contributi " + GESTIONI[g].n.replace(" INPS", "").replace(" (inserisci tu i valori)", ""), v: eur2(r.contrib) });
+    }
+    const imposta = r.imposta;
+    const conAcconto = imposta >= 51.65;
+    const unico = conAcconto && imposta < 257.52;
+    const saldo = stato.primoAnno ? imposta : 0;
+    const acc1 = conAcconto && !unico ? imposta * 0.4 : 0;
+    const acc2 = conAcconto ? (unico ? imposta : imposta * 0.6) : 0;
+    if (saldo + acc1 > 0) {
+      const pezzi = [];
+      if (saldo > 0) pezzi.push("saldo imposta 2026");
+      if (acc1 > 0) pezzi.push("1° acconto 2027, il 40%");
+      voci.push({ d: "30 giugno 2027 · " + pezzi.join(" + "), l: saldo > 0 ? "Saldo e primo acconto" : "Primo acconto 2027", v: eur2(saldo + acc1) });
+    }
+    if (acc2 > 0) voci.push({ d: "30 novembre 2027" + (unico ? " · unica rata" : " · il 60%"), l: unico ? "Acconto 2027" : "Secondo acconto 2027", v: eur2(acc2) });
+    if (!conAcconto && saldo === 0) voci.push({ d: "imposta sotto i 51,65 €: nessun acconto dovuto", l: "Acconti 2027", v: "—" });
+    return voci;
+  }
+
+  function pareggio() {
+    const prova = (x) => { const s = Object.assign({}, stato, { ricavi: x }); return calcola(s).netto; };
+    if (prova(0) >= 0) return null;
+    let lo = 0, hi = LIMITE;
+    if (prova(hi) < 0) return hi;
+    for (let i = 0; i < 40; i++) { const m = (lo + hi) / 2; if (prova(m) < 0) lo = m; else hi = m; }
+    return hi;
+  }
+
+  function aggiorna() {
+    const r = calcola(stato);
+    const att = attivitaCorrente();
+
+    // pannello e profilo
+    $("#attivita").value = stato.attivita;
+    $("#gestione").value = stato.gestione;
+    $("#nota-ateco").textContent = "Coefficiente " + pct(att.c) + ". " + att.ateco;
+    $("#nota-gestione").textContent = GESTIONI[stato.gestione].nota;
+    $("#box-separata").hidden = stato.gestione !== "separata";
+    $("#box-riduzione").hidden = !(stato.gestione === "artigiani" || stato.gestione === "commercianti");
+    $("#box-cassa").hidden = stato.gestione !== "cassa";
+    $("#altra-copertura").checked = stato.altraCopertura;
+    $("#riduzione35").checked = stato.riduzione35;
+    $("#primo-anno").checked = stato.primoAnno;
+    const breve = { separata: "gest. separata", artigiani: "artigiani", commercianti: "commercianti", cassa: "cassa", nessuna: "senza contributi" };
+    $("#riepilogo-profilo").textContent =
+      att.n.split(",")[0] + " · coeff. " + pct(att.c) + " · imposta " + pct(stato.aliquota) + " · " + breve[stato.gestione];
+
+    // netto
+    const vuoto = r.ricavi <= 0;
+    const cifra = $("#netto-anno"), mese = $("#netto-mese");
+    if (vuoto) {
+      cifra.textContent = "—";
+      cifra.classList.remove("rosso");
+      mese.textContent = "Scrivi quanto hai incassato per vedere il conto.";
+    } else {
+      const mostrato = r.costi > 0 ? r.nettoReale : r.netto;
+      cifra.textContent = eur(mostrato);
+      cifra.classList.toggle("rosso", mostrato < 0);
+      mese.replaceChildren(
+        document.createTextNode(r.costi > 0 ? "al netto di tasse, contributi e costi reali · " : "dopo tasse e contributi · "),
+        Object.assign(document.createElement("b"), { textContent: eur(mostrato / 12) + " al mese" }));
+    }
+    const q = (x) => vuoto ? 0 : Math.max(0, Math.min(100, (x / r.ricavi) * 100));
+    $("#b-contributi").style.width = q(r.contrib) + "%";
+    $("#b-imposta").style.width = q(r.imposta) + "%";
+    $("#b-netto").style.width = q(r.netto) + "%";
+
+    // avvisi
+    const box = $("#avvisi");
+    box.replaceChildren();
+    if (r.ricavi > USCITA_SUBITO) {
+      box.append(avviso("Oltre 100.000 € di incassato esci dal forfettario immediatamente, nello stesso anno: va applicata l'IVA dalle operazioni successive al superamento e tutto il reddito dell'anno si tassa in modo ordinario.", "grave", "Il conto qui sopra non vale più: serve una simulazione a tassazione ordinaria."));
+    } else if (r.ricavi > LIMITE) {
+      box.append(avviso("Sopra 85.000 € di incassato il forfettario si chiude dall'anno prossimo. Il 2026 resta tassato così, ma dal 2027 passi al regime ordinario con IVA, IRPEF e scaglioni.", "grave"));
+    } else if (r.ricavi > LIMITE * 0.9 && r.ricavi > 0) {
+      box.append(avviso("Sei a " + eur(LIMITE - r.ricavi) + " dalla soglia degli 85.000 €: se la superi, dall'anno prossimo esci dal regime. Tieni d'occhio gli incassi di dicembre.", ""));
+    }
+    if (!vuoto && r.netto < 0) {
+      box.append(avviso("Con questo incassato ci rimetti: i contributi fissi di " + GESTIONI[stato.gestione].n + " superano quello che entra. Il pareggio arriva intorno a " + eur(pareggio() || 0) + " di incassato.", "grave"));
+    }
+    if (stato.primoAnno && !vuoto) {
+      box.append(avviso("Primo anno: non avendo versato contributi non c'è nulla da dedurre, quindi l'imposta è al massimo. Attenzione al giugno 2027, quando arrivano insieme saldo e primo acconto: metti da parte circa " + eur(r.imposta * 1.4) + ".", "ok"));
+    }
+    if (!vuoto && stato.aliquota === 0.05) {
+      const s15 = calcola(Object.assign({}, stato, { aliquota: 0.15 }));
+      if (Math.round(s15.imposta - r.imposta) > 0) box.append(avviso("Con l'aliquota al 15%, cioè dal sesto anno di attività, l'imposta passerebbe da " + eur(r.imposta) + " a " + eur(s15.imposta) + ": " + eur(s15.imposta - r.imposta) + " in più all'anno.", "ok"));
+    }
+
+    // dettaglio del calcolo
+    const d = $("#dettaglio");
+    d.replaceChildren();
+    if (vuoto) {
+      d.append(Object.assign(document.createElement("p"), { className: "vuoto", textContent: "Nessun incassato: il conto comincia dalla prima fattura pagata." }));
+    } else {
+      riga(d, "Incassato nell'anno", eur(r.ricavi));
+      riga(d, "Reddito forfettario", eur(r.reddito), "incassato × coefficiente " + pct(r.coeff));
+      riga(d, "Contributi previdenziali", meno(r.contrib), GESTIONI[stato.gestione].n + (stato.riduzione35 ? ", ridotti del 35%" : ""), "neg");
+      riga(d, "Contributi dedotti", meno(r.dedotti), stato.primoAnno ? "primo anno: nulla ancora versato" : (r.dedotti < r.contrib - 0.5 ? "la deduzione si ferma al reddito forfettario" : (stato.versati !== null ? "valore inserito a mano" : "si deduce quanto versi nell'anno")));
+      riga(d, "Reddito imponibile", eur(r.imponibile), "reddito forfettario − contributi dedotti");
+      riga(d, "Imposta sostitutiva " + pct(stato.aliquota), meno(r.imposta), "sostituisce IRPEF e addizionali", "neg");
+      if (r.costi > 0) riga(d, "Costi reali", meno(r.costi), "nel forfettario non si scaricano", "neg");
+      riga(d, "Tasse e contributi", eur(r.totale), "pari al " + pct(r.pressione, 1) + " dell'incassato", "neg");
+      riga(d, r.costi > 0 ? "Ti resta davvero" : "Ti resta", eur(r.costi > 0 ? r.nettoReale : r.netto), null, "tot " + ((r.costi > 0 ? r.nettoReale : r.netto) < 0 ? "neg" : "pos"));
+    }
+
+    // Pro 1 — scenari
+    const sc = $("#scenari");
+    sc.replaceChildren();
+    const gradini = [15000, 30000, 45000, 60000, 85000];
+    const valori = gradini.slice();
+    if (r.ricavi > 0 && !valori.includes(Math.round(r.ricavi))) valori.push(Math.round(r.ricavi));
+    valori.sort((a, b) => a - b);
+    for (const v of valori) {
+      const s = calcola(Object.assign({}, stato, { ricavi: v }));
+      const el = document.createElement("div");
+      el.className = "scen" + (Math.round(r.ricavi) === v ? " qui" : "");
+      const su = document.createElement("div");
+      su.className = "su";
+      su.append(Object.assign(document.createElement("span"), { className: "fatt", textContent: eur(v) }),
+                Object.assign(document.createElement("span"), { className: "netto-riga", textContent: "→ netto " + eur(s.netto) }));
+      const dett = document.createElement("span");
+      dett.className = "dett";
+      dett.textContent = eur(s.netto / 12) + " al mese · pressione " + pct(s.pressione, 1);
+      su.append(dett);
+      const barra = document.createElement("div");
+      barra.className = "barra";
+      const w = (x) => Math.max(0, Math.min(100, (x / v) * 100)) + "%";
+      for (const [cls, val] of [["c", s.contrib], ["t", s.imposta], ["n", s.netto]]) {
+        const i = document.createElement("i");
+        i.className = cls; i.style.width = w(val);
+        barra.append(i);
+      }
+      el.append(su, barra);
+      sc.append(el);
+    }
+    const pg = pareggio();
+    $("#pareggio").textContent = pg
+      ? "Punto di pareggio: sotto " + eur(pg) + " di incassato i contributi fissi superano quello che entra."
+      : "Nessun contributo fisso da coprire: il netto resta positivo a qualunque livello di incassato.";
+
+    // Pro 2 — prospetto
+    const pr = $("#prospetto");
+    pr.replaceChildren();
+    const testa = document.createElement("p");
+    testa.className = "fonte";
+    testa.style.marginTop = "0";
+    testa.textContent = "Anno d'imposta 2026 · " + att.n + " · coefficiente " + pct(r.coeff) + " · " + GESTIONI[stato.gestione].n + " · imposta sostitutiva " + pct(stato.aliquota);
+    pr.append(testa);
+    const c1 = document.createElement("div");
+    c1.className = "conto";
+    riga(c1, "Incassato", eur2(r.ricavi));
+    riga(c1, "Reddito forfettario", eur2(r.reddito));
+    riga(c1, "Contributi previdenziali", eur2(r.contrib));
+    riga(c1, "Reddito imponibile", eur2(r.imponibile));
+    riga(c1, "Imposta sostitutiva", eur2(r.imposta));
+    riga(c1, "Totale dovuto", eur2(r.totale), "pari al " + pct(r.pressione, 1) + " dell'incassato", "tot");
+    pr.append(c1);
+    const h = document.createElement("h3");
+    h.textContent = "Quando si paga";
+    h.style.margin = "1rem 0 .3rem";
+    pr.append(h);
+    const c2 = document.createElement("div");
+    c2.className = "conto";
+    for (const v of scadenze(r)) riga(c2, v.l, v.v, v.d);
+    pr.append(c2);
+    const nota = document.createElement("p");
+    nota.className = "fonte";
+    nota.textContent = stato.primoAnno
+      ? "Primo anno: a giugno 2027 escono insieme il saldo 2026 e il primo acconto 2027, quindi circa il doppio dell'imposta annuale."
+      : "Anno a regime: gli acconti versati nel 2026 coprono il saldo, quindi a giugno 2027 resta il solo primo acconto. Il 31 luglio è possibile differire con la maggiorazione dello 0,40%.";
+    pr.append(nota);
+
+    salva();
+  }
+
+  // ---- eventi ----
+  const inpRicavi = $("#ricavi"), slider = $("#slider");
+  inpRicavi.value = String(stato.ricavi);
+  slider.value = String(Math.min(stato.ricavi, LIMITE));
+  $("#versati").value = stato.versati === null ? "" : String(stato.versati);
+  $("#costi").value = stato.costi === null ? "" : String(stato.costi);
+  $("#cassa-aliquota").value = String(stato.cassaAliquota);
+  $("#cassa-fisso").value = String(stato.cassaFisso);
+  montaAliquote();
+
+  $("#pannello").addEventListener("submit", (e) => { e.preventDefault(); inpRicavi.blur(); });
+  inpRicavi.addEventListener("input", () => {
+    const v = num(inpRicavi.value);
+    stato.ricavi = v === null ? 0 : Math.max(0, Math.min(200000, v));
+    slider.value = String(Math.min(stato.ricavi, LIMITE));
+    aggiorna();
+  });
+  slider.addEventListener("input", () => {
+    stato.ricavi = num(slider.value) || 0;
+    inpRicavi.value = String(stato.ricavi);
+    aggiorna();
+  });
+  $("#attivita").addEventListener("change", (e) => {
+    stato.attivita = e.target.value;
+    const sugg = attivitaCorrente().gest;
+    if (sugg && stato.gestione !== "cassa") stato.gestione = sugg;
+    aggiorna();
+  });
+  $("#gestione").addEventListener("change", (e) => { stato.gestione = e.target.value; aggiorna(); });
+  $("#altra-copertura").addEventListener("change", (e) => { stato.altraCopertura = e.target.checked; aggiorna(); });
+  $("#riduzione35").addEventListener("change", (e) => { stato.riduzione35 = e.target.checked; aggiorna(); });
+  $("#primo-anno").addEventListener("change", (e) => { stato.primoAnno = e.target.checked; aggiorna(); });
+  $("#cassa-aliquota").addEventListener("input", (e) => { stato.cassaAliquota = Math.max(0, Math.min(40, num(e.target.value) || 0)); aggiorna(); });
+  $("#cassa-fisso").addEventListener("input", (e) => { stato.cassaFisso = Math.max(0, num(e.target.value) || 0); aggiorna(); });
+  $("#versati").addEventListener("input", (e) => {
+    const v = num(e.target.value);
+    stato.versati = e.target.value.trim() === "" || v === null ? null : Math.max(0, v);
+    aggiorna();
+  });
+  $("#costi").addEventListener("input", (e) => {
+    const v = num(e.target.value);
+    stato.costi = e.target.value.trim() === "" || v === null ? null : Math.max(0, v);
+    aggiorna();
+  });
+
+  const profilo = $("#profilo"), apri = $("#apri-profilo");
+  function mostraProfilo(si) {
+    profilo.hidden = !si;
+    apri.setAttribute("aria-expanded", String(si));
+    apri.textContent = si ? "Chiudi" : "Modifica";
+    if (si) $("#attivita").focus({ preventScroll: true });
+  }
+  apri.addEventListener("click", () => mostraProfilo(profilo.hidden));
+  $("#chiudi-profilo").addEventListener("click", () => { mostraProfilo(false); apri.focus(); });
+
+  let confermaAzzera = 0;
+  $("#azzera").addEventListener("click", (e) => {
+    const ora = Date.now();
+    if (ora - confermaAzzera > 4000) {
+      confermaAzzera = ora;
+      e.target.textContent = "Tocca di nuovo";
+      toast("Tocca di nuovo entro 4 secondi per azzerare il profilo");
+      setTimeout(() => { if (Date.now() - confermaAzzera >= 4000) e.target.textContent = "Azzera il profilo"; }, 4100);
+      return;
+    }
+    confermaAzzera = 0;
+    stato = base();
+    try { localStorage.removeItem(CHIAVE); } catch (_) { /* niente da fare */ }
+    e.target.textContent = "Azzera il profilo";
+    inpRicavi.value = String(stato.ricavi);
+    slider.value = String(stato.ricavi);
+    $("#versati").value = ""; $("#costi").value = "";
+    $("#cassa-aliquota").value = String(stato.cassaAliquota);
+    $("#cassa-fisso").value = String(stato.cassaFisso);
+    montaAliquote();
+    aggiorna();
+    toast("Profilo riportato ai valori iniziali");
+  });
+
+  const pro = () => !!(window.Monetize && window.Monetize.isPro());
+  $("#stampa").addEventListener("click", () => {
+    if (!pro()) { if (window.Monetize) window.Monetize.unlock(); return; }
+    window.print();
+  });
+  $("#copia").addEventListener("click", async () => {
+    if (!pro()) { if (window.Monetize) window.Monetize.unlock(); return; }
+    const r = calcola(stato);
+    const righe = [
+      "Regime forfettario — anno d'imposta 2026",
+      attivitaCorrente().n + " · coefficiente " + pct(r.coeff) + " · " + GESTIONI[stato.gestione].n,
+      "Incassato: " + eur2(r.ricavi),
+      "Reddito forfettario: " + eur2(r.reddito),
+      "Contributi: " + eur2(r.contrib),
+      "Imponibile: " + eur2(r.imponibile),
+      "Imposta sostitutiva " + pct(stato.aliquota) + ": " + eur2(r.imposta),
+      "Totale dovuto: " + eur2(r.totale) + " (" + pct(r.pressione, 1) + " dell'incassato)",
+      "Ti resta: " + eur2(r.costi > 0 ? r.nettoReale : r.netto),
+      "",
+      ...scadenze(r).map(v => v.l + ": " + v.v + " (" + v.d + ")"),
+    ].join("\n");
+    try {
+      await navigator.clipboard.writeText(righe);
+      toast("Riepilogo copiato");
+    } catch (_) {
+      const ta = document.createElement("textarea");
+      ta.value = righe;
+      ta.style.cssText = "position:fixed;top:-200px;left:0;opacity:0";
+      document.body.append(ta); ta.select();
+      let fatto = false;
+      try { fatto = document.execCommand("copy"); } catch (__) { fatto = false; }
+      ta.remove();
+      toast(fatto ? "Riepilogo copiato" : "Copia non disponibile: seleziona il prospetto a mano");
+    }
+  });
+
+  // pannello compatto quando si scorre il risultato (isteresi per evitare sfarfallii)
+  let compatto = false, inAttesa = false;
+  const pannello = $("#pannello");
+  window.addEventListener("scroll", () => {
+    if (inAttesa) return;
+    inAttesa = true;
+    requestAnimationFrame(() => {
+      inAttesa = false;
+      const y = window.scrollY || 0;
+      if (!compatto && y > 150) { compatto = true; pannello.classList.add("compatto"); }
+      else if (compatto && y < 80) { compatto = false; pannello.classList.remove("compatto"); }
+    });
+  }, { passive: true });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
+      if (!profilo.hidden) mostraProfilo(false);
+    }
+  });
+
+  aggiorna();
+})();
+</script>
+</body>
+</html>

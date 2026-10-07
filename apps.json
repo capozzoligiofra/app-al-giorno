@@ -1,6 +1,6 @@
 {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 25,
+  "count": 26,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -49,6 +49,53 @@
     ]
   },
   "apps": [
+    {
+      "title": "Tasse del Forfettario",
+      "slug": "2026-10-07-tasse-forfettario",
+      "date": "2026-10-07",
+      "description": "Quante tasse paghi con la partita IVA forfettaria: coefficiente, contributi INPS 2026, imposta sostitutiva e netto in tasca.",
+      "category": "finanza-personale",
+      "tags": [
+        "partita iva",
+        "forfettario",
+        "tasse",
+        "inps",
+        "contributi"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "split",
+        "palette": "verde-bosco",
+        "font": "mono-tecnico"
+      },
+      "business": {
+        "keyword": "quanto si paga di tasse con la partita iva forfettaria",
+        "keywords": [
+          "calcolo tasse regime forfettario",
+          "contributi inps forfettario 2026",
+          "coefficiente di redditività",
+          "quanto mi resta con la partita iva"
+        ],
+        "intent": "Chi ha o sta aprendo una partita IVA forfettaria e vuole sapere subito, sul proprio fatturato, quanto esce fra imposta e INPS e quanto gli resta al mese.",
+        "target": "Freelance, consulenti, artigiani e piccoli commercianti 25-50 anni, spesso al primo o secondo anno di attività, da telefono.",
+        "edge": "Nessuna email e nessun preventivo: il conto completo in tre tocchi, con i contributi reali delle tre gestioni INPS 2026, la deduzione per cassa, il caso del primo anno e le scadenze di saldo e acconti che gli altri simulatori ignorano.",
+        "monetization": [
+          "adsense",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto fra scenari di fatturato",
+          "Prospetto annuale da stampare"
+        ],
+        "affiliate": []
+      },
+      "size": 61510
+    },
     {
       "title": "Giorni Fertili",
       "slug": "2026-10-06-giorni-fertili",
