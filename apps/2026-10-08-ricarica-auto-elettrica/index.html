@@ -1,0 +1,942 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f1f7f4">
+  <title>Costo Ricarica: quanto costa ricaricare l'auto elettrica</title>
+  <meta name="description" content="Quanto costa ricaricare la tua auto elettrica: scegli batteria, percentuale e tariffa e vedi il costo del pieno, quello per 100 km e il confronto benzina.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-08-ricarica-auto-elettrica/">
+  <meta property="og:title" content="Costo Ricarica: quanto costa ricaricare l'auto elettrica">
+  <meta property="og:description" content="Il costo reale di un pieno elettrico sulla tua batteria e sulla tua tariffa, perdite di ricarica incluse, confrontato con la benzina ai prezzi medi di oggi.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-08-ricarica-auto-elettrica/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Costo Ricarica Auto Elettrica",
+    "description": "Calcolatore gratuito del costo di ricarica di un'auto elettrica: energia prelevata dalla rete con le perdite di ricarica, costo del pieno a casa o alla colonnina, costo per 100 km, autonomia aggiunta e confronto con benzina e diesel ai prezzi medi regionali aggiornati ogni giorno.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-08-ricarica-auto-elettrica/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Quanto costa ricaricare un'auto elettrica a casa?", "acceptedAnswer": { "@type": "Answer", "text": "Dipende dalla tariffa domestica, che in genere sta fra 0,20 e 0,35 €/kWh. Una batteria da 60 kWh portata dal 20% all'80% assorbe 36 kWh, che con il 12% di perdite diventano 40,9 kWh al contatore: a 0,25 €/kWh sono circa 10,20 €, cioè poco più di 5 € ogni 100 km." } },
+      { "@type": "Question", "name": "Perché pago più kWh di quelli che entrano in batteria?", "acceptedAnswer": { "@type": "Answer", "text": "Fra la presa e le celle una parte dell'energia si perde in calore, nel caricatore di bordo e nel condizionamento della batteria. In corrente alternata la perdita è del 10-15%, in corrente continua del 5-8%. Il contatore di casa o della colonnina misura l'energia erogata, non quella immagazzinata: per questo il calcolatore divide i kWh della batteria per il rendimento." } },
+      { "@type": "Question", "name": "Conviene l'auto elettrica o la benzina?", "acceptedAnswer": { "@type": "Answer", "text": "Ricaricando a casa quasi sempre sì: 5 € ogni 100 km contro i circa 13 € di un'utilitaria a benzina che fa 6,5 l/100 km. Alle colonnine veloci il vantaggio si annulla: a 0,77 €/kWh gli stessi 100 km costano circa 14,70 €, cioè quanto o più della benzina." } },
+      { "@type": "Question", "name": "Quanti kWh ha la batteria della mia auto?", "acceptedAnswer": { "@type": "Answer", "text": "È il dato dichiarato dal costruttore nella scheda tecnica, spesso indicato come capacità netta o utile: va dai 21-40 kWh delle citycar ai 50-60 kWh delle compatte, fino ai 75-100 kWh delle berline e dei SUV. Se trovi due numeri, usa quello netto: è l'energia che puoi davvero usare." } },
+      { "@type": "Question", "name": "Perché si consiglia di ricaricare dal 20% all'80%?", "acceptedAnswer": { "@type": "Answer", "text": "Perché è la finestra in cui la batteria accetta più potenza e invecchia meno. Sopra l'80% la colonnina rallenta molto, quindi l'ultimo 20% richiede quasi lo stesso tempo del primo 60%: in viaggio conviene fermarsi all'80% e fare una sosta in più." } },
+      { "@type": "Question", "name": "Da dove arrivano i prezzi del carburante del confronto?", "acceptedAnswer": { "@type": "Answer", "text": "Sono le medie regionali self service ricalcolate ogni mattina dagli open data dell'Osservaprezzi del Ministero delle Imprese e del Made in Italy (MIMIT). Scegli la regione e il prezzo si compila da solo; puoi sempre scrivere quello del tuo distributore. Le tariffe di ricarica invece non sono un dato pubblico: i valori proposti sono indicativi e li puoi modificare." } }
+    ]
+  }
+  </script>
+  <style>
+    /* Palette verde-menta, layout a colonna singola: sezioni separate dallo spazio, nessun bordo di scheda.
+       Titoli in condensed maiuscolo; il risultato è l'unico blocco con fondo pieno. */
+    :root {
+      --bg: #f1f7f4; --text: #0f201b; --muted: #5a6b65; --line: #d5e2dc;
+      --mint: #00855a; --mint-soft: #d9f0e6; --ink-on-mint: #ffffff;
+      --deep: #0d1f1a; --deep-text: #eaf6f1; --deep-muted: #8fa8a0; --accent: #3fe0a2;
+      --warn: #b4530c; --bad: #c0392b;
+      --pad: 18px;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #080f0d; --text: #e9f4f0; --muted: #8ba39c; --line: #1e2f29;
+        --mint: #3fe0a2; --mint-soft: #11241e; --ink-on-mint: #052018;
+        --deep: #0f2520; --deep-text: #eaf6f1; --deep-muted: #8fa8a0; --accent: #3fe0a2;
+        --warn: #e9a23b; --bad: #ff6b6b;
+        color-scheme: dark;
+      }
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font-family: "Arial Narrow", "Roboto Condensed", "Liberation Sans Narrow", "Helvetica Neue", sans-serif;
+      font-size: 17px; line-height: 1.5; overflow-x: hidden;
+      padding-bottom: calc(76px + env(safe-area-inset-bottom));
+    }
+    .wrap { max-width: 44rem; margin: 0 auto; padding: 0 var(--pad); }
+    a { color: var(--mint); }
+
+    /* ---- testata ---- */
+    .back { display: inline-flex; align-items: center; min-height: 44px; font-size: .98rem; text-decoration: none; font-weight: 700; }
+    header h1 {
+      font-size: 1.6rem; line-height: 1.12; margin: .1rem 0 .35rem; letter-spacing: -.01em;
+      font-weight: 800; text-transform: uppercase;
+    }
+    .lede { margin: 0 0 .9rem; color: var(--muted); font-size: 1rem; }
+
+    /* ---- blocchi a colonna singola: nessun bordo, solo spazio e un filo sopra l'etichetta ---- */
+    .blk { margin: 0 0 1.4rem; }
+    .lbl {
+      font-size: .82rem; text-transform: uppercase; letter-spacing: .14em; font-weight: 700;
+      color: var(--muted); margin: 0 0 .7rem; padding-top: .7rem; border-top: 1px solid var(--line);
+    }
+    .lbl .n { color: var(--mint); margin-right: .45rem; }
+
+    /* ---- campi ---- */
+    .field { margin: 0 0 .8rem; }
+    .field > label, .flab { display: block; font-weight: 700; font-size: 1rem; margin-bottom: .3rem; }
+    .hint { color: var(--muted); font-size: .92rem; margin: .25rem 0 0; }
+    input[type="number"], input[type="text"], select {
+      font: inherit; font-size: 16px; width: 100%; min-height: 50px; padding: .5rem .7rem;
+      border: 1.5px solid var(--line); border-radius: 10px; background: transparent; color: inherit;
+    }
+    input[type="number"]:focus-visible, select:focus-visible, button:focus-visible, input[type="range"]:focus-visible, summary:focus-visible {
+      outline: 3px solid var(--mint); outline-offset: 2px;
+    }
+    .with-unit { display: flex; align-items: center; gap: .5rem; }
+    .with-unit .u { font-weight: 700; color: var(--muted); white-space: nowrap; }
+    .duo { display: grid; gap: .2rem 1.1rem; }
+    .duo.half { grid-template-columns: 1fr 1fr; gap: .2rem .7rem; } /* campi numerici corti: due per riga anche su telefono */
+
+    /* stepper: meno/più accanto al numero, comodi col pollice */
+    .stepper { display: flex; align-items: stretch; gap: .5rem; }
+    .stepper button {
+      font: inherit; font-size: 1.4rem; font-weight: 700; line-height: 1; min-width: 50px; min-height: 50px;
+      border: 1.5px solid var(--line); border-radius: 10px; background: transparent; color: inherit; cursor: pointer;
+    }
+    .stepper button:active { background: var(--mint-soft); }
+    .stepper input { text-align: center; font-weight: 700; }
+
+    /* chip */
+    .chips { display: flex; flex-wrap: wrap; gap: .45rem; }
+    .chip {
+      font: inherit; font-size: .98rem; min-height: 44px; padding: .4rem .9rem; cursor: pointer;
+      border: 1.5px solid var(--line); border-radius: 999px; background: transparent; color: inherit; font-weight: 700;
+    }
+    .chip[aria-pressed="true"] { background: var(--mint); border-color: var(--mint); color: var(--ink-on-mint); }
+    .chip small { display: block; font-size: .8rem; font-weight: 600; opacity: .8; text-transform: none; letter-spacing: 0; }
+
+    /* slider percentuale */
+    .pct { margin-bottom: .2rem; }
+    .pct-head { display: flex; align-items: baseline; justify-content: space-between; gap: .5rem; margin-bottom: -.35rem; }
+    .pct-val { font-size: 1.45rem; font-weight: 800; color: var(--mint); font-variant-numeric: tabular-nums; }
+    input[type="range"] { -webkit-appearance: none; appearance: none; width: 100%; height: 44px; background: transparent; margin: 0; }
+    input[type="range"]::-webkit-slider-runnable-track { height: 8px; border-radius: 999px; background: var(--line); }
+    input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 30px; height: 30px; margin-top: -11px; border-radius: 50%; background: var(--mint); border: 3px solid var(--bg); box-shadow: 0 1px 4px rgba(0,0,0,.3); }
+    input[type="range"]::-moz-range-track { height: 8px; border-radius: 999px; background: var(--line); }
+    input[type="range"]::-moz-range-thumb { width: 26px; height: 26px; border-radius: 50%; background: var(--mint); border: 3px solid var(--bg); }
+
+    /* ---- risultato: unico blocco pieno ---- */
+    .out { background: var(--deep); color: var(--deep-text); border-radius: 18px; padding: 1.3rem var(--pad) 1.1rem; margin-bottom: 1.6rem; }
+    .out .lbl { color: var(--deep-muted); border-top-color: rgba(255,255,255,.14); padding-top: 0; border-top: 0; margin-bottom: .5rem; }
+    .big { font-size: 3.1rem; line-height: 1; font-weight: 800; letter-spacing: -.02em; color: var(--accent); font-variant-numeric: tabular-nums; }
+    .big-sub { color: var(--deep-muted); font-size: 1rem; margin: .45rem 0 1rem; }
+    .rows { display: grid; gap: .55rem; margin: 0; padding: 0; list-style: none; }
+    .rows li { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; border-top: 1px solid rgba(255,255,255,.1); padding-top: .5rem; }
+    .rows .k { color: var(--deep-muted); font-size: .98rem; }
+    .rows .v { font-weight: 700; font-variant-numeric: tabular-nums; text-align: right; }
+    .verdict { margin: 1.1rem 0 0; padding: .85rem 1rem; border-radius: 12px; background: rgba(63,224,162,.12); font-size: 1rem; }
+    .verdict.worse { background: rgba(233,162,59,.16); }
+    .verdict b { color: var(--accent); }
+    .verdict.worse b { color: var(--warn); }
+    .src { color: var(--deep-muted); font-size: .88rem; margin: .9rem 0 0; }
+    .empty { color: var(--deep-muted); font-size: 1.05rem; margin: .2rem 0; }
+    .err { color: var(--bad); font-weight: 700; font-size: 1rem; margin: .4rem 0 0; }
+
+    /* ---- dettagli richiudibili ---- */
+    details { border-top: 1px solid var(--line); }
+    details summary {
+      cursor: pointer; min-height: 48px; display: flex; align-items: center; gap: .5rem;
+      font-size: .82rem; text-transform: uppercase; letter-spacing: .14em; font-weight: 700; color: var(--muted);
+    }
+    details summary::-webkit-details-marker { display: none; }
+    details summary::after { content: "＋"; margin-left: auto; font-size: 1.2rem; }
+    details[open] summary::after { content: "－"; }
+    details .inner { padding: .4rem 0 1rem; }
+
+    /* ---- Pro ---- */
+    .pro-t { font-size: 1.15rem; font-weight: 800; text-transform: uppercase; letter-spacing: .02em; margin: 0 0 .2rem; }
+    .pro-d { color: var(--muted); font-size: .95rem; margin: 0 0 .9rem; }
+    .mini { width: 100%; border-collapse: collapse; font-size: .98rem; }
+    .mini th, .mini td { text-align: right; padding: .5rem .35rem; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+    .mini th:first-child, .mini td:first-child { text-align: left; }
+    .mini thead th { font-size: .82rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 700; }
+    .mini tr.hl td { color: var(--mint); font-weight: 700; }
+    .mini tr.fuel td { color: var(--muted); }
+    .btn {
+      font: inherit; font-weight: 700; min-height: 48px; padding: .6rem 1.1rem; cursor: pointer;
+      border-radius: 999px; border: 1.5px solid var(--mint); background: var(--mint); color: var(--ink-on-mint);
+    }
+    .btn.ghost { background: transparent; color: var(--mint); }
+    .btn-row { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: .9rem; }
+    .log { list-style: none; margin: .9rem 0 0; padding: 0; display: grid; gap: .5rem; }
+    .log li { display: flex; align-items: center; gap: .6rem; border-top: 1px solid var(--line); padding-top: .5rem; font-size: .98rem; }
+    .log .when { color: var(--muted); min-width: 4.6rem; }
+    .log .amt { margin-left: auto; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .log .del { font: inherit; background: transparent; border: 0; color: var(--muted); cursor: pointer; min-width: 44px; min-height: 44px; font-size: 1.1rem; }
+    .tot { display: flex; flex-wrap: wrap; gap: .3rem 1.4rem; margin: .9rem 0 0; color: var(--muted); font-size: .95rem; }
+    .tot b { color: var(--text); }
+
+    /* ---- guida ---- */
+    #guida { margin-top: 2.6rem; }
+    #guida h2 { font-size: 1.5rem; text-transform: uppercase; letter-spacing: .01em; margin: 2rem 0 .6rem; padding-top: 1rem; border-top: 1px solid var(--line); }
+    #guida h3 { font-size: 1.12rem; margin: 1.4rem 0 .3rem; }
+    #guida p, #guida li { font-size: 1.02rem; }
+    #guida ul { padding-left: 1.2rem; }
+    .fine { color: var(--muted); font-size: .92rem; margin: 2rem 0 1rem; padding-top: 1rem; border-top: 1px solid var(--line); }
+
+    /* ---- barra fissa in basso: il costo resta sempre sotto il pollice ---- */
+    .sticky {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 5;
+      background: var(--deep); color: var(--deep-text);
+      padding: .6rem var(--pad) calc(.6rem + env(safe-area-inset-bottom));
+      display: flex; align-items: center; gap: .8rem;
+      box-shadow: 0 -2px 14px rgba(0,0,0,.22);
+    }
+    .sticky .s-k { font-size: .8rem; text-transform: uppercase; letter-spacing: .1em; color: var(--deep-muted); }
+    .sticky .s-v { font-size: 1.5rem; font-weight: 800; color: var(--accent); font-variant-numeric: tabular-nums; line-height: 1.1; }
+    .sticky .s-side { margin-left: auto; text-align: right; font-size: .95rem; color: var(--deep-muted); }
+    .toast {
+      position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(86px + env(safe-area-inset-bottom));
+      background: var(--deep); color: var(--deep-text); padding: .6rem 1rem; border-radius: 999px;
+      font-size: .95rem; z-index: 6; max-width: calc(100vw - 2rem); text-align: center;
+    }
+
+    @media (min-width: 700px) {
+      body { font-size: 18px; }
+      header h1 { font-size: 2.6rem; }
+      .duo { grid-template-columns: 1fr 1fr; gap: 1.1rem 1.4rem; }
+      .big { font-size: 3.8rem; }
+      .out { padding: 1.6rem 1.8rem 1.4rem; }
+      .sticky { display: none; }
+      body { padding-bottom: 2rem; }
+    }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="back" href="../../index.html">← Tutte le app</a>
+      <h1>Quanto costa ricaricare un'auto elettrica</h1>
+      <p class="lede">Sulla <strong>tua</strong> batteria e sulla <strong>tua</strong> tariffa, perdite incluse, con il confronto benzina.</p>
+    </header>
+
+    <main>
+      <section class="blk" aria-labelledby="l1">
+        <h2 class="lbl" id="l1"><span class="n">1</span>La ricarica</h2>
+
+        <div class="field">
+          <label for="batt">Capacità della batteria</label>
+          <div class="stepper">
+            <button type="button" id="batt-dn" aria-label="Diminuisci di 5 kWh">−</button>
+            <input id="batt" type="number" inputmode="decimal" min="1" max="250" step="1" value="60"
+                   enterkeyhint="done" autocomplete="off" aria-describedby="batt-h">
+            <button type="button" id="batt-up" aria-label="Aumenta di 5 kWh">+</button>
+          </div>
+          <p class="hint" id="batt-h">In kWh: usa la capacità <em>netta</em> della scheda tecnica.</p>
+        </div>
+
+        <div class="pct">
+          <div class="pct-head"><span class="flab" id="from-l">Parti dal</span><span class="pct-val" id="from-v">20%</span></div>
+          <input type="range" id="from" min="0" max="95" step="5" value="20" aria-labelledby="from-l" aria-describedby="from-v">
+        </div>
+        <div class="pct">
+          <div class="pct-head"><span class="flab" id="to-l">Arrivi al</span><span class="pct-val" id="to-v">80%</span></div>
+          <input type="range" id="to" min="5" max="100" step="5" value="80" aria-labelledby="to-l" aria-describedby="to-v">
+        </div>
+        <div class="chips" role="group" aria-label="Ricariche tipiche">
+          <button type="button" class="chip" data-preset="20,80">20 → 80%</button>
+          <button type="button" class="chip" data-preset="50,80">50 → 80%</button>
+          <button type="button" class="chip" data-preset="0,100">0 → 100%</button>
+        </div>
+      </section>
+
+      <section class="blk" aria-labelledby="l2">
+        <h2 class="lbl" id="l2"><span class="n">2</span>Dove ricarichi</h2>
+        <div class="chips" role="group" aria-label="Tipo di ricarica" id="spots"></div>
+        <div class="duo half" style="margin-top:.9rem">
+          <div class="field">
+            <label for="price">Prezzo (€/kWh)</label>
+            <input id="price" type="number" inputmode="decimal" min="0" max="3" step="0.01" value="0.25" enterkeyhint="done" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="loss">Perdite (%)</label>
+            <input id="loss" type="number" inputmode="numeric" min="0" max="30" step="1" value="12" enterkeyhint="done" autocomplete="off">
+          </div>
+        </div>
+        <p class="hint" id="price-h">Tariffa domestica tipica: 0,20–0,35 €/kWh.</p>
+        <p class="hint">Perdite = energia che paghi ma non entra in batteria: 10–15% in AC, 5–8% in DC.</p>
+      </section>
+
+      <section class="blk out" id="out" aria-live="polite" aria-atomic="true">
+        <h2 class="lbl">Costo della ricarica</h2>
+        <div id="out-body"></div>
+      </section>
+
+      <details id="adv">
+        <summary>La tua auto e il confronto con il carburante</summary>
+        <div class="inner">
+          <div class="field">
+            <label for="car-make">Scegli l'auto elettrica (facoltativo)</label>
+            <div class="duo">
+              <select id="car-make"><option value="">Carico il catalogo…</option></select>
+              <select id="car-model" disabled><option value="">Poi il modello…</option></select>
+            </div>
+            <p class="hint" id="car-hint">Imposto il consumo reale stimato. Il catalogo non contiene la capacità della batteria: quella resta da scrivere a mano.</p>
+          </div>
+          <div class="duo">
+            <div class="field">
+              <label for="cons">Consumo dell'elettrica</label>
+              <div class="with-unit">
+                <input id="cons" type="number" inputmode="decimal" min="5" max="60" step="0.1" value="18" enterkeyhint="done" autocomplete="off">
+                <span class="u">kWh/100 km</span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="km">Chilometri all'anno</label>
+              <div class="with-unit">
+                <input id="km" type="number" inputmode="numeric" min="0" max="100000" step="500" value="15000" enterkeyhint="done" autocomplete="off">
+                <span class="u">km</span>
+              </div>
+            </div>
+          </div>
+          <div class="duo">
+            <div class="field">
+              <label for="fuel">Confronta con</label>
+              <select id="fuel">
+                <option value="benzina">Benzina</option>
+                <option value="diesel">Diesel</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="region">Prezzi medi della regione</label>
+              <select id="region"></select>
+            </div>
+          </div>
+          <div class="duo">
+            <div class="field">
+              <label for="fprice">Prezzo al litro</label>
+              <div class="with-unit">
+                <input id="fprice" type="number" inputmode="decimal" min="0" max="5" step="0.001" value="2.044" enterkeyhint="done" autocomplete="off">
+                <span class="u">€/l</span>
+              </div>
+              <p class="hint" id="fprice-h"></p>
+            </div>
+            <div class="field">
+              <label for="fcons">Consumo dell'auto a carburante</label>
+              <div class="with-unit">
+                <input id="fcons" type="number" inputmode="decimal" min="1" max="30" step="0.1" value="6.5" enterkeyhint="done" autocomplete="off">
+                <span class="u">l/100 km</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <div data-ad="top"></div>
+
+      <section class="blk" data-pro="Confronto tra tutte le tariffe" aria-labelledby="p1">
+        <h2 class="lbl" id="p1">Pro · Confronto</h2>
+        <p class="pro-t">La stessa ricarica a ogni tariffa</p>
+        <p class="pro-d">Casa, colonnina lenta, veloce e ultra-fast messe in fila, con il costo annuo sui tuoi chilometri e la riga del carburante per confronto.</p>
+        <table class="mini" id="cmp">
+          <thead><tr><th>Dove</th><th>Ricarica</th><th>/100 km</th><th>All'anno</th></tr></thead>
+          <tbody></tbody>
+        </table>
+        <p class="hint" id="cmp-note"></p>
+      </section>
+
+      <section class="blk" data-pro="Storico delle ricariche" aria-labelledby="p2">
+        <h2 class="lbl" id="p2">Pro · Storico</h2>
+        <p class="pro-t">Quanto spendi davvero in un anno</p>
+        <p class="pro-d">Salva ogni ricarica con un tocco: il totale di kWh e di euro, e il prezzo medio reale che stai pagando per chilometro.</p>
+        <div class="btn-row">
+          <button type="button" class="btn" id="log-add">Salva questa ricarica</button>
+          <button type="button" class="btn ghost" id="log-csv">Esporta in CSV</button>
+        </div>
+        <p class="tot" id="log-tot"></p>
+        <ul class="log" id="log-list"></ul>
+      </section>
+
+      <div data-affiliate data-title="Utili per ricaricare in casa" data-items='[{"t":"Cavo di ricarica Tipo 2","q":"cavo ricarica tipo 2 auto elettrica 7 metri"},{"t":"Wallbox da parete","q":"wallbox 7 kw tipo 2 auto elettrica"},{"t":"Caricatore portatile Schuko","q":"caricatore portatile auto elettrica schuko 10a"}]'></div>
+
+      <section id="guida">
+        <h2>Come si calcola il costo di una ricarica</h2>
+        <p>Per sapere <strong>quanto costa ricaricare un'auto elettrica</strong> servono tre numeri e una moltiplicazione.
+          Il primo è l'energia che entra in batteria: si prende la capacità in kWh e la si moltiplica per la percentuale
+          che vuoi recuperare. Il secondo è il rendimento: fra la presa e le celle una parte dell'energia si perde in
+          calore, nel caricatore di bordo e nel sistema che tiene la batteria in temperatura, quindi i kWh che paghi
+          sono sempre più di quelli immagazzinati. Il terzo è il prezzo al kWh, che è l'unico dato che cambia davvero
+          tutto: la stessa ricarica può costare 10 € in garage e 30 € in autostrada.</p>
+
+        <h3>L'esempio con i numeri</h3>
+        <p>Una compatta con batteria da 60 kWh portata dal 20% all'80% recupera il 60% della capacità, cioè
+          <strong>36 kWh</strong>. Ricaricando a casa con il 12% di perdite, il contatore ne conta
+          36 ÷ 0,88 = <strong>40,9 kWh</strong>: a 0,25 €/kWh la ricarica costa <strong>10,23 €</strong>. Con un consumo
+          reale di 18 kWh/100 km quei 36 kWh valgono 200 km, quindi siamo a <strong>5,11 € ogni 100 km</strong>.
+          La stessa distanza con un'utilitaria a benzina che fa 6,5 l/100 km, a 2,04 €/l, costa 13,29 €: l'elettrica
+          fa risparmiare circa 8 € ogni 100 km, cioè oltre 1.200 € in 15.000 km.</p>
+        <p>Il quadro si capovolge sulla rete pubblica veloce. Gli stessi 36 kWh a 0,77 €/kWh, con il 6% di perdite
+          tipico della corrente continua, costano <strong>29,49 €</strong>: sono <strong>14,74 € ogni 100 km</strong>,
+          più della benzina. È il motivo per cui l'auto elettrica conviene a chi può ricaricare in garage o al lavoro
+          e conviene poco a chi vive solo di colonnine ultra-fast.</p>
+
+        <h3>Gli errori più comuni</h3>
+        <ul>
+          <li><strong>Usare la capacità lorda.</strong> I costruttori spesso dichiarano due numeri: quello netto è
+            l'energia che puoi usare, ed è quello da mettere nel calcolo.</li>
+          <li><strong>Dimenticare le perdite.</strong> Senza di esse il conto esce dal 5 al 15% troppo basso, e in
+            bolletta la differenza si vede.</li>
+          <li><strong>Ragionare sul pieno.</strong> Dallo 0 al 100% è l'unica ricarica che quasi nessuno fa: sopra
+            l'80% la potenza crolla e sotto il 10% non ci si arriva per scelta. La ricarica realistica è 20 → 80%.</li>
+          <li><strong>Confrontare la colonnina veloce con il prezzo di casa.</strong> Sono due mondi: tieni due conti
+            separati, uno per la quotidianità e uno per i viaggi.</li>
+          <li><strong>Fermarsi al costo dell'energia.</strong> Alcune colonnine aggiungono un costo di attivazione o
+            la sosta a tempo dopo la ricarica: controlla la tariffa nell'app del gestore.</li>
+        </ul>
+
+        <h3>Quanto costa al kWh, in pratica</h3>
+        <p>In casa si paga la tariffa del proprio contratto, in genere fra 0,20 e 0,35 €/kWh, meno nelle fasce serali
+          e nei weekend se si ha un contratto multiorario o il fotovoltaico. Sulla rete pubblica i prezzi li decide il
+          gestore e cambiano spesso: le colonnine in corrente alternata fino a 22 kW ruotano attorno a 0,60 €/kWh, le
+          veloci in corrente continua attorno a 0,77 €/kWh e le ultra-fast oltre i 150 kW arrivano a 1 €/kWh per chi
+          non ha un abbonamento. Sono valori indicativi, per questo nel calcolatore li puoi riscrivere: l'unico prezzo
+          giusto è quello che leggi sull'app del gestore prima di attaccare il cavo.</p>
+
+        <h3>Domande frequenti</h3>
+        <h3>Quanto costa ricaricare un'auto elettrica a casa?</h3>
+        <p>Con una tariffa di 0,25 €/kWh, una ricarica dal 20% all'80% su una batteria da 60 kWh costa circa 10,20 €,
+          cioè poco più di 5 € ogni 100 km. Un pieno completo da 0 a 100% sulla stessa auto sta intorno ai 17 €.</p>
+        <h3>Perché pago più kWh di quelli che entrano in batteria?</h3>
+        <p>Perché il contatore misura l'energia erogata, non quella immagazzinata. La perdita è del 10-15% in corrente
+          alternata e del 5-8% in corrente continua, e c'è sempre, anche quando non la vedi.</p>
+        <h3>Conviene l'elettrica o la benzina?</h3>
+        <p>Ricaricando a casa quasi sempre l'elettrica, con un risparmio che si misura in migliaia di euro su qualche
+          anno. Usando solo colonnine veloci il vantaggio sull'energia si annulla: resta quello su bollo, manutenzione
+          e accesso alle zone a traffico limitato.</p>
+        <h3>Quanti chilometri aggiunge una ricarica?</h3>
+        <p>Dividi i kWh entrati in batteria per il consumo reale. Con 36 kWh e 18 kWh/100 km sono 200 km d'estate; in
+          inverno metti il 20-30% in più di consumo, perché il riscaldamento dell'abitacolo pesa sulla batteria.</p>
+        <h3>Perché non ricaricare sempre al 100%?</h3>
+        <p>Perché la ricarica rallenta molto sopra l'80% e tenere la batteria piena a lungo la fa invecchiare prima.
+          Il 100% ha senso prima di un viaggio lungo, non ogni notte.</p>
+
+        <div data-ad="bottom"></div>
+        <div data-support></div>
+        <p class="fine">Questa pagina può contenere annunci e link di affiliazione.
+          <a href="../../privacy.html">Privacy</a> · Vedi anche
+          <a href="../2026-09-19-costo-viaggio-auto/">Costo Viaggio in Auto</a> per il preventivo di un viaggio completo e
+          <a href="../2026-10-02-rimborso-chilometrico/">Rimborso Chilometrico</a> se usi l'auto per lavoro.</p>
+      </section>
+    </main>
+  </div>
+
+  <div class="sticky" id="sticky" hidden>
+    <div>
+      <div class="s-k">Costo ricarica</div>
+      <div class="s-v" id="s-cost">—</div>
+    </div>
+    <div class="s-side" id="s-side"></div>
+  </div>
+
+  <script src="../../assets/monetize.js"></script>
+  <script>
+    /* Modello dati: un solo oggetto `state` con gli input dell'utente (batteria, percentuali, tipo di presa,
+       prezzo e perdite, consumo e confronto con il carburante) più `log`, l'elenco delle ricariche salvate
+       ({d, spot, kwh, eur}). Tutto in un'unica chiave localStorage; il calcolo è puro e gira a ogni modifica. */
+    (() => {
+      "use strict";
+      const KEY = "ricarica-auto-elettrica:v1";
+      const $ = (s) => document.querySelector(s);
+      const eur = (v) => v.toLocaleString("it-IT", { style: "currency", currency: "EUR" });
+      const n1 = (v) => v.toLocaleString("it-IT", { maximumFractionDigits: 1 });
+      const n2 = (v) => v.toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      const n0 = (v) => v.toLocaleString("it-IT", { maximumFractionDigits: 0 });
+      const uid = () => (crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2));
+
+      // ---- tipi di presa: prezzo e perdite indicative, entrambi modificabili dall'utente ----
+      const SPOTS = [
+        { id: "casa", label: "Casa", sub: "presa o wallbox", price: 0.25, loss: 12, hint: "Tariffa domestica tipica: 0,20–0,35 €/kWh." },
+        { id: "ac", label: "Colonnina AC", sub: "fino a 22 kW", price: 0.60, loss: 10, hint: "Colonnine in corrente alternata: in media attorno a 0,60 €/kWh." },
+        { id: "dc", label: "Veloce DC", sub: "50–150 kW", price: 0.77, loss: 6, hint: "Ricarica veloce in corrente continua: in media attorno a 0,77 €/kWh." },
+        { id: "hpc", label: "Ultra-fast", sub: "oltre 150 kW", price: 0.95, loss: 6, hint: "Ultra-fast senza abbonamento: spesso vicino a 1 €/kWh." },
+      ];
+      const spotOf = (id) => SPOTS.find(s => s.id === id) || SPOTS[0];
+      // Articoli concordati: si dice "la benzina"/"alla benzina" ma "il diesel"/"al diesel".
+      const FUELS = {
+        benzina: { nome: "benzina", Nome: "Benzina", con: "con la benzina", alla: "alla benzina", della: "della benzina" },
+        diesel: { nome: "diesel", Nome: "Diesel", con: "con il diesel", alla: "al diesel", della: "del diesel" },
+      };
+      const fuelOf = () => FUELS[state.fuel] || FUELS.benzina;
+      // Elisione davanti ai numeri che iniziano per vocale: "all'80%" ma "al 90%".
+      const isVowelNum = (n) => n === 8 || n === 11 || n === 18 || n === 80 || n === 85;
+      const da = (n) => `dal${isVowelNum(n) ? "l'" : " "}${n}%`;
+      const al = (n) => `al${isVowelNum(n) ? "l'" : " "}${n}%`;
+
+      // ---- prezzi medi regionali self service (fonte: Osservaprezzi MIMIT) ----
+      let PRICE_DATE = "06/10/2026"; // sostituita dai dati giornalieri di ../../data/carburanti.json quando raggiungibili
+      const ITALIA = "Italia (media nazionale)";
+      const REGIONI = [
+        [ITALIA, 2.044, 2.245],
+        ["Abruzzo", 2.048, 2.249], ["Basilicata", 2.067, 2.255], ["Calabria", 2.05, 2.252],
+        ["Campania", 2.055, 2.241], ["Emilia-Romagna", 2.047, 2.251], ["Friuli-Venezia Giulia", 2.044, 2.252],
+        ["Lazio", 2.023, 2.221], ["Liguria", 2.029, 2.239], ["Lombardia", 2.039, 2.244],
+        ["Marche", 2.039, 2.238], ["Molise", 2.048, 2.256], ["Piemonte", 2.04, 2.244],
+        ["Puglia", 2.049, 2.242], ["Sardegna", 2.054, 2.261], ["Sicilia", 2.054, 2.256],
+        ["Toscana", 2.046, 2.254], ["Trentino-Alto Adige (Bolzano)", 2.077, 2.283],
+        ["Trentino-Alto Adige (Trento)", 2.056, 2.261], ["Umbria", 2.04, 2.237],
+        ["Valle d'Aosta", 2.038, 2.251], ["Veneto", 2.039, 2.238],
+      ];
+      const FCOL = { benzina: 1, diesel: 2 };
+      const fuelPrice = (fuel, region) => {
+        const row = REGIONI.find(r => r[0] === region) || REGIONI[0];
+        return row[FCOL[fuel] || 1];
+      };
+
+      // ---- stato ----
+      const DEF = {
+        batt: 60, from: 20, to: 80, spot: "casa", price: 0.25, loss: 12,
+        cons: 18, km: 15000, fuel: "benzina", region: ITALIA, fprice: 2.044, fcons: 6.5,
+        priceManual: false, fpriceManual: false, car: null, advOpen: false, log: [],
+      };
+      let state = { ...DEF };
+      try {
+        const raw = localStorage.getItem(KEY);
+        if (raw) {
+          const s = JSON.parse(raw);
+          state = { ...DEF, ...(s && typeof s === "object" ? s : {}) };
+          if (!Array.isArray(state.log)) state.log = [];
+        }
+      } catch (_) { /* storage non disponibile: si parte dai valori di default */ }
+      const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (_) {} };
+
+      const F = {
+        batt: $("#batt"), from: $("#from"), to: $("#to"), price: $("#price"), loss: $("#loss"),
+        cons: $("#cons"), km: $("#km"), fuel: $("#fuel"), region: $("#region"), fprice: $("#fprice"), fcons: $("#fcons"),
+      };
+
+      // ---- calcolo ----
+      const num = (v) => { const n = typeof v === "number" ? v : parseFloat(String(v).replace(",", ".")); return Number.isFinite(n) ? n : NaN; };
+      function compute() {
+        const batt = num(state.batt), from = num(state.from), to = num(state.to);
+        const price = num(state.price), loss = num(state.loss);
+        if (!(batt > 0)) return { error: "Scrivi la capacità della batteria in kWh per vedere il costo." };
+        if (batt > 250) return { error: "La capacità sembra troppo alta: controlla i kWh della batteria." };
+        if (!(to > from)) return { error: "La percentuale di arrivo deve essere maggiore di quella di partenza." };
+        if (!(price >= 0)) return { error: "Scrivi il prezzo dell'energia in €/kWh." };
+        const eff = 1 - (Number.isFinite(loss) ? Math.min(Math.max(loss, 0), 30) : 0) / 100;
+        const stored = batt * (to - from) / 100;
+        const grid = stored / eff;
+        const cost = grid * price;
+        const cons = num(state.cons);
+        const hasCons = cons > 0;
+        const kmAdded = hasCons ? stored / cons * 100 : null;
+        const cost100 = hasCons ? cost / kmAdded * 100 : null;
+        const fcons = num(state.fcons), fprice = num(state.fprice);
+        const hasFuel = fcons > 0 && fprice > 0;
+        const fuel100 = hasFuel ? fcons * fprice : null;
+        const km = num(state.km);
+        const hasKm = km > 0;
+        return { stored, grid, cost, kmAdded, cost100, fuel100, hasCons, hasFuel, hasKm, km, eff };
+      }
+
+      // ---- risultato ----
+      function render() {
+        const r = compute();
+        const body = $("#out-body");
+        if (r.error) {
+          body.replaceChildren(Object.assign(document.createElement("p"), { className: "empty", textContent: r.error }));
+          $("#sticky").hidden = true;
+          renderCmp(r); renderLog();
+          return;
+        }
+        const sp = spotOf(state.spot);
+        const frag = document.createDocumentFragment();
+
+        const big = document.createElement("div");
+        big.className = "big"; big.textContent = eur(r.cost);
+        const sub = document.createElement("p");
+        sub.className = "big-sub";
+        sub.textContent = `${da(Number(state.from))} ${al(Number(state.to))} · ${sp.label.toLowerCase()} a ${n2(num(state.price))} €/kWh`;
+        frag.append(big, sub);
+
+        const ul = document.createElement("ul");
+        ul.className = "rows";
+        const row = (k, v) => {
+          const li = document.createElement("li");
+          const a = document.createElement("span"); a.className = "k"; a.textContent = k;
+          const b = document.createElement("span"); b.className = "v"; b.textContent = v;
+          li.append(a, b); return li;
+        };
+        ul.append(row("Energia in batteria", `${n1(r.stored)} kWh`));
+        ul.append(row("Energia pagata (con perdite)", `${n1(r.grid)} kWh`));
+        if (r.hasCons) {
+          ul.append(row("Autonomia aggiunta", `${n0(r.kmAdded)} km`));
+          ul.append(row("Costo ogni 100 km", eur(r.cost100)));
+        }
+        if (r.hasCons && r.hasFuel) {
+          ul.append(row(`${fuelOf().Nome}, 100 km`, eur(r.fuel100)));
+        }
+        frag.append(ul);
+
+        if (r.hasCons && r.hasFuel) {
+          const diff = r.fuel100 - r.cost100;
+          const v = document.createElement("p");
+          v.className = "verdict" + (diff < 0 ? " worse" : "");
+          const b = document.createElement("b");
+          if (diff >= 0) {
+            b.textContent = `Risparmi ${eur(diff)} ogni 100 km`;
+            v.append(b, ` rispetto ${fuelOf().alla}.`);
+            if (r.hasKm) v.append(` Su ${n0(r.km)} km all'anno sono ${eur(diff * r.km / 100)}: `
+              + `${eur(r.cost100 * r.km / 100)} di energia contro ${eur(r.fuel100 * r.km / 100)} di carburante.`);
+          } else {
+            b.textContent = `Qui l'elettrico costa ${eur(-diff)} in più ogni 100 km`;
+            v.append(b, ` ${fuelOf().della}: a queste tariffe la ricarica veloce non conviene.`);
+            if (r.hasKm) v.append(` Su ${n0(r.km)} km all'anno sarebbero ${eur(-diff * r.km / 100)} in più.`);
+          }
+          frag.append(v);
+        }
+
+        const src = document.createElement("p");
+        src.className = "src";
+        src.textContent = `Perdite di ricarica ${n0(100 - r.eff * 100)}%. `
+          + (r.hasFuel ? `Carburante: media self service ${state.region === ITALIA ? "nazionale" : state.region} del ${PRICE_DATE} (fonte Osservaprezzi MIMIT). ` : "")
+          + "Le tariffe di ricarica sono indicative: scrivi quella del tuo gestore.";
+        frag.append(src);
+
+        body.replaceChildren(frag);
+
+        // barra fissa
+        $("#s-cost").textContent = eur(r.cost);
+        $("#s-side").textContent = r.hasCons ? `${eur(r.cost100)} / 100 km` : `${n1(r.grid)} kWh`;
+
+        renderCmp(r); renderLog();
+      }
+
+      // ---- Pro: confronto fra tutte le tariffe ----
+      function renderCmp(r) {
+        const tb = $("#cmp tbody");
+        if (r.error) { tb.replaceChildren(); $("#cmp-note").textContent = ""; return; }
+        const batt = num(state.batt), stored = batt * (num(state.to) - num(state.from)) / 100;
+        const cons = num(state.cons), km = num(state.km);
+        const rows = [];
+        for (const s of SPOTS) {
+          const mine = s.id === state.spot;
+          const price = mine ? num(state.price) : s.price;
+          const loss = mine ? Math.min(Math.max(num(state.loss) || 0, 0), 30) : s.loss;
+          const grid = stored / (1 - loss / 100);
+          const cost = grid * price;
+          const c100 = cons > 0 ? cost / (stored / cons * 100) * 100 : null;
+          rows.push({ label: s.label, cost, c100, year: c100 != null && km > 0 ? c100 * km / 100 : null, mine });
+        }
+        const fcons = num(state.fcons), fprice = num(state.fprice);
+        const f100 = fcons > 0 && fprice > 0 ? fcons * fprice : null;
+        const frag = document.createDocumentFragment();
+        for (const row of rows) {
+          const tr = document.createElement("tr");
+          if (row.mine) tr.className = "hl";
+          for (const t of [row.label, eur(row.cost), row.c100 != null ? eur(row.c100) : "—", row.year != null ? eur(row.year) : "—"]) {
+            const td = document.createElement("td"); td.textContent = t; tr.append(td);
+          }
+          frag.append(tr);
+        }
+        if (f100 != null) {
+          const tr = document.createElement("tr"); tr.className = "fuel";
+          const litri = stored > 0 && cons > 0 ? (stored / cons * 100) * fcons / 100 : null;
+          for (const t of [fuelOf().Nome, litri != null ? eur(litri * fprice) : "—",
+            eur(f100), km > 0 ? eur(f100 * km / 100) : "—"]) {
+            const td = document.createElement("td"); td.textContent = t; tr.append(td);
+          }
+          frag.append(tr);
+        }
+        tb.replaceChildren(frag);
+        $("#cmp-note").textContent = `La riga evidenziata usa il tuo prezzo (${n2(num(state.price))} €/kWh); le altre le tariffe indicative. `
+          + `La riga del carburante confronta gli stessi chilometri${num(state.km) > 0 ? `, con ${n0(num(state.km))} km all'anno` : ""}.`;
+      }
+
+      // ---- Pro: storico ----
+      function renderLog() {
+        const list = $("#log-list"), tot = $("#log-tot");
+        if (!state.log.length) {
+          list.replaceChildren();
+          tot.textContent = "Nessuna ricarica salvata: premi “Salva questa ricarica” dopo ogni pieno per costruire lo storico.";
+          return;
+        }
+        const frag = document.createDocumentFragment();
+        for (const e of state.log.slice().reverse()) {
+          const li = document.createElement("li");
+          const w = document.createElement("span"); w.className = "when";
+          w.textContent = new Date(e.d).toLocaleDateString("it-IT", { day: "2-digit", month: "2-digit" });
+          const where = document.createElement("span"); where.textContent = `${e.spot} · ${n1(e.kwh)} kWh`;
+          const amt = document.createElement("span"); amt.className = "amt"; amt.textContent = eur(e.eur);
+          const del = document.createElement("button");
+          del.type = "button"; del.className = "del"; del.textContent = "✕";
+          del.setAttribute("aria-label", `Elimina la ricarica del ${new Date(e.d).toLocaleDateString("it-IT")}`);
+          del.addEventListener("click", () => {
+            state.log = state.log.filter(x => x.id !== e.id);
+            save(); renderLog(); toast("Ricarica eliminata");
+          });
+          li.append(w, where, amt, del);
+          frag.append(li);
+        }
+        list.replaceChildren(frag);
+        const kwh = state.log.reduce((s, e) => s + e.kwh, 0);
+        const spesa = state.log.reduce((s, e) => s + e.eur, 0);
+        tot.replaceChildren();
+        const add = (k, v) => { const s = document.createElement("span"); s.append(k + " "); const b = document.createElement("b"); b.textContent = v; s.append(b); tot.append(s); };
+        add("Ricariche:", String(state.log.length));
+        add("Energia:", `${n1(kwh)} kWh`);
+        add("Spesa:", eur(spesa));
+        if (kwh > 0) add("Prezzo medio reale:", `${n2(spesa / kwh)} €/kWh`);
+      }
+
+      let toastT = null;
+      function toast(msg) {
+        const old = $(".toast"); if (old) old.remove();
+        const t = document.createElement("div");
+        t.className = "toast"; t.setAttribute("role", "status"); t.textContent = msg;
+        document.body.append(t);
+        clearTimeout(toastT);
+        toastT = setTimeout(() => t.remove(), 2600);
+      }
+
+      // ---- sincronizzazione campi → stato ----
+      function fill() {
+        F.batt.value = state.batt; F.from.value = state.from; F.to.value = state.to;
+        F.price.value = state.price; F.loss.value = state.loss;
+        F.cons.value = state.cons; F.km.value = state.km;
+        F.fuel.value = state.fuel; F.fprice.value = state.fprice; F.fcons.value = state.fcons;
+        $("#from-v").textContent = state.from + "%";
+        $("#to-v").textContent = state.to + "%";
+        $("#price-h").textContent = spotOf(state.spot).hint;
+        $("#fprice-h").textContent = `Media self service del ${PRICE_DATE} (fonte: Osservaprezzi MIMIT).`;
+        for (const b of document.querySelectorAll("#spots .chip")) b.setAttribute("aria-pressed", String(b.dataset.spot === state.spot));
+        for (const b of document.querySelectorAll("[data-preset]")) {
+          b.setAttribute("aria-pressed", String(b.dataset.preset === `${state.from},${state.to}`));
+        }
+      }
+
+      // chip dei tipi di presa
+      const spots = $("#spots");
+      for (const s of SPOTS) {
+        const b = document.createElement("button");
+        b.type = "button"; b.className = "chip"; b.dataset.spot = s.id; b.setAttribute("aria-pressed", "false");
+        b.append(s.label);
+        const sm = document.createElement("small"); sm.textContent = s.sub; b.append(sm);
+        b.addEventListener("click", () => {
+          state.spot = s.id;
+          if (!state.priceManual) state.price = s.price;
+          state.loss = s.loss;
+          fill(); render(); save();
+        });
+        spots.append(b);
+      }
+      // regioni
+      F.region.replaceChildren(...REGIONI.map(r => new Option(r[0], r[0])));
+      F.region.value = REGIONI.some(r => r[0] === state.region) ? state.region : ITALIA;
+
+      for (const b of document.querySelectorAll("[data-preset]")) {
+        b.addEventListener("click", () => {
+          const [a, z] = b.dataset.preset.split(",").map(Number);
+          state.from = a; state.to = z; fill(); render(); save();
+        });
+      }
+      $("#batt-dn").addEventListener("click", () => { state.batt = Math.max(1, Math.round((num(state.batt) || 60) - 5)); fill(); render(); save(); });
+      $("#batt-up").addEventListener("click", () => { state.batt = Math.min(250, Math.round((num(state.batt) || 60) + 5)); fill(); render(); save(); });
+
+      // slider: tengono sempre arrivo > partenza
+      F.from.addEventListener("input", () => {
+        state.from = Number(F.from.value);
+        if (state.from >= state.to) state.to = Math.min(100, state.from + 5);
+        if (state.from >= state.to) state.from = state.to - 5;
+        fill(); render(); save();
+      });
+      F.to.addEventListener("input", () => {
+        state.to = Number(F.to.value);
+        if (state.to <= state.from) state.from = Math.max(0, state.to - 5);
+        fill(); render(); save();
+      });
+
+      // input numerici e select
+      const bind = (el, key, extra) => {
+        el.addEventListener("input", () => {
+          state[key] = el.value === "" ? "" : num(el.value);
+          if (extra) extra();
+          render(); save();
+        });
+      };
+      bind(F.batt, "batt");
+      bind(F.price, "price", () => { state.priceManual = true; });
+      bind(F.loss, "loss");
+      bind(F.cons, "cons");
+      bind(F.km, "km");
+      bind(F.fcons, "fcons");
+      bind(F.fprice, "fprice", () => { state.fpriceManual = true; });
+      const syncFuelPrice = () => { if (!state.fpriceManual) { state.fprice = fuelPrice(state.fuel, state.region); F.fprice.value = state.fprice; } };
+      F.fuel.addEventListener("change", () => { state.fuel = F.fuel.value; syncFuelPrice(); render(); save(); });
+      F.region.addEventListener("change", () => { state.region = F.region.value; syncFuelPrice(); render(); save(); });
+
+      // tastiera: Invio conferma e chiude la tastiera, Esc annulla la modifica del campo
+      for (const el of Object.values(F)) {
+        if (el.tagName !== "INPUT" || el.type === "range") continue;
+        el.addEventListener("focus", () => { el.dataset.prev = el.value; });
+        el.addEventListener("keydown", (ev) => {
+          if (ev.key === "Enter") { ev.preventDefault(); el.blur(); }
+          else if (ev.key === "Escape") {
+            ev.preventDefault();
+            el.value = el.dataset.prev ?? el.value;
+            el.dispatchEvent(new Event("input", { bubbles: true }));
+            el.blur();
+          }
+        });
+      }
+
+      // ---- catalogo auto elettriche (EEA), caricato solo all'apertura del pannello ----
+      let CARS = null, carsLoading = null;
+      const carId = (c) => `${c.marca}|${c.modello}`;
+      function loadCars() {
+        if (carsLoading) return carsLoading;
+        carsLoading = fetch("../../data/auto.json", { cache: "force-cache" })
+          .then(r => (r.ok ? r.json() : null)).catch(() => null)
+          .then(d => {
+            if (!d || !d.marche) return null;
+            const out = {};
+            for (const [marca, list] of Object.entries(d.marche)) {
+              const ev = list.filter(c => c.carburante === "elettrica" && c.reale > 0);
+              if (ev.length) out[marca] = ev;
+            }
+            CARS = Object.keys(out).length ? out : null;
+            return CARS;
+          });
+        return carsLoading;
+      }
+      function fillMakes() {
+        const sel = $("#car-make");
+        if (!CARS) {
+          sel.replaceChildren(new Option("Catalogo non disponibile offline", ""));
+          sel.disabled = true;
+          $("#car-hint").textContent = "Il catalogo non è raggiungibile (sei offline o hai aperto il file dal disco): scrivi il consumo a mano nel campo qui sotto.";
+          return;
+        }
+        const makes = Object.keys(CARS).sort((a, b) => a.localeCompare(b, "it"));
+        sel.replaceChildren(new Option("Scegli la marca…", ""), ...makes.map(m => new Option(m, m)));
+        sel.disabled = false;
+        if (state.car && CARS[state.car.marca]) { sel.value = state.car.marca; fillModels(state.car.marca, state.car.id); }
+      }
+      function fillModels(make, selectedId) {
+        const sel = $("#car-model");
+        const list = (CARS && CARS[make]) || [];
+        if (!list.length) { sel.replaceChildren(new Option("Poi il modello…", "")); sel.disabled = true; return; }
+        sel.replaceChildren(new Option(`Modello (${list.length})…`, ""),
+          ...list.map(c => new Option(`${c.modello} · ${n1(c.reale)} kWh/100 km`, carId(c))));
+        sel.disabled = false;
+        if (selectedId) sel.value = selectedId;
+      }
+      function renderCarHint() {
+        const h = $("#car-hint"), a = state.car;
+        if (!a) {
+          h.textContent = "Imposto il consumo reale stimato. Il catalogo non contiene la capacità della batteria: quella resta da scrivere a mano.";
+          return;
+        }
+        const link = document.createElement("a");
+        link.href = "#"; link.textContent = "Rimuovi";
+        link.addEventListener("click", (ev) => {
+          ev.preventDefault();
+          state.car = null; $("#car-make").value = ""; fillModels("", null);
+          renderCarHint(); save();
+        });
+        h.replaceChildren(`${a.marca} ${a.modello}: omologata ${n1(a.dichiarato)} kWh/100 km, su strada stimo ${n1(a.reale)} (+20%). Fonte EEA. `, link);
+      }
+      $("#car-make").addEventListener("change", (ev) => fillModels(ev.target.value, null));
+      $("#car-model").addEventListener("change", (ev) => {
+        const make = $("#car-make").value;
+        const c = (CARS && CARS[make] || []).find(x => carId(x) === ev.target.value);
+        if (!c) return;
+        state.car = { id: carId(c), marca: c.marca, modello: c.modello, dichiarato: c.dichiarato, reale: c.reale };
+        state.cons = c.reale;
+        fill(); renderCarHint(); render(); save();
+        toast(`${c.marca} ${c.modello}: ${n1(c.reale)} kWh/100 km`);
+      });
+
+      const adv = $("#adv");
+      adv.open = !!state.advOpen;
+      adv.addEventListener("toggle", () => {
+        state.advOpen = adv.open; save();
+        if (adv.open && !carsLoading) loadCars().then(fillMakes);
+      });
+      if (adv.open) loadCars().then(fillMakes);
+
+      // ---- prezzi carburante aggiornati ogni mattina (stessa origine: funziona su Pages e in locale) ----
+      (async () => {
+        try {
+          const r = await fetch("../../data/carburanti.json", { cache: "no-cache" });
+          if (!r.ok) return;
+          const d = await r.json();
+          if (!d.regioni || !d.updated) return;
+          for (const row of REGIONI) {
+            const src = row[0] === ITALIA ? d.italia : d.regioni[row[0]];
+            if (!src) continue;
+            if (src.benzina) row[1] = src.benzina;
+            if (src.diesel) row[2] = src.diesel;
+          }
+          const [y, m, g] = String(d.updated).split("-");
+          if (y && m && g) PRICE_DATE = `${g}/${m}/${y}`;
+          syncFuelPrice();
+          fill(); render();
+        } catch (_) { /* file:// o offline: restano le medie incorporate */ }
+      })();
+
+      // ---- Pro: salva ricarica / esporta CSV ----
+      $("#log-add").addEventListener("click", () => {
+        const r = compute();
+        if (r.error) { toast(r.error); return; }
+        state.log.push({
+          id: uid(), d: new Date().toISOString(), spot: spotOf(state.spot).label,
+          kwh: Math.round(r.grid * 10) / 10, eur: Math.round(r.cost * 100) / 100,
+        });
+        if (state.log.length > 500) state.log = state.log.slice(-500);
+        save(); renderLog();
+        toast(`Salvata: ${eur(r.cost)} per ${n1(r.grid)} kWh`);
+      });
+      $("#log-csv").addEventListener("click", () => {
+        if (!state.log.length) { toast("Non c'è ancora nessuna ricarica da esportare."); return; }
+        const sep = ";";
+        const head = ["data", "dove", "kwh_pagati", "euro", "euro_per_kwh"].join(sep);
+        const lines = state.log.map(e => [
+          new Date(e.d).toLocaleDateString("it-IT"),
+          e.spot,
+          String(e.kwh).replace(".", ","),
+          e.eur.toFixed(2).replace(".", ","),
+          (e.kwh > 0 ? (e.eur / e.kwh).toFixed(3) : "").replace(".", ","),
+        ].join(sep));
+        const csv = "﻿" + [head, ...lines].join("\r\n") + "\r\n";
+        const url = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+        const a = document.createElement("a");
+        a.href = url; a.download = "ricariche.csv";
+        document.body.append(a); a.click(); a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 2000);
+        toast(`Esportate ${state.log.length} ricariche`);
+      });
+
+      // ---- barra fissa: compare quando il risultato esce dallo schermo ----
+      const sticky = $("#sticky");
+      if ("IntersectionObserver" in window) {
+        new IntersectionObserver((entries) => {
+          const e = entries[0];
+          sticky.hidden = e.isIntersecting || !!compute().error;
+        }, { threshold: 0 }).observe($("#out"));
+      }
+
+      if (!state.priceManual) state.price = spotOf(state.spot).price;
+      if (!state.fpriceManual) state.fprice = fuelPrice(state.fuel, state.region);
+      fill(); renderCarHint(); render();
+    })();
+  </script>
+</body>
+</html>

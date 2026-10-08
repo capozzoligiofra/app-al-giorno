@@ -1,0 +1,29 @@
+{
+  "title": "Costo Ricarica Auto Elettrica",
+  "slug": "2026-10-08-ricarica-auto-elettrica",
+  "date": "2026-10-08",
+  "description": "Calcola quanto costa ricaricare l'auto elettrica sulla tua tariffa, perdite incluse, e confronta con la benzina di oggi.",
+  "category": "calcolatori-convertitori",
+  "tags": ["auto elettrica", "ricarica", "kwh", "colonnina", "risparmio"],
+  "source": "autonoma",
+  "request": null,
+  "status": "pronta",
+  "version": 1,
+  "changelog": [],
+  "design": { "layout": "single-column", "palette": "verde-menta", "font": "condensed" },
+  "business": {
+    "keyword": "quanto costa ricaricare un'auto elettrica",
+    "keywords": ["costo ricarica auto elettrica", "quanto costa un pieno di elettrico", "costo ricarica colonnina al kwh", "conviene auto elettrica o benzina"],
+    "intent": "Chi ha o sta valutando un'elettrica vuole il costo di un pieno sulla propria batteria e sulla propria tariffa, e sapere se conviene davvero rispetto alla benzina.",
+    "target": "Proprietari e aspiranti proprietari di auto elettriche, 30-60 anni, quasi sempre da telefono.",
+    "competitors": ["hdmotori.it e smartworld.it (articoli con medie nazionali, nessun calcolo)", "autoscout24.it e noicompriamoauto.it (contenuti di marketplace auto)", "tuttocalcolato.it (calcolatore generico con tariffe orientative)"],
+    "edge": "Conto sulla tua batteria, sulla tua percentuale e sulla tua tariffa con le perdite di ricarica che gli articoli ignorano, confronto con benzina e diesel ai prezzi medi regionali MIMIT aggiornati ogni mattina e consumo reale preso dal catalogo EEA di 251 modelli elettrici.",
+    "monetization": ["adsense", "affiliate", "pro", "support"],
+    "pro": ["Confronto tra tutte le tariffe", "Storico delle ricariche"],
+    "affiliate": [
+      { "t": "Cavo di ricarica Tipo 2", "q": "cavo ricarica tipo 2 auto elettrica 7 metri" },
+      { "t": "Wallbox da parete", "q": "wallbox 7 kw tipo 2 auto elettrica" },
+      { "t": "Caricatore portatile Schuko", "q": "caricatore portatile auto elettrica schuko 10a" }
+    ]
+  }
+}
