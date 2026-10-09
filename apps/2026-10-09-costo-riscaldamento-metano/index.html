@@ -1,0 +1,899 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#a63d2f">
+  <title>Costo Riscaldamento: quanto costa riscaldare casa a metano</title>
+  <meta name="description" content="Calcola quanto costa riscaldare casa a metano: metri quadri, zona climatica, caldaia e prezzo del gas della tua bolletta. Stima annua, mensile e in Smc.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-09-costo-riscaldamento-metano/">
+  <meta property="og:title" content="Costo Riscaldamento: quanto costa riscaldare casa a metano">
+  <meta property="og:description" content="Metri quadri, isolamento, zona climatica e prezzo del gas della tua bolletta: la spesa annua, mensile e in Smc per scaldare la tua casa.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-09-costo-riscaldamento-metano/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Costo Riscaldamento",
+    "description": "Calcolatore gratuito del costo del riscaldamento a metano: stima il fabbisogno termico con il metodo dei gradi giorno e lo converte in Smc e in euro al prezzo della tua bolletta.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-09-costo-riscaldamento-metano/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Quanto costa riscaldare una casa di 100 mq a metano?", "acceptedAnswer": { "@type": "Answer", "text": "Dipende soprattutto da zona climatica e isolamento. Un appartamento di 100 m² a Milano, con doppi vetri ma muri poco isolati e caldaia a condensazione, consuma circa 900 Smc di gas per il solo riscaldamento: a 1,30 €/Smc sono circa 1.185 euro a stagione, cioè circa 200 euro al mese nei sei mesi di accensione. La stessa casa a Napoli, dove i gradi giorno sono meno della metà, scende sotto i 500 euro." } },
+      { "@type": "Question", "name": "Come si calcola il consumo di gas per il riscaldamento?", "acceptedAnswer": { "@type": "Answer", "text": "Si stima il fabbisogno termico con il metodo dei gradi giorno: coefficiente di dispersione (W/m³K) moltiplicato per il volume riscaldato, per i gradi giorno del comune, per 24 e diviso 1000. Il risultato in kWh si divide per il potere calorifico del metano (10,69 kWh/Smc) e per il rendimento stagionale della caldaia, ottenendo gli Smc. Moltiplicando per il prezzo tutto compreso della bolletta si ottiene la spesa." } },
+      { "@type": "Question", "name": "Dove trovo i gradi giorno e la zona climatica del mio comune?", "acceptedAnswer": { "@type": "Answer", "text": "Sono fissati dall'Allegato A del DPR 412/93 per ogni comune italiano. La zona climatica è indicata anche nell'attestato di prestazione energetica (APE) della casa, e il coefficiente C riportato in bolletta dipende proprio da gradi giorno e altitudine del comune. Nel calcolatore puoi scegliere la zona, una delle città già impostate, oppure inserire i gradi giorno esatti." } },
+      { "@type": "Question", "name": "Quanto si risparmia abbassando il termostato di un grado?", "acceptedAnswer": { "@type": "Answer", "text": "Circa il 6-7% del consumo per ogni grado in meno, perché il fabbisogno è proporzionale alla differenza fra temperatura interna ed esterna. Su una spesa di 1.200 euro a stagione, passare da 21 a 20 gradi vale circa 75-80 euro." } },
+      { "@type": "Question", "name": "Conviene il metano, il pellet o la pompa di calore?", "acceptedAnswer": { "@type": "Answer", "text": "Con i prezzi di ottobre 2026 il costo per kWh di calore utile è circa 0,135 euro con il metano a condensazione, 0,127 euro con il pellet, 0,094 euro con una pompa di calore con SCOP 3,2 e 0,242 euro con il gasolio. La pompa di calore conviene solo se l'impianto lavora a bassa temperatura: con i radiatori tradizionali il rendimento stagionale scende e il vantaggio si assottiglia." } }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #faf6f3; --surface: #ffffff; --surface2: #f3eae5; --text: #2a1a16; --muted: #7d655d;
+      --line: #e6d6cf; --accent: #a63d2f; --accent-ink: #ffffff; --accent-soft: #f6e3dd;
+      --warm: #d4683f; --good: #3f7d55; --bad: #b3403a;
+      --r: 20px; --r-sm: 14px;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #181110; --surface: #241a17; --surface2: #2e211d; --text: #f4eae6; --muted: #ad9289;
+        --line: #3a2a25; --accent: #e2745c; --accent-ink: #2a0f09; --accent-soft: #38231d;
+        --warm: #f09070; --good: #7fc094; --bad: #ff8077;
+        color-scheme: dark;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font: 16px/1.55 "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    }
+    .wrap { margin: 0 auto; padding: max(12px, env(safe-area-inset-top)) 16px calc(96px + env(safe-area-inset-bottom)); }
+    .back { font-size: .9rem; color: var(--muted); text-decoration: none; }
+    .back:hover { color: var(--text); }
+    h1 { margin: .6rem 0 .3rem; font-size: 1.75rem; line-height: 1.15; letter-spacing: -.02em; font-weight: 700; }
+    h1 .sub { display: block; font-size: .5em; font-weight: 500; color: var(--muted); margin-top: .35rem; letter-spacing: 0; }
+    .lead { color: var(--muted); margin: 0 0 1.4rem; }
+
+    /* ---- pannelli di input ---- */
+    .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 1.1rem 1rem; margin-bottom: .9rem; }
+    .panel > h2 { margin: 0 0 .9rem; font-size: 1.05rem; display: flex; align-items: center; gap: .5rem; }
+    .panel > h2 .n { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-size: .85rem; font-weight: 700; flex: none; }
+    .field { margin-bottom: 1rem; }
+    .field:last-child { margin-bottom: 0; }
+    .field > label, .lbl { display: block; font-size: .92rem; font-weight: 600; margin-bottom: .4rem; }
+    .hint { color: var(--muted); font-size: .85rem; margin: .35rem 0 0; }
+    input, select, button, textarea { font: inherit; color: inherit; }
+    input[type=number], input[type=text], select {
+      width: 100%; min-height: 48px; font-size: 16px; padding: .6rem .8rem;
+      border: 1.5px solid var(--line); border-radius: var(--r-sm); background: var(--bg); color: var(--text);
+    }
+    input:focus-visible, select:focus-visible, button:focus-visible { outline: 2.5px solid var(--accent); outline-offset: 2px; }
+    .duo { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; }
+    .suffix { position: relative; }
+    .suffix input { padding-right: 3.6rem; }
+    .suffix span { position: absolute; right: .9rem; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: .9rem; pointer-events: none; }
+
+    /* chip (scelte a tocco) */
+    .chips { display: flex; flex-wrap: wrap; gap: .45rem; }
+    .chips.scroll { flex-wrap: nowrap; overflow-x: auto; padding-bottom: .3rem; scrollbar-width: thin; -webkit-overflow-scrolling: touch; }
+    .chip { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: .45rem .9rem;
+      border: 1.5px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--text);
+      font-size: .92rem; cursor: pointer; white-space: nowrap; }
+    .chip:hover { border-color: var(--accent); }
+    .chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 600; }
+    .chip small { font-size: .78rem; opacity: .7; font-weight: 400; margin-left: .4rem; }
+    .chip.col { flex-direction: column; align-items: flex-start; text-align: left; border-radius: var(--r-sm); padding: .55rem .85rem; }
+
+    /* stepper temperatura */
+    .stepper { display: flex; align-items: center; gap: .8rem; }
+    .stepper button { width: 52px; height: 52px; border-radius: 50%; border: 1.5px solid var(--line); background: var(--surface); color: var(--text); font-size: 1.4rem; cursor: pointer; line-height: 1; }
+    .stepper button:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+    .stepper button:disabled { opacity: .4; cursor: default; }
+    .stepper output { font-size: 1.5rem; font-weight: 700; min-width: 4.2rem; text-align: center; font-variant-numeric: tabular-nums; }
+
+    .switch { display: flex; align-items: center; gap: .7rem; min-height: 44px; cursor: pointer; }
+    .switch input { width: 0; height: 0; opacity: 0; position: absolute; }
+    .switch .track { flex: none; width: 50px; height: 30px; border-radius: 999px; background: var(--surface2); border: 1.5px solid var(--line); position: relative; transition: background .15s, border-color .15s; }
+    .switch .track::after { content: ""; position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%; background: var(--muted); transition: transform .15s, background .15s; }
+    .switch input:checked + .track { background: var(--accent); border-color: var(--accent); }
+    .switch input:checked + .track::after { transform: translateX(20px); background: #fff; }
+    .switch input:focus-visible + .track { outline: 2.5px solid var(--accent); outline-offset: 2px; }
+    .switch .txt { font-size: .95rem; font-weight: 600; }
+
+    /* ---- risultato ---- */
+    .result { background: var(--surface); border: 2px solid var(--accent); border-radius: var(--r); padding: 1.1rem 1rem; margin: 1.4rem 0 1rem; }
+    .result h2 { margin: 0 0 .2rem; font-size: 1rem; color: var(--muted); font-weight: 600; }
+    .big { font-size: 2.6rem; line-height: 1.05; font-weight: 700; letter-spacing: -.03em; color: var(--accent); font-variant-numeric: tabular-nums; margin: .2rem 0 .1rem; }
+    .big-sub { color: var(--muted); font-size: .95rem; }
+    .kpis { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; margin-top: 1rem; }
+    .kpi { background: var(--surface2); border-radius: var(--r-sm); padding: .7rem .8rem; }
+    .kpi .v { font-size: 1.25rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .kpi .k { font-size: .82rem; color: var(--muted); }
+    .rows { margin-top: 1rem; border-top: 1px solid var(--line); }
+    .rows .r { display: flex; justify-content: space-between; gap: .8rem; padding: .55rem 0; border-bottom: 1px solid var(--line); font-size: .93rem; }
+    .rows .r span:last-child { font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+    .rows .r.tot { font-weight: 700; border-bottom: 0; }
+    .note { font-size: .85rem; color: var(--muted); margin: .8rem 0 0; }
+    .verdict { margin-top: .9rem; padding: .7rem .85rem; border-radius: var(--r-sm); background: var(--accent-soft); font-size: .92rem; }
+    .verdict.good { background: color-mix(in srgb, var(--good) 14%, transparent); }
+    .verdict.bad { background: color-mix(in srgb, var(--bad) 14%, transparent); }
+    .err { color: var(--bad); font-size: .9rem; margin: .5rem 0 0; }
+
+    /* ---- sheet: pannello che sale dal basso ---- */
+    .dock { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; background: var(--surface);
+      border-top: 1px solid var(--line); box-shadow: 0 -6px 24px rgba(0,0,0,.14);
+      border-radius: var(--r) var(--r) 0 0; padding-bottom: env(safe-area-inset-bottom);
+      transform: translateY(110%); transition: transform .22s ease; }
+    .dock.show { transform: translateY(0); }
+    .dock-bar { display: flex; align-items: center; gap: .6rem; width: 100%; min-height: 60px; padding: .5rem 1rem;
+      background: none; border: 0; cursor: pointer; text-align: left; color: inherit; }
+    .dock-bar .amt { font-size: 1.3rem; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
+    .dock-bar .per { font-size: .85rem; color: var(--muted); }
+    .dock-bar .arrow { margin-left: auto; font-size: 1.1rem; color: var(--muted); transition: transform .2s; flex: none; }
+    .dock.open .dock-bar .arrow { transform: rotate(180deg); }
+    .dock-panel { max-height: 0; overflow: hidden; transition: max-height .25s ease; }
+    .dock.open .dock-panel { max-height: 62dvh; overflow-y: auto; }
+    .dock-panel .inner { padding: .2rem 1rem 1rem; border-top: 1px solid var(--line); }
+    .recap { list-style: none; margin: .8rem 0 0; padding: 0; font-size: .9rem; }
+    .recap li { display: flex; justify-content: space-between; gap: .8rem; padding: .35rem 0; border-bottom: 1px solid var(--line); }
+    .recap li span:last-child { color: var(--muted); text-align: right; }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: .4rem; min-height: 48px; padding: .6rem 1.1rem;
+      border: 0; border-radius: 999px; background: var(--accent); color: var(--accent-ink); font-weight: 600; cursor: pointer; text-decoration: none; }
+    .btn.ghost { background: var(--surface2); color: var(--text); border: 1.5px solid var(--line); }
+    .btn:disabled { opacity: .5; cursor: default; }
+    .btns { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .9rem; }
+    .btns .btn { flex: 1 1 auto; }
+
+    /* ---- sezioni Pro ---- */
+    section[data-pro] { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 1.1rem 1rem; margin: 0 0 .9rem; min-height: 190px; }
+    section[data-pro] > h2 { margin: 0 0 .3rem; font-size: 1.05rem; }
+    section[data-pro] > .hint { margin-top: 0; margin-bottom: .9rem; }
+    .cmp { list-style: none; margin: 0; padding: 0; }
+    .cmp li { display: grid; grid-template-columns: 1fr auto; gap: .2rem .7rem; align-items: center; padding: .6rem 0; border-bottom: 1px solid var(--line); }
+    .cmp li:last-child { border-bottom: 0; }
+    .cmp .nm { font-weight: 600; font-size: .95rem; }
+    .cmp .eur { font-size: 1.05rem; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .cmp .mt { grid-column: 1 / -1; font-size: .82rem; color: var(--muted); display: flex; align-items: center; gap: .4rem; flex-wrap: wrap; }
+    .cmp .mt input { width: 5.8rem; min-height: 44px; padding: .3rem .55rem; font-size: 16px; }
+    .cmp .bar { grid-column: 1 / -1; height: 7px; border-radius: 999px; background: var(--surface2); overflow: hidden; }
+    .cmp .bar i { display: block; height: 100%; background: var(--warm); border-radius: 999px; }
+    .cmp li.win .nm::after { content: " ✓ più economico"; color: var(--good); font-weight: 600; font-size: .8rem; }
+    .cmp li.me .nm::after { content: " · la tua"; color: var(--muted); font-weight: 400; font-size: .8rem; }
+    .months { list-style: none; margin: 0; padding: 0; }
+    .months li { display: grid; grid-template-columns: 4.6rem 1fr auto; gap: .6rem; align-items: center; padding: .45rem 0; border-bottom: 1px solid var(--line); font-size: .92rem; }
+    .months li:last-child { border-bottom: 0; }
+    .months .bar { height: 10px; border-radius: 999px; background: var(--surface2); overflow: hidden; }
+    .months .bar i { display: block; height: 100%; background: var(--accent); border-radius: 999px; }
+    .months .eur { font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+    .months .mese { color: var(--muted); }
+    pre.sheet-print { white-space: pre-wrap; word-break: break-word; font: inherit; font-size: .9rem; background: var(--surface2); border-radius: var(--r-sm); padding: .8rem; margin: 0; }
+
+    /* ---- guida ---- */
+    .guida { margin-top: 2.2rem; padding-top: 1.2rem; border-top: 1px solid var(--line); }
+    .guida h2 { font-size: 1.35rem; margin: 0 0 .7rem; line-height: 1.25; }
+    .guida h3 { font-size: 1.12rem; margin: 1.7rem 0 .5rem; }
+    .guida h4 { font-size: 1rem; margin: 1.2rem 0 .3rem; }
+    .guida p, .guida li { line-height: 1.65; }
+    .guida ul { padding-left: 1.2rem; }
+    .fonti { font-size: .85rem; color: var(--muted); }
+    .small { font-size: .85rem; }
+    .muted { color: var(--muted); }
+    .toast { position: fixed; left: 50%; bottom: calc(80px + env(safe-area-inset-bottom)); transform: translateX(-50%);
+      background: var(--text); color: var(--bg); padding: .6rem 1.1rem; border-radius: 999px; font-size: .9rem;
+      opacity: 0; transition: opacity .2s; pointer-events: none; z-index: 60; max-width: 90vw; text-align: center; }
+    .toast.show { opacity: 1; }
+    .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+    @media print {
+      .dock, .toast, .back, [data-ad], [data-support], [data-affiliate], .guida, .btns, .mz-lock, .lead { display: none !important; }
+      section[data-pro] > :not(.mz-lock) { filter: none !important; }
+      body { background: #fff; }
+      .panel, .result, section[data-pro] { break-inside: avoid; border-color: #999; }
+    }
+    /* desktop: miglioramento progressivo */
+    @media (min-width: 700px) {
+      .wrap { max-width: 820px; padding-inline: 24px; padding-bottom: 48px; }
+      h1 { font-size: 2.2rem; }
+      .dock { display: none; }
+      .duo { gap: 1rem; }
+      .kpis { grid-template-columns: repeat(4, 1fr); }
+      .big { font-size: 3.2rem; }
+      .panel, .result, section[data-pro] { padding: 1.4rem 1.3rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="../../index.html">← Tutte le app</a>
+    <h1>Quanto costa riscaldare casa a metano<span class="sub">la spesa della tua stagione, non una media nazionale</span></h1>
+    <p class="lead">Metti i metri quadri, dove abiti e com'è fatta la casa: ottieni i metri cubi di gas e gli euro della stagione, calcolati con il metodo dei gradi giorno e col prezzo che paghi davvero in bolletta.</p>
+
+    <form id="form" autocomplete="off">
+      <section class="panel">
+        <h2><span class="n">1</span> La casa</h2>
+
+        <div class="field">
+          <span class="lbl" id="lbl-zona">Dove abiti</span>
+          <div class="chips scroll" role="group" aria-labelledby="lbl-zona" id="citta"></div>
+          <p class="hint">Tocca la tua città, oppure scegli la zona climatica qui sotto. <a href="#faq-gradigiorno">Come trovare la tua</a>.</p>
+        </div>
+
+        <div class="field">
+          <div class="duo">
+            <div>
+              <label for="zona">Zona climatica</label>
+              <select id="zona"></select>
+            </div>
+            <div>
+              <label for="gg">Gradi giorno</label>
+              <input id="gg" type="number" inputmode="numeric" min="100" max="6000" step="1" enterkeyhint="done">
+            </div>
+          </div>
+          <p class="hint" id="zona-info"></p>
+        </div>
+
+        <div class="field">
+          <div class="duo">
+            <div>
+              <label for="mq">Superficie riscaldata</label>
+              <div class="suffix"><input id="mq" type="number" inputmode="decimal" min="10" max="1000" step="1" value="100" enterkeyhint="done"><span>m²</span></div>
+            </div>
+            <div>
+              <label for="h">Altezza soffitti</label>
+              <div class="suffix"><input id="h" type="number" inputmode="decimal" min="2" max="6" step="0.05" value="2.7" enterkeyhint="done"><span>m</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <span class="lbl" id="lbl-tipo">Com'è collocata</span>
+          <div class="chips" role="group" aria-labelledby="lbl-tipo" id="tipo"></div>
+        </div>
+
+        <div class="field">
+          <label for="iso">Isolamento</label>
+          <select id="iso"></select>
+          <p class="hint" id="iso-info"></p>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2><span class="n">2</span> Come la scaldi</h2>
+
+        <div class="field">
+          <span class="lbl" id="lbl-temp">Temperatura in casa</span>
+          <div class="stepper">
+            <button type="button" id="t-meno" aria-label="Abbassa di un grado">−</button>
+            <output id="t-out" for="lbl-temp" aria-live="polite">20 °C</output>
+            <button type="button" id="t-piu" aria-label="Alza di un grado">+</button>
+          </div>
+          <p class="hint">I gradi giorno sono riferiti a 20 °C: ogni grado in più vale circa il 6,5% di consumo.</p>
+        </div>
+
+        <div class="field">
+          <span class="lbl" id="lbl-ore">Quante ore al giorno</span>
+          <div class="chips" role="group" aria-labelledby="lbl-ore" id="ore"></div>
+        </div>
+
+        <div class="field">
+          <span class="lbl" id="lbl-cald">Caldaia</span>
+          <div class="chips" role="group" aria-labelledby="lbl-cald" id="caldaia"></div>
+          <p class="hint" id="cald-info"></p>
+        </div>
+
+        <div class="field">
+          <label for="prezzo">Prezzo del gas tutto compreso</label>
+          <div class="suffix"><input id="prezzo" type="number" inputmode="decimal" min="0.1" max="5" step="0.01" value="1.30" enterkeyhint="done"><span>€/Smc</span></div>
+          <p class="hint">Prendilo dalla tua bolletta: è il totale diviso gli Smc consumati, imposte incluse. Il valore preimpostato è la media delle offerte di mercato libero di settembre 2026.</p>
+        </div>
+
+        <div class="field">
+          <label class="switch" for="acs">
+            <input type="checkbox" id="acs">
+            <span class="track" aria-hidden="true"></span>
+            <span class="txt">Aggiungi l'acqua calda sanitaria</span>
+          </label>
+          <div class="duo" id="acs-wrap" hidden>
+            <div>
+              <label for="persone">Persone in casa</label>
+              <input id="persone" type="number" inputmode="numeric" min="1" max="12" step="1" value="3" enterkeyhint="done">
+            </div>
+          </div>
+          <p class="hint">Serve se vuoi confrontare il risultato con la bolletta del gas, che comprende anche docce e lavandini.</p>
+        </div>
+      </section>
+    </form>
+
+    <section class="result" id="risultato" aria-live="polite">
+      <h2>Costo del riscaldamento</h2>
+      <div class="big" id="r-anno">—</div>
+      <div class="big-sub" id="r-anno-sub">per la stagione</div>
+
+      <div class="kpis">
+        <div class="kpi"><div class="v" id="r-mese">—</div><div class="k">al mese di accensione</div></div>
+        <div class="kpi"><div class="v" id="r-smc">—</div><div class="k">Smc di gas</div></div>
+        <div class="kpi"><div class="v" id="r-kwh">—</div><div class="k">kWh di calore</div></div>
+        <div class="kpi"><div class="v" id="r-mq">—</div><div class="k">kWh per m²</div></div>
+      </div>
+
+      <div class="rows" id="r-rows"></div>
+      <p class="note" id="r-note"></p>
+
+      <div class="field" style="margin-top:1rem">
+        <label for="bolletta">Hai gli Smc dell'anno scorso? Confrontali</label>
+        <div class="suffix"><input id="bolletta" type="number" inputmode="numeric" min="0" max="20000" step="1" placeholder="es. 1100" enterkeyhint="done"><span>Smc</span></div>
+        <div id="r-verdict"></div>
+      </div>
+    </section>
+
+    <div data-ad="top"></div>
+
+    <section data-pro="Confronto fra metano, pellet, pompa di calore e gasolio">
+      <h2>Con un altro combustibile quanto spenderesti?</h2>
+      <p class="hint">Stesso fabbisogno di calore, costi di ottobre 2026. Cambia i prezzi con quelli del tuo fornitore.</p>
+      <ul class="cmp" id="cmp"></ul>
+      <p class="note">Sono esclusi i costi di installazione e la manutenzione annuale, che per pompa di calore e stufa a pellet pesano in modo diverso dalla caldaia.</p>
+    </section>
+
+    <section data-pro="Costo mese per mese della stagione">
+      <h2>Come si distribuisce la spesa nei mesi</h2>
+      <p class="hint">I gradi giorno della stagione ripartiti sui mesi di accensione della tua zona: serve per capire quanto pesa la bolletta di gennaio.</p>
+      <ul class="months" id="months"></ul>
+    </section>
+
+    <section data-pro="Prospetto da stampare">
+      <h2>Prospetto con tutte le ipotesi</h2>
+      <p class="hint">Il riepilogo completo del calcolo, da stampare o da incollare in un messaggio: utile se devi discuterne con l'amministratore o con un tecnico.</p>
+      <pre class="sheet-print" id="prospetto">—</pre>
+      <div class="btns">
+        <button type="button" class="btn" id="btn-stampa">Stampa</button>
+        <button type="button" class="btn ghost" id="btn-copia">Copia riepilogo</button>
+      </div>
+    </section>
+
+    <div data-affiliate data-title="Per spendere meno di riscaldamento" data-items='[{"t":"Valvole termostatiche per radiatori","q":"valvole termostatiche radiatori"},{"t":"Termostato programmabile wi-fi","q":"termostato wifi caldaia"},{"t":"Pannelli riflettenti dietro i radiatori","q":"pannelli riflettenti radiatori"},{"t":"Guarnizioni adesive contro gli spifferi","q":"guarnizioni adesive infissi spifferi"}]'></div>
+
+    <section id="guida" class="guida">
+      <h2>Quanto costa riscaldare casa a metano: come si arriva al numero</h2>
+      <p>È la domanda che torna ogni ottobre, e la risposta che si trova in giro è quasi sempre la stessa: «fra 800 e 1.200 euro». Una media nazionale non serve a niente, perché la stessa casa di 100 m² costa più del doppio a Cuneo che a Bari, e due appartamenti sullo stesso pianerottolo possono differire del 40% solo per gli infissi. Questo calcolatore fa il conto sulla tua casa e sul prezzo del gas che paghi tu, e ti dice anche quanti metri cubi aspettarti, così puoi confrontare il risultato con le bollette che hai già in cassetto.</p>
+
+      <h3>Il metodo dei gradi giorno</h3>
+      <p>Il calcolo parte dal fabbisogno termico dell'edificio, cioè quanto calore serve per tenere la casa a 20 °C per tutta la stagione. La formula usata in termotecnica è <strong>Q = Cd × V × GG × 24 / 1000</strong>, dove <em>Cd</em> è il coefficiente di dispersione volumica in W/m³K (quanto calore scappa per ogni metro cubo e per ogni grado di differenza), <em>V</em> è il volume riscaldato e <em>GG</em> sono i gradi giorno del comune, fissati per legge nell'Allegato A del DPR 412/93. I gradi giorno sommano, per ogni giorno della stagione, i gradi che mancano per arrivare a 20 °C: Milano ne ha 2.404, Roma 1.415, Napoli 1.034. È il motivo per cui la geografia pesa più dell'isolamento.</p>
+      <p>Il fabbisogno viene poi corretto per tre cose che i calcolatori generici ignorano: la <strong>collocazione</strong> (un appartamento fra due piani disperde molto meno di una villetta con quattro lati esposti), la <strong>temperatura</strong> che tieni davvero in casa e le <strong>ore di accensione</strong>. Infine si passa dal calore al gas: si divide per il potere calorifico del metano, 10,69 kWh per Smc, e per il rendimento stagionale della caldaia. Il risultato sono i metri cubi standard, gli stessi che trovi fatturati in bolletta, che moltiplicati per il prezzo tutto compreso danno la spesa.</p>
+
+      <h3>Un esempio con i numeri</h3>
+      <p>Appartamento di 100 m² a Milano, soffitti a 2,70 m, piano intermedio, costruito negli anni 2000 con doppi vetri ma muri poco isolati, caldaia a condensazione, 20 °C, riscaldamento spento di notte. Il volume è 270 m³ e il coefficiente di dispersione 0,72 W/m³K, quindi il fabbisogno lordo è 0,72 × 270 × 2.404 × 24 / 1000 = <strong>11.216 kWh</strong>. La posizione intermedia lo riduce del 15% e lo spegnimento notturno dell'8%: restano <strong>8.771 kWh</strong> di calore utile, cioè 88 kWh per metro quadro. Divisi per 10,69 kWh/Smc e per il rendimento 0,90 della condensazione fanno <strong>912 Smc</strong>; a 1,30 €/Smc sono <strong>1.185 euro</strong> per la stagione, circa 200 euro al mese nei sei mesi in cui l'impianto è accesso in zona E.</p>
+      <p>Se la stessa famiglia di tre persone conta anche l'acqua calda sanitaria si aggiungono circa 271 Smc, cioè 353 euro: il totale diventa 1.183 Smc, un valore che coincide con il consumo tipico di 1.100-1.500 Smc che ARERA usa come riferimento per una famiglia. È il controllo che conviene fare sempre: se il numero del calcolatore e quello della bolletta sono lontanissimi, uno dei dati inseriti è sbagliato.</p>
+
+      <h3>Cosa sposta davvero la bolletta</h3>
+      <ul>
+        <li><strong>La zona climatica.</strong> Passare dalla zona E alla zona C più che dimezza il fabbisogno, a parità di tutto il resto. Non ci puoi fare niente, ma spiega perché i preventivi letti online non ti tornano mai.</li>
+        <li><strong>L'isolamento.</strong> Fra una casa anni Settanta senza cappotto (1,25 W/m³K) e la stessa casa ristrutturata (0,50) la differenza è del 60%. È l'unica voce su cui un intervento edilizio si ripaga.</li>
+        <li><strong>La temperatura.</strong> Ogni grado vale circa il 6,5%: su 1.200 euro, tenere 20 °C invece di 21 fa risparmiare quasi 80 euro a stagione, senza spendere un centesimo.</li>
+        <li><strong>Il rendimento della caldaia.</strong> Una condensazione rende circa il 90% sul potere calorifico superiore, una vecchia caldaia atmosferica pre-2000 si ferma al 66%: a parità di calore richiesto brucia un terzo di gas in più.</li>
+      </ul>
+
+      <h3>Errori comuni</h3>
+      <ul>
+        <li><strong>Usare il prezzo della materia prima invece di quello finale.</strong> I valori che si leggono nelle notizie (0,60-0,85 €/Smc) sono la sola componente gas: in bolletta ci sono anche trasporto, oneri, accise e IVA, e il totale arriva intorno a 1,20-1,35 €/Smc. Dividi sempre il totale della bolletta per gli Smc fatturati.</li>
+        <li><strong>Confrontare metri cubi del contatore e Smc.</strong> Il contatore misura metri cubi, la bolletta fattura Smc: il coefficiente C del tuo comune, scritto in bolletta, converte gli uni negli altri e vale in genere fra 0,95 e 1,08.</li>
+        <li><strong>Dimenticare l'acqua calda.</strong> Se confronti il risultato del solo riscaldamento con la bolletta annuale non tornerà mai: docce e lavandini valgono 200-300 Smc l'anno per una famiglia, la cucina a gas altri 50-80.</li>
+        <li><strong>Inserire la superficie dell'intero appartamento quando metà delle stanze sono chiuse.</strong> Conta solo i metri quadri che scaldi davvero.</li>
+      </ul>
+
+      <h3>Domande frequenti</h3>
+
+      <h4>Quanto costa riscaldare una casa di 100 mq a metano?</h4>
+      <p>Con i prezzi di ottobre 2026, un appartamento di 100 m² mediamente isolato costa circa 1.100-1.300 euro a stagione in zona E (Milano, Torino, Bologna), circa 800 euro in zona D (Roma, Firenze) e meno di 500 euro in zona C (Napoli, Bari). Una villetta indipendente non isolata, nelle stesse condizioni, può superare i 2.500 euro.</p>
+
+      <h4 id="faq-gradigiorno">Dove trovo i gradi giorno e la zona climatica del mio comune?</h4>
+      <p>Sono nell'Allegato A del DPR 412/93, che assegna a ogni comune italiano un valore di gradi giorno e la relativa zona da A a F. La zona è riportata anche sull'attestato di prestazione energetica (APE) della casa. Se non la conosci, scegli la zona nel menu: il calcolatore usa un valore rappresentativo della fascia, e puoi poi inserire i gradi giorno esatti per avere il numero preciso.</p>
+
+      <h4>Quando posso accendere il riscaldamento?</h4>
+      <p>Il DPR 74/2013 fissa i periodi per zona: zona A dal 1° dicembre al 15 marzo (6 ore al giorno), zona B dal 1° dicembre al 31 marzo (8 ore), zona C dal 15 novembre al 31 marzo (10 ore), zona D dal 1° novembre al 15 aprile (12 ore), zona E dal 15 ottobre al 15 aprile (14 ore), zona F senza limiti. I sindaci possono ampliare le finestre in caso di freddo anomalo.</p>
+
+      <h4>Conviene il metano, il pellet o la pompa di calore?</h4>
+      <p>Con i prezzi di ottobre 2026 il costo per kWh di calore utile è circa 0,135 € con il metano a condensazione, 0,127 € con il pellet, 0,094 € con una pompa di calore con SCOP 3,2 e 0,242 € con il gasolio. La pompa di calore vince solo se l'impianto lavora a bassa temperatura: con i radiatori tradizionali il rendimento stagionale scende verso 2,2-2,6 e il vantaggio si assottiglia. Il confronto completo, con i prezzi modificabili, è nella sezione dedicata.</p>
+
+      <h4>I dati restano sul mio telefono?</h4>
+      <p>Sì. Il calcolatore funziona interamente nel browser, anche senza connessione, e salva quello che inserisci solo nella memoria locale del dispositivo. Nessun account, nessuna email, nessun dato inviato da qualche parte.</p>
+
+      <p class="fonti">Metodo: DPR 412/93 (Allegato A, gradi giorno) e DPR 74/2013 (periodi di accensione). Potere calorifico del metano 10,69 kWh/Smc (valore convenzionale ARERA). Prezzi indicativi di ottobre 2026: gas 1,30 €/Smc tutto compreso (media offerte mercato libero), energia elettrica 0,30 €/kWh, pellet 0,50 €/kg, gasolio da riscaldamento 2,06 €/litro (rilevazione MASE del 5 ottobre 2026). Il risultato è una stima: l'uso reale dell'impianto può scostarsene sensibilmente.</p>
+
+      <div data-ad="bottom"></div>
+      <div data-support></div>
+      <p class="muted small">Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a> · Vedi anche <a href="../2026-09-20-consumo-condizionatore/">quanto consuma un condizionatore</a> e il <a href="../2026-10-03-spese-condominiali-millesimi/">calcolo delle spese condominiali a millesimi</a>.</p>
+    </section>
+  </div>
+
+  <div class="dock" id="dock">
+    <button type="button" class="dock-bar" id="dock-bar" aria-expanded="false" aria-controls="dock-panel">
+      <span>
+        <span class="amt" id="d-amt">—</span>
+        <span class="per" id="d-per">per la stagione</span>
+      </span>
+      <span class="arrow" aria-hidden="true">⌃</span>
+      <span class="visually-hidden">Apri il riepilogo del calcolo</span>
+    </button>
+    <div class="dock-panel" id="dock-panel">
+      <div class="inner">
+        <ul class="recap" id="d-recap"></ul>
+        <div class="btns">
+          <button type="button" class="btn" id="d-go">Vai al dettaglio</button>
+          <button type="button" class="btn ghost" id="d-copy">Copia</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="../../assets/monetize.js"></script>
+  <script>
+    // Modello dati (localStorage "costo-riscaldamento-metano:v1"):
+    //   { gg, zona, mq, h, tipo, iso, temp, ore, caldaia, prezzo, acs, persone, bolletta, prezzi:{...} }
+    // Il calcolo è il metodo dei gradi giorno: Q[kWh] = Cd[W/m3K] * V[m3] * GG * 24 / 1000, corretto
+    // per esposizione, temperatura e ore di accensione; poi Smc = Q / (PCS * rendimento stagionale).
+    (() => {
+      "use strict";
+      const KEY = "costo-riscaldamento-metano:v1";
+      const $ = (s) => document.querySelector(s);
+      const PCS = 10.69;            // kWh per Smc, valore convenzionale
+      const ACS_PRO_CAPITE = 740;   // kWh/anno di calore utile per persona (acqua calda sanitaria)
+
+      const ZONE = {
+        A: { gg: 500,  min: 100,  max: 600,  periodo: "1 dic – 15 mar", ore: 6,  mesi: { dic: 1, gen: 1, feb: 1, mar: .5 } },
+        B: { gg: 780,  min: 601,  max: 900,  periodo: "1 dic – 31 mar", ore: 8,  mesi: { dic: 1, gen: 1, feb: 1, mar: 1 } },
+        C: { gg: 1150, min: 901,  max: 1400, periodo: "15 nov – 31 mar", ore: 10, mesi: { nov: .5, dic: 1, gen: 1, feb: 1, mar: 1 } },
+        D: { gg: 1750, min: 1401, max: 2100, periodo: "1 nov – 15 apr", ore: 12, mesi: { nov: 1, dic: 1, gen: 1, feb: 1, mar: 1, apr: .5 } },
+        E: { gg: 2450, min: 2101, max: 3000, periodo: "15 ott – 15 apr", ore: 14, mesi: { ott: .5, nov: 1, dic: 1, gen: 1, feb: 1, mar: 1, apr: .5 } },
+        F: { gg: 3200, min: 3001, max: 6000, periodo: "senza limiti", ore: 24, mesi: { set: .5, ott: 1, nov: 1, dic: 1, gen: 1, feb: 1, mar: 1, apr: 1, mag: .5 } },
+      };
+      // Peso relativo dei gradi giorno per mese (clima italiano tipico), poi normalizzato sui mesi attivi.
+      const PESO = { set: .015, ott: .060, nov: .130, dic: .185, gen: .205, feb: .170, mar: .135, apr: .085, mag: .015 };
+      const NOME_MESE = { set: "Settembre", ott: "Ottobre", nov: "Novembre", dic: "Dicembre", gen: "Gennaio", feb: "Febbraio", mar: "Marzo", apr: "Aprile", mag: "Maggio" };
+      // Gradi giorno da DPR 412/93 per le città verificate; per le altre si usa la zona.
+      const CITTA = [
+        { n: "Milano", gg: 2404 }, { n: "Torino", gg: 2617 }, { n: "Bologna", gg: 2259 },
+        { n: "Bolzano", gg: 2791 }, { n: "Firenze", gg: 1821 }, { n: "Roma", gg: 1415 }, { n: "Napoli", gg: 1034 },
+      ];
+      const TIPO = [
+        { id: "interm", t: "Appartamento intermedio", f: .85 },
+        { id: "ultimo", t: "Ultimo piano o d'angolo", f: 1.08 },
+        { id: "schiera", t: "Villetta a schiera", f: 1.15 },
+        { id: "indip", t: "Casa indipendente", f: 1.35 },
+      ];
+      const ISO = [
+        { id: "ab", t: "Classe A o B — cappotto e vetri tripli", cd: .33, d: "Casa nuova o riqualificata a fondo: disperde pochissimo." },
+        { id: "bc", t: "Ristrutturata — cappotto o vetri recenti", cd: .50, d: "Un intervento importante negli ultimi quindici anni." },
+        { id: "de", t: "Anni 2000 — doppi vetri, poco isolamento", cd: .72, d: "Il caso più diffuso in Italia: infissi a posto, muri no." },
+        { id: "fg", t: "Anni 70-90 — muri non isolati", cd: .95, d: "Costruzione a cassa vuota senza cappotto." },
+        { id: "g", t: "Casa vecchia — infissi singoli, spifferi", cd: 1.25, d: "Nessun isolamento, vetro singolo, serramenti non a tenuta." },
+      ];
+      const CALDAIE = [
+        { id: "cond", t: "A condensazione", eta: .90, d: "Rendimento stagionale intorno al 90% sul potere calorifico superiore." },
+        { id: "trad", t: "Tradizionale (2000-2014)", eta: .78, d: "Caldaia stagna o atmosferica recente: circa il 78%." },
+        { id: "vecchia", t: "Prima del 2000", eta: .66, d: "Caldaia atmosferica vecchia: circa il 66%, un terzo di gas in più." },
+      ];
+      const ORE = [
+        { id: "cont", t: "Sempre acceso", f: 1 },
+        { id: "notte", t: "Spento di notte", f: .92 },
+        { id: "matt", t: "Mattina e sera", f: .80 },
+        { id: "poche", t: "Poche ore", f: .68 },
+      ];
+      // Confronto combustibili: energia per unità, rendimento stagionale, prezzo di default (ottobre 2026).
+      const FUELS = [
+        { id: "metano", t: "Metano a condensazione", en: PCS, eta: .90, p: 1.30, u: "€/Smc", step: .01 },
+        { id: "pellet", t: "Pellet (stufa o caldaia)", en: 4.8, eta: .82, p: .50, u: "€/kg", step: .01 },
+        { id: "pdc", t: "Pompa di calore (SCOP 3,2)", en: 1, eta: 3.2, p: .30, u: "€/kWh", step: .01 },
+        { id: "gpl", t: "GPL in serbatoio", en: 6.9, eta: .88, p: .90, u: "€/litro", step: .01 },
+        { id: "gasolio", t: "Gasolio da riscaldamento", en: 10, eta: .85, p: 2.06, u: "€/litro", step: .01 },
+        { id: "legna", t: "Legna da ardere", en: 3.5, eta: .72, p: .22, u: "€/kg", step: .01 },
+      ];
+
+      const eur = (v) => v.toLocaleString("it-IT", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
+      const eur2 = (v) => v.toLocaleString("it-IT", { style: "currency", currency: "EUR", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      const eur3 = (v) => v.toLocaleString("it-IT", { style: "currency", currency: "EUR", minimumFractionDigits: 3, maximumFractionDigits: 3 });
+      const num = (v, d) => v.toLocaleString("it-IT", { minimumFractionDigits: d || 0, maximumFractionDigits: d || 0 });
+
+      const DEFAULTS = {
+        gg: 2404, zona: "E", citta: "Milano", mq: 100, h: 2.7, tipo: "interm", iso: "de",
+        temp: 20, ore: "notte", caldaia: "cond", prezzo: 1.30, acs: false, persone: 3, bolletta: "",
+        prezzi: Object.fromEntries(FUELS.map(f => [f.id, f.p])),
+      };
+      let S = load();
+      function load() {
+        try {
+          const raw = JSON.parse(localStorage.getItem(KEY));
+          if (raw && typeof raw === "object") return { ...DEFAULTS, ...raw, prezzi: { ...DEFAULTS.prezzi, ...(raw.prezzi || {}) } };
+        } catch (_) { /* storage non disponibile o dato corrotto */ }
+        return { ...DEFAULTS };
+      }
+      function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (_) { /* storage bloccato */ } }
+
+      // ---------- calcolo ----------
+      function calc() {
+        const iso = ISO.find(i => i.id === S.iso) || ISO[2];
+        const tipo = TIPO.find(t => t.id === S.tipo) || TIPO[0];
+        const ore = ORE.find(o => o.id === S.ore) || ORE[1];
+        const cald = CALDAIE.find(c => c.id === S.caldaia) || CALDAIE[0];
+        const mq = Math.max(1, Number(S.mq) || 0);
+        const h = Math.min(6, Math.max(2, Number(S.h) || 2.7));
+        const gg = Math.min(6000, Math.max(100, Number(S.gg) || 2100));
+        const prezzo = Math.max(0.01, Number(S.prezzo) || 1.3);
+        const vol = mq * h;
+        const fTemp = 1 + 0.065 * (S.temp - 20);
+        const qLordo = iso.cd * vol * gg * 24 / 1000;
+        const qUtile = qLordo * tipo.f * fTemp * ore.f;        // kWh di calore richiesti dalla casa
+        const smcRisc = qUtile / (PCS * cald.eta);
+        const etaAcs = cald.eta * 0.85;                        // d'estate la caldaia cicla: rende meno
+        const qAcs = S.acs ? Math.max(1, Number(S.persone) || 1) * ACS_PRO_CAPITE : 0;
+        const smcAcs = qAcs ? qAcs / (PCS * etaAcs) : 0;
+        const mesi = ZONE[S.zona] ? ZONE[S.zona].mesi : ZONE.E.mesi;
+        const nMesi = Object.values(mesi).reduce((a, b) => a + b, 0);
+        return {
+          iso, tipo, ore, cald, mq, h, gg, prezzo, vol, fTemp, qLordo, qUtile,
+          smcRisc, smcAcs, smcTot: smcRisc + smcAcs, qAcs,
+          eurRisc: smcRisc * prezzo, eurAcs: smcAcs * prezzo, eurTot: (smcRisc + smcAcs) * prezzo,
+          nMesi, mesi, kwhMq: qUtile / mq,
+        };
+      }
+
+      // ---------- interfaccia: costruzione dei controlli ----------
+      function chips(host, items, selected, onPick) {
+        host.replaceChildren(...items.map(it => {
+          const b = document.createElement("button");
+          b.type = "button"; b.className = "chip"; b.dataset.id = it.id;
+          b.setAttribute("aria-pressed", String(it.id === selected));
+          b.textContent = it.t;
+          b.addEventListener("click", () => onPick(it.id));
+          return b;
+        }));
+      }
+      function markChips(host, selected) {
+        for (const b of host.querySelectorAll(".chip")) b.setAttribute("aria-pressed", String(b.dataset.id === selected));
+      }
+
+      const elCitta = $("#citta"), elZona = $("#zona"), elGg = $("#gg"), elIso = $("#iso");
+      const elTipo = $("#tipo"), elOre = $("#ore"), elCald = $("#caldaia");
+
+      elCitta.replaceChildren(...CITTA.map(c => {
+        const b = document.createElement("button");
+        b.type = "button"; b.className = "chip"; b.dataset.citta = c.n;
+        b.append(document.createTextNode(c.n));
+        const s = document.createElement("small"); s.textContent = c.gg + " GG"; b.append(s);
+        b.addEventListener("click", () => {
+          S.citta = c.n; S.gg = c.gg; S.zona = zonaDiGg(c.gg);
+          sync(); render();
+        });
+        return b;
+      }));
+      elZona.replaceChildren(...Object.keys(ZONE).map(z => {
+        const o = document.createElement("option");
+        o.value = z;
+        o.textContent = "Zona " + z;
+        return o;
+      }));
+      elIso.replaceChildren(...ISO.map(i => {
+        const o = document.createElement("option"); o.value = i.id; o.textContent = i.t; return o;
+      }));
+      chips(elTipo, TIPO, S.tipo, (id) => { S.tipo = id; markChips(elTipo, id); render(); });
+      chips(elOre, ORE, S.ore, (id) => { S.ore = id; markChips(elOre, id); render(); });
+      chips(elCald, CALDAIE, S.caldaia, (id) => { S.caldaia = id; markChips(elCald, id); render(); });
+
+      const zonaDiGg = (gg) => Object.keys(ZONE).find(z => gg >= ZONE[z].min && gg <= ZONE[z].max) || "E";
+
+      // ---------- sincronizzazione campi <-> stato ----------
+      function sync() {
+        elZona.value = S.zona;
+        elGg.value = S.gg;
+        elIso.value = S.iso;
+        $("#mq").value = S.mq;
+        $("#h").value = S.h;
+        $("#prezzo").value = S.prezzo;
+        $("#persone").value = S.persone;
+        $("#acs").checked = !!S.acs;
+        $("#acs-wrap").hidden = !S.acs;
+        $("#bolletta").value = S.bolletta;
+        $("#t-out").textContent = S.temp + " °C";
+        $("#t-meno").disabled = S.temp <= 16;
+        $("#t-piu").disabled = S.temp >= 24;
+        markChips(elTipo, S.tipo); markChips(elOre, S.ore); markChips(elCald, S.caldaia);
+        for (const b of elCitta.querySelectorAll(".chip")) b.setAttribute("aria-pressed", String(b.dataset.citta === S.citta));
+      }
+
+      function bindNum(sel, key, min, max) {
+        const el = $(sel);
+        el.addEventListener("input", () => {
+          // Mentre il campo è vuoto o non valido si tiene l'ultimo valore buono: il
+          // risultato non deve lampeggiare su numeri assurdi durante la digitazione.
+          const v = Number(el.value);
+          if (el.value !== "" && Number.isFinite(v) && v >= min && v <= max) { S[key] = v; render(); }
+        });
+        el.addEventListener("blur", () => {
+          let v = Number(el.value);
+          if (!Number.isFinite(v) || el.value === "") v = DEFAULTS[key];
+          v = Math.min(max, Math.max(min, v));
+          S[key] = v; el.value = v; render();
+        });
+      }
+      bindNum("#mq", "mq", 10, 1000);
+      bindNum("#h", "h", 2, 6);
+      bindNum("#prezzo", "prezzo", 0.1, 5);
+      bindNum("#persone", "persone", 1, 12);
+
+      elGg.addEventListener("input", () => {
+        const v = Number(elGg.value);
+        if (Number.isFinite(v) && v >= 100 && v <= 6000) {
+          S.gg = v; S.zona = zonaDiGg(v); S.citta = (CITTA.find(c => c.gg === v) || {}).n || null;
+          elZona.value = S.zona;
+          for (const b of elCitta.querySelectorAll(".chip")) b.setAttribute("aria-pressed", String(b.dataset.citta === S.citta));
+          render();
+        }
+      });
+      elGg.addEventListener("blur", () => {
+        let v = Number(elGg.value);
+        if (!Number.isFinite(v) || v < 100 || v > 6000) { v = ZONE[S.zona].gg; S.gg = v; elGg.value = v; render(); }
+      });
+      elZona.addEventListener("change", () => {
+        S.zona = elZona.value; S.gg = ZONE[S.zona].gg; S.citta = null;
+        sync(); render();
+      });
+      elIso.addEventListener("change", () => { S.iso = elIso.value; render(); });
+      $("#acs").addEventListener("change", (e) => { S.acs = e.target.checked; $("#acs-wrap").hidden = !S.acs; render(); });
+      $("#bolletta").addEventListener("input", (e) => { S.bolletta = e.target.value; render(); });
+      $("#t-meno").addEventListener("click", () => { S.temp = Math.max(16, S.temp - 1); sync(); render(); });
+      $("#t-piu").addEventListener("click", () => { S.temp = Math.min(24, S.temp + 1); sync(); render(); });
+      $("#form").addEventListener("submit", (e) => e.preventDefault());
+      $("#form").addEventListener("keydown", (e) => { if (e.key === "Enter" && e.target.tagName === "INPUT") { e.preventDefault(); e.target.blur(); } });
+
+      // ---------- render ----------
+      function render() {
+        const c = calc();
+        const z = ZONE[S.zona] || ZONE.E;
+
+        $("#zona-info").textContent = "Zona " + S.zona + " (" + (S.zona === "F" ? "oltre 3000" : z.min + "-" + z.max) +
+          " gradi giorno): accensione " + z.periodo +
+          (z.ore < 24 ? ", fino a " + z.ore + " ore al giorno" : ", senza limiti di orario") + " (DPR 74/2013).";
+        $("#iso-info").textContent = c.iso.d + " Coefficiente di dispersione " + num(c.iso.cd, 2) + " W/m³K.";
+        $("#cald-info").textContent = c.cald.d;
+
+        $("#r-anno").textContent = eur(c.eurTot);
+        $("#r-anno-sub").textContent = S.acs ? "riscaldamento e acqua calda, per un anno" : "per la stagione di riscaldamento";
+        $("#r-mese").textContent = eur(c.eurRisc / Math.max(1, c.nMesi));
+        $("#r-smc").textContent = num(c.smcTot);
+        $("#r-kwh").textContent = num(c.qUtile);
+        $("#r-mq").textContent = num(c.kwhMq);
+
+        const rows = [
+          ["Volume riscaldato", num(c.vol) + " m³"],
+          ["Fabbisogno di calore", num(c.qUtile) + " kWh"],
+          ["Gas per il riscaldamento", num(c.smcRisc) + " Smc · " + eur(c.eurRisc)],
+        ];
+        if (S.acs) rows.push(["Gas per l'acqua calda", num(c.smcAcs) + " Smc · " + eur(c.eurAcs)]);
+        rows.push(["Prezzo usato", eur2(c.prezzo) + "/Smc"]);
+        const host = $("#r-rows");
+        host.replaceChildren(...rows.map(([k, v], i) => {
+          const d = document.createElement("div");
+          d.className = "r" + (i === rows.length - 1 ? " tot" : "");
+          const a = document.createElement("span"); a.textContent = k;
+          const b = document.createElement("span"); b.textContent = v;
+          d.append(a, b); return d;
+        }));
+        $("#r-note").textContent = "Calcolo con " + num(c.gg) + " gradi giorno, " + c.iso.t.toLowerCase() +
+          ", " + c.tipo.t.toLowerCase() + ", " + S.temp + " °C, " + c.ore.t.toLowerCase() +
+          ", caldaia " + c.cald.t.toLowerCase() + " (rendimento " + num(c.cald.eta * 100) + "%).";
+
+        // confronto con la bolletta reale
+        const vb = Number(S.bolletta);
+        const vdHost = $("#r-verdict");
+        if (S.bolletta !== "" && Number.isFinite(vb) && vb > 0) {
+          const diff = (vb - c.smcTot) / c.smcTot * 100;
+          const d = document.createElement("div");
+          d.className = "verdict " + (Math.abs(diff) <= 15 ? "good" : "bad");
+          if (Math.abs(diff) <= 15) {
+            d.textContent = "La stima coincide con il tuo consumo reale (scostamento " + num(Math.abs(diff)) + "%): i dati inseriti descrivono bene la casa.";
+          } else if (diff > 0) {
+            d.textContent = "Consumi " + num(diff) + "% più della stima (" + num(vb) + " Smc contro " + num(c.smcTot) + "). Probabili cause: isolamento peggiore di quello scelto, più ore di accensione, " +
+              (S.acs ? "oppure una caldaia meno efficiente del previsto." : "oppure l'acqua calda sanitaria che qui non è conteggiata: attiva l'opzione sopra.");
+          } else {
+            d.textContent = "Consumi " + num(-diff) + "% meno della stima (" + num(vb) + " Smc contro " + num(c.smcTot) + "): la casa è isolata meglio di come l'hai descritta, o scaldi meno stanze di quelle indicate.";
+          }
+          vdHost.replaceChildren(d);
+        } else vdHost.replaceChildren();
+
+        renderCmp(c);
+        renderMonths(c);
+        renderProspetto(c);
+        renderDock(c);
+        save();
+      }
+
+      // Pro 1 — confronto fra combustibili, a parità di calore utile richiesto
+      function renderCmp(c) {
+        const costi = FUELS.map(f => {
+          const p = Number(S.prezzi[f.id]);
+          const prezzo = Number.isFinite(p) && p > 0 ? p : f.p;
+          const perKwh = prezzo / (f.en * f.eta);
+          return { f, prezzo, perKwh, anno: c.qUtile * perKwh };
+        });
+        const max = Math.max(...costi.map(x => x.anno)) || 1;
+        const min = Math.min(...costi.map(x => x.anno));
+        $("#cmp").replaceChildren(...costi.sort((a, b) => a.anno - b.anno).map(x => {
+          const li = document.createElement("li");
+          if (x.anno === min) li.className = "win";
+          else if (x.f.id === "metano") li.className = "me";
+          const nm = document.createElement("div"); nm.className = "nm"; nm.textContent = x.f.t;
+          const e = document.createElement("div"); e.className = "eur"; e.textContent = eur(x.anno);
+          const bar = document.createElement("div"); bar.className = "bar";
+          const i = document.createElement("i"); i.style.width = Math.round(x.anno / max * 100) + "%"; bar.append(i);
+          const mt = document.createElement("div"); mt.className = "mt";
+          const inp = document.createElement("input");
+          inp.type = "number"; inp.inputMode = "decimal"; inp.step = String(x.f.step); inp.min = "0.01"; inp.value = x.prezzo;
+          inp.setAttribute("aria-label", "Prezzo " + x.f.t + " in " + x.f.u);
+          inp.addEventListener("input", () => {
+            const v = Number(inp.value);
+            if (Number.isFinite(v) && v > 0) { S.prezzi[x.f.id] = v; render(); }
+          });
+          mt.append(inp, document.createTextNode(x.f.u + " → " + eur3(x.perKwh) + " per kWh di calore"));
+          li.append(nm, e, bar, mt);
+          return li;
+        }));
+      }
+
+      // Pro 2 — distribuzione mensile dei gradi giorno sui mesi di accensione della zona
+      function renderMonths(c) {
+        const pesi = Object.entries(c.mesi).map(([m, frac]) => [m, (PESO[m] || 0) * frac]);
+        const somma = pesi.reduce((a, [, p]) => a + p, 0) || 1;
+        const acsMese = c.smcAcs / 12;               // l'acqua calda si consuma tutto l'anno
+        const max = Math.max(...pesi.map(([, p]) => p / somma * c.smcRisc)) || 1;
+        const ordine = ["ott", "nov", "dic", "gen", "feb", "mar", "apr", "mag", "set"];
+        pesi.sort((a, b) => ordine.indexOf(a[0]) - ordine.indexOf(b[0]));
+        $("#months").replaceChildren(...pesi.map(([m, p]) => {
+          const smc = p / somma * c.smcRisc;
+          const li = document.createElement("li");
+          const nome = document.createElement("span"); nome.className = "mese"; nome.textContent = NOME_MESE[m];
+          const bar = document.createElement("span"); bar.className = "bar";
+          const i = document.createElement("i"); i.style.width = Math.round(smc / max * 100) + "%"; bar.append(i);
+          const e = document.createElement("span"); e.className = "eur";
+          e.textContent = eur((smc + (S.acs ? acsMese : 0)) * c.prezzo);
+          li.append(nome, bar, e);
+          return li;
+        }));
+        if (!pesi.length) {
+          const li = document.createElement("li"); li.textContent = "Scegli una zona climatica per vedere la distribuzione mensile.";
+          $("#months").replaceChildren(li);
+        }
+      }
+
+      // Pro 3 — prospetto testuale con tutte le ipotesi
+      function riepilogo(c) {
+        const z = ZONE[S.zona] || ZONE.E;
+        const L = [
+          "COSTO DEL RISCALDAMENTO A METANO — stima",
+          "",
+          "La casa",
+          "  Località: " + (S.citta || "zona " + S.zona) + " — " + num(c.gg) + " gradi giorno (zona " + S.zona + ")",
+          "  Superficie riscaldata: " + num(c.mq) + " m², soffitti " + num(c.h, 2) + " m → volume " + num(c.vol) + " m³",
+          "  Collocazione: " + c.tipo.t + " (fattore " + num(c.tipo.f, 2) + ")",
+          "  Isolamento: " + c.iso.t + " — Cd " + num(c.iso.cd, 2) + " W/m³K",
+          "",
+          "L'impianto",
+          "  Caldaia: " + c.cald.t + " — rendimento stagionale " + num(c.cald.eta * 100) + "% sul PCS",
+          "  Temperatura: " + S.temp + " °C (correzione " + num(c.fTemp, 2) + ")",
+          "  Accensione: " + c.ore.t + " (fattore " + num(c.ore.f, 2) + ") — periodo di zona " + z.periodo,
+          "  Prezzo del gas: " + eur2(c.prezzo) + " per Smc, tutto compreso",
+          "",
+          "Il calcolo",
+          "  Fabbisogno lordo = " + num(c.iso.cd, 2) + " × " + num(c.vol) + " m³ × " + num(c.gg) + " GG × 24 / 1000 = " + num(c.qLordo) + " kWh",
+          "  Corretto per collocazione, temperatura e ore = " + num(c.qUtile) + " kWh (" + num(c.kwhMq) + " kWh/m²)",
+          "  Gas riscaldamento = " + num(c.qUtile) + " / (" + num(PCS, 2) + " × " + num(c.cald.eta, 2) + ") = " + num(c.smcRisc) + " Smc",
+        ];
+        if (S.acs) L.push("  Gas acqua calda (" + S.persone + " persone × " + ACS_PRO_CAPITE + " kWh) = " + num(c.smcAcs) + " Smc");
+        L.push(
+          "",
+          "Risultato",
+          "  Gas totale: " + num(c.smcTot) + " Smc all'anno",
+          "  Spesa riscaldamento: " + eur(c.eurRisc) + (c.nMesi ? "  (" + eur(c.eurRisc / c.nMesi) + " al mese di accensione)" : ""),
+        );
+        if (S.acs) L.push("  Spesa acqua calda: " + eur(c.eurAcs));
+        L.push(
+          "  TOTALE: " + eur(c.eurTot) + " all'anno",
+          "",
+          "Metodo: gradi giorno DPR 412/93, periodi DPR 74/2013, PCS metano " + num(PCS, 2) + " kWh/Smc.",
+          "Stima indicativa: l'uso reale dell'impianto può scostarsene.",
+          "Calcolato con un-app-al-giorno.",
+        );
+        return L.join("\n");
+      }
+      function renderProspetto(c) { $("#prospetto").textContent = riepilogo(c); }
+
+      $("#btn-stampa").addEventListener("click", () => window.print());
+      $("#btn-copia").addEventListener("click", () => copia(riepilogo(calc())));
+      $("#d-copy").addEventListener("click", () => copia(riepilogo(calc())));
+
+      let toastTimer = 0;
+      function toast(msg) {
+        const t = $("#toast");
+        t.textContent = msg; t.classList.add("show");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => t.classList.remove("show"), 2400);
+      }
+      async function copia(testo) {
+        try {
+          if (navigator.clipboard && window.isSecureContext) { await navigator.clipboard.writeText(testo); toast("Riepilogo copiato"); return; }
+          throw new Error("no clipboard");
+        } catch (_) {
+          // Ripiego per file:// e browser senza permessi sulla clipboard
+          const ta = document.createElement("textarea");
+          ta.value = testo; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
+          document.body.append(ta); ta.select();
+          let ok = false;
+          try { ok = document.execCommand("copy"); } catch (_) { ok = false; }
+          ta.remove();
+          toast(ok ? "Riepilogo copiato" : "Copia non consentita: seleziona il testo del prospetto");
+        }
+      }
+
+      // ---------- sheet in basso ----------
+      const dock = $("#dock"), dockBar = $("#dock-bar");
+      function renderDock(c) {
+        $("#d-amt").textContent = eur(c.eurTot);
+        $("#d-per").textContent = S.acs ? "all'anno, con l'acqua calda" : "per la stagione";
+        const voci = [
+          ["Casa", num(c.mq) + " m² · " + c.tipo.t.toLowerCase()],
+          ["Clima", (S.citta || "zona " + S.zona) + " · " + num(c.gg) + " GG"],
+          ["Isolamento", c.iso.t],
+          ["Caldaia", c.cald.t + " · " + S.temp + " °C"],
+          ["Gas", num(c.smcTot) + " Smc · " + eur2(c.prezzo) + "/Smc"],
+          ["Al mese di accensione", eur(c.eurRisc / Math.max(1, c.nMesi))],
+        ];
+        $("#d-recap").replaceChildren(...voci.map(([k, v]) => {
+          const li = document.createElement("li");
+          const a = document.createElement("span"); a.textContent = k;
+          const b = document.createElement("span"); b.textContent = v;
+          li.append(a, b); return li;
+        }));
+      }
+      dockBar.addEventListener("click", () => {
+        const open = dock.classList.toggle("open");
+        dockBar.setAttribute("aria-expanded", String(open));
+      });
+      $("#d-go").addEventListener("click", () => {
+        dock.classList.remove("open"); dockBar.setAttribute("aria-expanded", "false");
+        $("#risultato").scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && dock.classList.contains("open")) {
+          dock.classList.remove("open"); dockBar.setAttribute("aria-expanded", "false");
+        }
+      });
+      // Il pannello compare solo quando il risultato non è sullo schermo.
+      if ("IntersectionObserver" in window) {
+        new IntersectionObserver((entries) => {
+          for (const en of entries) {
+            if (en.isIntersecting) { dock.classList.remove("show", "open"); dockBar.setAttribute("aria-expanded", "false"); }
+            else dock.classList.add("show");
+          }
+        }, { threshold: 0.12 }).observe($("#risultato"));
+      }
+
+      sync();
+      render();
+    })();
+  </script>
+</body>
+</html>

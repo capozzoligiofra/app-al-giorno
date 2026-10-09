@@ -1,7 +1,7 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 27,
+  "count": 28,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -50,6 +50,71 @@ window.__APPS__ = {
     ]
   },
   "apps": [
+    {
+      "title": "Costo Riscaldamento",
+      "slug": "2026-10-09-costo-riscaldamento-metano",
+      "date": "2026-10-09",
+      "description": "Calcola quanto costa riscaldare casa a metano con i tuoi metri quadri, la tua zona climatica e il prezzo del gas della tua bolletta.",
+      "category": "casa-cucina",
+      "tags": [
+        "riscaldamento",
+        "metano",
+        "bolletta",
+        "casa"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "sheet",
+        "palette": "rosso-mattone",
+        "font": "rounded"
+      },
+      "business": {
+        "keyword": "quanto costa riscaldare casa a metano",
+        "keywords": [
+          "costo riscaldamento metano",
+          "consumo gas riscaldamento 100 mq",
+          "quanto costa riscaldare una casa di 100 mq",
+          "calcolo smc riscaldamento"
+        ],
+        "intent": "Da ottobre in poi vuole sapere quanto gli costerà la stagione di riscaldamento sulla sua casa, non una media nazionale, e capire se la bolletta che gli arriva è normale.",
+        "target": "Proprietari e inquilini con caldaia autonoma a metano, 30-65 anni, che cercano da telefono dopo la prima bolletta d'autunno.",
+        "edge": "Fa il conto sulla casa di chi cerca col metodo dei gradi giorno, usa il prezzo della sua bolletta invece di una media, restituisce anche gli Smc per confrontarli con i consumi reali, e funziona offline senza registrazione.",
+        "monetization": [
+          "adsense",
+          "affiliate",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto fra metano, pellet, pompa di calore e gasolio",
+          "Costo mese per mese della stagione",
+          "Prospetto da stampare"
+        ],
+        "affiliate": [
+          {
+            "t": "Valvole termostatiche per radiatori",
+            "q": "valvole termostatiche radiatori"
+          },
+          {
+            "t": "Termostato programmabile wi-fi",
+            "q": "termostato wifi caldaia"
+          },
+          {
+            "t": "Pannelli riflettenti dietro i radiatori",
+            "q": "pannelli riflettenti radiatori"
+          },
+          {
+            "t": "Guarnizioni adesive contro gli spifferi",
+            "q": "guarnizioni adesive infissi spifferi"
+          }
+        ]
+      },
+      "size": 60344
+    },
     {
       "title": "Costo Ricarica Auto Elettrica",
       "slug": "2026-10-08-ricarica-auto-elettrica",
