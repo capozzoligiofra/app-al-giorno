@@ -1,0 +1,25 @@
+{
+  "title": "Spese Notaio Acquisto Casa",
+  "slug": "2026-10-10-spese-notaio-acquisto-casa",
+  "date": "2026-10-10",
+  "description": "Imposte, onorario e spese del rogito voce per voce: quanto ti serve dal notaio il giorno dell'atto, con e senza mutuo.",
+  "category": "finanza-personale",
+  "tags": ["casa", "notaio", "imposte", "mutuo", "rogito"],
+  "source": "autonoma",
+  "request": null,
+  "status": "pronta",
+  "version": 1,
+  "changelog": [],
+  "design": { "layout": "list-detail", "palette": "grigio-carta", "font": "serif-editoriale" },
+  "business": {
+    "keyword": "quanto costa il notaio per comprare casa",
+    "keywords": ["spese notarili acquisto prima casa", "calcolo imposta di registro prima casa", "spese acquisto casa oltre il prezzo", "preventivo notaio compravendita"],
+    "intent": "Chi ha fatto una proposta o sta per firmare il preliminare e deve sapere quanta liquidità serve oltre al prezzo, prima di chiedere il preventivo al notaio.",
+    "target": "Chi compra la prima o la seconda casa, 28-55 anni, spesso con mutuo, da telefono mentre tratta con agenzia e banca.",
+    "competitors": ["notaionline.it (calcolatore, ma raccoglie contatti per preventivi)", "dokicasa.it (articolo lungo con lead form)", "articoli di idealista e money.it che spiegano le aliquote senza calcolare", "simulatori delle banche limitati alla rata"],
+    "edge": "Tutte le voci del rogito in un elenco toccabile con la formula applicata ai tuoi numeri, prezzo-valore incluso, senza registrazione e senza richiesta di contatto.",
+    "monetization": ["adsense", "pro", "support"],
+    "pro": ["Confronto prima casa e seconda casa", "Confronto fra due preventivi del notaio", "Prospetto da portare in banca"],
+    "affiliate": []
+  }
+}

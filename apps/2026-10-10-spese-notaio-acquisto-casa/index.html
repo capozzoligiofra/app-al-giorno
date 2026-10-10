@@ -1,0 +1,750 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f4f2ee">
+  <title>Spese Notaio: quanto costa il notaio per comprare casa</title>
+  <meta name="description" content="Quanto costa il notaio per comprare casa: imposte, onorario e spese del rogito voce per voce, con e senza mutuo. Prima e seconda casa, privato o impresa.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-10-spese-notaio-acquisto-casa/">
+  <meta property="og:title" content="Spese Notaio: quanto costa il notaio per comprare casa">
+  <meta property="og:description" content="Imposte, onorario e spese del rogito calcolate voce per voce: scopri quanto ti serve il giorno dell'atto, oltre al prezzo della casa.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-10-spese-notaio-acquisto-casa/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Spese Notaio Acquisto Casa",
+    "description": "Calcolatore gratuito delle spese del rogito: imposta di registro o IVA, imposte ipotecaria e catastale, onorario del notaio, imposta sostitutiva sul mutuo, istruttoria, perizia e provvigione dell'agenzia.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-10-spese-notaio-acquisto-casa/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Quanto costa il notaio per comprare casa?", "acceptedAnswer": { "@type": "Answer", "text": "Il giorno del rogito il notaio incassa due cose diverse: le imposte, che sono fissate per legge e identiche in tutta Italia, e il proprio compenso, libero dal 2012. Per una prima casa da 200.000 euro acquistata da un privato, con rendita catastale di 900 euro e regime prezzo-valore, le imposte sono circa 2.180 euro e l'onorario con IVA circa 1.700 euro: in tutto intorno ai 4.200 euro, visure comprese. Sulla stessa casa comprata come seconda casa si superano i 12.000 euro, perché l'imposta di registro passa dal 2% al 9% e si calcola sul moltiplicatore 126 invece che 115,5." } },
+      { "@type": "Question", "name": "Quali imposte paga chi compra casa da un privato?", "acceptedAnswer": { "@type": "Answer", "text": "Imposta di registro al 2% se c'è l'agevolazione prima casa, al 9% negli altri casi, con un minimo di 1.000 euro, più imposta ipotecaria e imposta catastale fisse a 50 euro ciascuna. Con l'agevolazione prima casa l'atto è esente da imposta di bollo, tributi speciali catastali e tasse ipotecarie; senza agevolazione queste voci valgono circa 320 euro." } },
+      { "@type": "Question", "name": "Cos'è il prezzo-valore e quanto fa risparmiare?", "acceptedAnswer": { "@type": "Answer", "text": "È il regime che si chiede nell'atto (legge 266/2005, art. 1 comma 497) quando una persona fisica compra un'abitazione da un'altra persona fisica: l'imposta di registro si calcola sul valore catastale invece che sul prezzo pagato. Il valore catastale è la rendita moltiplicata per 115,5 per la prima casa e per 126 per le altre abitazioni, quindi di norma è molto più basso del prezzo di mercato. In più l'onorario del notaio è ridotto del 30% e il prezzo dichiarato non è contestabile dall'Agenzia delle Entrate." } },
+      { "@type": "Question", "name": "Quanto costa in più comprare con il mutuo?", "acceptedAnswer": { "@type": "Answer", "text": "Si aggiungono l'atto di mutuo dal notaio (di solito 600-1.200 euro con IVA), l'imposta sostitutiva trattenuta dalla banca sull'importo erogato (0,25% per la prima casa, 2% negli altri casi), le spese di istruttoria e la perizia. Su un mutuo di 150.000 euro per la prima casa l'imposta sostitutiva è 375 euro; sulla seconda casa diventa 3.000 euro." } },
+      { "@type": "Question", "name": "Perché due notai fanno preventivi diversi?", "acceptedAnswer": { "@type": "Answer", "text": "Perché le imposte sono identiche per legge e la differenza sta quasi tutta nell'onorario, libero dal 2012. Confronta sempre i preventivi sulla voce compenso e non sul totale, e controlla che entrambi includano le stesse cose: visure ipotecarie e catastali, copie dell'atto, registrazione telematica e, se serve, l'atto di mutuo. Il notaio è obbligato a darti un preventivo scritto e dettagliato." } }
+    ]
+  }
+  </script>
+  <style>
+    /* grigio-carta + serif editoriale: foglio di carta, filetti sottili, cifre allineate a destra. */
+    :root {
+      --bg: #f4f2ee; --paper: #fffdf9; --paper2: #eceae4; --text: #1c1b19; --muted: #67645e;
+      --line: #d9d5cc; --line-strong: #b6b1a6; --accent: #343a6b; --accent-soft: #e6e6f0;
+      --ok: #2f6246; --warn: #8a5a12;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #17171a; --paper: #1f1f23; --paper2: #27272c; --text: #eceae4; --muted: #a09d96;
+        --line: #35353c; --line-strong: #4e4e57; --accent: #a6adf0; --accent-soft: #272a3d;
+        --ok: #7fc09b; --warn: #e0b267;
+        color-scheme: dark;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font: 16px/1.6 Georgia, "Times New Roman", "Iowan Old Style", serif;
+    }
+    .wrap { max-width: 100%; margin: 0 auto; padding: max(10px, env(safe-area-inset-top)) 16px calc(104px + env(safe-area-inset-bottom)); }
+    .topbar { margin: 0 0 .2rem; }
+    .back { font-size: .9rem; color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    h1 { margin: .6rem 0 .2rem; font-size: 1.5rem; line-height: 1.2; font-weight: 400; letter-spacing: -.01em; }
+    h1 .sub { display: block; margin-top: .45rem; font-size: .52em; color: var(--muted); font-style: italic; }
+    .lead { margin: .2rem 0 .9rem; color: var(--muted); font-size: .95rem; }
+    .rule { height: 1px; background: var(--line); border: 0; margin: 1.4rem 0; }
+
+    /* ---------- scheda dei dati ---------- */
+    .sheet { background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: 1rem .95rem; box-shadow: 0 1px 0 var(--line); }
+    .sheet + .sheet { margin-top: .8rem; }
+    .label { display: block; font-family: system-ui, -apple-system, sans-serif; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: .35rem; }
+    .field { margin-bottom: .75rem; }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 .7rem; }
+    .field:last-child { margin-bottom: 0; }
+    .money { display: flex; align-items: center; border: 1px solid var(--line-strong); border-radius: 3px; background: var(--bg); overflow: hidden; }
+    .money span { padding: 0 .55rem; color: var(--muted); font-size: 1rem; }
+    input[type="text"], input[type="number"] {
+      font: inherit; font-size: 17px; width: 100%; min-height: 46px; padding: .35rem .5rem;
+      border: 0; background: transparent; color: var(--text); font-variant-numeric: tabular-nums;
+    }
+    input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .money:focus-within { border-color: var(--accent); }
+    .hint { margin: .3rem 0 0; font-size: .82rem; line-height: 1.4; color: var(--muted); font-style: italic; }
+    .seg { display: flex; gap: 6px; flex-wrap: wrap; }
+    .seg label {
+      position: relative; flex: 1 1 auto; min-width: 46%; min-height: 48px; display: flex; align-items: center; justify-content: center;
+      gap: .4rem; text-align: center; padding: .5rem .6rem; border: 1px solid var(--line-strong); border-radius: 3px;
+      background: var(--bg); font-family: system-ui, -apple-system, sans-serif; font-size: .95rem; cursor: pointer;
+    }
+    .seg input { position: absolute; opacity: 0; pointer-events: none; }
+    .seg input:checked + span { font-weight: 700; }
+    .seg label:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); color: var(--text); box-shadow: inset 0 0 0 1px var(--accent); }
+    .seg label:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .check { display: flex; align-items: center; gap: .6rem; min-height: 46px; padding: .3rem 0; cursor: pointer; font-family: system-ui, -apple-system, sans-serif; font-size: .92rem; line-height: 1.35; }
+    .check input { width: 24px; height: 24px; margin: 0; accent-color: var(--accent); flex: 0 0 auto; }
+    .check.off { opacity: .45; }
+
+    /* ---------- esito: elenco voci + dettaglio ---------- */
+    .esito { margin-top: 1.2rem; }
+    .totali { background: var(--paper); border: 1px solid var(--line-strong); border-radius: 4px; padding: .9rem .95rem; }
+    .big { display: flex; align-items: baseline; justify-content: space-between; gap: .6rem; }
+    .big .k { font-family: system-ui, -apple-system, sans-serif; font-size: .82rem; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); }
+    .big .v { font-size: 2rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .totali .sec { display: flex; align-items: baseline; justify-content: space-between; gap: .6rem; margin-top: .55rem; padding-top: .55rem; border-top: 1px solid var(--line); font-size: .95rem; }
+    .totali .sec b { font-variant-numeric: tabular-nums; font-weight: 700; }
+    .quota { margin: .5rem 0 0; font-size: .88rem; color: var(--muted); font-style: italic; }
+    .avviso { margin-top: .7rem; padding: .55rem .7rem; border-left: 3px solid var(--warn); background: var(--paper2); font-size: .9rem; }
+    .vuoto { background: var(--paper); border: 1px dashed var(--line-strong); border-radius: 4px; padding: 1.3rem 1rem; text-align: center; color: var(--muted); font-style: italic; }
+
+    .gruppo { margin-top: 1.1rem; }
+    .gruppo > h3 { margin: 0 0 .4rem; font-family: system-ui, -apple-system, sans-serif; font-size: .8rem; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+    .voci { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+    .voci li { border-bottom: 1px solid var(--line); }
+    .voce {
+      width: 100%; min-height: 52px; display: flex; align-items: center; gap: .6rem; padding: .6rem .2rem;
+      background: transparent; border: 0; font: inherit; color: inherit; text-align: left; cursor: pointer;
+    }
+    .voce .nome { flex: 1 1 auto; }
+    .voce .imp { font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .voce .chev { color: var(--muted); font-size: .9rem; transition: transform .15s ease; }
+    .voce[aria-expanded="true"] { background: var(--accent-soft); }
+    .voce[aria-expanded="true"] .chev { transform: rotate(90deg); }
+    .voce:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+    .voce .nome small { display: block; font-family: system-ui, -apple-system, sans-serif; font-size: .8rem; color: var(--muted); }
+    .dett { background: var(--paper); border: 1px solid var(--line); border-top: 0; padding: .85rem .9rem; font-size: .95rem; }
+    .dett h4 { margin: 0 0 .4rem; font-size: 1rem; }
+    .dett p { margin: 0 0 .55rem; }
+    .dett p:last-child { margin-bottom: 0; }
+    .dett .calc { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: .88rem; background: var(--paper2); padding: .45rem .55rem; border-radius: 3px; display: block; }
+    .dett .chiudi { margin-top: .7rem; min-height: 44px; padding: .4rem 1rem; border: 1px solid var(--line-strong); border-radius: 3px; background: transparent; color: inherit; font: inherit; font-size: .9rem; cursor: pointer; }
+    .tot-riga { display: flex; justify-content: space-between; gap: .6rem; padding: .7rem .2rem; font-weight: 700; border-bottom: 2px solid var(--line-strong); }
+    .tot-riga span:last-child { font-variant-numeric: tabular-nums; }
+
+    /* ---------- Pro ---------- */
+    section[data-pro] { background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: 1rem .95rem; margin: .9rem 0 0; min-height: 200px; }
+    section[data-pro] > h2 { margin: 0 0 .2rem; font-size: 1.1rem; font-weight: 400; }
+    section[data-pro] > .hint { margin: 0 0 .8rem; }
+    table.conf { width: 100%; border-collapse: collapse; font-size: .92rem; }
+    table.conf th, table.conf td { padding: .45rem .3rem; border-bottom: 1px solid var(--line); text-align: right; }
+    table.conf th:first-child, table.conf td:first-child { text-align: left; font-size: .9rem; }
+    table.conf thead th { font-family: system-ui, -apple-system, sans-serif; font-size: .78rem; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+    table.conf td { font-variant-numeric: tabular-nums; }
+    table.conf tr.tot td { font-weight: 700; border-bottom: 2px solid var(--line-strong); }
+    table.conf tr.diff td { color: var(--warn); font-style: italic; }
+    .due { display: grid; gap: .7rem; }
+    .verdetto { margin: .9rem 0 0; padding: .6rem .7rem; border-left: 3px solid var(--accent); background: var(--paper2); font-size: .95rem; }
+    .btn { min-height: 48px; padding: .5rem 1.1rem; border: 1px solid var(--accent); border-radius: 3px; background: var(--accent-soft); color: var(--text); font: inherit; font-size: 1rem; cursor: pointer; }
+    .prospetto { font-size: .92rem; }
+    .prospetto dl { display: grid; grid-template-columns: 1fr auto; gap: .3rem .8rem; margin: .6rem 0 0; }
+    .prospetto dt { color: var(--muted); }
+    .prospetto dd { margin: 0; font-variant-numeric: tabular-nums; text-align: right; }
+    .prospetto .ipotesi { margin: .8rem 0 0; font-size: .88rem; color: var(--muted); font-style: italic; }
+
+    /* ---------- guida ---------- */
+    .guida { margin-top: 1.6rem; }
+    .guida h2 { font-size: 1.3rem; font-weight: 400; margin: 1.6rem 0 .5rem; }
+    .guida h3 { font-size: 1.05rem; font-weight: 700; margin: 1.3rem 0 .4rem; }
+    .guida p, .guida li { font-size: 1rem; }
+    .guida ul { padding-left: 1.2rem; }
+    .guida li { margin-bottom: .45rem; }
+    .fonte { font-size: .88rem; color: var(--muted); font-style: italic; }
+    .small { font-size: .88rem; color: var(--muted); }
+
+    /* ---------- barra in basso ---------- */
+    .dock {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 5;
+      display: flex; align-items: center; gap: .7rem;
+      padding: .5rem 16px calc(.5rem + env(safe-area-inset-bottom));
+      background: var(--paper); border-top: 1px solid var(--line-strong);
+    }
+    .dock .k { font-family: system-ui, -apple-system, sans-serif; font-size: .76rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); display: block; }
+    .dock .v { font-size: 1.3rem; font-variant-numeric: tabular-nums; }
+    .dock .sp { flex: 1 1 auto; }
+    .dock button { min-height: 44px; padding: .4rem .9rem; border: 1px solid var(--line-strong); border-radius: 3px; background: var(--bg); color: inherit; font: inherit; font-size: .9rem; cursor: pointer; }
+
+    @media (min-width: 700px) {
+      .wrap { max-width: 860px; padding-bottom: 3rem; }
+      h1 { font-size: 2.1rem; }
+      .seg label { min-width: 0; }
+      .dock { display: none; }
+      .esito { display: grid; grid-template-columns: 1fr; gap: 0; }
+      .row2 { gap: 0 1.2rem; }
+      .big .v { font-size: 2.4rem; }
+      .due { grid-template-columns: 1fr 1fr; }
+    }
+    @media print {
+      .dock, .back, .topbar, [data-ad], [data-support], [data-affiliate], .guida, .mz-lock, .lead, .dett .chiudi, .btn { display: none !important; }
+      section[data-pro] > :not(.mz-lock) { filter: none !important; }
+      body { background: #fff; color: #000; }
+      .sheet, .totali, section[data-pro] { border-color: #999; box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar"><a class="back" href="../../index.html">← Tutte le app</a></div>
+
+    <h1>Quanto costa il notaio per comprare casa<span class="sub">Imposte, onorario e spese del rogito, voce per voce</span></h1>
+    <p class="lead">Prezzo, rendita catastale e mutuo: ottieni quanto ti serve il giorno dell'atto, imposte e compenso separati. Tocca una voce per vedere il calcolo.</p>
+
+    <form class="sheet" id="dati" autocomplete="off">
+      <div class="campi">
+        <div class="row2">
+          <div class="field">
+            <label class="label" for="prezzo">Prezzo</label>
+            <div class="money"><span>€</span><input id="prezzo" type="text" inputmode="decimal" enterkeyhint="done" placeholder="200.000" aria-describedby="prezzo-h"></div>
+            <p class="hint" id="prezzo-h">Quello scritto nell'atto.</p>
+          </div>
+          <div class="field">
+            <label class="label" for="rendita">Rendita catastale</label>
+            <div class="money"><span>€</span><input id="rendita" type="text" inputmode="decimal" enterkeyhint="done" placeholder="900" aria-describedby="rendita-h"></div>
+            <p class="hint" id="rendita-h">Dalla visura catastale.</p>
+          </div>
+        </div>
+        <div class="field">
+          <span class="label" id="lab-casa">Che casa è per te</span>
+          <div class="seg" role="radiogroup" aria-labelledby="lab-casa">
+            <label><input type="radio" name="casa" value="prima" checked><span>Prima casa</span></label>
+            <label><input type="radio" name="casa" value="seconda"><span>Seconda casa</span></label>
+          </div>
+        </div>
+        <div class="field">
+          <span class="label" id="lab-vend">Chi vende</span>
+          <div class="seg" role="radiogroup" aria-labelledby="lab-vend">
+            <label><input type="radio" name="vend" value="privato" checked><span>Un privato</span></label>
+            <label><input type="radio" name="vend" value="impresa"><span>Un'impresa con IVA</span></label>
+          </div>
+          <p class="hint" id="vend-h">L'impresa applica l'IVA se vende entro 5 anni dalla fine dei lavori.</p>
+        </div>
+        <div class="field">
+          <label class="check" id="pv-wrap"><input type="checkbox" id="pv" checked><span>Chiedo il <strong>prezzo-valore</strong>: imposte sulla rendita, onorario −30%</span></label>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label class="label" for="mutuo">Mutuo</label>
+            <div class="money"><span>€</span><input id="mutuo" type="text" inputmode="decimal" enterkeyhint="done" placeholder="0" aria-describedby="mutuo-h"></div>
+            <p class="hint" id="mutuo-h">0 se compri senza.</p>
+          </div>
+          <div class="field">
+            <label class="label" for="agenzia">Agenzia</label>
+            <div class="money"><span>%</span><input id="agenzia" type="text" inputmode="decimal" enterkeyhint="done" placeholder="3" aria-describedby="ag-h"></div>
+            <p class="hint" id="ag-h">Quota tua, IVA esclusa.</p>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <section class="esito" id="esito" aria-live="polite">
+      <div class="vuoto" id="vuoto">Inserisci il prezzo della casa per vedere il preventivo.</div>
+      <div id="risultato" hidden>
+        <div class="totali">
+          <div class="big"><span class="k">Dal notaio, il giorno del rogito</span><span class="v" id="t-notaio">—</span></div>
+          <div id="t-righe"></div>
+          <p class="quota" id="quota"></p>
+          <div class="avviso" id="avviso" hidden></div>
+        </div>
+        <div id="gruppi"></div>
+      </div>
+    </section>
+
+    <div data-ad="top"></div>
+
+    <section data-pro="Confronto prima casa e seconda casa">
+      <h2>Prima casa o seconda casa: quanto cambia</h2>
+      <p class="hint">Stessi dati, le due agevolazioni a confronto: è la differenza che decide se conviene spostare la residenza.</p>
+      <div id="conf-casa"></div>
+    </section>
+
+    <section data-pro="Confronto fra due preventivi del notaio">
+      <h2>Due preventivi a confronto</h2>
+      <p class="hint">Le imposte sono identiche per legge: scrivi i due totali richiesti e scopri quanto chiede davvero ogni studio di compenso e spese.</p>
+      <div class="due">
+        <div>
+          <label class="label" for="pa">Preventivo A (totale)</label>
+          <div class="money"><span>€</span><input id="pa" type="text" inputmode="decimal" placeholder="4.200"></div>
+        </div>
+        <div>
+          <label class="label" for="pb">Preventivo B (totale)</label>
+          <div class="money"><span>€</span><input id="pb" type="text" inputmode="decimal" placeholder="3.800"></div>
+        </div>
+      </div>
+      <div id="conf-prev"></div>
+    </section>
+
+    <section data-pro="Prospetto da portare in banca">
+      <h2>Prospetto da portare in banca</h2>
+      <p class="hint">Tutte le voci e le ipotesi su un foglio: utile quando la banca chiede quanta liquidità hai oltre al mutuo.</p>
+      <div class="prospetto" id="prospetto"></div>
+      <p><button type="button" class="btn" id="stampa">Stampa il prospetto</button></p>
+    </section>
+
+    <hr class="rule">
+
+    <section id="guida" class="guida">
+      <h2>Quanto costa il notaio per comprare casa: le voci che compongono il totale</h2>
+      <p>Quando chiedi un preventivo al notaio ti arriva un numero unico, ma dentro ci sono due mondi diversi. Il primo è quello delle <strong>imposte</strong>: sono fissate per legge, identiche a Milano e a Ragusa, e il notaio le riscuote per conto dello Stato versandole il giorno stesso dell'atto. Il secondo è l'<strong>onorario</strong>: dal 2012 le tariffe professionali sono abolite, quindi ogni studio fissa il proprio compenso ed è su questa voce — non sulle imposte — che ha senso confrontare i preventivi.</p>
+
+      <h3>Le imposte sull'acquisto</h3>
+      <p>Se compri da un privato paghi l'<strong>imposta di registro</strong>: il 2% con l'agevolazione prima casa, il 9% se è una seconda casa, con un minimo di 1.000 euro. Si aggiungono l'imposta ipotecaria e l'imposta catastale, 50 euro ciascuna. Con l'agevolazione prima casa l'atto è esente da imposta di bollo, tributi speciali catastali e tasse ipotecarie; senza agevolazione queste voci minori valgono circa 320 euro.</p>
+      <p>Se invece compri da un'impresa che applica l'IVA — succede quando l'immobile è venduto entro cinque anni dalla fine dei lavori — cambia tutto: paghi l'<strong>IVA</strong> al 4% sulla prima casa o al 10% sulla seconda, direttamente al costruttore nel prezzo, e le imposte di registro, ipotecaria e catastale diventano fisse a 200 euro ciascuna.</p>
+
+      <h3>Il prezzo-valore: la scelta che sposta di più il conto</h3>
+      <p>Quando una persona fisica compra un'abitazione da un'altra persona fisica può chiedere nell'atto il regime del <strong>prezzo-valore</strong> (legge 266/2005, articolo 1 comma 497). L'imposta di registro non si calcola più sul prezzo pagato ma sul <strong>valore catastale</strong>, cioè la rendita moltiplicata per 115,5 per la prima casa e per 126 per le altre abitazioni. Poiché le rendite sono quasi sempre lontane dai prezzi di mercato, la base imponibile crolla; in più la legge prevede la riduzione del 30% dell'onorario del notaio e il prezzo dichiarato non è contestabile dall'Agenzia delle Entrate.</p>
+
+      <h3>Un esempio con i numeri</h3>
+      <p>Prima casa da 200.000 euro comprata da un privato, rendita catastale 900 euro, mutuo di 150.000 euro, agenzia al 3%. Il valore catastale è 900 × 115,5 = 103.950 euro, quindi l'imposta di registro al 2% è 2.079 euro, più 50 e 50 di ipotecaria e catastale: <strong>2.179 euro di imposte</strong>. L'onorario stimato con la riduzione del prezzo-valore e l'IVA al 22% è intorno ai 1.700 euro, visure e copie circa 360 euro, l'atto di mutuo altri 950 euro con IVA: <strong>dal notaio servono circa 5.200 euro</strong>. La banca trattiene 375 euro di imposta sostitutiva (lo 0,25% riservato alla prima casa) e chiede istruttoria e perizia, l'agenzia 7.320 euro con IVA: in tutto 13.900 euro oltre al prezzo, il 6,9%. Come seconda casa la stessa compravendita ne costerebbe 24.900, perché il registro sale a 10.206 euro (900 × 126 × 9%) e l'imposta sostitutiva sul mutuo a 3.000.</p>
+
+      <h3>Errori comuni</h3>
+      <ul>
+        <li><strong>Confrontare i preventivi sul totale.</strong> Le imposte sono uguali per legge: un preventivo più basso lo è solo sull'onorario o perché dimentica qualcosa.</li>
+        <li><strong>Dimenticare l'atto di mutuo.</strong> Con il mutuo il notaio stipula due atti, non uno: il compenso cresce e si aggiunge l'imposta sostitutiva.</li>
+        <li><strong>Non chiedere il prezzo-valore.</strong> Va richiesto espressamente nell'atto: se non lo si chiede, le imposte si pagano sul prezzo pieno.</li>
+        <li><strong>Calcolare il valore catastale sul valore di mercato.</strong> Serve la rendita catastale della visura, non una stima dell'agenzia.</li>
+        <li><strong>Pensare che la seconda casa costi come la prima.</strong> Sulla stessa casa la differenza è di migliaia di euro, fra registro al 9% e imposta sostitutiva al 2%.</li>
+      </ul>
+
+      <h3>Domande frequenti</h3>
+      <h3>Quando si pagano queste somme?</h3>
+      <p>Il notaio chiede l'intero importo — imposte comprese — con bonifico o assegno circolare prima o contestualmente al rogito, perché deve versare le imposte subito. La provvigione dell'agenzia di solito è dovuta alla firma del preliminare, mentre istruttoria e perizia vengono trattenute dalla banca all'erogazione.</p>
+      <h3>Chi sceglie il notaio?</h3>
+      <p>Lo scegli tu che compri, perché sei tu a pagarlo, anche se l'agenzia o la banca ti propongono un nome. Puoi chiedere preventivi a più studi: sono obbligati a fornirli scritti e dettagliati.</p>
+      <h3>L'agevolazione prima casa a quali condizioni spetta?</h3>
+      <p>In sintesi: l'immobile non deve essere di lusso (categorie A/1, A/8, A/9), deve trovarsi nel comune dove hai o porti la residenza entro 18 mesi, e non devi avere un'altra abitazione acquistata con l'agevolazione — salvo venderla entro un anno. Il calcolatore applica l'aliquota, ma la verifica dei requisiti la fa il notaio.</p>
+      <h3>Le stime sull'onorario quanto sono affidabili?</h3>
+      <p>Sono una forchetta costruita sulle medie di mercato per fascia di prezzo: servono a capire se un preventivo è in linea, non a sostituirlo. Le imposte, invece, sono calcolate con le aliquote di legge e dovrebbero coincidere al centesimo con quelle del notaio.</p>
+      <p class="fonte">Aliquote e moltiplicatori: Agenzia delle Entrate, guida «L'acquisto della casa: le imposte e le agevolazioni fiscali»; legge 266/2005 art. 1 comma 497 per il prezzo-valore. Onorario, istruttoria e perizia sono stime di mercato aggiornate a ottobre 2026. Nessun dato lascia il tuo telefono: il calcolo avviene nel browser.</p>
+    </section>
+
+    <div data-ad="bottom"></div>
+    <div data-support></div>
+    <p class="small">Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a> · Vedi anche il <a href="../2026-09-21-rata-mutuo/">calcolo della rata del mutuo</a> e l'<a href="../2026-09-28-imu-seconda-casa/">IMU sulla seconda casa</a>.</p>
+  </div>
+
+  <div class="dock" id="dock" hidden>
+    <span><span class="k">Dal notaio</span><span class="v" id="d-notaio">—</span></span>
+    <span class="sp"></span>
+    <button type="button" id="d-btn">Vedi le voci</button>
+  </div>
+
+  <script src="../../assets/monetize.js"></script>
+  <script>
+  /* Modello dati: gli input (prezzo, rendita, prima/seconda casa, venditore, prezzo-valore, mutuo, % agenzia)
+   * stanno in un oggetto `dati` salvato in localStorage; calcola(dati) li trasforma in un elenco di voci
+   * { id, nome, nota, importo, gruppo, imposta, dett } che alimenta la lista, i totali, i blocchi Pro e il prospetto. */
+  (() => {
+    "use strict";
+    const KEY = "spese-notaio-acquisto-casa:v1";
+    const $ = (s) => document.querySelector(s);
+
+    const eur = (n) => new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(Math.round(n));
+    const num = (n, d = 0) => new Intl.NumberFormat("it-IT", { minimumFractionDigits: d, maximumFractionDigits: d }).format(n);
+    const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
+
+    // "200.000" → 200000 ; "1.234,56" → 1234.56 ; "3,5" → 3.5
+    function parseNum(raw) {
+      let t = String(raw || "").replace(/[\s€%]/g, "");
+      if (!t) return 0;
+      if (t.includes(",")) t = t.replace(/\./g, "").replace(",", ".");
+      else if (/^\d{1,3}(\.\d{3})+$/.test(t)) t = t.replace(/\./g, "");
+      const v = parseFloat(t);
+      return Number.isFinite(v) && v >= 0 ? Math.min(v, 50000000) : 0;
+    }
+
+    const GRUPPI = [
+      { id: "notaio", titolo: "Al notaio, il giorno del rogito" },
+      { id: "venditore", titolo: "All'impresa venditrice" },
+      { id: "banca", titolo: "Alla banca, per il mutuo" },
+      { id: "agenzia", titolo: "All'agenzia immobiliare" },
+    ];
+
+    function leggiDati() {
+      return {
+        prezzo: parseNum($("#prezzo").value),
+        rendita: parseNum($("#rendita").value),
+        primaCasa: $('input[name="casa"]:checked').value === "prima",
+        daImpresa: $('input[name="vend"]:checked').value === "impresa",
+        prezzoValore: $("#pv").checked,
+        mutuo: parseNum($("#mutuo").value),
+        agenzia: Math.min(parseNum($("#agenzia").value), 15),
+      };
+    }
+
+    function calcola(d) {
+      const voci = [];
+      const avvisi = [];
+      const molt = d.primaCasa ? 115.5 : 126;
+      const catastale = d.rendita > 0 ? d.rendita * molt : 0;
+      const usaPV = !d.daImpresa && d.prezzoValore && catastale > 0;
+      const base = usaPV ? catastale : d.prezzo;
+
+      if (d.daImpresa) {
+        const aliq = d.primaCasa ? 0.04 : 0.10;
+        voci.push({
+          id: "iva", gruppo: "venditore", imposta: false,
+          nome: "IVA sull'acquisto", nota: `${num(aliq * 100, 0)}% del prezzo`,
+          importo: d.prezzo * aliq,
+          dett: `<p>Quando il venditore è un'impresa che applica l'IVA, l'imposta si paga al costruttore insieme al prezzo: il <strong>${num(aliq * 100, 0)}%</strong> per la ${d.primaCasa ? "prima casa" : "seconda casa non di lusso"}.</p>
+                 <span class="calc">${eur(d.prezzo)} × ${num(aliq * 100, 0)}% = ${eur(d.prezzo * aliq)}</span>
+                 <p>Se il prezzo che ti hanno dato è già «IVA compresa», questa voce non è un costo in più: il prezzo al netto sarebbe ${eur(d.prezzo / (1 + aliq))}.</p>`,
+        });
+        voci.push({
+          id: "fisse", gruppo: "notaio", imposta: true,
+          nome: "Registro, ipotecaria e catastale", nota: "200 € ciascuna, in misura fissa",
+          importo: 600,
+          dett: `<p>Sulle vendite soggette a IVA le tre imposte non sono proporzionali ma fisse: <strong>200 euro di registro, 200 di ipotecaria e 200 di catastale</strong>. Il notaio le riscuote e le versa allo Stato.</p>
+                 <span class="calc">200 € + 200 € + 200 € = 600 €</span>`,
+        });
+      } else {
+        const aliq = d.primaCasa ? 0.02 : 0.09;
+        const teorico = base * aliq;
+        const registro = Math.max(teorico, 1000);
+        voci.push({
+          id: "registro", gruppo: "notaio", imposta: true,
+          nome: "Imposta di registro", nota: `${num(aliq * 100, 0)}% ${usaPV ? "del valore catastale" : "del prezzo"}`,
+          importo: registro,
+          dett: `<p>Comprando da un privato si paga l'imposta di registro: <strong>${num(aliq * 100, 0)}%</strong> ${d.primaCasa ? "grazie all'agevolazione prima casa" : "perché non c'è l'agevolazione prima casa"}.</p>
+                 ${usaPV
+              ? `<p>Con il prezzo-valore la base imponibile è il valore catastale, cioè la rendita per il moltiplicatore ${num(molt, 1)}.</p>
+                     <span class="calc">${num(d.rendita, 2)} € × ${num(molt, 1)} = ${eur(catastale)}\n${eur(catastale)} × ${num(aliq * 100, 0)}% = ${eur(teorico)}</span>`
+              : `<p>Senza il prezzo-valore la base imponibile è il prezzo dichiarato nell'atto.</p>
+                     <span class="calc">${eur(d.prezzo)} × ${num(aliq * 100, 0)}% = ${eur(teorico)}</span>`}
+                 ${teorico < 1000 ? `<p>Il calcolo darebbe ${eur(teorico)}, ma la legge prevede un <strong>minimo di 1.000 euro</strong>: è quello che paghi.</p>` : ""}`,
+        });
+        voci.push({
+          id: "fisse", gruppo: "notaio", imposta: true,
+          nome: "Imposte ipotecaria e catastale", nota: "50 € + 50 €, in misura fissa",
+          importo: 100,
+          dett: `<p>Sono le due imposte fisse che accompagnano la trascrizione dell'atto nei registri immobiliari e l'aggiornamento del catasto: <strong>50 euro ciascuna</strong>, qualunque sia il prezzo della casa.</p>
+                 <span class="calc">50 € + 50 € = 100 €</span>`,
+        });
+      }
+
+      const bolli = d.primaCasa && !d.daImpresa ? 0 : 320;
+      voci.push({
+        id: "bolli", gruppo: "notaio", imposta: true,
+        nome: "Bolli, tributi e tasse ipotecarie", nota: bolli ? "importo indicativo" : "esenti con l'agevolazione prima casa",
+        importo: bolli,
+        dett: bolli
+          ? `<p>Imposta di bollo, tributi speciali catastali e tasse ipotecarie: sono voci minori che insieme valgono <strong>circa 320 euro</strong>. L'importo esatto compare nel preventivo del notaio perché dipende dal numero di copie e di formalità.</p>`
+          : `<p>Gli atti che godono dell'agevolazione prima casa acquistati da un privato sono <strong>esenti da imposta di bollo, tributi speciali catastali e tasse ipotecarie</strong>: su questa voce non paghi nulla.</p>`,
+      });
+
+      const onorarioBase = clamp(1100 + 0.0045 * d.prezzo, 1200, 3600);
+      const onorario = onorarioBase * (usaPV ? 0.7 : 1);
+      voci.push({
+        id: "onorario", gruppo: "notaio", imposta: false,
+        nome: "Onorario del notaio", nota: "stima di mercato, IVA 22% inclusa",
+        importo: onorario * 1.22,
+        dett: `<p>È la voce libera: le tariffe notarili sono abolite dal 2012, quindi il compenso lo decide ogni studio. Per una casa da ${eur(d.prezzo)} una stima realistica è <strong>${eur(onorario * 1.22 * 0.82)} – ${eur(onorario * 1.22 * 1.18)}</strong> con l'IVA.</p>
+               <span class="calc">compenso ${eur(onorario)} + IVA 22% = ${eur(onorario * 1.22)}</span>
+               ${usaPV ? `<p>Chiedendo il prezzo-valore la legge riconosce una <strong>riduzione del 30%</strong> dell'onorario: senza di essa la stima sarebbe ${eur(onorarioBase * 1.22)}.</p>` : ""}
+               <p>È qui che vale la pena confrontare due o tre preventivi: le imposte invece sono identiche per legge.</p>`,
+      });
+
+      voci.push({
+        id: "vive", gruppo: "notaio", imposta: false,
+        nome: "Visure, copie e registrazione", nota: "spese anticipate dallo studio",
+        importo: d.mutuo > 0 ? 360 : 280,
+        dett: `<p>Visure ipotecarie e catastali per verificare che la casa sia libera da ipoteche, copie autentiche dell'atto, registrazione telematica e adempimenti presso il catasto. Non sono compenso: il notaio le anticipa e te le ribalta.</p>
+               <p>Pesano in genere <strong>250–400 euro</strong>${d.mutuo > 0 ? ", un po' di più quando c'è anche l'atto di mutuo da iscrivere" : ""}. Chiedi che siano indicate a parte nel preventivo.</p>`,
+      });
+
+      if (d.mutuo > 0) {
+        const attoMutuo = clamp(550 + 0.0015 * d.mutuo, 600, 1400);
+        voci.push({
+          id: "atto-mutuo", gruppo: "notaio", imposta: false,
+          nome: "Atto di mutuo", nota: "secondo atto, IVA 22% inclusa",
+          importo: attoMutuo * 1.22,
+          dett: `<p>Con il mutuo il notaio stipula <strong>due atti</strong>: la compravendita e il contratto di mutuo con iscrizione dell'ipoteca. Il secondo ha un compenso proprio, in genere ${eur(attoMutuo * 1.22 * 0.85)} – ${eur(attoMutuo * 1.22 * 1.15)} con l'IVA.</p>
+                 <span class="calc">compenso ${eur(attoMutuo)} + IVA 22% = ${eur(attoMutuo * 1.22)}</span>
+                 <p>Spesso è la banca a indicare il proprio notaio per l'atto di mutuo: puoi comunque scegliere lo stesso studio per entrambi gli atti e spendere meno.</p>`,
+        });
+
+        const aliqSost = d.primaCasa ? 0.0025 : 0.02;
+        voci.push({
+          id: "sostitutiva", gruppo: "banca", imposta: false,
+          nome: "Imposta sostitutiva sul mutuo", nota: `${num(aliqSost * 100, 2)}% dell'importo erogato`,
+          importo: d.mutuo * aliqSost,
+          dett: `<p>Sostituisce registro, bollo, ipotecaria e catastale sul finanziamento. Vale lo <strong>0,25%</strong> se il mutuo serve per la prima casa e il <strong>2%</strong> negli altri casi: è la seconda ragione per cui la seconda casa costa molto di più.</p>
+                 <span class="calc">${eur(d.mutuo)} × ${num(aliqSost * 100, 2)}% = ${eur(d.mutuo * aliqSost)}</span>
+                 <p>Non la paghi a parte: la banca la trattiene dall'importo che ti eroga il giorno dell'atto.</p>`,
+        });
+
+        const istruttoria = clamp(d.mutuo * 0.005, 250, 1500);
+        voci.push({
+          id: "istruttoria", gruppo: "banca", imposta: false,
+          nome: "Istruttoria della banca", nota: "varia molto da banca a banca",
+          importo: istruttoria,
+          dett: `<p>È la commissione per l'esame della pratica: alcune banche la calcolano in percentuale (0,25–0,5% dell'importo), altre chiedono una cifra fissa, altre la azzerano nelle promozioni. La stima qui è lo 0,5% con un minimo di 250 euro.</p>
+                 <span class="calc">${eur(d.mutuo)} × 0,5% = ${eur(istruttoria)}</span>
+                 <p>Guarda il <strong>TAEG</strong> e il prospetto informativo: lì trovi la cifra esatta della tua banca, insieme alla polizza incendio e scoppio obbligatoria (di solito 200–700 euro di premio).</p>`,
+        });
+        voci.push({
+          id: "perizia", gruppo: "banca", imposta: false,
+          nome: "Perizia dell'immobile", nota: "stima tecnica richiesta dalla banca",
+          importo: 250,
+          dett: `<p>Un tecnico incaricato dalla banca visita la casa e ne stima il valore: è su quel valore, non sul prezzo, che la banca calcola la percentuale finanziabile. Costa in genere <strong>200–400 euro</strong> e si paga anche se il mutuo poi non viene concesso.</p>`,
+        });
+      }
+
+      if (d.agenzia > 0) {
+        voci.push({
+          id: "agenzia", gruppo: "agenzia", imposta: false,
+          nome: "Provvigione dell'agenzia", nota: `${num(d.agenzia, 1).replace(/,0$/, "")}% del prezzo, IVA 22% inclusa`,
+          importo: d.prezzo * d.agenzia / 100 * 1.22,
+          dett: `<p>La quota a carico del compratore è di norma il <strong>2–4% del prezzo</strong> più IVA al 22%, dovuta alla firma del preliminare (non al rogito).</p>
+                 <span class="calc">${eur(d.prezzo)} × ${num(d.agenzia, 1).replace(/,0$/, "")}% = ${eur(d.prezzo * d.agenzia / 100)}\n+ IVA 22% = ${eur(d.prezzo * d.agenzia / 100 * 1.22)}</span>
+                 <p>È una percentuale trattabile, soprattutto quando l'agenzia incassa anche dal venditore: mettetela per iscritto nell'incarico prima di fare la proposta.</p>`,
+        });
+      }
+
+      const somma = (g) => voci.filter(v => v.gruppo === g).reduce((t, v) => t + v.importo, 0);
+      const totali = { notaio: somma("notaio"), venditore: somma("venditore"), banca: somma("banca"), agenzia: somma("agenzia") };
+      totali.tutto = totali.notaio + totali.venditore + totali.banca + totali.agenzia;
+
+      if (usaPV && catastale > d.prezzo) avvisi.push("Il valore catastale è più alto del prezzo: in questo caso il prezzo-valore non conviene sulle imposte, ma resta utile per la riduzione dell'onorario e contro gli accertamenti.");
+      if (!d.daImpresa && d.prezzoValore && catastale === 0) avvisi.push("Inserisci la rendita catastale per applicare il prezzo-valore: per ora le imposte sono calcolate sul prezzo pieno.");
+      if (d.mutuo > d.prezzo * 0.8) avvisi.push("Il mutuo supera l'80% del prezzo: le banche concedono mutui oltre questa soglia solo con garanzie aggiuntive o con il Fondo di garanzia prima casa.");
+      if (d.daImpresa && !d.primaCasa && d.prezzo > 0) avvisi.push("Se l'immobile è accatastato come A/1, A/8 o A/9 l'IVA è al 22% e non al 10%: in quel caso il totale sale.");
+
+      return { voci, totali, avvisi, catastale, usaPV, base, molt };
+    }
+
+    // ---------- render ----------
+    let apertaId = null;
+
+    function render() {
+      const d = leggiDati();
+      salva(d);
+      const impresaPV = d.daImpresa;
+      $("#pv").disabled = impresaPV;
+      $("#pv-wrap").classList.toggle("off", impresaPV);
+      $("#vend-h").textContent = impresaPV
+        ? "Con l'IVA le imposte sono fisse e il prezzo-valore non si applica."
+        : "L'impresa applica l'IVA se vende entro 5 anni dalla fine dei lavori.";
+
+      const vuoto = d.prezzo <= 0;
+      $("#vuoto").hidden = !vuoto;
+      $("#risultato").hidden = vuoto;
+      $("#dock").hidden = vuoto;
+      if (vuoto) { $("#conf-casa").innerHTML = ""; $("#conf-prev").innerHTML = ""; $("#prospetto").innerHTML = ""; return; }
+
+      const r = calcola(d);
+      $("#t-notaio").textContent = eur(r.totali.notaio);
+      $("#d-notaio").textContent = eur(r.totali.notaio);
+
+      const righe = [];
+      if (r.totali.venditore > 0) righe.push(["IVA all'impresa venditrice", r.totali.venditore]);
+      if (r.totali.banca > 0) righe.push(["Alla banca per il mutuo", r.totali.banca]);
+      if (r.totali.agenzia > 0) righe.push(["All'agenzia immobiliare", r.totali.agenzia]);
+      if (righe.length) righe.push(["Totale oltre il prezzo", r.totali.tutto]);
+      $("#t-righe").innerHTML = righe.map(([k, v]) => `<div class="sec"><span>${k}</span><b>${eur(v)}</b></div>`).join("");
+
+      const liquidita = Math.max(0, d.prezzo - d.mutuo) + r.totali.tutto - r.totali.venditore;
+      $("#quota").textContent = `Le spese valgono il ${num(r.totali.tutto / d.prezzo * 100, 1)}% del prezzo. Contando l'anticipo, ti servono circa ${eur(liquidita)} di liquidità.`;
+      const av = $("#avviso");
+      av.hidden = r.avvisi.length === 0;
+      av.innerHTML = r.avvisi.map(a => `<p style="margin:.2rem 0">${a}</p>`).join("");
+
+      renderVoci(r);
+      renderConfrontoCasa(d);
+      renderPreventivi(d, r);
+      renderProspetto(d, r);
+    }
+
+    function renderVoci(r) {
+      const cont = $("#gruppi");
+      cont.innerHTML = "";
+      for (const g of GRUPPI) {
+        const voci = r.voci.filter(v => v.gruppo === g.id);
+        if (!voci.length) continue;
+        const sec = document.createElement("div");
+        sec.className = "gruppo";
+        const tot = voci.reduce((t, v) => t + v.importo, 0);
+        sec.innerHTML = `<h3>${g.titolo}</h3><ul class="voci">${voci.map(v => `
+          <li>
+            <button type="button" class="voce" data-id="${v.id}" aria-expanded="false" aria-controls="dett-${v.id}">
+              <span class="nome">${v.nome}<small>${v.nota}</small></span>
+              <span class="imp">${eur(v.importo)}</span>
+              <span class="chev" aria-hidden="true">›</span>
+            </button>
+            <div class="dett" id="dett-${v.id}" hidden>
+              <h4>${v.nome}</h4>
+              ${v.dett}
+              <button type="button" class="chiudi" data-chiudi="${v.id}">Chiudi</button>
+            </div>
+          </li>`).join("")}</ul>
+          <div class="tot-riga"><span>Totale ${g.titolo.toLowerCase().replace(/,.*$/, "")}</span><span>${eur(tot)}</span></div>`;
+        cont.append(sec);
+      }
+      if (apertaId) apri(apertaId, false);
+    }
+
+    function apri(id, scrolla = true) {
+      const btn = document.querySelector(`.voce[data-id="${id}"]`);
+      const box = document.getElementById(`dett-${id}`);
+      if (!btn || !box) { apertaId = null; return; }
+      const giaAperta = apertaId === id && !box.hidden;
+      document.querySelectorAll(".dett").forEach(d => { d.hidden = true; });
+      document.querySelectorAll(".voce").forEach(b => b.setAttribute("aria-expanded", "false"));
+      if (giaAperta) { apertaId = null; return; }
+      box.hidden = false;
+      btn.setAttribute("aria-expanded", "true");
+      apertaId = id;
+      if (scrolla) box.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    }
+
+    function chiudi() {
+      document.querySelectorAll(".dett").forEach(d => { d.hidden = true; });
+      document.querySelectorAll(".voce").forEach(b => b.setAttribute("aria-expanded", "false"));
+      apertaId = null;
+    }
+
+    // ---------- Pro: prima casa / seconda casa ----------
+    function renderConfrontoCasa(d) {
+      const a = calcola({ ...d, primaCasa: true });
+      const b = calcola({ ...d, primaCasa: false });
+      const riga = (nome, fa, fb) => `<tr><td>${nome}</td><td>${eur(fa)}</td><td>${eur(fb)}</td></tr>`;
+      const imposteAcq = (r) => r.voci.filter(v => ["registro", "iva"].includes(v.id)).reduce((t, v) => t + v.importo, 0);
+      const altre = (r) => r.voci.filter(v => ["fisse", "bolli"].includes(v.id)).reduce((t, v) => t + v.importo, 0);
+      const notarili = (r) => r.voci.filter(v => ["onorario", "vive", "atto-mutuo"].includes(v.id)).reduce((t, v) => t + v.importo, 0);
+      const sost = (r) => r.voci.filter(v => v.id === "sostitutiva").reduce((t, v) => t + v.importo, 0);
+      const totA = a.totali.tutto, totB = b.totali.tutto;
+      $("#conf-casa").innerHTML = `
+        <table class="conf">
+          <thead><tr><th>Voce</th><th>Prima casa</th><th>Seconda casa</th></tr></thead>
+          <tbody>
+            ${riga(d.daImpresa ? "IVA sull'acquisto" : "Imposta di registro", imposteAcq(a), imposteAcq(b))}
+            ${riga("Imposte fisse, bolli e tributi", altre(a), altre(b))}
+            ${riga("Onorario e spese notarili", notarili(a), notarili(b))}
+            ${d.mutuo > 0 ? riga("Imposta sostitutiva sul mutuo", sost(a), sost(b)) : ""}
+            ${d.agenzia > 0 ? riga("Provvigione dell'agenzia", a.totali.agenzia, b.totali.agenzia) : ""}
+            <tr class="tot"><td>Totale oltre il prezzo</td><td>${eur(totA)}</td><td>${eur(totB)}</td></tr>
+            <tr class="diff"><td>Differenza</td><td colspan="2">${eur(totB - totA)} in più come seconda casa</td></tr>
+          </tbody>
+        </table>
+        <p class="verdetto">Portare la residenza nel comune della casa entro 18 mesi, quando è possibile, vale ${eur(totB - totA)} su questo acquisto${d.mutuo > 0 ? ", imposta sostitutiva sul mutuo compresa" : ""}. L'agevolazione spetta se l'immobile non è di lusso (A/1, A/8, A/9) e non possiedi già un'abitazione acquistata con il beneficio.</p>`;
+    }
+
+    // ---------- Pro: due preventivi ----------
+    function renderPreventivi(d, r) {
+      const imposte = r.voci.filter(v => v.gruppo === "notaio" && v.imposta).reduce((t, v) => t + v.importo, 0);
+      const nostra = r.voci.filter(v => v.gruppo === "notaio" && !v.imposta).reduce((t, v) => t + v.importo, 0);
+      const a = parseNum($("#pa").value), b = parseNum($("#pb").value);
+      const box = $("#conf-prev");
+      if (a <= 0 && b <= 0) {
+        box.innerHTML = `<p class="verdetto">Su questo acquisto le imposte che il notaio versa allo Stato sono <strong>${eur(imposte)}</strong>: identiche in qualunque studio. La nostra stima di compenso e spese è ${eur(nostra)}, quindi un preventivo completo dovrebbe aggirarsi sui ${eur(imposte + nostra)}.</p>`;
+        return;
+      }
+      const voce = (nome, tot) => {
+        if (tot <= 0) return "";
+        const comp = tot - imposte;
+        const nota = comp < 200
+          ? "probabilmente non comprende le imposte, oppure manca qualche voce"
+          : comp > nostra * 1.35 ? "compenso sopra la media di mercato" : comp < nostra * 0.75 ? "compenso sotto la media: controlla che includa visure e copie" : "in linea con il mercato";
+        return `<tr><td>${nome}</td><td>${eur(tot)}</td><td>${eur(imposte)}</td><td>${eur(comp)}</td></tr><tr class="diff"><td colspan="4">${nome}: ${nota}</td></tr>`;
+      };
+      let verdetto = "";
+      if (a > 0 && b > 0) {
+        const diff = Math.abs(a - b);
+        verdetto = diff < 50
+          ? "I due preventivi sono praticamente uguali: scegli in base a disponibilità e chiarezza del preventivo scritto."
+          : `Il preventivo ${a < b ? "A" : "B"} costa ${eur(diff)} in meno, e la differenza è tutta sul compenso: chiedi a entrambi l'elenco scritto di ciò che è incluso (visure, copie, registrazione, atto di mutuo) prima di decidere.`;
+      } else {
+        verdetto = "Inserisci anche il secondo preventivo per confrontarli voce per voce.";
+      }
+      box.innerHTML = `
+        <table class="conf">
+          <thead><tr><th>Preventivo</th><th>Totale</th><th>Imposte</th><th>Compenso e spese</th></tr></thead>
+          <tbody>${voce("Preventivo A", a)}${voce("Preventivo B", b)}
+            <tr class="tot"><td>La nostra stima</td><td>${eur(imposte + nostra)}</td><td>${eur(imposte)}</td><td>${eur(nostra)}</td></tr>
+          </tbody>
+        </table>
+        <p class="verdetto">${verdetto}</p>`;
+    }
+
+    // ---------- Pro: prospetto ----------
+    function renderProspetto(d, r) {
+      const oggi = new Date().toLocaleDateString("it-IT", { day: "numeric", month: "long", year: "numeric" });
+      const righe = r.voci.map(v => `<dt>${v.nome}</dt><dd>${eur(v.importo)}</dd>`).join("");
+      $("#prospetto").innerHTML = `
+        <p><strong>Spese di acquisto — prospetto del ${oggi}</strong></p>
+        <dl>
+          <dt>Prezzo della casa</dt><dd>${eur(d.prezzo)}</dd>
+          <dt>Mutuo richiesto</dt><dd>${eur(d.mutuo)}</dd>
+          <dt>Anticipo a tuo carico</dt><dd>${eur(Math.max(0, d.prezzo - d.mutuo))}</dd>
+          ${righe}
+          <dt><strong>Totale spese oltre il prezzo</strong></dt><dd><strong>${eur(r.totali.tutto)}</strong></dd>
+          <dt><strong>Liquidità necessaria</strong></dt><dd><strong>${eur(Math.max(0, d.prezzo - d.mutuo) + r.totali.tutto - r.totali.venditore)}</strong></dd>
+        </dl>
+        <p class="ipotesi">Ipotesi: ${d.primaCasa ? "prima casa agevolata" : "seconda casa"}, venditore ${d.daImpresa ? "impresa con IVA" : "privato"}${r.usaPV ? `, prezzo-valore sul valore catastale di ${eur(r.catastale)} (rendita ${num(d.rendita, 2)} € × ${num(r.molt, 1)})` : ", imposte calcolate sul prezzo dichiarato"}${d.agenzia > 0 ? `, agenzia al ${num(d.agenzia, 1).replace(/,0$/, "")}% + IVA` : ", nessuna agenzia"}. Imposte secondo le aliquote di legge; onorario, istruttoria e perizia sono stime di mercato, non preventivi.</p>`;
+    }
+
+    // ---------- persistenza ----------
+    function salva(d) {
+      try {
+        localStorage.setItem(KEY, JSON.stringify({
+          prezzo: $("#prezzo").value, rendita: $("#rendita").value, mutuo: $("#mutuo").value,
+          agenzia: $("#agenzia").value, casa: d.primaCasa ? "prima" : "seconda",
+          vend: d.daImpresa ? "impresa" : "privato", pv: $("#pv").checked,
+        }));
+      } catch (_) { /* storage non disponibile */ }
+    }
+    function ripristina() {
+      let s = null;
+      try { s = JSON.parse(localStorage.getItem(KEY) || "null"); } catch (_) { s = null; }
+      if (!s) return;
+      if (typeof s.prezzo === "string") $("#prezzo").value = s.prezzo;
+      if (typeof s.rendita === "string") $("#rendita").value = s.rendita;
+      if (typeof s.mutuo === "string") $("#mutuo").value = s.mutuo;
+      if (typeof s.agenzia === "string") $("#agenzia").value = s.agenzia;
+      const casa = document.querySelector(`input[name="casa"][value="${s.casa === "seconda" ? "seconda" : "prima"}"]`);
+      if (casa) casa.checked = true;
+      const vend = document.querySelector(`input[name="vend"][value="${s.vend === "impresa" ? "impresa" : "privato"}"]`);
+      if (vend) vend.checked = true;
+      $("#pv").checked = s.pv !== false;
+    }
+
+    // ---------- eventi ----------
+    $("#dati").addEventListener("input", render);
+    $("#dati").addEventListener("change", render);
+    $("#dati").addEventListener("submit", (ev) => ev.preventDefault());
+    $("#pa").addEventListener("input", render);
+    $("#pb").addEventListener("input", render);
+    document.addEventListener("click", (ev) => {
+      const voce = ev.target.closest(".voce");
+      if (voce) { apri(voce.dataset.id); return; }
+      if (ev.target.closest("[data-chiudi]")) {
+        const id = ev.target.closest("[data-chiudi]").dataset.chiudi;
+        chiudi();
+        document.querySelector(`.voce[data-id="${id}"]`)?.focus();
+      }
+    });
+    document.addEventListener("keydown", (ev) => { if (ev.key === "Escape" && apertaId) chiudi(); });
+    $("#stampa").addEventListener("click", () => { if (window.Monetize?.isPro()) window.print(); else window.Monetize?.unlock(); });
+    $("#d-btn").addEventListener("click", () => {
+      $("#gruppi").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+    if (window.Monetize?.onPro) window.Monetize.onPro(() => render());
+
+    ripristina();
+    if (!$("#agenzia").value) $("#agenzia").value = "3";
+    render();
+  })();
+  </script>
+</body>
+</html>
