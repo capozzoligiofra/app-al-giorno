@@ -1,0 +1,970 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1b2f6b">
+  <title>Calcolo Pensione: quando vado in pensione, la data</title>
+  <meta name="description" content="Calcolo di quando vado in pensione: inserisci data di nascita e contributi versati e ottieni la data di uscita con i requisiti INPS aggiornati al 2028.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-11-quando-vado-in-pensione/">
+  <meta property="og:title" content="Calcolo Pensione: quando vado in pensione, la data">
+  <meta property="og:description" content="Data di nascita e contributi versati: scopri in che mese puoi uscire con la vecchiaia, l'anticipata, la contributiva a 64 anni o i 41 anni dei precoci.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-11-quando-vado-in-pensione/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Quando Vado in Pensione",
+    "description": "Calcolatore gratuito della data di pensionamento: confronta pensione di vecchiaia, anticipata ordinaria, anticipata contributiva a 64 anni, lavoratori precoci e APE sociale con i requisiti aggiornati al biennio 2027-2028.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-11-quando-vado-in-pensione/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Quanti anni di contributi servono per andare in pensione?", "acceptedAnswer": { "@type": "Answer", "text": "Per la pensione di vecchiaia servono 20 anni di contributi al compimento dell'età richiesta (67 anni nel 2026, 67 anni e 1 mese nel 2027, 67 anni e 3 mesi dal 2028). Per la pensione anticipata ordinaria non conta l'età ma solo i contributi: 42 anni e 10 mesi per gli uomini e 41 anni e 10 mesi per le donne nel 2026, un mese in più nel 2027 e tre mesi in più dal 2028." } },
+      { "@type": "Question", "name": "Dove trovo gli anni di contributi da inserire?", "acceptedAnswer": { "@type": "Answer", "text": "Nell'estratto conto contributivo INPS, che si scarica dal fascicolo previdenziale del cittadino su inps.it con SPID, CIE o CNS. Il totale è espresso in settimane: dividi le settimane per 52 per ottenere gli anni e moltiplica il resto per tre per avere i mesi." } },
+      { "@type": "Question", "name": "Perché la pensione decorre tre mesi dopo i requisiti?", "acceptedAnswer": { "@type": "Answer", "text": "La pensione anticipata ordinaria e quella dei lavoratori precoci prevedono una finestra mobile di tre mesi: il diritto si matura alla data dei requisiti, ma il primo assegno arriva tre mesi dopo. La pensione di vecchiaia non ha finestra e decorre dal primo giorno del mese successivo alla maturazione." } },
+      { "@type": "Question", "name": "I requisiti possono cambiare ancora?", "acceptedAnswer": { "@type": "Answer", "text": "Sì. L'età e i contributi richiesti sono agganciati alla speranza di vita ISTAT e vengono ritarati ogni due anni. Gli aumenti del 2027 e del 2028 sono già fissati dalla legge di bilancio 2026, mentre l'adeguamento dal 2029 non è ancora stato definito: per gli anni successivi il calcolo mantiene i valori del 2028." } },
+      { "@type": "Question", "name": "Una volta maturati, i requisiti si perdono?", "acceptedAnswer": { "@type": "Answer", "text": "No. I requisiti si cristallizzano: se li raggiungi in un anno in cui erano più bassi, conservi il diritto a uscire con quei valori anche se presenti la domanda più tardi." } }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #eef1f8; --surface: #fff; --surface2: #f7f9fe; --text: #111a33; --muted: #5a6788;
+      --line: #d5dcee; --accent: #1b2f6b; --accent-soft: #dde4f8; --accent-ink: #fff;
+      --ok: #0f6b45; --warn: #8a5a12; --off: #8b94ab;
+      --r: 14px; --r-s: 9px;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0a0f22; --surface: #121a35; --surface2: #18213f; --text: #e7ecfb; --muted: #97a3c4;
+        --line: #26305a; --accent: #8aa6ff; --accent-soft: #1d2850; --accent-ink: #0a0f22;
+        --ok: #5bd39b; --warn: #e0b065; --off: #6d779a;
+        color-scheme: dark;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font: 1rem/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      overflow-x: hidden;
+    }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px calc(104px + env(safe-area-inset-bottom)); }
+
+    /* ---- testata con avanzamento del wizard ---- */
+    .top {
+      position: sticky; top: 0; z-index: 5; background: var(--bg);
+      border-bottom: 1px solid var(--line);
+      padding: max(10px, env(safe-area-inset-top)) 16px 10px;
+    }
+    .top-in { max-width: 760px; margin: 0 auto; display: flex; align-items: center; gap: 12px; }
+    .backwrap { display: flex; align-items: center; gap: .6rem; min-width: 0; }
+    .back { color: var(--muted); text-decoration: none; font-size: .88rem; padding: 6px 0; white-space: nowrap; }
+    .back:hover { color: var(--text); }
+    .steps { margin-left: auto; display: flex; gap: 6px; align-items: center; flex: none; }
+    .steps b { display: none; font-size: .78rem; font-weight: 600; color: var(--muted); letter-spacing: .04em; text-transform: uppercase; white-space: nowrap; }
+    .steps i { width: 26px; height: 5px; border-radius: 3px; background: var(--line); display: block; }
+    .steps i.on { background: var(--accent); }
+
+    h1 { font-size: 1.65rem; line-height: 1.2; letter-spacing: -.02em; margin: 1.1rem 0 .4rem; }
+    .lead { color: var(--muted); margin: 0 0 1.2rem; }
+    h2 { font-size: 1.12rem; margin: 0 0 .9rem; letter-spacing: -.01em; }
+    h3 { font-size: 1rem; margin: 1.4rem 0 .35rem; }
+    p { margin: 0 0 .9rem; }
+
+    /* ---- passi ---- */
+    .step { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 1.1rem 1rem 1.2rem; }
+    .step[hidden] { display: none; }
+    .kicker { display: block; font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: .3rem; }
+    .field { margin-bottom: 1.25rem; }
+    .field:last-child { margin-bottom: 0; }
+    label.lbl { display: block; font-weight: 600; margin-bottom: .1rem; }
+    .hint { color: var(--muted); font-size: .86rem; margin: .1rem 0 .55rem; }
+    input[type="date"], input[type="text"] {
+      width: 100%; font: inherit; font-size: 1.05rem; padding: .7rem .8rem; color: var(--text);
+      background: var(--surface2); border: 1px solid var(--line); border-radius: var(--r-s); min-height: 48px;
+    }
+    input:focus-visible, button:focus-visible, .chip:focus-within { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    /* chip a scelta singola */
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { position: relative; }
+    .chip input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; }
+    .chip span {
+      display: block; min-height: 46px; padding: .6rem 1rem; border: 1.5px solid var(--line);
+      border-radius: 23px; background: var(--surface2); font-weight: 600; color: var(--muted);
+      display: flex; align-items: center;
+    }
+    .chip input:checked + span { border-color: var(--accent); background: var(--accent-soft); color: var(--text); }
+
+    /* stepper anni / mesi */
+    .steppers { display: flex; gap: 10px; }
+    .stp { flex: 1; background: var(--surface2); border: 1px solid var(--line); border-radius: var(--r-s); padding: .6rem; text-align: center; }
+    .stp .cap { font-size: .8rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: .05em; }
+    .stp .row { display: flex; align-items: center; gap: 4px; margin-top: .3rem; }
+    .stp button {
+      width: 44px; height: 44px; flex: none; font-size: 1.3rem; line-height: 1; font-weight: 700;
+      border: 1px solid var(--line); background: var(--surface); color: var(--text); border-radius: 50%; cursor: pointer;
+    }
+    .stp button:active { background: var(--accent-soft); }
+    .stp input { flex: 1; min-width: 0; width: 100%; text-align: center; font: inherit; font-size: 1.35rem; font-weight: 700;
+      border: 0; background: transparent; color: var(--text); padding: 0; -moz-appearance: textfield; }
+    .stp input::-webkit-outer-spin-button, .stp input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+    /* interruttori sì / no */
+    .sw { display: flex; align-items: center; gap: 12px; min-height: 48px; padding: .55rem 0; border-top: 1px solid var(--line); cursor: pointer; }
+    .sw:first-of-type { border-top: 0; }
+    .sw input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+    .sw .track { flex: none; width: 50px; height: 30px; border-radius: 15px; background: var(--line); position: relative; transition: background .15s; }
+    .sw .track::after { content: ""; position: absolute; top: 3px; left: 3px; width: 24px; height: 24px; border-radius: 50%; background: var(--surface); transition: transform .15s; box-shadow: 0 1px 3px rgba(0,0,0,.25); }
+    .sw input:checked + .track { background: var(--accent); }
+    .sw input:checked + .track::after { transform: translateX(20px); }
+    .sw input:focus-visible + .track { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .sw .txt { font-weight: 600; }
+    .sw .txt small { display: block; font-weight: 400; color: var(--muted); font-size: .85rem; line-height: 1.35; }
+    .err { color: #b3302a; font-size: .88rem; font-weight: 600; margin: .4rem 0 0; }
+    @media (prefers-color-scheme: dark) { .err { color: #ff8e85; } }
+
+    /* ---- riepilogo compatto ---- */
+    .recap { display: none; gap: 8px; flex-wrap: wrap; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: .7rem .8rem; }
+    .recap.on { display: flex; }
+    .recap .tag { font-size: .85rem; background: var(--surface2); border: 1px solid var(--line); border-radius: 20px; padding: .25rem .6rem; color: var(--muted); }
+    .recap button { margin-left: auto; min-height: 44px; padding: 0 .9rem; border-radius: 22px; border: 1.5px solid var(--accent); background: transparent; color: var(--accent); font: inherit; font-weight: 700; cursor: pointer; }
+
+    /* ---- esito ---- */
+    .hero { background: var(--accent); color: var(--accent-ink); border-radius: var(--r); padding: 1.2rem 1rem; margin: 1rem 0; }
+    .hero .via { font-size: .82rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; opacity: .85; }
+    .hero .data { font-size: 2.1rem; font-weight: 800; letter-spacing: -.03em; line-height: 1.1; margin: .2rem 0 .35rem; text-transform: capitalize; }
+    .hero .sub { opacity: .9; font-size: .95rem; }
+    .hero .sub b { font-weight: 700; }
+    .vie { list-style: none; margin: 0; padding: 0; }
+    .vie li { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: .85rem .9rem; margin-bottom: .6rem; }
+    .vie li.no { opacity: .72; }
+    .vie .ttl { display: flex; gap: 8px; align-items: baseline; font-weight: 700; }
+    .vie .ttl .badge { flex: none; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; padding: .15rem .45rem; border-radius: 5px; background: var(--accent-soft); color: var(--accent); }
+    .vie .big { font-size: 1.22rem; font-weight: 800; letter-spacing: -.02em; margin: .3rem 0 .1rem; text-transform: capitalize; }
+    .vie .meta { color: var(--muted); font-size: .9rem; }
+    .vie .nota { color: var(--muted); font-size: .88rem; margin-top: .45rem; border-top: 1px dashed var(--line); padding-top: .45rem; }
+    .empty { background: var(--surface); border: 1px dashed var(--line); border-radius: var(--r); padding: 1.1rem 1rem; color: var(--muted); }
+    .avviso { background: var(--accent-soft); border-radius: var(--r-s); padding: .75rem .85rem; font-size: .9rem; color: var(--text); }
+    #esito, .step { scroll-margin-top: 72px; }
+
+    /* ---- Pro ---- */
+    section[data-pro] { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 1.1rem 1rem; margin: 1rem 0; }
+    .slider { width: 100%; margin: .6rem 0 .2rem; height: 44px; accent-color: var(--accent); }
+    .gain { font-size: 1.05rem; }
+    .gain b { font-size: 1.3rem; letter-spacing: -.02em; }
+    .btns { display: flex; gap: 8px; flex-wrap: wrap; margin-top: .9rem; }
+    .btns button { min-height: 46px; padding: 0 1rem; border-radius: var(--r-s); border: 1.5px solid var(--accent); background: transparent; color: var(--accent); font: inherit; font-weight: 700; cursor: pointer; }
+    .btns button.fill { background: var(--accent); color: var(--accent-ink); }
+    #prospetto { background: var(--surface2); border: 1px solid var(--line); border-radius: var(--r-s); padding: .9rem; margin-top: .9rem; font-size: .92rem; }
+    #prospetto h4 { margin: 0 0 .5rem; font-size: 1rem; }
+    #prospetto dl { margin: 0; }
+    #prospetto .r { display: flex; gap: 10px; justify-content: space-between; padding: .3rem 0; border-bottom: 1px solid var(--line); }
+    #prospetto .r:last-child { border-bottom: 0; }
+    #prospetto .r dt { color: var(--muted); margin: 0; }
+    #prospetto .r dd { margin: 0; font-weight: 600; text-align: right; }
+    .toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(96px + env(safe-area-inset-bottom)); background: var(--text); color: var(--bg); padding: .6rem 1rem; border-radius: 22px; font-size: .9rem; font-weight: 600; z-index: 20; }
+    .toast[hidden] { display: none; }
+
+    /* ---- guida ---- */
+    #guida { margin-top: 2rem; }
+    #guida h2 { font-size: 1.3rem; margin-top: 1.8rem; }
+    #guida ul { padding-left: 1.1rem; }
+    #guida li { margin-bottom: .45rem; }
+    .req { list-style: none; padding: 0; margin: 0 0 1rem; }
+    .req li { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: var(--r-s); padding: .7rem .8rem; margin-bottom: .55rem; }
+    .req b { display: block; }
+    .req span { color: var(--muted); font-size: .92rem; }
+    .small { color: var(--muted); font-size: .85rem; }
+    p.small { line-height: 2; }
+    p.small a { padding: 4px 0; }
+    .fonti { color: var(--muted); font-size: .85rem; border-top: 1px solid var(--line); padding-top: .9rem; margin-top: 1.4rem; }
+    a { color: var(--accent); }
+
+    /* ---- barra fissa in basso ---- */
+    .dock {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
+      background: var(--surface); border-top: 1px solid var(--line);
+      padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+      display: flex; gap: 10px; align-items: center;
+    }
+    .dock-in { max-width: 760px; margin: 0 auto; width: 100%; display: flex; gap: 10px; }
+    .dock button { min-height: 50px; font: inherit; font-weight: 700; border-radius: var(--r-s); cursor: pointer; border: 1.5px solid var(--line); background: var(--surface2); color: var(--text); padding: 0 1rem; }
+    .dock button.primary { flex: 1; background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-size: 1.05rem; }
+    .dock button[hidden] { display: none; }
+
+    @media (min-width: 700px) {
+      .steps b { display: inline; }
+      h1 { font-size: 2.1rem; }
+      .hero .data { font-size: 2.6rem; }
+      .step { padding: 1.5rem; }
+      .steppers { max-width: 420px; }
+      .dock { position: static; border: 0; background: transparent; padding: 1rem 0 0; }
+      .wrap { padding-bottom: 3rem; }
+      .toast { bottom: 24px; }
+    }
+    @media print {
+      .top, .dock, .step, .recap, #guida, [data-ad], [data-support], .hero, .vie, .lead, .toast, h1 { display: none !important; }
+      body { background: #fff; color: #000; }
+      section[data-pro] { border: 0; padding: 0; }
+      #prospetto { border: 1px solid #999; }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="top-in">
+      <span class="backwrap"><a class="back" href="../../index.html">← Tutte le app</a></span>
+      <div class="steps" id="steps" aria-hidden="true">
+        <b id="steps-lbl">Passo 1 di 3</b>
+        <i class="on"></i><i></i><i></i>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <h1>Calcolo di quando vado in pensione</h1>
+    <p class="lead">Tre domande e sai in che mese potrai uscire: data di nascita, contributi già versati, tipo di lavoro.
+      Il calcolo confronta tutte le vie di uscita con i requisiti INPS aggiornati al biennio 2027-2028.</p>
+
+    <div class="recap" id="recap"></div>
+
+    <form id="wiz" novalidate>
+      <section class="step" data-step="1">
+        <span class="kicker">Passo 1</span>
+        <h2>Chi sei</h2>
+
+        <div class="field">
+          <label class="lbl" for="nascita">Data di nascita</label>
+          <p class="hint">Serve per l'età richiesta dalla pensione di vecchiaia e da quella a 64 anni.</p>
+          <input type="date" id="nascita" name="nascita" autocomplete="bday" min="1945-01-01" max="2012-12-31">
+          <p class="err" id="e-nascita" hidden></p>
+        </div>
+
+        <div class="field">
+          <span class="lbl">Sesso</span>
+          <p class="hint">La pensione anticipata ordinaria chiede un anno in meno di contributi alle donne.</p>
+          <div class="chips" role="radiogroup" aria-label="Sesso">
+            <label class="chip"><input type="radio" name="sesso" value="U" checked><span>Uomo</span></label>
+            <label class="chip"><input type="radio" name="sesso" value="D"><span>Donna</span></label>
+          </div>
+        </div>
+
+        <div class="field" id="box-figli" hidden>
+          <span class="lbl">Figli</span>
+          <p class="hint">Riducono i contributi richiesti dall'APE sociale e la soglia di importo della pensione a 64 anni.</p>
+          <div class="chips" role="radiogroup" aria-label="Numero di figli">
+            <label class="chip"><input type="radio" name="figli" value="0" checked><span>Nessuno</span></label>
+            <label class="chip"><input type="radio" name="figli" value="1"><span>1</span></label>
+            <label class="chip"><input type="radio" name="figli" value="2"><span>2 o più</span></label>
+          </div>
+        </div>
+      </section>
+
+      <section class="step" data-step="2" hidden>
+        <span class="kicker">Passo 2</span>
+        <h2>I contributi che hai versato</h2>
+        <div class="field">
+          <span class="lbl">Totale a oggi</span>
+          <p class="hint">Lo trovi nell'estratto conto contributivo INPS. È in settimane: dividi per 52 per gli anni,
+            il resto per 4,33 per i mesi.</p>
+          <div class="steppers">
+            <div class="stp">
+              <span class="cap">Anni</span>
+              <div class="row">
+                <button type="button" data-step-btn="anni" data-delta="-1" aria-label="Un anno in meno">−</button>
+                <input type="text" inputmode="numeric" id="anni" value="20" aria-label="Anni di contributi">
+                <button type="button" data-step-btn="anni" data-delta="1" aria-label="Un anno in più">+</button>
+              </div>
+            </div>
+            <div class="stp">
+              <span class="cap">Mesi</span>
+              <div class="row">
+                <button type="button" data-step-btn="mesi" data-delta="-1" aria-label="Un mese in meno">−</button>
+                <input type="text" inputmode="numeric" id="mesi" value="0" aria-label="Mesi di contributi">
+                <button type="button" data-step-btn="mesi" data-delta="1" aria-label="Un mese in più">+</button>
+              </div>
+            </div>
+          </div>
+          <p class="err" id="e-contr" hidden></p>
+        </div>
+        <div class="field">
+          <label class="sw">
+            <input type="checkbox" id="dal96"><span class="track"></span>
+            <span class="txt">Il mio primo contributo è del 1996 o dopo
+              <small>Se hai anche un solo contributo versato entro il 1995 lascia spento: la pensione a 64 anni non ti riguarda.</small></span>
+          </label>
+        </div>
+      </section>
+
+      <section class="step" data-step="3" hidden>
+        <span class="kicker">Passo 3</span>
+        <h2>Il tuo lavoro</h2>
+        <div class="field">
+          <label class="sw">
+            <input type="checkbox" id="lavoro" checked><span class="track"></span>
+            <span class="txt">Continuo a lavorare senza interruzioni
+              <small>Se lo spegni i contributi restano fermi a quelli di oggi: utile per capire cosa succede se ti fermi adesso.</small></span>
+          </label>
+          <label class="sw">
+            <input type="checkbox" id="gravoso"><span class="track"></span>
+            <span class="txt">Faccio un lavoro gravoso o usurante
+              <small>Edilizia, lavoro notturno a turni, conducenti, personale sanitario di reparto, facchinaggio e le altre mansioni degli elenchi di legge: sono esclusi dall'aumento dei requisiti del 2027-2028.</small></span>
+          </label>
+          <label class="sw">
+            <input type="checkbox" id="precoce"><span class="track"></span>
+            <span class="txt">Ho almeno 12 mesi di contributi versati prima dei 19 anni
+              <small>È la condizione dei "lavoratori precoci", che possono uscire con 41 anni di contributi.</small></span>
+          </label>
+          <label class="sw" id="box-tutela" hidden>
+            <input type="checkbox" id="tutela"><span class="track"></span>
+            <span class="txt">…e rientro in una condizione di tutela
+              <small>Disoccupato da almeno tre mesi dopo un licenziamento, invalidità dal 74%, assistenza a un familiare disabile grave, oppure lavoro gravoso o usurante. Senza una di queste condizioni i 41 anni non si applicano.</small></span>
+          </label>
+        </div>
+      </section>
+    </form>
+
+    <section id="esito" aria-live="polite">
+      <div class="empty" id="vuoto">Compila i tre passi e tocca <b>Calcola la data</b>: qui compariranno la prima uscita
+        possibile e il confronto fra tutte le vie di pensionamento.</div>
+      <div id="risultato" hidden>
+        <div class="hero">
+          <div class="via" id="h-via">Prima uscita possibile</div>
+          <div class="data" id="h-data">—</div>
+          <div class="sub" id="h-sub"></div>
+        </div>
+        <h2>Tutte le vie di uscita</h2>
+        <ul class="vie" id="lista"></ul>
+        <p class="avviso" id="avviso2029" hidden>L'adeguamento alla speranza di vita è fissato per legge fino al 2028.
+          Per le date successive il calcolo mantiene i valori del 2028: un nuovo adeguamento può spostarle in avanti di
+          qualche mese, quindi conviene rifare il conto fra due anni.</p>
+      </div>
+    </section>
+
+    <div data-ad="top"></div>
+
+    <section data-pro="Scenario con riscatto o contributi aggiuntivi">
+      <h2>E se recuperassi dei contributi?</h2>
+      <p class="small">Riscatto della laurea, versamenti volontari, periodi all'estero da ricongiungere, contributi da
+        regolarizzare: aggiungili qui e vedi di quanto si sposta la data.</p>
+      <label class="lbl" for="extra">Contributi aggiuntivi: <span id="extra-lbl">0 mesi</span></label>
+      <input type="range" class="slider" id="extra" min="0" max="72" step="1" value="0">
+      <p class="gain" id="extra-esito">Muovi il cursore per vedere l'effetto sulla prima uscita.</p>
+    </section>
+
+    <section data-pro="Prospetto per il patronato">
+      <h2>Il prospetto da portare al patronato</h2>
+      <p class="small">Un foglio con i dati che hai inserito, la data di ogni via di uscita e i riferimenti di legge,
+        da stampare o incollare in un messaggio prima dell'appuntamento al CAF.</p>
+      <div class="btns">
+        <button type="button" id="b-stampa" class="fill">Stampa il prospetto</button>
+        <button type="button" id="b-copia">Copia il testo</button>
+      </div>
+      <div id="prospetto"><p class="small">Fai prima il calcolo: il prospetto si compila da solo.</p></div>
+    </section>
+
+    <section id="guida">
+      <h2>Come funziona il calcolo della data di pensione</h2>
+      <p>In Italia non esiste una sola età della pensione: esistono più porte, ognuna con la sua combinazione di età e
+        contributi, e conviene quella che si apre prima. Il calcolo di quando vado in pensione parte quindi da tre
+        informazioni: quanti anni avrai in un certo mese, quanti contributi avrai accumulato in quel mese e se rientri
+        in una delle categorie che la legge tratta a parte. Lo strumento qui sopra scorre i mesi futuri uno per uno,
+        applica a ciascuno i requisiti in vigore in quell'anno e si ferma al primo mese in cui una delle porte risulta
+        aperta.</p>
+      <p>Il dettaglio che fa la differenza è l'adeguamento alla speranza di vita. I requisiti non sono fissi: ogni due
+        anni vengono ritarati sulle rilevazioni ISTAT. La legge di bilancio 2026 ha confermato l'aumento in forma
+        graduale, un mese dal 1° gennaio 2027 e tre mesi complessivi dal 1° gennaio 2028, e l'INPS ha dato le
+        istruzioni operative con la circolare n. 28 del 16 marzo 2026. Chi esce nel 2026 fa ancora i conti con i
+        vecchi numeri, chi esce nel 2028 ne ha tre mesi in più davanti. I simulatori non aggiornati sbagliano la data
+        proprio qui.</p>
+
+      <h2>I requisiti porta per porta</h2>
+      <ul class="req">
+        <li><b>Pensione di vecchiaia</b><span>67 anni di età e 20 anni di contributi nel 2026; 67 anni e 1 mese nel
+          2027; 67 anni e 3 mesi dal 2028. Decorre dal primo giorno del mese successivo, senza finestra di attesa.</span></li>
+        <li><b>Pensione anticipata ordinaria</b><span>Solo contributi, a qualsiasi età: 42 anni e 10 mesi gli uomini e
+          41 anni e 10 mesi le donne nel 2026, un mese in più nel 2027, tre mesi in più dal 2028. Il primo assegno
+          arriva tre mesi dopo la maturazione.</span></li>
+        <li><b>Anticipata contributiva a 64 anni</b><span>Riservata a chi ha il primo contributo dal 1996: 64 anni e
+          20 anni di contributi effettivi, ma solo se la pensione che ne esce vale almeno tre volte l'assegno sociale,
+          cioè circa 1.639 euro lordi al mese con i valori 2026 (soglia ridotta a 2,8 volte per le madri con un figlio
+          e a 2,6 volte con due o più figli).</span></li>
+        <li><b>Lavoratori precoci</b><span>41 anni di contributi per chi ne ha almeno 12 mesi versati prima dei 19
+          anni e si trova in una condizione di tutela. Chi fa un lavoro gravoso o usurante resta a 41 anni anche nel
+          2027-2028; gli altri salgono a 41 anni e 1 mese e poi a 41 anni e 3 mesi.</span></li>
+        <li><b>APE sociale</b><span>Non è una pensione ma un'indennità ponte fino alla vecchiaia, da 63 anni e 5 mesi
+          con 30 anni di contributi (36 per le mansioni gravose, meno un anno per ogni figlio fino a due per le madri).
+          Vale per chi matura i requisiti entro il 31 dicembre 2026: oltre quella data serve una nuova proroga.</span></li>
+      </ul>
+
+      <h2>Un esempio con i numeri</h2>
+      <p>Prendiamo un uomo nato nel marzo 1966, con 31 anni e 6 mesi di contributi a oggi e un lavoro dipendente che
+        continua. La pensione di vecchiaia arriva al compimento dei 67 anni e 3 mesi, cioè nel giugno 2033, quando
+        avrà circa 38 anni e 2 mesi di contributi: ne servivano 20, quindi il vincolo è l'età. L'anticipata ordinaria,
+        invece, gli chiede 43 anni e 1 mese di contributi: con il ritmo attuale li raggiungerebbe nel 2038, cinque
+        anni dopo la vecchiaia. Per lui la porta che si apre prima è quella dei 67 anni, e il confronto serve proprio
+        a scoprirlo senza illudersi.</p>
+      <p>Cambiamo un dato: se gli stessi contributi fossero 38 anni invece di 31 e mezzo, l'anticipata scatterebbe
+        nel 2031 e la pensione partirebbe tre mesi dopo, con due anni di vantaggio sulla vecchiaia. È lo stesso
+        ragionamento che fa lo scenario con il riscatto: aggiungere mesi di contributi non serve a nulla se il tuo
+        vincolo è l'età, mentre può valere anni di anticipo se il tuo vincolo sono i contributi.</p>
+
+      <h2>Gli errori più comuni</h2>
+      <ul>
+        <li><b>Confondere maturazione e primo assegno.</b> Con l'anticipata i requisiti si maturano a una data e la
+          pensione parte tre mesi dopo: tre stipendi che vanno messi in conto.</li>
+        <li><b>Contare i contributi figurativi dove non valgono.</b> Disoccupazione, malattia, maternità e servizio
+          militare contano per l'anticipata ordinaria e per la vecchiaia, ma non per i 20 anni "effettivi" della
+          pensione a 64 anni.</li>
+        <li><b>Dare per scontata la soglia di importo.</b> Chi è nel contributivo puro arriva ai 64 anni e scopre che
+          la pensione calcolata non raggiunge le tre volte l'assegno sociale: il diritto non c'è e tocca aspettare.</li>
+        <li><b>Usare gli anni al posto delle settimane.</b> L'estratto conto INPS ragiona in settimane e un anno pieno
+          sono 52 settimane: arrotondare a occhio può spostare la data di mesi.</li>
+        <li><b>Credere che i requisiti valgano per sempre.</b> Quelli del 2027 e del 2028 sono già legge, ma
+          l'adeguamento dal 2029 non è ancora stato definito: oltre il 2028 il calcolo tiene i valori del 2028 e la
+          data va riverificata.</li>
+      </ul>
+
+      <h2>Domande frequenti</h2>
+      <h3>Quanti anni di contributi servono per andare in pensione?</h3>
+      <p>Venti anni, se il tuo riferimento è la pensione di vecchiaia, da raggiungere al compimento dell'età richiesta.
+        Se invece vuoi uscire prima senza vincoli di età servono 42 anni e 10 mesi da uomo e 41 anni e 10 mesi da
+        donna con i requisiti 2026, che diventano un mese in più nel 2027 e tre mesi in più dal 2028.</p>
+      <h3>Dove trovo gli anni di contributi da inserire?</h3>
+      <p>Nell'estratto conto contributivo, dentro il fascicolo previdenziale del cittadino su inps.it, con SPID, CIE o
+        CNS. Il totale è in settimane: dividi per 52 per ottenere gli anni e moltiplica per tre il resto in trimestri
+        per avere i mesi. Se trovi buchi o periodi mancanti, segnalali prima di fare progetti sulla data.</p>
+      <h3>Perché la pensione decorre tre mesi dopo i requisiti?</h3>
+      <p>È la cosiddetta finestra mobile, prevista per la pensione anticipata ordinaria e per quella dei lavoratori
+        precoci: il diritto si matura alla data dei requisiti ma il primo pagamento slitta di tre mesi. La pensione di
+        vecchiaia non ha finestra e decorre dal primo giorno del mese successivo.</p>
+      <h3>Una volta maturati, i requisiti si perdono?</h3>
+      <p>No, si cristallizzano. Se raggiungi i 42 anni e 10 mesi nel 2026 conservi il diritto a uscire con quel
+        requisito anche se presenti la domanda nel 2029, quando per gli altri la soglia sarà più alta.</p>
+      <h3>Il calcolo dice anche quanto prenderò di pensione?</h3>
+      <p>No, e non per caso: l'importo dipende dal montante contributivo rivalutato e dai coefficienti di
+        trasformazione, dati che stanno solo nel tuo estratto conto. Questo strumento risponde alla domanda "quando",
+        che è quella che serve per decidere; per il "quanto" il riferimento è il servizio "La mia pensione futura"
+        dell'INPS o il patronato.</p>
+
+      <p class="fonti">Fonti dei requisiti: legge 30 dicembre 2025 n. 199 (legge di bilancio 2026) e circolare INPS
+        n. 28 del 16 marzo 2026 sull'adeguamento alla speranza di vita per il biennio 2027-2028; valore dell'assegno
+        sociale 2026 pari a 546,24 euro mensili. Il risultato è una stima: non è una certificazione del diritto e non
+        tiene conto di gestioni separate, casse professionali, cumuli e deroghe individuali. Dati aggiornati
+        all'11 ottobre 2026.</p>
+    </section>
+
+    <div data-ad="bottom"></div>
+    <div data-support></div>
+    <p class="small">Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a>
+      · Vedi anche il <a href="../2026-09-20-calcolo-tfr/">calcolo del TFR</a> e i
+      <a href="../2026-09-26-preavviso-dimissioni/">giorni di preavviso per le dimissioni</a>.</p>
+  </div>
+
+  <div class="dock">
+    <div class="dock-in">
+      <button type="button" id="b-prev" hidden>Indietro</button>
+      <button type="button" id="b-next" class="primary">Avanti</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" hidden role="status"></div>
+
+  <script src="../../assets/monetize.js"></script>
+  <script>
+  /* Modello dati: `dati` = { nascita (Date UTC), sesso, figli, mesiContributi, dal96, lavoro, gravoso, precoce, tutela },
+   * salvato in localStorage. `calcola(dati, extra)` scorre gli anni futuri applicando i requisiti in vigore in ciascuno
+   * (adeguamento speranza di vita incluso) e restituisce una via di uscita per ogni canale:
+   * { id, nome, tipo, data, decorrenza, etaMesi, contributi, requisito, nota, ok }. */
+  (() => {
+    "use strict";
+    const KEY = "quando-vado-in-pensione:v1";
+    const $ = (s, r = document) => r.querySelector(s);
+    const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+
+    const ASSEGNO_SOCIALE = 546.24;             // euro/mese, valore 2026
+    const oggiL = new Date();
+    const OGGI = new Date(Date.UTC(oggiL.getFullYear(), oggiL.getMonth(), oggiL.getDate()));
+
+    const fMeseAnno = new Intl.DateTimeFormat("it-IT", { month: "long", year: "numeric", timeZone: "UTC" });
+    const fData = new Intl.DateTimeFormat("it-IT", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+    const fEuro = new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
+
+    // ---------- date ----------
+    function addMesi(d, n) {
+      const g = d.getUTCDate();
+      const ultimo = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + n + 1, 0)).getUTCDate();
+      return new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + n, Math.min(g, ultimo)));
+    }
+    function mesiTra(a, b) {
+      let n = (b.getUTCFullYear() - a.getUTCFullYear()) * 12 + (b.getUTCMonth() - a.getUTCMonth());
+      if (b.getUTCDate() < a.getUTCDate()) n--;
+      return Math.max(0, n);
+    }
+    function primoDelMeseDopo(d) { return new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 1)); }
+    function durata(mesi) {
+      const a = Math.floor(mesi / 12), m = mesi % 12;
+      if (!a && !m) return "0 mesi";
+      const p = [];
+      if (a) p.push(a + (a === 1 ? " anno" : " anni"));
+      if (m) p.push(m + (m === 1 ? " mese" : " mesi"));
+      return p.join(" e ");
+    }
+
+    // ---------- requisiti ----------
+    // Adeguamento alla speranza di vita: +1 mese dal 2027, +3 mesi dal 2028 (L. 199/2025, circ. INPS 28/2026).
+    // Dal 2029 non è ancora definito: restano i valori del 2028.
+    function adeguamento(anno) { return anno <= 2026 ? 0 : anno === 2027 ? 1 : 3; }
+
+    function canali(d) {
+      const uomo = d.sesso === "U";
+      const esente = d.gravoso;                 // gravosi e usuranti esclusi dall'adeguamento
+      const list = [];
+
+      list.push({
+        id: "vecchiaia", nome: "Pensione di vecchiaia", tipo: "pensione", finestra: 0,
+        eta: (a) => 67 * 12 + adeguamento(a), contr: () => 240,
+        req: (a) => "età " + durata(67 * 12 + adeguamento(a)) + " e 20 anni di contributi"
+      });
+
+      list.push({
+        id: "anticipata", nome: "Pensione anticipata ordinaria", tipo: "pensione", finestra: 3,
+        eta: () => 0, contr: (a) => (uomo ? 514 : 502) + (esente ? 0 : adeguamento(a)),
+        req: (a) => durata((uomo ? 514 : 502) + (esente ? 0 : adeguamento(a))) + " di contributi, a qualsiasi età"
+      });
+
+      if (d.dal96) {
+        const mult = uomo ? 3 : d.figli >= 2 ? 2.6 : d.figli === 1 ? 2.8 : 3;
+        list.push({
+          id: "contributiva", nome: "Anticipata contributiva a 64 anni", tipo: "pensione", finestra: 0,
+          eta: (a) => 64 * 12 + adeguamento(a), contr: (a) => 240 + adeguamento(a),
+          req: (a) => "età " + durata(64 * 12 + adeguamento(a)) + " e " + durata(240 + adeguamento(a)) + " di contributi effettivi",
+          condizione: "Vale solo se la pensione calcolata raggiunge " + mult.toLocaleString("it-IT") +
+            " volte l'assegno sociale, cioè circa " + fEuro.format(ASSEGNO_SOCIALE * mult) + " lordi al mese con i valori 2026."
+        });
+      }
+
+      if (d.precoce) {
+        list.push({
+          id: "precoci", nome: "Anticipata per lavoratori precoci", tipo: "pensione", finestra: 3,
+          eta: () => 0, contr: (a) => 492 + (esente ? 0 : adeguamento(a)),
+          req: (a) => durata(492 + (esente ? 0 : adeguamento(a))) + " di contributi",
+          bloccato: d.tutela ? null : "Serve anche una condizione di tutela (disoccupazione, invalidità dal 74%, assistenza a un familiare disabile grave, lavoro gravoso o usurante): nel passo 3 non l'hai indicata."
+        });
+      }
+
+      const scontoFigli = !uomo ? Math.min(24, 12 * d.figli) : 0;
+      list.push({
+        id: "ape", nome: "APE sociale", tipo: "indennità", finestra: 0, entro: 2026,
+        eta: () => 63 * 12 + 5, contr: () => (d.gravoso ? 432 : 360) - scontoFigli,
+        req: () => "età 63 anni e 5 mesi e " + durata((d.gravoso ? 432 : 360) - scontoFigli) + " di contributi",
+        condizione: "Non è una pensione ma un'indennità ponte fino alla vecchiaia, massimo 1.500 euro al mese per 12 mensilità, incompatibile con redditi da lavoro oltre 5.000 euro l'anno."
+      });
+
+      return list;
+    }
+
+    // Porta di riserva per chi è nel contributivo puro e non arriverà ai 20 anni di contributi.
+    function canaleVecchiaia71(d) {
+      return {
+        id: "vecchiaia71", nome: "Pensione di vecchiaia a 71 anni", tipo: "pensione", finestra: 0,
+        eta: (a) => 71 * 12 + adeguamento(a), contr: () => 60,
+        req: (a) => "età " + durata(71 * 12 + adeguamento(a)) + " e 5 anni di contributi effettivi",
+        condizione: "Vale solo per chi ha il primo contributo dal 1996 e non arriva ai 20 anni: bastano 5 anni di contributi, senza soglia di importo."
+      };
+    }
+
+    // Prima data in cui il canale è aperto, applicando i requisiti dell'anno in cui si matura.
+    function risolvi(c, d, mesiTot) {
+      for (let anno = OGGI.getUTCFullYear(); anno <= OGGI.getUTCFullYear() + 60; anno++) {
+        const nEta = c.eta(anno), nContr = c.contr(anno);
+        const dEta = nEta ? addMesi(d.nascita, nEta) : OGGI;
+        let dContr;
+        if (mesiTot >= nContr) dContr = OGGI;
+        else if (!d.lavoro) return null;
+        else dContr = addMesi(OGGI, nContr - mesiTot);
+        const t = Math.max(dEta.getTime(), dContr.getTime(), OGGI.getTime());
+        const data = new Date(t);
+        if (data.getUTCFullYear() <= anno) {
+          const contributi = mesiTot + (d.lavoro ? mesiTra(OGGI, data) : 0);
+          return {
+            data, contributi, nEta, nContr,
+            etaMesi: mesiTra(d.nascita, data),
+            requisito: c.req(anno),
+            decorrenza: primoDelMeseDopo(addMesi(data, c.finestra)),
+            anno
+          };
+        }
+      }
+      return null;
+    }
+
+    function calcola(d, extra) {
+      const mesiTot = d.mesiContributi + (extra || 0);
+      const lista = canali(d);
+      const vie = valuta(lista, d, mesiTot);
+      if (d.dal96 && !vie.some((v) => v.id === "vecchiaia" && v.ok)) {
+        vie.push(...valuta([canaleVecchiaia71(d)], d, mesiTot));
+      }
+      // Le vie che arrivano dopo la vecchiaia esistono ma non convengono: va detto.
+      const vecchiaia = vie.find((v) => v.id === "vecchiaia" && v.ok);
+      if (vecchiaia) {
+        for (const v of vie) {
+          if (v.ok && v.id !== "vecchiaia" && v.tipo === "pensione" && v.decorrenza > vecchiaia.decorrenza) {
+            v.nota = "Arriverebbe dopo la pensione di vecchiaia: non è un'uscita anticipata, ti conviene quella. " + v.nota;
+          }
+        }
+      }
+      return vie.sort((a, b) => (a.ok === b.ok) ? (a.data && b.data ? a.data - b.data : 0) : (a.ok ? -1 : 1));
+    }
+
+    function valuta(lista, d, mesiTot) {
+      return lista.map((c) => {
+        const r = c.bloccato ? null : risolvi(c, d, mesiTot);
+        const via = {
+          id: c.id, nome: c.nome, tipo: c.tipo, finestra: c.finestra,
+          ok: false, nota: c.condizione || "", data: null, decorrenza: null,
+          etaMesi: 0, contributi: 0, requisito: ""
+        };
+        if (c.bloccato) { via.nota = c.bloccato; return via; }
+        if (!r) {
+          via.requisito = c.req(OGGI.getUTCFullYear() + 2);
+          via.nota = (d.lavoro ? "Con i contributi previsti non arrivi a questo requisito." :
+            "Con i contributi fermi a oggi non arrivi a questo requisito.") + (via.nota ? " " + via.nota : "");
+          return via;
+        }
+        Object.assign(via, r);
+        if (c.entro && r.data.getUTCFullYear() > c.entro) {
+          via.nota = "Maturerebbe i requisiti nel " + r.data.getUTCFullYear() +
+            ", ma la misura è prorogata solo fino al 31 dicembre " + c.entro + ": servirebbe una nuova proroga. " + via.nota;
+          return via;
+        }
+        via.ok = true;
+        return via;
+      });
+    }
+
+    // ---------- stato e lettura del form ----------
+    let dati = null, vie = [];
+
+    function leggi() {
+      const raw = $("#nascita").value;
+      const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(raw);
+      const nascita = m ? new Date(Date.UTC(+m[1], +m[2] - 1, +m[3])) : null;
+      const anni = intVal("#anni", 0, 55), mesi = intVal("#mesi", 0, 11);
+      return {
+        nascita, raw,
+        sesso: ($("input[name=sesso]:checked") || {}).value || "U",
+        figli: +(($("input[name=figli]:checked") || {}).value || 0),
+        anni, mesi, mesiContributi: anni * 12 + mesi,
+        dal96: $("#dal96").checked,
+        lavoro: $("#lavoro").checked,
+        gravoso: $("#gravoso").checked,
+        precoce: $("#precoce").checked,
+        tutela: $("#tutela").checked || $("#gravoso").checked
+      };
+    }
+    function intVal(sel, min, max) {
+      const n = parseInt(String($(sel).value).replace(/\D/g, ""), 10);
+      return Number.isFinite(n) ? Math.min(max, Math.max(min, n)) : min;
+    }
+
+    function valida(d, passo) {
+      const errN = $("#e-nascita"), errC = $("#e-contr");
+      errN.hidden = true; errC.hidden = true;
+      if (passo >= 1) {
+        if (!d.nascita || Number.isNaN(d.nascita.getTime())) { return msg(errN, "Inserisci la tua data di nascita."); }
+        const eta = mesiTra(d.nascita, OGGI) / 12;
+        if (eta < 14) return msg(errN, "Con questa data di nascita non ci sono ancora contributi da calcolare.");
+        if (eta > 85) return msg(errN, "Controlla la data: sembra fuori misura.");
+      }
+      if (passo >= 2) {
+        const etaMesi = mesiTra(d.nascita, OGGI);
+        if (d.mesiContributi > Math.max(0, etaMesi - 14 * 12)) {
+          return msg(errC, "Troppi contributi rispetto alla tua età: ricontrolla l'estratto conto.");
+        }
+      }
+      return true;
+    }
+    function msg(el, t) { el.textContent = t; el.hidden = false; el.scrollIntoView({ block: "center", behavior: "smooth" }); return false; }
+
+    // ---------- wizard ----------
+    let passo = 1;
+    const PASSI = 3;
+    function mostraPasso(n) {
+      passo = n;
+      $$(".step").forEach((s) => { s.hidden = +s.dataset.step !== n; });
+      $("#steps-lbl").textContent = "Passo " + n + " di " + PASSI;
+      $$("#steps i").forEach((i, k) => i.classList.toggle("on", k < n));
+      $("#b-prev").hidden = n === 1;
+      $("#b-next").textContent = n === PASSI ? "Calcola la data" : "Avanti";
+      $("#recap").classList.remove("on");
+      $("#steps").removeAttribute("hidden");
+    }
+    function chiudiWizard() {
+      $$(".step").forEach((s) => { s.hidden = true; });
+      const d = dati;
+      const tag = (t) => '<span class="tag">' + t + "</span>";
+      $("#recap").innerHTML =
+        tag(fData.format(d.nascita)) +
+        tag(d.sesso === "U" ? "uomo" : "donna") +
+        tag(durata(d.mesiContributi) + " di contributi") +
+        tag(d.lavoro ? "continuo a lavorare" : "contributi fermi") +
+        (d.gravoso ? tag("lavoro gravoso") : "") +
+        (d.dal96 ? tag("primo contributo dal 1996") : "") +
+        '<button type="button" id="b-mod">Modifica</button>';
+      $("#recap").classList.add("on");
+      $("#b-mod").addEventListener("click", () => { mostraPasso(1); window.scrollTo({ top: 0, behavior: "smooth" }); });
+      $("#steps").setAttribute("hidden", "");
+      $("#steps-lbl").textContent = "";
+      $("#b-prev").hidden = false;
+      $("#b-prev").textContent = "Modifica i dati";
+      $("#b-next").textContent = "Ricalcola";
+    }
+
+    $("#b-next").addEventListener("click", () => {
+      const d = leggi();
+      if (!valida(d, passo)) return;
+      if (passo < PASSI && $$(".step").some((s) => !s.hidden)) { mostraPasso(passo + 1); window.scrollTo({ top: 0, behavior: "smooth" }); return; }
+      dati = d;
+      if (!valida(dati, 2)) return;
+      salva();
+      render();
+      chiudiWizard();
+      $("#esito").scrollIntoView({ block: "start", behavior: "smooth" });
+    });
+    $("#b-prev").addEventListener("click", () => {
+      if ($$(".step").every((s) => s.hidden)) { mostraPasso(PASSI); }
+      else mostraPasso(Math.max(1, passo - 1));
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // steppers
+    $$("[data-step-btn]").forEach((b) => b.addEventListener("click", () => {
+      const inp = $("#" + b.dataset.stepBtn);
+      const max = b.dataset.stepBtn === "mesi" ? 11 : 55;
+      const v = intVal("#" + b.dataset.stepBtn, 0, max) + (+b.dataset.delta);
+      inp.value = Math.min(max, Math.max(0, v));
+      if (dati) { dati = leggi(); salva(); render(); }
+    }));
+    $$("#anni, #mesi").forEach((i) => {
+      i.addEventListener("input", () => { i.value = i.value.replace(/\D/g, "").slice(0, 2); });
+      i.addEventListener("blur", () => {
+        i.value = intVal("#" + i.id, 0, i.id === "mesi" ? 11 : 55);
+        if (dati) { dati = leggi(); salva(); render(); }
+      });
+    });
+
+    // visibilità dei campi condizionati
+    function aggiornaCondizionati() {
+      $("#box-figli").hidden = ($("input[name=sesso]:checked") || {}).value !== "D";
+      $("#box-tutela").hidden = !$("#precoce").checked;
+    }
+    $("#wiz").addEventListener("change", () => {
+      aggiornaCondizionati();
+      if (dati) { dati = leggi(); salva(); render(); }
+    });
+    $("#wiz").addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && e.target.tagName !== "BUTTON") { e.preventDefault(); $("#b-next").click(); }
+    });
+
+    // ---------- render ----------
+    function render() {
+      if (!dati || !dati.nascita) return;
+      vie = calcola(dati, 0);
+      const pensioni = vie.filter((v) => v.ok && v.tipo === "pensione");
+      const prima = pensioni[0];
+      $("#vuoto").hidden = true;
+      $("#risultato").hidden = false;
+
+      if (!prima) {
+        $("#h-via").textContent = "Nessuna via di uscita raggiungibile";
+        $("#h-data").textContent = "—";
+        $("#h-sub").textContent = dati.lavoro
+          ? "Con i dati inseriti nessun requisito risulta maturabile: controlla i contributi."
+          : "Con i contributi fermi a oggi non maturi nessun requisito: prova a riattivare «continuo a lavorare».";
+      } else {
+        const mesiAttesa = mesiTra(OGGI, prima.decorrenza);
+        $("#h-via").textContent = prima.nome;
+        $("#h-data").textContent = fMeseAnno.format(prima.decorrenza);
+        $("#h-sub").innerHTML = (mesiAttesa === 0
+          ? "<b>Requisiti già maturati</b>: la pensione può partire dal mese prossimo, a " + durata(prima.etaMesi) + " di età"
+          : "Primo assegno fra <b>" + durata(mesiAttesa) + "</b>, a " + durata(prima.etaMesi) + " di età") +
+          (prima.finestra ? ", requisiti maturati il " + fData.format(prima.data) + " più tre mesi di finestra" : "") + ".";
+      }
+
+      const ape = vie.find((v) => v.id === "ape" && v.ok);
+      const lista = $("#lista");
+      lista.innerHTML = "";
+      for (const v of vie) {
+        const li = document.createElement("li");
+        if (!v.ok) li.className = "no";
+        let h = '<div class="ttl">' + v.nome +
+          (v.tipo === "indennità" ? '<span class="badge">indennità</span>' : "") +
+          (v.ok && prima && v.id === prima.id ? '<span class="badge">la più vicina</span>' : "") + "</div>";
+        if (v.ok) {
+          h += '<div class="big">' + fMeseAnno.format(v.decorrenza) + "</div>";
+          h += '<div class="meta">Requisiti maturati il ' + fData.format(v.data) + " · " + durata(v.etaMesi) +
+            " di età · " + durata(v.contributi) + " di contributi" +
+            (v.finestra ? " · finestra di " + v.finestra + " mesi" : "") + "</div>";
+          h += '<div class="nota"><b>Requisito:</b> ' + v.requisito + (v.nota ? ". " + v.nota : "") + "</div>";
+        } else {
+          h += '<div class="meta">Non percorribile con questi dati</div>';
+          h += '<div class="nota">' + v.nota + (v.requisito ? ' <b>Requisito:</b> ' + v.requisito + "." : "") + "</div>";
+        }
+        li.innerHTML = h;
+        lista.appendChild(li);
+      }
+      if (ape && prima && ape.decorrenza < prima.decorrenza) {
+        const p = document.createElement("li");
+        p.innerHTML = '<div class="ttl">Prima della pensione</div><div class="nota">Dal ' +
+          fMeseAnno.format(ape.decorrenza) + " potresti chiedere l'APE sociale e arrivare alla pensione di vecchiaia con un'indennità ponte.</div>";
+        lista.insertBefore(p, lista.firstChild);
+      }
+      const oltre2028 = vie.some((v) => v.ok && v.anno >= 2029);
+      $("#avviso2029").hidden = !oltre2028;
+      renderExtra();
+      renderProspetto();
+    }
+
+    // ---------- Pro: scenario con contributi aggiuntivi ----------
+    function renderExtra() {
+      const extra = +$("#extra").value;
+      $("#extra-lbl").textContent = extra === 0 ? "0 mesi" : durata(extra);
+      if (!dati || !dati.nascita) return;
+      const base = calcola(dati, 0).filter((v) => v.ok && v.tipo === "pensione")[0];
+      const nuovo = calcola(dati, extra).filter((v) => v.ok && v.tipo === "pensione")[0];
+      if (!base || !nuovo) { $("#extra-esito").textContent = "Completa prima il calcolo."; return; }
+      if (extra === 0) {
+        $("#extra-esito").innerHTML = "Senza contributi aggiuntivi la prima pensione è di <b>" + fMeseAnno.format(base.decorrenza) + "</b>.";
+        return;
+      }
+      const guadagno = mesiTra(nuovo.decorrenza, base.decorrenza);
+      $("#extra-esito").innerHTML = guadagno > 0
+        ? "Con " + durata(extra) + " in più la prima pensione passa a <b>" + fMeseAnno.format(nuovo.decorrenza) +
+          "</b>: <b>" + durata(guadagno) + "</b> di anticipo, via " + nuovo.nome.toLowerCase() + "."
+        : "Con " + durata(extra) + " in più la data non cambia (<b>" + fMeseAnno.format(nuovo.decorrenza) +
+          "</b>): il tuo vincolo è l'età, non i contributi, quindi un riscatto non ti farebbe uscire prima.";
+    }
+    $("#extra").addEventListener("input", renderExtra);
+
+    // ---------- Pro: prospetto ----------
+    function righe() {
+      const d = dati;
+      const r = [
+        ["Data di nascita", fData.format(d.nascita)],
+        ["Sesso", d.sesso === "U" ? "uomo" : "donna"],
+        ["Contributi dichiarati a oggi", durata(d.mesiContributi)],
+        ["Prosecuzione del lavoro", d.lavoro ? "sì, senza interruzioni" : "no, contributi fermi a oggi"],
+        ["Primo contributo dal 1996", d.dal96 ? "sì (contributivo puro)" : "no"],
+        ["Lavoro gravoso o usurante", d.gravoso ? "sì" : "no"],
+        ["Lavoratore precoce", d.precoce ? (d.tutela ? "sì, con condizione di tutela" : "sì, senza condizione di tutela") : "no"]
+      ];
+      if (d.sesso === "D") r.splice(2, 0, ["Figli", String(d.figli)]);
+      return r;
+    }
+    function renderProspetto() {
+      if (!dati) return;
+      const box = $("#prospetto");
+      let h = "<h4>Prospetto previdenziale — " + fData.format(OGGI) + "</h4><dl>";
+      for (const [k, v] of righe()) h += '<div class="r"><dt>' + k + "</dt><dd>" + v + "</dd></div>";
+      h += "</dl><h4 style=\"margin-top:1rem\">Vie di uscita</h4><dl>";
+      for (const v of vie) {
+        h += '<div class="r"><dt>' + v.nome + (v.tipo === "indennità" ? " (indennità)" : "") + "</dt><dd>" +
+          (v.ok ? fMeseAnno.format(v.decorrenza) + "<br><span class=\"small\">requisiti il " + fData.format(v.data) +
+            ", " + durata(v.contributi) + " di contributi</span>" : "non percorribile") + "</dd></div>";
+      }
+      h += "</dl><p class=\"small\" style=\"margin-top:.8rem\">Requisiti: L. 199/2025 e circolare INPS n. 28 del 16 marzo 2026 " +
+        "(adeguamento alla speranza di vita 2027-2028). Stima non certificativa, da verificare sull'estratto conto contributivo.</p>";
+      box.innerHTML = h;
+    }
+    function testoProspetto() {
+      const L = ["PROSPETTO PREVIDENZIALE — " + fData.format(OGGI), ""];
+      for (const [k, v] of righe()) L.push(k + ": " + v);
+      L.push("", "VIE DI USCITA");
+      for (const v of vie) {
+        L.push("- " + v.nome + (v.tipo === "indennità" ? " (indennità ponte)" : "") + ": " +
+          (v.ok ? fMeseAnno.format(v.decorrenza) + " (requisiti il " + fData.format(v.data) + ", " + durata(v.contributi) + " di contributi)" : "non percorribile"));
+      }
+      L.push("", "Requisiti da L. 199/2025 e circolare INPS n. 28 del 16/03/2026. Stima non certificativa.");
+      return L.join("\n");
+    }
+    function toast(t) {
+      const el = $("#toast");
+      el.textContent = t; el.hidden = false;
+      clearTimeout(toast.t); toast.t = setTimeout(() => { el.hidden = true; }, 2600);
+    }
+    $("#b-stampa").addEventListener("click", () => {
+      if (!dati) { toast("Fai prima il calcolo"); return; }
+      window.print();
+    });
+    $("#b-copia").addEventListener("click", async () => {
+      if (!dati) { toast("Fai prima il calcolo"); return; }
+      const t = testoProspetto();
+      try {
+        await navigator.clipboard.writeText(t);
+        toast("Prospetto copiato");
+      } catch (e) {
+        const ta = document.createElement("textarea");
+        ta.value = t; ta.style.position = "fixed"; ta.style.opacity = "0";
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand("copy"); toast("Prospetto copiato"); } catch (e2) { toast("Copia non disponibile"); }
+        ta.remove();
+      }
+    });
+
+    // ---------- persistenza ----------
+    function salva() {
+      try {
+        localStorage.setItem(KEY, JSON.stringify({
+          raw: dati.raw, sesso: dati.sesso, figli: dati.figli, anni: dati.anni, mesi: dati.mesi,
+          dal96: dati.dal96, lavoro: dati.lavoro, gravoso: dati.gravoso, precoce: dati.precoce, tutela: $("#tutela").checked
+        }));
+      } catch (e) { /* storage pieno o negato: il calcolo funziona comunque */ }
+    }
+    function ripristina() {
+      let s = null;
+      try { s = JSON.parse(localStorage.getItem(KEY) || "null"); } catch (e) { s = null; }
+      if (!s) return false;
+      if (s.raw) $("#nascita").value = s.raw;
+      const rs = $('input[name=sesso][value="' + (s.sesso === "D" ? "D" : "U") + '"]');
+      if (rs) rs.checked = true;
+      const rf = $('input[name=figli][value="' + (s.figli || 0) + '"]');
+      if (rf) rf.checked = true;
+      if (Number.isFinite(s.anni)) $("#anni").value = s.anni;
+      if (Number.isFinite(s.mesi)) $("#mesi").value = s.mesi;
+      $("#dal96").checked = !!s.dal96;
+      $("#lavoro").checked = s.lavoro !== false;
+      $("#gravoso").checked = !!s.gravoso;
+      $("#precoce").checked = !!s.precoce;
+      $("#tutela").checked = !!s.tutela;
+      return !!s.raw;
+    }
+
+    // ---------- avvio ----------
+    aggiornaCondizionati();
+    const avevaDati = ripristina();
+    aggiornaCondizionati();
+    mostraPasso(1);
+    if (avevaDati) {
+      const d = leggi();
+      if (valida(d, 2) === true) { dati = d; render(); chiudiWizard(); }
+    }
+  })();
+  </script>
+</body>
+</html>

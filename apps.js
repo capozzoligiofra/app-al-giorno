@@ -1,7 +1,7 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 29,
+  "count": 30,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -50,6 +50,52 @@ window.__APPS__ = {
     ]
   },
   "apps": [
+    {
+      "title": "Quando Vado in Pensione",
+      "slug": "2026-10-11-quando-vado-in-pensione",
+      "date": "2026-10-11",
+      "description": "Calcola la data in cui puoi andare in pensione: vecchiaia, anticipata, contributiva e precoci, con i requisiti aggiornati al 2028.",
+      "category": "calcolatori-convertitori",
+      "tags": [
+        "pensione",
+        "inps",
+        "contributi",
+        "lavoro"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "wizard",
+        "palette": "blu-notte",
+        "font": "sans-geometrico"
+      },
+      "business": {
+        "keyword": "calcolo quando vado in pensione",
+        "keywords": [
+          "quando vado in pensione",
+          "calcolo età pensionabile",
+          "requisiti pensione 2027",
+          "quanti anni di contributi servono per la pensione"
+        ],
+        "intent": "Chi ha 45-65 anni vuole sapere in che mese e anno potrà lasciare il lavoro con i contributi che ha, e quale via di uscita arriva prima.",
+        "target": "Lavoratori dipendenti e autonomi iscritti all'INPS, 45-65 anni, che consultano dal telefono prima di andare al patronato.",
+        "edge": "Tre passi, tutte le vie di uscita affiancate con data e anni di anticipo, adeguamento alla speranza di vita 2027-2028 incluso e dichiarato, funziona offline e nessun dato lascia il telefono.",
+        "monetization": [
+          "adsense",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Scenario con riscatto o contributi aggiuntivi",
+          "Prospetto per il patronato"
+        ],
+        "affiliate": []
+      },
+      "size": 56717
+    },
     {
       "title": "Spese Notaio Acquisto Casa",
       "slug": "2026-10-10-spese-notaio-acquisto-casa",

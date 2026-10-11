@@ -1,0 +1,50 @@
+{
+  "title": "Quando Vado in Pensione",
+  "slug": "2026-10-11-quando-vado-in-pensione",
+  "date": "2026-10-11",
+  "description": "Calcola la data in cui puoi andare in pensione: vecchiaia, anticipata, contributiva e precoci, con i requisiti aggiornati al 2028.",
+  "category": "calcolatori-convertitori",
+  "tags": [
+    "pensione",
+    "inps",
+    "contributi",
+    "lavoro"
+  ],
+  "source": "autonoma",
+  "request": null,
+  "status": "pronta",
+  "version": 1,
+  "changelog": [],
+  "design": {
+    "layout": "wizard",
+    "palette": "blu-notte",
+    "font": "sans-geometrico"
+  },
+  "business": {
+    "keyword": "calcolo quando vado in pensione",
+    "keywords": [
+      "quando vado in pensione",
+      "calcolo età pensionabile",
+      "requisiti pensione 2027",
+      "quanti anni di contributi servono per la pensione"
+    ],
+    "intent": "Chi ha 45-65 anni vuole sapere in che mese e anno potrà lasciare il lavoro con i contributi che ha, e quale via di uscita arriva prima.",
+    "target": "Lavoratori dipendenti e autonomi iscritti all'INPS, 45-65 anni, che consultano dal telefono prima di andare al patronato.",
+    "competitors": [
+      "PensAMi INPS (gratuito ma sepolto in cinque passaggi nel portale e senza confronto affiancato delle vie di uscita)",
+      "Simulatori dei portali di finanza personale (moduli lunghi, pubblicità invasiva, requisiti spesso fermi al 2026)",
+      "Articoli di patronati e CAF che spiegano le regole senza applicarle ai dati di chi legge"
+    ],
+    "edge": "Tre passi, tutte le vie di uscita affiancate con data e anni di anticipo, adeguamento alla speranza di vita 2027-2028 incluso e dichiarato, funziona offline e nessun dato lascia il telefono.",
+    "monetization": [
+      "adsense",
+      "pro",
+      "support"
+    ],
+    "pro": [
+      "Scenario con riscatto o contributi aggiuntivi",
+      "Prospetto per il patronato"
+    ],
+    "affiliate": []
+  }
+}
