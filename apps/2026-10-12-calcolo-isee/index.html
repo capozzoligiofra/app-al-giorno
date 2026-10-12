@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b7fa8">
+  <title>ISEE in Due Minuti: Come si calcola l'ISEE gratis</title>
+  <meta name="description" content="Come si calcola l’ISEE 2026 con la formula ufficiale: inserisci nucleo, redditi, casa e risparmi e ottieni subito l’ISEE ordinario e quello dei bonus famiglia.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-12-calcolo-isee/">
+  <meta property="og:title" content="ISEE in Due Minuti: Come si calcola l'ISEE gratis">
+  <meta property="og:description" content="Nucleo, redditi, casa e risparmi: la stima dell'ISEE 2026 in due minuti, con il dettaglio di ISR, ISP e scala di equivalenza. Senza SPID e senza registrazione.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-12-calcolo-isee/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "ISEE in Due Minuti",
+    "description": "Calcolatore gratuito dell'ISEE 2026: applica la formula del DPCM 159/2013 ai tuoi dati e mostra l'ISEE ordinario e l'ISEE con la franchigia prima casa maggiorata dei bonus famiglia.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-12-calcolo-isee/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Come si calcola l'ISEE?", "acceptedAnswer": { "@type": "Answer", "text": "Si sommano i redditi del nucleo al netto delle franchigie (indicatore della situazione reddituale, ISR) e il 20% del patrimonio mobiliare e immobiliare al netto di franchigie e mutui (indicatore della situazione patrimoniale, ISP). Il totale, chiamato ISE, si divide per il parametro della scala di equivalenza che dipende dal numero dei componenti e dalle maggiorazioni. Il risultato è l'ISEE." } },
+      { "@type": "Question", "name": "Perché dal 2026 esistono due valori di ISEE?", "acceptedAnswer": { "@type": "Answer", "text": "La legge di bilancio 2026 ha alzato la franchigia sull'abitazione principale da 52.500 a 91.500 euro (120.000 nei comuni capoluogo di città metropolitana) e ha aumentato le maggiorazioni per i figli, ma solo per cinque prestazioni: assegno di inclusione, supporto per la formazione e il lavoro, assegno unico, bonus asilo nido e bonus nuovi nati. Per tutto il resto, per esempio la mensa scolastica o le tasse universitarie, vale ancora il calcolo ordinario. Chi ha casa di proprietà si ritrova quindi con due numeri diversi." } },
+      { "@type": "Question", "name": "Quali redditi si usano per l'ISEE 2026?", "acceptedAnswer": { "@type": "Answer", "text": "I redditi del secondo anno precedente, quindi quelli del 2024 dichiarati nel 2025. Il patrimonio, invece, è quello al 31 dicembre 2024: giacenza media dei conti, valore degli investimenti, valore IMU degli immobili e mutuo residuo alla stessa data." } },
+      { "@type": "Question", "name": "I soldi sul conto come vengono contati nell'ISEE?", "acceptedAnswer": { "@type": "Answer", "text": "Si considera la giacenza media annua dei conti e dei libretti, non il saldo del 31 dicembre, sommata al valore degli altri investimenti. Dal totale si toglie una franchigia che parte da 6.000 euro e cresce di 2.000 euro per ogni componente oltre il primo, fino a 10.000 euro, più 1.000 euro per ogni figlio oltre il secondo. Titoli di Stato, buoni fruttiferi e libretti postali sono esclusi fino a 50.000 euro complessivi." } },
+      { "@type": "Question", "name": "Questa stima vale come attestazione ISEE?", "acceptedAnswer": { "@type": "Answer", "text": "No. L'ISEE ufficiale nasce solo dalla DSU presentata all'INPS, a un CAF o a un patronato, perché incrocia i dati dell'Agenzia delle Entrate e degli intermediari finanziari. Questo strumento serve a sapere in anticipo dove ti collochi e a capire quali voci pesano di più." } }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #eef6fb; --surface: #ffffff; --surface-2: #f6fbfe; --text: #10242e; --muted: #5a7585;
+      --line: #d2e4ef; --accent: #0b7fa8; --accent-soft: #e2f1f9; --accent-ink: #ffffff;
+      --good: #16795c; --warn: #9a5b00; --r: 20px; --r-sm: 14px;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0d171d; --surface: #152430; --surface-2: #11202a; --text: #e6f1f7; --muted: #92aebd;
+        --line: #243b49; --accent: #5fc4ee; --accent-soft: #1b3442; --accent-ink: #06202b;
+        --good: #5fd3ad; --warn: #e5b161;
+        color-scheme: dark;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font: 16px/1.55 "Segoe UI", -apple-system, system-ui, Roboto, sans-serif;
+      overflow-x: hidden;
+    }
+    .wrap { margin: 0 auto; max-width: 740px; padding: max(10px, env(safe-area-inset-top)) 16px 0; }
+    .topbar { display: flex; align-items: center; gap: .75rem; }
+    .back { font-size: .95rem; color: var(--muted); text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
+    .back:hover, .back:focus-visible { color: var(--accent); }
+    h1 { margin: .4rem 0 .3rem; font-size: 1.65rem; line-height: 1.2; font-weight: 700; letter-spacing: -.015em; }
+    .lead { margin: 0 0 1rem; color: var(--muted); font-size: 1rem; }
+    .card {
+      background: var(--surface); border: 1px solid var(--line); border-radius: var(--r);
+      padding: 1.05rem 1rem 1.1rem; margin-bottom: .85rem; box-shadow: 0 1px 2px rgba(16,36,46,.04);
+    }
+    .card > h2 { margin: 0 0 .2rem; font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; gap: .5rem; }
+    .num { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-size: .85rem; font-weight: 700; flex: none; }
+    .hint { margin: 0 0 .9rem; color: var(--muted); font-size: .9rem; }
+    .row { display: flex; align-items: center; justify-content: space-between; gap: .75rem; padding: .55rem 0; border-top: 1px solid var(--line); }
+    .row:first-of-type { border-top: 0; }
+    .row > label, .row > .lbl { font-size: .98rem; flex: 1 1 auto; }
+    .row small { display: block; color: var(--muted); font-size: .84rem; line-height: 1.35; }
+    .stepper { display: flex; align-items: center; gap: .3rem; flex: none; }
+    .stepper button {
+      width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--line); background: var(--surface-2);
+      color: var(--text); font-size: 1.3rem; line-height: 1; cursor: pointer; font-family: inherit;
+    }
+    .stepper button:active { background: var(--accent-soft); }
+    .stepper button:disabled { opacity: .35; cursor: default; }
+    .stepper output { min-width: 2.1rem; text-align: center; font-size: 1.15rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .money { display: flex; align-items: center; gap: .35rem; flex: none; background: var(--surface-2); border: 1.5px solid var(--line); border-radius: 999px; padding: 0 .85rem; min-height: 48px; }
+    .money span { color: var(--muted); font-size: .95rem; }
+    .money input { width: 7.2rem; border: 0; background: transparent; color: var(--text); font: inherit; font-size: 16px; text-align: right; padding: .5rem 0; font-variant-numeric: tabular-nums; }
+    .money input:focus { outline: none; }
+    .money:focus-within { border-color: var(--accent); }
+    .switch { flex: none; position: relative; width: 56px; height: 44px; display: grid; place-items: center; }
+    .switch input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+    .switch i { display: block; width: 50px; height: 30px; border-radius: 999px; background: var(--line); transition: background .15s; }
+    .switch i::after { content: ""; position: absolute; top: 50%; left: 5px; transform: translateY(-50%); width: 24px; height: 24px; border-radius: 50%; background: var(--surface); box-shadow: 0 1px 3px rgba(0,0,0,.25); transition: transform .15s; }
+    .switch input:checked + i { background: var(--accent); }
+    .switch input:checked + i::after { transform: translateY(-50%) translateX(20px); }
+    .switch input:focus-visible + i { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .chips { display: flex; flex-wrap: wrap; gap: .45rem; margin: .2rem 0 .3rem; }
+    .chips label { position: relative; }
+    .chips input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+    .chips span { display: inline-flex; align-items: center; min-height: 44px; padding: 0 1rem; border-radius: 999px; border: 1.5px solid var(--line); background: var(--surface-2); font-size: .95rem; }
+    .chips input:checked + span { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+    .chips input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .sub { display: none; margin-top: .3rem; }
+    .sub.on { display: block; }
+    .results { background: var(--surface); border: 1px solid var(--accent); border-radius: var(--r); padding: 1rem; margin-bottom: .85rem; }
+    .big { display: grid; gap: .6rem; }
+    .big > div { background: var(--surface-2); border-radius: var(--r-sm); padding: .8rem .9rem; }
+    .big b { display: block; font-size: 1.85rem; font-weight: 700; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+    .big .tag { display: block; font-size: .85rem; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; font-weight: 700; }
+    .big .note { display: block; font-size: .88rem; color: var(--muted); margin-top: .2rem; }
+    .brk { margin: .9rem 0 0; padding: 0; list-style: none; font-size: .95rem; }
+    .brk li { display: flex; justify-content: space-between; gap: .6rem; padding: .4rem 0; border-top: 1px dashed var(--line); }
+    .brk li.tot { font-weight: 700; border-top: 2px solid var(--line); }
+    .brk b { font-variant-numeric: tabular-nums; white-space: nowrap; }
+    details.more { margin-top: .6rem; }
+    details.more > summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; color: var(--accent); font-weight: 600; font-size: .95rem; }
+    .soglie { margin: .8rem 0 0; padding: 0; list-style: none; font-size: .93rem; }
+    .soglie li { display: flex; gap: .55rem; padding: .4rem 0; border-top: 1px solid var(--line); align-items: flex-start; }
+    .soglie .mark { flex: none; font-weight: 700; width: 1.4rem; text-align: center; }
+    .soglie .ok { color: var(--good); }
+    .soglie .no { color: var(--muted); }
+    .warnbox { margin: .7rem 0 0; padding: .6rem .75rem; border-radius: var(--r-sm); background: var(--accent-soft); font-size: .9rem; }
+    .warnbox:empty { display: none; }
+    .btn { font: inherit; min-height: 48px; padding: .6rem 1.1rem; border-radius: 999px; border: 1.5px solid var(--accent); background: var(--accent); color: var(--accent-ink); font-weight: 700; cursor: pointer; }
+    .btn.ghost { background: transparent; color: var(--accent); }
+    .btn.small { min-height: 44px; font-size: .95rem; padding: .4rem .9rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .8rem; }
+    .bar {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 5;
+      background: var(--surface); border-top: 1px solid var(--line);
+      box-shadow: 0 -4px 16px rgba(16,36,46,.10);
+      padding: .55rem 16px calc(.55rem + env(safe-area-inset-bottom));
+      display: flex; align-items: center; gap: .8rem;
+    }
+    .bar .v { flex: 1 1 0; min-width: 0; }
+    .bar .v span { display: block; font-size: .78rem; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; font-weight: 700; }
+    .bar .v b { font-size: 1.3rem; font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+    .bar a { flex: none; text-decoration: none; }
+    .guida { margin-top: 1.6rem; }
+    .guida h2 { font-size: 1.25rem; margin: 1.6rem 0 .5rem; }
+    .guida h3 { font-size: 1.05rem; margin: 1.2rem 0 .35rem; }
+    .guida p, .guida li { font-size: 1rem; }
+    .guida ul { padding-left: 1.2rem; }
+    .guida table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+    .guida th, .guida td { text-align: left; padding: .4rem .3rem; border-bottom: 1px solid var(--line); }
+    .scen { margin: 0; padding: 0; list-style: none; }
+    .scen li { display: flex; align-items: center; gap: .6rem; padding: .55rem 0; border-top: 1px solid var(--line); }
+    .scen li:first-child { border-top: 0; }
+    .scen .nm { flex: 1 1 auto; min-width: 0; }
+    .scen .nm b { display: block; font-size: 1rem; }
+    .scen .nm small { color: var(--muted); font-size: .86rem; }
+    .scen .rm { flex: none; width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--line); background: var(--surface-2); color: var(--muted); font-size: 1.1rem; cursor: pointer; font-family: inherit; }
+    .empty { color: var(--muted); font-size: .95rem; margin: .4rem 0 0; }
+    .docs { margin: .6rem 0 0; padding: 0; list-style: none; font-size: .95rem; }
+    .docs li { padding: .35rem 0 .35rem 1.5rem; position: relative; border-top: 1px solid var(--line); }
+    .docs li::before { content: "▢"; position: absolute; left: 0; color: var(--accent); }
+    .muted { color: var(--muted); }
+    .small { font-size: .9rem; }
+    footer { padding-bottom: 1.5rem; }
+    .spacer { height: 86px; }
+    a { color: var(--accent); }
+    @media (min-width: 700px) {
+      .wrap { padding-top: 20px; }
+      h1 { font-size: 2.1rem; }
+      .big { grid-template-columns: 1fr 1fr; }
+      .card { padding: 1.3rem 1.4rem; }
+      .bar { border-radius: var(--r) var(--r) 0 0; left: 50%; right: auto; transform: translateX(-50%); width: min(740px, 100%); }
+    }
+    @media print {
+      .bar, .topbar, .lead, [data-ad], [data-support], .actions, .mz-lock, .mz-top, nav, .spacer { display: none !important; }
+      [data-pro] > :not(.mz-lock) { filter: none !important; }
+      body { background: #fff; color: #000; }
+      .card, .results { border-color: #999; box-shadow: none; break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar"><a class="back" href="../../index.html">← Tutte le app</a></div>
+
+  <h1>Come si calcola l'ISEE 2026</h1>
+  <p class="lead">Rispondi alle quattro schede qui sotto: ottieni la stima dell'ISEE con il dettaglio di ISR, ISP e scala di equivalenza. Niente SPID, niente registrazione, i dati restano sul tuo telefono.</p>
+
+  <section class="card">
+    <h2><i class="num">1</i> Chi c'è nel nucleo</h2>
+    <p class="hint">Il nucleo è formato da chi è nello stesso stato di famiglia, più il coniuge e i figli non conviventi a carico.</p>
+    <div class="row"><span class="lbl">Componenti del nucleo</span>
+      <div class="stepper" data-step="componenti" data-min="1" data-max="12"><button type="button" data-d="-1" aria-label="Diminuisci componenti">−</button><output id="out-componenti">3</output><button type="button" data-d="1" aria-label="Aumenta componenti">+</button></div>
+    </div>
+    <div class="row"><span class="lbl">Di cui figli <small>Figli del richiedente o del coniuge, anche maggiorenni a carico.</small></span>
+      <div class="stepper" data-step="figli" data-min="0" data-max="10"><button type="button" data-d="-1" aria-label="Diminuisci figli">−</button><output id="out-figli">1</output><button type="button" data-d="1" aria-label="Aumenta figli">+</button></div>
+    </div>
+    <div class="row"><span class="lbl">Di cui minorenni</span>
+      <div class="stepper" data-step="minorenni" data-min="0" data-max="10"><button type="button" data-d="-1" aria-label="Diminuisci minorenni">−</button><output id="out-minorenni">1</output><button type="button" data-d="1" aria-label="Aumenta minorenni">+</button></div>
+    </div>
+    <div class="row" id="riga-under3"><span class="lbl">C'è un figlio sotto i 3 anni</span>
+      <span class="switch"><input type="checkbox" id="under3" checked><i></i></span>
+    </div>
+    <div class="row" id="riga-lavoro"><span class="lbl">Entrambi i genitori hanno lavorato <small>Almeno sei mesi nel 2024; vale anche se c'è un solo genitore che ha lavorato.</small></span>
+      <span class="switch"><input type="checkbox" id="lavoro" checked><i></i></span>
+    </div>
+    <div class="row"><span class="lbl">Componenti con disabilità <small>Disabilità media, grave o non autosufficienza: ognuno vale +0,50 sulla scala.</small></span>
+      <div class="stepper" data-step="disabili" data-min="0" data-max="6"><button type="button" data-d="-1" aria-label="Diminuisci componenti con disabilità">−</button><output id="out-disabili">0</output><button type="button" data-d="1" aria-label="Aumenta componenti con disabilità">+</button></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2><i class="num">2</i> Redditi del 2024</h2>
+    <p class="hint">L'ISEE 2026 guarda i redditi del secondo anno precedente: quelli del 2024, che trovi nel 730 o nel modello Redditi presentato nel 2025.</p>
+    <div class="row"><label for="redditoTot">Reddito complessivo del nucleo <small>Somma del reddito complessivo IRPEF di tutti i componenti (rigo "reddito complessivo").</small></label>
+      <span class="money"><span>€</span><input type="text" inputmode="decimal" id="redditoTot" value="28000" enterkeyhint="done" autocomplete="off"></span>
+    </div>
+    <div class="row"><label for="redditoDip">Di cui da lavoro dipendente <small>Serve per la franchigia del 20%, massimo 3.000 € per lavoratore.</small></label>
+      <span class="money"><span>€</span><input type="text" inputmode="decimal" id="redditoDip" value="28000" enterkeyhint="done" autocomplete="off"></span>
+    </div>
+    <div class="row"><span class="lbl">Quante persone hanno reddito da lavoro</span>
+      <div class="stepper" data-step="nDip" data-min="0" data-max="8"><button type="button" data-d="-1" aria-label="Diminuisci lavoratori">−</button><output id="out-nDip">1</output><button type="button" data-d="1" aria-label="Aumenta lavoratori">+</button></div>
+    </div>
+    <div class="row"><label for="redditoPens">Di cui pensioni e trattamenti <small>Franchigia del 20%, massimo 1.000 € per pensionato.</small></label>
+      <span class="money"><span>€</span><input type="text" inputmode="decimal" id="redditoPens" value="0" enterkeyhint="done" autocomplete="off"></span>
+    </div>
+    <div class="row"><span class="lbl">Quante persone hanno una pensione</span>
+      <div class="stepper" data-step="nPens" data-min="0" data-max="8"><button type="button" data-d="-1" aria-label="Diminuisci pensionati">−</button><output id="out-nPens">0</output><button type="button" data-d="1" aria-label="Aumenta pensionati">+</button></div>
+    </div>
+    <div class="row"><label for="redditoEsente">Redditi esenti o a tassazione sostitutiva <small>Cedolare secca sugli affitti, regime forfettario, borse di studio, pensioni di invalidità.</small></label>
+      <span class="money"><span>€</span><input type="text" inputmode="decimal" id="redditoEsente" value="0" enterkeyhint="done" autocomplete="off"></span>
+    </div>
+    <div class="warnbox" id="warn-redditi"></div>
+  </section>
+
+  <section class="card">
+    <h2><i class="num">3</i> La casa dove vivi</h2>
+    <p class="hint">È la voce che pesa di più, e dal 2026 è quella che fa nascere due ISEE diversi.</p>
+    <div class="chips" role="radiogroup" aria-label="Situazione abitativa">
+      <label><input type="radio" name="casa" value="proprieta" checked><span>Di proprietà</span></label>
+      <label><input type="radio" name="casa" value="affitto"><span>In affitto</span></label>
+      <label><input type="radio" name="casa" value="altro"><span>Nessuna delle due</span></label>
+    </div>
+    <div class="sub on" id="sub-proprieta">
+      <div class="row"><label for="valoreCasa">Valore IMU dell'abitazione <small>Rendita catastale rivalutata × moltiplicatore, non il prezzo di mercato. Lo trovi nel calcolo IMU o dal CAF.</small></label>
+        <span class="money"><span>€</span><input type="text" inputmode="decimal" id="valoreCasa" value="80000" enterkeyhint="done" autocomplete="off"></span>
+      </div>
+      <div class="row"><label for="mutuoCasa">Mutuo residuo al 31/12/2024</label>
+        <span class="money"><span>€</span><input type="text" inputmode="decimal" id="mutuoCasa" value="0" enterkeyhint="done" autocomplete="off"></span>
+      </div>
+      <div class="row"><span class="lbl">Vivi in un comune capoluogo di città metropolitana <small>Roma, Milano, Napoli, Torino, Bari, Bologna, Firenze, Genova, Venezia, Catania, Palermo, Messina, Reggio Calabria, Cagliari.</small></span>
+        <span class="switch"><input type="checkbox" id="metro"><i></i></span>
+      </div>
+    </div>
+    <div class="sub" id="sub-affitto">
+      <div class="row"><label for="canone">Canone annuo da contratto registrato <small>Si detrae dal reddito fino a 7.000 €, più 500 € per ogni figlio oltre il secondo.</small></label>
+        <span class="money"><span>€</span><input type="text" inputmode="decimal" id="canone" value="7200" enterkeyhint="done" autocomplete="off"></span>
+      </div>
+    </div>
+    <div class="row"><label for="altriImmobili">Altri immobili: valore IMU totale <small>Seconde case, box, terreni. Anche le quote di immobili ereditati.</small></label>
+      <span class="money"><span>€</span><input type="text" inputmode="decimal" id="altriImmobili" value="0" enterkeyhint="done" autocomplete="off"></span>
+    </div>
+    <div class="row"><label for="mutuoAltri">Mutuo residuo sugli altri immobili</label>
+      <span class="money"><span>€</span><input type="text" inputmode="decimal" id="mutuoAltri" value="0" enterkeyhint="done" autocomplete="off"></span>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2><i class="num">4</i> Risparmi e investimenti</h2>
+    <p class="hint">Valori al 31 dicembre 2024. Per i conti conta la giacenza media dell'anno, non il saldo di fine anno.</p>
+    <div class="row"><label for="conti">Giacenza media di conti e libretti</label>
+      <span class="money"><span>€</span><input type="text" inputmode="decimal" id="conti" value="6000" enterkeyhint="done" autocomplete="off"></span>
+    </div>
+    <div class="row"><label for="investimenti">Altri investimenti <small>Azioni, obbligazioni, fondi, ETF, polizze, quote di società.</small></label>
+      <span class="money"><span>€</span><input type="text" inputmode="decimal" id="investimenti" value="0" enterkeyhint="done" autocomplete="off"></span>
+    </div>
+    <div class="row"><label for="titoli">Di cui titoli di Stato e buoni postali <small>BOT, BTP, buoni fruttiferi e libretti postali: esclusi fino a 50.000 € in tutto.</small></label>
+      <span class="money"><span>€</span><input type="text" inputmode="decimal" id="titoli" value="0" enterkeyhint="done" autocomplete="off"></span>
+    </div>
+  </section>
+
+  <section class="results" id="risultato" aria-live="polite">
+    <h2 id="titolo-risultato">La tua stima</h2>
+    <div class="big">
+      <div>
+        <span class="tag">ISEE ordinario</span>
+        <b id="isee-ord">—</b>
+        <span class="note">Mensa, trasporti, università, bonus elettrico, agevolazioni comunali.</span>
+      </div>
+      <div>
+        <span class="tag">ISEE bonus famiglia</span>
+        <b id="isee-bonus">—</b>
+        <span class="note">Assegno unico, bonus nido, bonus nuovi nati, assegno di inclusione, SFL.</span>
+      </div>
+    </div>
+    <div class="warnbox" id="nota-due"></div>
+    <ul class="brk" id="dettaglio"></ul>
+    <details class="more">
+      <summary>A che bonus ti avvicina questo ISEE</summary>
+      <ul class="soglie" id="soglie"></ul>
+      <p class="muted small">Soglie indicative riferite al 2025: vengono rivalutate ogni anno e ogni bando può fissarne di proprie. Controlla sempre il sito INPS o l'avviso del tuo comune.</p>
+    </details>
+    <div class="actions">
+      <button type="button" class="btn ghost small" id="reset">Azzera tutto</button>
+    </div>
+  </section>
+
+  <div data-ad="top"></div>
+
+  <section class="card" data-pro="Confronto fra scenari">
+    <h2>Confronto fra scenari</h2>
+    <p class="hint">Salva la situazione attuale e confrontala con un'altra: separazione del nucleo, figlio che esce di casa, risparmi spostati in titoli di Stato, un anno di reddito diverso.</p>
+    <div class="actions" style="margin-top:0">
+      <button type="button" class="btn small" id="salva-scenario">Salva questa situazione</button>
+    </div>
+    <ul class="scen" id="lista-scenari"></ul>
+    <p class="empty" id="vuoto-scenari">Nessuno scenario salvato: compila le schede e premi «Salva questa situazione».</p>
+  </section>
+
+  <section class="card" data-pro="Prospetto e documenti per il CAF">
+    <h2>Prospetto e documenti per il CAF</h2>
+    <p class="hint">Il calcolo voce per voce con i riferimenti di legge, più l'elenco di cosa portare: stampalo e vai al CAF con le carte giuste.</p>
+    <ul class="brk" id="prospetto"></ul>
+    <h3 style="font-size:1rem;margin:1rem 0 .2rem">Documenti da portare</h3>
+    <ul class="docs" id="documenti"></ul>
+    <div class="actions">
+      <button type="button" class="btn small" id="stampa">Stampa il prospetto</button>
+    </div>
+  </section>
+
+  <section id="guida" class="guida">
+    <h2>Come funziona il calcolo dell'ISEE</h2>
+    <p>L'ISEE non è il reddito della famiglia: è un indicatore che mette insieme reddito e patrimonio e poi li rapporta a quante persone devono viverci. La formula del DPCM 159/2013 è questa: <strong>ISEE = (ISR + 20% dell'ISP) ÷ scala di equivalenza</strong>.</p>
+    <p>L'<strong>ISR</strong> è la parte reddituale. Si sommano i redditi complessivi IRPEF di tutti i componenti e i redditi esenti o tassati a parte, come la cedolare secca sugli affitti e il regime forfettario. Da questo totale si togliono le franchigie: il 20% dei redditi da lavoro dipendente fino a 3.000 € per lavoratore, oppure il 20% delle pensioni fino a 1.000 €, e per chi vive in affitto il canone annuo fino a 7.000 € (più 500 € per ogni figlio oltre il secondo).</p>
+    <p>L'<strong>ISP</strong> è la parte patrimoniale, e nell'ISEE entra solo per un quinto. Il patrimonio mobiliare è la giacenza media dei conti sommata agli investimenti, meno una franchigia di 6.000 € che cresce di 2.000 € per ogni componente oltre il primo fino a 10.000 €, aumentata di 1.000 € per ogni figlio oltre il secondo; da marzo 2025 titoli di Stato, buoni fruttiferi e libretti postali sono esclusi fino a 50.000 €. Il patrimonio immobiliare si valuta con il valore IMU, non con il prezzo di mercato: dal valore si toglie il mutuo residuo e, per la casa dove vivi, anche una franchigia; quello che resta conta solo per due terzi.</p>
+    <h3>La scala di equivalenza</h3>
+    <p>È il divisore che tiene conto della numerosità: 1,00 per una persona sola, 1,57 in due, 2,04 in tre, 2,46 in quattro, 2,85 in cinque, più 0,35 per ogni componente oltre il quinto. Si aggiungono le maggiorazioni: 0,50 per ogni componente con disabilità media, grave o non autosufficienza; 0,20 se nel nucleo ci sono figli minorenni ed entrambi i genitori (o l'unico presente) hanno lavorato almeno sei mesi, che diventa 0,30 se un figlio ha meno di tre anni; e una maggiorazione legata al numero di figli.</p>
+    <h3>Perché dal 2026 i valori sono due</h3>
+    <p>La legge di bilancio 2026 ha cambiato le regole solo per cinque misure: assegno di inclusione, supporto per la formazione e il lavoro, assegno unico, bonus asilo nido e bonus nuovi nati. Per queste, la franchigia sulla casa di abitazione sale da 52.500 € a 91.500 € (120.000 € nei comuni capoluogo di città metropolitana, con 2.500 € in più per ogni figlio convivente oltre il primo) e le maggiorazioni per i figli diventano più generose: 0,10 con due figli, 0,25 con tre, 0,40 con quattro, 0,55 con cinque o più. Per tutto il resto resta il calcolo ordinario, con franchigia a 52.500 € e maggiorazioni di 0,20, 0,35 e 0,50. Chi ha casa di proprietà si ritrova quindi con due numeri diversi, ed è il motivo per cui questo strumento li mostra entrambi.</p>
+    <h2>Un esempio con i numeri</h2>
+    <p>Famiglia di tre persone a Bologna: due genitori che lavorano e un figlio di due anni. Reddito complessivo 2024 di 28.000 €, tutto da lavoro dipendente di un solo percettore; 6.000 € di giacenza media sul conto; casa di proprietà con valore IMU di 80.000 € e mutuo estinto.</p>
+    <ul>
+      <li><strong>ISR</strong>: 28.000 € meno la franchigia del 20% (5.600 €, oltre il tetto di 3.000 €, quindi 3.000 €) = <strong>25.000 €</strong>.</li>
+      <li><strong>Patrimonio mobiliare</strong>: 6.000 € meno la franchigia di 10.000 € (6.000 + 2.000 × 2) = <strong>0 €</strong>.</li>
+      <li><strong>Casa, calcolo ordinario</strong>: 80.000 € meno la franchigia di 52.500 € = 27.500 €, di cui due terzi = <strong>18.333 €</strong>.</li>
+      <li><strong>ISE ordinario</strong>: 25.000 + 20% di 18.333 = 28.667 €. Scala: 2,04 base più 0,30 (figlio sotto i tre anni e genitori che lavorano) = 2,34. <strong>ISEE ordinario ≈ 12.251 €</strong>.</li>
+      <li><strong>Casa, calcolo bonus famiglia</strong>: 80.000 € è sotto la franchigia di 91.500 €, quindi la casa non conta nulla. ISE = 25.000 €, scala invariata a 2,34: <strong>ISEE bonus famiglia ≈ 10.684 €</strong>.</li>
+    </ul>
+    <p>Più di 1.500 € di differenza fra i due indicatori, abbastanza per cambiare fascia sull'assegno unico. È esattamente la ragione per cui conviene conoscerli entrambi prima di presentare la DSU.</p>
+    <h2>Gli errori che fanno sbagliare il risultato</h2>
+    <ul>
+      <li><strong>Usare il prezzo di mercato della casa</strong> invece del valore IMU: il valore catastale è in genere molto più basso, e chi mette il valore di mercato si vede un ISEE gonfiato.</li>
+      <li><strong>Mettere il saldo del conto al 31 dicembre</strong>: per i conti correnti e i libretti conta la giacenza media annua, che la banca riporta nella comunicazione di inizio anno.</li>
+      <li><strong>Dimenticare i redditi a tassazione sostitutiva</strong>: cedolare secca e forfettario non compaiono nel reddito complessivo IRPEF, ma nell'ISEE entrano comunque.</li>
+      <li><strong>Sbagliare il nucleo</strong>: il coniuge non separato e i figli a carico contano anche se non conviventi, mentre un figlio maggiorenne che vive fuori e non è a carico fa nucleo a sé.</li>
+      <li><strong>Non dichiarare i titoli di Stato nella DSU autodichiarata</strong>: l'esclusione fino a 50.000 € va indicata, altrimenti non viene applicata.</li>
+    </ul>
+    <h2>Domande frequenti</h2>
+    <h3>Questa stima vale come attestazione ISEE?</h3>
+    <p>No. L'ISEE ufficiale nasce solo dalla DSU presentata all'INPS, a un CAF o a un patronato, perché incrocia i dati dell'Agenzia delle Entrate e degli intermediari finanziari. Qui ottieni l'ordine di grandezza e, soprattutto, capisci quali voci pesano: se il risultato ti colloca appena sopra una soglia che ti interessa, vale la pena controllare i dati con il CAF prima di presentare la dichiarazione.</p>
+    <h3>Serve lo SPID?</h3>
+    <p>No, e nemmeno la registrazione. Il calcolo avviene nel browser e i dati che inserisci restano sul dispositivo: puoi usare la pagina anche offline, dopo averla aperta una volta.</p>
+    <h3>Quanto vale e quando scade l'ISEE?</h3>
+    <p>L'attestazione vale fino al 31 dicembre dell'anno in cui è stata richiesta, quindi va rinnovata ogni gennaio. Se durante l'anno cambia la situazione (una perdita di lavoro, un componente in meno) si può chiedere un ISEE corrente, che guarda i redditi degli ultimi mesi invece di quelli di due anni prima.</p>
+    <h3>Si può abbassare l'ISEE legalmente?</h3>
+    <p>Si può solo dichiarare bene quello che la legge consente: indicare il mutuo residuo, il canone di locazione registrato, l'esclusione dei titoli di Stato, le maggiorazioni per disabilità e per il lavoro di entrambi i genitori. Il resto, come spostare soldi prima di fine anno, non funziona: conta la giacenza media dell'intero anno, non il saldo di un giorno.</p>
+    <h3>E se nel nucleo c'è una persona con disabilità?</h3>
+    <p>Dal DPCM 13/2025 le vecchie franchigie sulle spese sono state sostituite da una maggiorazione fissa della scala di equivalenza: 0,50 per ogni componente con disabilità media, grave o non autosufficienza, uguale per tutti i livelli di gravità. Nel calcolo qui sopra basta indicare quante persone si trovano in questa condizione.</p>
+    <div data-ad="bottom"></div>
+    <div data-support></div>
+    <footer>
+      <p class="muted small">Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a></p>
+      <p class="muted small">Ti servono altri conti di famiglia? Prova <a href="../2026-10-05-quanto-costa-un-figlio/">quanto costa mantenere un figlio</a> oppure il calcolo dello <a href="../2026-09-20-netto-da-lordo/">stipendio netto partendo dal lordo</a>.</p>
+    </footer>
+  </section>
+  <div class="spacer"></div>
+</div>
+
+<div class="bar">
+  <div class="v"><span>ISEE ordinario</span><b id="bar-ord">—</b></div>
+  <div class="v"><span>Bonus famiglia</span><b id="bar-bonus">—</b></div>
+  <a class="btn small" href="#risultato">Dettaglio</a>
+</div>
+
+<script src="../../assets/monetize.js"></script>
+<script>
+/* Modello dati: un unico oggetto `stato` con i campi delle quattro schede (numeri interi in euro,
+ * più i flag del nucleo). `calcola(stato, variante)` lo trasforma in {isr, ispMob, ispImm, ise, scala, isee}
+ * applicando il DPCM 159/2013; la variante "bonus" usa le regole della legge di bilancio 2026.
+ * Scenari Pro e stato corrente vivono in localStorage sotto "calcolo-isee:v1". */
+(() => {
+  "use strict";
+  const KEY = "calcolo-isee:v1";
+  const $ = (id) => document.getElementById(id);
+
+  const DEFAULTS = {
+    componenti: 3, figli: 1, minorenni: 1, under3: true, lavoro: true, disabili: 0,
+    redditoTot: 28000, redditoDip: 28000, nDip: 1, redditoPens: 0, nPens: 0, redditoEsente: 0,
+    casa: "proprieta", valoreCasa: 80000, mutuoCasa: 0, metro: false, canone: 7200,
+    altriImmobili: 0, mutuoAltri: 0, conti: 6000, investimenti: 0, titoli: 0,
+  };
+  const STEPPERS = ["componenti", "figli", "minorenni", "disabili", "nDip", "nPens"];
+  const MONEY = ["redditoTot", "redditoDip", "redditoPens", "redditoEsente", "valoreCasa", "mutuoCasa", "canone", "altriImmobili", "mutuoAltri", "conti", "investimenti", "titoli"];
+  const FLAGS = ["under3", "lavoro", "metro"];
+
+  let stato = { ...DEFAULTS };
+  let scenari = [];
+
+  // ---------- formattazione ----------
+  const eur = (n) => n.toLocaleString("it-IT", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
+  const eur2 = (n) => n.toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €";
+  const num = (n) => n.toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const parseMoney = (t) => {
+    const clean = String(t).replace(/[^\d,.-]/g, "").replace(/\.(?=\d{3}(\D|$))/g, "").replace(",", ".");
+    const v = parseFloat(clean);
+    return Number.isFinite(v) && v > 0 ? Math.round(v) : 0;
+  };
+
+  // ---------- calcolo ----------
+  const BASE = [0, 1.00, 1.57, 2.04, 2.46, 2.85];
+  const FIGLI_ORD = { 3: 0.20, 4: 0.35 };     // 5 o più: 0,50
+  const FIGLI_BONUS = { 2: 0.10, 3: 0.25, 4: 0.40 }; // 5 o più: 0,55
+
+  function scalaEquivalenza(s, variante) {
+    const n = s.componenti;
+    let v = n <= 5 ? BASE[n] : 2.85 + 0.35 * (n - 5);
+    const voci = [{ k: n + (n === 1 ? " componente" : " componenti"), v: n <= 5 ? BASE[n] : 2.85 + 0.35 * (n - 5) }];
+    if (s.disabili > 0) { const m = 0.50 * s.disabili; v += m; voci.push({ k: "disabilità (" + s.disabili + " × 0,50)", v: m }); }
+    if (s.minorenni > 0 && s.lavoro) {
+      const m = s.under3 ? 0.30 : 0.20;
+      v += m; voci.push({ k: s.under3 ? "figlio under 3 e genitori che lavorano" : "figli minori e genitori che lavorano", v: m });
+    }
+    const tab = variante === "bonus" ? FIGLI_BONUS : FIGLI_ORD;
+    const maxFigli = variante === "bonus" ? 0.55 : 0.50;
+    if (s.figli >= 5) { v += maxFigli; voci.push({ k: "cinque o più figli", v: maxFigli }); }
+    else if (tab[s.figli]) { v += tab[s.figli]; voci.push({ k: s.figli + " figli", v: tab[s.figli] }); }
+    return { valore: Math.round(v * 100) / 100, voci };
+  }
+
+  function calcola(s, variante) {
+    const figliOltre2 = Math.max(0, s.figli - 2);
+    // --- ISR ---
+    const frLavoro = Math.min(s.redditoDip * 0.20, 3000 * s.nDip);
+    const frPens = Math.min(s.redditoPens * 0.20, 1000 * s.nPens);
+    const maxAffitto = 7000 + 500 * figliOltre2;
+    const detrAffitto = s.casa === "affitto" ? Math.min(s.canone, maxAffitto) : 0;
+    const redditi = s.redditoTot + s.redditoEsente;
+    const isr = Math.max(0, redditi - frLavoro - frPens - detrAffitto);
+    // --- patrimonio mobiliare ---
+    const mobLordo = s.conti + s.investimenti;
+    const esclTitoli = Math.min(s.titoli, 50000, mobLordo);
+    const tettoFr = 10000 + 1000 * figliOltre2;
+    const frMob = Math.min(6000 + 2000 * (s.componenti - 1), tettoFr);
+    const ispMob = Math.max(0, mobLordo - esclTitoli - frMob);
+    // --- patrimonio immobiliare ---
+    const altri = Math.max(0, s.altriImmobili - s.mutuoAltri);
+    let frCasa = 0, casaNetta = 0, casaConta = 0;
+    if (s.casa === "proprieta") {
+      casaNetta = Math.max(0, s.valoreCasa - s.mutuoCasa);
+      frCasa = variante === "bonus"
+        ? (s.metro ? 120000 : 91500) + 2500 * Math.max(0, s.figli - 1)
+        : 52500 + 2500 * figliOltre2;
+      casaConta = Math.max(0, casaNetta - frCasa) * (2 / 3);
+    }
+    const ispImm = altri + casaConta;
+    const isp = ispMob + ispImm;
+    const ise = isr + 0.20 * isp;
+    const sc = scalaEquivalenza(s, variante);
+    return {
+      isr, frLavoro, frPens, detrAffitto, maxAffitto, redditi,
+      mobLordo, esclTitoli, frMob, ispMob, altri, casaNetta, frCasa, casaConta, ispImm, isp,
+      ise, scala: sc.valore, voci: sc.voci, isee: sc.valore > 0 ? ise / sc.valore : 0,
+    };
+  }
+
+  // ---------- soglie indicative ----------
+  const SOGLIE = [
+    { s: 9530, t: "Bonus sociale bollette", n: "20.000 € con almeno 4 figli" },
+    { s: 10140, t: "Assegno di inclusione", n: "insieme agli altri requisiti di nucleo" },
+    { s: 17227, t: "Assegno unico: importo massimo per figlio", n: "oltre la soglia l'importo scende gradualmente" },
+    { s: 22000, t: "Università: esonero totale dalle tasse", n: "le soglie variano da ateneo ad ateneo" },
+    { s: 25000, t: "Bonus asilo nido: fascia piena", n: "fino a 3.600 € l'anno" },
+    { s: 40000, t: "Bonus nuovi nati e nido ridotto", n: "sopra i 40.000 € il nido scende al minimo" },
+    { s: 45939, t: "Assegno unico: sotto questa soglia non è al minimo", n: "oltre, scatta l'importo minimo" },
+  ];
+
+  // ---------- documenti per il CAF ----------
+  function documenti(s) {
+    const d = [
+      "Documento d'identità e tessera sanitaria di tutti i componenti del nucleo",
+      "Modello 730 o Redditi 2025 (redditi 2024) di ogni componente che ha dichiarato",
+      "Certificazione Unica 2025 per lavoratori dipendenti e pensionati",
+      "Giacenza media annua 2024 di ogni conto, libretto e carta prepagata con IBAN",
+    ];
+    if (s.investimenti > 0) d.push("Dossier titoli al 31/12/2024: valore di azioni, obbligazioni, fondi e polizze");
+    if (s.titoli > 0) d.push("Documentazione di titoli di Stato, buoni fruttiferi e libretti postali (esclusi fino a 50.000 €)");
+    if (s.casa === "proprieta" || s.altriImmobili > 0) d.push("Visure catastali o calcolo IMU degli immobili posseduti al 31/12/2024");
+    if (s.mutuoCasa > 0 || s.mutuoAltri > 0) d.push("Certificazione della banca con il capitale residuo del mutuo al 31/12/2024");
+    if (s.casa === "affitto") d.push("Contratto di locazione registrato e canone annuo pattuito");
+    if (s.disabili > 0) d.push("Verbale di invalidità o certificazione di handicap dei componenti con disabilità");
+    if (s.redditoEsente > 0) d.push("Prospetto dei redditi esenti o a tassazione sostitutiva (cedolare secca, forfettario, borse di studio)");
+    if (s.minorenni > 0 && s.lavoro) d.push("Prova dell'attività lavorativa di almeno sei mesi nel 2024 di entrambi i genitori");
+    d.push("Targa e libretto di auto, moto oltre 500 cc, camper e imbarcazioni intestati al nucleo");
+    return d;
+  }
+
+  // ---------- render ----------
+  function riga(k, v, cls) {
+    const li = document.createElement("li");
+    if (cls) li.className = cls;
+    const a = document.createElement("span"); a.textContent = k;
+    const b = document.createElement("b"); b.textContent = v;
+    li.append(a, b);
+    return li;
+  }
+
+  function render() {
+    const ord = calcola(stato, "ordinario");
+    const bon = calcola(stato, "bonus");
+
+    $("isee-ord").textContent = eur2(ord.isee);
+    $("isee-bonus").textContent = eur2(bon.isee);
+    $("bar-ord").textContent = eur(ord.isee);
+    $("bar-bonus").textContent = eur(bon.isee);
+
+    // nota sui due valori
+    const diff = ord.isee - bon.isee;
+    const nota = $("nota-due");
+    if (diff > 1) {
+      nota.textContent = "Per assegno unico, bonus nido, bonus nuovi nati, assegno di inclusione e SFL vale il valore più basso: " +
+        eur2(bon.isee) + ", cioè " + eur2(diff) + " in meno grazie alle regole del 2026. Per mensa, università e agevolazioni comunali vale quello ordinario.";
+    } else if (diff < -1) {
+      nota.textContent = "In questo caso l'ISEE dei bonus famiglia è più alto perché le maggiorazioni per i figli cambiano il divisore: controlla bene il numero di figli indicato.";
+    } else {
+      nota.textContent = "I due valori coincidono: la casa resta sotto entrambe le franchigie, quindi non fa differenza quale prestazione chiedi.";
+    }
+
+    // dettaglio
+    const det = $("dettaglio");
+    det.replaceChildren();
+    det.append(riga("Redditi del nucleo", eur2(ord.redditi)));
+    if (ord.frLavoro > 0) det.append(riga("− franchigia lavoro dipendente (20%, max " + eur(3000 * stato.nDip) + ")", "−" + eur2(ord.frLavoro)));
+    if (ord.frPens > 0) det.append(riga("− franchigia pensioni (20%, max " + eur(1000 * stato.nPens) + ")", "−" + eur2(ord.frPens)));
+    if (ord.detrAffitto > 0) det.append(riga("− canone di locazione (max " + eur(ord.maxAffitto) + ")", "−" + eur2(ord.detrAffitto)));
+    det.append(riga("ISR — situazione reddituale", eur2(ord.isr), "tot"));
+    det.append(riga("Patrimonio mobiliare", eur2(ord.mobLordo)));
+    if (ord.esclTitoli > 0) det.append(riga("− titoli di Stato e buoni postali esclusi", "−" + eur2(ord.esclTitoli)));
+    det.append(riga("− franchigia mobiliare", "−" + eur2(ord.frMob)));
+    if (stato.casa === "proprieta") {
+      det.append(riga("Casa di abitazione (valore IMU − mutuo)", eur2(ord.casaNetta)));
+      det.append(riga("− franchigia casa (ordinario " + eur(ord.frCasa) + " / bonus " + eur(bon.frCasa) + "), poi due terzi", "resta " + eur2(ord.casaConta) + " / " + eur2(bon.casaConta)));
+    }
+    if (ord.altri > 0) det.append(riga("Altri immobili (valore IMU − mutuo)", eur2(ord.altri)));
+    det.append(riga("ISP — situazione patrimoniale", eur2(ord.isp) + (Math.abs(ord.isp - bon.isp) > 1 ? " / " + eur2(bon.isp) : ""), "tot"));
+    det.append(riga("ISE = ISR + 20% dell'ISP", eur2(ord.ise) + (Math.abs(ord.ise - bon.ise) > 1 ? " / " + eur2(bon.ise) : "")));
+    det.append(riga("Scala di equivalenza", num(ord.scala) + (ord.scala !== bon.scala ? " / " + num(bon.scala) : "")));
+
+    // soglie
+    const sg = $("soglie");
+    sg.replaceChildren();
+    for (const s of SOGLIE) {
+      const li = document.createElement("li");
+      const dentro = bon.isee <= s.s;
+      const mark = document.createElement("span");
+      mark.className = "mark " + (dentro ? "ok" : "no");
+      mark.textContent = dentro ? "✓" : "–";
+      const box = document.createElement("span");
+      const b = document.createElement("b"); b.textContent = s.t;
+      const sm = document.createElement("small"); sm.className = "muted";
+      sm.textContent = " fino a " + eur(s.s) + " — " + s.n;
+      box.append(b, sm);
+      li.append(mark, box);
+      sg.append(li);
+    }
+
+    // prospetto Pro
+    const pr = $("prospetto");
+    pr.replaceChildren();
+    pr.append(riga("Componenti del nucleo", String(stato.componenti)));
+    pr.append(riga("Figli (di cui minorenni)", stato.figli + " (" + stato.minorenni + ")"));
+    for (const v of ord.voci) pr.append(riga("Scala: " + v.k, "+" + num(v.v)));
+    pr.append(riga("Scala di equivalenza ordinaria", num(ord.scala), "tot"));
+    if (ord.scala !== bon.scala) pr.append(riga("Scala di equivalenza bonus famiglia", num(bon.scala), "tot"));
+    pr.append(riga("ISR (art. 4 DPCM 159/2013)", eur2(ord.isr)));
+    pr.append(riga("ISP mobiliare (art. 5 c. 4)", eur2(ord.ispMob)));
+    pr.append(riga("ISP immobiliare ordinario (art. 5 c. 2)", eur2(ord.ispImm)));
+    if (Math.abs(ord.ispImm - bon.ispImm) > 1) pr.append(riga("ISP immobiliare bonus famiglia", eur2(bon.ispImm)));
+    pr.append(riga("ISEE ordinario", eur2(ord.isee), "tot"));
+    pr.append(riga("ISEE bonus famiglia (L. bilancio 2026)", eur2(bon.isee), "tot"));
+
+    const dc = $("documenti");
+    dc.replaceChildren();
+    for (const t of documenti(stato)) { const li = document.createElement("li"); li.textContent = t; dc.append(li); }
+
+    // avviso coerenza redditi
+    const w = $("warn-redditi");
+    const parti = stato.redditoDip + stato.redditoPens;
+    if (parti > stato.redditoTot) {
+      w.textContent = "Lavoro dipendente e pensioni (" + eur(parti) + ") superano il reddito complessivo indicato (" + eur(stato.redditoTot) + "): controlla i tre importi, la franchigia risulta più alta del dovuto.";
+    } else if (stato.redditoDip > 0 && stato.nDip === 0) {
+      w.textContent = "Hai indicato reddito da lavoro dipendente ma nessun lavoratore: la franchigia del 20% non viene applicata.";
+    } else if (stato.redditoPens > 0 && stato.nPens === 0) {
+      w.textContent = "Hai indicato redditi da pensione ma nessun pensionato: la franchigia del 20% non viene applicata.";
+    } else { w.textContent = ""; }
+
+    renderScenari(ord, bon);
+    salva();
+  }
+
+  // ---------- scenari (Pro) ----------
+  function renderScenari() {
+    const ul = $("lista-scenari");
+    ul.replaceChildren();
+    $("vuoto-scenari").hidden = scenari.length > 0;
+    scenari.forEach((sc, i) => {
+      const o = calcola(sc.dati, "ordinario").isee;
+      const b = calcola(sc.dati, "bonus").isee;
+      const li = document.createElement("li");
+      const nm = document.createElement("span"); nm.className = "nm";
+      const t = document.createElement("b"); t.textContent = sc.nome;
+      const sm = document.createElement("small");
+      sm.textContent = "ordinario " + eur2(o) + " · bonus famiglia " + eur2(b) + " · " + sc.dati.componenti + " componenti";
+      nm.append(t, sm);
+      const use = document.createElement("button");
+      use.type = "button"; use.className = "btn ghost small"; use.textContent = "Carica";
+      use.addEventListener("click", () => { stato = { ...DEFAULTS, ...sc.dati }; applica(); render(); });
+      const rm = document.createElement("button");
+      rm.type = "button"; rm.className = "rm"; rm.textContent = "×";
+      rm.setAttribute("aria-label", "Elimina lo scenario " + sc.nome);
+      rm.addEventListener("click", () => { scenari.splice(i, 1); renderScenari(); salva(); });
+      li.append(nm, use, rm);
+      ul.append(li);
+    });
+  }
+
+  function nomeScenario() {
+    const s = stato;
+    const parti = [s.componenti + (s.componenti === 1 ? " persona" : " persone")];
+    if (s.figli > 0) parti.push(s.figli + (s.figli === 1 ? " figlio" : " figli"));
+    parti.push(s.casa === "proprieta" ? "casa di proprietà" : s.casa === "affitto" ? "in affitto" : "senza casa");
+    parti.push(eur(s.redditoTot + s.redditoEsente) + " di reddito");
+    return parti.join(", ");
+  }
+
+  $("salva-scenario").addEventListener("click", () => {
+    scenari.unshift({ nome: nomeScenario(), dati: { ...stato } });
+    if (scenari.length > 8) scenari.length = 8;
+    renderScenari(); salva();
+  });
+
+  $("stampa").addEventListener("click", () => window.print());
+
+  $("reset").addEventListener("click", () => {
+    stato = { ...DEFAULTS };
+    applica(); render();
+    $("titolo-risultato").scrollIntoView({ block: "center" });
+  });
+
+  // ---------- input ----------
+  function applica() {
+    for (const k of STEPPERS) { const o = $("out-" + k); if (o) o.textContent = String(stato[k]); }
+    for (const k of MONEY) { const i = $(k); if (i) i.value = stato[k] ? stato[k].toLocaleString("it-IT") : "0"; }
+    for (const k of FLAGS) { const i = $(k); if (i) i.checked = !!stato[k]; }
+    const r = document.querySelector('input[name="casa"][value="' + stato.casa + '"]');
+    if (r) r.checked = true;
+    aggiornaVisibilita();
+  }
+
+  function aggiornaVisibilita() {
+    $("sub-proprieta").classList.toggle("on", stato.casa === "proprieta");
+    $("sub-affitto").classList.toggle("on", stato.casa === "affitto");
+    const conMinori = stato.minorenni > 0;
+    $("riga-under3").hidden = !conMinori;
+    $("riga-lavoro").hidden = !conMinori;
+    for (const st of document.querySelectorAll(".stepper")) {
+      const k = st.dataset.step;
+      const min = Number(st.dataset.min), max = limite(k, Number(st.dataset.max));
+      st.querySelector('[data-d="-1"]').disabled = stato[k] <= min;
+      st.querySelector('[data-d="1"]').disabled = stato[k] >= max;
+    }
+  }
+
+  // Vincoli di coerenza: nel nucleo c’è sempre il dichiarante, quindi i figli stanno sotto
+  // il numero di componenti; i minorenni non superano i figli, i disabili e i percettori i componenti.
+  function limite(k, max) {
+    if (k === "figli") return Math.min(max, Math.max(0, stato.componenti - 1));
+    if (k === "minorenni") return Math.min(max, stato.figli);
+    if (k === "disabili" || k === "nDip" || k === "nPens") return Math.min(max, stato.componenti);
+    return max;
+  }
+
+  function coerenza() {
+    stato.figli = Math.min(stato.figli, Math.max(0, stato.componenti - 1));
+    stato.minorenni = Math.min(stato.minorenni, stato.figli);
+    stato.disabili = Math.min(stato.disabili, stato.componenti);
+    stato.nDip = Math.min(stato.nDip, stato.componenti);
+    stato.nPens = Math.min(stato.nPens, stato.componenti);
+    if (stato.minorenni === 0) stato.under3 = false;
+  }
+
+  for (const st of document.querySelectorAll(".stepper")) {
+    const k = st.dataset.step, min = Number(st.dataset.min), max = Number(st.dataset.max);
+    st.addEventListener("click", (e) => {
+      const b = e.target.closest("button[data-d]");
+      if (!b) return;
+      stato[k] = Math.max(min, Math.min(limite(k, max), stato[k] + Number(b.dataset.d)));
+      coerenza();
+      for (const key of STEPPERS) $("out-" + key).textContent = String(stato[key]);
+      for (const key of FLAGS) { const i = $(key); if (i) i.checked = !!stato[key]; }
+      aggiornaVisibilita(); render();
+    });
+  }
+
+  for (const k of MONEY) {
+    const i = $(k);
+    if (!i) continue;
+    i.addEventListener("input", () => { stato[k] = parseMoney(i.value); render(); });
+    i.addEventListener("blur", () => { i.value = stato[k] ? stato[k].toLocaleString("it-IT") : "0"; });
+    i.addEventListener("keydown", (e) => { if (e.key === "Enter") { i.blur(); } });
+  }
+
+  for (const k of FLAGS) {
+    const i = $(k);
+    if (i) i.addEventListener("change", () => { stato[k] = i.checked; render(); });
+  }
+
+  for (const r of document.querySelectorAll('input[name="casa"]')) {
+    r.addEventListener("change", () => { if (r.checked) { stato.casa = r.value; aggiornaVisibilita(); render(); } });
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && document.activeElement && document.activeElement.tagName === "INPUT") document.activeElement.blur();
+  });
+
+  // ---------- persistenza ----------
+  function salva() {
+    try { localStorage.setItem(KEY, JSON.stringify({ stato, scenari })); } catch (e) { /* quota o modalità privata */ }
+  }
+  function carica() {
+    try {
+      const raw = localStorage.getItem(KEY);
+      if (!raw) return;
+      const d = JSON.parse(raw);
+      if (d && d.stato) stato = { ...DEFAULTS, ...d.stato };
+      if (d && Array.isArray(d.scenari)) scenari = d.scenari.filter(s => s && s.nome && s.dati).slice(0, 8);
+    } catch (e) { /* dati illeggibili: si riparte dai default */ }
+  }
+
+  carica();
+  coerenza();
+  applica();
+  render();
+})();
+</script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 30,
+  "count": 31,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -49,6 +49,52 @@
     ]
   },
   "apps": [
+    {
+      "title": "ISEE in Due Minuti",
+      "slug": "2026-10-12-calcolo-isee",
+      "date": "2026-10-12",
+      "description": "Stima l'ISEE 2026 dai tuoi dati: ISEE ordinario e ISEE dei bonus famiglia, con il dettaglio di ISR, ISP e scala di equivalenza.",
+      "category": "finanza-personale",
+      "tags": [
+        "isee",
+        "bonus famiglia",
+        "dsu",
+        "nucleo familiare"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "card-stack",
+        "palette": "azzurro-cielo",
+        "font": "rounded"
+      },
+      "business": {
+        "keyword": "come si calcola l'isee",
+        "keywords": [
+          "calcolo isee 2026",
+          "simulatore isee online gratis",
+          "calcolo isee senza spid",
+          "isee prima casa 91.500"
+        ],
+        "intent": "Chi deve chiedere un bonus o pagare una retta vuole sapere adesso a quanto sta il suo ISEE, prima di prenotare il CAF o compilare la DSU.",
+        "target": "Famiglie con figli, 28-55 anni, da telefono, a gennaio e prima di ogni scadenza di bonus o iscrizione scolastica.",
+        "edge": "È l'unico che mostra i due ISEE del 2026 affiancati (ordinario e quello con la franchigia prima casa a 91.500 € valida per i cinque bonus famiglia) e spiega voce per voce da dove esce il numero.",
+        "monetization": [
+          "adsense",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto fra scenari",
+          "Prospetto e documenti per il CAF"
+        ],
+        "affiliate": []
+      },
+      "size": 53084
+    },
     {
       "title": "Quando Vado in Pensione",
       "slug": "2026-10-11-quando-vado-in-pensione",
