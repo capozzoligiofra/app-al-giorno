@@ -1,6 +1,6 @@
 {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 31,
+  "count": 32,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -49,6 +49,53 @@
     ]
   },
   "apps": [
+    {
+      "title": "Calcolo Tredicesima",
+      "slug": "2026-10-13-calcolo-tredicesima",
+      "date": "2026-10-13",
+      "description": "Calcola la tredicesima lorda e netta dai mesi lavorati, con il dettaglio di contributi INPS e IRPEF voce per voce.",
+      "category": "finanza-personale",
+      "tags": [
+        "tredicesima",
+        "busta paga",
+        "stipendio",
+        "irpef",
+        "dicembre"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "dashboard",
+        "palette": "verde-bosco",
+        "font": "condensed"
+      },
+      "business": {
+        "keyword": "come si calcola la tredicesima",
+        "keywords": [
+          "calcolo tredicesima netta",
+          "quanto mi arriva di tredicesima",
+          "tredicesima mesi lavorati",
+          "perché la tredicesima è più bassa dello stipendio"
+        ],
+        "intent": "Chi a novembre-dicembre vuole sapere in anticipo quanto gli arriva di tredicesima, e perché è più bassa di uno stipendio normale.",
+        "target": "Lavoratori dipendenti privati e pubblici, 20-60 anni, che guardano il cedolino dal telefono.",
+        "edge": "Calcola i ratei con la regola dei 15 giorni dalle date di assunzione, divide la RAL per le mensilità vere (13 o 14, non per 12) e mostra il dettaglio contributi/IRPEF come un cedolino, così il numero si può confrontare con la busta paga.",
+        "monetization": [
+          "adsense",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto fra due scenari",
+          "Prospetto per il cedolino"
+        ],
+        "affiliate": []
+      },
+      "size": 49160
+    },
     {
       "title": "ISEE in Due Minuti",
       "slug": "2026-10-12-calcolo-isee",

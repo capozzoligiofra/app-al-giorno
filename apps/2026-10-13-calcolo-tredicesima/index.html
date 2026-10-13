@@ -1,0 +1,907 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1f6b3f">
+  <title>Calcolo Tredicesima: come si calcola e quanto resta</title>
+  <meta name="description" content="Come si calcola la tredicesima: inserisci lo stipendio lordo e i mesi lavorati e ottieni il netto, con il dettaglio di contributi INPS e IRPEF 2026.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-13-calcolo-tredicesima/">
+  <meta property="og:title" content="Calcolo Tredicesima: come si calcola e quanto resta">
+  <meta property="og:description" content="Stipendio lordo e mesi lavorati: la tredicesima netta con il dettaglio di contributi e IRPEF, come in un cedolino. Senza registrazione.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-13-calcolo-tredicesima/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Calcolo Tredicesima",
+    "description": "Calcolatore gratuito della tredicesima mensilità: calcola il lordo dai mesi maturati con la regola dei 15 giorni e il netto con contributi INPS e IRPEF 2026, voce per voce.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-13-calcolo-tredicesima/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Come si calcola la tredicesima?", "acceptedAnswer": { "@type": "Answer", "text": "La tredicesima lorda è pari a una mensilità di retribuzione, moltiplicata per i dodicesimi maturati nell'anno: lordo mensile diviso 12 per i mesi lavorati. Dal lordo si toglie la quota di contributi INPS a carico del lavoratore, in genere il 9,19% nel settore privato, e sull'importo che resta si applica l'IRPEF per scaglioni. Il risultato è il netto che arriva in busta paga a dicembre." } },
+      { "@type": "Question", "name": "Perché la tredicesima è più bassa di uno stipendio normale?", "acceptedAnswer": { "@type": "Answer", "text": "Perché sulla tredicesima non si applicano le detrazioni per lavoro dipendente, che ogni mese abbassano l'IRPEF trattenuta sullo stipendio ordinario. Le detrazioni sono calcolate sull'anno e vengono già usate tutte sulle dodici mensilità normali, quindi sulla tredicesima l'IRPEF si paga piena, all'aliquota marginale. In compenso sulla tredicesima non si pagano le addizionali regionali e comunali." } },
+      { "@type": "Question", "name": "Quando un mese conta per la tredicesima?", "acceptedAnswer": { "@type": "Answer", "text": "La gran parte dei contratti collettivi considera maturato un intero dodicesimo quando nel mese si lavora almeno 15 giorni; sotto i 15 giorni il mese non matura. Per questo chi è stato assunto il 20 marzo matura 9 dodicesimi (da aprile a dicembre) e non 10." } },
+      { "@type": "Question", "name": "La tredicesima matura durante malattia o maternità?", "acceptedAnswer": { "@type": "Answer", "text": "Sì: malattia, infortunio, maternità obbligatoria, ferie e permessi retribuiti sono periodi normalmente equiparati al lavoro e maturano il rateo, salvo i limiti di durata previsti dal contratto collettivo. Non maturano invece l'aspettativa non retribuita, i permessi non retribuiti, lo sciopero e le assenze ingiustificate: in quei casi togli i mesi corrispondenti." } },
+      { "@type": "Question", "name": "Si divide la RAL per 12 o per 13?", "acceptedAnswer": { "@type": "Answer", "text": "Per 13, se il contratto prevede tredici mensilità, perché la RAL le comprende già tutte. Dividere per 12 la retribuzione annua lorda gonfia la tredicesima di circa l'8%. Con quattordici mensilità la RAL si divide per 14." } },
+      { "@type": "Question", "name": "Quando viene pagata la tredicesima?", "acceptedAnswer": { "@type": "Answer", "text": "Entro la vigilia di Natale: la maggior parte dei contratti la fissa fra il 10 e il 20 dicembre, spesso in un cedolino separato da quello dello stipendio di dicembre. Chi si dimette o viene licenziato durante l'anno riceve i ratei maturati nella busta paga finale, insieme al TFR e alle ferie non godute." } }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #eef2e8; --surface: #ffffff; --surface-2: #f6f9f2; --text: #17261c; --muted: #5c6f60;
+      --line: #d5e0cd; --accent: #1f6b3f; --accent-2: #2f8f55; --accent-soft: #e3efe4; --accent-ink: #ffffff;
+      --warn: #8a5a12; --warn-soft: #fbf1dd; --bad: #a3392c;
+      --r: 6px; --r-lg: 10px;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0e1510; --surface: #16211a; --surface-2: #121b15; --text: #e7efe7; --muted: #94a89a;
+        --line: #26352a; --accent: #6fd396; --accent-2: #8ae0ac; --accent-soft: #1b2b20; --accent-ink: #08170e;
+        --warn: #e0b369; --warn-soft: #27210f; --bad: #e8897b;
+        color-scheme: dark;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font: 17px/1.6 "Arial Narrow", "Roboto Condensed", "Liberation Sans Narrow", "Helvetica Neue", system-ui, sans-serif;
+      letter-spacing: .005em;
+      padding: 0 14px env(safe-area-inset-bottom);
+      overflow-x: hidden;
+    }
+    .wrap { max-width: 980px; margin: 0 auto; }
+    a { color: var(--accent); }
+    h1, h2, h3, .lbl, .tile-k, th { text-transform: uppercase; letter-spacing: .05em; }
+    h1 { font-size: 1.55rem; line-height: 1.15; margin: .2rem 0 .3rem; font-weight: 700; }
+    h2 { font-size: 1.2rem; margin: 1.8rem 0 .5rem; font-weight: 700; }
+    h3 { font-size: 1rem; margin: 1.2rem 0 .3rem; font-weight: 700; letter-spacing: .04em; }
+    p { margin: .5rem 0; }
+    .muted { color: var(--muted); }
+    .small { font-size: .95rem; }
+
+    /* barra alta */
+    .topbar { display: flex; align-items: center; gap: .75rem; padding: .6rem 0 .2rem; font-size: 1rem; }
+    .topbar a { text-decoration: none; font-weight: 700; min-height: 44px; display: inline-flex; align-items: center; }
+    .lead { margin: 0 0 1rem; color: var(--muted); font-size: 1.02rem; }
+
+    /* pannello di controllo */
+    .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: .9rem; }
+    .lbl { display: block; font-size: .82rem; font-weight: 700; color: var(--muted); margin: 0 0 .3rem; }
+    .field + .field { margin-top: .9rem; }
+    input[type="text"], input[type="date"], input[type="number"], select {
+      font: inherit; font-size: 16px; width: 100%; min-height: 48px; padding: .55rem .7rem;
+      border: 1px solid var(--line); border-radius: var(--r); background: var(--surface-2); color: var(--text);
+      font-variant-numeric: tabular-nums;
+    }
+    input:focus-visible, select:focus-visible, button:focus-visible, .chip:focus-visible {
+      outline: 2px solid var(--accent); outline-offset: 1px;
+    }
+    .euro { position: relative; }
+    .euro input { padding-right: 2.1rem; font-size: 20px; font-weight: 700; }
+    .euro span { position: absolute; right: .7rem; top: 50%; transform: translateY(-50%); color: var(--muted); font-weight: 700; }
+
+    /* chip segmentate */
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      font: inherit; font-size: .95rem; text-transform: uppercase; letter-spacing: .04em; font-weight: 700;
+      min-height: 44px; padding: .4rem .8rem; border: 1px solid var(--line); border-radius: var(--r);
+      background: var(--surface-2); color: var(--text); cursor: pointer; flex: 1 1 auto;
+    }
+    .chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+    .chip small { display: block; font-size: .8rem; font-weight: 400; letter-spacing: 0; text-transform: none; opacity: .8; }
+
+    /* stepper mesi */
+    .stepper { display: flex; align-items: stretch; gap: 8px; }
+    .stepper button {
+      font: inherit; font-size: 1.5rem; line-height: 1; width: 56px; min-height: 48px; flex: 0 0 56px;
+      border: 1px solid var(--line); border-radius: var(--r); background: var(--surface-2); color: var(--text); cursor: pointer; font-weight: 700;
+    }
+    .stepper button:disabled { opacity: .4; cursor: default; }
+    .stepper .val {
+      flex: 1 1 auto; display: flex; align-items: center; justify-content: center; gap: .35rem;
+      border: 1px solid var(--line); border-radius: var(--r); background: var(--surface-2);
+      font-size: 1.3rem; font-weight: 700; font-variant-numeric: tabular-nums;
+    }
+    .stepper .val b { font-size: 1.55rem; }
+    .stepper .val em { font-style: normal; font-size: .9rem; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+
+    details.more { border: 1px solid var(--line); border-radius: var(--r); background: var(--surface-2); margin-top: .9rem; }
+    details.more > summary {
+      cursor: pointer; list-style: none; min-height: 48px; padding: .5rem .7rem;
+      display: flex; align-items: center; justify-content: space-between; gap: .6rem; flex-wrap: wrap;
+      font-size: .9rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--muted);
+    }
+    details.more > summary::-webkit-details-marker { display: none; }
+    details.more > summary::after { content: "▾"; color: var(--accent); font-size: 1.1rem; }
+    details.more[open] > summary::after { content: "▴"; }
+    details.more > summary b { font-weight: 700; color: var(--accent); text-transform: none; letter-spacing: 0; font-variant-numeric: tabular-nums; margin-left: auto; }
+    details.more .more-body { padding: 0 .7rem .8rem; border-top: 1px solid var(--line); }
+    details.more .more-body .field:first-child { margin-top: .8rem; }
+    footer li { margin-bottom: .2rem; }
+    footer li a, footer p a { display: inline-block; min-height: 44px; padding: .6rem 0; }
+    details.helper { margin-top: .6rem; border-top: 1px dashed var(--line); padding-top: .6rem; }
+    details.helper summary { cursor: pointer; font-weight: 700; font-size: .95rem; color: var(--accent); min-height: 44px; display: flex; align-items: center; }
+    .duedate { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+    /* dashboard: riquadri con numeri grandi */
+    .grid { display: grid; gap: 10px; margin-top: 12px; }
+    .tile { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: .8rem .9rem; }
+    .tile-k { font-size: .78rem; font-weight: 700; color: var(--muted); margin: 0 0 .15rem; }
+    .tile-v { font-size: 1.5rem; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.1; }
+    .tile-n { font-size: .88rem; color: var(--muted); margin-top: .1rem; }
+    .tile.hero { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); padding: 1.1rem .9rem; }
+    .tile.hero .tile-k, .tile.hero .tile-n { color: inherit; opacity: .85; }
+    .tile.hero .tile-v { font-size: 2.9rem; letter-spacing: -.01em; }
+    .tile.neg .tile-v { color: var(--bad); }
+    .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+    /* cedolino */
+    .rows { margin-top: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; }
+    .row { display: flex; justify-content: space-between; align-items: baseline; gap: .6rem; padding: .6rem .9rem; border-bottom: 1px solid var(--line); }
+    .row:last-child { border-bottom: 0; }
+    .row .k { font-size: .98rem; }
+    .row .k em { display: block; font-style: normal; font-size: .86rem; color: var(--muted); }
+    .row .v { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .row.sub { background: var(--surface-2); }
+    .row.tot { background: var(--accent-soft); }
+    .row.tot .k, .row.tot .v { font-weight: 700; }
+    .row .v.minus { color: var(--bad); }
+
+    /* scaglioni */
+    .bar { display: flex; height: 14px; border-radius: 999px; overflow: hidden; background: var(--surface-2); border: 1px solid var(--line); margin: .5rem 0; }
+    .bar i { display: block; height: 100%; }
+    .s23 { background: var(--accent-2); } .s33 { background: var(--warn); } .s43 { background: var(--bad); }
+    .legend { display: flex; flex-wrap: wrap; gap: .4rem .9rem; font-size: .92rem; }
+    .legend span { display: inline-flex; align-items: center; gap: .35rem; }
+    .dot { width: 11px; height: 11px; border-radius: 3px; flex: 0 0 11px; }
+
+    .note { background: var(--warn-soft); border: 1px solid var(--line); border-left: 3px solid var(--warn); border-radius: var(--r); padding: .6rem .8rem; font-size: .95rem; margin-top: 12px; }
+    .empty { background: var(--surface); border: 1px dashed var(--line); border-radius: var(--r-lg); padding: 1.4rem 1rem; text-align: center; color: var(--muted); margin-top: 12px; }
+
+    /* azioni e Pro */
+    .btn {
+      font: inherit; font-size: 1rem; text-transform: uppercase; letter-spacing: .05em; font-weight: 700;
+      min-height: 48px; padding: .6rem 1.1rem; border-radius: var(--r); border: 1px solid var(--accent);
+      background: var(--accent); color: var(--accent-ink); cursor: pointer;
+    }
+    .btn.ghost { background: transparent; color: var(--accent); }
+    .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: .8rem; }
+    section[data-pro] { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: .9rem; margin-top: 1.6rem; min-height: 190px; }
+    section[data-pro] > h2 { margin-top: 0; }
+    .scen { display: grid; gap: 10px; }
+    .scen-col { border: 1px solid var(--line); border-radius: var(--r); padding: .7rem; background: var(--surface-2); }
+    .scen-col h3 { margin: 0 0 .4rem; }
+    pre.prospetto {
+      margin: .6rem 0 0; padding: .8rem; background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--r);
+      font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: 14.5px; line-height: 1.5;
+      white-space: pre-wrap; word-break: break-word; overflow-x: auto; max-width: 100%;
+    }
+    .said { font-size: .95rem; color: var(--accent); min-height: 1.3em; margin: .3rem 0 0; }
+
+    /* guida */
+    #guida { margin-top: 1.5rem; }
+    #guida h2 { border-bottom: 2px solid var(--accent); padding-bottom: .2rem; }
+    #guida p, #guida li { font-size: 1.02rem; }
+    #guida ul, #guida ol { padding-left: 1.2rem; }
+    .ex { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: .8rem .9rem; margin: .8rem 0; }
+    .ex .row { padding: .35rem 0; }
+    footer { margin: 2rem 0 1.5rem; padding-top: 1rem; border-top: 1px solid var(--line); }
+    footer ul { padding-left: 1.2rem; }
+
+    @media (min-width: 700px) {
+      body { padding: 0 24px env(safe-area-inset-bottom); }
+      h1 { font-size: 2.1rem; }
+      .panel { padding: 1.2rem; }
+      .control { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.4rem; }
+      .control .field + .field { margin-top: 0; }
+      .control .wide, .control details.more { grid-column: 1 / -1; }
+      .grid.dash { grid-template-columns: repeat(4, 1fr); align-items: stretch; }
+      .tile.hero { grid-column: span 2; }
+      .duo { display: contents; }
+      .scen { grid-template-columns: 1fr 1fr 1fr; }
+      #guida p, #guida li { font-size: 1.05rem; }
+    }
+    @media print {
+      body { background: #fff; color: #000; padding: 0; }
+      .topbar, .panel, .lead, [data-ad], [data-support], .actions, .mz-lock, .mz-top, #guida, footer, .note { display: none !important; }
+      [data-pro] > :not(.mz-lock) { filter: none !important; }
+      section[data-pro] { border: 0; padding: 0; }
+      .tile, .rows { border-color: #999; }
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .tile-v { transition: color .15s ease; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar"><a href="../../index.html">← Tutte le app</a></div>
+
+  <h1>Come si calcola la tredicesima</h1>
+  <p class="lead">Scrivi il tuo lordo: vedi subito il netto che arriva a dicembre, con le trattenute voce per voce.</p>
+
+  <!-- PANNELLO DI CONTROLLO -->
+  <div class="panel">
+    <div class="control">
+      <div class="field wide">
+        <span class="lbl" id="lbl-base">Da cosa parti</span>
+        <div class="chips" role="group" aria-label="Da cosa parti">
+          <button type="button" class="chip" id="mode-mese" aria-pressed="true">Lordo mensile</button>
+          <button type="button" class="chip" id="mode-ral" aria-pressed="false">RAL annua</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="lbl" for="importo" id="lab-importo">Lordo di una mensilità</label>
+        <div class="euro">
+          <input type="text" id="importo" inputmode="decimal" enterkeyhint="done" autocomplete="off"
+                 placeholder="2.000" aria-describedby="hint-importo">
+          <span aria-hidden="true">€</span>
+        </div>
+        <p class="tile-n" id="hint-importo">Lo trovi sul cedolino come «retribuzione lorda» del mese.</p>
+      </div>
+
+      <div class="field" id="field-mensilita" hidden>
+        <label class="lbl" for="mensilita">Mensilità del contratto</label>
+        <select id="mensilita">
+          <option value="13" selected>13 mensilità</option>
+          <option value="14">14 mensilità (c'è anche la quattordicesima)</option>
+        </select>
+        <p class="tile-n">La RAL comprende già la tredicesima: va divisa per 13, non per 12.</p>
+      </div>
+
+      <details class="more" id="altro">
+        <summary><span>Mesi maturati e contributi</span><b id="sum-altro">12/12 · privato 9,19%</b></summary>
+        <div class="more-body">
+            <div class="field">
+              <span class="lbl">Mesi maturati nel 2026</span>
+              <div class="stepper">
+                <button type="button" id="meno" aria-label="Un mese in meno">−</button>
+                <div class="val" aria-live="polite"><b id="mesi-v">12</b><em id="mesi-u">dodicesimi</em></div>
+                <button type="button" id="piu" aria-label="Un mese in più">+</button>
+              </div>
+              <details class="helper" id="helper-date">
+                <summary>Non hai lavorato tutto l'anno? Calcolali dalle date</summary>
+                <div class="duedate">
+                  <div>
+                    <label class="lbl" for="dal">Dal</label>
+                    <input type="date" id="dal" min="2026-01-01" max="2026-12-31" value="2026-01-01">
+                  </div>
+                  <div>
+                    <label class="lbl" for="al">Al</label>
+                    <input type="date" id="al" min="2026-01-01" max="2026-12-31" value="2026-12-31">
+                  </div>
+                </div>
+                <p class="tile-n" id="esito-date">Un mese matura solo se ci lavori almeno 15 giorni.</p>
+              </details>
+          </div>
+
+          <div class="field">
+            <span class="lbl">Contributi a tuo carico</span>
+            <div class="chips" role="group" aria-label="Aliquota dei contributi">
+              <button type="button" class="chip" data-ali="9.19" aria-pressed="true">Privato<small>9,19%</small></button>
+              <button type="button" class="chip" data-ali="5.84" aria-pressed="false">Apprendista<small>5,84%</small></button>
+              <button type="button" class="chip" data-ali="8.80" aria-pressed="false">Pubblico<small>8,80%</small></button>
+              <button type="button" class="chip" data-ali="x" aria-pressed="false">Altra<small>la scrivo io</small></button>
+            </div>
+            <div id="box-ali" hidden style="margin-top:.6rem">
+              <label class="lbl" for="ali-manuale">Aliquota dal cedolino (%)</label>
+              <input type="text" id="ali-manuale" inputmode="decimal" placeholder="9,49" autocomplete="off">
+            </div>
+          </div>
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div id="risultato" hidden>
+    <div class="grid dash">
+      <div class="tile hero">
+        <p class="tile-k">Tredicesima netta</p>
+        <div class="tile-v" id="t-netto">—</div>
+        <p class="tile-n" id="t-netto-n"></p>
+      </div>
+      <div class="duo">
+        <div class="tile">
+          <p class="tile-k">Lordo maturato</p>
+          <div class="tile-v" id="t-lordo">—</div>
+          <p class="tile-n" id="t-lordo-n"></p>
+        </div>
+        <div class="tile neg">
+          <p class="tile-k">Trattenute</p>
+          <div class="tile-v" id="t-tratt">—</div>
+          <p class="tile-n" id="t-tratt-n"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rows" id="cedolino"></div>
+
+    <div class="tile" style="margin-top:12px">
+      <p class="tile-k">Su quali scaglioni IRPEF cade</p>
+      <div class="bar" id="bar" role="img" aria-label="Ripartizione della tredicesima per scaglione IRPEF"></div>
+      <div class="legend" id="legend"></div>
+    </div>
+
+    <div class="note">
+      Sulla tredicesima <b>non si applicano le detrazioni</b> da lavoro dipendente: per questo il netto è più basso di
+      uno stipendio normale. In cambio non si pagano le addizionali regionali e comunali. È una stima: il cedolino
+      può differire per voci del tuo contratto (premi, welfare, conguagli).
+    </div>
+  </div>
+
+  <div class="empty" id="vuoto">Scrivi il tuo lordo mensile qui sopra e vedi subito quanto ti resta.</div>
+
+  <div data-ad="top"></div>
+
+  <!-- PRO 1 -->
+  <section data-pro="Confronto fra due scenari">
+    <h2>Confronto fra due scenari</h2>
+    <p class="small muted">Utile per capire quanto perdi se un mese non matura, o quanto cambierebbe con un aumento.</p>
+    <div class="scen">
+      <div class="scen-col">
+        <h3>Scenario A</h3>
+        <label class="lbl" for="a-imp">Lordo mensile</label>
+        <input type="text" id="a-imp" inputmode="decimal" placeholder="2.000" autocomplete="off">
+        <label class="lbl" for="a-mesi" style="margin-top:.5rem">Mesi maturati</label>
+        <input type="number" id="a-mesi" inputmode="numeric" min="0" max="12" step="1" value="12">
+        <div class="tile-v" id="a-out" style="margin-top:.5rem">—</div>
+      </div>
+      <div class="scen-col">
+        <h3>Scenario B</h3>
+        <label class="lbl" for="b-imp">Lordo mensile</label>
+        <input type="text" id="b-imp" inputmode="decimal" placeholder="2.200" autocomplete="off">
+        <label class="lbl" for="b-mesi" style="margin-top:.5rem">Mesi maturati</label>
+        <input type="number" id="b-mesi" inputmode="numeric" min="0" max="12" step="1" value="12">
+        <div class="tile-v" id="b-out" style="margin-top:.5rem">—</div>
+      </div>
+      <div class="scen-col">
+        <h3>Differenza</h3>
+        <div class="tile-v" id="d-out">—</div>
+        <p class="tile-n" id="d-nota">Compila i due scenari.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRO 2 -->
+  <section data-pro="Prospetto per il cedolino">
+    <h2>Prospetto per il cedolino</h2>
+    <p class="small muted">Il calcolo scritto riga per riga, da stampare o incollare per confrontarlo con la busta paga di dicembre.</p>
+    <pre class="prospetto" id="prospetto">Compila il calcolo qui sopra per generare il prospetto.</pre>
+    <div class="actions">
+      <button type="button" class="btn" id="btn-stampa">Stampa</button>
+      <button type="button" class="btn ghost" id="btn-copia">Copia il testo</button>
+    </div>
+    <p class="said" id="said" role="status"></p>
+  </section>
+
+  <!-- GUIDA -->
+  <section id="guida">
+    <h2>Come funziona il calcolo, passo per passo</h2>
+    <p>
+      La tredicesima mensilità è una retribuzione in più che matura giorno per giorno durante l'anno e si paga
+      prima di Natale. Non è un premio discrezionale: è prevista dai contratti collettivi e vale per quasi tutti
+      i lavoratori dipendenti, pubblici e privati, a tempo pieno o part-time. Il principio è semplice: ogni mese
+      lavorato ti fa maturare un dodicesimo di una mensilità. Dodici mesi di lavoro, dodici dodicesimi, cioè
+      una mensilità intera.
+    </p>
+
+    <h3>1. Il lordo: una mensilità per i dodicesimi maturati</h3>
+    <p>
+      Il punto di partenza è la <b>retribuzione lorda di un mese</b>, quella che leggi sul cedolino prima delle
+      trattenute. Se parti dalla RAL, cioè dal lordo annuo scritto nel contratto, dividila per <b>13</b> e non per
+      12: la RAL comprende già la tredicesima, quindi dividerla per 12 gonfia il risultato di circa l'8%. È
+      l'errore più comune dei calcolatori in giro. Con quattordici mensilità si divide per 14.
+    </p>
+    <p>
+      I dodicesimi si contano con la <b>regola dei 15 giorni</b>: un mese matura per intero se ci hai lavorato
+      almeno 15 giorni, altrimenti non matura affatto. Chi è stato assunto il 20 marzo matura 9 dodicesimi, da
+      aprile a dicembre, perché a marzo ha lavorato 12 giorni. Chi è stato assunto il 10 marzo ne matura 10.
+      Il part-time non cambia la regola: matura allo stesso modo, ma su una mensilità già ridotta in proporzione
+      alle ore, quindi basta inserire il lordo mensile effettivo.
+    </p>
+
+    <h3>2. Le trattenute: contributi, poi IRPEF</h3>
+    <p>
+      Sul lordo si calcolano prima i <b>contributi previdenziali</b> a tuo carico: nel settore privato sono di
+      norma il 9,19% della retribuzione, 5,84% per gli apprendisti, intorno all'8,80% per il pubblico impiego.
+      Chi supera 56.224 euro l'anno di retribuzione paga un ulteriore 1% sulla parte eccedente. Quello che resta
+      dopo i contributi è l'<b>imponibile fiscale</b>, su cui si applica l'IRPEF con gli scaglioni 2026: 23% fino
+      a 28.000 euro, 33% da 28.000 a 50.000, 43% oltre.
+    </p>
+    <p>
+      Qui sta il motivo per cui la tredicesima sembra sempre più magra dello stipendio: <b>le detrazioni non si
+      applicano</b>. Le detrazioni per lavoro dipendente spettano sull'anno e il datore di lavoro le distribuisce
+      sulle dodici mensilità ordinarie; sulla tredicesima sono già esaurite, quindi l'IRPEF si paga per intero
+      all'aliquota marginale. Lo stesso vale per il trattamento integrativo e per le misure sul cuneo fiscale.
+      Una buona notizia c'è: sulla tredicesima <b>non si pagano le addizionali regionali e comunali</b>, che
+      sullo stipendio normale valgono in genere fra l'1,5% e il 3%.
+    </p>
+
+    <h3>Esempio con i numeri</h3>
+    <div class="ex">
+      <div class="row"><span class="k">Lordo mensile</span><span class="v">2.000,00 €</span></div>
+      <div class="row"><span class="k">Mesi maturati</span><span class="v">12 su 12</span></div>
+      <div class="row"><span class="k">Tredicesima lorda</span><span class="v">2.000,00 €</span></div>
+      <div class="row"><span class="k">Contributi INPS 9,19%</span><span class="v">− 183,80 €</span></div>
+      <div class="row"><span class="k">Imponibile fiscale</span><span class="v">1.816,20 €</span></div>
+      <div class="row"><span class="k">IRPEF 23%</span><span class="v">− 417,73 €</span></div>
+      <div class="row tot"><span class="k">Netto in busta</span><span class="v">1.398,47 €</span></div>
+    </div>
+    <p>
+      Restano circa il <b>70% del lordo</b>. Con un lordo mensile di 2.500 euro il netto scende a 1.596,77 euro,
+      cioè il 64%: una parte della tredicesima supera i 28.000 euro di reddito annuo e viene tassata al 33%.
+      È normale che la percentuale peggiori quando la tredicesima fa scavalcare uno scaglione: non è un errore
+      dell'azienda, è l'aliquota marginale.
+    </p>
+
+    <h3>Errori comuni</h3>
+    <ul>
+      <li><b>Dividere la RAL per 12.</b> La RAL contiene già la tredicesima: vanno usate le mensilità vere, 13 o 14.</li>
+      <li><b>Applicare la stessa percentuale di trattenute dello stipendio.</b> Sulla tredicesima pesa di più, perché mancano le detrazioni.</li>
+      <li><b>Contare i mesi a occhio.</b> Senza la regola dei 15 giorni si sbaglia di un dodicesimo intero, cioè circa l'8%.</li>
+      <li><b>Dimenticare le assenze non retribuite.</b> Aspettativa, permessi non pagati e sciopero non maturano il rateo; malattia, infortunio, maternità obbligatoria e ferie sì, nei limiti del contratto.</li>
+      <li><b>Aspettarsi la tredicesima su straordinari e premi.</b> La base di calcolo è la retribuzione fissa; gli elementi variabili di norma restano fuori.</li>
+    </ul>
+
+    <h3>Domande frequenti</h3>
+    <h4>Quando arriva la tredicesima?</h4>
+    <p>
+      Entro la vigilia di Natale: la maggior parte dei contratti la colloca fra il 10 e il 20 dicembre, spesso in
+      un cedolino separato da quello dello stipendio. Chi lascia il lavoro durante l'anno riceve i ratei maturati
+      nell'ultima busta paga, insieme al TFR e alle ferie non godute.
+    </p>
+    <h4>La tredicesima va dichiarata nel 730?</h4>
+    <p>
+      È già compresa nella Certificazione Unica e nei redditi da lavoro dipendente: non va aggiunta a parte.
+      Proprio perché la tassazione di dicembre è provvisoria, il conguaglio di fine anno o la dichiarazione
+      possono correggere qualche euro in più o in meno.
+    </p>
+    <h4>Chi è in malattia o in maternità la riceve?</h4>
+    <p>
+      Sì. Malattia, infortunio e maternità obbligatoria sono periodi equiparati al lavoro e maturano il rateo,
+      con i limiti di durata del contratto collettivo; una parte della quota è a carico dell'INPS. Il congedo
+      parentale facoltativo, invece, in genere non matura, salvo contratti più favorevoli.
+    </p>
+    <h4>Perché il mio cedolino non coincide al centesimo?</h4>
+    <p>
+      Perché il calcolo reale parte dall'imponibile vero del tuo anno, che comprende anche premi, welfare,
+      rimborsi tassabili e conguagli, e perché alcune aziende gestiscono diversamente i ratei delle addizionali.
+      Questo strumento serve a sapere in anticipo l'ordine di grandezza e a capire da dove viene ogni trattenuta,
+      così se la differenza è grossa sai cosa chiedere all'ufficio paghe.
+    </p>
+  </section>
+
+  <div data-ad="bottom"></div>
+  <div data-support></div>
+
+  <footer>
+    <h3>App collegate</h3>
+    <ul>
+      <li><a href="../2026-09-20-netto-da-lordo/">Calcolo dello stipendio netto dal lordo</a>, per il mese normale.</li>
+      <li><a href="../2026-09-20-calcolo-tfr/">Calcolo del TFR maturato</a>, l'altra voce che si accumula ogni anno.</li>
+      <li><a href="../2026-10-04-calcolo-straordinari/">Calcolo degli straordinari in busta paga</a>, con le maggiorazioni.</li>
+    </ul>
+    <p class="muted small">
+      Stima indicativa a scopo informativo, non un documento fiscale. Aliquote IRPEF 2026 (23% / 33% / 43%) e
+      prima fascia di retribuzione pensionabile INPS 2026 (56.224 €).
+    </p>
+    <p class="muted small">Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a></p>
+  </footer>
+</div>
+
+<script src="../../assets/monetize.js"></script>
+<script>
+/* Modello dati: un unico oggetto `stato` (base di calcolo, importo, mesi maturati, aliquota contributiva)
+ * salvato in localStorage con la chiave "calcolo-tredicesima:v1". Da lì `calcola()` ricava un oggetto
+ * risultato (lordo, contributi, imponibile, irpef, netto, ripartizione per scaglione) che alimenta
+ * dashboard, cedolino, prospetto Pro e confronto scenari. Nessuna rete, nessun dato fuori dal telefono. */
+(() => {
+  "use strict";
+
+  const ANNO = 2026;
+  const SCAGLIONI = [[28000, 0.23], [50000, 0.33], [Infinity, 0.43]];
+  const PRIMA_FASCIA = 56224;   // INPS, circolare 6/2026: oltre questa soglia +1% a carico del lavoratore
+  const MASSIMALE = 122295;     // massimale contributivo annuo 2026
+  const CHIAVE = "calcolo-tredicesima:v1";
+
+  const $ = (id) => document.getElementById(id);
+  const eur = (n) => n.toLocaleString("it-IT", { style: "currency", currency: "EUR", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const eur0 = (n) => n.toLocaleString("it-IT", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
+  const pct = (n) => n.toLocaleString("it-IT", { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + "%";
+  // Le aliquote si mostrano come sul cedolino: 9,19% e non 9,2%.
+  const pctAli = (n) => n.toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + "%";
+
+  /* "2.000,50" → 2000.5 | "2.000" → 2000 (punto come separatore delle migliaia, come si
+   * scrive in italiano) | "2000.5" → 2000.5 (punto decimale, come lo scrive una tastiera) */
+  function num(testo) {
+    const s = String(testo ?? "").trim().replace(/[\s €]/g, "");
+    if (!s) return NaN;
+    let v = s;
+    if (/,/.test(s)) v = s.replace(/\./g, "").replace(",", ".");
+    else if (/^\d{1,3}(\.\d{3})+$/.test(s)) v = s.replace(/\./g, "");
+    const n = Number(v);
+    return Number.isFinite(n) ? n : NaN;
+  }
+
+  const stato = { base: "mese", importo: "", mensilita: 13, mesi: 12, aliquota: 9.19, aliManuale: "" };
+
+  // ---------- calcolo ----------
+  function irpef(imponibile) {
+    let t = 0, prec = 0;
+    for (const [limite, rata] of SCAGLIONI) {
+      if (imponibile <= prec) break;
+      t += (Math.min(imponibile, limite) - prec) * rata;
+      prec = limite;
+    }
+    return t;
+  }
+
+  // Come si ripartisce fra gli scaglioni la fetta di imponibile che va da `da` a `a`.
+  function perScaglione(da, a) {
+    const fette = [];
+    let prec = 0;
+    for (const [limite, rata] of SCAGLIONI) {
+      const basso = Math.max(da, prec), alto = Math.min(a, limite);
+      if (alto > basso) fette.push({ rata, quota: alto - basso, imposta: (alto - basso) * rata });
+      prec = limite;
+      if (prec >= a) break;
+    }
+    return fette;
+  }
+
+  /* Il lordo della tredicesima è una mensilità per i dodicesimi maturati. L'IRPEF non si calcola
+   * sull'aliquota di un singolo scaglione, ma come differenza fra l'imposta sull'imponibile annuo
+   * con e senza la tredicesima: così una tredicesima a cavallo di due scaglioni viene tassata bene. */
+  function calcola(mensile, mesi, aliquota, mensilita) {
+    const al = aliquota / 100;
+    const lordo = mensile * mesi / 12;
+    const extra = mensilita === 14 ? lordo : 0;                  // quattordicesima: non la paghiamo ora, ma pesa sul reddito annuo
+    const annLordo = mensile * mesi + lordo + extra;
+
+    const eccedenza = Math.max(0, Math.min(annLordo, MASSIMALE) - PRIMA_FASCIA);
+    const annAgg = eccedenza * 0.01;
+    const annContributi = annLordo * al + annAgg;
+    const annImponibile = Math.max(0, annLordo - annContributi);
+
+    const agg = annLordo > 0 ? annAgg * (lordo / annLordo) : 0;   // quota del contributo aggiuntivo attribuita alla tredicesima
+    const contributi = lordo * al + agg;
+    const imponibile = Math.max(0, lordo - contributi);
+
+    const irpefTred = Math.max(0, irpef(annImponibile) - irpef(Math.max(0, annImponibile - imponibile)));
+    const netto = lordo - contributi - irpefTred;
+    const fette = perScaglione(Math.max(0, annImponibile - imponibile), annImponibile);
+
+    return {
+      mensile, mesi, aliquota, mensilita, lordo, contributi, agg, imponibile, irpef: irpefTred, netto,
+      annLordo, annImponibile, fette,
+      aliquotaEffettiva: lordo > 0 ? (contributi + irpefTred) / lordo * 100 : 0,
+      restaPct: lordo > 0 ? netto / lordo * 100 : 0,
+    };
+  }
+
+  // ---------- regola dei 15 giorni ----------
+  const giorno = 86400000;
+  function mesiDaDate(dal, al) {
+    let n = 0;
+    for (let m = 0; m < 12; m++) {
+      const primo = Date.UTC(ANNO, m, 1), ultimo = Date.UTC(ANNO, m + 1, 0);
+      const da = Math.max(dal, primo), a = Math.min(al, ultimo);
+      if (a < da) continue;
+      if (Math.round((a - da) / giorno) + 1 >= 15) n++;
+    }
+    return n;
+  }
+
+  // ---------- persistenza ----------
+  function salva() {
+    try { localStorage.setItem(CHIAVE, JSON.stringify(stato)); } catch (_) { /* storage non disponibile */ }
+  }
+  function ripristina() {
+    let salvato = null;
+    try { salvato = localStorage.getItem(CHIAVE); } catch (_) { return; }
+    if (!salvato) return;
+    try {
+      const d = JSON.parse(salvato);
+      if (d && typeof d === "object") {
+        if (d.base === "ral" || d.base === "mese") stato.base = d.base;
+        if (typeof d.importo === "string") stato.importo = d.importo;
+        if (d.mensilita === 13 || d.mensilita === 14) stato.mensilita = d.mensilita;
+        if (Number.isInteger(d.mesi) && d.mesi >= 0 && d.mesi <= 12) stato.mesi = d.mesi;
+        if (Number.isFinite(d.aliquota) && d.aliquota >= 0 && d.aliquota <= 20) stato.aliquota = d.aliquota;
+        if (typeof d.aliManuale === "string") stato.aliManuale = d.aliManuale;
+      }
+    } catch (_) { /* dato corrotto: si riparte dai valori di default */ }
+  }
+
+  // ---------- resa ----------
+  function riga(k, v, opts = {}) {
+    const nota = opts.nota ? "<em>" + opts.nota + "</em>" : "";
+    const cls = (opts.classe || "") + (opts.tot ? " tot" : "") + (opts.sub ? " sub" : "");
+    const vcls = opts.minus ? " minus" : "";
+    return '<div class="row' + (cls ? " " + cls : "") + '"><span class="k">' + k + nota + '</span>' +
+           '<span class="v' + vcls + '">' + v + "</span></div>";
+  }
+
+  function disegna(r) {
+    $("vuoto").hidden = true;
+    $("risultato").hidden = false;
+
+    $("t-netto").textContent = eur(r.netto);
+    $("t-netto-n").textContent = "ti resta il " + pct(r.restaPct) + " del lordo";
+    $("t-lordo").textContent = eur(r.lordo);
+    $("t-lordo-n").textContent = r.mesi === 12
+      ? "una mensilità piena"
+      : r.mesi + " dodicesimi di " + eur0(r.mensile);
+    $("t-tratt").textContent = "− " + eur(r.contributi + r.irpef);
+    $("t-tratt-n").textContent = pct(r.aliquotaEffettiva) + " di contributi e IRPEF";
+
+    let html = riga("Tredicesima lorda", eur(r.lordo), { nota: eur(r.mensile) + " × " + r.mesi + "/12", sub: true });
+    html += riga("Contributi INPS", "− " + eur(r.contributi - r.agg), { nota: pctAli(r.aliquota) + " sul lordo", minus: true });
+    if (r.agg > 0.005) html += riga("Contributo aggiuntivo 1%", "− " + eur(r.agg), { nota: "quota oltre " + eur0(PRIMA_FASCIA) + " di reddito annuo", minus: true });
+    html += riga("Imponibile fiscale", eur(r.imponibile), { sub: true });
+    const ali = r.fette.length ? r.fette.map((f) => Math.round(f.rata * 100) + "%").join(" + ") : "23%";
+    html += riga("IRPEF", "− " + eur(r.irpef), { nota: "scaglioni " + ali + ", senza detrazioni", minus: true });
+    html += riga("Netto in busta", eur(r.netto), { tot: true });
+    $("cedolino").innerHTML = html;
+
+    const colori = { 0.23: "s23", 0.33: "s33", 0.43: "s43" };
+    const tot = r.fette.reduce((s, f) => s + f.quota, 0) || 1;
+    $("bar").innerHTML = r.fette.map((f) =>
+      '<i class="' + colori[f.rata] + '" style="width:' + (f.quota / tot * 100).toFixed(2) + '%"></i>').join("");
+    $("legend").innerHTML = r.fette.map((f) =>
+      '<span><i class="dot ' + colori[f.rata] + '"></i>' + Math.round(f.rata * 100) + "% su " + eur0(f.quota) +
+      " → " + eur(f.imposta) + "</span>").join("");
+
+    $("prospetto").textContent = prospetto(r);
+  }
+
+  function svuota(messaggio) {
+    $("risultato").hidden = true;
+    $("vuoto").hidden = false;
+    $("vuoto").textContent = messaggio;
+    $("prospetto").textContent = "Compila il calcolo qui sopra per generare il prospetto.";
+  }
+
+  function prospetto(r) {
+    const L = (k, v) => k.padEnd(30, ".") + " " + v;
+    const righe = [
+      "PROSPETTO TREDICESIMA " + ANNO,
+      "generato con Un'App al Giorno — stima indicativa",
+      "",
+      L("Lordo di una mensilità", eur(r.mensile)),
+      L("Mensilità del contratto", r.mensilita + ""),
+      L("Mesi maturati", r.mesi + "/12"),
+      L("Aliquota contributiva", pctAli(r.aliquota)),
+      "",
+      "CALCOLO",
+      L("Tredicesima lorda", eur(r.lordo)),
+      L("Contributi INPS", "- " + eur(r.contributi - r.agg)),
+    ];
+    if (r.agg > 0.005) righe.push(L("Contributo aggiuntivo 1%", "- " + eur(r.agg)));
+    righe.push(
+      L("Imponibile fiscale", eur(r.imponibile)),
+      L("IRPEF (senza detrazioni)", "- " + eur(r.irpef)),
+      L("NETTO", eur(r.netto)),
+      "",
+      "DETTAGLIO IRPEF PER SCAGLIONE",
+      ...r.fette.map((f) => L("  " + Math.round(f.rata * 100) + "% su " + eur(f.quota), eur(f.imposta))),
+      "",
+      "RIFERIMENTI DEL CALCOLO",
+      "- reddito annuo lordo stimato: " + eur(r.annLordo),
+      "- imponibile fiscale annuo stimato: " + eur(r.annImponibile),
+      "- IRPEF " + ANNO + ": 23% fino a 28.000 €, 33% fino a 50.000 €, 43% oltre",
+      "- sulla tredicesima non si applicano detrazioni né addizionali",
+      "",
+      "Da confrontare con il cedolino di dicembre: differenze di",
+      "qualche euro sono normali (premi, welfare, conguagli).",
+    );
+    return righe.join("\n");
+  }
+
+  // ---------- aggiornamento ----------
+  function aggiorna() {
+    const grezzo = num($("importo").value);
+    const mesi = stato.mesi;
+    const mensilita = stato.mensilita;
+
+    let aliquota = stato.aliquota;
+    if (stato.aliquota === -1) {
+      const a = num($("ali-manuale").value);
+      aliquota = Number.isFinite(a) ? a : NaN;
+    }
+
+    if (!Number.isFinite(grezzo) || grezzo <= 0) {
+      svuota("Scrivi il tuo lordo mensile qui sopra e vedi subito quanto ti resta.");
+      return;
+    }
+    if (grezzo > 5000000) { svuota("Quella cifra è troppo alta: controlla l'importo."); return; }
+    if (!Number.isFinite(aliquota) || aliquota < 0 || aliquota > 20) {
+      svuota("L'aliquota dei contributi va scritta in percentuale, fra 0 e 20 (per esempio 9,49).");
+      return;
+    }
+    if (mesi <= 0) { svuota("Con zero mesi maturati non ci sono ratei di tredicesima da ricevere."); return; }
+
+    const mensile = stato.base === "ral" ? grezzo / mensilita : grezzo;
+    disegna(calcola(mensile, mesi, aliquota, mensilita));
+    allineaScenarioA(mensile, mesi);
+  }
+
+  // ---------- interfaccia ----------
+  function modo(base) {
+    stato.base = base;
+    $("mode-mese").setAttribute("aria-pressed", String(base === "mese"));
+    $("mode-ral").setAttribute("aria-pressed", String(base === "ral"));
+    $("field-mensilita").hidden = base !== "ral";
+    const ral = base === "ral";
+    $("lab-importo").textContent = ral ? "Retribuzione annua lorda (RAL)" : "Lordo di una mensilità";
+    $("importo").placeholder = ral ? "26.000" : "2.000";
+    $("hint-importo").textContent = ral
+      ? "Il lordo annuo del contratto: la dividiamo per le mensilità vere, non per 12."
+      : "Lo trovi sul cedolino come «retribuzione lorda» del mese.";
+    salva(); aggiorna();
+  }
+
+  // Riga di riepilogo nel titolo del pannello richiuso, così si vede cosa c'è dentro senza aprirlo.
+  function sommario() {
+    const chip = document.querySelector('[data-ali][aria-pressed="true"]');
+    let eti = "";
+    if (chip && chip.dataset.ali === "x") {
+      const a = num($("ali-manuale").value);
+      eti = Number.isFinite(a) && a >= 0 && a <= 20 ? pctAli(a) : "aliquota da scrivere";
+    } else if (chip) {
+      eti = (chip.firstChild?.textContent || "").trim().toLowerCase() + " " + pctAli(Number(chip.dataset.ali));
+    }
+    $("sum-altro").textContent = stato.mesi + "/12 · " + eti;
+  }
+
+  function mostraMesi() {
+    $("mesi-v").textContent = String(stato.mesi);
+    $("mesi-u").textContent = stato.mesi === 1 ? "dodicesimo" : "dodicesimi";
+    $("meno").disabled = stato.mesi <= 0;
+    $("piu").disabled = stato.mesi >= 12;
+    sommario();
+  }
+  function setMesi(n) {
+    stato.mesi = Math.max(0, Math.min(12, n));
+    mostraMesi(); salva(); aggiorna();
+  }
+
+  function daDate() {
+    const dal = Date.parse($("dal").value + "T00:00:00Z");
+    const al = Date.parse($("al").value + "T00:00:00Z");
+    if (!Number.isFinite(dal) || !Number.isFinite(al)) {
+      $("esito-date").textContent = "Scegli entrambe le date per contare i mesi.";
+      return;
+    }
+    if (al < dal) {
+      $("esito-date").textContent = "La data finale viene prima di quella iniziale: controlla.";
+      return;
+    }
+    const n = mesiDaDate(dal, al);
+    setMesi(n);
+    $("esito-date").textContent = n === 0
+      ? "Nessun mese raggiunge i 15 giorni: non matura alcun rateo."
+      : "Maturi " + n + (n === 1 ? " dodicesimo" : " dodicesimi") + ": contano solo i mesi con almeno 15 giorni di lavoro.";
+  }
+
+  // base di calcolo
+  $("mode-mese").addEventListener("click", () => modo("mese"));
+  $("mode-ral").addEventListener("click", () => modo("ral"));
+  $("mensilita").addEventListener("change", () => {
+    stato.mensilita = Number($("mensilita").value) === 14 ? 14 : 13;
+    salva(); aggiorna();
+  });
+  $("importo").addEventListener("input", () => { stato.importo = $("importo").value; salva(); aggiorna(); });
+  $("importo").addEventListener("keydown", (ev) => { if (ev.key === "Enter") $("importo").blur(); });
+
+  // mesi
+  $("meno").addEventListener("click", () => setMesi(stato.mesi - 1));
+  $("piu").addEventListener("click", () => setMesi(stato.mesi + 1));
+  $("dal").addEventListener("change", daDate);
+  $("al").addEventListener("change", daDate);
+
+  // aliquota
+  for (const chip of document.querySelectorAll("[data-ali]")) {
+    chip.addEventListener("click", () => {
+      for (const c of document.querySelectorAll("[data-ali]")) c.setAttribute("aria-pressed", "false");
+      chip.setAttribute("aria-pressed", "true");
+      const manuale = chip.dataset.ali === "x";
+      $("box-ali").hidden = !manuale;
+      stato.aliquota = manuale ? -1 : Number(chip.dataset.ali);
+      if (manuale) $("ali-manuale").focus();
+      sommario(); salva(); aggiorna();
+    });
+  }
+  $("ali-manuale").addEventListener("input", () => { stato.aliManuale = $("ali-manuale").value; sommario(); salva(); aggiorna(); });
+
+  // ---------- Pro: confronto fra scenari ----------
+  function scenario(impId, mesiId) {
+    const v = num($(impId).value);
+    const m = Math.max(0, Math.min(12, Math.round(Number($(mesiId).value) || 0)));
+    if (!Number.isFinite(v) || v <= 0 || v > 5000000 || m <= 0) return null;
+    const ali = Number.isFinite(stato.aliquota) && stato.aliquota > 0 ? stato.aliquota : 9.19;
+    return calcola(v, m, ali, stato.mensilita);
+  }
+  function confronta() {
+    const a = scenario("a-imp", "a-mesi"), b = scenario("b-imp", "b-mesi");
+    $("a-out").textContent = a ? eur(a.netto) : "—";
+    $("b-out").textContent = b ? eur(b.netto) : "—";
+    if (!a || !b) {
+      $("d-out").textContent = "—";
+      $("d-nota").textContent = "Compila i due scenari.";
+      return;
+    }
+    const d = b.netto - a.netto;
+    $("d-out").textContent = (d >= 0 ? "+ " : "− ") + eur(Math.abs(d));
+    $("d-nota").textContent = Math.abs(d) < 0.005
+      ? "I due scenari danno lo stesso netto."
+      : "Netto di B " + (d > 0 ? "superiore" : "inferiore") + " a quello di A, su un lordo di "
+        + eur0(b.lordo) + " contro " + eur0(a.lordo) + ".";
+  }
+  let aToccato = false;   // appena l'utente scrive nello scenario A smettiamo di ricopiarci il calcolo principale
+  for (const id of ["a-imp", "a-mesi"]) $(id).addEventListener("input", () => { aToccato = true; });
+  for (const id of ["a-imp", "a-mesi", "b-imp", "b-mesi"]) $(id).addEventListener("input", confronta);
+  function allineaScenarioA(mensile, mesi) {
+    if (aToccato) return;
+    $("a-imp").value = mensile.toLocaleString("it-IT", { maximumFractionDigits: 2 });
+    $("a-mesi").value = String(mesi);
+    confronta();
+  }
+
+  // ---------- Pro: prospetto ----------
+  $("btn-stampa").addEventListener("click", () => window.print());
+  $("btn-copia").addEventListener("click", async () => {
+    const testo = $("prospetto").textContent;
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(testo);
+        $("said").textContent = "Prospetto copiato.";
+      } else {
+        const sel = window.getSelection();
+        const range = document.createRange();
+        range.selectNodeContents($("prospetto"));
+        sel.removeAllRanges(); sel.addRange(range);
+        $("said").textContent = "Testo selezionato: tieni premuto e scegli «Copia».";
+      }
+    } catch (_) {
+      $("said").textContent = "Non riesco a copiare da qui: seleziona il testo a mano.";
+    }
+  });
+
+  // ---------- avvio ----------
+  ripristina();
+  $("importo").value = stato.importo;
+  $("ali-manuale").value = stato.aliManuale;
+  $("mensilita").value = String(stato.mensilita);
+  const chipAli = document.querySelector('[data-ali="' + (stato.aliquota === -1 ? "x" : stato.aliquota.toFixed(2)) + '"]');
+  if (chipAli) {
+    for (const c of document.querySelectorAll("[data-ali]")) c.setAttribute("aria-pressed", "false");
+    chipAli.setAttribute("aria-pressed", "true");
+  }
+  $("box-ali").hidden = stato.aliquota !== -1;
+  mostraMesi();
+  if (window.innerWidth >= 700) $("altro").open = true;
+  modo(stato.base);
+  confronta();
+})();
+</script>
+</body>
+</html>
