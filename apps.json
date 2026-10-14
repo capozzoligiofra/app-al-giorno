@@ -1,6 +1,6 @@
 {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 32,
+  "count": 33,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -49,6 +49,53 @@
     ]
   },
   "apps": [
+    {
+      "title": "Quanto Costa un Dipendente",
+      "slug": "2026-10-14-quanto-costa-un-dipendente",
+      "date": "2026-10-14",
+      "description": "Dal lordo al costo aziendale vero: INPS, INAIL, TFR e mensilità voce per voce, con costo mensile e orario.",
+      "category": "finanza-personale",
+      "tags": [
+        "costo del lavoro",
+        "assunzione",
+        "contributi",
+        "tfr",
+        "impresa"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "tabs",
+        "palette": "viola-elettrico",
+        "font": "mono-tecnico"
+      },
+      "business": {
+        "keyword": "quanto costa un dipendente all'azienda",
+        "keywords": [
+          "calcolo costo aziendale dipendente",
+          "costo del lavoro calcolo",
+          "quanto costa assumere un dipendente",
+          "costo orario dipendente"
+        ],
+        "intent": "Piccoli imprenditori, artigiani e professionisti che prima di assumere (o prima di fare un preventivo) vogliono il costo vero di un dipendente partendo dal lordo o dal budget.",
+        "target": "Titolari di microimprese, artigiani, negozianti e studi professionali, 30-60 anni, che fanno il conto dal telefono prima di chiamare il consulente del lavoro.",
+        "edge": "Calcolo in due direzioni: dal lordo al costo e dal budget al lordo offribile. Aliquote INPS per settore e tassi INAIL per rischio modificabili, TFR con il divisore 13,5, mensilità vere (12/13/14) e distinzione fra costo per ora retribuita e per ora lavorata, che è il numero che serve nei preventivi.",
+        "monetization": [
+          "adsense",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto fra due inquadramenti",
+          "Prospetto da stampare, copiare o esportare"
+        ],
+        "affiliate": []
+      },
+      "size": 54584
+    },
     {
       "title": "Calcolo Tredicesima",
       "slug": "2026-10-13-calcolo-tredicesima",

@@ -1,0 +1,1010 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#6d28d9">
+  <title>Quanto Costa un Dipendente all'Azienda: calcolo 2026</title>
+  <meta name="description" content="Quanto costa un dipendente all&#39;azienda: dal lordo o dal budget ottieni costo annuo, mensile e orario con contributi INPS, INAIL e TFR voce per voce.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-14-quanto-costa-un-dipendente/">
+  <meta property="og:title" content="Quanto Costa un Dipendente all'Azienda: calcolo 2026">
+  <meta property="og:description" content="Costo aziendale di un dipendente: INPS, INAIL, TFR, mensilità e buoni pasto. Anche il calcolo inverso: con questo budget, quanto lordo posso offrire.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-14-quanto-costa-un-dipendente/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Quanto Costa un Dipendente",
+    "description": "Calcolatore gratuito del costo aziendale di un dipendente: dal lordo mensile o dalla RAL al costo annuo, mensile e orario, con contributi INPS, INAIL, TFR, mensilità aggiuntive e buoni pasto voce per voce. Include il calcolo inverso dal budget disponibile.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-14-quanto-costa-un-dipendente/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Quanto costa un dipendente all'azienda in più rispetto al lordo?", "acceptedAnswer": { "@type": "Answer", "text": "In media il costo aziendale è dal 38% al 50% più alto della retribuzione annua lorda. Sulla RAL si aggiungono i contributi INPS a carico dell'azienda (intorno al 28-30% a seconda del settore), il premio INAIL (da 0,4% per gli uffici a oltre 9% in edilizia) e l'accantonamento TFR, pari alla retribuzione annua divisa per 13,5, cioè il 7,41%. Chi offre anche buoni pasto, welfare o formazione deve sommare anche quelle voci." } },
+      { "@type": "Question", "name": "Come si calcola il costo di un dipendente partendo dallo stipendio mensile?", "acceptedAnswer": { "@type": "Answer", "text": "Si moltiplica il lordo mensile per le mensilità previste dal contratto (12, 13 o 14) e si ottiene la RAL. Poi si applicano alla RAL l'aliquota contributiva a carico dell'azienda e il tasso INAIL, si aggiunge la quota TFR dividendo la RAL per 13,5 e si sommano i costi extra annui. L'errore più frequente è moltiplicare per 12 quando il contratto prevede tredicesima e quattordicesima: si sottostima il costo di oltre il 15%." } },
+      { "@type": "Question", "name": "Le ferie e i permessi sono un costo in più per l'azienda?", "acceptedAnswer": { "@type": "Answer", "text": "No, non vanno sommati: le ferie e i permessi retribuiti sono già dentro la retribuzione annua lorda, perché lo stipendio si paga anche nei giorni di ferie. Le ferie incidono sul costo orario, non sul costo annuo: se un dipendente è pagato per 2.080 ore l'anno ma ne lavora 1.760, il costo di ogni ora effettivamente lavorata sale di circa il 18%. Per questo nel prospetto trovi sia il costo per ora retribuita sia quello per ora lavorata." } },
+      { "@type": "Question", "name": "Il TFR è un costo anche se non lo verso?", "acceptedAnswer": { "@type": "Answer", "text": "Sì. Il TFR matura ogni anno per legge (articolo 2120 del codice civile) in ragione della retribuzione annua divisa per 13,5 e va messo a bilancio come costo dell'anno, anche se l'azienda lo liquiderà solo alla fine del rapporto. Se il dipendente lo destina a un fondo pensione, o se l'azienda supera la soglia di dipendenti prevista per il Fondo di Tesoreria INPS, la quota esce subito di cassa ogni mese: l'importo non cambia, cambia solo quando lo paghi." } },
+      { "@type": "Question", "name": "Con un budget di 40.000 euro quanto lordo posso offrire?", "acceptedAnswer": { "@type": "Answer", "text": "Dipende dal moltiplicatore del tuo settore. Con un'aliquota INPS del 30%, INAIL all'1% e il TFR, ogni euro di RAL costa circa 1,38 euro: un budget di 40.000 euro corrisponde a una RAL vicina ai 29.000 euro, cioè circa 2.070 euro lordi al mese su quattordici mensilità. Il calcolo inverso dell'app parte dal budget e ti dà il lordo mensile offribile, togliendo prima i costi fissi come i buoni pasto." } },
+      { "@type": "Question", "name": "Nel costo aziendale va conteggiata anche l'IRAP?", "acceptedAnswer": { "@type": "Answer", "text": "Per i dipendenti a tempo indeterminato no: il costo del lavoro è integralmente deducibile dalla base IRAP, quindi non genera imposta. Per i rapporti a tempo determinato la deduzione piena non c'è e sull'intero costo si paga l'IRAP, con aliquota ordinaria del 3,9% più le eventuali maggiorazioni regionali. Nell'app c'è una casella da spuntare per il tempo determinato, così vedi la differenza." } }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #f5f3fb; --surface: #ffffff; --surface-2: #faf8ff; --text: #1d1630; --muted: #645a7c;
+      --line: #e0d9f2; --accent: #6d28d9; --accent-2: #8b5cf6; --accent-soft: #ece5fd; --accent-ink: #ffffff;
+      --warn: #8a4b12; --warn-soft: #fdf2e4; --ok: #1a7a4d;
+      --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+      --r: 4px; --r-lg: 8px; --bar: 68px;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #120e1b; --surface: #1c1629; --surface-2: #181324; --text: #ece8f7; --muted: #a79cc0;
+        --line: #2e2542; --accent: #b794ff; --accent-2: #cdb4ff; --accent-soft: #261c3a; --accent-ink: #150d24;
+        --warn: #e8b273; --warn-soft: #241c10; --ok: #63d19a;
+        color-scheme: dark;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; padding: 14px 16px calc(var(--bar) + 20px + env(safe-area-inset-bottom));
+      background: var(--bg); color: var(--text);
+      font-family: var(--mono); font-size: 16px; line-height: 1.55;
+      overflow-x: hidden;
+    }
+    .wrap { max-width: 46rem; margin: 0 auto; }
+    a { color: var(--accent); }
+    .topbar { margin-bottom: 10px; }
+    .topbar a { font-size: 0.95rem; text-decoration: none; letter-spacing: .02em; }
+    .topbar a:hover { text-decoration: underline; }
+    h1 {
+      font-size: 1.42rem; line-height: 1.25; margin: 0 0 8px; letter-spacing: -.01em;
+      text-transform: uppercase; font-weight: 700;
+    }
+    h2 { font-size: 1.12rem; margin: 26px 0 8px; letter-spacing: .01em; }
+    h3 { font-size: 1rem; margin: 20px 0 4px; }
+    p { margin: 0 0 12px; }
+    .intro { color: var(--muted); font-size: 0.97rem; }
+    .muted { color: var(--muted); }
+    .small { font-size: 0.88rem; }
+    .num { font-variant-numeric: tabular-nums; }
+
+    /* ---- riepilogo appiccicato in alto: il numero resta visibile mentre si digita ---- */
+    .riepilogo {
+      position: sticky; top: 0; z-index: 20;
+      margin: 0 -16px 14px; padding: 12px 16px 10px;
+      background: var(--accent); color: var(--accent-ink);
+      border-bottom: 3px solid var(--accent-2);
+    }
+    .riepilogo .etichetta { font-size: 0.82rem; letter-spacing: .09em; text-transform: uppercase; opacity: .85; }
+    .riepilogo .totale { font-size: 2.1rem; font-weight: 700; line-height: 1.05; margin-top: 2px; }
+    .riepilogo .totale.ko { font-size: 1.2rem; font-weight: 500; }
+    .sotto { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-top: 8px; font-size: 0.88rem; }
+    .sotto div { white-space: nowrap; }
+    .sotto b { font-weight: 700; }
+
+    .card {
+      background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg);
+      padding: 14px; margin-bottom: 14px;
+    }
+    .seg { display: flex; gap: 0; border: 1px solid var(--accent); border-radius: var(--r); overflow: hidden; margin-bottom: 14px; }
+    .seg button {
+      flex: 1; min-height: 46px; padding: 8px 6px; border: 0; cursor: pointer;
+      background: var(--surface); color: var(--accent); font-family: inherit; font-size: 0.92rem;
+    }
+    .seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); font-weight: 700; }
+
+    .campo { margin-bottom: 14px; }
+    .campo:last-child { margin-bottom: 0; }
+    label, .etichetta-campo { display: block; font-size: 0.92rem; margin-bottom: 5px; }
+    .hint { color: var(--muted); font-size: 0.85rem; margin-top: 4px; }
+    input[type="number"], input[type="text"], select {
+      width: 100%; min-height: 48px; padding: 10px 12px; font-size: 16px; font-family: inherit;
+      color: var(--text); background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--r);
+    }
+    input:focus-visible, select:focus-visible, button:focus-visible, summary:focus-visible {
+      outline: 3px solid var(--accent-2); outline-offset: 1px;
+    }
+    .affianco { display: flex; gap: 10px; }
+    .affianco > * { flex: 1; min-width: 0; }
+    .suffisso { position: relative; }
+    .suffisso input { padding-right: 46px; }
+    .suffisso span {
+      position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+      color: var(--muted); font-size: 0.92rem; pointer-events: none;
+    }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chips button {
+      min-height: 44px; padding: 8px 14px; font-family: inherit; font-size: 0.92rem; cursor: pointer;
+      background: var(--surface-2); color: var(--text); border: 1px solid var(--line); border-radius: 999px;
+    }
+    .chips button[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 700; }
+    .check { display: flex; align-items: flex-start; gap: 10px; min-height: 44px; }
+    .check input { width: 22px; height: 22px; margin: 11px 0 0; accent-color: var(--accent); flex: none; }
+    .check label { margin: 0; padding: 9px 0; }
+
+    /* ---- prospetto con righe a puntini ---- */
+    .voci { list-style: none; margin: 0; padding: 0; }
+    .voci li { display: flex; align-items: baseline; gap: 6px; padding: 7px 0; font-size: 0.95rem; }
+    .voci .punti { flex: 1; border-bottom: 1px dotted var(--line); transform: translateY(-3px); }
+    .voci .val { font-weight: 700; white-space: nowrap; }
+    .voci .perc { color: var(--muted); font-size: 0.82rem; white-space: nowrap; }
+    .voci li.somma { border-top: 2px solid var(--line); margin-top: 6px; padding-top: 10px; font-size: 1.02rem; }
+    .voci li.off { opacity: .45; }
+    .fonte { margin-top: 10px; color: var(--muted); font-size: 0.82rem; }
+    details { border-top: 1px solid var(--line); margin-top: 12px; }
+    summary { cursor: pointer; padding: 12px 0 10px; font-size: 0.92rem; color: var(--accent); min-height: 44px; }
+
+    .azioni { display: flex; flex-wrap: wrap; gap: 8px; }
+    .azioni button, .azioni a {
+      flex: 1 1 46%; min-height: 48px; padding: 10px; cursor: pointer; text-align: center; text-decoration: none;
+      font-family: inherit; font-size: 0.92rem; border-radius: var(--r);
+      background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent);
+    }
+    .esito { margin-top: 10px; font-size: 0.88rem; color: var(--ok); min-height: 1.2em; }
+    .delta { margin-top: 12px; padding: 12px; border-radius: var(--r); background: var(--accent-soft); font-size: 0.95rem; }
+    .avviso {
+      background: var(--warn-soft); color: var(--warn); border-left: 3px solid var(--warn);
+      padding: 10px 12px; border-radius: var(--r); font-size: 0.9rem; margin: 12px 0 0;
+    }
+    [data-pro] { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 14px; margin-bottom: 14px; }
+    [data-pro] h2 { margin-top: 0; }
+    #guida { font-size: 1rem; line-height: 1.75; }
+    #guida ul { padding-left: 1.1rem; }
+    #guida li { margin-bottom: 7px; }
+    .esempio { background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--r); padding: 12px; font-size: 0.93rem; }
+    footer { margin-top: 28px; border-top: 1px solid var(--line); padding-top: 14px; font-size: 0.9rem; }
+    footer ul { padding-left: 1.1rem; margin: 6px 0 12px; }
+
+    /* ---- barra tab in basso (pollice) ---- */
+    .tabbar {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
+      display: flex; background: var(--surface); border-top: 1px solid var(--line);
+      padding-bottom: env(safe-area-inset-bottom);
+      transition: transform .22s ease;
+    }
+    .tabbar.via { transform: translateY(110%); }
+    .tabbar button {
+      flex: 1; min-height: 60px; padding: 8px 4px; border: 0; cursor: pointer;
+      background: none; color: var(--muted); font-family: inherit; font-size: 0.9rem;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+      border-top: 3px solid transparent; margin-top: -1px;
+    }
+    .tabbar button[aria-selected="true"] { color: var(--accent); font-weight: 700; border-top-color: var(--accent); background: var(--accent-soft); }
+    .tabbar svg { width: 20px; height: 20px; }
+    @media (prefers-reduced-motion: reduce) { .tabbar { transition: none; } }
+
+    @media (min-width: 700px) {
+      body { padding: 24px 24px 40px; }
+      h1 { font-size: 1.9rem; }
+      .riepilogo { margin: 0 0 18px; border-radius: var(--r-lg); position: static; }
+      .riepilogo .totale { font-size: 2.6rem; }
+      .tabbar {
+        left: 50%; right: auto; width: min(46rem, calc(100% - 48px)); transform: translateX(-50%);
+        border: 1px solid var(--line); border-bottom: 0; border-radius: var(--r-lg) var(--r-lg) 0 0;
+      }
+      .tabbar.via { transform: translateX(-50%) translateY(110%); }
+      .affianco.tre > * { flex: 1; }
+    }
+    @media print {
+      body { padding: 0; background: #fff; color: #000; }
+      .wrap > *:not(#stampa), .tabbar { display: none !important; }
+      #stampa { display: block !important; }
+      #stampa h2 { margin-top: 0; }
+    }
+    #stampa { display: none; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar"><a href="../../index.html">← Tutte le app</a></div>
+
+  <h1>Quanto costa un dipendente all'azienda</h1>
+  <p class="intro">Inserisci il lordo e ottieni subito il costo annuo, mensile e orario: contributi INPS,
+    INAIL, TFR e mensilità aggiuntive, voce per voce. Oppure parti dal budget e scopri quanto lordo puoi offrire.</p>
+
+  <div class="riepilogo" role="status" aria-live="polite">
+    <div class="etichetta" id="etichettaTotale">Costo annuo per l'azienda</div>
+    <div class="totale num" id="totale">—</div>
+    <div class="sotto num">
+      <div>al mese <b id="mensile">—</b></div>
+      <div>per ora lavorata <b id="orario">—</b></div>
+      <div id="rigaMolt">per 1 € di lordo <b id="molt">—</b></div>
+    </div>
+  </div>
+
+  <div class="seg" role="group" aria-label="Da dove partire">
+    <button type="button" id="modoLordo" aria-pressed="true">Dal lordo</button>
+    <button type="button" id="modoBudget" aria-pressed="false">Dal budget</button>
+  </div>
+
+  <form class="card" id="modulo" novalidate>
+    <!-- pannello 1: retribuzione -->
+    <div id="pan-retribuzione" role="tabpanel" aria-labelledby="tab-retribuzione">
+      <div class="campo" id="boxLordo">
+        <div class="etichetta-campo" id="lblBase">Retribuzione da cui partire</div>
+        <div class="chips" role="group" aria-labelledby="lblBase">
+          <button type="button" data-base="mese" aria-pressed="true">Lordo al mese</button>
+          <button type="button" data-base="anno" aria-pressed="false">RAL annua</button>
+        </div>
+        <div class="suffisso" style="margin-top:10px">
+          <input type="number" id="lordo" inputmode="decimal" min="0" step="10" value="1800"
+            enterkeyhint="done" autocomplete="off" aria-label="Retribuzione lorda">
+          <span id="sufLordo">€/mese</span>
+        </div>
+        <div class="hint" id="hintLordo">Il lordo che scrivi nel contratto, prima delle trattenute del dipendente.</div>
+      </div>
+
+      <div class="campo" id="boxBudget" hidden>
+        <label for="budget">Budget annuo che puoi spendere</label>
+        <div class="suffisso">
+          <input type="number" id="budget" inputmode="decimal" min="0" step="500" value="40000"
+            enterkeyhint="done" autocomplete="off">
+          <span>€/anno</span>
+        </div>
+        <div class="hint">Tutto compreso: contributi, INAIL, TFR e costi extra. Ti dico quanto lordo resta per il dipendente.</div>
+      </div>
+
+      <div class="campo">
+        <div class="etichetta-campo" id="lblMens">Mensilità previste dal contratto</div>
+        <div class="chips" role="group" aria-labelledby="lblMens">
+          <button type="button" data-mens="12" aria-pressed="false">12</button>
+          <button type="button" data-mens="13" aria-pressed="false">13ª</button>
+          <button type="button" data-mens="14" aria-pressed="true">13ª + 14ª</button>
+        </div>
+        <div class="hint">Commercio e terziario: 14 mensilità. Metalmeccanici e molti CCNL industriali: 13.</div>
+      </div>
+
+      <div class="affianco">
+        <div class="campo">
+          <label for="ore">Ore settimanali</label>
+          <input type="number" id="ore" inputmode="decimal" min="1" max="48" step="1" value="40" autocomplete="off">
+        </div>
+        <div class="campo">
+          <label for="giorni">Giorni lavorati l'anno</label>
+          <input type="number" id="giorni" inputmode="numeric" min="1" max="366" step="1" value="220" autocomplete="off">
+        </div>
+      </div>
+      <div class="hint">220 giorni = 260 giorni lavorativi meno ferie, festività e una media di malattia. Servono per il costo orario e per i buoni pasto.</div>
+    </div>
+
+    <!-- pannello 2: contributi -->
+    <div id="pan-contributi" role="tabpanel" aria-labelledby="tab-contributi" hidden>
+      <div class="campo">
+        <label for="settore">Settore (imposta l'aliquota INPS)</label>
+        <select id="settore">
+          <option value="30.00">Industria — 30,00%</option>
+          <option value="30.38" selected>Commercio e terziario — 30,38%</option>
+          <option value="27.72">Artigianato — 27,72%</option>
+          <option value="custom">Altro / la prendo dal mio Uniemens</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="inps">Contributi INPS a carico azienda</label>
+        <div class="suffisso">
+          <input type="number" id="inps" inputmode="decimal" min="0" max="50" step="0.01" value="30.38" autocomplete="off">
+          <span>% RAL</span>
+        </div>
+        <div class="hint">IVS, disoccupazione, maternità, CIG e fondi minori. Cambia con CCNL, qualifica e dimensione:
+          se hai un cedolino o il DM10, copia qui l'aliquota esatta.</div>
+      </div>
+      <div class="campo">
+        <label for="rischio">Rischio INAIL (tasso indicativo)</label>
+        <select id="rischio">
+          <option value="0.4">Uffici e amministrazione — 0,4%</option>
+          <option value="1.0" selected>Negozio, vendita, pubblici esercizi — 1,0%</option>
+          <option value="2.5">Officina e produzione — 2,5%</option>
+          <option value="4.0">Magazzino, logistica, trasporti — 4,0%</option>
+          <option value="9.0">Edilizia e impianti — 9,0%</option>
+          <option value="custom">Altro / lo prendo dalla mia PAT</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="inail">Premio INAIL</label>
+        <div class="suffisso">
+          <input type="number" id="inail" inputmode="decimal" min="0" max="15" step="0.01" value="1" autocomplete="off">
+          <span>% RAL</span>
+        </div>
+        <div class="hint">Le voci di tariffa INAIL vanno da circa 0,4% a oltre il 13%: il tuo tasso preciso è
+          sulla PAT, nel riepilogo dell'autoliquidazione.</div>
+      </div>
+      <div class="campo check">
+        <input type="checkbox" id="determinato">
+        <label for="determinato">Contratto a tempo determinato: aggiungi l'IRAP al 3,9% (per l'indeterminato
+          il costo del lavoro è deducibile e IRAP non si paga)</label>
+      </div>
+    </div>
+
+    <!-- pannello 3: extra -->
+    <div id="pan-extra" role="tabpanel" aria-labelledby="tab-extra" hidden>
+      <div class="campo">
+        <label for="ticket">Buoni pasto</label>
+        <div class="suffisso">
+          <input type="number" id="ticket" inputmode="decimal" min="0" max="50" step="0.5" value="0" autocomplete="off">
+          <span>€/giorno</span>
+        </div>
+        <div class="hint">Moltiplicati per i giorni lavorati. Fino a 8 € al giorno (buono elettronico) non sono
+          imponibili né per l'azienda né per il dipendente: costano solo il loro valore.</div>
+      </div>
+      <div class="campo">
+        <label for="altri">Altri costi annui</label>
+        <div class="suffisso">
+          <input type="number" id="altri" inputmode="decimal" min="0" step="100" value="0" autocomplete="off">
+          <span>€/anno</span>
+        </div>
+        <div class="hint">Welfare, formazione obbligatoria, visite mediche, DPI, telefono e portatile, rimborsi
+          fissi, quota di software e postazione.</div>
+      </div>
+      <p class="hint" style="margin-top:14px">Non mettere qui ferie, permessi e tredicesima: sono già dentro la
+        retribuzione annua lorda e conteggiarli due volte gonfia il costo.</p>
+    </div>
+  </form>
+
+  <div class="card">
+    <h2 style="margin-top:0">Prospetto del costo annuo</h2>
+    <ul class="voci num" id="prospetto"></ul>
+    <p class="avviso" id="avviso" hidden></p>
+    <p class="fonte">Aliquote indicative 2026: contributi INPS a carico azienda per settore, tariffe INAIL,
+      TFR pari alla retribuzione annua divisa per 13,5 (art. 2120 c.c.). Stima da verificare con il consulente
+      del lavoro sul CCNL applicato. Aggiornato a ottobre 2026.</p>
+    <details id="dettaglioOre">
+      <summary>Costo orario: come l'ho calcolato</summary>
+      <ul class="voci num" id="prospettoOre"></ul>
+    </details>
+  </div>
+
+  <div data-ad="top"></div>
+
+  <section data-pro="Confronto fra due inquadramenti">
+    <h2>Confronto fra due inquadramenti</h2>
+    <p class="small muted">Metti a fianco l'ipotesi B (per esempio part-time, un altro livello o un altro CCNL)
+      e vedi la differenza di costo annuo prima di firmare.</p>
+    <div class="affianco">
+      <div class="campo">
+        <label for="bLordo">B: lordo al mese</label>
+        <input type="number" id="bLordo" inputmode="decimal" min="0" step="10" value="1500" autocomplete="off">
+      </div>
+      <div class="campo">
+        <label for="bMens">B: mensilità</label>
+        <input type="number" id="bMens" inputmode="numeric" min="12" max="16" step="1" value="14" autocomplete="off">
+      </div>
+    </div>
+    <div class="affianco">
+      <div class="campo">
+        <label for="bInps">B: INPS %</label>
+        <input type="number" id="bInps" inputmode="decimal" min="0" max="50" step="0.01" value="30.38" autocomplete="off">
+      </div>
+      <div class="campo">
+        <label for="bInail">B: INAIL %</label>
+        <input type="number" id="bInail" inputmode="decimal" min="0" max="15" step="0.01" value="1" autocomplete="off">
+      </div>
+    </div>
+    <ul class="voci num" id="confronto"></ul>
+    <p class="delta num" id="deltaConfronto"></p>
+  </section>
+
+  <section data-pro="Prospetto da stampare, copiare o esportare">
+    <h2>Prospetto da stampare, copiare o esportare</h2>
+    <p class="small muted">Il prospetto voce per voce da allegare al preventivo, da mandare su WhatsApp al socio
+      o da portare al commercialista.</p>
+    <div class="azioni">
+      <button type="button" id="btnStampa">Stampa / PDF</button>
+      <button type="button" id="btnCopia">Copia riepilogo</button>
+      <button type="button" id="btnCsv">Scarica CSV</button>
+    </div>
+    <p class="esito" id="esito" role="status" aria-live="polite"></p>
+  </section>
+
+  <div id="stampa"></div>
+
+  <section id="guida">
+    <h2>Come funziona il calcolo del costo aziendale</h2>
+    <p>Chiedersi quanto costa un dipendente all'azienda significa partire dal lordo e aggiungere tutto quello
+      che il dipendente non vede in busta paga. La retribuzione lorda mensile moltiplicata per le mensilità
+      previste dal contratto dà la <b>RAL</b>, la retribuzione annua lorda: è la base su cui si calcola tutto
+      il resto. Su quella base si sommano quattro voci.</p>
+    <ul>
+      <li><b>Contributi INPS a carico dell'azienda</b>: la voce più pesante, intorno al 28-30% della RAL.
+        Comprende l'assicurazione per invalidità, vecchiaia e superstiti (la parte più grande), disoccupazione,
+        maternità, cassa integrazione e fondi minori. Cambia con il settore, la qualifica e la dimensione
+        dell'impresa: nell'app trovi i valori tipici di industria, commercio e artigianato, ma il campo è
+        modificabile perché l'unico dato esatto è quello che leggi nel tuo Uniemens.</li>
+      <li><b>Premio INAIL</b>: l'assicurazione obbligatoria contro gli infortuni, interamente a carico del
+        datore di lavoro. È la voce con la variabilità più grande: da circa lo 0,4% per un impiegato
+        amministrativo a oltre il 9% per chi lavora in cantiere.</li>
+      <li><b>TFR</b>: ogni anno matura una quota pari alla retribuzione annua divisa per 13,5, cioè il 7,41%.
+        È un costo dell'anno in corso anche se lo paghi alla fine del rapporto; se il dipendente lo destina al
+        fondo pensione, esce di cassa subito ogni mese.</li>
+      <li><b>Costi extra</b>: buoni pasto, welfare, formazione, visite mediche, dispositivi di protezione,
+        telefono e portatile. Piccoli uno per uno, ma messi insieme spostano il totale di qualche punto.</li>
+    </ul>
+    <p>L'IRAP merita una riga a parte. Per i rapporti a tempo indeterminato il costo del lavoro è integralmente
+      deducibile dalla base IRAP, quindi non si paga nulla; per il tempo determinato la deduzione piena non
+      c'è e il 3,9% si aggiunge al conto. Nell'app è una casella da spuntare, così la differenza si vede subito.</p>
+
+    <h2>Esempio con numeri: un impiegato da 1.800 € lordi</h2>
+    <div class="esempio num">
+      <p>Commercio, 14 mensilità, INPS 30,38%, INAIL 1%, buoni pasto da 7 € per 220 giorni.</p>
+      <ul>
+        <li>RAL: 1.800 × 14 = <b>25.200 €</b></li>
+        <li>Contributi INPS: 25.200 × 30,38% = <b>7.656 €</b></li>
+        <li>INAIL: 25.200 × 1% = <b>252 €</b></li>
+        <li>TFR: 25.200 ÷ 13,5 = <b>1.867 €</b></li>
+        <li>Buoni pasto: 7 × 220 = <b>1.540 €</b></li>
+        <li>Costo annuo totale: <b>36.514 €</b>, cioè 3.043 € al mese</li>
+      </ul>
+      <p>Il moltiplicatore è 1,45: ogni euro di lordo ne costa uno e quarantacinque. Su 1.760 ore
+        effettivamente lavorate (220 giorni per 8 ore) fa <b>20,75 € per ora lavorata</b>.</p>
+    </div>
+    <p>Lo stesso impiegato con un CCNL a 13 mensilità e senza buoni pasto costerebbe circa 32.480 €: 4.000 €
+      di differenza a parità di stipendio mensile. È il motivo per cui confrontare due offerte guardando solo
+      il lordo mensile non dice quasi nulla.</p>
+
+    <h2>Il costo orario è il numero che serve davvero</h2>
+    <p>Se devi fare un preventivo, decidere una tariffa o capire se una commessa è in utile, il costo annuo
+      non basta: serve il costo dell'ora. Attenzione alla differenza fra le due ore. Un dipendente a 40 ore
+      settimanali è <i>retribuito</i> per circa 2.080 ore l'anno, ma fra ferie, festività, permessi e malattia
+      ne <i>lavora</i> circa 1.760. Dividere il costo per le ore retribuite dà un numero più basso e troppo
+      ottimistico: il costo da ribaltare sul cliente è quello per ora lavorata, che nell'esempio è più alto di
+      circa il 18%. Nel prospetto trovi entrambi, con il dettaglio del calcolo.</p>
+
+    <h2>Errori comuni</h2>
+    <ul>
+      <li><b>Moltiplicare per 12 invece che per 13 o 14.</b> Con tredicesima e quattordicesima il costo cresce
+        del 17%: è l'errore che fa sembrare sostenibile un'assunzione che non lo è.</li>
+      <li><b>Usare la regola del «lordo più 40%» per tutti.</b> Funziona per un ufficio, non per un'officina o
+        un cantiere, dove il solo INAIL può valere qualche migliaio di euro l'anno.</li>
+      <li><b>Sommare le ferie come costo in più.</b> Sono già nella RAL; incidono sul costo orario, non su
+        quello annuo.</li>
+      <li><b>Dimenticare il TFR</b> perché «lo pago quando se ne va»: sono 7,41% all'anno che vanno messi via.</li>
+      <li><b>Confondere il costo con il netto.</b> Fra quello che spende l'azienda e quello che arriva sul conto
+        del dipendente c'è un fattore che sfiora il 2: con 36.500 € di costo, in busta paga arrivano circa
+        1.400 € netti al mese. Per quel conto c'è l'app sul
+        <a href="../../apps/2026-09-20-netto-da-lordo/index.html">calcolo dello stipendio netto dal lordo</a>.</li>
+    </ul>
+
+    <h2>Domande frequenti</h2>
+    <h3>Quanto costa un dipendente all'azienda in più rispetto al lordo?</h3>
+    <p>In media dal 38% al 50% in più della RAL. La forchetta è larga perché dipende da settore, rischio INAIL
+      e costi extra: un impiegato in uno studio sta vicino al +38%, un operaio edile sfiora il +50%, e lo supera contando DPI, formazione e visite mediche.</p>
+    <h3>Il TFR è un costo anche se non lo verso?</h3>
+    <p>Sì. Matura per legge ogni anno e va in bilancio come costo dell'esercizio, anche se la liquidazione
+      arriva anni dopo. Se vuoi vedere quanto si accumula nel tempo c'è l'app sul
+      <a href="../../apps/2026-09-20-calcolo-tfr/index.html">calcolo del TFR</a>.</p>
+    <h3>Con un budget di 40.000 € quanto lordo posso offrire?</h3>
+    <p>Con INPS al 30%, INAIL all'1% e il TFR, ogni euro di RAL costa circa 1,38 €: restano circa 29.000 € di
+      RAL, cioè circa 2.070 € lordi al mese su 14 mensilità. È esattamente quello che fa la modalità
+      «Dal budget»: togliere prima i costi fissi e poi dividere per il moltiplicatore.</p>
+    <h3>Perché l'aliquota INPS del mio cedolino è diversa?</h3>
+    <p>Perché l'aliquota cambia con il CCNL, la qualifica (operaio, impiegato, apprendista, dirigente), la
+      dimensione dell'azienda e le eventuali agevolazioni sulle assunzioni. I valori proposti sono medie di
+      settore: se hai il cedolino o il modello Uniemens, sostituiscili con il tuo.</p>
+    <h3>Vale anche per apprendisti, stage e partite IVA?</h3>
+    <p>No, quelli hanno regole proprie: l'apprendistato ha aliquote contributive molto ridotte, lo stage
+      prevede un'indennità senza contributi previdenziali pieni, una partita IVA fattura e non ha né TFR né
+      INAIL a carico tuo. Questo calcolo vale per il lavoro subordinato ordinario, a tempo indeterminato o
+      determinato.</p>
+    <h3>È un calcolo che posso portare al commercialista?</h3>
+    <p>È una stima accurata ma resta una stima: il contratto collettivo può prevedere scatti di anzianità,
+      superminimi, indennità e fondi di settore che qui non ci sono. Serve per decidere se e quanto puoi
+      assumere; il prospetto esatto lo fa il consulente del lavoro.</p>
+  </section>
+
+  <div data-ad="bottom"></div>
+  <div data-support></div>
+
+  <footer>
+    <p class="muted">Altre app utili per fare i conti:</p>
+    <ul>
+      <li><a href="../../apps/2026-09-20-netto-da-lordo/index.html">Calcolo dello stipendio netto dal lordo</a></li>
+      <li><a href="../../apps/2026-10-07-tasse-forfettario/index.html">Quanto si paga di tasse con la partita IVA forfettaria</a></li>
+    </ul>
+    <p class="muted small">Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a></p>
+  </footer>
+</div>
+
+<nav class="tabbar" id="tabbar" role="tablist" aria-label="Sezioni del calcolo">
+  <button type="button" role="tab" id="tab-retribuzione" aria-selected="true" aria-controls="pan-retribuzione">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/>
+    </svg>
+    Retribuzione
+  </button>
+  <button type="button" role="tab" id="tab-contributi" aria-selected="false" aria-controls="pan-contributi" tabindex="-1">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>
+    </svg>
+    Contributi
+  </button>
+  <button type="button" role="tab" id="tab-extra" aria-selected="false" aria-controls="pan-extra" tabindex="-1">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <path d="M12 5v14M5 12h14"/>
+    </svg>
+    Extra
+  </button>
+</nav>
+
+<script src="../../assets/monetize.js"></script>
+<script>
+// Modello dati: un solo oggetto `stato` (serializzato in localStorage) con la retribuzione di partenza,
+// le aliquote (INPS, INAIL, IRAP), i costi extra e i parametri d'orario; `calcola()` lo trasforma in un
+// prospetto di voci annue. In modalità "budget" l'inverso: dal costo totale si ricava la RAL dividendo
+// per il moltiplicatore (1 + INPS + INAIL + 1/13,5) dopo aver sottratto i costi fissi.
+(function () {
+  "use strict";
+  const CHIAVE = "quanto-costa-un-dipendente:v1";
+  const DIV_TFR = 13.5;
+  const ALIQ_IRAP = 3.9;
+  const $ = (s) => document.querySelector(s);
+  const $$ = (s) => Array.from(document.querySelectorAll(s));
+
+  const fmtEuro = new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
+  const fmtEuro2 = new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const fmtNum = new Intl.NumberFormat("it-IT", { maximumFractionDigits: 0 });
+  const fmtDec = new Intl.NumberFormat("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const euro = (n) => fmtEuro.format(Math.round(n));
+  const euro2 = (n) => fmtEuro2.format(n);
+  const perc = (n) => fmtDec.format(n).replace(/,00$/, "") + "%";
+
+  const stato = {
+    modo: "lordo", base: "mese", lordo: 1800, budget: 40000, mensilita: 14,
+    ore: 40, giorni: 220, settore: "30.38", inps: 30.38, rischio: "1.0", inail: 1,
+    determinato: false, ticket: 0, altri: 0,
+    b: { lordo: 1500, mensilita: 14, inps: 30.38, inail: 1 }
+  };
+
+  function carica() {
+    let salvato = null;
+    try { salvato = JSON.parse(localStorage.getItem(CHIAVE) || "null"); } catch (_) { /* storage bloccato */ }
+    if (!salvato || typeof salvato !== "object") return;
+    for (const k of Object.keys(stato)) {
+      if (k === "b") continue;
+      if (typeof salvato[k] === typeof stato[k]) stato[k] = salvato[k];
+    }
+    if (salvato.b && typeof salvato.b === "object") {
+      for (const k of Object.keys(stato.b)) {
+        if (typeof salvato.b[k] === "number" && isFinite(salvato.b[k])) stato.b[k] = salvato.b[k];
+      }
+    }
+  }
+  function salva() {
+    try { localStorage.setItem(CHIAVE, JSON.stringify(stato)); } catch (_) { /* storage pieno o bloccato */ }
+  }
+
+  // ---------- calcolo ----------
+  function moltiplicatore(inps, inail, determinato) {
+    const base = 1 + inps / 100 + inail / 100 + 1 / DIV_TFR;
+    return determinato ? base * (1 + ALIQ_IRAP / 100) : base;
+  }
+
+  function daRal(ral, p) {
+    const inps = ral * p.inps / 100;
+    const inail = ral * p.inail / 100;
+    const tfr = ral / DIV_TFR;
+    const ticket = Math.max(0, p.ticket) * Math.max(0, p.giorni);
+    const altri = Math.max(0, p.altri);
+    const irap = p.determinato ? (ral + inps + inail + tfr) * ALIQ_IRAP / 100 : 0;
+    const totale = ral + inps + inail + tfr + ticket + altri + irap;
+    const oreGiorno = p.ore / 5;
+    const oreRetribuite = p.ore * 52;
+    const oreLavorate = p.giorni * oreGiorno;
+    return {
+      ral, inps, inail, tfr, ticket, altri, irap, totale,
+      mensile: totale / 12,
+      oreRetribuite, oreLavorate, oreGiorno,
+      costoOraRetribuita: oreRetribuite > 0 ? totale / oreRetribuite : 0,
+      costoOraLavorata: oreLavorate > 0 ? totale / oreLavorate : 0,
+      molt: ral > 0 ? totale / ral : 0,
+      lordoMensile: p.mensilita > 0 ? ral / p.mensilita : 0
+    };
+  }
+
+  function parametri() {
+    return {
+      inps: num(stato.inps, 0, 60), inail: num(stato.inail, 0, 30),
+      determinato: !!stato.determinato, ticket: num(stato.ticket, 0, 100),
+      altri: num(stato.altri, 0, 1e7), giorni: num(stato.giorni, 1, 366),
+      ore: num(stato.ore, 1, 60), mensilita: num(stato.mensilita, 12, 16)
+    };
+  }
+  function num(v, min, max) {
+    const n = Number(v);
+    if (!isFinite(n)) return min;
+    return Math.min(max, Math.max(min, n));
+  }
+
+  function risultato() {
+    const p = parametri();
+    if (stato.modo === "budget") {
+      const budget = Number(stato.budget);
+      if (!isFinite(budget) || budget <= 0) return { errore: "Inserisci il budget annuo che hai a disposizione." };
+      const fissi = p.ticket * p.giorni + p.altri;
+      const ral = (budget - fissi) / moltiplicatore(p.inps, p.inail, p.determinato);
+      if (ral <= 0) return { errore: "Il budget non copre nemmeno i costi extra: alzalo o riduci buoni pasto e altri costi." };
+      return Object.assign({ p }, daRal(ral, p));
+    }
+    const importo = Number(stato.lordo);
+    if (!isFinite(importo) || importo <= 0) return { errore: "Inserisci una retribuzione lorda maggiore di zero." };
+    const ral = stato.base === "mese" ? importo * p.mensilita : importo;
+    return Object.assign({ p }, daRal(ral, p));
+  }
+
+  // ---------- resa ----------
+  function voce(testo, valore, nota, spenta) {
+    const li = document.createElement("li");
+    if (spenta) li.className = "off";
+    const t = document.createElement("span");
+    t.textContent = testo;
+    const punti = document.createElement("span");
+    punti.className = "punti";
+    const v = document.createElement("span");
+    v.className = "val";
+    v.textContent = valore;
+    li.append(t, punti, v);
+    if (nota) {
+      const n = document.createElement("span");
+      n.className = "perc";
+      n.textContent = nota;
+      li.append(n);
+    }
+    return li;
+  }
+
+  function disegnaRiepilogo(r) {
+    const totale = $("#totale"), etichetta = $("#etichettaTotale"), sotto = $(".sotto");
+    sotto.textContent = "";
+    if (r.errore) {
+      etichetta.textContent = "Costo annuo per l'azienda";
+      totale.textContent = "—";
+      totale.classList.remove("ko");
+      return;
+    }
+    totale.classList.remove("ko");
+    const righe = [];
+    if (stato.modo === "budget") {
+      etichetta.textContent = "Lordo mensile che puoi offrire";
+      totale.textContent = euro(r.lordoMensile) + " /mese";
+      righe.push(["RAL lorda", euro(r.ral)]);
+      righe.push(["su " + fmtNum.format(r.p.mensilita) + " mensilità, costo annuo", euro(r.totale)]);
+      righe.push(["per 1 € di lordo", fmtDec.format(r.molt) + " €"]);
+    } else {
+      etichetta.textContent = "Costo annuo per l'azienda";
+      totale.textContent = euro(r.totale);
+      righe.push(["al mese", euro(r.mensile)]);
+      righe.push(["per ora lavorata", euro2(r.costoOraLavorata)]);
+      righe.push(["per 1 € di lordo", fmtDec.format(r.molt) + " €"]);
+    }
+    for (const [label, val] of righe) {
+      const d = document.createElement("div");
+      d.append(document.createTextNode(label + " "));
+      const b = document.createElement("b");
+      b.textContent = val;
+      d.append(b);
+      sotto.append(d);
+    }
+  }
+
+  function disegnaProspetto(r) {
+    const ul = $("#prospetto"), ore = $("#prospettoOre"), avviso = $("#avviso");
+    ul.textContent = "";
+    ore.textContent = "";
+    if (r.errore) {
+      avviso.hidden = false;
+      avviso.textContent = r.errore;
+      $("#dettaglioOre").hidden = true;
+      return;
+    }
+    $("#dettaglioOre").hidden = false;
+    const q = (v) => Math.round(v / r.totale * 100) + "%";
+    ul.append(voce("Retribuzione annua lorda (RAL)", euro(r.ral), q(r.ral)));
+    ul.append(voce("Contributi INPS azienda " + perc(r.p.inps), euro(r.inps), q(r.inps)));
+    ul.append(voce("Premio INAIL " + perc(r.p.inail), euro(r.inail), q(r.inail)));
+    ul.append(voce("Accantonamento TFR (RAL ÷ 13,5)", euro(r.tfr), q(r.tfr)));
+    ul.append(voce(
+      "Buoni pasto (" + fmtNum.format(r.p.giorni) + " × " + euro2(r.p.ticket) + ")",
+      euro(r.ticket), r.ticket > 0 ? q(r.ticket) : "—", r.ticket === 0));
+    ul.append(voce("Altri costi annui", euro(r.altri), r.altri > 0 ? q(r.altri) : "—", r.altri === 0));
+    ul.append(voce(
+      "IRAP " + perc(ALIQ_IRAP) + (r.p.determinato ? "" : " (non dovuta: indeterminato)"),
+      euro(r.irap), r.irap > 0 ? q(r.irap) : "—", r.irap === 0));
+    const somma = voce("Costo annuo totale", euro(r.totale), fmtDec.format(r.molt) + " × RAL");
+    somma.classList.add("somma");
+    ul.append(somma);
+    ul.append(voce("Costo mensile medio (su 12 mesi)", euro(r.mensile)));
+
+    ore.append(voce("Ore retribuite l'anno (" + fmtDec.format(r.p.ore).replace(/,00$/, "") + " × 52)", fmtNum.format(r.oreRetribuite)));
+    ore.append(voce("Ore lavorate l'anno (" + fmtNum.format(r.p.giorni) + " × " + fmtDec.format(r.oreGiorno).replace(/,00$/, "") + ")", fmtNum.format(r.oreLavorate)));
+    ore.append(voce("Costo per ora retribuita", euro2(r.costoOraRetribuita)));
+    const ol = voce("Costo per ora lavorata", euro2(r.costoOraLavorata));
+    ol.classList.add("somma");
+    ore.append(ol);
+
+    const note = [];
+    if (r.p.ticket > 8) note.push("Sopra gli 8 € al giorno la parte in eccesso del buono pasto diventa imponibile: il costo reale è un po' più alto.");
+    if (stato.modo === "lordo" && stato.base === "anno" && r.p.mensilita !== 12) {
+      note.push("Hai inserito la RAL: comprende già le " + fmtNum.format(r.p.mensilita) + " mensilità, quindi non le moltiplico di nuovo.");
+    }
+    if (r.p.inps > 40) note.push("Un'aliquota INPS sopra il 40% è fuori dai valori ordinari: controlla di non aver sommato anche la quota del dipendente.");
+    avviso.hidden = note.length === 0;
+    avviso.textContent = note.join(" ");
+  }
+
+  function disegnaConfronto(r) {
+    const ul = $("#confronto"), delta = $("#deltaConfronto");
+    ul.textContent = "";
+    delta.textContent = "";
+    if (r.errore) { delta.textContent = "Completa i dati dell'ipotesi A per vedere il confronto."; return; }
+    const pb = Object.assign({}, r.p, {
+      inps: num(stato.b.inps, 0, 60), inail: num(stato.b.inail, 0, 30), mensilita: num(stato.b.mensilita, 12, 16)
+    });
+    const lordoB = Number(stato.b.lordo);
+    if (!isFinite(lordoB) || lordoB <= 0) { delta.textContent = "Inserisci il lordo mensile dell'ipotesi B."; return; }
+    const b = daRal(lordoB * pb.mensilita, pb);
+    const aLordo = stato.modo === "budget" ? r.lordoMensile : (stato.base === "mese" ? Number(stato.lordo) : r.ral / r.p.mensilita);
+    ul.append(voce("A: " + euro(aLordo) + "/mese × " + fmtNum.format(r.p.mensilita), euro(r.totale)));
+    ul.append(voce("B: " + euro(lordoB) + "/mese × " + fmtNum.format(pb.mensilita), euro(b.totale)));
+    ul.append(voce("A: costo per ora lavorata", euro2(r.costoOraLavorata)));
+    ul.append(voce("B: costo per ora lavorata", euro2(b.costoOraLavorata)));
+    const diff = b.totale - r.totale;
+    const segno = diff >= 0 ? "in più" : "in meno";
+    const pctDiff = r.totale > 0 ? Math.abs(diff / r.totale * 100) : 0;
+    delta.textContent = "L'ipotesi B costa " + euro(Math.abs(diff)) + " " + segno + " all'anno (" +
+      fmtDec.format(pctDiff) + "%), cioè " + euro(Math.abs(diff) / 12) + " al mese.";
+  }
+
+  // ---------- prospetto esportabile ----------
+  function righeTesto(r) {
+    const righe = [
+      ["Retribuzione annua lorda (RAL)", r.ral],
+      ["Contributi INPS azienda (" + perc(r.p.inps) + ")", r.inps],
+      ["Premio INAIL (" + perc(r.p.inail) + ")", r.inail],
+      ["Accantonamento TFR (RAL / 13,5)", r.tfr],
+      ["Buoni pasto (" + fmtNum.format(r.p.giorni) + " x " + fmtDec.format(r.p.ticket) + " EUR)", r.ticket],
+      ["Altri costi annui", r.altri],
+      ["IRAP 3,9%" + (r.p.determinato ? "" : " (non dovuta)"), r.irap],
+      ["COSTO ANNUO TOTALE", r.totale],
+      ["Costo mensile medio", r.mensile],
+      ["Costo per ora lavorata", r.costoOraLavorata],
+      ["Costo per ora retribuita", r.costoOraRetribuita]
+    ];
+    return righe;
+  }
+  function testoRiepilogo(r) {
+    const d = new Date().toLocaleDateString("it-IT");
+    const out = ["Costo aziendale di un dipendente — stima del " + d, ""];
+    for (const [k, v] of righeTesto(r)) out.push(k + ": " + fmtDec.format(v) + " €");
+    out.push("", "Moltiplicatore sul lordo: " + fmtDec.format(r.molt) + " × RAL");
+    out.push("Stima indicativa, aliquote 2026: da verificare con il consulente del lavoro sul CCNL applicato.");
+    return out.join("\n");
+  }
+
+  function preparaStampa(r) {
+    const box = $("#stampa");
+    box.textContent = "";
+    const h = document.createElement("h2");
+    h.textContent = "Costo aziendale di un dipendente";
+    const sub = document.createElement("p");
+    sub.className = "small muted";
+    sub.textContent = "Stima del " + new Date().toLocaleDateString("it-IT") +
+      " — INPS " + perc(r.p.inps) + ", INAIL " + perc(r.p.inail) + ", " + fmtNum.format(r.p.mensilita) + " mensilità" +
+      (r.p.determinato ? ", tempo determinato con IRAP" : ", tempo indeterminato");
+    const ul = document.createElement("ul");
+    ul.className = "voci num";
+    for (const [k, v] of righeTesto(r)) ul.append(voce(k, k.indexOf("ora") > -1 ? euro2(v) : euro(v)));
+    const nota = document.createElement("p");
+    nota.className = "small muted";
+    nota.textContent = "Stima indicativa: il contratto collettivo può prevedere scatti, superminimi, indennità e fondi di settore non compresi.";
+    box.append(h, sub, ul, nota);
+  }
+
+  function csv(r) {
+    const righe = [["Voce", "Importo annuo (EUR)"]].concat(righeTesto(r).map(([k, v]) => [k, v.toFixed(2).replace(".", ",")]));
+    return "﻿" + righe.map((riga) => riga.map((c) => '"' + String(c).replace(/"/g, '""') + '"').join(";")).join("\r\n");
+  }
+
+  // ---------- interfaccia ----------
+  let ultimo = null;
+  function aggiorna() {
+    const r = risultato();
+    ultimo = r;
+    disegnaRiepilogo(r);
+    disegnaProspetto(r);
+    disegnaConfronto(r);
+    if (!r.errore) preparaStampa(r);
+    salva();
+  }
+
+  function legaNumero(id, chiave, dopo) {
+    const el = $("#" + id);
+    el.addEventListener("input", () => {
+      const v = el.value === "" ? "" : Number(el.value);
+      if (chiave.indexOf("b.") === 0) stato.b[chiave.slice(2)] = v;
+      else stato[chiave] = v;
+      if (dopo) dopo();
+      aggiorna();
+    });
+  }
+
+  function sincronizza() {
+    $("#lordo").value = stato.lordo;
+    $("#budget").value = stato.budget;
+    $("#ore").value = stato.ore;
+    $("#giorni").value = stato.giorni;
+    $("#inps").value = stato.inps;
+    $("#inail").value = stato.inail;
+    $("#ticket").value = stato.ticket;
+    $("#altri").value = stato.altri;
+    $("#determinato").checked = !!stato.determinato;
+    $("#settore").value = stato.settore;
+    $("#rischio").value = stato.rischio;
+    $("#bLordo").value = stato.b.lordo;
+    $("#bMens").value = stato.b.mensilita;
+    $("#bInps").value = stato.b.inps;
+    $("#bInail").value = stato.b.inail;
+    $$("[data-base]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.base === stato.base)));
+    $$("[data-mens]").forEach((b) => b.setAttribute("aria-pressed", String(Number(b.dataset.mens) === Number(stato.mensilita))));
+    $("#modoLordo").setAttribute("aria-pressed", String(stato.modo === "lordo"));
+    $("#modoBudget").setAttribute("aria-pressed", String(stato.modo === "budget"));
+    $("#boxLordo").hidden = stato.modo !== "lordo";
+    $("#boxBudget").hidden = stato.modo === "lordo";
+    $("#sufLordo").textContent = stato.base === "mese" ? "€/mese" : "€/anno";
+    $("#hintLordo").textContent = stato.base === "mese"
+      ? "Il lordo che scrivi nel contratto, prima delle trattenute del dipendente."
+      : "La retribuzione annua lorda: comprende già tredicesima e quattordicesima.";
+  }
+
+  function init() {
+    carica();
+    sincronizza();
+
+    // modalità
+    $("#modoLordo").addEventListener("click", () => { stato.modo = "lordo"; sincronizza(); aggiorna(); apriTab("retribuzione"); });
+    $("#modoBudget").addEventListener("click", () => { stato.modo = "budget"; sincronizza(); aggiorna(); apriTab("retribuzione"); });
+
+    // chip base e mensilità
+    $$("[data-base]").forEach((b) => b.addEventListener("click", () => {
+      stato.base = b.dataset.base;
+      if (stato.base === "anno" && Number(stato.lordo) < 10000) stato.lordo = Math.round(Number(stato.lordo) * num(stato.mensilita, 12, 16));
+      if (stato.base === "mese" && Number(stato.lordo) > 10000) stato.lordo = Math.round(Number(stato.lordo) / num(stato.mensilita, 12, 16));
+      sincronizza(); aggiorna();
+    }));
+    $$("[data-mens]").forEach((b) => b.addEventListener("click", () => {
+      stato.mensilita = Number(b.dataset.mens);
+      sincronizza(); aggiorna();
+    }));
+
+    // numeri
+    legaNumero("lordo", "lordo");
+    legaNumero("budget", "budget");
+    legaNumero("ore", "ore");
+    legaNumero("giorni", "giorni");
+    legaNumero("ticket", "ticket");
+    legaNumero("altri", "altri");
+    legaNumero("inps", "inps", () => { stato.settore = "custom"; $("#settore").value = "custom"; });
+    legaNumero("inail", "inail", () => { stato.rischio = "custom"; $("#rischio").value = "custom"; });
+    legaNumero("bLordo", "b.lordo");
+    legaNumero("bMens", "b.mensilita");
+    legaNumero("bInps", "b.inps");
+    legaNumero("bInail", "b.inail");
+
+    $("#settore").addEventListener("change", (ev) => {
+      stato.settore = ev.target.value;
+      if (ev.target.value !== "custom") { stato.inps = Number(ev.target.value); $("#inps").value = stato.inps; }
+      aggiorna();
+    });
+    $("#rischio").addEventListener("change", (ev) => {
+      stato.rischio = ev.target.value;
+      if (ev.target.value !== "custom") { stato.inail = Number(ev.target.value); $("#inail").value = stato.inail; }
+      aggiorna();
+    });
+    $("#determinato").addEventListener("change", (ev) => { stato.determinato = ev.target.checked; aggiorna(); });
+
+    // Invio non ricarica la pagina, Esc toglie il fuoco dal campo
+    $("#modulo").addEventListener("submit", (ev) => { ev.preventDefault(); document.activeElement.blur(); });
+    document.addEventListener("keydown", (ev) => {
+      if (ev.key === "Enter" && ev.target.tagName === "INPUT") { ev.preventDefault(); ev.target.blur(); }
+      if (ev.key === "Escape") {
+        const det = $("#dettaglioOre");
+        if (det.open) { det.open = false; return; }
+        if (document.activeElement && document.activeElement.tagName === "INPUT") document.activeElement.blur();
+      }
+    });
+
+    // tab in basso
+    const tabs = $$('[role="tab"]');
+    function apriTab(nome) {
+      tabs.forEach((t) => {
+        const attivo = t.id === "tab-" + nome;
+        t.setAttribute("aria-selected", String(attivo));
+        t.tabIndex = attivo ? 0 : -1;
+        document.getElementById(t.getAttribute("aria-controls")).hidden = !attivo;
+      });
+    }
+    tabs.forEach((t, i) => {
+      t.addEventListener("click", () => {
+        apriTab(t.id.replace("tab-", ""));
+        t.focus();
+      });
+      t.addEventListener("keydown", (ev) => {
+        const d = ev.key === "ArrowRight" ? 1 : ev.key === "ArrowLeft" ? -1 : 0;
+        if (!d) return;
+        ev.preventDefault();
+        const next = tabs[(i + d + tabs.length) % tabs.length];
+        apriTab(next.id.replace("tab-", ""));
+        next.focus();
+      });
+    });
+    // la barra scompare quando il modulo esce dallo schermo: non copre la guida
+    const barra = $("#tabbar");
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver((voci) => {
+        for (const v of voci) barra.classList.toggle("via", !v.isIntersecting);
+      }, { rootMargin: "-10px 0px -30% 0px" }).observe($("#modulo"));
+    }
+
+    // azioni Pro
+    const esito = $("#esito");
+    function avvisa(testo) {
+      esito.textContent = testo;
+      setTimeout(() => { if (esito.textContent === testo) esito.textContent = ""; }, 4000);
+    }
+    $("#btnStampa").addEventListener("click", () => {
+      if (!ultimo || ultimo.errore) { avvisa("Completa prima i dati del calcolo."); return; }
+      preparaStampa(ultimo);
+      window.print();
+    });
+    $("#btnCopia").addEventListener("click", async () => {
+      if (!ultimo || ultimo.errore) { avvisa("Completa prima i dati del calcolo."); return; }
+      const testo = testoRiepilogo(ultimo);
+      try {
+        await navigator.clipboard.writeText(testo);
+        avvisa("Riepilogo copiato: incollalo dove vuoi.");
+      } catch (_) {
+        const ta = document.createElement("textarea");
+        ta.value = testo;
+        ta.setAttribute("readonly", "");
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.append(ta);
+        ta.select();
+        let ok = false;
+        try { ok = document.execCommand("copy"); } catch (_e) { ok = false; }
+        ta.remove();
+        avvisa(ok ? "Riepilogo copiato: incollalo dove vuoi." : "Copia non riuscita: seleziona il prospetto a mano.");
+      }
+    });
+    $("#btnCsv").addEventListener("click", () => {
+      if (!ultimo || ultimo.errore) { avvisa("Completa prima i dati del calcolo."); return; }
+      const blob = new Blob([csv(ultimo)], { type: "text/csv;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "costo-dipendente.csv";
+      document.body.append(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+      avvisa("File CSV scaricato.");
+    });
+
+    if (window.Monetize && typeof window.Monetize.onPro === "function") window.Monetize.onPro(() => aggiorna());
+    aggiorna();
+  }
+
+  document.addEventListener("DOMContentLoaded", init);
+})();
+</script>
+</body>
+</html>
