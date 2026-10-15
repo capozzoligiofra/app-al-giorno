@@ -1,7 +1,7 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 33,
+  "count": 34,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -50,6 +50,66 @@ window.__APPS__ = {
     ]
   },
   "apps": [
+    {
+      "title": "Quanto Costa Rifare il Bagno",
+      "slug": "2026-10-15-quanto-costa-rifare-il-bagno",
+      "date": "2026-10-15",
+      "description": "Stima il costo di rifacimento del bagno voce per voce, con IVA agevolata calcolata bene e detrazione fiscale.",
+      "category": "casa-cucina",
+      "tags": [
+        "ristrutturazione",
+        "bagno",
+        "preventivo",
+        "casa"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "sheet",
+        "palette": "terracotta",
+        "font": "rounded"
+      },
+      "business": {
+        "keyword": "quanto costa rifare il bagno",
+        "keywords": [
+          "costo ristrutturazione bagno al mq",
+          "preventivo rifacimento bagno",
+          "quanto costa ristrutturare un bagno di 5 mq",
+          "voci preventivo bagno"
+        ],
+        "intent": "Chi ha in mano il preventivo dell'idraulico, o sta per chiederlo, e vuole sapere in due minuti se la cifra è in linea e quali voci mancano.",
+        "target": "Proprietari di casa 30-60 anni che ristrutturano un bagno, quasi sempre da telefono mentre confrontano preventivi.",
+        "edge": "Computo vero voce per voce con superfici ricavate dai mq, prezzi correggibili sul proprio preventivo, IVA al 10% calcolata con la regola dei beni significativi e detrazione 50/36% in dieci quote. Nessun contatto da lasciare.",
+        "monetization": [
+          "adsense",
+          "affiliate",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto con il preventivo dell'impresa",
+          "Computo da stampare, copiare o esportare"
+        ],
+        "affiliate": [
+          {
+            "t": "Metro laser digitale",
+            "q": "metro laser misuratore distanza"
+          },
+          {
+            "t": "Mobile bagno sospeso con lavabo",
+            "q": "mobile bagno sospeso 80 cm con lavabo"
+          },
+          {
+            "t": "Box doccia in cristallo temperato",
+            "q": "box doccia cristallo 70x90 scorrevole"
+          }
+        ]
+      },
+      "size": 60001
+    },
     {
       "title": "Quanto Costa un Dipendente",
       "slug": "2026-10-14-quanto-costa-un-dipendente",
