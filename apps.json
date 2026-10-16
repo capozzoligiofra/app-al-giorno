@@ -1,6 +1,6 @@
 {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 34,
+  "count": 35,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -49,6 +49,53 @@
     ]
   },
   "apps": [
+    {
+      "title": "Calcolo NASpI",
+      "slug": "2026-10-16-calcolo-naspi",
+      "date": "2026-10-16",
+      "description": "Calcola quanta NASpI ti spetta al mese, per quanti mesi e con il décalage: prospetto mese per mese e data dell'ultimo pagamento.",
+      "category": "finanza-personale",
+      "tags": [
+        "naspi",
+        "disoccupazione",
+        "inps",
+        "lavoro"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "split",
+        "palette": "blu-notte",
+        "font": "condensed"
+      },
+      "business": {
+        "keyword": "calcolo naspi quanto mi spetta",
+        "keywords": [
+          "quanto mi spetta di naspi",
+          "calcolo naspi 2026",
+          "naspi quanto dura",
+          "decalage naspi",
+          "importo naspi mensile"
+        ],
+        "intent": "Chi ha appena perso il lavoro vuole sapere subito l'importo mensile, per quanti mesi lo riceve e quando finisce, senza SPID e senza andare al patronato.",
+        "target": "Lavoratori dipendenti appena licenziati o a fine contratto, 25-60 anni, dal telefono, nei giorni subito dopo la cessazione.",
+        "edge": "Prospetto mese per mese con il décalage e la data esatta dell'ultimo pagamento, controllo dei requisiti e del termine di 68 giorni, valori della Circolare INPS 4/2026, zero registrazione e funziona offline.",
+        "monetization": [
+          "adsense",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto fra due scenari",
+          "Esporta il prospetto in CSV e stampa"
+        ],
+        "affiliate": []
+      },
+      "size": 53386
+    },
     {
       "title": "Quanto Costa Rifare il Bagno",
       "slug": "2026-10-15-quanto-costa-rifare-il-bagno",
