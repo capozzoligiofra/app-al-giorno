@@ -1,6 +1,6 @@
 {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 35,
+  "count": 36,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -49,6 +49,53 @@
     ]
   },
   "apps": [
+    {
+      "title": "Assegno Unico: Quanto Mi Spetta",
+      "slug": "2026-10-17-assegno-unico",
+      "date": "2026-10-17",
+      "description": "Calcola quanto ti spetta di assegno unico al mese con il tuo ISEE, l'età dei figli e tutte le maggiorazioni 2026.",
+      "category": "finanza-personale",
+      "tags": [
+        "assegno unico",
+        "isee",
+        "figli",
+        "inps",
+        "famiglia"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "wizard",
+        "palette": "verde-menta",
+        "font": "rounded"
+      },
+      "business": {
+        "keyword": "calcolo assegno unico quanto mi spetta",
+        "keywords": [
+          "assegno unico 2026 importi isee",
+          "quanto spetta di assegno unico con isee",
+          "tabella assegno unico per figlio",
+          "maggiorazioni assegno unico"
+        ],
+        "intent": "Genitore che ha appena rifatto l'ISEE, o che ha visto cambiare l'accredito INPS, e vuole sapere subito la cifra che gli spetta e da quali voci è composta.",
+        "target": "Famiglie con figli a carico, 25-50 anni, da telefono; chi sta rinnovando la DSU fra gennaio e giugno.",
+        "edge": "Nessuno SPID e nessuna registrazione: in tre passi dà l'importo voce per voce con tutte le maggiorazioni, interpolando l'ISEE invece di arrotondare a scaglioni, e mostra in anticipo il mese in cui l'importo cambierà per un compleanno.",
+        "monetization": [
+          "adsense",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Proiezione dei 12 mesi",
+          "Confronto fra due ISEE"
+        ],
+        "affiliate": []
+      },
+      "size": 47996
+    },
     {
       "title": "Calcolo NASpI",
       "slug": "2026-10-16-calcolo-naspi",
