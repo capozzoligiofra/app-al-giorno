@@ -1,0 +1,969 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b74c0">
+  <title>Detrazione Spese Mediche: calcolo e quanto ti torna</title>
+  <meta name="description" content="Calcolo detrazione spese mediche nel 730: inserisci scontrini e fatture e vedi quanto ti torna davvero, con franchigia di 129,11 € e capienza IRPEF.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-18-detrazione-spese-mediche/">
+  <meta property="og:title" content="Detrazione Spese Mediche: calcolo e quanto ti torna">
+  <meta property="og:description" content="Metti in elenco le spese sanitarie dell'anno e scopri la detrazione del 19%, la parte persa per la franchigia e quanto recuperi davvero con la tua IRPEF.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-18-detrazione-spese-mediche/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Detrazione Spese Mediche",
+    "description": "Calcolatore gratuito della detrazione delle spese mediche nel modello 730: si mettono in elenco visite, farmaci, ticket, dentista, occhiali e interventi dell'anno, lo strumento scarta quelle pagate in contanti dove la tracciabilità è obbligatoria, applica una sola volta la franchigia di 129,11 euro, calcola il 19 per cento e confronta la detrazione con la capienza IRPEF per dire quanto si recupera davvero. Gestisce anche il limite di 6.197,48 euro per le patologie esenti dei familiari non a carico, le spese per disabilità senza franchigia e la rateizzazione in quattro quote oltre 15.493,71 euro.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-18-detrazione-spese-mediche/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Come si calcola la detrazione delle spese mediche?", "acceptedAnswer": { "@type": "Answer", "text": "Si sommano tutte le spese sanitarie dell'anno proprie e dei familiari a carico, si sottrae una sola volta la franchigia di 129,11 euro e si applica il 19 per cento al resto. La formula è (totale meno 129,11) per 0,19. Con 1.000 euro di spese la detrazione è 165,47 euro: 1.000 meno 129,11 fa 870,89, e il 19 per cento di 870,89 è 165,47 euro. La franchigia vale una volta all'anno per tutte le spese insieme, non per ogni scontrino, quindi non conviene spezzare le spese fra più anni." } },
+      { "@type": "Question", "name": "Perché le spese mediche pagate in contanti non si detraggono?", "acceptedAnswer": { "@type": "Answer", "text": "Dal 2020 la legge 160/2019 chiede il pagamento tracciabile, cioè carta, bancomat, bonifico o assegno, per poter detrarre una spesa sanitaria. Restano però tre eccezioni importanti, dove il contante va benissimo: i farmaci e i medicinali con scontrino parlante, i dispositivi medici con marchio CE come occhiali, lenti e apparecchi acustici, e le prestazioni erogate da strutture pubbliche o private accreditate al Servizio sanitario nazionale, ticket compresi. La visita dal privato pagata in contanti, invece, è persa: in questo strumento viene segnalata e messa da parte." } },
+      { "@type": "Question", "name": "Cosa significa che non ho capienza IRPEF?", "acceptedAnswer": { "@type": "Answer", "text": "La detrazione non è un rimborso in denaro: è uno sconto sull'IRPEF che devi. Se dopo le detrazioni per il tipo di reddito e per i familiari la tua imposta è già a zero, non c'è niente da scontare e la detrazione si perde, senza possibilità di riportarla all'anno dopo. Succede spesso con redditi bassi, pensioni minime e contratti part time. Per questo lo strumento chiede il reddito: calcola l'IRPEF lorda, toglie le detrazioni di base e mostra quanto della detrazione del 19 per cento riesci effettivamente a usare." } },
+      { "@type": "Question", "name": "Quando conviene dividere le spese mediche in quattro rate?", "acceptedAnswer": { "@type": "Answer", "text": "Se il totale delle spese sanitarie dell'anno supera 15.493,71 euro si può scegliere di ripartire la detrazione in quattro quote annuali uguali, barrando la casella rateazione nel 730. La scelta è irrevocabile. Conviene quando l'IRPEF di un solo anno non basta ad assorbire tutta la detrazione: spalmandola su quattro anni ogni quota è più piccola e trova capienza. Non conviene quando l'imposta è già abbondante, perché prendere subito tutto vale più di quattro pezzi incassati fino al quarto anno." } },
+      { "@type": "Question", "name": "Chi dei due coniugi conviene che metta le spese mediche nel 730?", "acceptedAnswer": { "@type": "Answer", "text": "Le spese sanitarie di un figlio fiscalmente a carico di entrambi si possono attribuire al cento per cento a uno dei due genitori oppure dividere. La regola pratica è una sola: conviene a chi ha abbastanza IRPEF per assorbire la detrazione. Attenzione alla divisione a metà, perché la franchigia di 129,11 euro si applica a ciascuna delle due dichiarazioni e quindi si perdono fino a 24,53 euro di detrazione in più. Il confronto fra coniugi di questo strumento calcola i tre casi, tutto a uno, tutto all'altro e metà per ciascuno, e indica quello che recupera di più." } }
+    ]
+  }
+  </script>
+  <style>
+    /* ---- azzurro-cielo + serif-editoriale + list-detail: aria da registro fiscale, bordi sottili,
+           numeri in colonna a destra, elenco delle voci a sinistra e dettaglio accanto. ---- */
+    :root {
+      --cielo: #0b74c0; --cielo-scuro: #075997; --cielo-velo: #e7f2fb;
+      --bg: #f7fafd; --carta: #ffffff; --ink: #142433; --ink-soft: #5b6f80;
+      --riga: #d9e4ee; --ok: #107a52; --ko: #b3261e; --ambra: #8a5a00; --ambra-velo: #fdf4e0;
+      --r: 6px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --cielo: #63b7f5; --cielo-scuro: #8fcdfa; --cielo-velo: #11293c;
+        --bg: #0b141c; --carta: #121e28; --ink: #e9f1f8; --ink-soft: #9aafc0;
+        --riga: #233544; --ok: #58d3a2; --ko: #ff8f85; --ambra: #e8bd6a; --ambra-velo: #2b2314;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--ink);
+      font-family: Georgia, "Times New Roman", "Liberation Serif", serif;
+      font-size: 17px; line-height: 1.6;
+      padding-bottom: calc(92px + env(safe-area-inset-bottom));
+    }
+    main { max-width: 1040px; margin: 0 auto; padding: 1rem 1rem 2rem; }
+    a { color: var(--cielo-scuro); }
+    .su-row { margin: 0 0 1rem; }
+    .su { display: inline-block; min-height: 44px; line-height: 44px; text-decoration: none; font-size: .95rem; }
+    h1 { font-size: 1.6rem; line-height: 1.25; margin: 0 0 .4rem; letter-spacing: -.01em; }
+    .intro { margin: 0 0 1.4rem; color: var(--ink-soft); }
+    h2 { font-size: 1.25rem; margin: 2rem 0 .6rem; border-bottom: 2px solid var(--riga); padding-bottom: .3rem; }
+    h3 { font-size: 1.05rem; margin: 1.4rem 0 .4rem; }
+    .num { font-variant-numeric: tabular-nums; }
+
+    /* ---- list-detail ---- */
+    .ld { display: grid; gap: 1rem; }
+    .pannello { background: var(--carta); border: 1px solid var(--riga); border-radius: var(--r); }
+    .pannello > header {
+      display: flex; align-items: baseline; justify-content: space-between; gap: .5rem;
+      padding: .7rem .9rem; border-bottom: 1px solid var(--riga);
+    }
+    .pannello > header h2 { font-size: .78rem; text-transform: uppercase; letter-spacing: .09em; margin: 0; border: 0; padding: 0; color: var(--ink-soft); }
+    .pannello > header .conta { font-size: .85rem; color: var(--ink-soft); }
+    .corpo { padding: .9rem; }
+
+    /* elenco voci */
+    .voci { list-style: none; margin: 0; padding: 0; }
+    .voci li { border-bottom: 1px solid var(--riga); }
+    .voci li:last-child { border-bottom: 0; }
+    .voce {
+      display: grid; grid-template-columns: 1fr auto; gap: .2rem .8rem; align-items: center;
+      width: 100%; min-height: 56px; padding: .6rem .9rem; text-align: left;
+      font: inherit; color: inherit; background: transparent; border: 0; cursor: pointer;
+    }
+    .voce:hover, .voce:focus-visible { background: var(--cielo-velo); outline: none; }
+    .voce[aria-current="true"] { background: var(--cielo-velo); box-shadow: inset 3px 0 0 var(--cielo); }
+    .voce .d { grid-column: 1; grid-row: 1; font-weight: 700; }
+    .voce .meta { grid-column: 1; grid-row: 2; font-size: .82rem; color: var(--ink-soft); }
+    .voce .imp { grid-column: 2; grid-row: 1 / span 2; text-align: right; font-weight: 700; align-self: center; }
+    .voce.scartata .imp { text-decoration: line-through; color: var(--ink-soft); }
+    .bollo { display: inline-block; font-size: .72rem; letter-spacing: .04em; text-transform: uppercase; padding: .05rem .4rem; border-radius: 3px; border: 1px solid currentColor; }
+    .bollo.ko { color: var(--ko); }
+    .bollo.e2, .bollo.e3 { color: var(--cielo-scuro); }
+    .vuoto { padding: 1.2rem .9rem; color: var(--ink-soft); }
+    .vuoto p { margin: 0 0 .8rem; }
+
+    /* dettaglio: form */
+    .campo { display: block; margin: 0 0 .9rem; }
+    .campo > span { display: block; font-size: .85rem; font-weight: 700; margin-bottom: .25rem; }
+    .campo small { display: block; font-weight: 400; font-size: .8rem; color: var(--ink-soft); }
+    input[type="text"], input[type="number"], select {
+      font: inherit; font-size: 16px; width: 100%; min-height: 48px;
+      padding: .5rem .7rem; color: var(--ink); background: var(--carta);
+      border: 1px solid var(--riga); border-radius: var(--r);
+    }
+    select { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--ink-soft) 50%), linear-gradient(135deg, var(--ink-soft) 50%, transparent 50%); background-position: calc(100% - 20px) 50%, calc(100% - 14px) 50%; background-size: 6px 6px; background-repeat: no-repeat; padding-right: 2.4rem; }
+    input:focus-visible, select:focus-visible, button:focus-visible { outline: 2px solid var(--cielo); outline-offset: 1px; }
+    .segmenti { display: flex; border: 1px solid var(--riga); border-radius: var(--r); overflow: hidden; }
+    .segmenti label { flex: 1; }
+    .segmenti input { position: absolute; opacity: 0; pointer-events: none; }
+    .segmenti span { display: flex; align-items: center; justify-content: center; min-height: 48px; padding: .3rem .5rem; font-size: .95rem; text-align: center; cursor: pointer; }
+    .segmenti label + label span { border-left: 1px solid var(--riga); }
+    .segmenti input:checked + span { background: var(--cielo); color: #fff; font-weight: 700; }
+    .segmenti input:focus-visible + span { outline: 2px solid var(--cielo); outline-offset: -2px; }
+    .avviso { margin: 0 0 .9rem; padding: .6rem .7rem; border-left: 3px solid var(--ambra); background: var(--ambra-velo); color: var(--ambra); font-size: .9rem; border-radius: 0 var(--r) var(--r) 0; }
+    .errore { color: var(--ko); font-size: .88rem; min-height: 1.3em; margin: -.5rem 0 .6rem; }
+    .bottoni { display: flex; flex-wrap: wrap; gap: .5rem; }
+    button { font: inherit; cursor: pointer; }
+    .btn { min-height: 48px; padding: .5rem 1.1rem; border-radius: var(--r); border: 1px solid var(--cielo); background: transparent; color: var(--cielo-scuro); font-weight: 700; }
+    .btn.pieno { background: var(--cielo); border-color: var(--cielo); color: #fff; }
+    .btn.ghost { border-color: var(--riga); color: var(--ink-soft); font-weight: 400; }
+    .btn.danno { border-color: var(--ko); color: var(--ko); }
+    .btn:disabled { opacity: .5; cursor: default; }
+
+    /* esito */
+    .esito { margin-top: 1.4rem; background: var(--carta); border: 1px solid var(--riga); border-left: 4px solid var(--cielo); border-radius: var(--r); padding: 1rem .9rem; }
+    .cifra { font-size: 2.4rem; line-height: 1.1; font-weight: 700; color: var(--cielo-scuro); }
+    .cifra-eti { font-size: .85rem; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-soft); }
+    .conti { list-style: none; margin: 1rem 0 0; padding: 0; }
+    .conti li { display: flex; justify-content: space-between; gap: 1rem; padding: .4rem 0; border-bottom: 1px dotted var(--riga); font-size: .95rem; }
+    .conti li:last-child { border-bottom: 0; }
+    .conti .k { color: var(--ink-soft); }
+    .conti .v { font-weight: 700; white-space: nowrap; }
+    .conti li.forte { border-top: 1px solid var(--riga); padding-top: .6rem; font-size: 1.05rem; }
+    .conti .giu { color: var(--ko); }
+    .nota { font-size: .88rem; color: var(--ink-soft); margin: .8rem 0 0; }
+    .spia { margin: .9rem 0 0; padding: .6rem .7rem; border-left: 3px solid var(--cielo); background: var(--cielo-velo); font-size: .9rem; border-radius: 0 var(--r) var(--r) 0; }
+
+    /* reddito / capienza */
+    details.blocco { margin-top: 1rem; background: var(--carta); border: 1px solid var(--riga); border-radius: var(--r); }
+    details.blocco > summary { min-height: 48px; display: flex; align-items: center; padding: .5rem .9rem; font-weight: 700; cursor: pointer; }
+    details.blocco > summary::marker { color: var(--cielo); }
+    details.blocco .corpo { border-top: 1px solid var(--riga); }
+
+    /* pro */
+    section[data-pro] { margin-top: 1.4rem; background: var(--carta); border: 1px solid var(--riga); border-radius: var(--r); padding: 1rem .9rem; min-height: 180px; }
+    section[data-pro] > h2 { margin-top: 0; }
+    .griglia2 { display: grid; gap: .9rem; }
+    .scenari { list-style: none; margin: .8rem 0 0; padding: 0; }
+    .scenari li { display: flex; justify-content: space-between; gap: 1rem; padding: .55rem .7rem; border: 1px solid var(--riga); border-radius: var(--r); margin-bottom: .5rem; font-size: .95rem; }
+    .scenari li.vince { border-color: var(--ok); background: color-mix(in srgb, var(--ok) 8%, transparent); }
+    .scenari li.vince .v { color: var(--ok); }
+    .scenari .v { font-weight: 700; white-space: nowrap; }
+    pre.elenco { margin: .8rem 0 0; padding: .8rem; background: var(--bg); border: 1px solid var(--riga); border-radius: var(--r); font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: 14px; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; }
+    .esitino { font-size: .88rem; color: var(--ok); min-height: 1.3em; margin: .5rem 0 0; }
+
+    /* barra pollice */
+    .barra {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 5;
+      display: flex; align-items: center; gap: .75rem;
+      padding: .6rem .9rem calc(.6rem + env(safe-area-inset-bottom));
+      background: var(--carta); border-top: 1px solid var(--riga);
+      box-shadow: 0 -4px 16px rgba(10, 30, 50, .1);
+    }
+    .barra .tot { flex: 1; min-width: 0; line-height: 1.2; }
+    .barra .tot b { display: block; font-size: 1.15rem; color: var(--cielo-scuro); }
+    .barra .tot span { font-size: .78rem; text-transform: uppercase; letter-spacing: .07em; color: var(--ink-soft); }
+    .barra .btn { min-width: 44px; }
+
+    /* guida */
+    #guida p, #guida li { max-width: 68ch; }
+    #guida ul { padding-left: 1.2rem; }
+    #guida li { margin: .35rem 0; }
+    .tab { width: 100%; border-collapse: collapse; margin: .8rem 0; font-size: .92rem; }
+    .tab th, .tab td { text-align: left; padding: .45rem .5rem; border-bottom: 1px solid var(--riga); }
+    .tab td:last-child, .tab th:last-child { text-align: right; white-space: nowrap; }
+    .piede { margin-top: 2rem; border-top: 1px solid var(--riga); padding-top: 1rem; font-size: .92rem; color: var(--ink-soft); }
+    .correlate { list-style: none; padding: 0; margin: .5rem 0 1rem; }
+    .correlate li { margin: .2rem 0; }
+    .correlate li a { display: inline-block; min-height: 32px; padding: .35rem 0; }
+    .fonte { font-size: .85rem; color: var(--ink-soft); }
+
+    @media (min-width: 700px) {
+      body { font-size: 18px; padding-bottom: 0; }
+      main { padding: 1.5rem 1.5rem 3rem; }
+      h1 { font-size: 2.1rem; }
+      .ld { grid-template-columns: 1fr 1fr; align-items: start; }
+      .griglia2 { grid-template-columns: 1fr 1fr; }
+      .barra { position: static; border: 1px solid var(--riga); border-radius: var(--r); margin-top: 1rem; box-shadow: none; padding: .7rem .9rem; }
+    }
+    @media print {
+      .barra, .ld, .esito, section[data-pro] .bottoni, #guida, .piede, .su-row, [data-ad] { display: none !important; }
+      section[data-pro] { border: 0; padding: 0; }
+      body { background: #fff; color: #000; padding: 0; }
+      pre.elenco { border: 0; background: #fff; font-size: 10pt; }
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .voce, .btn { transition: background-color .15s ease; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <p class="su-row"><a class="su" href="../../index.html">← Tutte le app</a></p>
+
+  <h1>Calcolo detrazione spese mediche: quanto ti torna dal 730</h1>
+  <p class="intro">Metti in elenco le spese sanitarie dell'anno — visite, farmaci, ticket, dentista, occhiali —
+    e vedi subito la detrazione del 19%, quanto si perde per la franchigia di 129,11 € e quanto recuperi
+    davvero con la tua IRPEF. Niente registrazione, i dati restano sul telefono.</p>
+
+  <div class="ld">
+    <section class="pannello" aria-labelledby="t-elenco">
+      <header>
+        <h2 id="t-elenco">Le tue spese sanitarie</h2>
+        <span class="conta" id="conta"></span>
+      </header>
+      <div id="vuoto" class="vuoto">
+        <p>Non hai ancora inserito nessuna spesa. Aggiungine una con il pulsante in basso, oppure
+          parti da un esempio e modificalo.</p>
+        <button type="button" class="btn ghost" id="btn-esempio">Carica un esempio</button>
+      </div>
+      <ul class="voci" id="voci" aria-label="Elenco delle spese inserite"></ul>
+    </section>
+
+    <section class="pannello" aria-labelledby="t-dettaglio" id="dettaglio">
+      <header>
+        <h2 id="t-dettaglio">Dettaglio della spesa</h2>
+        <span class="conta" id="modo-dettaglio">Nuova</span>
+      </header>
+      <div class="corpo">
+        <form id="form-voce" novalidate>
+          <label class="campo"><span>Descrizione <small>Facoltativa: «dentista marzo», «occhiali Luca»…</small></span>
+            <input type="text" id="f-desc" maxlength="60" autocomplete="off" enterkeyhint="done" placeholder="Visita specialistica">
+          </label>
+          <label class="campo"><span>Importo pagato</span>
+            <input type="text" id="f-importo" inputmode="decimal" autocomplete="off" enterkeyhint="done" placeholder="€ 0,00">
+          </label>
+          <div class="errore" id="f-errore" role="status"></div>
+          <label class="campo"><span>Tipo di spesa</span>
+            <select id="f-cat"></select>
+          </label>
+          <div class="campo"><span>Come l'hai pagata</span>
+            <div class="segmenti" role="radiogroup" aria-label="Metodo di pagamento">
+              <label><input type="radio" name="pag" value="trac" checked><span>Carta o bonifico</span></label>
+              <label><input type="radio" name="pag" value="cash"><span>Contanti</span></label>
+            </div>
+          </div>
+          <div class="avviso" id="f-avviso" hidden></div>
+          <label class="campo"><span>Per chi <small>Decide la casella del 730 e le regole che si applicano.</small></span>
+            <select id="f-rigo">
+              <option value="e1">Me o un familiare a carico (rigo E1)</option>
+              <option value="e2">Familiare non a carico con patologia esente (rigo E2)</option>
+              <option value="e3">Spesa legata a una disabilità riconosciuta (rigo E3)</option>
+            </select>
+          </label>
+          <div class="bottoni">
+            <button type="submit" class="btn pieno" id="btn-salva">Aggiungi la spesa</button>
+            <button type="button" class="btn ghost" id="btn-annulla" hidden>Annulla</button>
+            <button type="button" class="btn danno" id="btn-elimina" hidden>Elimina</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <section class="esito" id="esito" aria-live="polite">
+    <div class="cifra-eti">Detrazione stimata</div>
+    <div class="cifra num" id="cifra">0,00 €</div>
+    <ul class="conti" id="conti"></ul>
+    <div class="spia" id="spia" hidden></div>
+    <p class="nota">Stima per la dichiarazione dei redditi (modello 730) sulle spese dell'anno d'imposta:
+      franchigia 129,11 €, aliquota 19%, limite 6.197,48 € per le patologie esenti dei familiari non a carico,
+      rateizzazione in 4 quote sopra 15.493,71 €. Fonte: artt. 15 e 16-ter TUIR, L. 160/2019 (tracciabilità),
+      istruzioni al modello 730.</p>
+  </section>
+
+  <details class="blocco" id="blocco-irpef">
+    <summary>La tua IRPEF: quanto riesci a recuperare davvero</summary>
+    <div class="corpo">
+      <div class="campo"><span>Come vuoi procedere</span>
+        <div class="segmenti" role="radiogroup" aria-label="Modo di stima dell'IRPEF">
+          <label><input type="radio" name="modo" value="stima" checked><span>Stimala dal reddito</span></label>
+          <label><input type="radio" name="modo" value="nota"><span>La conosco</span></label>
+        </div>
+      </div>
+      <div id="box-stima">
+        <label class="campo"><span>Reddito complessivo lordo annuo</span>
+          <input type="text" id="i-reddito" inputmode="decimal" autocomplete="off" placeholder="€ 28.000">
+        </label>
+        <label class="campo"><span>Da cosa viene il reddito</span>
+          <select id="i-tipo">
+            <option value="dip">Lavoro dipendente</option>
+            <option value="pen">Pensione</option>
+            <option value="aut">Lavoro autonomo o altri redditi</option>
+          </select>
+        </label>
+      </div>
+      <label class="campo" id="box-nota" hidden><span>Imposta netta dovuta, prima delle spese mediche <small>La trovi nel prospetto di liquidazione del 730 o nella Certificazione Unica: se è zero, la detrazione si perde.</small></span>
+        <input type="text" id="i-irpef" inputmode="decimal" autocomplete="off" placeholder="€ 1.200">
+      </label>
+      <label class="campo" id="box-altre"><span>Altre detrazioni che già usi <small>Familiari a carico, mutuo, ristrutturazioni… Facoltativo.</small></span>
+        <input type="text" id="i-altre" inputmode="decimal" autocomplete="off" placeholder="€ 0">
+      </label>
+      <p class="nota" id="nota-capienza"></p>
+    </div>
+  </details>
+
+  <div data-ad="top"></div>
+
+  <section data-pro="Confronto fra coniugi">
+    <h2>Chi dei due conviene che detragga</h2>
+    <p>Le spese di un figlio a carico di entrambi si possono attribuire tutte a uno dei genitori o dividere.
+      Inserisci il reddito dell'altro genitore e vedi quale delle tre strade recupera di più.</p>
+    <div class="griglia2">
+      <label class="campo"><span>Reddito dell'altro genitore</span>
+        <input type="text" id="c-reddito" inputmode="decimal" autocomplete="off" placeholder="€ 22.000">
+      </label>
+      <label class="campo"><span>Da cosa viene</span>
+        <select id="c-tipo">
+          <option value="dip">Lavoro dipendente</option>
+          <option value="pen">Pensione</option>
+          <option value="aut">Lavoro autonomo o altri redditi</option>
+        </select>
+      </label>
+    </div>
+    <ul class="scenari" id="scenari"></ul>
+    <p class="nota" id="nota-coniugi"></p>
+  </section>
+
+  <section data-pro="Elenco per il CAF">
+    <h2>Elenco per il CAF, pronto da consegnare</h2>
+    <p>Le spese raggruppate per casella del 730 con i totali, la franchigia e la detrazione: copialo
+      nelle note del telefono o stampalo e portalo con gli scontrini.</p>
+    <div class="bottoni">
+      <button type="button" class="btn pieno" id="btn-copia">Copia l'elenco</button>
+      <button type="button" class="btn" id="btn-stampa">Stampa</button>
+    </div>
+    <p class="esitino" id="esito-copia" role="status"></p>
+    <pre class="elenco" id="prospetto"></pre>
+  </section>
+
+  <div data-affiliate data-title="Dispositivi medici detraibili (marchio CE)" data-items='[{"t":"Misuratore di pressione da braccio","q":"misuratore di pressione braccio"},{"t":"Saturimetro da dito","q":"saturimetro da dito"},{"t":"Termometro digitale a infrarossi","q":"termometro infrarossi febbre"}]'></div>
+
+  <section id="guida">
+    <h2>Come funziona il calcolo della detrazione delle spese mediche</h2>
+    <p>Le spese sanitarie danno diritto a una detrazione del <strong>19%</strong>, ma non sull'intero
+      importo: prima si toglie una <strong>franchigia di 129,11 €</strong>. La franchigia si applica
+      <em>una sola volta all'anno</em> sul totale di tutte le spese, non su ogni scontrino: è l'errore più
+      comune, perché molti pensano di perdere 129,11 € per ogni fattura e rinunciano a conservare le
+      ricevute piccole. La formula è semplice: <strong>(totale delle spese − 129,11) × 19%</strong>.</p>
+    <p>La detrazione spetta per le spese sostenute per sé e per i <strong>familiari fiscalmente a
+      carico</strong> (reddito proprio fino a 2.840,51 €, oppure 4.000 € per i figli fino a 24 anni), anche
+      se la fattura è intestata a loro. Rientrano visite mediche e specialistiche, analisi, esami,
+      ticket, interventi, ricoveri, cure dentistiche, fisioterapia prescritta, psicoterapia, farmaci e
+      medicinali da banco, dispositivi medici con marchio CE come occhiali da vista, lenti a contatto e
+      apparecchi acustici. Non rientrano invece i prodotti di erboristeria, gli integratori alimentari,
+      la chirurgia estetica non ricostruttiva e le spese veterinarie, che hanno una loro detrazione a parte.</p>
+
+    <h3>Un esempio con i numeri</h3>
+    <p>Famiglia con un figlio a carico. Durante l'anno: 320 € di dentista pagati con bancomat, 180 € di
+      visite specialistiche in uno studio privato pagate con carta, 95 € di farmaci in farmacia pagati in
+      contanti, 46 € di ticket all'ospedale pagati in contanti e 240 € di occhiali da vista. Il totale
+      detraibile è <strong>881 €</strong>: i farmaci e il ticket restano validi anche in contanti, perché
+      per medicinali, dispositivi medici e strutture pubbliche o accreditate il contante è ammesso.
+      Si toglie la franchigia: 881 − 129,11 = 751,89 €. Il 19% fa <strong>142,86 € di detrazione</strong>.
+      Se invece quelle 180 € di visita privata fossero state pagate in contanti, andrebbero perse del
+      tutto: la detrazione scenderebbe a 108,66 €, cioè 34,20 € in meno per aver pagato nel modo sbagliato.</p>
+
+    <h3>La detrazione non è un rimborso: serve la capienza IRPEF</h3>
+    <p>Qui casca la maggior parte delle persone. La detrazione non è un bonifico che arriva: è uno
+      <strong>sconto sull'IRPEF</strong> che devi. Se la tua imposta, dopo le detrazioni per il tipo di
+      reddito e per i familiari a carico, è già zero — accade con redditi bassi, part time e pensioni
+      minime — non c'è niente da scontare e la detrazione <strong>si perde</strong>, senza riporto
+      all'anno successivo. Per questo lo strumento qui sopra chiede il reddito: calcola l'IRPEF lorda con
+      gli scaglioni (23% fino a 28.000 €, 35% fino a 50.000 €, 43% oltre), sottrae la detrazione prevista
+      per il tipo di reddito e ti dice quanto della detrazione del 19% riesci effettivamente a usare.</p>
+
+    <h3>Le regole che cambiano il risultato</h3>
+    <ul>
+      <li><strong>Pagamento tracciabile obbligatorio</strong> dal 2020 (L. 160/2019): carta, bancomat,
+        bonifico o assegno. Tre eccezioni in cui il contante va bene: farmaci e medicinali con scontrino
+        parlante, dispositivi medici con marchio CE, prestazioni di strutture pubbliche o private
+        accreditate al Servizio sanitario nazionale (ticket compresi).</li>
+      <li><strong>Patologie esenti di un familiare non a carico</strong> (rigo E2): la detrazione spetta
+        per la parte che il familiare non ha potuto usare, entro un massimo di 6.197,48 € di spesa.</li>
+      <li><strong>Spese legate a una disabilità riconosciuta</strong> (rigo E3): mezzi di accompagnamento,
+        sussidi tecnici e informatici, trasporto in ambulanza. Qui il 19% si applica
+        <strong>senza franchigia</strong>, sull'intero importo.</li>
+      <li><strong>Rateizzazione</strong>: se il totale delle spese sanitarie dell'anno supera
+        <strong>15.493,71 €</strong> si può dividere la detrazione in <strong>4 quote annuali uguali</strong>,
+        barrando l'apposita casella. La scelta è irrevocabile: ha senso solo se l'IRPEF di un singolo anno
+        non basta ad assorbire tutto.</li>
+      <li><strong>Il tetto per i redditi alti non riguarda le spese sanitarie</strong>: il limite introdotto
+        dall'art. 16-ter TUIR per chi supera 75.000 € di reddito esclude espressamente le spese sanitarie,
+        che restano detraibili per intero.</li>
+    </ul>
+
+    <h3>Errori comuni da evitare</h3>
+    <ul>
+      <li><strong>Buttare gli scontrini piccoli.</strong> La franchigia è annua e cumulativa: i 7 € di
+        farmaco di gennaio aiutano a superarla e valgono 1,33 € di detrazione.</li>
+      <li><strong>Fidarsi solo della precompilata.</strong> Nel 730 precompilato arrivano le spese passate
+        dal Sistema Tessera Sanitaria, ma non sempre tutte: controlla sempre con il tuo elenco e aggiungi
+        quelle mancanti, conservando le ricevute per cinque anni.</li>
+      <li><strong>Dividere le spese del figlio a metà per abitudine.</strong> La franchigia si applica a
+        ciascuna delle due dichiarazioni, quindi dividere costa fino a 24,53 € di detrazione in più
+        rispetto a metterle tutte su un solo genitore (se ha capienza).</li>
+      <li><strong>Pagare in contanti la visita privata.</strong> È l'unico errore che azzera del tutto la
+        spesa, e non si rimedia dopo.</li>
+      <li><strong>Dimenticare lo scontrino parlante.</strong> Per i farmaci serve lo scontrino con natura,
+        qualità e quantità del prodotto e il codice fiscale di chi detrae: senza codice fiscale, niente
+        detrazione.</li>
+    </ul>
+
+    <h3>Domande frequenti</h3>
+    <h3>Come si calcola la detrazione delle spese mediche?</h3>
+    <p>Si sommano tutte le spese sanitarie dell'anno proprie e dei familiari a carico, si sottrae una sola
+      volta la franchigia di 129,11 € e si applica il 19% al resto. Con 1.000 € di spese: 1.000 − 129,11 =
+      870,89 €, e il 19% è <strong>165,47 €</strong> di detrazione.</p>
+    <h3>Perché le spese pagate in contanti non si detraggono?</h3>
+    <p>Perché dal 2020 la legge chiede il pagamento tracciabile. Fanno eccezione farmaci, dispositivi
+      medici e prestazioni di strutture pubbliche o accreditate al SSN, dove il contante resta valido.</p>
+    <h3>Cosa significa che non ho capienza IRPEF?</h3>
+    <p>Che la tua imposta è già azzerata dalle altre detrazioni: non c'è imposta da scontare e la
+      detrazione del 19% si perde, perché non è rimborsabile né riportabile all'anno dopo.</p>
+    <h3>Quando conviene dividere la detrazione in quattro rate?</h3>
+    <p>Solo sopra 15.493,71 € di spese e solo se l'IRPEF di un anno non basta: quattro quote più piccole
+      trovano capienza più facilmente. Se l'imposta è abbondante, conviene prendere tutto subito.</p>
+    <h3>Chi dei due coniugi conviene che metta le spese nel 730?</h3>
+    <p>Quello che ha abbastanza IRPEF per assorbire la detrazione. Attenzione a dividere a metà: la
+      franchigia si applica due volte. Il confronto fra coniugi qui sopra calcola i tre casi.</p>
+    <p class="fonte">Strumento di stima, non sostituisce il CAF o il commercialista: i casi particolari
+      (patologie esenti, assistenza specifica, spese sostenute all'estero, familiari con redditi al limite)
+      vanno verificati nelle istruzioni ufficiali del modello 730.</p>
+  </section>
+
+  <div data-ad="bottom"></div>
+
+  <footer class="piede">
+    <p>Da leggere anche:</p>
+    <ul class="correlate">
+      <li><a href="../2026-09-20-netto-da-lordo/index.html">Calcolo dello stipendio netto</a>: quanta IRPEF
+        paghi davvero, cioè la capienza che serve per usare questa detrazione.</li>
+      <li><a href="../2026-10-05-quanto-costa-un-figlio/index.html">Quanto costa mantenere un figlio</a>:
+        il conto annuo delle spese, comprese quelle sanitarie che qui diventano detrazione.</li>
+    </ul>
+    <div data-support></div>
+    <p>Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a></p>
+  </footer>
+</main>
+
+<div class="barra">
+  <div class="tot">
+    <b class="num" id="barra-cifra">0,00 €</b>
+    <span id="barra-eti">Detrazione stimata</span>
+  </div>
+  <button type="button" class="btn pieno" id="btn-nuova">+ Aggiungi spesa</button>
+</div>
+
+<script src="../../assets/monetize.js"></script>
+<script>
+(() => {
+  "use strict";
+  /* Modello dati: `stato.voci` è l'elenco delle spese sanitarie dell'anno, una per oggetto
+     { id, desc, importo, cat (tipo di spesa), trac (pagata in modo tracciabile), rigo: e1|e2|e3 }.
+     Il resto di `stato` serve alla capienza IRPEF (reddito o imposta netta) e al confronto fra coniugi.
+     Tutto viene salvato in localStorage sotto "detrazione-spese-mediche:v1". */
+
+  const CHIAVE = "detrazione-spese-mediche:v1";
+  const FRANCHIGIA = 129.11, ALIQ = 0.19, LIM_E2 = 6197.48, SOGLIA_RATE = 15493.71;
+
+  // `cash: true` = il contante è ammesso e la spesa resta detraibile (farmaci, dispositivi, SSN).
+  const CATEGORIE = [
+    { id: "visita",       nome: "Visita o esame privato",            cash: false },
+    { id: "ticket",       nome: "Ticket, SSN o struttura pubblica",  cash: true  },
+    { id: "farmaci",      nome: "Farmaci e medicinali",              cash: true  },
+    { id: "dispositivi",  nome: "Dispositivi medici, occhiali, lenti", cash: true },
+    { id: "dentista",     nome: "Dentista",                          cash: false },
+    { id: "fisioterapia", nome: "Fisioterapia o riabilitazione",     cash: false },
+    { id: "psicologo",    nome: "Psicologo o psicoterapia",          cash: false },
+    { id: "intervento",   nome: "Intervento, ricovero o clinica privata", cash: false },
+    { id: "altro",        nome: "Altra spesa sanitaria",             cash: false },
+  ];
+  const NOMI_RIGO = { e1: "E1 — me o familiari a carico", e2: "E2 — patologia esente, familiare non a carico", e3: "E3 — disabilità" };
+
+  const eur = new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR" });
+  const e = (v) => eur.format(Math.round((Number(v) || 0) * 100) / 100);
+  const cat = (id) => CATEGORIE.find(c => c.id === id) || CATEGORIE[CATEGORIE.length - 1];
+  const $ = (id) => document.getElementById(id);
+
+  function num(testo) {
+    const t = String(testo == null ? "" : testo).replace(/[^\d,.\-]/g, "").replace(/\.(?=\d{3}(\D|$))/g, "").replace(",", ".");
+    const v = parseFloat(t);
+    return Number.isFinite(v) ? v : NaN;
+  }
+
+  // ---------- stato ----------
+  const vuotoIniziale = () => ({ voci: [], modo: "stima", reddito: "", tipo: "dip", imposta: "", altre: "", coniRed: "", coniTipo: "dip" });
+  let stato = vuotoIniziale();
+  let sel = null;          // id della voce aperta nel dettaglio, null = nuova
+  let eliminaArmato = false;
+
+  function carica() {
+    try {
+      const salvato = JSON.parse(localStorage.getItem(CHIAVE) || "null");
+      if (salvato && Array.isArray(salvato.voci)) {
+        stato = Object.assign(vuotoIniziale(), salvato);
+        stato.voci = salvato.voci
+          .filter(v => v && Number.isFinite(Number(v.importo)))
+          .map(v => ({
+            id: String(v.id || crypto.randomUUID()),
+            desc: String(v.desc || "").slice(0, 60),
+            importo: Math.max(0, Number(v.importo)),
+            cat: cat(v.cat).id,
+            trac: v.trac !== false,
+            rigo: ["e1", "e2", "e3"].includes(v.rigo) ? v.rigo : "e1",
+          }));
+      }
+    } catch (_) { /* storage non disponibile o dati corrotti: si parte da zero */ }
+  }
+  function salva() {
+    try { localStorage.setItem(CHIAVE, JSON.stringify(stato)); } catch (_) { /* storage bloccato */ }
+  }
+
+  // ---------- calcolo ----------
+  function calcola() {
+    const base = { e1: 0, e2: 0, e3: 0 };
+    let scartate = 0, nScartate = 0, inserito = 0;
+    for (const v of stato.voci) {
+      inserito += v.importo;
+      if (!v.trac && !cat(v.cat).cash) { scartate += v.importo; nScartate++; continue; }
+      base[v.rigo] += v.importo;
+    }
+    const e2Tagliato = Math.max(0, base.e2 - LIM_E2);
+    const e2 = Math.min(base.e2, LIM_E2);
+    const conFranchigia = base.e1 + e2;
+    const franchigiaUsata = Math.min(conFranchigia, FRANCHIGIA);
+    const oltre = Math.max(0, conFranchigia - FRANCHIGIA);
+    const baseDetraibile = oltre + base.e3;
+    const detrazione = baseDetraibile * ALIQ;
+    const valide = base.e1 + base.e2 + base.e3;
+    return {
+      base, e1: base.e1, e2, e2Tagliato, e3: base.e3, inserito, scartate, nScartate,
+      valide, franchigiaUsata, oltre, baseDetraibile, detrazione,
+      rateizzabile: valide > SOGLIA_RATE,
+      sottoFranchigia: conFranchigia > 0 && conFranchigia <= FRANCHIGIA,
+      mancanti: Math.max(0, FRANCHIGIA - conFranchigia),
+    };
+  }
+
+  // IRPEF lorda per scaglioni (23% fino a 28.000, 35% fino a 50.000, 43% oltre).
+  function irpefLorda(r) {
+    if (!(r > 0)) return 0;
+    let i = Math.min(r, 28000) * 0.23;
+    if (r > 28000) i += (Math.min(r, 50000) - 28000) * 0.35;
+    if (r > 50000) i += (r - 50000) * 0.43;
+    return i;
+  }
+  // Detrazione per tipo di reddito (art. 13 TUIR): è ciò che azzera l'imposta dei redditi bassi.
+  function detrTipo(r, tipo) {
+    if (!(r > 0)) return 0;
+    if (tipo === "pen") {
+      if (r <= 8500) return 1955;
+      if (r <= 28000) return 700 + 1255 * (28000 - r) / 19500;
+      if (r <= 50000) return 700 * (50000 - r) / 22000;
+      return 0;
+    }
+    if (tipo === "aut") {
+      if (r <= 5500) return 1265;
+      if (r <= 28000) return 500 + 765 * (28000 - r) / 22500;
+      if (r <= 50000) return 500 * (50000 - r) / 22000;
+      return 0;
+    }
+    if (r <= 15000) return 1955;
+    if (r <= 28000) return 1910 + 1190 * (28000 - r) / 13000;
+    if (r <= 50000) return 1910 * (50000 - r) / 22000;
+    return 0;
+  }
+  // Ulteriore detrazione per i soli redditi di lavoro dipendente fra 20.000 e 40.000 €.
+  function ulteriore(r, tipo) {
+    if (tipo !== "dip" || !(r > 20000)) return 0;
+    if (r <= 32000) return 1000;
+    if (r <= 40000) return 1000 * (40000 - r) / 8000;
+    return 0;
+  }
+  function capienzaDaReddito(r, tipo, altre) {
+    const lorda = irpefLorda(r);
+    return { lorda, detrazioni: detrTipo(r, tipo) + ulteriore(r, tipo), capienza: Math.max(0, lorda - detrTipo(r, tipo) - ulteriore(r, tipo) - (altre || 0)) };
+  }
+  function capienzaMia() {
+    if (stato.modo === "nota") {
+      const imposta = num(stato.imposta);
+      if (!Number.isFinite(imposta)) return null;
+      return { nota: true, capienza: Math.max(0, imposta) };
+    }
+    const r = num(stato.reddito);
+    if (!Number.isFinite(r) || r <= 0) return null;
+    const altre = Number.isFinite(num(stato.altre)) ? num(stato.altre) : 0;
+    return Object.assign({ nota: false }, capienzaDaReddito(r, stato.tipo, altre));
+  }
+
+  // ---------- elenco ----------
+  const ulVoci = $("voci"), boxVuoto = $("vuoto");
+  function disegnaElenco() {
+    const res = calcola();
+    ulVoci.replaceChildren();
+    boxVuoto.hidden = stato.voci.length > 0;
+    $("conta").textContent = stato.voci.length
+      ? `${stato.voci.length} ${stato.voci.length === 1 ? "voce" : "voci"} · ${e(res.inserito)}`
+      : "";
+    for (const v of stato.voci) {
+      const scartata = !v.trac && !cat(v.cat).cash;
+      const li = document.createElement("li");
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "voce" + (scartata ? " scartata" : "");
+      b.setAttribute("aria-current", String(v.id === sel));
+      b.addEventListener("click", () => apri(v.id));
+
+      const d = document.createElement("span");
+      d.className = "d";
+      d.textContent = v.desc || cat(v.cat).nome;
+      const meta = document.createElement("span");
+      meta.className = "meta";
+      meta.textContent = (v.desc ? cat(v.cat).nome + " · " : "") + (v.trac ? "tracciabile" : "contanti");
+      if (v.rigo !== "e1") {
+        const t = document.createElement("span");
+        t.className = "bollo " + v.rigo;
+        t.textContent = v.rigo.toUpperCase();
+        meta.append(" ", t);
+      }
+      if (scartata) {
+        const t = document.createElement("span");
+        t.className = "bollo ko";
+        t.textContent = "non detraibile";
+        meta.append(" ", t);
+      }
+      const imp = document.createElement("span");
+      imp.className = "imp num";
+      imp.textContent = e(v.importo);
+      b.append(d, imp, meta);
+      li.append(b);
+      ulVoci.append(li);
+    }
+  }
+
+  // ---------- dettaglio ----------
+  const form = $("form-voce"), fDesc = $("f-desc"), fImporto = $("f-importo"), fCat = $("f-cat"),
+        fRigo = $("f-rigo"), fErr = $("f-errore"), fAvviso = $("f-avviso"),
+        btnSalva = $("btn-salva"), btnAnnulla = $("btn-annulla"), btnElimina = $("btn-elimina");
+  for (const c of CATEGORIE) {
+    const o = document.createElement("option");
+    o.value = c.id; o.textContent = c.nome;
+    fCat.append(o);
+  }
+  const pagamento = () => form.querySelector('input[name="pag"]:checked').value === "trac";
+  const setPagamento = (trac) => { form.querySelector(`input[name="pag"][value="${trac ? "trac" : "cash"}"]`).checked = true; };
+
+  function disarmaElimina() {
+    eliminaArmato = false;
+    btnElimina.textContent = "Elimina";
+  }
+  function aggiornaAvviso() {
+    const c = cat(fCat.value);
+    if (!pagamento() && !c.cash) {
+      fAvviso.hidden = false;
+      fAvviso.textContent = `Pagata in contanti: per «${c.nome.toLowerCase()}» la legge chiede un pagamento tracciabile, quindi questa spesa non è detraibile. Resta in elenco ma non entra nel calcolo.`;
+    } else if (!pagamento() && c.cash) {
+      fAvviso.hidden = false;
+      fAvviso.textContent = c.id === "farmaci"
+        ? "In contanti va bene: serve lo scontrino parlante con il tuo codice fiscale."
+        : "In contanti va bene: per questo tipo di spesa la tracciabilità non è obbligatoria.";
+    } else fAvviso.hidden = true;
+  }
+  function apri(id) {
+    sel = id;
+    const v = stato.voci.find(x => x.id === id);
+    disarmaElimina();
+    fErr.textContent = "";
+    if (v) {
+      fDesc.value = v.desc;
+      fImporto.value = String(v.importo).replace(".", ",");
+      fCat.value = v.cat;
+      fRigo.value = v.rigo;
+      setPagamento(v.trac);
+      btnSalva.textContent = "Salva le modifiche";
+      btnAnnulla.hidden = false;
+      btnElimina.hidden = false;
+      $("modo-dettaglio").textContent = "Modifica";
+    } else {
+      sel = null;
+      fDesc.value = "";
+      fImporto.value = "";
+      btnSalva.textContent = "Aggiungi la spesa";
+      btnAnnulla.hidden = true;
+      btnElimina.hidden = true;
+      $("modo-dettaglio").textContent = "Nuova";
+    }
+    aggiornaAvviso();
+    disegnaElenco();
+  }
+  function nuova(focus) {
+    apri(null);
+    if (focus) { $("dettaglio").scrollIntoView({ behavior: "smooth", block: "center" }); fImporto.focus({ preventScroll: true }); }
+  }
+
+  form.addEventListener("submit", (ev) => {
+    ev.preventDefault();
+    const importo = num(fImporto.value);
+    if (!Number.isFinite(importo) || importo <= 0) {
+      fErr.textContent = "Scrivi l'importo pagato, per esempio 85,50.";
+      fImporto.focus();
+      return;
+    }
+    if (importo > 500000) { fErr.textContent = "Importo troppo grande: controlla la cifra."; return; }
+    fErr.textContent = "";
+    const dati = {
+      desc: fDesc.value.trim().slice(0, 60),
+      importo: Math.round(importo * 100) / 100,
+      cat: fCat.value,
+      trac: pagamento(),
+      rigo: fRigo.value,
+    };
+    if (sel) {
+      const v = stato.voci.find(x => x.id === sel);
+      if (v) Object.assign(v, dati);
+    } else {
+      stato.voci.push(Object.assign({ id: crypto.randomUUID() }, dati));
+    }
+    salva();
+    nuova(false);
+    aggiorna();
+    fDesc.focus();
+  });
+  btnAnnulla.addEventListener("click", () => { nuova(false); aggiorna(); });
+  btnElimina.addEventListener("click", () => {
+    if (!sel) return;
+    if (!eliminaArmato) { eliminaArmato = true; btnElimina.textContent = "Tocca di nuovo per eliminare"; return; }
+    stato.voci = stato.voci.filter(v => v.id !== sel);
+    salva();
+    nuova(false);
+    aggiorna();
+  });
+  fCat.addEventListener("change", aggiornaAvviso);
+  for (const r of form.querySelectorAll('input[name="pag"]')) r.addEventListener("change", aggiornaAvviso);
+  document.addEventListener("keydown", (ev) => {
+    if (ev.key !== "Escape" || document.querySelector("dialog[open]")) return;
+    if (sel === null && !eliminaArmato) return;
+    ev.preventDefault();
+    nuova(false);
+    aggiorna();
+  });
+  $("btn-nuova").addEventListener("click", () => nuova(true));
+  $("btn-esempio").addEventListener("click", () => {
+    stato.voci = [
+      { id: crypto.randomUUID(), desc: "Dentista, otturazione", importo: 320, cat: "dentista", trac: true, rigo: "e1" },
+      { id: crypto.randomUUID(), desc: "Visita dermatologica", importo: 180, cat: "visita", trac: true, rigo: "e1" },
+      { id: crypto.randomUUID(), desc: "Farmaci dell'anno", importo: 95, cat: "farmaci", trac: false, rigo: "e1" },
+      { id: crypto.randomUUID(), desc: "Ticket analisi", importo: 46, cat: "ticket", trac: false, rigo: "e1" },
+      { id: crypto.randomUUID(), desc: "Occhiali da vista", importo: 240, cat: "dispositivi", trac: true, rigo: "e1" },
+    ];
+    salva();
+    nuova(false);
+    aggiorna();
+  });
+
+  // ---------- capienza: campi ----------
+  const iRed = $("i-reddito"), iTipo = $("i-tipo"), iIrpef = $("i-irpef"), iAltre = $("i-altre");
+  function leggiCapienza() {
+    stato.modo = document.querySelector('input[name="modo"]:checked').value;
+    stato.reddito = iRed.value;
+    stato.tipo = iTipo.value;
+    stato.imposta = iIrpef.value;
+    stato.altre = iAltre.value;
+    $("box-stima").hidden = stato.modo !== "stima";
+    $("box-nota").hidden = stato.modo !== "nota";
+    $("box-altre").hidden = stato.modo !== "stima";
+    salva();
+    aggiorna();
+  }
+  for (const el of [iRed, iTipo, iIrpef, iAltre]) el.addEventListener("input", leggiCapienza);
+  for (const r of document.querySelectorAll('input[name="modo"]')) r.addEventListener("change", leggiCapienza);
+
+  // ---------- esito ----------
+  const conti = $("conti"), spia = $("spia");
+  function riga(k, v, cls) {
+    const li = document.createElement("li");
+    if (cls) li.className = cls;
+    const sk = document.createElement("span"); sk.className = "k"; sk.textContent = k;
+    const sv = document.createElement("span"); sv.className = "v num"; sv.textContent = v;
+    li.append(sk, sv);
+    return li;
+  }
+  function disegnaEsito(res, cap) {
+    const righe = [];
+    if (!stato.voci.length) {
+      const li = document.createElement("li");
+      li.className = "k";
+      li.textContent = "Aggiungi le spese dell'anno — anche gli scontrini da pochi euro: servono a superare la franchigia.";
+      conti.replaceChildren(li);
+      $("cifra").textContent = e(0);
+      document.querySelector(".cifra-eti").textContent = "Detrazione stimata";
+      $("barra-cifra").textContent = e(0);
+      $("barra-eti").textContent = "Detrazione stimata";
+      spia.hidden = true;
+      $("nota-capienza").textContent = cap ? "" : "Senza il reddito mostriamo solo la detrazione teorica: compila il campo per sapere quanto riesci a usarne davvero.";
+      return;
+    }
+    righe.push(riga("Spese inserite", e(res.inserito)));
+    if (res.scartate > 0) righe.push(riga(`Scartate: contanti dove serve la tracciabilità (${res.nScartate})`, "− " + e(res.scartate), "giu"));
+    if (res.e2Tagliato > 0) righe.push(riga("Oltre il limite di 6.197,48 € del rigo E2", "− " + e(res.e2Tagliato)));
+    if (res.e1 + res.e2 > 0) righe.push(riga("Franchigia annua", "− " + e(res.franchigiaUsata)));
+    if (res.e3 > 0) righe.push(riga("Spese per disabilità, senza franchigia", e(res.e3)));
+    righe.push(riga("Importo su cui si calcola il 19%", e(res.baseDetraibile)));
+    righe.push(riga("Detrazione IRPEF del 19%", e(res.detrazione), "forte"));
+    if (cap) {
+      righe.push(riga(cap.nota ? "Imposta che hai dichiarato" : "Capienza IRPEF stimata", e(cap.capienza)));
+      const recupero = Math.min(res.detrazione, cap.capienza);
+      righe.push(riga("Recuperi davvero", e(recupero), "forte"));
+      if (res.detrazione - recupero > 0.005) righe.push(riga("Persa per imposta insufficiente", "− " + e(res.detrazione - recupero), "giu"));
+    }
+    conti.replaceChildren(...righe);
+
+    const recupero = cap ? Math.min(res.detrazione, cap.capienza) : null;
+    const cifra = cap ? recupero : res.detrazione;
+    $("cifra").textContent = e(cifra);
+    document.querySelector(".cifra-eti").textContent = cap ? "Quanto ti torna" : "Detrazione stimata";
+    $("barra-cifra").textContent = e(cifra);
+    $("barra-eti").textContent = cap ? "Quanto ti torna" : "Detrazione stimata";
+
+    // avvisi contestuali: uno solo, il più utile da sapere adesso
+    const messaggi = [];
+    if (res.sottoFranchigia) messaggi.push(`Sei sotto la franchigia: con ${e(res.e1 + res.e2)} di spese non spetta nulla. Ti mancano ${e(res.mancanti)} per iniziare a detrarre.`);
+    if (res.scartate > 0) messaggi.push(`Le spese pagate in contanti dove serve la tracciabilità ti costano ${e(res.scartate * ALIQ)} di detrazione: la prossima volta paga con carta o bancomat.`);
+    if (res.rateizzabile) {
+      let t = `Sopra 15.493,71 € di spese puoi dividere la detrazione in 4 quote da ${e(res.detrazione / 4)}.`;
+      if (cap && res.detrazione > cap.capienza) {
+        const conRate = Math.min(res.detrazione / 4, cap.capienza) * 4;
+        if (conRate > recupero + 0.005) t += ` Con la tua imposta, rateizzando recupereresti circa ${e(conRate)} invece di ${e(recupero)}.`;
+      } else if (cap) t += " La tua imposta basta ad assorbirla subito: rateizzare non conviene.";
+      messaggi.push(t);
+    }
+    if (cap && res.detrazione > 0 && cap.capienza <= 0) messaggi.push("La tua imposta è già azzerata dalle detrazioni di base: la detrazione delle spese mediche si perde, non è rimborsabile né riportabile all'anno dopo. Verifica se conviene attribuirle all'altro genitore o coniuge.");
+    spia.hidden = messaggi.length === 0;
+    spia.textContent = messaggi.join(" ");
+
+    const nota = $("nota-capienza");
+    if (!cap) nota.textContent = "Senza il reddito mostriamo solo la detrazione teorica: compila il campo per sapere quanto riesci a usarne davvero.";
+    else if (cap.nota) nota.textContent = `Usiamo l'imposta che hai scritto: ${e(cap.capienza)} di capienza.`;
+    else nota.textContent = `IRPEF lorda stimata ${e(cap.lorda)}, meno ${e(cap.detrazioni)} di detrazione per il tipo di reddito${num(stato.altre) > 0 ? ` e ${e(num(stato.altre))} di altre detrazioni` : ""}: restano ${e(cap.capienza)} di capienza. È una stima: non tiene conto di familiari a carico e casi particolari.`;
+  }
+
+  // ---------- Pro: confronto fra coniugi ----------
+  const cRed = $("c-reddito"), cTipo = $("c-tipo"), scenari = $("scenari"), notaCon = $("nota-coniugi");
+  function disegnaConfronto(res, cap) {
+    const r = num(cRed.value);
+    const haAltro = Number.isFinite(r) && r > 0;
+    stato.coniRed = cRed.value; stato.coniTipo = cTipo.value;
+    scenari.replaceChildren();
+    if (!cap || !haAltro) {
+      notaCon.textContent = !cap
+        ? "Compila prima il tuo reddito nel riquadro «La tua IRPEF», poi quello dell'altro genitore."
+        : "Inserisci il reddito dell'altro genitore per vedere il confronto.";
+      return;
+    }
+    const base = res.e1;
+    if (base <= 0) { notaCon.textContent = "Il confronto riguarda le spese del rigo E1 (tue o dei familiari a carico): inseriscine almeno una."; return; }
+    const capAltro = capienzaDaReddito(r, cTipo.value, 0).capienza;
+    const detrDi = (b) => ALIQ * Math.max(0, b - FRANCHIGIA);
+    const opzioni = [
+      { nome: "Tutte nel tuo 730", valore: Math.min(detrDi(base), cap.capienza) },
+      { nome: "Tutte nel 730 dell'altro genitore", valore: Math.min(detrDi(base), capAltro) },
+      { nome: "Metà per ciascuno", valore: Math.min(detrDi(base / 2), cap.capienza) + Math.min(detrDi(base / 2), capAltro) },
+    ];
+    const meglio = Math.max(...opzioni.map(o => o.valore));
+    for (const o of opzioni) {
+      const li = document.createElement("li");
+      if (o.valore >= meglio - 0.005) li.className = "vince";
+      const k = document.createElement("span"); k.textContent = o.nome;
+      const v = document.createElement("span"); v.className = "v num"; v.textContent = e(o.valore);
+      li.append(k, v);
+      scenari.append(li);
+    }
+    const perso = detrDi(base) - detrDi(base / 2) * 2;
+    notaCon.textContent = `Su ${e(base)} di spese del rigo E1. Dividere a metà fa scattare la franchigia due volte: ${e(perso)} di detrazione in meno. Capienza dell'altro genitore stimata in ${e(capAltro)}.`;
+  }
+  for (const el of [cRed, cTipo]) el.addEventListener("input", () => { salva(); aggiorna(); });
+
+  // ---------- Pro: elenco per il CAF ----------
+  function prospetto(res, cap) {
+    const L = [];
+    L.push("SPESE SANITARIE — ELENCO PER LA DICHIARAZIONE");
+    L.push("");
+    for (const rigo of ["e1", "e2", "e3"]) {
+      const voci = stato.voci.filter(v => v.rigo === rigo && (v.trac || cat(v.cat).cash));
+      if (!voci.length) continue;
+      L.push("Rigo " + NOMI_RIGO[rigo]);
+      for (const v of voci) L.push(`  ${(v.desc || cat(v.cat).nome).padEnd(34, ".")} ${e(v.importo).padStart(11)}   (${cat(v.cat).nome}, ${v.trac ? "tracciabile" : "contanti"})`);
+      L.push(`  ${"Totale rigo".padEnd(34, " ")} ${e(res.base[rigo]).padStart(11)}`);
+      L.push("");
+    }
+    const fuori = stato.voci.filter(v => !v.trac && !cat(v.cat).cash);
+    if (fuori.length) {
+      L.push("Non detraibili (contanti dove serve la tracciabilità)");
+      for (const v of fuori) L.push(`  ${(v.desc || cat(v.cat).nome).padEnd(34, ".")} ${e(v.importo).padStart(11)}`);
+      L.push("");
+    }
+    L.push(`Franchigia applicata una volta: − ${e(res.franchigiaUsata)}`);
+    L.push(`Importo detraibile al 19%: ${e(res.baseDetraibile)}`);
+    L.push(`Detrazione: ${e(res.detrazione)}`);
+    if (cap) L.push(`Capienza IRPEF: ${e(cap.capienza)} → recupero ${e(Math.min(res.detrazione, cap.capienza))}`);
+    if (res.rateizzabile) L.push(`Spese oltre 15.493,71 €: possibile la rateizzazione in 4 quote da ${e(res.detrazione / 4)}`);
+    L.push("");
+    L.push("Conserva scontrini e ricevute: stima calcolata con un'app al giorno.");
+    return L.join("\n");
+  }
+  $("btn-copia").addEventListener("click", async () => {
+    const testo = $("prospetto").textContent;
+    const esito = $("esito-copia");
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) await navigator.clipboard.writeText(testo);
+      else throw new Error("no clipboard");
+      esito.textContent = "Elenco copiato.";
+    } catch (_) {
+      const sel2 = window.getSelection();
+      const range = document.createRange();
+      range.selectNodeContents($("prospetto"));
+      sel2.removeAllRanges();
+      sel2.addRange(range);
+      esito.textContent = "Elenco selezionato: tieni premuto e scegli «Copia».";
+    }
+    setTimeout(() => { esito.textContent = ""; }, 4000);
+  });
+  $("btn-stampa").addEventListener("click", () => window.print());
+
+  // ---------- aggiornamento generale ----------
+  function aggiorna() {
+    const res = calcola();
+    const cap = capienzaMia();
+    disegnaElenco();
+    disegnaEsito(res, cap);
+    disegnaConfronto(res, cap);
+    $("prospetto").textContent = stato.voci.length ? prospetto(res, cap) : "Inserisci almeno una spesa per avere l'elenco da portare al CAF.";
+  }
+
+  carica();
+  iRed.value = stato.reddito; iTipo.value = stato.tipo; iIrpef.value = stato.imposta; iAltre.value = stato.altre;
+  cRed.value = stato.coniRed; cTipo.value = stato.coniTipo;
+  document.querySelector(`input[name="modo"][value="${stato.modo === "nota" ? "nota" : "stima"}"]`).checked = true;
+  $("box-stima").hidden = stato.modo !== "stima";
+  $("box-nota").hidden = stato.modo !== "nota";
+  $("box-altre").hidden = stato.modo !== "stima";
+  if (stato.reddito || stato.imposta) $("blocco-irpef").open = true;
+  nuova(false);
+  aggiorna();
+})();
+</script>
+</body>
+</html>

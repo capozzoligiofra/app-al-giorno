@@ -1,6 +1,6 @@
 {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 36,
+  "count": 37,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -49,6 +49,67 @@
     ]
   },
   "apps": [
+    {
+      "title": "Detrazione Spese Mediche",
+      "slug": "2026-10-18-detrazione-spese-mediche",
+      "date": "2026-10-18",
+      "description": "Metti in elenco le spese sanitarie dell'anno e scopri quanto ti torna dal 730, con franchigia e capienza IRPEF.",
+      "category": "finanza-personale",
+      "tags": [
+        "730",
+        "irpef",
+        "spese mediche",
+        "detrazioni",
+        "fisco"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "list-detail",
+        "palette": "azzurro-cielo",
+        "font": "serif-editoriale"
+      },
+      "business": {
+        "keyword": "calcolo detrazione spese mediche",
+        "keywords": [
+          "detrazione spese mediche 730",
+          "quanto mi torna dal 730 per le spese mediche",
+          "franchigia 129,11 spese mediche",
+          "spese sanitarie detraibili 19%"
+        ],
+        "intent": "Chi raccoglie scontrini e fatture sanitarie prima del 730 e vuole sapere subito quanto gli torna, se la franchigia si mangia tutto e se le spese pagate in contanti valgono.",
+        "target": "Dipendenti e pensionati 30-65 anni che fanno il 730 da soli o lo controllano prima del CAF; famiglie con figli a carico; da telefono.",
+        "edge": "È l'unico che fa il conto vero: scarta le spese pagate in contanti dove serve la tracciabilità, applica la franchigia una volta sola, gestisce i righi E1/E2/E3 e soprattutto confronta la detrazione con la capienza IRPEF, cioè dice quanto si recupera davvero e non quanto spetterebbe in teoria.",
+        "monetization": [
+          "adsense",
+          "affiliate",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto fra coniugi",
+          "Elenco per il CAF"
+        ],
+        "affiliate": [
+          {
+            "t": "Misuratore di pressione da braccio",
+            "q": "misuratore di pressione braccio"
+          },
+          {
+            "t": "Saturimetro da dito",
+            "q": "saturimetro da dito"
+          },
+          {
+            "t": "Termometro digitale a infrarossi",
+            "q": "termometro infrarossi febbre"
+          }
+        ]
+      },
+      "size": 56911
+    },
     {
       "title": "Assegno Unico: Quanto Mi Spetta",
       "slug": "2026-10-17-assegno-unico",
