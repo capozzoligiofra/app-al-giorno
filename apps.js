@@ -1,7 +1,7 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 37,
+  "count": 38,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -50,6 +50,53 @@ window.__APPS__ = {
     ]
   },
   "apps": [
+    {
+      "title": "Ravvedimento Operoso",
+      "slug": "2026-10-19-ravvedimento-operoso",
+      "date": "2026-10-19",
+      "description": "Hai saltato un F24? Calcola sanzione ridotta, interessi legali al giorno e totale da versare con il ravvedimento operoso.",
+      "category": "calcolatori-convertitori",
+      "tags": [
+        "fisco",
+        "f24",
+        "sanzioni",
+        "interessi",
+        "versamenti"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "dashboard",
+        "palette": "grigio-carta",
+        "font": "mono-tecnico"
+      },
+      "business": {
+        "keyword": "calcolo ravvedimento operoso",
+        "keywords": [
+          "ravvedimento operoso sanzioni ridotte",
+          "calcolo interessi legali ravvedimento",
+          "f24 tardivo come si paga",
+          "quanto pago se verso in ritardo"
+        ],
+        "intent": "Chi si accorge di aver saltato o versato in ritardo un F24 e vuole sapere subito, al centesimo, quanto deve aggiungere di sanzione e interessi per mettersi in regola prima che arrivi la cartella.",
+        "target": "Partite IVA, piccoli imprenditori e privati con acconti o IMU in ritardo, 25-60 anni, spesso da telefono e di fretta.",
+        "edge": "Tre campi e il totale e' li': riconosce da solo il regime pre o post 1/9/2024, spezza gli interessi legali anno per anno con il tasso giusto (1,60% nel 2026) invece di usare un tasso medio, e prepara le righe dell'F24 con i codici tributo. Zero registrazione, funziona offline.",
+        "monetization": [
+          "adsense",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Prospetto F24 e versamenti multipli",
+          "Confronto fra le date di pagamento"
+        ],
+        "affiliate": []
+      },
+      "size": 58302
+    },
     {
       "title": "Detrazione Spese Mediche",
       "slug": "2026-10-18-detrazione-spese-mediche",

@@ -1,0 +1,941 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f3f2ee">
+  <title>Calcolo Ravvedimento Operoso: sanzioni e interessi</title>
+  <meta name="description" content="Calcolo ravvedimento operoso: metti imposta, scadenza saltata e giorno in cui paghi e ottieni sanzione ridotta, interessi legali al giorno e totale dell'F24.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-19-ravvedimento-operoso/">
+  <meta property="og:title" content="Calcolo Ravvedimento Operoso: sanzioni e interessi">
+  <meta property="og:description" content="Hai saltato un F24? Scopri in tre campi quanto devi aggiungere di sanzione ridotta e di interessi legali per mettersi in regola da soli.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-19-ravvedimento-operoso/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Ravvedimento Operoso",
+    "description": "Calcolatore gratuito del ravvedimento operoso per imposte versate in ritardo: si inseriscono l'imposta non versata, la scadenza saltata e il giorno in cui si paga, e lo strumento individua la fascia di riduzione della sanzione (un quindicesimo al giorno entro quindici giorni, un decimo entro trenta, un nono entro novanta, un ottavo entro il termine della dichiarazione, un settimo oltre), distingue da solo il regime delle violazioni fino al 31 agosto 2024 da quello successivo introdotto dal decreto legislativo 87 del 2024, e calcola gli interessi legali giorno per giorno spezzandoli fra gli anni civili con il tasso vigente in ciascuno, fino all'1,60 per cento del 2026. Mostra il totale da versare con l'F24 e i codici tributo di sanzioni e interessi.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-19-ravvedimento-operoso/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Come si calcola il ravvedimento operoso?", "acceptedAnswer": { "@type": "Answer", "text": "Si parte dalla sanzione piena per versamento tardivo, che per le violazioni commesse dal 1 settembre 2024 e' il 25 per cento dell'imposta e per quelle precedenti il 30 per cento. Entro novanta giorni di ritardo la sanzione si dimezza, quindi 12,5 o 15 per cento, e il ravvedimento la riduce ancora: a un decimo entro trenta giorni, a un nono fra trentuno e novanta giorni. Oltre i novanta giorni si torna alla sanzione piena ridotta a un ottavo entro il termine della dichiarazione dell'anno della violazione e a un settimo dopo. A questo si aggiungono gli interessi legali calcolati giorno per giorno sull'imposta." } },
+      { "@type": "Question", "name": "Quanto si paga di sanzione se verso l'F24 con pochi giorni di ritardo?", "acceptedAnswer": { "@type": "Answer", "text": "Nei primi quindici giorni vale il cosiddetto ravvedimento sprint: la sanzione e' pari allo 0,0833 per cento dell'imposta per ogni giorno di ritardo per le violazioni dal 1 settembre 2024, e allo 0,1 per cento al giorno per quelle precedenti. Con 1.000 euro di imposta e tre giorni di ritardo la sanzione e' 2,50 euro, con dieci giorni e' 8,33 euro. E' la fascia piu' conveniente di tutte: se ti accorgi dell'errore subito, pagare entro due settimane costa pochissimo." } },
+      { "@type": "Question", "name": "Come si calcolano gli interessi legali sul ravvedimento?", "acceptedAnswer": { "@type": "Answer", "text": "La formula e' imposta per tasso legale per giorni di ritardo diviso 365. Il punto delicato e' che il tasso cambia ogni anno con un decreto del Ministero dell'Economia: 5 per cento nel 2023, 2,5 per cento nel 2024, 2 per cento nel 2025 e 1,60 per cento dal 1 gennaio 2026. Se il ritardo attraversa il 31 dicembre gli interessi vanno spezzati, applicando a ogni pezzo il tasso del suo anno. Usare un tasso unico per tutto il periodo e' l'errore piu' frequente e porta a versare una cifra sbagliata." } },
+      { "@type": "Question", "name": "Entro quando si puo' fare il ravvedimento operoso?", "acceptedAnswer": { "@type": "Answer", "text": "Finche' la violazione non e' stata contestata e non ti sono stati notificati atti di liquidazione o di accertamento o comunicazioni di irregolarita'. Il semplice fatto che sia passato molto tempo non chiude la porta: cambia solo la fascia di riduzione, che peggiora man mano. Per questo conviene muoversi prima che arrivi una lettera: dopo la notifica il ravvedimento ordinario non e' piu' possibile e restano strumenti piu' costosi." } },
+      { "@type": "Question", "name": "Con quali codici tributo si pagano sanzioni e interessi del ravvedimento?", "acceptedAnswer": { "@type": "Answer", "text": "Imposta, sanzione e interessi vanno sullo stesso F24 ma su tre righe distinte, ognuna con il suo codice. Per l'IRPEF la sanzione e' 8901 e gli interessi 1989, per l'IVA 8904 e 1991, per l'IRAP 8907 e 1993, per l'IRES 8918 e 1990, per l'addizionale comunale 8926 e 1998. L'anno di riferimento e' sempre quello dell'imposta originaria, non quello in cui paghi. L'imposta mantiene il suo codice normale, per esempio 4001 per il saldo IRPEF." } },
+      { "@type": "Question", "name": "Il ravvedimento operoso si puo' pagare a rate?", "acceptedAnswer": { "@type": "Answer", "text": "No: perche' il ravvedimento si perfezioni occorre versare in una volta sola imposta, sanzione ridotta e interessi. Se paghi solo una parte, il ravvedimento vale solo per la quota effettivamente coperta e sul resto restano la sanzione piena e il rischio di cartella. Si possono invece fare piu' ravvedimenti successivi su pezzi diversi del debito, ma ogni versamento va calcolato alla sua data, con la fascia e gli interessi di quel giorno." } }
+    ]
+  }
+  </script>
+  <style>
+    /* ---- grigio-carta + mono-tecnico + dashboard: aria da modulo fiscale, carta ruvida,
+           un solo accento vermiglio come un timbro, cifre grandi in riquadri affiancati. ---- */
+    :root {
+      --bg: #f3f2ee; --carta: #fffefb; --carta-2: #eceae3;
+      --ink: #1c1b18; --ink-soft: #6b6862; --riga: #d8d5cc;
+      --acc: #b5341f; --acc-velo: #fbeae6;
+      --ok: #1f6b4a; --warn: #8a5300; --warn-velo: #fcf3e2;
+      --r: 4px; --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #15150f; --carta: #1e1e18; --carta-2: #272720;
+        --ink: #eceae1; --ink-soft: #a09d93; --riga: #35342c;
+        --acc: #ff8163; --acc-velo: #2f1a14;
+        --ok: #67cfa0; --warn: #e6bb6c; --warn-velo: #2c2414;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--ink);
+      font-family: var(--mono); font-size: 16px; line-height: 1.65;
+    }
+    .pagina { max-width: 46rem; margin: 0 auto; padding: 0 1rem 7rem; }
+    a { color: var(--acc); }
+    .su {
+      display: inline-flex; align-items: center; min-height: 44px; margin: .4rem 0 0;
+      font-size: .95rem; color: var(--ink-soft); text-decoration: none; letter-spacing: .02em;
+    }
+    .su:hover, .su:focus-visible { color: var(--acc); text-decoration: underline; }
+
+    h1 { font-size: 1.4rem; line-height: 1.2; margin: .2rem 0 .3rem; letter-spacing: -.01em; }
+    h1 .timbro {
+      display: block; font-size: .72rem; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--acc); margin-bottom: .35rem;
+    }
+    .lead { margin: 0 0 .8rem; color: var(--ink-soft); font-size: 1rem; }
+
+    /* ---- modulo di input ---- */
+    .modulo {
+      background: var(--carta); border: 1px solid var(--riga); border-radius: var(--r);
+      padding: .9rem; box-shadow: 0 1px 0 var(--riga);
+    }
+    .campi { display: grid; gap: .7rem; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: end; }
+    .campi > * { min-width: 0; }
+    .campi > .larga { grid-column: 1 / -1; }
+    label { display: block; font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: .3rem; }
+    input[type="text"], input[type="date"], select {
+      width: 100%; min-width: 0; min-height: 48px; padding: .6rem .7rem; font: inherit; font-size: 16px;
+      background: var(--bg); color: var(--ink); border: 1px solid var(--riga); border-radius: var(--r);
+    }
+    input:focus-visible, select:focus-visible, button:focus-visible {
+      outline: 2px solid var(--acc); outline-offset: 1px;
+    }
+    .con-euro { position: relative; }
+    .con-euro input { padding-right: 2.2rem; font-size: 1.25rem; letter-spacing: .02em; }
+    .con-euro span { position: absolute; right: .7rem; top: 50%; transform: translateY(-50%); color: var(--ink-soft); }
+    .aiuto { font-size: .85rem; color: var(--ink-soft); margin: .3rem 0 0; }
+    details.avanzate { margin-top: .8rem; border-top: 1px dashed var(--riga); padding-top: .6rem; }
+    #rifiniture details.avanzate { margin-top: 0; border-top: 0; padding-top: 0; }
+    details.avanzate summary { cursor: pointer; font-size: .9rem; color: var(--acc); min-height: 44px; display: flex; align-items: center; }
+    details.avanzate .campi { margin-top: .6rem; }
+
+    /* ---- dashboard dei riquadri ---- */
+    .griglia { display: grid; grid-template-columns: repeat(2, 1fr); gap: .6rem; margin: .9rem 0 .2rem; }
+    .tessera {
+      background: var(--carta); border: 1px solid var(--riga); border-radius: var(--r);
+      padding: .7rem .75rem; min-height: 92px; display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .tessera .et { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); }
+    .tessera .num { font-size: 1.6rem; line-height: 1.1; font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+    .tessera .sub { font-size: .8rem; color: var(--ink-soft); }
+    .tessera.totale {
+      grid-column: 1 / -1; background: var(--acc-velo); border-color: var(--acc);
+      min-height: 104px;
+    }
+    .tessera.totale .num { font-size: 2.3rem; color: var(--acc); }
+    .tessera.fascia { grid-column: 1 / -1; min-height: 0; }
+    .tessera.fascia .num { font-size: 1.05rem; }
+    .vuoto .num { color: var(--ink-soft); }
+
+    .avviso {
+      margin: .8rem 0 0; padding: .7rem .8rem; border-radius: var(--r); font-size: .9rem;
+      background: var(--warn-velo); border: 1px solid var(--warn); color: var(--ink);
+    }
+    .avviso.ok { background: transparent; border-color: var(--ok); }
+    .avviso[hidden] { display: none; }
+
+    /* ---- dettaglio del conto ---- */
+    .conto { margin-top: 1rem; background: var(--carta); border: 1px solid var(--riga); border-radius: var(--r); }
+    .conto > summary { padding: .8rem .9rem; cursor: pointer; font-size: .9rem; letter-spacing: .04em; min-height: 44px; display: flex; align-items: center; }
+    .conto .dentro { padding: 0 .9rem .9rem; border-top: 1px solid var(--riga); }
+    .riga-conto { display: flex; justify-content: space-between; gap: .8rem; padding: .5rem 0; border-bottom: 1px dotted var(--riga); font-size: .92rem; }
+    .riga-conto:last-child { border-bottom: 0; }
+    .riga-conto b { font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .riga-conto.testo b { white-space: normal; text-align: right; font-weight: normal; }
+    .riga-conto .q { color: var(--ink-soft); }
+    .formula { font-size: .88rem; color: var(--ink-soft); margin: .7rem 0 0; word-break: break-word; }
+
+    /* ---- blocchi Pro ---- */
+    section[data-pro] {
+      margin: 1.2rem 0; background: var(--carta); border: 1px solid var(--riga); border-radius: var(--r); padding: .9rem;
+    }
+    section[data-pro] h2 { font-size: 1rem; margin: 0 0 .2rem; letter-spacing: .02em; }
+    section[data-pro] .pro-nota { font-size: .85rem; color: var(--ink-soft); margin: 0 0 .8rem; }
+    .scaletta { list-style: none; margin: 0; padding: 0; }
+    .scaletta li {
+      display: grid; grid-template-columns: 1fr auto; gap: .2rem .8rem; align-items: baseline;
+      padding: .55rem 0; border-bottom: 1px dotted var(--riga);
+    }
+    .scaletta li:last-child { border-bottom: 0; }
+    .scaletta .quando { font-size: .95rem; }
+    .scaletta .quando small { display: block; color: var(--ink-soft); font-size: .8rem; }
+    .scaletta .quanto { font-variant-numeric: tabular-nums; white-space: nowrap; font-size: 1.05rem; }
+    .scaletta li.ora { background: var(--acc-velo); margin: 0 -.5rem; padding-left: .5rem; padding-right: .5rem; border-radius: var(--r); }
+    .scaletta li.ora .quanto { color: var(--acc); }
+    .scaletta li.passata { opacity: .5; }
+
+    .f24 { width: 100%; border-collapse: collapse; font-size: .92rem; }
+    .f24 th, .f24 td { text-align: left; padding: .45rem .3rem; border-bottom: 1px solid var(--riga); }
+    .f24 th { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); font-weight: normal; }
+    .f24 td.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .f24 tr.tot td { border-bottom: 0; border-top: 2px solid var(--ink); font-weight: bold; }
+    .salvati { list-style: none; margin: .8rem 0 0; padding: 0; }
+    .salvati li { display: grid; grid-template-columns: 1fr auto auto; gap: .5rem; align-items: center; padding: .55rem 0; border-bottom: 1px dotted var(--riga); font-size: .9rem; }
+    .salvati .vt { min-width: 0; }
+    .salvati .vt b { display: block; font-weight: normal; }
+    .salvati .vt small { color: var(--ink-soft); font-size: .8rem; }
+    .salvati .vn { font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .totale-salvati { display: flex; justify-content: space-between; gap: .8rem; padding: .6rem 0 0; border-top: 2px solid var(--ink); font-size: 1rem; }
+    .totale-salvati b { font-variant-numeric: tabular-nums; }
+
+    /* ---- bottoni ---- */
+    button {
+      font: inherit; min-height: 44px; padding: .55rem .9rem; border-radius: var(--r);
+      border: 1px solid var(--ink); background: var(--carta); color: var(--ink); cursor: pointer;
+    }
+    button.primario { background: var(--acc); border-color: var(--acc); color: #fff; }
+    button.mini { min-height: 44px; min-width: 44px; padding: .4rem .6rem; font-size: .85rem; border-color: var(--riga); color: var(--ink-soft); }
+    .bottoni { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .9rem; }
+    .esito-azione { font-size: .85rem; color: var(--ok); min-height: 1.3em; margin: .5rem 0 0; }
+
+    /* ---- barra del pollice ---- */
+    .barra {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 5;
+      display: flex; align-items: center; gap: .7rem;
+      padding: .6rem 1rem calc(.6rem + env(safe-area-inset-bottom));
+      background: var(--carta); border-top: 1px solid var(--riga);
+    }
+    .barra .bt { flex: 1; min-width: 0; }
+    .barra .bt .et { font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); }
+    .barra .bt .num { font-size: 1.3rem; font-variant-numeric: tabular-nums; color: var(--acc); line-height: 1.15; }
+    .barra button { white-space: nowrap; }
+
+    /* ---- guida ---- */
+    #guida { margin-top: 1.8rem; }
+    #guida h2 { font-size: 1.15rem; margin: 1.6rem 0 .5rem; letter-spacing: -.01em; }
+    #guida h3 { font-size: 1rem; margin: 1.2rem 0 .3rem; }
+    #guida p, #guida li { font-size: 1rem; line-height: 1.75; }
+    #guida ul, #guida ol { padding-left: 1.2rem; }
+    #guida .esempio {
+      background: var(--carta-2); border-left: 3px solid var(--acc); border-radius: 0 var(--r) var(--r) 0;
+      padding: .7rem .85rem; margin: .9rem 0; font-size: .95rem;
+    }
+    .fasce { list-style: none; margin: .9rem 0; padding: 0; display: grid; gap: .5rem; }
+    .fasce li {
+      background: var(--carta); border: 1px solid var(--riga); border-radius: var(--r);
+      padding: .6rem .7rem; display: grid; grid-template-columns: 1fr 1fr; gap: .25rem .7rem;
+    }
+    .fasce .f-r { grid-column: 1 / -1; font-size: 1rem; }
+    .fasce .f-f { grid-column: 1 / -1; font-size: .88rem; color: var(--ink-soft); line-height: 1.45; }
+    .fasce .f-n { font-variant-numeric: tabular-nums; font-size: .95rem; }
+    .fasce .f-n small { display: block; font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); }
+    footer { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--riga); font-size: .88rem; color: var(--ink-soft); }
+    footer a { color: var(--acc); }
+    footer p { margin: .5rem 0; }
+    .scorciatoie { display: flex; flex-wrap: wrap; gap: .5rem; margin: .8rem 0; }
+    .scorciatoie a {
+      display: inline-flex; align-items: center; min-height: 44px; padding: .4rem .7rem;
+      border: 1px solid var(--riga); border-radius: var(--r); text-decoration: none; font-size: .9rem;
+    }
+
+    @media (min-width: 700px) {
+      .pagina { padding: 0 1.5rem 7rem; }
+      h1 { font-size: 1.9rem; }
+      .fasce li { grid-template-columns: 1.3fr 1.5fr 1fr 1fr; align-items: end; }
+      .fasce .f-r, .fasce .f-f { grid-column: auto; }
+      .griglia { grid-template-columns: repeat(4, 1fr); }
+      .tessera.totale { grid-column: 1 / -1; }
+      .tessera .num { font-size: 1.75rem; }
+      .tessera.totale .num { font-size: 2.6rem; }
+    }
+    @media print {
+      .barra, .su, .modulo, [data-ad], [data-support], #guida, footer { display: none !important; }
+      body { background: #fff; color: #000; }
+    }
+  </style>
+</head>
+<body>
+<div class="pagina">
+  <a class="su" href="../../index.html">&larr; Tutte le app</a>
+
+  <h1><span class="timbro">Un&rsquo;app al giorno</span>Calcolo ravvedimento operoso</h1>
+  <p class="lead">Hai saltato un F24? Metti tre dati e sai quanto aggiungere di sanzione e interessi.</p>
+
+  <form class="modulo" id="modulo" autocomplete="off">
+    <div class="campi">
+      <div class="larga">
+        <label for="imposta">Imposta non versata</label>
+        <div class="con-euro">
+          <input type="text" id="imposta" inputmode="decimal" enterkeyhint="done" placeholder="0,00" aria-describedby="aiuto-imposta">
+          <span aria-hidden="true">&euro;</span>
+        </div>
+        <p class="aiuto" id="aiuto-imposta">Solo l&rsquo;imposta non pagata, senza sanzioni.</p>
+      </div>
+      <div>
+        <label for="scadenza">Scadenza saltata</label>
+        <input type="date" id="scadenza" enterkeyhint="done">
+      </div>
+      <div>
+        <label for="pagamento">Giorno in cui paghi</label>
+        <input type="date" id="pagamento" enterkeyhint="done">
+      </div>
+      <div class="larga">
+        <label for="tributo">Tributo</label>
+        <select id="tributo"></select>
+      </div>
+    </div>
+
+  </form>
+
+  <div class="griglia" id="griglia" role="group" aria-label="Risultato del calcolo">
+    <div class="tessera" id="t-giorni">
+      <span class="et">Ritardo</span>
+      <span class="num" id="n-giorni">&mdash;</span>
+      <span class="sub" id="s-giorni">giorni</span>
+    </div>
+    <div class="tessera" id="t-perc">
+      <span class="et">Sanzione %</span>
+      <span class="num" id="n-perc">&mdash;</span>
+      <span class="sub" id="s-perc">dell&rsquo;imposta</span>
+    </div>
+    <div class="tessera" id="t-sanzione">
+      <span class="et">Sanzione</span>
+      <span class="num" id="n-sanzione">&mdash;</span>
+      <span class="sub" id="s-sanzione">ridotta da ravvedimento</span>
+    </div>
+    <div class="tessera" id="t-interessi">
+      <span class="et">Interessi</span>
+      <span class="num" id="n-interessi">&mdash;</span>
+      <span class="sub" id="s-interessi">legali, al giorno</span>
+    </div>
+    <div class="tessera fascia" id="t-fascia">
+      <span class="et">Fascia applicata</span>
+      <span class="num" id="n-fascia">Inserisci imposta e date</span>
+    </div>
+    <div class="tessera totale" id="t-totale">
+      <span class="et">Totale da versare</span>
+      <span class="num" id="n-totale">&mdash;</span>
+      <span class="sub" id="s-totale">imposta + sanzione + interessi</span>
+    </div>
+  </div>
+
+  <p class="avviso" id="avviso" hidden></p>
+  <form class="modulo" id="rifiniture" autocomplete="off" style="margin-top:.9rem">
+    <details class="avanzate" id="avanzate">
+      <summary>Opzioni avanzate (termine della dichiarazione)</summary>
+      <div class="campi">
+        <div class="larga">
+          <label for="dichiarazione">Termine della dichiarazione dell&rsquo;anno della violazione</label>
+          <input type="date" id="dichiarazione">
+          <p class="aiuto">Serve solo se paghi oltre 90 giorni di ritardo: &egrave; la data che separa la riduzione a 1/8 da quella a 1/7. Precompilata al 31 ottobre dell&rsquo;anno successivo (modello Redditi). Per le societ&agrave; con esercizio non solare cambiala a mano.</p>
+        </div>
+        <div class="larga">
+          <label for="anno">Anno di riferimento per l&rsquo;F24</label>
+          <input type="text" id="anno" inputmode="numeric" maxlength="4" placeholder="2025">
+          <p class="aiuto">L&rsquo;anno d&rsquo;imposta da scrivere sull&rsquo;F24. Precompilato con l&rsquo;anno della scadenza: per i <b>saldi</b> &egrave; invece l&rsquo;anno precedente (il saldo IRPEF pagato a giugno 2026 ha anno di riferimento 2025).</p>
+        </div>
+      </div>
+    </details>
+
+    <div class="bottoni">
+      <button type="button" id="btn-oggi" class="mini">Paga oggi</button>
+      <button type="button" id="btn-azzera" class="mini">Azzera</button>
+    </div>
+  </form>
+
+  <p class="formula" id="nota-fissa">Il ravvedimento si perfeziona solo se versi imposta, sanzione e interessi in un&rsquo;unica soluzione e se la violazione non &egrave; gi&agrave; stata contestata con un atto o una comunicazione di irregolarit&agrave;.</p>
+
+  <details class="conto" id="conto">
+    <summary>Come viene fuori questo numero</summary>
+    <div class="dentro" id="dentro-conto"></div>
+  </details>
+
+  <div data-ad="top"></div>
+
+  <section data-pro="Confronto fra le date di pagamento">
+    <h2>Conviene pagare oggi o aspettare?</h2>
+    <p class="pro-nota">Quanto costa il ravvedimento in ogni giorno-soglia che hai davanti: la sanzione sale a scatti, gli interessi crescono di poco al giorno.</p>
+    <ul class="scaletta" id="scaletta"></ul>
+    <p class="formula" id="nota-scaletta"></p>
+  </section>
+
+  <section data-pro="Prospetto F24 e versamenti multipli">
+    <h2>Prospetto F24 con i codici tributo</h2>
+    <p class="pro-nota">Le tre righe da riportare sull&rsquo;F24, con l&rsquo;anno di riferimento dell&rsquo;imposta originaria. Puoi accodare pi&ugrave; scadenze e portarti via l&rsquo;elenco completo.</p>
+    <table class="f24" id="tab-f24">
+      <thead>
+        <tr><th>Voce</th><th>Codice</th><th>Anno</th><th class="n">Importo F24</th></tr>
+      </thead>
+      <tbody id="corpo-f24"></tbody>
+    </table>
+    <p class="formula">Sull&rsquo;F24 gli importi si indicano di norma arrotondati all&rsquo;unit&agrave; di euro. I codici tributo pi&ugrave; particolari si controllano nella <a href="https://www1.agenziaentrate.gov.it/servizi/codici/ricerca/index.htm" rel="nofollow noopener" target="_blank">ricerca guidata dei codici tributo</a> dell&rsquo;Agenzia delle Entrate.</p>
+
+    <h2 style="margin-top:1.2rem">Pi&ugrave; scadenze in un unico prospetto</h2>
+    <div class="bottoni">
+      <button type="button" class="primario" id="btn-accoda">Accoda questa scadenza</button>
+      <button type="button" class="mini" id="btn-copia">Copia prospetto</button>
+      <button type="button" class="mini" id="btn-csv">Scarica CSV</button>
+      <button type="button" class="mini" id="btn-stampa">Stampa</button>
+    </div>
+    <ul class="salvati" id="salvati"></ul>
+    <div class="totale-salvati" id="totale-salvati" hidden><span>Totale del prospetto</span><b id="n-salvati">0,00 &euro;</b></div>
+    <p class="esito-azione" id="esito-azione" role="status"></p>
+    <div id="stampabile" hidden></div>
+  </section>
+
+  <section id="guida">
+    <h2>Che cos&rsquo;&egrave; il ravvedimento operoso, in parole semplici</h2>
+    <p>Il ravvedimento operoso &egrave; la possibilit&agrave; di rimediare da soli a un versamento saltato o fatto in ritardo, pagando l&rsquo;imposta insieme a una sanzione molto ridotta e agli interessi legali. &Egrave; previsto dall&rsquo;articolo 13 del decreto legislativo 472 del 1997 e funziona senza chiedere il permesso a nessuno: compili un F24 e il debito si chiude. Il vantaggio &egrave; enorme, perch&eacute; la sanzione piena per il mancato versamento arriverebbe al 25 per cento dell&rsquo;imposta, mentre con il ravvedimento nei primi giorni si scende sotto l&rsquo;uno per cento.</p>
+    <p>La regola d&rsquo;oro &egrave; una sola: vale solo se ti muovi prima che l&rsquo;Agenzia delle Entrate contesti la violazione. Dopo la notifica di un avviso di accertamento, di un atto di liquidazione o di una comunicazione di irregolarit&agrave; la strada ordinaria si chiude e restano soluzioni pi&ugrave; care. Il tempo che passa, invece, non ti esclude: peggiora soltanto la fascia di sconto.</p>
+
+    <h2>Come funziona il calcolo</h2>
+    <p>Il conto ha tre pezzi che vanno tutti sullo stesso F24, su tre righe distinte: l&rsquo;imposta che non hai versato, la sanzione ridotta e gli interessi legali. L&rsquo;imposta non cambia. La sanzione dipende da quanti giorni di ritardo hai e si calcola a scatti. Gli interessi crescono invece giorno per giorno, in modo continuo.</p>
+    <p>La sanzione piena per versamento tardivo &egrave; il 25 per cento dell&rsquo;imposta per le violazioni commesse dal 1 settembre 2024, data di entrata in vigore del decreto legislativo 87 del 2024, e il 30 per cento per quelle precedenti. Se il ritardo non supera i 90 giorni questa sanzione si dimezza, quindi 12,5 o 15 per cento. Poi interviene il ravvedimento, che la riduce di nuovo secondo la fascia. Lo strumento qui sopra capisce da solo quale dei due regimi ti riguarda guardando la data della scadenza saltata, quindi non devi deciderlo tu.</p>
+    <ul class="fasce">
+      <li>
+        <span class="f-r">Da 1 a 15 giorni</span>
+        <span class="f-f">Riduzione 1/10, con 1/15 per ogni giorno di ritardo</span>
+        <span class="f-n"><small>Dal 1/9/2024</small>0,0833%/giorno</span>
+        <span class="f-n"><small>Fino al 31/8/2024</small>0,1%/giorno</span>
+      </li>
+      <li>
+        <span class="f-r">Da 16 a 30 giorni</span>
+        <span class="f-f">Riduzione 1/10 della sanzione dimezzata</span>
+        <span class="f-n"><small>Dal 1/9/2024</small>1,25%</span>
+        <span class="f-n"><small>Fino al 31/8/2024</small>1,50%</span>
+      </li>
+      <li>
+        <span class="f-r">Da 31 a 90 giorni</span>
+        <span class="f-f">Riduzione 1/9 della sanzione dimezzata</span>
+        <span class="f-n"><small>Dal 1/9/2024</small>1,3889%</span>
+        <span class="f-n"><small>Fino al 31/8/2024</small>1,6667%</span>
+      </li>
+      <li>
+        <span class="f-r">Entro il termine della dichiarazione</span>
+        <span class="f-f">Riduzione 1/8 della sanzione piena</span>
+        <span class="f-n"><small>Dal 1/9/2024</small>3,125%</span>
+        <span class="f-n"><small>Fino al 31/8/2024</small>3,75%</span>
+      </li>
+      <li>
+        <span class="f-r">Dopo il termine della dichiarazione</span>
+        <span class="f-f">Riduzione 1/7 della sanzione piena</span>
+        <span class="f-n"><small>Dal 1/9/2024</small>3,5714%</span>
+        <span class="f-n"><small>Fino al 31/8/2024</small>4,2857%</span>
+      </li>
+      <li>
+        <span class="f-r">Oltre due anni</span>
+        <span class="f-f">Riduzione 1/6, solo nel vecchio regime</span>
+        <span class="f-n"><small>Dal 1/9/2024</small>3,5714%</span>
+        <span class="f-n"><small>Fino al 31/8/2024</small>5%</span>
+      </li>
+    </ul>
+    <p>Gli interessi legali seguono una formula diversa: imposta per tasso per giorni di ritardo, diviso 365. Il tasso lo fissa ogni dicembre un decreto del Ministero dell&rsquo;Economia e cambia parecchio da un anno all&rsquo;altro: era il 5 per cento nel 2023, il 2,5 per cento nel 2024, il 2 per cento nel 2025 e dal 1 gennaio 2026 &egrave; l&rsquo;1,60 per cento. Quando il ritardo attraversa un 31 dicembre gli interessi vanno spezzati e a ogni pezzo si applica il tasso del suo anno: &egrave; esattamente quello che fa il riquadro &laquo;Come viene fuori questo numero&raquo;.</p>
+
+    <h3>Un esempio con i numeri</h3>
+    <div class="esempio">
+      <p>Secondo acconto IRPEF di <b>1.800 &euro;</b> con scadenza <b>1 dicembre 2025</b>, dimenticato e pagato il <b>10 marzo 2026</b>.</p>
+      <p>Il ritardo &egrave; di <b>99 giorni</b>: siamo oltre i 90, quindi la sanzione piena non si dimezza pi&ugrave;. Si parte dal 25 per cento, ridotto a 1/8 perch&eacute; il pagamento cade prima del 31 ottobre 2026: <b>3,125%</b> di 1.800, cioe&rsquo; <b>56,25 &euro;</b>.</p>
+      <p>Gli interessi si spezzano in due: 30 giorni nel 2025 al 2 per cento fanno 1.800 &times; 0,02 &times; 30 / 365 = <b>2,96 &euro;</b>; 69 giorni nel 2026 all&rsquo;1,60 per cento fanno 1.800 &times; 0,016 &times; 69 / 365 = <b>5,44 &euro;</b>. In tutto <b>8,40 &euro;</b>.</p>
+      <p>Totale dell&rsquo;F24: 1.800 + 56,25 + 8,40 = <b>1.864,65 &euro;</b>. Pagando nove giorni prima, cio&egrave; entro il 1 marzo, il ritardo sarebbe stato di 90 giorni e la sanzione 1,3889 per cento: 25 &euro; invece di 56,25. Nove giorni valgono 31 euro.</p>
+    </div>
+
+    <h2>Gli errori che costano di pi&ugrave;</h2>
+    <ul>
+      <li><b>Usare un tasso di interesse unico</b> quando il ritardo passa da un anno all&rsquo;altro. Fra il 5 per cento del 2023 e l&rsquo;1,60 per cento del 2026 la differenza &egrave; grossa e il versamento risulta insufficiente o eccessivo.</li>
+      <li><b>Pagare solo imposta e sanzione.</b> Senza gli interessi il ravvedimento non si perfeziona e la sanzione piena resta dovuta: &egrave; il modo pi&ugrave; comune di buttare via lo sconto.</li>
+      <li><b>Mettere tutto su una riga sola dell&rsquo;F24.</b> Imposta, sanzione e interessi hanno codici tributo diversi e vanno separate, altrimenti il versamento non viene abbinato.</li>
+      <li><b>Sbagliare l&rsquo;anno di riferimento.</b> Va indicato l&rsquo;anno d&rsquo;imposta originario, non quello in cui paghi: un acconto 2025 versato nel 2026 resta anno 2025.</li>
+      <li><b>Aspettare la lettera.</b> Appena arriva una comunicazione di irregolarit&agrave; il ravvedimento ordinario non &egrave; pi&ugrave; utilizzabile.</li>
+      <li><b>Pagare a rate di propria iniziativa.</b> Il ravvedimento vale solo per la parte effettivamente versata, con sanzione e interessi calcolati su quella quota.</li>
+    </ul>
+
+    <h2>Domande frequenti</h2>
+    <h3>Quanto pago se verso con un giorno di ritardo?</h3>
+    <p>Lo 0,0833 per cento dell&rsquo;imposta, pi&ugrave; un giorno di interessi. Su 1.000 euro sono 83 centesimi di sanzione e 4 centesimi di interessi: meno di un euro. &Egrave; la ragione per cui vale sempre la pena controllare i versamenti il giorno dopo la scadenza.</p>
+    <h3>Il ravvedimento vale anche per IMU e tributi locali?</h3>
+    <p>S&igrave;, il meccanismo &egrave; lo stesso e le fasce di riduzione pure, ma il versamento si fa con l&rsquo;F24 compilato nella sezione IMU e tributi locali, indicando il codice catastale del Comune e barrando la casella del ravvedimento. Alcuni Comuni chiedono anche una comunicazione: conviene controllare il regolamento comunale.</p>
+    <h3>E se non ho presentato la dichiarazione, non solo il versamento?</h3>
+    <p>&Egrave; una violazione diversa e pi&ugrave; grave, con regole proprie: entro 90 giorni dal termine si parla di dichiarazione tardiva con una sanzione fissa, dopo diventa omessa. Questo strumento calcola il ravvedimento dei versamenti, non quello delle dichiarazioni.</p>
+    <h3>I calcoli di questa pagina hanno valore ufficiale?</h3>
+    <p>No: sono una stima accurata, pensata per capire l&rsquo;ordine di grandezza e compilare l&rsquo;F24 con consapevolezza. Per importi rilevanti, per il cumulo giuridico di pi&ugrave; violazioni o per situazioni con atti gi&agrave; notificati, fai verificare il conto a un commercialista.</p>
+    <h3>I dati che inserisco restano sul mio telefono?</h3>
+    <p>S&igrave;. Tutto il calcolo avviene nel browser e il prospetto delle scadenze accodate &egrave; salvato solo nella memoria locale del tuo dispositivo: nessun dato viene inviato da nessuna parte e la pagina funziona anche senza connessione.</p>
+  </section>
+
+  <div data-ad="bottom"></div>
+  <div data-support></div>
+
+  <footer>
+    <p>Fonti: articolo 13 del D.Lgs. 472/1997 e articolo 13 del D.Lgs. 471/1997 come modificati dal D.Lgs. 87/2024; tasso di interesse legale fissato all&rsquo;1,60% dal decreto MEF del 10 dicembre 2025 (G.U. 289/2025).</p>
+    <p>Potrebbero servirti anche questi strumenti:</p>
+    <div class="scorciatoie">
+      <a href="../2026-10-07-tasse-forfettario/">Tasse in regime forfettario</a>
+      <a href="../2026-09-28-imu-seconda-casa/">IMU sulla seconda casa</a>
+      <a href="../../privacy.html">Privacy</a>
+    </div>
+    <p>Questa pagina pu&ograve; contenere annunci e link di affiliazione; leggi la <a href="../../privacy.html">privacy</a> per sapere quali dati restano sul tuo dispositivo.</p>
+  </footer>
+</div>
+
+<div class="barra">
+  <div class="bt">
+    <div class="et">Totale F24</div>
+    <div class="num" id="n-barra">&mdash;</div>
+  </div>
+  <button type="button" id="btn-riepilogo">Copia riepilogo</button>
+</div>
+
+<script src="../../assets/monetize.js"></script>
+<script>
+(() => {
+  "use strict";
+  /* Modello dati: un solo "caso" corrente ricavato dai campi (imposta, scadenza, pagamento, tributo,
+   * termine dichiarazione, anno F24). Da esso si derivano la fascia di riduzione della sanzione e le
+   * tranche di interessi legali, una per anno civile attraversato. Il Pro accoda i casi in
+   * localStorage["ravvedimento-operoso:v1"] come array di righe gia' calcolate. */
+
+  const CHIAVE = "ravvedimento-operoso:v1";
+  const GIORNO = 86400000;
+  const RIFORMA = new Date(2024, 8, 1);            // violazioni dal 1/9/2024: sanzione piena 25%
+  const TASSI = {                                   // saggio legale (art. 1284 c.c.), decreti MEF di dicembre
+    2014: 1, 2015: 0.5, 2016: 0.2, 2017: 0.1, 2018: 0.3, 2019: 0.8,
+    2020: 0.05, 2021: 0.01, 2022: 1.25, 2023: 5, 2024: 2.5, 2025: 2, 2026: 1.6,
+  };
+  const ANNI = Object.keys(TASSI).map(Number);
+  const PRIMO = Math.min(...ANNI), ULTIMO = Math.max(...ANNI);
+
+  const TRIBUTI = [
+    { id: "irpef-saldo", nome: "IRPEF — saldo",                    imp: "4001",               san: "8901", int: "1989" },
+    { id: "irpef-a1",    nome: "IRPEF — 1ª rata di acconto",  imp: "4033",               san: "8901", int: "1989" },
+    { id: "irpef-a2",    nome: "IRPEF — 2ª rata o acconto unico", imp: "4034",           san: "8901", int: "1989" },
+    { id: "iva-mens",    nome: "IVA mensile",                           imp: "6001–6012",    san: "8904", int: "1991" },
+    { id: "iva-trim",    nome: "IVA trimestrale",                        imp: "6031–6034",    san: "8904", int: "1991" },
+    { id: "iva-anno",    nome: "IVA annuale",                            imp: "6099",              san: "8904", int: "1991" },
+    { id: "irap",        nome: "IRAP",                                   imp: "3800 / 3812 / 3813", san: "8907", int: "1993" },
+    { id: "ires",        nome: "IRES",                                   imp: "2003 / 2001 / 2002", san: "8918", int: "1990" },
+    { id: "add-com",     nome: "Addizionale comunale IRPEF",             imp: "3844 / 3843",       san: "8926", int: "1998" },
+    { id: "altro",       nome: "Altro tributo (codici da verificare)",   imp: "—",            san: "—", int: "—" },
+  ];
+
+  // ---------- util ----------
+  const $ = (id) => document.getElementById(id);
+  const svuota = (n) => { while (n.firstChild) n.removeChild(n.firstChild); };
+  const el = (tag, cls, testo) => { const n = document.createElement(tag); if (cls) n.className = cls; if (testo !== undefined) n.textContent = testo; return n; };
+
+  function numero(v) {
+    let s = String(v || "").trim().replace(/[\s €]/g, "");
+    if (!s) return NaN;
+    if (s.includes(",")) s = s.replace(/\./g, "").replace(",", ".");
+    else if ((s.match(/\./g) || []).length > 1 || /\.\d{3}$/.test(s)) s = s.replace(/\./g, "");
+    const n = parseFloat(s);
+    return Number.isFinite(n) ? n : NaN;
+  }
+  const euro = (n) => n.toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €";
+  const euroInt = (n) => Math.round(n).toLocaleString("it-IT") + " €";
+  function pct(n) {
+    const s = n.toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 4 });
+    return s + "%";
+  }
+  function data(el) {
+    const v = el.value;
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(v)) return null;
+    const [y, m, g] = v.split("-").map(Number);
+    const d = new Date(y, m - 1, g);
+    return (d.getFullYear() === y && d.getMonth() === m - 1 && d.getDate() === g) ? d : null;
+  }
+  const iso = (d) => d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  const giorniFra = (a, b) => Math.round((b.getTime() - a.getTime()) / GIORNO);
+  const piuGiorni = (d, n) => new Date(d.getFullYear(), d.getMonth(), d.getDate() + n);
+  const dataIt = (d) => d.toLocaleDateString("it-IT", { day: "numeric", month: "long", year: "numeric" });
+  const dataCorta = (d) => d.toLocaleDateString("it-IT", { day: "2-digit", month: "2-digit", year: "numeric" });
+  const oggi = () => { const n = new Date(); return new Date(n.getFullYear(), n.getMonth(), n.getDate()); };
+
+  // ---------- regole ----------
+  // Fascia di riduzione: art. 13 D.Lgs. 472/97 su sanzione art. 13 D.Lgs. 471/97 (25% dal 1/9/2024, prima 30%).
+  function fascia(dScad, dPag, dDich) {
+    const g = giorniFra(dScad, dPag);
+    const nuovo = dScad.getTime() >= RIFORMA.getTime();
+    const piena = nuovo ? 25 : 30;
+    const meta = piena / 2;                          // dimezzata entro 90 giorni di ritardo
+    const dDich2 = new Date(dDich.getFullYear() + 1, dDich.getMonth(), dDich.getDate());
+    if (g <= 15) return { g, nuovo, piena, perc: meta / 15 * g / 10, fraz: "1/10, con 1/15 per ogni giorno", nome: "Sprint: entro 15 giorni", nota: "cioè " + pct(meta / 150) + " al giorno" };
+    if (g <= 30) return { g, nuovo, piena, perc: meta / 10, fraz: "1/10", nome: "Breve: entro 30 giorni", nota: "sanzione dimezzata al " + pct(meta) + ", ridotta a 1/10" };
+    if (g <= 90) return { g, nuovo, piena, perc: meta / 9, fraz: "1/9", nome: "Intermedia: entro 90 giorni", nota: "sanzione dimezzata al " + pct(meta) + ", ridotta a 1/9" };
+    if (dPag.getTime() <= dDich.getTime()) return { g, nuovo, piena, perc: piena / 8, fraz: "1/8", nome: "Entro il termine della dichiarazione", nota: "oltre 90 giorni la sanzione non si dimezza più: " + pct(piena) + " ridotto a 1/8" };
+    if (nuovo) return { g, nuovo, piena, perc: piena / 7, fraz: "1/7", nome: "Oltre il termine della dichiarazione", nota: pct(piena) + " ridotto a 1/7 (dal 1/9/2024 non esiste più la fascia a 1/6)" };
+    if (dPag.getTime() <= dDich2.getTime()) return { g, nuovo, piena, perc: piena / 7, fraz: "1/7", nome: "Entro la dichiarazione dell’anno dopo", nota: pct(piena) + " ridotto a 1/7" };
+    return { g, nuovo, piena, perc: piena / 6, fraz: "1/6", nome: "Oltre due anni", nota: pct(piena) + " ridotto a 1/6 (vecchio regime)" };
+  }
+
+  // Interessi legali giorno per giorno, spezzati per anno civile: imposta x tasso x giorni / 365.
+  function interessi(imposta, dScad, dPag) {
+    const tranche = [];
+    let cur = piuGiorni(dScad, 1);                   // si contano dal giorno dopo la scadenza
+    while (cur.getTime() <= dPag.getTime()) {
+      const anno = cur.getFullYear();
+      const fineAnno = new Date(anno, 11, 31);
+      const fine = fineAnno.getTime() < dPag.getTime() ? fineAnno : dPag;
+      const g = giorniFra(cur, fine) + 1;
+      const noto = TASSI[anno] !== undefined;
+      const t = noto ? TASSI[anno] : (anno > ULTIMO ? TASSI[ULTIMO] : TASSI[PRIMO]);
+      tranche.push({ anno, giorni: g, tasso: t, noto, importo: imposta * t / 100 * g / 365 });
+      cur = piuGiorni(fine, 1);
+    }
+    return { tranche, totale: tranche.reduce((s, t) => s + t.importo, 0) };
+  }
+
+  function calcola(imposta, dScad, dPag, dDich) {
+    const g = giorniFra(dScad, dPag);
+    if (g <= 0) return { g, tardivo: false, sanzione: 0, int: { tranche: [], totale: 0 }, totale: imposta, f: null };
+    const f = fascia(dScad, dPag, dDich);
+    const sanzione = imposta * f.perc / 100;
+    const int = interessi(imposta, dScad, dPag);
+    return { g, tardivo: true, sanzione, int, totale: imposta + sanzione + int.totale, f };
+  }
+
+  // ---------- campi ----------
+  const iImposta = $("imposta"), iScad = $("scadenza"), iPag = $("pagamento"),
+        iTrib = $("tributo"), iDich = $("dichiarazione"), iAnno = $("anno");
+
+  for (const t of TRIBUTI) {
+    const o = document.createElement("option");
+    o.value = t.id; o.textContent = t.nome;
+    iTrib.append(o);
+  }
+  const tributo = () => TRIBUTI.find(t => t.id === iTrib.value) || TRIBUTI[0];
+
+  // Termine della dichiarazione relativa all'anno della violazione: 31 ottobre dell'anno successivo.
+  const termineAuto = (dScad) => new Date(dScad.getFullYear() + 1, 9, 31);
+  let dichToccata = false, annoToccato = false;
+
+  function precompila() {
+    const dScad = data(iScad);
+    if (!dScad) return;
+    if (!dichToccata) iDich.value = iso(termineAuto(dScad));
+    if (!annoToccato) iAnno.value = String(dScad.getFullYear());
+  }
+
+  // ---------- disegno ----------
+  function vuoto(msg) {
+    for (const id of ["n-giorni", "n-perc", "n-sanzione", "n-interessi", "n-totale", "n-barra"]) $(id).textContent = "—";
+    $("n-fascia").textContent = msg;
+    $("s-giorni").textContent = "giorni";
+    $("s-totale").textContent = "imposta + sanzione + interessi";
+    for (const id of ["t-giorni", "t-perc", "t-sanzione", "t-interessi", "t-totale"]) $(id).classList.add("vuoto");
+    svuota($("dentro-conto"));
+    $("dentro-conto").append(el("p", "formula", "Compila imposta, scadenza saltata e giorno in cui paghi: qui comparirà il conto riga per riga."));
+    svuota($("scaletta"));
+    $("nota-scaletta").textContent = "";
+    svuota($("corpo-f24"));
+    stato.corrente = null;
+  }
+
+  function disegna(r, imposta, dScad, dPag) {
+    for (const id of ["t-giorni", "t-perc", "t-sanzione", "t-interessi", "t-totale"]) $(id).classList.remove("vuoto");
+    $("n-giorni").textContent = String(Math.max(0, r.g));
+    $("s-giorni").textContent = r.g === 1 ? "giorno di ritardo" : (r.g <= 0 ? "nessun ritardo" : "giorni di ritardo");
+
+    if (!r.tardivo) {
+      $("n-perc").textContent = "0%";
+      $("n-sanzione").textContent = euro(0);
+      $("n-interessi").textContent = euro(0);
+      $("n-fascia").textContent = "Nessun ritardo: non c’è niente da ravvedere";
+      $("s-sanzione").textContent = "non dovuta";
+      $("s-interessi").textContent = "non dovuti";
+    } else {
+      $("n-perc").textContent = pct(r.f.perc);
+      $("n-sanzione").textContent = euro(r.sanzione);
+      $("n-interessi").textContent = euro(r.int.totale);
+      $("n-fascia").textContent = r.f.nome + " — riduzione " + r.f.fraz;
+      $("s-sanzione").textContent = "ridotta da ravvedimento";
+      $("s-interessi").textContent = "legali, al giorno";
+    }
+    $("n-totale").textContent = euro(r.totale);
+    $("n-barra").textContent = euro(r.totale);
+    $("s-totale").textContent = "di cui " + euro(imposta) + " di imposta";
+
+    // --- dettaglio del conto ---
+    const d = $("dentro-conto");
+    svuota(d);
+    const riga = (q, v, cls) => {
+      const n = el("div", "riga-conto" + (cls ? " " + cls : ""));
+      n.append(el("span", "q", q), el("b", null, v));
+      d.append(n);
+    };
+    riga("Imposta non versata", euro(imposta));
+    if (r.tardivo) {
+      riga("Regime applicato", r.f.nuovo ? "violazione dal 1/9/2024, sanzione piena 25%" : "violazione fino al 31/8/2024, sanzione piena 30%", "testo");
+      riga("Sanzione " + pct(r.f.perc) + " (" + r.f.fraz + ")", euro(r.sanzione));
+      for (const t of r.int.tranche) {
+        riga("Interessi " + t.anno + ": " + t.giorni + (t.giorni === 1 ? " giorno" : " giorni") + " al " + pct(t.tasso) + (t.noto ? "" : " (tasso stimato)"), euro(t.importo));
+      }
+      riga("Totale F24", euro(r.totale));
+      d.append(el("p", "formula", "Sanzione = " + euro(imposta) + " × " + pct(r.f.perc) + " — " + r.f.nota + ". Interessi = imposta × tasso legale × giorni ÷ 365, dal giorno dopo la scadenza (" + dataIt(dScad) + ") al giorno del versamento compreso (" + dataIt(dPag) + ")."));
+    } else {
+      riga("Totale F24", euro(r.totale));
+      d.append(el("p", "formula", "Il versamento cade entro la scadenza: non c’è sanzione né interesse."));
+    }
+
+    disegnaScaletta(imposta, dScad, dPag);
+    disegnaF24(r, imposta);
+    stato.corrente = { imposta, dScad, dPag, r };
+  }
+
+  // --- Pro 1: confronto fra le date di pagamento ---
+  function disegnaScaletta(imposta, dScad, dPag) {
+    const dDich = data(iDich) || termineAuto(dScad);
+    const dDich2 = new Date(dDich.getFullYear() + 1, dDich.getMonth(), dDich.getDate());
+    const nuovo = dScad.getTime() >= RIFORMA.getTime();
+    const tappe = [
+      { d: piuGiorni(dScad, 1), lab: "Il giorno dopo la scadenza", sub: "sanzione minima possibile" },
+      { d: piuGiorni(dScad, 15), lab: "15° giorno di ritardo", sub: "ultimo giorno del ravvedimento sprint" },
+      { d: piuGiorni(dScad, 30), lab: "30° giorno di ritardo", sub: "ultimo giorno della riduzione a 1/10" },
+      { d: piuGiorni(dScad, 90), lab: "90° giorno di ritardo", sub: "ultimo giorno in cui la sanzione è dimezzata" },
+      { d: dDich, lab: "Termine della dichiarazione", sub: "ultimo giorno della riduzione a 1/8" },
+      { d: piuGiorni(dDich, 1), lab: "Il giorno dopo", sub: nuovo ? "scatta la riduzione a 1/7" : "scatta la riduzione a 1/7" },
+    ];
+    if (!nuovo) {
+      tappe.push({ d: dDich2, lab: "Dichiarazione dell’anno dopo", sub: "ultimo giorno della riduzione a 1/7" });
+      tappe.push({ d: piuGiorni(dDich2, 1), lab: "Il giorno dopo", sub: "scatta la riduzione a 1/6" });
+    }
+    tappe.push({ d: dPag, lab: "La data che hai scelto", sub: dataIt(dPag), scelta: true });
+
+    const viste = new Map();
+    for (const t of tappe) {
+      if (t.d.getTime() <= dScad.getTime()) continue;
+      const k = iso(t.d);
+      if (viste.has(k) && !t.scelta) continue;
+      if (viste.has(k) && t.scelta) { viste.get(k).scelta = true; continue; }
+      viste.set(k, t);
+    }
+    const lista = Array.from(viste.values()).sort((a, b) => a.d - b.d);
+
+    const ul = $("scaletta");
+    svuota(ul);
+    for (const t of lista) {
+      const r = calcola(imposta, dScad, t.d, dDich);
+      const li = el("li", t.scelta ? "ora" : (t.d.getTime() < dPag.getTime() ? "passata" : ""));
+      const q = el("div", "quando");
+      q.append(document.createTextNode(t.lab));
+      const s = el("small", null, dataCorta(t.d) + " · " + (r.tardivo ? pct(r.f.perc) + " di sanzione" : "nessuna sanzione") + " · " + euro(r.int.totale) + " di interessi");
+      q.append(s);
+      li.append(q, el("div", "quanto", euro(r.totale)));
+      ul.append(li);
+    }
+    const ultima = lista[lista.length - 1];
+    const primo = calcola(imposta, dScad, lista[0].d, dDich).totale;
+    const peggio = calcola(imposta, dScad, ultima.d, dDich).totale;
+    $("nota-scaletta").textContent = "Fra il ravvedimento più rapido e il più tardivo ci sono " + euro(peggio - primo) + " di differenza. Le righe in chiaro sono date già passate rispetto a quella che hai scelto.";
+  }
+
+  // --- Pro 2: righe F24 ---
+  function disegnaF24(r, imposta) {
+    const t = tributo();
+    const anno = /^\d{4}$/.test(String(iAnno.value).trim()) ? String(iAnno.value).trim() : "—";
+    const corpo = $("corpo-f24");
+    svuota(corpo);
+    const riga = (voce, codice, importo, cls) => {
+      const tr = el("tr", cls);
+      tr.append(el("td", null, voce), el("td", null, codice), el("td", null, anno));
+      const td = el("td", "n", euroInt(importo));
+      tr.append(td);
+      corpo.append(tr);
+    };
+    const voci = [["Imposta", t.imp, imposta]];
+    if (r.tardivo) voci.push(["Sanzione", t.san, r.sanzione], ["Interessi", t.int, r.int.totale]);
+    let somma = 0;
+    for (const [v, c, i] of voci) { somma += Math.round(i); riga(v, c, i); }
+    riga("Totale", "", somma, "tot");
+  }
+
+  // ---------- prospetto salvato ----------
+  const stato = { corrente: null, righe: [] };
+
+  function carica() {
+    try {
+      const raw = localStorage.getItem(CHIAVE);
+      const v = raw ? JSON.parse(raw) : null;
+      stato.righe = Array.isArray(v) ? v.filter(x => x && typeof x.totale === "number") : [];
+    } catch (_) { stato.righe = []; }
+  }
+  function salva() {
+    try { localStorage.setItem(CHIAVE, JSON.stringify(stato.righe)); } catch (_) { /* memoria piena o negata: resta in pagina */ }
+  }
+
+  function disegnaSalvati() {
+    const ul = $("salvati");
+    svuota(ul);
+    if (!stato.righe.length) {
+      const li = el("li");
+      const d = el("div", "vt");
+      d.append(el("b", null, "Nessuna scadenza accodata."));
+      d.append(el("small", null, "Calcola un ravvedimento e premi « Accoda questa scadenza » per costruire un prospetto con più righe."));
+      li.append(d, el("div", "vn", ""), el("div", null, ""));
+      ul.append(li);
+      $("totale-salvati").hidden = true;
+      return;
+    }
+    let tot = 0;
+    stato.righe.forEach((r, i) => {
+      tot += r.totale;
+      const li = el("li");
+      const d = el("div", "vt");
+      d.append(el("b", null, r.tributo + " · anno " + r.anno));
+      d.append(el("small", null, "scaduto il " + r.scadenza + ", pagato il " + r.pagamento + " · " + r.giorni + " gg · imposta " + euro(r.imposta) + " + sanzione " + euro(r.sanzione) + " + interessi " + euro(r.interessi)));
+      const n = el("div", "vn", euro(r.totale));
+      const b = el("button", "mini", "Togli");
+      b.type = "button";
+      b.setAttribute("aria-label", "Togli la riga " + (i + 1) + " dal prospetto");
+      b.addEventListener("click", () => { stato.righe.splice(i, 1); salva(); disegnaSalvati(); avvisa("Riga rimossa."); });
+      li.append(d, n, b);
+      ul.append(li);
+    });
+    $("n-salvati").textContent = euro(tot);
+    $("totale-salvati").hidden = false;
+  }
+
+  function avvisa(msg) {
+    const n = $("esito-azione");
+    n.textContent = msg;
+    clearTimeout(avvisa.t);
+    avvisa.t = setTimeout(() => { n.textContent = ""; }, 4000);
+  }
+
+  function testoProspetto() {
+    const righe = ["Ravvedimento operoso — prospetto"];
+    if (stato.righe.length) {
+      let tot = 0;
+      for (const r of stato.righe) {
+        tot += r.totale;
+        righe.push("");
+        righe.push(r.tributo + " — anno " + r.anno);
+        righe.push("  scadenza " + r.scadenza + ", versamento " + r.pagamento + " (" + r.giorni + " giorni)");
+        righe.push("  imposta  " + euro(r.imposta) + "  cod. " + r.codImp);
+        righe.push("  sanzione " + euro(r.sanzione) + "  cod. " + r.codSan + "  (" + r.percTxt + ", " + r.fascia + ")");
+        righe.push("  interessi " + euro(r.interessi) + "  cod. " + r.codInt);
+        righe.push("  totale   " + euro(r.totale));
+      }
+      righe.push("");
+      righe.push("TOTALE DEL PROSPETTO: " + euro(tot));
+    } else {
+      righe.push("");
+      righe.push("(nessuna scadenza accodata)");
+    }
+    righe.push("");
+    righe.push("Calcolato con Un’app al giorno — Ravvedimento Operoso. Importi F24 da arrotondare all’unità di euro.");
+    return righe.join("\n");
+  }
+
+  function testoRiepilogo() {
+    const c = stato.corrente;
+    if (!c) return "Ravvedimento operoso: compila imposta e date per avere il riepilogo.";
+    const t = tributo();
+    const r = c.r;
+    const l = ["Ravvedimento operoso — " + t.nome];
+    l.push("Scadenza saltata: " + dataCorta(c.dScad) + " · versamento: " + dataCorta(c.dPag) + " · ritardo: " + r.g + " giorni");
+    l.push("Imposta: " + euro(c.imposta));
+    if (r.tardivo) {
+      l.push("Sanzione " + pct(r.f.perc) + " (" + r.f.fraz + ", " + r.f.nome + "): " + euro(r.sanzione));
+      l.push("Interessi legali: " + euro(r.int.totale));
+    } else l.push("Nessun ritardo: niente sanzione né interessi.");
+    l.push("TOTALE F24: " + euro(r.totale));
+    return l.join("\n");
+  }
+
+  async function copia(testo, nodo) {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) { await navigator.clipboard.writeText(testo); avvisa("Copiato."); return; }
+      throw new Error("no clipboard");
+    } catch (_) {
+      const box = $("stampabile");
+      box.hidden = false;
+      svuota(box);
+      box.append(el("pre", null, testo));
+      const sel = window.getSelection(), range = document.createRange();
+      range.selectNodeContents(box);
+      sel.removeAllRanges(); sel.addRange(range);
+      avvisa("Testo selezionato qui sotto: tieni premuto e scegli « Copia ».");
+    }
+  }
+
+  // ---------- eventi ----------
+  function aggiorna() {
+    precompila();
+    const imposta = numero(iImposta.value);
+    const dScad = data(iScad), dPag = data(iPag);
+    const av = $("avviso");
+    av.hidden = true; av.classList.remove("ok");
+
+    if (!Number.isFinite(imposta) || imposta <= 0) { vuoto(!String(iImposta.value).trim() ? "Inserisci imposta e date" : "Imposta non valida"); return; }
+    if (!dScad || !dPag) { vuoto("Inserisci le due date"); return; }
+
+    const dDich = data(iDich) || termineAuto(dScad);
+    const r = calcola(imposta, dScad, dPag, dDich);
+    disegna(r, imposta, dScad, dPag);
+
+    const messaggi = [];
+    if (r.g < 0) messaggi.push("Stai pagando prima della scadenza: non serve nessun ravvedimento.");
+    else if (r.g === 0) messaggi.push("Stai pagando il giorno della scadenza: sei in tempo, niente sanzione.");
+    if (dScad.getTime() > oggi().getTime()) messaggi.push("La scadenza che hai indicato è nel futuro: controlla la data.");
+    if (r.tardivo) {
+      const decadenza = new Date(dDich.getFullYear() + 5, 11, 31);
+      if (dPag.getTime() > decadenza.getTime()) messaggi.push("Il versamento cade oltre il 31/12/" + decadenza.getFullYear() + ", termine entro cui l’accertamento è notificabile: verifica con un professionista se il ravvedimento ha ancora senso.");
+      if (r.int.tranche.some(t => !t.noto)) messaggi.push("Per uno degli anni il tasso legale non è ancora stato fissato per decreto: è stato usato l’ultimo noto (" + pct(TASSI[ULTIMO]) + ").");
+    }
+    if (messaggi.length) {
+      av.hidden = false;
+      if (!r.tardivo) av.classList.add("ok");
+      av.textContent = messaggi.join(" ");
+    }
+  }
+
+  for (const n of [iImposta, iScad, iPag, iTrib, iDich, iAnno]) {
+    n.addEventListener("input", () => {
+      if (n === iDich) dichToccata = true;
+      if (n === iAnno) annoToccato = true;
+      aggiorna();
+    });
+    n.addEventListener("change", aggiorna);
+  }
+  $("modulo").addEventListener("submit", (e) => { e.preventDefault(); aggiorna(); });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && document.activeElement && document.activeElement.tagName === "INPUT") document.activeElement.blur();
+  });
+  $("btn-oggi").addEventListener("click", () => { iPag.value = iso(oggi()); aggiorna(); });
+  $("btn-azzera").addEventListener("click", () => {
+    iImposta.value = ""; iScad.value = ""; iDich.value = ""; iAnno.value = "";
+    iPag.value = iso(oggi()); iTrib.value = TRIBUTI[0].id;
+    dichToccata = false; annoToccato = false;
+    $("avviso").hidden = true;
+    aggiorna();
+    iImposta.focus();
+  });
+  $("btn-riepilogo").addEventListener("click", () => copia(testoRiepilogo()));
+  $("btn-copia").addEventListener("click", () => copia(testoProspetto()));
+  $("btn-stampa").addEventListener("click", () => window.print());
+  $("btn-accoda").addEventListener("click", () => {
+    const c = stato.corrente;
+    if (!c) { avvisa("Prima compila imposta e date."); return; }
+    const t = tributo();
+    stato.righe.push({
+      tributo: t.nome,
+      anno: /^\d{4}$/.test(String(iAnno.value).trim()) ? String(iAnno.value).trim() : String(c.dScad.getFullYear()),
+      scadenza: dataCorta(c.dScad), pagamento: dataCorta(c.dPag), giorni: c.r.g,
+      imposta: c.imposta, sanzione: c.r.sanzione, interessi: c.r.int.totale, totale: c.r.totale,
+      percTxt: c.r.tardivo ? pct(c.r.f.perc) : "0%", fascia: c.r.tardivo ? c.r.f.fraz : "nessun ritardo",
+      codImp: t.imp, codSan: t.san, codInt: t.int,
+    });
+    salva();
+    disegnaSalvati();
+    avvisa("Scadenza accodata al prospetto.");
+  });
+  $("btn-csv").addEventListener("click", () => {
+    if (!stato.righe.length) { avvisa("Il prospetto è vuoto: accoda almeno una scadenza."); return; }
+    const sep = ";";
+    const n2 = (v) => v.toFixed(2).replace(".", ",");
+    const testa = ["Tributo", "Anno", "Scadenza", "Versamento", "Giorni", "Imposta", "Cod. imposta", "Sanzione", "%", "Cod. sanzione", "Interessi", "Cod. interessi", "Totale"];
+    const corpo = stato.righe.map(r => [r.tributo, r.anno, r.scadenza, r.pagamento, r.giorni, n2(r.imposta), r.codImp, n2(r.sanzione), r.percTxt, r.codSan, n2(r.interessi), r.codInt, n2(r.totale)]);
+    const csv = "﻿" + [testa, ...corpo].map(r => r.map(c => '"' + String(c).replace(/"/g, '""') + '"').join(sep)).join("\r\n");
+    try {
+      const url = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+      const a = document.createElement("a");
+      a.href = url; a.download = "ravvedimento-operoso.csv";
+      document.body.append(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      avvisa("CSV scaricato.");
+    } catch (_) { copia(testoProspetto()); }
+  });
+
+  // ---------- avvio ----------
+  iPag.value = iso(oggi());
+  carica();
+  disegnaSalvati();
+  aggiorna();
+})();
+</script>
+</body>
+</html>
