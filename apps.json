@@ -1,6 +1,6 @@
 {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 38,
+  "count": 39,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -49,6 +49,70 @@
     ]
   },
   "apps": [
+    {
+      "title": "Costo del Cane",
+      "slug": "2026-10-20-quanto-costa-un-cane",
+      "date": "2026-10-20",
+      "description": "Calcola quanto costa mantenere un cane: cibo, veterinario, toelettatura e pensione, con il conto mensile, annuo e di tutta la vita.",
+      "category": "finanza-personale",
+      "tags": [
+        "cane",
+        "animali",
+        "budget",
+        "spese"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "single-column",
+        "palette": "arancio-caldo",
+        "font": "rounded"
+      },
+      "business": {
+        "keyword": "quanto costa mantenere un cane",
+        "keywords": [
+          "quanto costa un cane al mese",
+          "costo mantenimento cane taglia grande",
+          "spese annuali cane",
+          "quanto costa un cucciolo il primo anno"
+        ],
+        "intent": "Chi sta per adottare o comprare un cane e vuole sapere prima quanto gli costerà davvero, mese per mese e per tutta la vita dell'animale.",
+        "target": "Famiglie e single che stanno valutando l'adozione, 25-55 anni, da telefono.",
+        "edge": "I primi risultati sono articoli che buttano lì una cifra media: qui il conto si costruisce sulla taglia del proprio cane, su voci modificabili, separa il primo anno dagli anni successivi, calcola la detrazione veterinaria del 19% e mostra il costo di tutta la vita. Offline, senza registrazione.",
+        "monetization": [
+          "adsense",
+          "affiliate",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto fra taglie",
+          "Budget mensile da stampare"
+        ],
+        "affiliate": [
+          {
+            "t": "Crocchette per cane, sacco convenienza",
+            "q": "crocchette cane 15 kg"
+          },
+          {
+            "t": "Antiparassitario spot-on",
+            "q": "antiparassitario cane spot on"
+          },
+          {
+            "t": "Trasportino da auto omologato",
+            "q": "trasportino cane auto omologato"
+          },
+          {
+            "t": "Kit toelettatura da casa",
+            "q": "kit toelettatura cane spazzola tagliaunghie"
+          }
+        ]
+      },
+      "size": 50520
+    },
     {
       "title": "Ravvedimento Operoso",
       "slug": "2026-10-19-ravvedimento-operoso",

@@ -1,0 +1,932 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#c2560c">
+  <title>Costo del Cane: quanto costa mantenere un cane gratis</title>
+  <meta name="description" content="Quanto costa mantenere un cane? Calcola il conto reale per taglia: cibo, veterinario, antiparassitari, toelettatura e pensione, al mese, all'anno e per tutta la vita.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-20-quanto-costa-un-cane/">
+  <meta property="og:title" content="Costo del Cane: quanto costa mantenere un cane gratis">
+  <meta property="og:description" content="Il conto vero, costruito sulla taglia del tuo cane: cibo, veterinario, toelettatura, pensione, primo anno e tutta la vita. Senza registrazione.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-20-quanto-costa-un-cane/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Costo del Cane",
+    "description": "Calcolatore gratuito del costo di mantenimento di un cane in Italia: cibo, veterinario, antiparassitari, toelettatura, pensione e imprevisti, con il totale mensile, annuo e di tutta la vita.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-20-quanto-costa-un-cane/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Quanto costa mantenere un cane in media all'anno?", "acceptedAnswer": { "@type": "Answer", "text": "Le indagini di settore del 2026 indicano una spesa media fra 900 e 1.300 euro all'anno per cane, cioè circa 75-110 euro al mese. La media però nasconde differenze enormi: un cane di taglia piccola che non va in pensione sta sotto gli 800 euro, un cane grande con toelettatura e dog sitter supera i 2.000." } },
+      { "@type": "Question", "name": "Quanto costa il primo anno di un cucciolo?", "acceptedAnswer": { "@type": "Answer", "text": "Al costo ordinario si aggiungono le spese una tantum: microchip e iscrizione all'anagrafe (28-70 euro), ciclo vaccinale del cucciolo (100-150 euro), sterilizzazione (180-450 euro secondo la taglia), corredo iniziale fra cuccia, trasportino, guinzaglio e ciotole (150-250 euro) ed eventuale costo di adozione o acquisto. Il primo anno costa tipicamente da 500 a 1.200 euro in più." } },
+      { "@type": "Question", "name": "Le spese veterinarie si possono detrarre dalle tasse?", "acceptedAnswer": { "@type": "Answer", "text": "Sì: le prestazioni veterinarie e i farmaci per animali da compagnia danno una detrazione del 19%, con franchigia di 129,11 euro e tetto di spesa di 550 euro per contribuente. Il risparmio massimo è di circa 80 euro all'anno. Il calcolatore la applica automaticamente sulle voci ammesse." } },
+      { "@type": "Question", "name": "Quanto costa un cane di taglia grande rispetto a uno piccolo?", "acceptedAnswer": { "@type": "Answer", "text": "La differenza nasce quasi tutta dal cibo e dai dosaggi: un cane di 35 kg mangia tre volte un cane di 8 kg e paga antiparassitari, anestesie e farmaci in proporzione al peso. In compenso va dal toelettatore meno spesso. Nel conto annuo la differenza tipica fra piccola e grande è di 700-900 euro." } },
+      { "@type": "Question", "name": "Quanto devo accantonare al mese per gli imprevisti?", "acceptedAnswer": { "@type": "Answer", "text": "Un fondo di 15-25 euro al mese (180-300 euro l'anno) copre la maggior parte degli imprevisti ordinari: una gastroenterite, una zampa da radiografare, un dente da estrarre. Per un intervento serio servono 1.000-3.000 euro, ed è lì che ha senso valutare un'assicurazione sanitaria." } }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #fff7f0; --sfondo2: #fdeade; --testo: #2b1a0f; --tenue: #7b6153; --riga: #f2d9c3;
+      --acc: #c2560c; --acc-ink: #fff; --acc-soft: #fbe3cf; --ok: #1f7a4d; --no: #b03a2e;
+      --r: 20px; --r-s: 14px;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1a1310; --sfondo2: #241a14; --testo: #f6ece4; --tenue: #b39b89; --riga: #3a2a20;
+        --acc: #ff9243; --acc-ink: #2b1403; --acc-soft: #33231a; --ok: #5fd39b; --no: #ff8577;
+        color-scheme: dark;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--testo);
+      font: 17px/1.6 "Segoe UI", -apple-system, system-ui, Roboto, sans-serif;
+      overflow-x: hidden;
+    }
+    main { padding: max(10px, env(safe-area-inset-top)) 18px calc(96px + env(safe-area-inset-bottom)); }
+    a { color: var(--acc); }
+    .su { display: inline-block; margin: 6px 0 2px; font-size: .95rem; color: var(--tenue); text-decoration: none; }
+    .su:hover { color: var(--testo); }
+    h1 { font-size: 1.65rem; line-height: 1.22; font-weight: 700; letter-spacing: -.01em; margin: .6rem 0 .5rem; }
+    h2 { font-size: 1.22rem; font-weight: 700; margin: 2.4rem 0 .6rem; }
+    h3 { font-size: 1.04rem; font-weight: 700; margin: 1.6rem 0 .4rem; }
+    p { margin: 0 0 .9rem; }
+    .intro { color: var(--tenue); }
+
+    /* ---- esito in testa: il numero grande si vede subito sul telefono ---- */
+    .esito { margin: 1.2rem 0 .4rem; }
+    .cifrona { font-size: 2.9rem; line-height: 1.05; font-weight: 700; letter-spacing: -.03em; color: var(--acc); }
+    .cifrona small { display: block; font-size: .95rem; font-weight: 600; letter-spacing: 0; color: var(--tenue); margin-top: .25rem; }
+    .trio { display: flex; flex-wrap: wrap; gap: .55rem; margin: 1rem 0 .2rem; }
+    .trio div {
+      flex: 1 1 8.5rem; background: var(--sfondo2); border-radius: var(--r-s);
+      padding: .7rem .8rem;
+    }
+    .trio b { display: block; font-size: 1.22rem; }
+    .trio span { font-size: .88rem; color: var(--tenue); }
+    .nota { font-size: .92rem; color: var(--tenue); }
+    .nota.sconto { color: var(--ok); }
+
+    /* ---- controlli ---- */
+    .chips { display: flex; flex-wrap: wrap; gap: .5rem; margin: .3rem 0 1rem; }
+    .chip {
+      flex: 1 1 8.6rem; min-height: 56px; border: 2px solid var(--riga); background: transparent;
+      color: var(--testo); border-radius: 999px; padding: .5rem .9rem; font: inherit; font-size: 1rem;
+      cursor: pointer; text-align: center;
+    }
+    .chip b { display: block; font-weight: 700; }
+    .chip i { font-style: normal; font-size: .8rem; color: var(--tenue); }
+    .chip[aria-pressed="true"] { background: var(--acc); border-color: var(--acc); color: var(--acc-ink); }
+    .chip[aria-pressed="true"] i { color: var(--acc-ink); opacity: .85; }
+
+    .interr {
+      display: flex; align-items: center; gap: .8rem; min-height: 60px; margin: 0 0 1.2rem;
+      padding: .6rem .8rem; background: var(--sfondo2); border-radius: var(--r-s);
+      font-weight: 600; cursor: pointer;
+    }
+    .interr input { flex: 0 0 auto; width: 28px; height: 28px; margin: 8px; font: inherit; accent-color: var(--acc); }
+    .interr .sub { display: block; font-weight: 400; font-size: .9rem; color: var(--tenue); }
+
+    .gruppo { margin: 1.6rem 0; }
+    .gruppo > h3 { margin: 0 0 .1rem; }
+    .gruppo > .nota { margin-bottom: .7rem; }
+    .voce { display: flex; align-items: center; gap: .7rem; padding: .55rem 0; border-bottom: 1px solid var(--riga); }
+    .voce:last-child { border-bottom: 0; }
+    .voce .et { flex: 1 1 auto; min-width: 0; }
+    .voce .et b { display: block; font-weight: 600; font-size: 1rem; }
+    .voce .et span { font-size: .85rem; color: var(--tenue); }
+    .campo { display: flex; align-items: center; gap: .3rem; flex: 0 0 auto; }
+    .campo input {
+      width: 5.2rem; min-height: 48px; font: inherit; font-size: 17px; text-align: right;
+      background: var(--sfondo2); color: var(--testo); border: 2px solid transparent;
+      border-radius: var(--r-s); padding: .3rem .5rem;
+    }
+    .campo input:focus-visible { outline: none; border-color: var(--acc); }
+    .campo input.breve { width: 3.6rem; }
+    .um { font-size: .9rem; color: var(--tenue); }
+    .per { font-size: .86rem; color: var(--tenue); white-space: nowrap; }
+
+    .bottoni { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0 0; }
+    .btn {
+      min-height: 48px; padding: .6rem 1.1rem; border-radius: 999px; font: inherit; font-weight: 600;
+      border: 2px solid var(--riga); background: transparent; color: var(--testo); cursor: pointer;
+    }
+    .btn.pieno { background: var(--acc); border-color: var(--acc); color: var(--acc-ink); }
+    .avviso { min-height: 1.4rem; font-size: .92rem; color: var(--ok); margin-top: .5rem; }
+
+    /* ---- dettaglio ---- */
+    .dett { margin: 1.4rem 0 0; }
+    .dett .riga { display: flex; align-items: baseline; gap: .6rem; padding: .4rem 0; border-bottom: 1px dashed var(--riga); font-size: .98rem; }
+    .dett .riga span:first-child { flex: 1 1 auto; }
+    .dett .riga b { font-variant-numeric: tabular-nums; }
+    .dett .riga.tot { border-bottom: 0; border-top: 2px solid var(--riga); margin-top: .3rem; padding-top: .6rem; font-size: 1.05rem; }
+    .barretta { height: 8px; border-radius: 999px; background: var(--acc-soft); overflow: hidden; margin: .15rem 0 .5rem; }
+    .barretta i { display: block; height: 100%; background: var(--acc); }
+
+    /* ---- Pro ---- */
+    section[data-pro] { margin: 2.4rem 0; padding: 1rem 0 0; border-top: 2px solid var(--riga); min-height: 190px; }
+    section[data-pro] > h2 { margin-top: 0; }
+    .confronto { margin: .8rem 0 0; }
+    .confronto .r { display: flex; align-items: baseline; gap: .5rem; padding: .5rem 0; border-bottom: 1px solid var(--riga); }
+    .confronto .r:last-child { border-bottom: 0; }
+    .confronto .r.qui b { color: var(--acc); }
+    .confronto .nome { flex: 1 1 auto; }
+    .confronto .nome span { display: block; font-size: .84rem; color: var(--tenue); }
+    .confronto .r b { font-variant-numeric: tabular-nums; }
+    .confronto .r i { font-style: normal; font-size: .85rem; color: var(--tenue); white-space: nowrap; }
+
+    /* ---- guida ---- */
+    #guida h2:first-child { margin-top: 2.6rem; }
+    #guida ul, #guida ol { padding-left: 1.2rem; margin: 0 0 1rem; }
+    #guida li { margin-bottom: .45rem; }
+    .faq-d { font-weight: 700; margin: 1.3rem 0 .3rem; font-size: 1.02rem; }
+    .fonte { font-size: .9rem; color: var(--tenue); }
+    .piede { margin-top: 2.6rem; border-top: 2px solid var(--riga); padding-top: 1rem; font-size: .95rem; color: var(--tenue); }
+    .piede ul { padding-left: 1.2rem; }
+    [data-ad], [data-affiliate] { margin: 2rem 0; }
+
+    /* ---- barra del pollice ---- */
+    .barra {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 5;
+      display: flex; align-items: center; gap: .7rem;
+      padding: .5rem 14px calc(.5rem + env(safe-area-inset-bottom));
+      background: var(--sfondo2); border-top: 2px solid var(--riga);
+    }
+    .barra .b-cifra { flex: 1 1 auto; line-height: 1.2; }
+    .barra .b-cifra b { display: block; font-size: 1.2rem; color: var(--acc); }
+    .barra .b-cifra span { font-size: .82rem; color: var(--tenue); }
+    .barra .btn { min-height: 44px; padding: .45rem .9rem; }
+
+    @media (min-width: 700px) {
+      main { max-width: 42rem; margin: 0 auto; padding-bottom: 3rem; }
+      h1 { font-size: 2.1rem; }
+      .cifrona { font-size: 3.4rem; }
+      .chip { flex: 0 1 10rem; }
+      .barra { position: static; border: 0; background: transparent; padding: 1rem 0 0; }
+      .barra .btn { min-height: 48px; }
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .btn, .chip, .barretta i { transition: background-color .15s ease, color .15s ease, width .25s ease; }
+    }
+    @media print {
+      .su, .esito, .chips, .interr, .gruppo, .bottoni, .avviso, .dett, .barra,
+      #guida, .piede, [data-ad], [data-affiliate], #pro-confronto, .no-stampa { display: none !important; }
+      body { background: #fff; color: #000; font-size: 11pt; }
+      section[data-pro] { border: 0; padding: 0; }
+      .stampa-intesta { display: block !important; }
+    }
+    .stampa-intesta { display: none; }
+  </style>
+</head>
+<body>
+<main>
+  <a class="su" href="../../index.html">← Tutte le app</a>
+
+  <h1>Quanto costa mantenere un cane: il conto vero, taglia per taglia</h1>
+  <p class="intro">Scegli la taglia, correggi i prezzi con i tuoi e vedi il conto al mese, all'anno
+    e per tutta la vita del cane. Detrazione veterinaria del 19% inclusa, niente registrazione.</p>
+
+  <div class="esito" aria-live="polite">
+    <div class="cifrona" id="cifra-mese">0 €<small id="cifra-eti">al mese, in media</small></div>
+    <div class="trio">
+      <div><b id="n-anno">0 €</b><span id="n-anno-eti">all'anno</span></div>
+      <div><b id="n-vita">0 €</b><span id="n-vita-eti">in tutta la vita</span></div>
+      <div><b id="n-giorno">0 €</b><span>al giorno</span></div>
+    </div>
+    <p class="nota sconto" id="n-detr"></p>
+  </div>
+
+  <h2 id="t-taglia">Che taglia ha il tuo cane?</h2>
+  <div class="chips" id="chips" role="group" aria-labelledby="t-taglia"></div>
+
+  <label class="interr" for="primo-anno">
+    <input type="checkbox" id="primo-anno">
+    <span>È il primo anno (cucciolo appena arrivato)
+      <span class="sub">Aggiunge microchip, vaccinazioni, sterilizzazione e corredo iniziale.</span></span>
+  </label>
+
+  <h2>Le voci di spesa</h2>
+  <p class="nota">Partono dalle medie italiane per la taglia scelta: cambia i numeri che conosci e
+    metti a zero quello che non ti serve. Il totale si aggiorna mentre scrivi.</p>
+
+  <div class="gruppo">
+    <h3>Ogni mese</h3>
+    <p class="nota">Le spese che tornano tutti i mesi.</p>
+    <div class="voce">
+      <span class="et"><b>Cibo</b><span id="aiuto-cibo">crocchette o umido</span></span>
+      <span class="campo"><input type="text" id="f-cibo" inputmode="decimal" enterkeyhint="done" aria-label="Cibo al mese, euro" data-min="0" data-max="2000"><span class="um">€/mese</span></span>
+    </div>
+    <div class="voce">
+      <span class="et"><b>Snack e premietti</b><span>biscotti, ossi da masticare, premi per l'addestramento</span></span>
+      <span class="campo"><input type="text" id="f-snack" inputmode="decimal" enterkeyhint="done" aria-label="Snack al mese, euro" data-min="0" data-max="500"><span class="um">€/mese</span></span>
+    </div>
+    <div class="voce">
+      <span class="et"><b>Antiparassitari</b><span>spot-on o collare, più la profilassi filaria</span></span>
+      <span class="campo"><input type="text" id="f-anti" inputmode="decimal" enterkeyhint="done" aria-label="Antiparassitari al mese, euro" data-min="0" data-max="500"><span class="um">€/mese</span></span>
+    </div>
+  </div>
+
+  <div class="gruppo">
+    <h3>Ogni anno</h3>
+    <p class="nota">Spese ricorrenti ma non mensili: le dividiamo noi su dodici mesi.</p>
+    <div class="voce">
+      <span class="et"><b>Veterinario di routine</b><span>visita annuale, richiami vaccinali, esami del sangue</span></span>
+      <span class="campo"><input type="text" id="f-vet" inputmode="decimal" enterkeyhint="done" aria-label="Veterinario di routine all'anno, euro" data-min="0" data-max="5000"><span class="um">€/anno</span></span>
+    </div>
+    <div class="voce">
+      <span class="et"><b>Fondo imprevisti</b><span>la gastroenterite, la zampa da radiografare, il dente da togliere</span></span>
+      <span class="campo"><input type="text" id="f-imp" inputmode="decimal" enterkeyhint="done" aria-label="Fondo imprevisti all'anno, euro" data-min="0" data-max="10000"><span class="um">€/anno</span></span>
+    </div>
+    <div class="voce">
+      <span class="et"><b>Assicurazione sanitaria</b><span>facoltativa: lasciala a zero se non ce l'hai</span></span>
+      <span class="campo"><input type="text" id="f-assic" inputmode="decimal" enterkeyhint="done" aria-label="Assicurazione all'anno, euro" data-min="0" data-max="3000"><span class="um">€/anno</span></span>
+    </div>
+    <div class="voce">
+      <span class="et"><b>Toelettatura</b><span id="aiuto-toel">sedute all'anno × prezzo</span></span>
+      <span class="campo">
+        <input type="text" id="f-toel-n" class="breve" inputmode="numeric" enterkeyhint="done" aria-label="Sedute di toelettatura all'anno" data-min="0" data-max="60">
+        <span class="um">×</span>
+        <input type="text" id="f-toel-p" class="breve" inputmode="decimal" enterkeyhint="done" aria-label="Prezzo di una seduta di toelettatura, euro" data-min="0" data-max="300">
+        <span class="um">€</span>
+      </span>
+    </div>
+    <div class="voce">
+      <span class="et"><b>Pensione o cane in vacanza</b><span>giorni all'anno × prezzo al giorno</span></span>
+      <span class="campo">
+        <input type="text" id="f-pens-n" class="breve" inputmode="numeric" enterkeyhint="done" aria-label="Giorni di pensione all'anno" data-min="0" data-max="365">
+        <span class="um">×</span>
+        <input type="text" id="f-pens-p" class="breve" inputmode="decimal" enterkeyhint="done" aria-label="Prezzo della pensione al giorno, euro" data-min="0" data-max="300">
+        <span class="um">€</span>
+      </span>
+    </div>
+    <div class="voce">
+      <span class="et"><b>Dog sitter o passeggiate</b><span>uscite all'anno × prezzo</span></span>
+      <span class="campo">
+        <input type="text" id="f-ds-n" class="breve" inputmode="numeric" enterkeyhint="done" aria-label="Uscite con il dog sitter all'anno" data-min="0" data-max="700">
+        <span class="um">×</span>
+        <input type="text" id="f-ds-p" class="breve" inputmode="decimal" enterkeyhint="done" aria-label="Prezzo di un'uscita con il dog sitter, euro" data-min="0" data-max="200">
+        <span class="um">€</span>
+      </span>
+    </div>
+    <div class="voce">
+      <span class="et"><b>Accessori e varie</b><span>guinzagli, giochi, sacchetti, cuccia da sostituire</span></span>
+      <span class="campo"><input type="text" id="f-acc" inputmode="decimal" enterkeyhint="done" aria-label="Accessori e varie all'anno, euro" data-min="0" data-max="5000"><span class="um">€/anno</span></span>
+    </div>
+  </div>
+
+  <div class="gruppo" id="gruppo-uno" hidden>
+    <h3>Una tantum, solo il primo anno</h3>
+    <p class="nota">Le spese di partenza: si pagano una volta e non tornano più.</p>
+    <div class="voce">
+      <span class="et"><b>Adozione o acquisto</b><span>contributo del canile o prezzo dell'allevamento</span></span>
+      <span class="campo"><input type="text" id="f-adoz" inputmode="decimal" enterkeyhint="done" aria-label="Adozione o acquisto, euro" data-min="0" data-max="20000"><span class="um">€</span></span>
+    </div>
+    <div class="voce">
+      <span class="et"><b>Microchip e anagrafe canina</b><span>circa 28 € in ASL, 30–70 € dal veterinario</span></span>
+      <span class="campo"><input type="text" id="f-chip" inputmode="decimal" enterkeyhint="done" aria-label="Microchip, euro" data-min="0" data-max="500"><span class="um">€</span></span>
+    </div>
+    <div class="voce">
+      <span class="et"><b>Ciclo vaccinale del cucciolo</b><span>due o tre richiami più la visita</span></span>
+      <span class="campo"><input type="text" id="f-vacc" inputmode="decimal" enterkeyhint="done" aria-label="Ciclo vaccinale del cucciolo, euro" data-min="0" data-max="1000"><span class="um">€</span></span>
+    </div>
+    <div class="voce">
+      <span class="et"><b>Sterilizzazione</b><span id="aiuto-ster">varia con la taglia e con il sesso</span></span>
+      <span class="campo"><input type="text" id="f-ster" inputmode="decimal" enterkeyhint="done" aria-label="Sterilizzazione, euro" data-min="0" data-max="2000"><span class="um">€</span></span>
+    </div>
+    <div class="voce">
+      <span class="et"><b>Corredo iniziale</b><span>cuccia, trasportino, ciotole, guinzaglio, pettorina</span></span>
+      <span class="campo"><input type="text" id="f-corredo" inputmode="decimal" enterkeyhint="done" aria-label="Corredo iniziale, euro" data-min="0" data-max="3000"><span class="um">€</span></span>
+    </div>
+    <div class="voce">
+      <span class="et"><b>Corso di educazione di base</b><span>facoltativo: 6–8 lezioni di gruppo</span></span>
+      <span class="campo"><input type="text" id="f-corso" inputmode="decimal" enterkeyhint="done" aria-label="Corso di educazione, euro" data-min="0" data-max="3000"><span class="um">€</span></span>
+    </div>
+  </div>
+
+  <div class="bottoni no-stampa">
+    <button type="button" class="btn" id="btn-medie">Ripristina le medie</button>
+    <button type="button" class="btn" id="btn-copia">Copia il riepilogo</button>
+  </div>
+  <p class="avviso" id="avviso" role="status"></p>
+
+  <h2>Dove finiscono i soldi</h2>
+  <div class="dett" id="dettaglio"></div>
+
+  <div data-ad="top"></div>
+
+  <section data-pro="Confronto fra taglie" id="pro-confronto">
+    <h2>Quanto costerebbe con un'altra taglia</h2>
+    <p class="nota">Le tue abitudini (sedute di toelettatura, giorni di pensione, assicurazione)
+      restano quelle; i prezzi che dipendono dai chili — cibo, antiparassitari, veterinario,
+      sterilizzazione — vengono riproporzionati alla taglia, anche quelli che hai corretto a mano.
+      Utile se stai ancora decidendo quale cane adottare.</p>
+    <div class="confronto" id="confronto"></div>
+  </section>
+
+  <section data-pro="Budget mensile da stampare">
+    <h2>Il budget da attaccare al frigo</h2>
+    <p class="nota no-stampa">Quanto mettere da parte ogni mese, voce per voce: stampalo o scaricalo
+      in CSV per il foglio di calcolo delle spese di casa.</p>
+    <p class="stampa-intesta"><b>Budget annuale del cane</b> — <span id="stampa-sub"></span></p>
+    <div class="dett" id="budget"></div>
+    <div class="bottoni no-stampa">
+      <button type="button" class="btn pieno" id="btn-stampa">Stampa il budget</button>
+      <button type="button" class="btn" id="btn-csv">Scarica CSV</button>
+    </div>
+  </section>
+
+  <div data-affiliate data-title="Quello che serve davvero (e dove si risparmia)" data-items='[{"t":"Crocchette per cane, sacco convenienza","q":"crocchette cane 15 kg"},{"t":"Antiparassitario spot-on","q":"antiparassitario cane spot on"},{"t":"Trasportino da auto omologato","q":"trasportino cane auto omologato"},{"t":"Kit toelettatura da casa","q":"kit toelettatura cane spazzola tagliaunghie"}]'></div>
+  <section id="guida">
+    <h2>Come si calcola quanto costa mantenere un cane</h2>
+    <p>Le cifre che si trovano in giro — «un cane costa 1.263 € all'anno» — sono medie di sondaggi
+      nazionali: vere in generale, inutili per il tuo caso. Il costo reale dipende da tre cose e
+      solo da quelle: <strong>quanto pesa il cane</strong> (cibo, dosaggi dei farmaci e anestesie
+      si pagano al chilo), <strong>quanti servizi compri</strong> (toelettatore, pensione, dog
+      sitter, assicurazione) e <strong>quanto sei fortunato con la salute</strong>. Il calcolatore
+      mette insieme le tre parti così: le voci mensili vengono moltiplicate per dodici, le voci
+      annuali si sommano, le spese una tantum del primo anno si aggiungono solo se spunti la
+      casella del cucciolo. Alla fine viene sottratta la detrazione fiscale sulle spese
+      veterinarie, che quasi nessuno mette nel conto.</p>
+
+    <h3>Un esempio con i numeri</h3>
+    <p>Prendiamo un cane di taglia media, 18 kg, già adulto. Cibo 70 € al mese, snack 8 €,
+      antiparassitari 18 €: fanno 96 € al mese, cioè <strong>1.152 € l'anno</strong>. Poi le voci
+      annuali: visita e richiami dal veterinario 180 €, fondo imprevisti 200 €, quattro
+      toelettature da 45 € (180 €), dieci giorni di pensione ad agosto a 28 € al giorno (280 €),
+      accessori e varie 140 €. Totale annuale <strong>980 €</strong>. La spesa lorda è quindi di
+      2.132 € l'anno, cioè 178 € al mese. A questo punto entra la detrazione: le prestazioni
+      veterinarie ammesse sono 380 € (180 di routine + 200 di imprevisti), sopra la franchigia di
+      129,11 € restano 250,89 €, il 19% fa <strong>47,67 € di sconto</strong> sulla dichiarazione.
+      Il costo netto scende a 2.084 € l'anno, 174 € al mese. Su dodici anni di vita media di un
+      cane di taglia media parliamo di circa 25.000 €: è questo il numero che conviene guardare
+      prima di adottare, non quello del mese.</p>
+
+    <h3>Il primo anno costa di più (e il secondo di meno)</h3>
+    <p>Quando arriva un cucciolo si pagano una volta sola microchip e iscrizione all'anagrafe
+      canina (circa 28 € in ASL, 30–70 € dal veterinario privato), il ciclo vaccinale completo
+      (100–150 €), la sterilizzazione (dai 180 € di una femmina piccola ai 400–450 € di un maschio
+      gigante) e il corredo: cuccia, trasportino, ciotole, guinzaglio, pettorina, qualche gioco,
+      150–250 €. Tra queste e l'eventuale costo di adozione o acquisto, il primo anno costa
+      tipicamente da 500 a 1.200 € in più degli altri. Buona notizia: la sterilizzazione e il
+      ciclo vaccinale sono prestazioni veterinarie, quindi entrano nella detrazione — che però si
+      ferma a 550 € di spesa, cioè a circa 80 € di risparmio massimo all'anno.</p>
+
+    <h3>La detrazione del 19% sulle spese veterinarie</h3>
+    <p>Per gli animali da compagnia le prestazioni del veterinario e i farmaci veterinari si
+      portano nel 730: detrazione del 19%, franchigia di 129,11 € (la prima parte di spesa non
+      conta) e tetto di 550 € di spesa per contribuente, non per animale. Chi spende 550 € o più
+      recupera sempre circa 80 €. Servono fattura intestata e pagamento tracciabile per i farmaci
+      non da banco; cibo, accessori, toelettatura e pensione non sono detraibili. Nel calcolatore
+      la detrazione viene applicata su veterinario di routine, fondo imprevisti e — nel primo anno
+      — vaccinazioni e sterilizzazione.</p>
+
+    <h3>Errori comuni quando si fa il preventivo</h3>
+    <ul>
+      <li><strong>Dimenticare i mesi di agosto.</strong> Dieci giorni di pensione sono spesso la
+        terza voce di spesa dell'anno: pesano più della toelettatura.</li>
+      <li><strong>Non mettere nulla per gli imprevisti.</strong> Un cane su due, nell'arco di un
+        anno, ha almeno un problema fuori programma; un intervento serio costa 1.000–3.000 €.
+        Mettere 15–25 € al mese da parte è l'unica assicurazione gratuita.</li>
+      <li><strong>Prendere il prezzo delle crocchette al chilo del sacco piccolo.</strong> Sul
+        sacco da 12–15 kg il prezzo al chilo scende di un terzo: è la voce su cui si risparmia di
+        più senza togliere niente al cane.</li>
+      <li><strong>Pensare che un cane piccolo costi sempre poco.</strong> Mangia meno, vero, ma va
+        dal toelettatore ogni due mesi e vive più a lungo: sul totale della vita la differenza
+        con un cane grande si assottiglia.</li>
+      <li><strong>Confondere il contributo di adozione con il costo del cane.</strong> I 150 € del
+        canile sono l'1% di quello che spenderai: la decisione si prende sul conto annuo.</li>
+    </ul>
+
+    <h3>Domande frequenti</h3>
+    <p class="faq-d">Quanto costa mantenere un cane in media all'anno?</p>
+    <p>Le indagini di settore del 2026 indicano fra 900 e 1.300 € all'anno per cane, cioè 75–110 €
+      al mese. Dentro quella media c'è però tutto: un cane piccolo che non va in pensione sta
+      sotto gli 800 €, un cane grande con toelettatura e dog sitter supera i 2.000 €.</p>
+    <p class="faq-d">Quanto costa il primo anno di un cucciolo?</p>
+    <p>Il costo ordinario più 500–1.200 € di spese una tantum: microchip, ciclo vaccinale,
+      sterilizzazione, corredo e, se c'è, il contributo di adozione o il prezzo dell'allevamento.
+      Spunta la casella «è il primo anno» per vederlo nel conto.</p>
+    <p class="faq-d">Conviene l'assicurazione sanitaria per il cane?</p>
+    <p>Le polizze costano 150–400 € l'anno e di solito coprono interventi e ricoveri, con
+      franchigia e massimale. Conviene se il cane è di razza predisposta a problemi costosi
+      (displasia, cardiopatie) o se non riusciresti a tirare fuori 2.000 € all'improvviso;
+      altrimenti un fondo imprevisti tuo rende di più.</p>
+    <p class="faq-d">Quanto costa un cane di taglia grande rispetto a uno piccolo?</p>
+    <p>Nel conto annuo la differenza tipica è di 700–900 €, quasi tutta cibo e dosaggi di farmaci.
+      Sblocca il confronto fra taglie qui sopra per vedere la cifra con i tuoi prezzi.</p>
+    <p class="faq-d">C'è una tassa sul cane in Italia?</p>
+    <p>No, l'imposta sui cani è stata abolita da tempo. Restano obbligatori il microchip e
+      l'iscrizione all'anagrafe canina regionale, che si pagano una volta sola, e in alcuni comuni
+      il censimento gratuito. Chi porta il cane fuori dall'Italia deve mettere in conto il
+      passaporto europeo (circa 30–50 €).</p>
+    <p class="fonte">Valori predefiniti: medie italiane 2025–2026 (indagini di settore sulla spesa
+      per animali da compagnia, listini di cliniche veterinarie e pensioni). Sono punti di
+      partenza da correggere con i prezzi della tua zona, non tariffe ufficiali.</p>
+  </section>
+
+  <div data-ad="bottom"></div>
+
+  <footer class="piede">
+    <p>Da leggere anche:</p>
+    <ul>
+      <li><a href="../2026-10-05-quanto-costa-un-figlio/index.html">Quanto costa mantenere un figlio</a>:
+        lo stesso conto, fascia d'età per fascia d'età, per la spesa più grande di una famiglia.</li>
+      <li><a href="../2026-10-18-detrazione-spese-mediche/index.html">Calcolo della detrazione delle spese mediche</a>:
+        come funzionano franchigia e capienza IRPEF, le stesse regole che qui valgono per il veterinario.</li>
+    </ul>
+    <div data-support></div>
+    <p>Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a></p>
+  </footer>
+</main>
+
+<div class="barra no-stampa">
+  <div class="b-cifra">
+    <b id="barra-cifra">0 €</b>
+    <span id="barra-eti">al mese</span>
+  </div>
+  <button type="button" class="btn pieno" id="btn-su">Modifica le voci</button>
+</div>
+
+<script src="../../assets/monetize.js"></script>
+<script>
+(() => {
+  "use strict";
+  // Modello dati: `stato` = { taglia, primo, v: { chiave: numero }, tocchi: [chiavi modificate a mano] }.
+  // `v` contiene tutte le voci di spesa in euro (mensili, annuali, una tantum); i valori non toccati
+  // dall'utente seguono le medie della taglia scelta (TAGLIE). Tutto in localStorage con chiave CHIAVE.
+  const CHIAVE = "quanto-costa-un-cane:v1";
+
+  const TAGLIE = {
+    piccola: { nome: "Piccola", peso: "fino a 10 kg", vita: 14,
+      cibo: 45, anti: 15, vet: 150, imp: 150, toelN: 5, toelP: 35, pensP: 25, acc: 120, ster: 180, vacc: 110, corredo: 160 },
+    media: { nome: "Media", peso: "10–25 kg", vita: 12,
+      cibo: 70, anti: 18, vet: 180, imp: 200, toelN: 4, toelP: 45, pensP: 28, acc: 140, ster: 260, vacc: 120, corredo: 190 },
+    grande: { nome: "Grande", peso: "25–40 kg", vita: 10,
+      cibo: 100, anti: 22, vet: 220, imp: 250, toelN: 3, toelP: 55, pensP: 32, acc: 160, ster: 360, vacc: 130, corredo: 220 },
+    gigante: { nome: "Gigante", peso: "oltre 40 kg", vita: 8,
+      cibo: 140, anti: 26, vet: 260, imp: 300, toelN: 3, toelP: 65, pensP: 38, acc: 180, ster: 450, vacc: 140, corredo: 250 },
+  };
+  // Voci indipendenti dalla taglia: dipendono dalle abitudini, non dai chili.
+  const FISSI = { snack: 8, assic: 0, pensN: 10, dsN: 0, dsP: 15, adoz: 0, chip: 35, corso: 0 };
+  const PER_TAGLIA = ["cibo", "anti", "vet", "imp", "toelN", "toelP", "pensP", "acc", "ster", "vacc", "corredo"];
+
+  // Etichette e natura di ogni voce: per = mese | anno | uno (una tantum); vetDetr = rientra nella detrazione 19%.
+  const VOCI = [
+    { k: "cibo", id: "f-cibo", et: "Cibo", per: "mese" },
+    { k: "snack", id: "f-snack", et: "Snack e premietti", per: "mese" },
+    { k: "anti", id: "f-anti", et: "Antiparassitari", per: "mese" },
+    { k: "vet", id: "f-vet", et: "Veterinario di routine", per: "anno", vetDetr: true },
+    { k: "imp", id: "f-imp", et: "Fondo imprevisti", per: "anno", vetDetr: true },
+    { k: "assic", id: "f-assic", et: "Assicurazione sanitaria", per: "anno" },
+    { k: "toelN", id: "f-toel-n", per: "qta" },
+    { k: "toelP", id: "f-toel-p", per: "qta" },
+    { k: "pensN", id: "f-pens-n", per: "qta" },
+    { k: "pensP", id: "f-pens-p", per: "qta" },
+    { k: "dsN", id: "f-ds-n", per: "qta" },
+    { k: "dsP", id: "f-ds-p", per: "qta" },
+    { k: "acc", id: "f-acc", et: "Accessori e varie", per: "anno" },
+    { k: "adoz", id: "f-adoz", et: "Adozione o acquisto", per: "uno" },
+    { k: "chip", id: "f-chip", et: "Microchip e anagrafe", per: "uno" },
+    { k: "vacc", id: "f-vacc", et: "Ciclo vaccinale del cucciolo", per: "uno", vetDetr: true },
+    { k: "ster", id: "f-ster", et: "Sterilizzazione", per: "uno", vetDetr: true },
+    { k: "corredo", id: "f-corredo", et: "Corredo iniziale", per: "uno" },
+    { k: "corso", id: "f-corso", et: "Corso di educazione", per: "uno" },
+  ];
+  const campo = (k) => VOCI.find(v => v.k === k);
+
+  const $ = (id) => document.getElementById(id);
+  const FRANCHIGIA = 129.11, TETTO = 550, ALIQ = 0.19;
+
+  const stato = { taglia: "media", primo: false, v: {}, tocchi: [] };
+
+  // ---------- utilità ----------
+  const nf0 = new Intl.NumberFormat("it-IT", { maximumFractionDigits: 0 });
+  const nf2 = new Intl.NumberFormat("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const eur = (n) => nf0.format(Math.round(n)) + " €";
+  const eur2 = (n) => nf2.format(n) + " €";
+  const num = (x) => (Number.isFinite(x) ? x : 0);
+
+  let timerAvviso = 0;
+  function avvisa(testo) {
+    const el = $("avviso");
+    el.textContent = testo;
+    clearTimeout(timerAvviso);
+    if (testo) timerAvviso = setTimeout(() => { el.textContent = ""; }, 4000);
+  }
+
+  function medie(taglia) {
+    const t = TAGLIE[taglia];
+    const out = Object.assign({}, FISSI);
+    for (const k of PER_TAGLIA) out[k] = t[k];
+    return out;
+  }
+
+  // ---------- calcolo ----------
+  function detrazione(baseVet) {
+    return Math.max(0, Math.min(baseVet, TETTO) - FRANCHIGIA) * ALIQ;
+  }
+
+  // Restituisce il quadro completo dei costi per un set di valori `v`.
+  function conti(v, vita, primo) {
+    const mensili = num(v.cibo) + num(v.snack) + num(v.anti);
+    const toel = num(v.toelN) * num(v.toelP);
+    const pens = num(v.pensN) * num(v.pensP);
+    const ds = num(v.dsN) * num(v.dsP);
+    const annui = num(v.vet) + num(v.imp) + num(v.assic) + toel + pens + ds + num(v.acc);
+    const ricorrente = mensili * 12 + annui;
+    const unaTantum = primo ? num(v.adoz) + num(v.chip) + num(v.vacc) + num(v.ster) + num(v.corredo) + num(v.corso) : 0;
+    const baseRic = num(v.vet) + num(v.imp);
+    const baseUno = primo ? num(v.vacc) + num(v.ster) : 0;
+    const detrAnno = detrazione(baseRic + baseUno);
+    const detrRic = detrazione(baseRic);
+    const lordo = ricorrente + unaTantum;
+    const netto = Math.max(0, lordo - detrAnno);
+    const vitaLorda = unaTantum + ricorrente * vita;
+    const vitaNetta = Math.max(0, vitaLorda - detrAnno - detrRic * Math.max(0, vita - 1));
+    return { mensili, toel, pens, ds, annui, ricorrente, unaTantum, detrAnno, detrRic, lordo, netto, vita, vitaNetta };
+  }
+
+  // Le voci dell'anno in corso, ordinate per peso: alimenta dettaglio, budget e CSV.
+  function righe(v, primo) {
+    const r = [
+      { et: "Cibo", anno: num(v.cibo) * 12, nota: eur(num(v.cibo)) + "/mese" },
+      { et: "Snack e premietti", anno: num(v.snack) * 12, nota: eur(num(v.snack)) + "/mese" },
+      { et: "Antiparassitari", anno: num(v.anti) * 12, nota: eur(num(v.anti)) + "/mese" },
+      { et: "Veterinario di routine", anno: num(v.vet) },
+      { et: "Fondo imprevisti", anno: num(v.imp) },
+      { et: "Assicurazione sanitaria", anno: num(v.assic) },
+      { et: "Toelettatura", anno: num(v.toelN) * num(v.toelP), nota: num(v.toelN) + " × " + eur(num(v.toelP)) },
+      { et: "Pensione o vacanze", anno: num(v.pensN) * num(v.pensP), nota: num(v.pensN) + " giorni × " + eur(num(v.pensP)) },
+      { et: "Dog sitter o passeggiate", anno: num(v.dsN) * num(v.dsP), nota: num(v.dsN) + " × " + eur(num(v.dsP)) },
+      { et: "Accessori e varie", anno: num(v.acc) },
+    ];
+    if (primo) {
+      for (const k of ["adoz", "chip", "vacc", "ster", "corredo", "corso"]) {
+        r.push({ et: campo(k).et, anno: num(v[k]), nota: "una tantum" });
+      }
+    }
+    return r.filter(x => x.anno > 0).sort((a, b) => b.anno - a.anno);
+  }
+
+  // ---------- disegno ----------
+  function disegnaChips() {
+    const box = $("chips");
+    box.textContent = "";
+    for (const [k, t] of Object.entries(TAGLIE)) {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "chip";
+      b.setAttribute("aria-pressed", String(k === stato.taglia));
+      b.dataset.taglia = k;
+      const forte = document.createElement("b");
+      forte.textContent = t.nome;
+      const i = document.createElement("i");
+      i.textContent = t.peso;
+      b.append(forte, i);
+      b.addEventListener("click", () => {
+        if (stato.taglia === k) return;
+        stato.taglia = k;
+        applicaMedie(false);
+        disegnaChips();
+        scriviCampi();
+        aggiorna();
+        salva();
+      });
+      box.append(b);
+    }
+  }
+
+  function disegnaDettaglio(q) {
+    const box = $("dettaglio");
+    box.textContent = "";
+    const lista = righe(stato.v, stato.primo);
+    if (!lista.length) {
+      const p = document.createElement("p");
+      p.className = "nota";
+      p.textContent = "Tutte le voci sono a zero: inserisci almeno il costo del cibo per vedere il conto.";
+      box.append(p);
+      return;
+    }
+    const max = lista[0].anno;
+    for (const r of lista) {
+      const riga = document.createElement("div");
+      riga.className = "riga";
+      const et = document.createElement("span");
+      et.textContent = r.et + (r.nota ? " · " + r.nota : "");
+      const val = document.createElement("b");
+      val.textContent = eur(r.anno);
+      riga.append(et, val);
+      const barra = document.createElement("div");
+      barra.className = "barretta";
+      const dentro = document.createElement("i");
+      dentro.style.width = Math.max(2, Math.round((r.anno / max) * 100)) + "%";
+      barra.append(dentro);
+      box.append(riga, barra);
+    }
+    if (q.detrAnno > 0) {
+      const riga = document.createElement("div");
+      riga.className = "riga";
+      const et = document.createElement("span");
+      et.textContent = "Detrazione veterinaria 19% (nel 730)";
+      const val = document.createElement("b");
+      val.textContent = "− " + eur2(q.detrAnno);
+      riga.append(et, val);
+      box.append(riga);
+    }
+    const tot = document.createElement("div");
+    tot.className = "riga tot";
+    const ett = document.createElement("span");
+    ett.textContent = stato.primo ? "Totale del primo anno" : "Totale dell'anno";
+    const valt = document.createElement("b");
+    valt.textContent = eur(q.netto);
+    tot.append(ett, valt);
+    box.append(tot);
+  }
+
+  // Pro 1: la stessa spesa con le altre taglie. I prezzi che hai cambiato a mano vengono
+  // riproporzionati alla taglia (un cane grande mangia di più dello stesso cibo).
+  function disegnaConfronto() {
+    const box = $("confronto");
+    box.textContent = "";
+    for (const [k, t] of Object.entries(TAGLIE)) {
+      const v = Object.assign({}, stato.v);
+      const miaMedia = medie(stato.taglia), suaMedia = medie(k);
+      for (const c of PER_TAGLIA) {
+        if (stato.tocchi.includes(c) && miaMedia[c] > 0) v[c] = num(stato.v[c]) * (suaMedia[c] / miaMedia[c]);
+        else v[c] = suaMedia[c];
+      }
+      const q = conti(v, t.vita, stato.primo);
+      const r = document.createElement("div");
+      r.className = "r" + (k === stato.taglia ? " qui" : "");
+      const nome = document.createElement("span");
+      nome.className = "nome";
+      const b = document.createElement("b");
+      b.textContent = t.nome + (k === stato.taglia ? " (il tuo)" : "");
+      const s = document.createElement("span");
+      s.textContent = t.peso + " · vive in media " + t.vita + " anni";
+      nome.append(b, s);
+      const cifra = document.createElement("b");
+      cifra.textContent = eur(q.netto / 12) + "/mese";
+      const anno = document.createElement("i");
+      anno.textContent = eur(q.netto) + " l'anno · " + eur(q.vitaNetta) + " in tutto";
+      r.append(nome, cifra);
+      box.append(r, anno);
+      anno.style.display = "block";
+      anno.style.margin = "-.2rem 0 .4rem";
+    }
+  }
+
+  // Pro 2: budget mensile stampabile (e CSV).
+  function disegnaBudget(q) {
+    const box = $("budget");
+    box.textContent = "";
+    const lista = righe(stato.v, stato.primo);
+    for (const r of lista) {
+      const riga = document.createElement("div");
+      riga.className = "riga";
+      const et = document.createElement("span");
+      et.textContent = r.et;
+      const val = document.createElement("b");
+      val.textContent = eur2(r.anno / 12) + "/mese · " + eur(r.anno) + "/anno";
+      riga.append(et, val);
+      box.append(riga);
+    }
+    if (q.detrAnno > 0) {
+      const riga = document.createElement("div");
+      riga.className = "riga";
+      const et = document.createElement("span");
+      et.textContent = "Detrazione veterinaria da recuperare nel 730";
+      const val = document.createElement("b");
+      val.textContent = "− " + eur2(q.detrAnno);
+      riga.append(et, val);
+      box.append(riga);
+    }
+    const tot = document.createElement("div");
+    tot.className = "riga tot";
+    const ett = document.createElement("span");
+    ett.textContent = "Da accantonare ogni mese";
+    const valt = document.createElement("b");
+    valt.textContent = eur2(q.netto / 12);
+    tot.append(ett, valt);
+    box.append(tot);
+    $("stampa-sub").textContent = "cane di taglia " + TAGLIE[stato.taglia].nome.toLowerCase() +
+      (stato.primo ? ", primo anno" : "") + " · " + new Date().toLocaleDateString("it-IT");
+  }
+
+  function aggiorna() {
+    const t = TAGLIE[stato.taglia];
+    const q = conti(stato.v, t.vita, stato.primo);
+    $("cifra-mese").firstChild.textContent = eur(q.netto / 12);
+    $("cifra-eti").textContent = stato.primo ? "al mese nel primo anno" : "al mese, in media";
+    $("n-anno").textContent = eur(q.netto);
+    $("n-anno-eti").textContent = stato.primo ? "il primo anno" : "all'anno";
+    $("n-vita").textContent = eur(q.vitaNetta);
+    $("n-vita-eti").textContent = "in " + t.vita + " anni di vita";
+    $("n-giorno").textContent = nf2.format(q.netto / 365) + " €";
+    $("barra-cifra").textContent = eur(q.netto / 12);
+    $("barra-eti").textContent = stato.primo ? "al mese, primo anno" : "al mese";
+    $("n-detr").textContent = q.detrAnno > 0
+      ? "Compresi " + eur2(q.detrAnno) + " di detrazione veterinaria al 19% già sottratti dal totale."
+      : "Sopra 129,11 € di spese veterinarie scatta la detrazione del 19%: qui non ci arrivi ancora.";
+    const annoSenzaUno = q.ricorrente - q.detrRic;
+    if (stato.primo && q.unaTantum > 0) {
+      $("n-detr").textContent += " Dal secondo anno scenderai a " + eur(Math.max(0, annoSenzaUno)) +
+        " l'anno, cioè " + eur(Math.max(0, annoSenzaUno) / 12) + " al mese.";
+    }
+    disegnaDettaglio(q);
+    disegnaConfronto();
+    disegnaBudget(q);
+  }
+
+  // ---------- campi ----------
+  function applicaMedie(tutte) {
+    const m = medie(stato.taglia);
+    for (const k of Object.keys(m)) {
+      if (tutte || !stato.tocchi.includes(k)) stato.v[k] = m[k];
+    }
+    if (tutte) stato.tocchi = [];
+  }
+
+  function scriviCampi() {
+    for (const c of VOCI) {
+      const el = $(c.id);
+      if (!el) continue;
+      const val = num(stato.v[c.k]);
+      el.value = Number.isInteger(val) ? String(val) : String(Math.round(val * 100) / 100);
+    }
+    $("primo-anno").checked = stato.primo;
+    $("gruppo-uno").hidden = !stato.primo;
+    const t = TAGLIE[stato.taglia];
+    $("aiuto-cibo").textContent = "media per la taglia " + t.nome.toLowerCase() + " (" + t.peso + "): " + eur(t.cibo) + " al mese";
+    $("aiuto-toel").textContent = "media " + t.toelN + " sedute da " + eur(t.toelP) + " per questa taglia";
+    $("aiuto-ster").textContent = "media " + eur(t.ster) + " per la taglia " + t.nome.toLowerCase();
+  }
+
+  function leggiCampo(c) {
+    const el = $(c.id);
+    const min = Number(el.dataset.min || 0), max = Number(el.dataset.max || Infinity);
+    const grezzo = el.value.trim().replace(",", ".");
+    if (grezzo === "") return 0;
+    let n = Number(grezzo);
+    if (!Number.isFinite(n)) return num(stato.v[c.k]);
+    if (n < min) n = min;
+    if (n > max) { n = max; avvisa("Ho limitato " + (c.et || "il valore") + " a " + eur(max) + ": oltre non è un prezzo realistico."); }
+    return n;
+  }
+
+  function collegaCampi() {
+    for (const c of VOCI) {
+      const el = $(c.id);
+      if (!el) continue;
+      el.addEventListener("input", () => {
+        const pulito = el.value.replace(/[^\d.,]/g, "");
+        if (pulito !== el.value) el.value = pulito;
+        stato.v[c.k] = leggiCampo(c);
+        if (!stato.tocchi.includes(c.k)) stato.tocchi.push(c.k);
+        aggiorna();
+        salva();
+      });
+      el.addEventListener("blur", () => {
+        stato.v[c.k] = leggiCampo(c);
+        el.value = String(Math.round(num(stato.v[c.k]) * 100) / 100);
+        aggiorna();
+      });
+      el.addEventListener("keydown", (ev) => { if (ev.key === "Enter") el.blur(); });
+    }
+    $("primo-anno").addEventListener("change", (ev) => {
+      stato.primo = ev.target.checked;
+      $("gruppo-uno").hidden = !stato.primo;
+      aggiorna();
+      salva();
+      if (stato.primo) avvisa("Aggiunte le spese una tantum del primo anno.");
+    });
+  }
+
+  // ---------- azioni ----------
+  function testoRiepilogo() {
+    const t = TAGLIE[stato.taglia];
+    const q = conti(stato.v, t.vita, stato.primo);
+    const l = righe(stato.v, stato.primo).map(r => "• " + r.et + ": " + eur(r.anno) + "/anno");
+    return [
+      "Quanto costa il mio cane — taglia " + t.nome.toLowerCase(),
+      (stato.primo ? "Primo anno: " : "All'anno: ") + eur(q.netto) + " · " + eur(q.netto / 12) + " al mese",
+      "In " + t.vita + " anni di vita: " + eur(q.vitaNetta),
+      q.detrAnno > 0 ? "Detrazione veterinaria 19%: " + eur2(q.detrAnno) : "",
+      "",
+      ...l,
+      "",
+      "Calcolato con Costo del Cane — un'app al giorno",
+    ].filter(Boolean).join("\n");
+  }
+
+  async function copia(testo) {
+    try {
+      if (navigator.clipboard && window.isSecureContext) { await navigator.clipboard.writeText(testo); return true; }
+    } catch (_) { /* permesso negato: provo il fallback */ }
+    try {
+      const ta = document.createElement("textarea");
+      ta.value = testo;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.append(ta);
+      ta.select();
+      const ok = document.execCommand("copy");
+      ta.remove();
+      return ok;
+    } catch (_) { return false; }
+  }
+
+  function scaricaCsv() {
+    const t = TAGLIE[stato.taglia];
+    const q = conti(stato.v, t.vita, stato.primo);
+    const n2 = (v) => v.toFixed(2).replace(".", ",");
+    const testa = ["Voce", "Euro al mese", "Euro all'anno"];
+    const corpo = righe(stato.v, stato.primo).map(r => [r.et, n2(r.anno / 12), n2(r.anno)]);
+    if (q.detrAnno > 0) corpo.push(["Detrazione veterinaria 19%", n2(-q.detrAnno / 12), n2(-q.detrAnno)]);
+    corpo.push(["TOTALE (taglia " + t.nome.toLowerCase() + (stato.primo ? ", primo anno" : "") + ")", n2(q.netto / 12), n2(q.netto)]);
+    corpo.push(["Costo di tutta la vita (" + t.vita + " anni)", "", n2(q.vitaNetta)]);
+    const csv = "﻿" + [testa, ...corpo].map(r => r.map(c => '"' + String(c).replace(/"/g, '""') + '"').join(";")).join("\r\n");
+    try {
+      const url = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "costo-del-cane.csv";
+      document.body.append(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      avvisa("CSV scaricato.");
+    } catch (_) {
+      copia(csv).then(ok => avvisa(ok ? "Download non disponibile: ho copiato il CSV negli appunti." : "Download non disponibile su questo browser."));
+    }
+  }
+
+  function collegaAzioni() {
+    $("btn-medie").addEventListener("click", () => {
+      applicaMedie(true);
+      scriviCampi();
+      aggiorna();
+      salva();
+      avvisa("Rimesse le medie per la taglia " + TAGLIE[stato.taglia].nome.toLowerCase() + ".");
+    });
+    $("btn-copia").addEventListener("click", async () => {
+      const ok = await copia(testoRiepilogo());
+      avvisa(ok ? "Riepilogo copiato: incollalo dove vuoi." : "Non riesco a copiare: seleziona il riepilogo a mano.");
+    });
+    $("btn-su").addEventListener("click", () => {
+      $("t-taglia").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+    $("btn-stampa").addEventListener("click", () => window.print());
+    $("btn-csv").addEventListener("click", scaricaCsv);
+  }
+
+  // ---------- persistenza ----------
+  function salva() {
+    try {
+      localStorage.setItem(CHIAVE, JSON.stringify({ taglia: stato.taglia, primo: stato.primo, v: stato.v, tocchi: stato.tocchi }));
+    } catch (_) { /* storage pieno o bloccato: l'app funziona comunque */ }
+  }
+
+  function carica() {
+    let d = null;
+    try { d = JSON.parse(localStorage.getItem(CHIAVE) || "null"); } catch (_) { d = null; }
+    if (d && TAGLIE[d.taglia]) stato.taglia = d.taglia;
+    stato.primo = !!(d && d.primo);
+    applicaMedie(true);
+    if (d && Array.isArray(d.tocchi)) stato.tocchi = d.tocchi.filter(k => VOCI.some(c => c.k === k));
+    if (d && d.v && typeof d.v === "object") {
+      for (const c of VOCI) {
+        const n = Number(d.v[c.k]);
+        if (Number.isFinite(n) && n >= 0) stato.v[c.k] = n;
+      }
+    }
+  }
+
+  // ---------- avvio ----------
+  carica();
+  disegnaChips();
+  scriviCampi();
+  collegaCampi();
+  collegaAzioni();
+  aggiorna();
+})();
+</script>
+</body>
+</html>
