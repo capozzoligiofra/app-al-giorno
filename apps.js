@@ -1,7 +1,7 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 39,
+  "count": 40,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -50,6 +50,53 @@ window.__APPS__ = {
     ]
   },
   "apps": [
+    {
+      "title": "Mantenimento Figli",
+      "slug": "2026-10-21-assegno-mantenimento-figli",
+      "date": "2026-10-21",
+      "description": "Stima l'assegno di mantenimento per i figli dai redditi dei genitori, dall'età dei figli e dai giorni di permanenza.",
+      "category": "finanza-personale",
+      "tags": [
+        "separazione",
+        "figli",
+        "mantenimento",
+        "famiglia"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "card-stack",
+        "palette": "rosso-mattone",
+        "font": "serif-editoriale"
+      },
+      "business": {
+        "keyword": "calcolo assegno di mantenimento figli",
+        "keywords": [
+          "quanto si paga di mantenimento per un figlio",
+          "assegno di mantenimento figli come si calcola",
+          "mantenimento figli tabelle",
+          "percentuale mantenimento figli sul reddito"
+        ],
+        "intent": "Chi sta affrontando una separazione vuole una cifra di riferimento prima di andare dall'avvocato: quanto chiedere o quanto dovrà versare ogni mese.",
+        "target": "Genitori in separazione o divorzio, 30-55 anni, spesso da telefono e di sera, senza competenze legali.",
+        "edge": "Applica davvero il metodo proporzionale (redditi, età dei figli, giorni di permanenza) e mostra ogni passaggio del calcolo, senza lasciare l'email a nessuno.",
+        "monetization": [
+          "adsense",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto prevalente e paritetico",
+          "Prospetto spese straordinarie",
+          "Rivalutazione ISTAT"
+        ],
+        "affiliate": []
+      },
+      "size": 44541
+    },
     {
       "title": "Costo del Cane",
       "slug": "2026-10-20-quanto-costa-un-cane",

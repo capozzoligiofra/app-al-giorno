@@ -1,0 +1,826 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#a63d2f">
+  <title>Mantenimento Figli: calcolo assegno di mantenimento</title>
+  <meta name="description" content="Calcolo assegno di mantenimento figli con il metodo proporzionale: redditi dei genitori, età dei figli e giorni di permanenza. Risultato e passaggi in chiaro.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-21-assegno-mantenimento-figli/">
+  <meta property="og:title" content="Mantenimento Figli: calcolo assegno di mantenimento">
+  <meta property="og:description" content="Una stima dell'assegno mensile per i figli a partire dai redditi, dall'età e dai giorni di permanenza presso ciascun genitore. Nessuna registrazione.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-21-assegno-mantenimento-figli/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Mantenimento Figli",
+    "description": "Calcolatore gratuito dell'assegno di mantenimento per i figli: applica il metodo proporzionale ai redditi dei due genitori, all'età dei figli e ai giorni di permanenza, e mostra tutti i passaggi del calcolo.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-21-assegno-mantenimento-figli/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Esiste una tabella ufficiale per il mantenimento dei figli?", "acceptedAnswer": { "@type": "Answer", "text": "No. Non esiste alcuna tabella ministeriale con importi fissi. L'articolo 337-ter del codice civile impone che ciascun genitore contribuisca in misura proporzionale al proprio reddito, tenendo conto delle esigenze del figlio, del tenore di vita precedente, dei tempi di permanenza presso ciascun genitore e del valore economico del lavoro di cura. Alcuni tribunali hanno adottato linee guida proprie, che restano indicative e non vincolanti." } },
+      { "@type": "Question", "name": "Quanto si paga in media di mantenimento per un figlio?", "acceptedAnswer": { "@type": "Answer", "text": "Secondo i dati ISTAT ripresi in un dossier parlamentare, il contributo mensile medio va da circa 414 euro nelle separazioni con un solo figlio minore a circa 754 euro con tre o più figli minori. Sono medie nazionali che accorpano redditi molto diversi: servono come ordine di grandezza, non come riferimento per il proprio caso." } },
+      { "@type": "Question", "name": "Il mantenimento è una percentuale fissa dello stipendio?", "acceptedAnswer": { "@type": "Answer", "text": "No, e questo è l'errore più diffuso. La percentuale del 20-25% che circola online è solo la constatazione a posteriori di come spesso finiscono i provvedimenti, non una regola. Due genitori con lo stesso stipendio possono ricevere decisioni molto diverse a seconda del reddito dell'altro genitore, dell'età dei figli e di quanti giorni al mese i figli passano con il genitore non collocatario." } },
+      { "@type": "Question", "name": "Se i figli stanno con me metà del tempo devo comunque pagare?", "acceptedAnswer": { "@type": "Answer", "text": "Dipende dai redditi. Con tempi davvero paritetici e redditi simili l'assegno tende ad annullarsi, perché ciascun genitore mantiene direttamente il figlio nei propri giorni. Se però un genitore guadagna molto più dell'altro, un assegno resta dovuto anche con tempi paritetici, perché la proporzionalità riguarda le risorse, non solo i giorni." } },
+      { "@type": "Question", "name": "L'assegno si aggiorna ogni anno?", "acceptedAnswer": { "@type": "Answer", "text": "Sì: i provvedimenti prevedono quasi sempre l'adeguamento automatico annuale agli indici ISTAT dei prezzi al consumo, senza bisogno di tornare davanti al giudice. L'importo stabilito oggi, se l'inflazione resta al 2%, in cinque anni cresce di circa il 10%." } },
+      { "@type": "Question", "name": "Le spese straordinarie sono comprese nell'assegno?", "acceptedAnswer": { "@type": "Answer", "text": "No. L'assegno mensile copre le spese ordinarie e ricorrenti: cibo, quota di casa, abbigliamento, materiale scolastico, piccole spese quotidiane. Le spese straordinarie, cioè quelle imprevedibili o rilevanti come apparecchio ortodontico, occhiali, università, viaggi di studio, si dividono a parte, di norma al 50% o pro quota secondo i redditi." } }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #faf5f2; --surface: #fffdfc; --raise: #f3e7e1; --text: #241a18; --muted: #7d6660;
+      --line: #e7d8d1; --accent: #a63d2f; --accent-ink: #fff; --accent-soft: #f6e2dc;
+      --warn: #8a5a12; --warn-bg: #fbf0d8; --ok: #2f6b4f;
+      --r: 4px; --r-lg: 8px;
+      --serif: Georgia, "Iowan Old Style", "Times New Roman", Times, serif;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #171112; --surface: #221819; --raise: #2d2021; --text: #f1e7e4; --muted: #ab938c;
+        --line: #3a2b2c; --accent: #e8836b; --accent-ink: #2c0f07; --accent-soft: #3a2320;
+        --warn: #e5bb6c; --warn-bg: #332715; --ok: #78c39d;
+        color-scheme: dark;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font: 17px/1.6 var(--serif); overflow-x: hidden;
+    }
+    .wrap { max-width: 44rem; margin: 0 auto; padding: max(10px, env(safe-area-inset-top)) 16px 0; }
+    a { color: var(--accent); }
+    .back { display: inline-block; padding: 11px 2px; font-size: .95rem; color: var(--muted); text-decoration: none; }
+    h1 { margin: .3rem 0 .4rem; font-size: 1.75rem; line-height: 1.2; letter-spacing: -.01em; font-weight: 700; }
+    .lead { margin: 0 0 1rem; color: var(--muted); font-size: 1.02rem; }
+    h2 { font-size: 1.22rem; margin: 2rem 0 .6rem; line-height: 1.3; }
+    h3 { font-size: 1.04rem; margin: 1.3rem 0 .35rem; }
+
+    /* ---- card stack: schede sovrapposte con numero di passo ---- */
+    .card {
+      position: relative; background: var(--surface); border: 1px solid var(--line);
+      border-left: 4px solid var(--accent); border-radius: var(--r);
+      padding: 1rem 1rem 1.1rem; margin: 0 0 14px;
+      box-shadow: 0 1px 0 var(--line), 0 6px 14px -12px rgba(60,20,10,.5);
+    }
+    .card > h2 { margin: 0 0 .9rem; font-size: 1.1rem; display: flex; align-items: baseline; gap: .5rem; }
+    .step {
+      flex: 0 0 auto; display: inline-grid; place-items: center; width: 1.5rem; height: 1.5rem;
+      border-radius: 50%; background: var(--accent-soft); color: var(--accent);
+      font-size: .8rem; font-weight: 700; font-family: var(--serif);
+    }
+    .hint { color: var(--muted); font-size: .9rem; margin: .45rem 0 0; }
+
+    label { display: block; font-size: .95rem; margin: 0 0 .3rem; }
+    label .sub { display: block; color: var(--muted); font-size: .85rem; }
+    .field + .field { margin-top: .9rem; }
+    .euro { position: relative; }
+    .euro::after {
+      content: "€/mese"; position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+      color: var(--muted); font-size: .9rem; pointer-events: none;
+    }
+    input[type=number], input[type=text], select {
+      width: 100%; min-height: 48px; padding: 10px 76px 10px 12px;
+      font: 600 17px/1.4 var(--serif); font-variant-numeric: tabular-nums;
+      color: var(--text); background: var(--bg); border: 1px solid var(--line);
+      border-radius: var(--r); appearance: none;
+    }
+    input[type=text] { padding-right: 12px; font-weight: 400; }
+    input:focus-visible, button:focus-visible, a:focus-visible {
+      outline: 2px solid var(--accent); outline-offset: 2px;
+    }
+    input[type=number] { -moz-appearance: textfield; }
+    input[type=number]::-webkit-inner-spin-button { display: none; }
+
+    /* ---- stepper e chip ---- */
+    .stepper { display: flex; align-items: center; gap: 8px; }
+    .stepper input { flex: 1 1 auto; min-width: 0; padding-right: 12px; text-align: center; }
+    .sq {
+      flex: 0 0 auto; width: 46px; height: 46px; border: 1px solid var(--line); background: var(--surface);
+      color: var(--text); border-radius: var(--r); font: 400 22px/1 var(--serif); cursor: pointer;
+    }
+    .sq:active { background: var(--raise); }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: .7rem 0 0; }
+    .chip {
+      min-height: 44px; padding: 8px 12px; border: 1px solid var(--line); background: var(--surface);
+      color: var(--text); border-radius: 999px; font: 400 .92rem/1.3 var(--serif); cursor: pointer; text-align: left;
+    }
+    .chip[aria-pressed=true] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+
+    /* ---- figli ---- */
+    .kid { display: flex; align-items: center; gap: 8px; padding: .55rem 0; border-top: 1px dashed var(--line); }
+    .kid:first-of-type { border-top: 0; }
+    .kid .who { flex: 1 1 auto; min-width: 0; }
+    .kid .who b { display: block; font-weight: 700; }
+    .kid .who span { color: var(--muted); font-size: .85rem; }
+    .kid .stepper { flex: 0 0 auto; width: 158px; }
+    .kid .stepper input { padding: 6px 2px; min-height: 44px; }
+    .kill {
+      flex: 0 0 auto; width: 44px; height: 44px; border: 0; background: none; color: var(--muted);
+      font: 400 20px/1 var(--serif); cursor: pointer; border-radius: var(--r);
+    }
+    .kill:hover { color: var(--accent); background: var(--raise); }
+    .add {
+      width: 100%; min-height: 46px; margin-top: .7rem; border: 1px dashed var(--accent); background: none;
+      color: var(--accent); border-radius: var(--r); font: 400 1rem/1.3 var(--serif); cursor: pointer;
+    }
+
+    /* ---- risultato ---- */
+    .result { border-left-color: var(--accent); background: var(--surface); }
+    .big { margin: .3rem 0 0; font-size: 2.7rem; line-height: 1.05; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+    .big small { font-size: .95rem; font-weight: 400; color: var(--muted); letter-spacing: 0; }
+    .verdict { margin: .35rem 0 0; color: var(--muted); font-size: .95rem; }
+    .rows { margin: 1rem 0 0; border-top: 1px solid var(--line); }
+    .row { display: flex; gap: 10px; justify-content: space-between; padding: .55rem 0; border-bottom: 1px solid var(--line); font-size: .95rem; }
+    .row dt { margin: 0; color: var(--muted); }
+    .row dd { margin: 0; font-weight: 700; font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+    .row.sum dt, .row.sum dd { color: var(--text); }
+    .note { margin: .9rem 0 0; padding: .7rem .8rem; border-radius: var(--r); background: var(--warn-bg); color: var(--warn); font-size: .9rem; }
+    .note.calm { background: var(--raise); color: var(--muted); }
+    .empty { color: var(--muted); font-style: italic; }
+    .ghost {
+      min-height: 46px; padding: 10px 14px; border: 1px solid var(--accent); background: none;
+      color: var(--accent); border-radius: var(--r); font: 400 1rem/1.3 var(--serif); cursor: pointer;
+    }
+    .ghost.wide { width: 100%; margin-top: .8rem; }
+    .disclaim {
+      margin: 0 0 14px; padding: .7rem .85rem; border: 1px solid var(--line); border-radius: var(--r);
+      background: var(--raise); color: var(--muted); font-size: .88rem;
+    }
+
+    /* ---- barra risultato fissa (pollice) ---- */
+    .bar {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+      background: var(--accent); color: var(--accent-ink);
+      border: 0; width: 100%; text-align: left; cursor: pointer;
+      font: 400 1rem/1.25 var(--serif);
+      box-shadow: 0 -6px 18px -14px rgba(0,0,0,.8);
+    }
+    .bar b { font-size: 1.45rem; font-variant-numeric: tabular-nums; }
+    .bar span { flex: 1 1 auto; font-size: .88rem; opacity: .9; }
+    body { padding-bottom: 86px; }
+
+    /* ---- tabelle/liste Pro ---- */
+    .scen { margin: 0; padding: 0; list-style: none; }
+    .scen li { display: flex; justify-content: space-between; gap: 10px; padding: .5rem 0; border-bottom: 1px solid var(--line); font-size: .95rem; }
+    .scen li.here { color: var(--accent); font-weight: 700; }
+    .scen b { font-variant-numeric: tabular-nums; }
+    .exp { display: flex; gap: 8px; align-items: center; padding: .5rem 0; border-bottom: 1px solid var(--line); }
+    .exp input[type=text] { flex: 1 1 auto; min-height: 44px; }
+    .exp input[type=number] { flex: 0 0 104px; min-height: 44px; padding: 8px 10px; text-align: right; }
+    section[data-pro] { margin: 0 0 14px; }
+    .guida p, .guida li { font-size: 1.02rem; }
+    .guida ul { padding-left: 1.2rem; }
+    .guida li { margin: .35rem 0; }
+    table.ex { width: 100%; border-collapse: collapse; margin: .6rem 0; font-size: .95rem; }
+    table.ex th, table.ex td { text-align: left; padding: .45rem .3rem; border-bottom: 1px solid var(--line); }
+    table.ex td:last-child, table.ex th:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+    footer { margin: 2.5rem 0 1rem; padding-top: 1rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .88rem; }
+    footer a { color: var(--muted); }
+    .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+    @media (min-width: 700px) {
+      body { padding-bottom: 0; font-size: 18px; }
+      .wrap { padding-top: 18px; }
+      h1 { font-size: 2.3rem; }
+      .bar { display: none; }
+      .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: start; }
+      .card { padding: 1.2rem 1.3rem 1.3rem; }
+      .big { font-size: 3.2rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../../index.html">← Tutte le app</a>
+
+  <h1>Calcolo assegno di mantenimento figli</h1>
+  <p class="lead">Una stima ragionata in un minuto: redditi dei due genitori, età dei figli, giorni che passano
+  con il genitore non collocatario. Vedi il risultato e ogni passaggio che lo produce.</p>
+
+  <p class="disclaim">Stima orientativa, non un parere legale. Non esiste una tabella ufficiale: l'assegno lo
+  decide il giudice caso per caso secondo l'art. 337-ter c.c. Questo strumento applica il metodo proporzionale
+  usato nella prassi, utile per arrivare preparati dall'avvocato.</p>
+
+  <div class="cols">
+    <div>
+      <section class="card">
+        <h2><span class="step">1</span> I redditi netti mensili</h2>
+        <div class="field">
+          <label for="rA">Genitore con cui vivono i figli
+            <span class="sub">Netto in tasca al mese, tredicesima compresa</span></label>
+          <div class="euro"><input id="rA" type="number" inputmode="decimal" min="0" max="99999" step="50"
+            value="1200" enterkeyhint="done" autocomplete="off"></div>
+        </div>
+        <div class="field">
+          <label for="rB">Altro genitore
+            <span class="sub">Quello che di norma versa l'assegno</span></label>
+          <div class="euro"><input id="rB" type="number" inputmode="decimal" min="0" max="99999" step="50"
+            value="2000" enterkeyhint="done" autocomplete="off"></div>
+        </div>
+        <p class="hint">Conta il reddito disponibile reale: stipendio netto, affitti incassati, partite IVA al netto
+        di imposte e contributi. Lascia 0 se un genitore non ha redditi propri.</p>
+      </section>
+
+      <section class="card">
+        <h2><span class="step">2</span> I figli</h2>
+        <div id="kids"></div>
+        <button class="add" type="button" id="addKid">+ Aggiungi un figlio</button>
+        <p class="hint">L'età conta: un adolescente costa più di un bambino di tre anni. Dal secondo figlio il costo
+        per figlio scende, perché casa, utenze e molti beni si condividono.</p>
+      </section>
+
+      <section class="card">
+        <h2><span class="step">3</span> I giorni con l'altro genitore</h2>
+        <label for="notti">Notti al mese presso il genitore non collocatario
+          <span class="sub">Più tempo passa con lui, più spese sostiene direttamente</span></label>
+        <div class="stepper">
+          <button class="sq" type="button" data-nudge="-1" aria-label="Una notte in meno">−</button>
+          <input id="notti" type="number" inputmode="numeric" min="0" max="15" step="1" value="4"
+            enterkeyhint="done" autocomplete="off">
+          <button class="sq" type="button" data-nudge="1" aria-label="Una notte in più">+</button>
+        </div>
+        <div class="chips" id="presets"></div>
+      </section>
+    </div>
+
+    <div>
+      <section class="card result" id="risultato" aria-live="polite">
+        <h2><span class="step">4</span> Il risultato</h2>
+        <p class="big" id="big">—</p>
+        <p class="verdict" id="verdict">Compila i redditi per vedere la stima.</p>
+        <dl class="rows" id="rows"></dl>
+        <div id="notes"></div>
+        <button class="ghost wide" type="button" id="copy">Copia il riepilogo</button>
+      </section>
+
+      <div data-ad="top"></div>
+
+      <section data-pro="Confronto prevalente e paritetico" class="card">
+        <h2>Prevalente o paritetico: quanto cambia</h2>
+        <p class="hint" style="margin-top:0">Come varia l'assegno al variare delle notti, a redditi invariati.
+        È il numero su cui si tratta davvero.</p>
+        <ul class="scen" id="scen"></ul>
+      </section>
+
+      <section data-pro="Prospetto spese straordinarie" class="card">
+        <h2>Spese straordinarie da dividere</h2>
+        <p class="hint" style="margin-top:0">Quelle che l'assegno non copre: aggiungile e vedi la quota di ciascuno.</p>
+        <div id="exps"></div>
+        <button class="add" type="button" id="addExp">+ Aggiungi una spesa</button>
+        <dl class="rows" id="expRows"></dl>
+      </section>
+
+      <section data-pro="Rivalutazione ISTAT" class="card">
+        <h2>Rivalutazione ISTAT anno per anno</h2>
+        <label for="infl">Inflazione annua attesa (%)</label>
+        <div class="stepper">
+          <button class="sq" type="button" data-nudge-infl="-0.5" aria-label="Mezzo punto in meno">−</button>
+          <input id="infl" type="number" inputmode="decimal" min="0" max="15" step="0.1" value="2"
+            enterkeyhint="done" autocomplete="off">
+          <button class="sq" type="button" data-nudge-infl="0.5" aria-label="Mezzo punto in più">+</button>
+        </div>
+        <ul class="scen" id="istat"></ul>
+      </section>
+    </div>
+  </div>
+
+  <section id="guida" class="guida">
+    <h2>Come funziona il calcolo dell'assegno di mantenimento</h2>
+    <p>La legge non dà una formula. L'art. 337-ter del codice civile stabilisce soltanto che ciascun genitore
+    mantiene i figli <em>in misura proporzionale al proprio reddito</em>, e indica cosa il giudice deve guardare:
+    le esigenze del figlio, il tenore di vita che aveva quando la famiglia era unita, i tempi che passa con
+    ciascun genitore, le risorse economiche di entrambi e il valore del lavoro di cura domestico. Da questi
+    criteri la prassi dei tribunali ha ricavato un metodo in tre passaggi, che è quello applicato qui.</p>
+    <p><strong>Primo passaggio: quanto costa il figlio.</strong> Si stima la spesa mensile ordinaria che il figlio
+    comporta: la sua quota di casa e utenze, il cibo, l'abbigliamento, la scuola, lo sport, i trasporti, le piccole
+    spese quotidiane. Questa cifra non è un numero astratto: cresce con l'età (un quattordicenne costa quasi il
+    50% in più di un bambino in età prescolare) e cresce con il reddito complessivo della famiglia, ma meno che
+    proporzionalmente. Dal secondo figlio il costo aggiuntivo scende di circa un quinto, perché molte spese si
+    condividono. Come ordine di grandezza, l'ISTAT stima il costo di un figlio minore in alcune centinaia di euro
+    al mese per una famiglia a reddito medio.</p>
+    <p><strong>Secondo passaggio: come si divide.</strong> Il costo si ripartisce in proporzione ai redditi netti.
+    Se un genitore porta a casa 2.000 euro e l'altro 1.200, il primo copre il 62,5% del costo del figlio e il
+    secondo il 37,5%. Non si guarda chi ha la casa intestata o chi ha chiesto la separazione: si guarda solo la
+    capacità economica attuale.</p>
+    <p><strong>Terzo passaggio: cosa si paga già di tasca propria.</strong> Il genitore non collocatario non versa
+    l'intera sua quota in contanti, perché nei giorni in cui tiene i figli compra la spesa, paga le uscite, i
+    trasporti. Una parte del costo del figlio, circa il 45%, è legata ai giorni di presenza e quindi la sostiene
+    direttamente chi li ha con sé. L'altro 55% — la quota di affitto o mutuo, l'abbigliamento, la scuola, il
+    pediatra, le attività — resta a carico del genitore collocatario finché i tempi restano sbilanciati; quando si
+    avvicinano al paritetico anche questa parte si distribuisce, perché entrambi devono mantenere una casa pronta
+    per il figlio. L'assegno è ciò che resta della quota dovuta dopo aver sottratto quello che si spende già
+    direttamente.</p>
+
+    <h2>Un esempio con i numeri</h2>
+    <p>Padre con 2.000 euro netti, madre con 1.200, una figlia di dieci anni che vive con la madre e passa con il
+    padre quattro notti al mese (due weekend alterni).</p>
+    <table class="ex">
+      <tr><th>Costo mensile ordinario della figlia</th><td>650 €</td></tr>
+      <tr><th>Quota del padre (2.000 su 3.200)</th><td>62,5% → 406 €</td></tr>
+      <tr><th>Spese dirette del padre nei suoi giorni</th><td>−39 €</td></tr>
+      <tr><th>Assegno mensile stimato</th><td><strong>367 €</strong></td></tr>
+    </table>
+    <p>Sono circa 367 euro, cioè il 18% del netto del padre. Se le notti salissero a otto, l'assegno scenderebbe a
+    poco più di 300 euro; con tempi paritetici e redditi così diversi resterebbe comunque un assegno di circa 150
+    euro, perché la proporzionalità riguarda le risorse e non solo i giorni. La cifra è coerente con i dati ISTAT,
+    secondo cui il contributo medio nelle separazioni con un figlio minore si aggira sui 414 euro al mese.</p>
+
+    <h2>Gli errori che fanno litigare per mesi</h2>
+    <ul>
+      <li><strong>Applicare una percentuale fissa.</strong> «Il 25% dello stipendio» non è una regola di legge:
+      è una media osservata a posteriori. Ignora il reddito dell'altro genitore, che è metà del calcolo.</li>
+      <li><strong>Dimenticare i giorni di permanenza.</strong> Chiedere tempi più ampi e poi non vederli riflessi
+      nell'assegno è la contestazione più frequente in sede di modifica delle condizioni.</li>
+      <li><strong>Confondere ordinarie e straordinarie.</strong> L'assegno copre le spese ricorrenti. Apparecchio
+      ortodontico, occhiali, tasse universitarie, viaggi di studio si dividono a parte. Le linee guida del
+      Tribunale di Milano aggiornate nel giugno 2025 hanno spostato la mensa scolastica fuori dall'assegno
+      periodico e stabilito che farmaci su prescrizione e integratori si dividono pro quota, mentre i farmaci da
+      banco restano dentro il mensile; chi riceve una richiesta scritta per una spesa straordinaria ha al massimo
+      dieci giorni per opporsi, altrimenti il silenzio vale consenso.</li>
+      <li><strong>Pattuire una cifra senza rivalutazione.</strong> Senza l'adeguamento annuale agli indici ISTAT
+      l'assegno perde potere d'acquisto in silenzio: con il 2% di inflazione, in cinque anni vale un decimo in
+      meno.</li>
+      <li><strong>Lasciare il genitore obbligato sotto la soglia di sopravvivenza.</strong> L'assegno non può
+      azzerare la capacità di vivere di chi lo versa: se la cifra supera un terzo del netto, in giudizio viene
+      quasi sempre ridimensionata.</li>
+    </ul>
+
+    <h2>Domande frequenti</h2>
+    <h3>Esiste una tabella ufficiale per il mantenimento dei figli?</h3>
+    <p>No, nessuna tabella ministeriale con importi fissi. Alcuni tribunali — Milano, Roma, Torino tra gli altri —
+    hanno linee guida proprie che traducono i criteri di legge in parametri operativi, ma restano indicative e non
+    vincolano il giudice.</p>
+    <h3>Quanto si paga in media per un figlio?</h3>
+    <p>I dati ISTAT ripresi in un dossier parlamentare indicano un contributo medio di circa 414 euro al mese con
+    un figlio minore e circa 754 euro con tre o più figli. Sono medie che mescolano redditi molto diversi: valgono
+    come ordine di grandezza.</p>
+    <h3>Se i figli stanno con me metà del tempo devo pagare?</h3>
+    <p>Con tempi paritetici e redditi simili l'assegno tende ad annullarsi. Se però guadagni molto più dell'altro
+    genitore un assegno resta dovuto, perché la proporzionalità riguarda le risorse.</p>
+    <h3>Il mantenimento si paga anche ai figli maggiorenni?</h3>
+    <p>Sì, finché non sono economicamente autosufficienti e si impegnano seriamente negli studi o nella ricerca di
+    lavoro. Oltre una certa età l'onere di provare la mancata autosufficienza si sposta sul figlio.</p>
+    <h3>I dati che inserisco restano sul mio telefono?</h3>
+    <p>Sì. Il calcolo avviene nel browser e i valori si salvano solo sul tuo dispositivo: nessun invio, nessuna
+    registrazione, nessuna email da lasciare.</p>
+  </section>
+
+  <div data-ad="bottom"></div>
+  <div data-support></div>
+
+  <footer>
+    <p>Potrebbero servirti anche <a href="../2026-10-17-assegno-unico/index.html">il calcolo dell'assegno unico
+    per i figli</a> e <a href="../2026-10-05-quanto-costa-un-figlio/index.html">quanto costa davvero un figlio
+    ogni mese</a>.</p>
+    <p>Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a></p>
+  </footer>
+</div>
+
+<button class="bar" type="button" id="bar">
+  <b id="barVal">—</b>
+  <span id="barTxt">assegno mensile stimato</span>
+</button>
+
+<script src="../../assets/monetize.js"></script>
+<script>
+// Modello dati: { rA, rB, notti, figli: [età], spese: [{d: descrizione, v: importo annuo}], infl }
+// rA = netto mensile del genitore collocatario, rB = quello dell'altro; notti = notti al mese presso rB.
+// Tutto in localStorage sotto una sola chiave; il calcolo è puro (stato -> esito) in `calcola()`.
+
+const KEY = "assegno-mantenimento-figli:v1";
+const FASCE = [
+  { max: 5,  base: 560, nome: "età prescolare" },
+  { max: 10, base: 650, nome: "scuola primaria" },
+  { max: 13, base: 720, nome: "scuola media" },
+  { max: 18, base: 820, nome: "scuola superiore" },
+  { max: 30, base: 880, nome: "maggiorenne agli studi" },
+];
+const SCALA = [1, 0.78, 0.62];      // economie di scala dal 2° e dal 3° figlio
+const R_RIF = 3200;                  // reddito netto complessivo di riferimento
+const QUOTA_DIRETTA = 0.45;          // parte del costo legata ai giorni di presenza
+const TETTI = [0.30, 0.40, 0.45];    // quota massima del netto dell'obbligato, per 1/2/3+ figli
+const PRESET = [
+  { n: 2,  t: "Un weekend al mese" },
+  { n: 4,  t: "Weekend alterni" },
+  { n: 6,  t: "Alterni + infrasettimanale" },
+  { n: 8,  t: "Weekend lunghi alterni" },
+  { n: 11, t: "Tempi ampi" },
+  { n: 15, t: "Paritetico" },
+];
+
+const $ = (s) => document.querySelector(s);
+const eur = (v) => Math.round(v).toLocaleString("it-IT") + " €";
+const pct = (v) => (v * 100).toLocaleString("it-IT", { maximumFractionDigits: 1 }) + "%";
+const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+const fascia = (eta) => FASCE.find((f) => eta <= f.max) || FASCE[FASCE.length - 1];
+
+let stato = carica();
+
+function carica() {
+  const base = { rA: 1200, rB: 2000, notti: 4, figli: [10], spese: [], infl: 2 };
+  try {
+    const s = JSON.parse(localStorage.getItem(KEY));
+    if (!s || typeof s !== "object") return base;
+    return {
+      rA: num(s.rA, 1200), rB: num(s.rB, 2000),
+      notti: clamp(Math.round(num(s.notti, 4)), 0, 15),
+      figli: Array.isArray(s.figli) && s.figli.length
+        ? s.figli.slice(0, 6).map((e) => clamp(Math.round(num(e, 10)), 0, 30)) : [10],
+      spese: Array.isArray(s.spese)
+        ? s.spese.slice(0, 20).map((x) => ({ d: String(x && x.d || "").slice(0, 60), v: num(x && x.v, 0) })) : [],
+      infl: clamp(num(s.infl, 2), 0, 15),
+    };
+  } catch { return base; }
+}
+function salva() {
+  try { localStorage.setItem(KEY, JSON.stringify(stato)); } catch { /* quota piena o modalità privata */ }
+}
+function num(v, fallback = 0) {
+  const n = typeof v === "string" ? parseFloat(v.replace(",", ".")) : Number(v);
+  return Number.isFinite(n) ? n : fallback;
+}
+
+/* ---------- il calcolo ---------- */
+function calcola(st, nottiOverride) {
+  const rA = Math.max(0, st.rA), rB = Math.max(0, st.rB);
+  const R = rA + rB;
+  const notti = clamp(nottiOverride === undefined ? st.notti : nottiOverride, 0, 15);
+  const figli = st.figli.slice().sort((a, b) => b - a);   // dal più grande: prende la scala piena
+  if (!figli.length || R <= 0) return { valido: false, R, figli };
+
+  const fattore = clamp(Math.pow(R / R_RIF, 0.55), 0.5, 2);
+  const costi = figli.map((eta, i) => fascia(eta).base * SCALA[Math.min(i, 2)] * fattore);
+  const C = costi.reduce((a, b) => a + b, 0);
+
+  const qB = rB / R;
+  const tB = notti / 30;
+  const sFisse = clamp((tB - 0.15) / 0.35, 0, 1) * 0.45;   // quota di spese fisse che passa a rB
+  const dirette = C * (QUOTA_DIRETTA * tB + (1 - QUOTA_DIRETTA) * sFisse);
+  const dovuto = C * qB;
+  const lordo = dovuto - dirette;
+  const tetto = rB * TETTI[Math.min(figli.length, 3) - 1];
+  const assegno = clamp(lordo, 0, tetto);
+
+  return {
+    valido: true, R, rA, rB, notti, figli, costi, C, qB, qA: 1 - qB, tB,
+    dovuto, dirette, lordo, tetto, assegno,
+    limitato: lordo > tetto + 0.5,
+    nullo: lordo <= 0,
+    restaB: rB - assegno,
+  };
+}
+
+/* ---------- interfaccia ---------- */
+function renderFigli() {
+  const box = $("#kids");
+  box.textContent = "";
+  stato.figli.forEach((eta, i) => {
+    const row = document.createElement("div");
+    row.className = "kid";
+    const who = document.createElement("div");
+    who.className = "who";
+    who.innerHTML = "<b>Figlio " + (i + 1) + "</b><span>" + fascia(eta).nome + "</span>";
+    const st = document.createElement("div");
+    st.className = "stepper";
+    st.appendChild(sqBtn("−", () => setEta(i, eta - 1), "Un anno in meno"));
+    const inp = document.createElement("input");
+    inp.type = "number"; inp.min = "0"; inp.max = "30"; inp.step = "1"; inp.value = String(eta);
+    inp.inputMode = "numeric"; inp.enterKeyHint = "done"; inp.autocomplete = "off";
+    inp.setAttribute("aria-label", "Età del figlio " + (i + 1));
+    inp.addEventListener("input", () => setEta(i, num(inp.value, eta), true));
+    inp.addEventListener("blur", renderFigli);
+    st.appendChild(inp);
+    st.appendChild(sqBtn("+", () => setEta(i, eta + 1), "Un anno in più"));
+    row.append(who, st);
+    if (stato.figli.length > 1) {
+      const kill = document.createElement("button");
+      kill.type = "button"; kill.className = "kill"; kill.textContent = "×";
+      kill.setAttribute("aria-label", "Togli il figlio " + (i + 1));
+      kill.addEventListener("click", () => { stato.figli.splice(i, 1); salva(); renderFigli(); aggiorna(); });
+      row.appendChild(kill);
+    }
+    box.appendChild(row);
+  });
+  $("#addKid").disabled = stato.figli.length >= 6;
+}
+function sqBtn(txt, fn, label) {
+  const b = document.createElement("button");
+  b.type = "button"; b.className = "sq"; b.textContent = txt;
+  b.setAttribute("aria-label", label);
+  b.addEventListener("click", fn);
+  return b;
+}
+function setEta(i, v, soft) {
+  stato.figli[i] = clamp(Math.round(v), 0, 30);
+  salva();
+  if (!soft) renderFigli(); else {
+    const span = $("#kids").children[i].querySelector(".who span");
+    if (span) span.textContent = fascia(stato.figli[i]).nome;
+  }
+  aggiorna();
+}
+
+function renderPreset() {
+  const box = $("#presets");
+  box.textContent = "";
+  for (const p of PRESET) {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "chip"; b.textContent = p.t;
+    b.setAttribute("aria-pressed", String(stato.notti === p.n));
+    b.addEventListener("click", () => { stato.notti = p.n; $("#notti").value = String(p.n); salva(); renderPreset(); aggiorna(); });
+    box.appendChild(b);
+  }
+}
+
+function renderSpese() {
+  const box = $("#exps");
+  box.textContent = "";
+  if (!stato.spese.length) {
+    const p = document.createElement("p");
+    p.className = "hint empty";
+    p.textContent = "Nessuna spesa: aggiungi dentista, occhiali, libri, sport, gita scolastica…";
+    box.appendChild(p);
+  }
+  stato.spese.forEach((s, i) => {
+    const row = document.createElement("div");
+    row.className = "exp";
+    const d = document.createElement("input");
+    d.type = "text"; d.value = s.d; d.placeholder = "Apparecchio ortodontico";
+    d.setAttribute("aria-label", "Descrizione della spesa " + (i + 1));
+    d.addEventListener("input", () => { stato.spese[i].d = d.value.slice(0, 60); salva(); });
+    const v = document.createElement("input");
+    v.type = "number"; v.min = "0"; v.max = "99999"; v.step = "10"; v.value = String(s.v);
+    v.inputMode = "decimal"; v.enterKeyHint = "done"; v.placeholder = "€";
+    v.setAttribute("aria-label", "Importo della spesa " + (i + 1));
+    v.addEventListener("input", () => { stato.spese[i].v = Math.max(0, num(v.value, 0)); salva(); renderSpeseEsito(); });
+    const kill = document.createElement("button");
+    kill.type = "button"; kill.className = "kill"; kill.textContent = "×";
+    kill.setAttribute("aria-label", "Togli la spesa " + (i + 1));
+    kill.addEventListener("click", () => { stato.spese.splice(i, 1); salva(); renderSpese(); renderSpeseEsito(); });
+    row.append(d, v, kill);
+    box.appendChild(row);
+  });
+  $("#addExp").disabled = stato.spese.length >= 20;
+}
+
+function riga(dl, k, v, cls) {
+  const d = document.createElement("div");
+  d.className = "row" + (cls ? " " + cls : "");
+  const dt = document.createElement("dt"); dt.textContent = k;
+  const dd = document.createElement("dd"); dd.textContent = v;
+  d.append(dt, dd);
+  dl.appendChild(d);
+  return d;
+}
+
+function renderSpeseEsito() {
+  const e = calcola(stato);
+  const dl = $("#expRows");
+  dl.textContent = "";
+  const tot = stato.spese.reduce((a, s) => a + Math.max(0, s.v), 0);
+  if (!tot) return;
+  const qB = e.valido ? e.qB : 0.5;
+  riga(dl, "Totale spese inserite", eur(tot));
+  riga(dl, "Al 50% ciascuno (prassi più diffusa)", eur(tot / 2) + " a testa");
+  riga(dl, "Pro quota: genitore collocatario (" + pct(1 - qB) + ")", eur(tot * (1 - qB)));
+  riga(dl, "Pro quota: altro genitore (" + pct(qB) + ")", eur(tot * qB), "sum");
+}
+
+function renderScenari(e) {
+  const ul = $("#scen");
+  ul.textContent = "";
+  if (e.valido && !PRESET.some((p) => p.n === stato.notti)) {
+    const li = document.createElement("li");
+    li.className = "here";
+    const a = document.createElement("span");
+    a.textContent = "Situazione attuale (" + stato.notti + " notti)";
+    const b = document.createElement("b");
+    b.textContent = eur(e.assegno) + "/mese";
+    li.append(a, b);
+    ul.appendChild(li);
+  }
+  for (const p of PRESET) {
+    const r = calcola(stato, p.n);
+    const li = document.createElement("li");
+    if (p.n === stato.notti) li.className = "here";
+    const a = document.createElement("span");
+    a.textContent = p.t + " (" + p.n + " notti)";
+    const b = document.createElement("b");
+    b.textContent = r.valido ? eur(r.assegno) + "/mese" : "—";
+    li.append(a, b);
+    ul.appendChild(li);
+  }
+  if (!e.valido) return;
+  const li = document.createElement("li");
+  li.innerHTML = "<span class='hint'>Passare da weekend alterni al paritetico sposta "
+    + "<b>" + eur(Math.abs(calcola(stato, 4).assegno - calcola(stato, 15).assegno) * 12) + "</b> all'anno.</span>";
+  ul.appendChild(li);
+}
+
+function renderIstat(e) {
+  const ul = $("#istat");
+  ul.textContent = "";
+  if (!e.valido || e.assegno <= 0) return;
+  const i = stato.infl / 100;
+  let cum = 0;
+  for (let anno = 0; anno <= 5; anno++) {
+    const v = e.assegno * Math.pow(1 + i, anno);
+    cum += v * 12;
+    const li = document.createElement("li");
+    const a = document.createElement("span");
+    a.textContent = anno === 0 ? "Oggi" : "Tra " + anno + (anno === 1 ? " anno" : " anni");
+    const b = document.createElement("b");
+    b.textContent = eur(v) + "/mese";
+    li.append(a, b);
+    if (anno === 0) li.className = "here";
+    ul.appendChild(li);
+  }
+  const li = document.createElement("li");
+  li.innerHTML = "<span class='hint'>Totale versato in sei anni con questa inflazione: <b>" + eur(cum) + "</b>.</span>";
+  ul.appendChild(li);
+}
+
+function aggiorna() {
+  const e = calcola(stato);
+  const big = $("#big"), verdict = $("#verdict"), rows = $("#rows"), notes = $("#notes");
+  rows.textContent = ""; notes.textContent = "";
+
+  if (!e.valido) {
+    big.textContent = "—";
+    verdict.textContent = e.R <= 0
+      ? "Inserisci almeno un reddito: senza redditi la proporzione non si può calcolare."
+      : "Aggiungi almeno un figlio.";
+    $("#barVal").textContent = "—";
+    $("#barTxt").textContent = "dati incompleti";
+    $("#copy").disabled = true;
+    renderScenari(e); renderIstat(e); renderSpeseEsito();
+    return;
+  }
+
+  big.innerHTML = eur(e.assegno) + " <small>al mese</small>";
+  const quotaNetto = e.rB > 0 ? e.assegno / e.rB : 0;
+  verdict.textContent = e.assegno > 0
+    ? "A carico dell'altro genitore, per " + (e.figli.length === 1 ? "un figlio" : e.figli.length + " figli")
+      + ". Sono il " + pct(quotaNetto) + " del suo netto mensile."
+    : "Con questi dati non emerge un assegno a carico dell'altro genitore.";
+
+  riga(rows, "Costo mensile ordinario " + (e.figli.length === 1 ? "del figlio" : "dei figli"), eur(e.C));
+  if (e.figli.length > 1) {
+    e.figli.forEach((eta, i) => riga(rows, "· figlio di " + eta + (eta === 1 ? " anno" : " anni"), eur(e.costi[i])));
+  }
+  riga(rows, "Quota dell'altro genitore (" + pct(e.qB) + " dei redditi)", eur(e.dovuto));
+  riga(rows, "Già spesi direttamente in " + e.notti + (e.notti === 1 ? " notte" : " notti") + "/mese", "− " + eur(e.dirette));
+  riga(rows, "Assegno mensile", eur(e.assegno), "sum");
+  riga(rows, "Spese straordinarie, pro quota", pct(e.qA) + " / " + pct(e.qB));
+
+  if (e.limitato) {
+    nota(notes, "Il calcolo proporzionale darebbe " + eur(e.lordo) + ", ma l'importo è stato ridotto al "
+      + pct(TETTI[Math.min(e.figli.length, 3) - 1]) + " del netto dell'obbligato: oltre quella soglia il giudice "
+      + "quasi sempre interviene, perché anche chi versa deve poter vivere.");
+  }
+  if (e.nullo && e.rB > 0) {
+    nota(notes, "I tempi di permanenza e le quote di reddito si bilanciano: ciascun genitore mantiene il figlio "
+      + "nei propri giorni e non c'è un assegno periodico. Resta la divisione pro quota delle spese straordinarie.", true);
+  }
+  if (e.rA === 0 && e.rB > 0) {
+    nota(notes, "Il genitore con cui vivono i figli non ha redditi propri: l'intero costo ricade sull'altro, "
+      + "entro il limite di quanto può effettivamente sostenere. Il giudice valuta anche la capacità di lavorare "
+      + "di chi oggi non ha reddito.", true);
+  }
+  if (e.rB === 0) {
+    nota(notes, "L'altro genitore non ha redditi propri: nessun assegno è esigibile, ma l'obbligo di mantenimento "
+      + "resta e può rivivere quando trova un'occupazione.", true);
+  } else if (e.assegno > 0 && e.restaB < 700) {
+    nota(notes, "Dopo l'assegno all'obbligato resterebbero " + eur(e.restaB) + " al mese: sotto il minimo vitale. "
+      + "In giudizio una cifra così viene di norma ridotta.");
+  }
+  if (e.figli.some((x) => x >= 18)) {
+    nota(notes, "Per i figli maggiorenni l'assegno spetta finché non sono economicamente autosufficienti e può "
+      + "essere versato direttamente a loro, su richiesta.", true);
+  }
+
+  $("#copy").disabled = false;
+  $("#barVal").textContent = eur(e.assegno);
+  $("#barTxt").textContent = e.assegno > 0 ? "assegno mensile stimato · vedi il dettaglio" : "nessun assegno · vedi perché";
+
+  renderScenari(e); renderIstat(e); renderSpeseEsito();
+}
+
+function nota(box, testo, calmo) {
+  const p = document.createElement("p");
+  p.className = "note" + (calmo ? " calm" : "");
+  p.textContent = testo;
+  box.appendChild(p);
+}
+
+function riepilogo() {
+  const e = calcola(stato);
+  if (!e.valido) return "";
+  const r = [
+    "Stima assegno di mantenimento figli",
+    "Redditi netti: genitore collocatario " + eur(e.rA) + ", altro genitore " + eur(e.rB),
+    "Figli: " + e.figli.map((x) => x + " anni").join(", "),
+    "Notti al mese presso il non collocatario: " + e.notti,
+    "",
+    "Costo mensile ordinario dei figli: " + eur(e.C),
+    "Quota dell'altro genitore (" + pct(e.qB) + "): " + eur(e.dovuto),
+    "Spese dirette nei suoi giorni: -" + eur(e.dirette),
+    "ASSEGNO MENSILE STIMATO: " + eur(e.assegno),
+    "Spese straordinarie pro quota: " + pct(e.qA) + " / " + pct(e.qB),
+  ];
+  const tot = stato.spese.reduce((a, s) => a + Math.max(0, s.v), 0);
+  if (tot && window.Monetize && Monetize.isPro()) {
+    r.push("", "Spese straordinarie inserite: " + eur(tot)
+      + " (pro quota " + eur(tot * e.qA) + " / " + eur(tot * e.qB) + ")");
+  }
+  r.push("", "Stima orientativa secondo il metodo proporzionale (art. 337-ter c.c.), non un parere legale.");
+  return r.join("\n");
+}
+
+/* ---------- eventi ---------- */
+$("#rA").addEventListener("input", (ev) => { stato.rA = Math.max(0, num(ev.target.value, 0)); salva(); aggiorna(); });
+$("#rB").addEventListener("input", (ev) => { stato.rB = Math.max(0, num(ev.target.value, 0)); salva(); aggiorna(); });
+$("#notti").addEventListener("input", (ev) => {
+  stato.notti = clamp(Math.round(num(ev.target.value, 0)), 0, 15);
+  salva(); renderPreset(); aggiorna();
+});
+$("#notti").addEventListener("blur", () => { $("#notti").value = String(stato.notti); });
+$("#infl").addEventListener("input", (ev) => { stato.infl = clamp(num(ev.target.value, 2), 0, 15); salva(); renderIstat(calcola(stato)); });
+for (const b of document.querySelectorAll("[data-nudge]")) {
+  b.addEventListener("click", () => {
+    stato.notti = clamp(stato.notti + Number(b.dataset.nudge), 0, 15);
+    $("#notti").value = String(stato.notti);
+    salva(); renderPreset(); aggiorna();
+  });
+}
+for (const b of document.querySelectorAll("[data-nudge-infl]")) {
+  b.addEventListener("click", () => {
+    stato.infl = clamp(Math.round((stato.infl + Number(b.dataset.nudgeInfl)) * 10) / 10, 0, 15);
+    $("#infl").value = String(stato.infl);
+    salva(); renderIstat(calcola(stato));
+  });
+}
+$("#addKid").addEventListener("click", () => {
+  if (stato.figli.length >= 6) return;
+  stato.figli.push(8); salva(); renderFigli(); aggiorna();
+});
+$("#addExp").addEventListener("click", () => {
+  if (stato.spese.length >= 20) return;
+  stato.spese.push({ d: "", v: 0 }); salva(); renderSpese();
+  const inputs = $("#exps").querySelectorAll("input[type=text]");
+  if (inputs.length) inputs[inputs.length - 1].focus();
+});
+$("#bar").addEventListener("click", () => {
+  $("#risultato").scrollIntoView({ behavior: "smooth", block: "center" });
+});
+$("#copy").addEventListener("click", async () => {
+  const txt = riepilogo();
+  if (!txt) return;
+  const btn = $("#copy");
+  const prima = btn.textContent;
+  try {
+    await navigator.clipboard.writeText(txt);
+    btn.textContent = "Riepilogo copiato ✓";
+  } catch {
+    const ta = document.createElement("textarea");
+    ta.value = txt; ta.className = "sr";
+    document.body.appendChild(ta); ta.select();
+    const ok = document.execCommand && document.execCommand("copy");
+    ta.remove();
+    btn.textContent = ok ? "Riepilogo copiato ✓" : "Copia non riuscita";
+  }
+  setTimeout(() => { btn.textContent = prima; }, 1800);
+});
+document.addEventListener("keydown", (ev) => {
+  if (ev.key === "Escape" && document.activeElement && document.activeElement.blur) document.activeElement.blur();
+});
+if (window.Monetize) Monetize.onPro(() => aggiorna());
+
+$("#rA").value = String(stato.rA);
+$("#rB").value = String(stato.rB);
+$("#notti").value = String(stato.notti);
+$("#infl").value = String(stato.infl);
+renderFigli();
+renderPreset();
+renderSpese();
+aggiorna();
+</script>
+</body>
+</html>
