@@ -1,7 +1,7 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 40,
+  "count": 41,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -50,6 +50,53 @@ window.__APPS__ = {
     ]
   },
   "apps": [
+    {
+      "title": "Bonus Nido",
+      "slug": "2026-10-22-bonus-asilo-nido",
+      "date": "2026-10-22",
+      "description": "Calcola quanto ti spetta di bonus asilo nido: fascia ISEE, rata mensile, totale annuo e quanto resta a tuo carico.",
+      "category": "finanza-personale",
+      "tags": [
+        "famiglia",
+        "figli",
+        "isee",
+        "nido",
+        "inps"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "sheet",
+        "palette": "rosa-cipria",
+        "font": "sans-geometrico"
+      },
+      "business": {
+        "keyword": "bonus asilo nido quanto spetta",
+        "keywords": [
+          "bonus asilo nido 2026 importi",
+          "bonus nido isee 40000",
+          "quanto rimborsa il bonus asilo nido",
+          "bonus asilo nido nati dal 2024"
+        ],
+        "intent": "Un genitore che sta iscrivendo il figlio al nido vuole sapere subito quanti euro al mese gli rimborsa l'INPS e quanto gli resta da pagare di tasca propria.",
+        "target": "Genitori di bambini sotto i 3 anni, 28-45 anni, da telefono, spesso mentre confrontano i preventivi dei nidi.",
+        "edge": "È l'unico che applica il limite vero del bonus (non può superare la retta pagata) e stima l'ISEE neutralizzato dall'assegno unico, la novità 2026 che cambia fascia a molte famiglie.",
+        "monetization": [
+          "adsense",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Prospetto delle 11 mensilità",
+          "Confronto nido pubblico e privato"
+        ],
+        "affiliate": []
+      },
+      "size": 45341
+    },
     {
       "title": "Mantenimento Figli",
       "slug": "2026-10-21-assegno-mantenimento-figli",

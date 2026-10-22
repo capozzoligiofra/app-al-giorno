@@ -1,0 +1,705 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#b43f63">
+  <title>Bonus Nido 2026: quanto spetta di bonus asilo nido</title>
+  <meta name="description" content="Bonus asilo nido: quanto spetta davvero nel 2026. Fascia ISEE, rata mensile INPS, totale annuo e quanto resta a tuo carico sulla retta del nido.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-22-bonus-asilo-nido/">
+  <meta property="og:title" content="Bonus Nido 2026: quanto spetta di bonus asilo nido">
+  <meta property="og:description" content="Inserisci ISEE, data di nascita e retta del nido: scopri la rata mensile INPS, il totale dell'anno e quanto paghi di tasca tua.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-22-bonus-asilo-nido/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Bonus Nido",
+    "description": "Calcolatore gratuito del bonus asilo nido INPS: individua la fascia ISEE in base alla data di nascita del bambino, applica il limite della retta effettivamente pagata e mostra la rata mensile, il totale annuo e la quota che resta a carico della famiglia.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-22-bonus-asilo-nido/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Quanto spetta di bonus asilo nido nel 2026?", "acceptedAnswer": { "@type": "Answer", "text": "Per i bambini nati dal 1 gennaio 2024 il contributo arriva a 3.600 euro l'anno con ISEE fino a 40.000 euro, cioè 327,27 euro al mese per undici mensilità, e scende a 1.500 euro l'anno sopra quella soglia o in assenza di ISEE valido. Per i bambini nati prima del 2024 restano tre fasce: 3.000 euro fino a 25.000,99 euro di ISEE, 2.500 euro fino a 40.000 euro, 1.500 euro oltre. In nessun caso il bonus può superare la retta pagata." } },
+      { "@type": "Question", "name": "Il bonus asilo nido copre tutta la retta?", "acceptedAnswer": { "@type": "Answer", "text": "Solo se la retta è più bassa della rata massima della tua fascia. Il contributo è un rimborso: l'INPS paga il minore fra la rata della fascia e la retta che hai effettivamente versato e documentato. Con una retta da 250 euro e una rata massima di 327,27 euro ricevi 250 euro; con una retta da 500 euro ricevi 327,27 euro e i restanti 172,73 euro restano a tuo carico." } },
+      { "@type": "Question", "name": "Cos'è l'ISEE neutralizzato dall'assegno unico?", "acceptedAnswer": { "@type": "Answer", "text": "Dal 1 gennaio 2026 il bonus nido si calcola su un ISEE da cui vengono esclusi gli importi dell'assegno unico e universale percepiti. In pratica si divide l'assegno unico incassato nell'anno di riferimento dei redditi per il parametro della scala di equivalenza della DSU e si sottrae il risultato dall'ISEE. Con ISEE 41.000 euro, scala 3,10 e 3.100 euro di assegno unico si scende a 40.000 euro e si rientra nella fascia alta." } },
+      { "@type": "Question", "name": "Serve ripresentare la domanda ogni anno?", "acceptedAnswer": { "@type": "Answer", "text": "No: dal 2026 la domanda accolta resta valida fino al mese di agosto dell'anno in cui il bambino compie tre anni. Vanno però aggiornati ogni anno l'ISEE e le mensilità richieste, e occorre caricare le ricevute delle rette pagate: senza ISEE valido l'importo scende automaticamente a 1.500 euro l'anno." } },
+      { "@type": "Question", "name": "Per quali spese si può chiedere il bonus nido?", "acceptedAnswer": { "@type": "Answer", "text": "Solo per le rette di asili nido pubblici o privati autorizzati e dei servizi integrativi per la prima infanzia, oppure come supporto domiciliare per bambini sotto i tre anni con grave patologia cronica. Restano fuori pre-scuola, post-scuola, ludoteche, baby parking, centri estivi e i pasti o i trasporti fatturati a parte rispetto alla retta." } },
+      { "@type": "Question", "name": "Quante mensilità paga l'INPS?", "acceptedAnswer": { "@type": "Answer", "text": "Al massimo undici per anno solare, una per ogni mese di frequenza documentato. Il mese di chiusura estiva del nido non si può chiedere, quindi chi frequenta da settembre a luglio arriva esattamente a undici mensilità, mentre chi iscrive il bambino a gennaio ne conta meno e riceve una cifra proporzionalmente più bassa." } }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #fdf5f7; --surface: #ffffff; --raise: #fbecf0; --text: #2a1d22; --muted: #7c6269;
+      --line: #f1dde3; --accent: #b43f63; --accent-ink: #ffffff; --accent-soft: #fae6ec;
+      --ok: #2f6b50; --warn: #8a5718; --warn-bg: #fdf0db; --shadow: 0 -8px 28px rgba(80, 30, 48, .14);
+      --r: 14px; --r-sm: 10px;
+      --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #171014; --surface: #22171d; --raise: #2d1f26; --text: #f6e9ee; --muted: #b49aa3;
+        --line: #3a2830; --accent: #f29db6; --accent-ink: #3a0e21; --accent-soft: #38222b;
+        --ok: #7cc9a3; --warn: #e7bc74; --warn-bg: #352713; --shadow: 0 -8px 28px rgba(0, 0, 0, .5);
+        color-scheme: dark;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text); font-family: var(--sans);
+      font-size: 17px; line-height: 1.55; overflow-x: hidden;
+      padding: 1rem 1rem calc(8.5rem + env(safe-area-inset-bottom));
+    }
+    .back { display: inline-flex; align-items: center; min-height: 44px; color: var(--muted); text-decoration: none; font-size: .95rem; }
+    .back:hover, .back:focus-visible { color: var(--accent); text-decoration: underline; }
+    h1 { font-size: 1.6rem; line-height: 1.2; margin: .8rem 0 .4rem; letter-spacing: -.02em; }
+    h2 { font-size: 1.15rem; margin: 0 0 .7rem; letter-spacing: -.01em; }
+    h3 { font-size: 1rem; margin: 1.2rem 0 .3rem; }
+    .lead { margin: 0 0 1.2rem; color: var(--muted); font-size: 1rem; }
+    .wrap { max-width: 1040px; margin: 0 auto; }
+
+    /* ---- campi ---- */
+    .box { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 1rem; margin: 0 0 .85rem; }
+    .box > h2 { display: flex; align-items: baseline; gap: .5rem; }
+    .num { display: inline-grid; place-items: center; width: 1.6rem; height: 1.6rem; flex: none; border-radius: 50%;
+           background: var(--accent-soft); color: var(--accent); font-size: .85rem; font-weight: 800; }
+    label { display: block; font-size: .92rem; color: var(--muted); margin: .7rem 0 .25rem; font-weight: 600; }
+    label:first-of-type { margin-top: 0; }
+    input[type="date"], input[type="text"], input[type="number"] {
+      font: inherit; font-size: 16px; width: 100%; min-height: 48px; padding: .55rem .8rem;
+      border: 1.5px solid var(--line); border-radius: var(--r-sm); background: var(--bg); color: var(--text);
+    }
+    input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .hint { font-size: .85rem; color: var(--muted); margin: .3rem 0 0; }
+    .euro { position: relative; }
+    .euro input { padding-right: 2.2rem; }
+    .euro span { position: absolute; right: .8rem; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
+    .due { display: grid; gap: .6rem; }
+    @media (min-width: 420px) { .due { grid-template-columns: 1fr 1fr; } }
+
+    /* stepper */
+    .stepper { display: flex; align-items: center; gap: .5rem; }
+    .stepper button {
+      font: inherit; font-size: 1.3rem; font-weight: 700; width: 48px; height: 48px; flex: none;
+      border: 1.5px solid var(--line); border-radius: var(--r-sm); background: var(--raise); color: var(--text); cursor: pointer;
+    }
+    .stepper button:active { background: var(--accent-soft); }
+    .stepper output { flex: 1; text-align: center; font-weight: 700; font-size: 1.1rem; }
+
+    /* slider mesi */
+    input[type="range"] { width: 100%; height: 44px; accent-color: var(--accent); }
+    .mesi-val { font-weight: 800; color: var(--accent); }
+
+    /* switch */
+    .switch { display: flex; align-items: center; gap: .7rem; min-height: 48px; cursor: pointer; margin-top: .3rem; }
+    .switch input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+    .switch .track { width: 48px; height: 28px; flex: none; border-radius: 999px; background: var(--line); position: relative; transition: background .18s; }
+    .switch .track::after { content: ""; position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%; background: var(--surface); box-shadow: 0 1px 3px rgba(0,0,0,.25); transition: transform .18s; }
+    .switch input:checked + .track { background: var(--accent); }
+    .switch input:checked + .track::after { transform: translateX(20px); }
+    .switch input:focus-visible + .track { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .switch span.txt { font-size: .95rem; font-weight: 600; }
+    .collapse { display: none; border-top: 1px dashed var(--line); margin-top: .8rem; padding-top: .6rem; }
+    .collapse.on { display: block; }
+    .chips { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .chip { display: inline-flex; align-items: center; min-height: 44px; padding: .3rem .85rem; border-radius: 999px;
+            border: 1.5px solid var(--line); background: var(--bg); color: var(--text); font: inherit; font-size: .9rem; cursor: pointer; }
+    .chip[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 700; }
+    .nota { background: var(--accent-soft); border-radius: var(--r-sm); padding: .6rem .75rem; font-size: .9rem; margin: .7rem 0 0; }
+    .avviso { background: var(--warn-bg); color: var(--warn); border-radius: var(--r-sm); padding: .6rem .75rem; font-size: .9rem; margin: .7rem 0 0; }
+
+    /* ---- sheet del risultato ---- */
+    .sheet {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
+      background: var(--surface); border-top: 1px solid var(--line);
+      border-radius: var(--r) var(--r) 0 0; box-shadow: var(--shadow);
+      max-height: 72dvh; display: flex; flex-direction: column;
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+    .grip {
+      display: flex; align-items: center; gap: .75rem; width: 100%; text-align: left;
+      font: inherit; color: inherit; background: none; border: 0; cursor: pointer;
+      padding: .7rem 1rem .8rem; min-height: 60px; position: relative;
+    }
+    .grip::before { content: ""; position: absolute; top: .35rem; left: 50%; transform: translateX(-50%); width: 42px; height: 4px; border-radius: 2px; background: var(--line); }
+    .grip .big { font-size: 1.5rem; font-weight: 800; color: var(--accent); letter-spacing: -.02em; line-height: 1.1; }
+    .grip .sub { display: block; font-size: .85rem; color: var(--muted); font-weight: 600; }
+    .grip .chev { margin-left: auto; color: var(--muted); font-size: 1.1rem; transition: transform .2s; }
+    .sheet[data-open="true"] .grip .chev { transform: rotate(180deg); }
+    .sheet-body { display: none; overflow-y: auto; padding: 0 1rem 1rem; }
+    .sheet[data-open="true"] .sheet-body { display: block; }
+    .righe { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+    .righe li { display: flex; justify-content: space-between; gap: 1rem; padding: .55rem 0; border-bottom: 1px solid var(--line); font-size: .97rem; }
+    .righe li b { font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .righe li.tot { font-size: 1.05rem; }
+    .righe li.tot b { color: var(--accent); }
+    .barra { height: 10px; border-radius: 999px; background: var(--raise); overflow: hidden; margin: .8rem 0 .3rem; }
+    .barra i { display: block; height: 100%; background: var(--accent); border-radius: 999px; transition: width .35s ease; }
+    .fonte { font-size: .82rem; color: var(--muted); margin: .8rem 0 0; }
+    .azioni { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .9rem; }
+    .btn { font: inherit; font-size: .95rem; font-weight: 700; min-height: 46px; padding: .5rem 1.1rem; border-radius: 999px;
+           border: 1.5px solid var(--accent); background: transparent; color: var(--accent); cursor: pointer; }
+    .btn.pieno { background: var(--accent); color: var(--accent-ink); }
+    .btn:active { transform: translateY(1px); }
+
+    /* ---- pro ---- */
+    section[data-pro] { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 1rem; margin: 0 0 .85rem; }
+    table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+    th, td { text-align: right; padding: .4rem .3rem; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+    th:first-child, td:first-child { text-align: left; }
+    thead th { font-size: .8rem; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+    tfoot td { font-weight: 800; border-bottom: 0; }
+    td input { font: inherit; font-size: 16px; width: 5.5rem; min-height: 40px; padding: .2rem .4rem; text-align: right;
+               border: 1.5px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--text); }
+    .confronto { display: grid; gap: .6rem; margin-top: .7rem; }
+    .vs { background: var(--raise); border-radius: var(--r-sm); padding: .7rem .8rem; }
+    .vs .k { font-size: .85rem; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
+    .vs .v { font-size: 1.25rem; font-weight: 800; }
+    @media (min-width: 560px) { .confronto { grid-template-columns: 1fr 1fr; } }
+
+    /* ---- guida ---- */
+    .guida { max-width: 44rem; margin: 2rem auto 0; }
+    .guida h2 { font-size: 1.3rem; margin: 2rem 0 .5rem; }
+    .guida p, .guida li { font-size: 1.02rem; }
+    .guida ul { padding-left: 1.2rem; }
+    .guida .ex { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: var(--r-sm); padding: .8rem 1rem; }
+    footer { max-width: 44rem; margin: 2.5rem auto 0; padding-top: 1rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+    footer a { color: var(--accent); }
+    a { color: var(--accent); }
+
+    @media (min-width: 900px) {
+      body { padding-bottom: 3rem; }
+      .wrap { display: grid; grid-template-columns: minmax(0, 1fr) 22rem; gap: 1.5rem; align-items: start; }
+      .intro, .guida, footer, .sotto { grid-column: 1 / -1; }
+      .sheet { position: sticky; top: 1rem; grid-column: 2; grid-row: 2; box-shadow: none; border: 1px solid var(--line); border-radius: var(--r); max-height: none; }
+      .sheet .grip::before { display: none; }
+      .sheet .grip { cursor: default; padding-top: 1rem; }
+      .sheet .grip .chev { display: none; }
+      .sheet .sheet-body { display: block; }
+      .campi { grid-column: 1; grid-row: 2; }
+    }
+    @media print {
+      .sheet, .back, .guida, footer, .sotto, .no-print { display: none !important; }
+      body { padding: 0; font-size: 12pt; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="intro">
+    <a class="back" href="../../index.html">← Tutte le app</a>
+    <h1>Bonus asilo nido: quanto spetta nel 2026</h1>
+    <p class="lead">Inserisci ISEE, data di nascita e retta del nido: ottieni la rata mensile che paga l'INPS, il totale dell'anno e la cifra che resta a carico tuo. Niente registrazione, calcolo immediato.</p>
+  </div>
+
+  <div class="campi">
+    <section class="box">
+      <h2><span class="num">1</span> Il bambino</h2>
+      <label for="nascita">Data di nascita</label>
+      <input type="date" id="nascita" autocomplete="off">
+      <p class="hint">Serve per capire la coorte: i nati dal 1° gennaio 2024 hanno importi più alti.</p>
+      <div id="avvisoEta"></div>
+    </section>
+
+    <section class="box">
+      <h2><span class="num">2</span> L'ISEE</h2>
+      <label for="isee">Valore ISEE dell'attestazione</label>
+      <div class="euro"><input type="text" id="isee" inputmode="decimal" enterkeyhint="done" placeholder="es. 22.500" autocomplete="off"><span>€</span></div>
+      <p class="hint">Lascia vuoto se non hai un ISEE valido: in quel caso l'INPS riconosce l'importo minimo.</p>
+      <label class="switch" for="auuOn">
+        <input type="checkbox" id="auuOn"><span class="track"></span>
+        <span class="txt">Ho percepito l'assegno unico (abbassa l'ISEE utile)</span>
+      </label>
+      <div class="collapse" id="auuBox">
+        <div class="due">
+          <div>
+            <label for="auu">Assegno unico incassato in un anno</label>
+            <div class="euro"><input type="text" id="auu" inputmode="decimal" placeholder="es. 2.400" autocomplete="off"><span>€</span></div>
+          </div>
+          <div>
+            <label for="scala">Scala di equivalenza</label>
+            <input type="text" id="scala" inputmode="decimal" placeholder="es. 2,34" autocomplete="off">
+          </div>
+        </div>
+        <p class="hint">La scala di equivalenza è stampata sull'attestazione ISEE. Se non la trovi, stimala qui:</p>
+        <label for="comp">Componenti del nucleo</label>
+        <div class="stepper">
+          <button type="button" id="compGiu" aria-label="Un componente in meno">−</button>
+          <output id="compOut" for="comp">3</output>
+          <button type="button" id="compSu" aria-label="Un componente in più">+</button>
+          <input type="hidden" id="comp" value="3">
+        </div>
+        <div class="chips" style="margin-top:.6rem">
+          <button type="button" class="chip" id="chipLav" aria-pressed="false">Entrambi i genitori lavorano</button>
+          <button type="button" class="chip" id="chipSolo" aria-pressed="false">Un solo genitore nel nucleo</button>
+        </div>
+        <p class="hint" id="scalaStima"></p>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2><span class="num">3</span> La retta del nido</h2>
+      <label for="retta">Quanto paghi al mese</label>
+      <div class="euro"><input type="text" id="retta" inputmode="decimal" enterkeyhint="done" placeholder="es. 380" autocomplete="off"><span>€</span></div>
+      <p class="hint">La retta effettiva, senza pasti o trasporti fatturati a parte: quelli non sono rimborsabili.</p>
+      <label for="mesi">Mesi di frequenza nell'anno: <span class="mesi-val" id="mesiVal">11</span></label>
+      <input type="range" id="mesi" min="1" max="11" step="1" value="11">
+      <p class="hint">L'INPS paga al massimo 11 mensilità per anno solare, una per ogni mese documentato.</p>
+    </section>
+
+    <div data-ad="top"></div>
+
+    <section data-pro="Prospetto delle 11 mensilità">
+      <h2>Prospetto mese per mese</h2>
+      <p class="hint">Cambia la retta di un singolo mese (chiusure, settimane di inserimento, aumenti di gennaio) e vedi come si muovono rimborso e quota a tuo carico. Il totale rispetta il tetto annuo della fascia.</p>
+      <table id="tabMesi">
+        <thead><tr><th>Mese</th><th>Retta</th><th>Rimborso</th><th>A carico</th></tr></thead>
+        <tbody></tbody>
+        <tfoot><tr><td>Totale</td><td id="tfRetta">—</td><td id="tfBonus">—</td><td id="tfCarico">—</td></tr></tfoot>
+      </table>
+      <div class="azioni no-print">
+        <button type="button" class="btn" id="stampaPro">Stampa il prospetto</button>
+        <button type="button" class="btn" id="resetPro">Riporta tutto alla retta base</button>
+      </div>
+    </section>
+
+    <section data-pro="Confronto nido pubblico e privato">
+      <h2>Nido pubblico o privato: quanto cambia davvero</h2>
+      <p class="hint">Il bonus livella le differenze solo fino alla rata massima: sopra quella soglia ogni euro di retta in più è tutto tuo. Confronta i due preventivi al netto del rimborso.</p>
+      <div class="due">
+        <div>
+          <label for="rettaPub">Retta nido pubblico</label>
+          <div class="euro"><input type="text" id="rettaPub" inputmode="decimal" placeholder="es. 280" autocomplete="off"><span>€</span></div>
+        </div>
+        <div>
+          <label for="rettaPriv">Retta nido privato</label>
+          <div class="euro"><input type="text" id="rettaPriv" inputmode="decimal" placeholder="es. 550" autocomplete="off"><span>€</span></div>
+        </div>
+      </div>
+      <div class="confronto">
+        <div class="vs"><div class="k">Pubblico, a tuo carico</div><div class="v" id="vsPub">—</div><div class="hint" id="vsPubDet">—</div></div>
+        <div class="vs"><div class="k">Privato, a tuo carico</div><div class="v" id="vsPriv">—</div><div class="hint" id="vsPrivDet">—</div></div>
+      </div>
+      <p class="nota" id="vsDiff">Inserisci le due rette per vedere la differenza annua reale.</p>
+    </section>
+  </div>
+
+  <aside class="sheet" id="sheet" data-open="false" aria-label="Risultato del calcolo">
+    <button type="button" class="grip" id="grip" aria-expanded="false" aria-controls="sheetBody">
+      <span>
+        <span class="big" id="gripBig">Compila i campi</span>
+        <span class="sub" id="gripSub">Ti serve ISEE, data di nascita e retta</span>
+      </span>
+      <span class="chev" aria-hidden="true">▾</span>
+    </button>
+    <div class="sheet-body" id="sheetBody" aria-live="polite">
+      <ul class="righe" id="righe"></ul>
+      <div class="barra" aria-hidden="true"><i id="barra" style="width:0%"></i></div>
+      <p class="hint" id="copertura">—</p>
+      <div id="suggerimento"></div>
+      <div class="azioni no-print">
+        <button type="button" class="btn pieno" id="copia">Copia riepilogo</button>
+      </div>
+      <p class="fonte">Importi e regole: circolare INPS n. 29 del 27 marzo 2026 (bonus asilo nido 2026). Stima indicativa, non un atto dell'INPS.</p>
+    </div>
+  </aside>
+
+  <section id="guida" class="guida">
+    <h2>Come funziona il bonus asilo nido</h2>
+    <p>Il bonus asilo nido è un rimborso che l'INPS versa ai genitori per le rette degli asili nido pubblici e privati autorizzati, e per le forme di supporto a casa dei bambini sotto i tre anni con una grave patologia cronica. Non è uno sconto applicato dal nido: la famiglia paga la retta, carica la ricevuta e l'INPS accredita il contributo mese per mese, al massimo per undici mensilità in un anno solare.</p>
+    <p>Due variabili decidono la cifra. La prima è la data di nascita del bambino: per i nati dal 1° gennaio 2024 il contributo arriva a 3.600 euro l'anno con ISEE fino a 40.000 euro, cioè 327,27 euro al mese, e scende a 1.500 euro sopra quella soglia. Per i nati prima del 2024 valgono ancora tre fasce: 3.000 euro l'anno (272,73 euro al mese) fino a 25.000,99 euro di ISEE, 2.500 euro (227,27 euro al mese) fino a 40.000 euro, 1.500 euro (136,37 euro al mese) oltre. La seconda variabile è la retta: il bonus non può mai superare quello che hai effettivamente pagato, quindi chi versa 180 euro al mese riceve 180 euro, non la rata piena della fascia.</p>
+    <p>È proprio qui che le guide online si fermano, limitandosi a elencare le fasce. Questo strumento calcola invece il numero che conta: quanto esce davvero dal portafoglio della famiglia in un anno di nido, mese per mese.</p>
+
+    <h2>Un esempio con i numeri</h2>
+    <p class="ex">Bambina nata nel marzo 2025, ISEE 27.400 euro, nido privato da 480 euro al mese, frequenza da settembre a luglio: undici mensilità. Essendo nata dopo il 1° gennaio 2024, con ISEE sotto 40.000 euro rientra nel tetto da 3.600 euro, cioè 327,27 euro al mese. La retta è più alta della rata massima, quindi il rimborso si ferma a 327,27 euro: in un anno sono 3.600 euro di bonus su 5.280 euro di rette pagate. A carico della famiglia restano 1.680 euro, cioè 152,73 euro al mese. Attenzione al confronto con la coorte precedente: con la stessa situazione ma un bambino nato nel 2023, la fascia sarebbe quella da 2.500 euro e il rimborso scenderebbe a 227,27 euro al mese, con 1.100 euro in più a carico della famiglia nello stesso anno.</p>
+
+    <h2>L'ISEE neutralizzato, la novità che cambia fascia a molte famiglie</h2>
+    <p>Dal 1° gennaio 2026 il bonus nido non si calcola più sull'ISEE così come lo leggi sull'attestazione, ma su un valore depurato dall'assegno unico e universale. Il meccanismo è semplice: si prende l'assegno unico incassato nell'anno di riferimento dei redditi, lo si divide per il parametro della scala di equivalenza della DSU e il risultato si sottrae dall'ISEE. Una famiglia con ISEE 41.000 euro, scala 3,10 e 3.100 euro di assegno unico scende esattamente a 40.000 euro: fuori fascia prima, dentro adesso, con una differenza di 2.100 euro l'anno. Nel calcolatore puoi attivare questa correzione e, se non ricordi la scala di equivalenza, stimarla dal numero di componenti del nucleo.</p>
+    <p>L'altra novità del 2026 riguarda la domanda, che non va più ripresentata ogni anno: una volta accolta resta valida fino ad agosto dell'anno in cui il bambino compie tre anni. Restano annuali l'aggiornamento dell'ISEE e il caricamento delle ricevute.</p>
+
+    <h2>Gli errori che costano soldi</h2>
+    <ul>
+      <li><strong>Dimenticare l'ISEE.</strong> Senza un ISEE valido l'INPS liquida l'importo minimo, 1.500 euro l'anno. Per una famiglia che avrebbe diritto a 3.600 euro è una perdita di 2.100 euro: rinnovare la DSU a gennaio è l'operazione più redditizia dell'anno.</li>
+      <li><strong>Credere di avere diritto a 3.600 euro con un figlio nato nel 2023.</strong> Il tetto più alto riguarda solo i nati dal 1° gennaio 2024. Molte pagine riportano ancora il vecchio requisito del secondo figlio sotto i dieci anni, abolito dal 2025: oggi per i nati dal 2024 conta solo l'ISEE.</li>
+      <li><strong>Chiedere il rimborso per spese escluse.</strong> Pre-scuola, post-scuola, ludoteche, baby parking, centri estivi e i pasti fatturati separatamente dalla retta non rientrano nel bonus.</li>
+      <li><strong>Contare dodici mensilità.</strong> Il massimo è undici per anno solare: il mese di chiusura del nido non è rimborsabile.</li>
+      <li><strong>Pagare in contanti.</strong> Servono ricevute intestate e tracciabili per ogni mensilità richiesta, altrimenti la singola rata non viene liquidata.</li>
+    </ul>
+
+    <h2>Domande frequenti</h2>
+    <h3>Quanto spetta di bonus asilo nido nel 2026?</h3>
+    <p>Fino a 3.600 euro l'anno per i nati dal 1° gennaio 2024 con ISEE entro 40.000 euro, 1.500 euro sopra quella soglia o senza ISEE. Per i nati prima del 2024 le fasce sono 3.000, 2.500 e 1.500 euro. Il contributo resta comunque limitato alla retta pagata.</p>
+    <h3>Il bonus copre tutta la retta?</h3>
+    <p>Solo se la retta è inferiore alla rata massima della fascia. L'INPS versa il minore fra i due importi: con 250 euro di retta e una rata massima di 327,27 euro ricevi 250 euro, con 500 euro di retta ricevi 327,27 euro.</p>
+    <h3>Posso chiederlo per due figli insieme?</h3>
+    <p>Sì: il bonus spetta per ciascun figlio sotto i tre anni che frequenta il nido, con una domanda per bambino. Calcola separatamente i due casi, perché le rette sono quasi sempre diverse e il tetto annuo vale per ogni bambino.</p>
+    <h3>Quando arrivano i soldi?</h3>
+    <p>Dopo il caricamento della ricevuta della mensilità: l'accredito arriva di norma nelle settimane successive, non in anticipo sulla retta. Le mensilità dell'anno vanno documentate entro i termini indicati da INPS, quindi conviene caricare ogni ricevuta appena pagata.</p>
+    <h3>Il bonus nido è tassato o entra nell'ISEE?</h3>
+    <p>Non è reddito imponibile IRPEF e non si dichiara. Come tutte le prestazioni assistenziali va però indicato nella DSU dell'anno successivo, dove rientra fra i trattamenti assistenziali percepiti.</p>
+  </section>
+
+  <div class="sotto">
+    <div data-ad="bottom"></div>
+    <div data-support></div>
+    <footer>
+      <p>Strumento gratuito, i dati restano sul tuo telefono. Gli importi seguono la circolare INPS n. 29 del 27 marzo 2026: per la domanda fa fede il portale INPS o il tuo patronato.</p>
+      <p>Ti può servire anche: <a href="../2026-10-17-assegno-unico/">calcolo dell'assegno unico</a>, <a href="../2026-10-12-calcolo-isee/">calcolo dell'ISEE</a> e <a href="../2026-10-05-quanto-costa-un-figlio/">quanto costa un figlio</a>.</p>
+      <p>Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a></p>
+    </footer>
+  </div>
+</div>
+
+<script src="../../assets/monetize.js"></script>
+<script>
+(() => {
+  "use strict";
+  // Modello dati: un solo oggetto `stato` (persistito in localStorage "bonus-asilo-nido:v1") con
+  // nascita, isee, assegno unico + scala per l'ISEE neutralizzato, retta, mesi e le rette dei
+  // singoli mesi del prospetto Pro. Ogni modifica ricalcola fascia → rata → totale annuo.
+  const KEY = "bonus-asilo-nido:v1";
+  const MESI = ["Settembre", "Ottobre", "Novembre", "Dicembre", "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio"];
+
+  // Fasce e rate mensili come pubblicate dall'INPS (undici mensilità per anno solare).
+  const FASCE = {
+    dal2024: [
+      { max: 40000, annuo: 3600, rata: 327.27, et: "ISEE fino a 40.000 €" },
+      { max: Infinity, annuo: 1500, rata: 136.37, et: "ISEE oltre 40.000 € o assente" },
+    ],
+    ante2024: [
+      { max: 25000.99, annuo: 3000, rata: 272.73, et: "ISEE fino a 25.000,99 €" },
+      { max: 40000, annuo: 2500, rata: 227.27, et: "ISEE da 25.001 a 40.000 €" },
+      { max: Infinity, annuo: 1500, rata: 136.37, et: "ISEE oltre 40.000 € o assente" },
+    ],
+  };
+  const SCALA = [0, 1, 1.57, 2.04, 2.46, 2.85];
+
+  const $ = (s) => document.querySelector(s);
+  const el = {
+    nascita: $("#nascita"), avvisoEta: $("#avvisoEta"), isee: $("#isee"), auuOn: $("#auuOn"), auuBox: $("#auuBox"),
+    auu: $("#auu"), scala: $("#scala"), comp: $("#comp"), compOut: $("#compOut"), compGiu: $("#compGiu"), compSu: $("#compSu"),
+    chipLav: $("#chipLav"), chipSolo: $("#chipSolo"), scalaStima: $("#scalaStima"),
+    retta: $("#retta"), mesi: $("#mesi"), mesiVal: $("#mesiVal"),
+    sheet: $("#sheet"), grip: $("#grip"), gripBig: $("#gripBig"), gripSub: $("#gripSub"),
+    righe: $("#righe"), barra: $("#barra"), copertura: $("#copertura"), suggerimento: $("#suggerimento"), copia: $("#copia"),
+    tabMesi: $("#tabMesi"), tfRetta: $("#tfRetta"), tfBonus: $("#tfBonus"), tfCarico: $("#tfCarico"),
+    stampaPro: $("#stampaPro"), resetPro: $("#resetPro"),
+    rettaPub: $("#rettaPub"), rettaPriv: $("#rettaPriv"), vsPub: $("#vsPub"), vsPubDet: $("#vsPubDet"),
+    vsPriv: $("#vsPriv"), vsPrivDet: $("#vsPrivDet"), vsDiff: $("#vsDiff"),
+  };
+
+  const stato = {
+    nascita: "", isee: "", auuOn: false, auu: "", scala: "", comp: 3, lav: false, solo: false,
+    retta: "", mesi: 11, rette: {}, rettaPub: "", rettaPriv: "",
+  };
+
+  // ---------- util ----------
+  const eur = (n) => n.toLocaleString("it-IT", { style: "currency", currency: "EUR", maximumFractionDigits: 2 });
+  const eur0 = (n) => n.toLocaleString("it-IT", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
+  function num(v) {
+    if (typeof v === "number") return v;
+    const t = String(v ?? "").replace(/[\s€]/g, "");
+    if (!t) return NaN;
+    // "27.400,50" e "27400.5" devono dare lo stesso numero
+    const pulito = t.includes(",") ? t.replace(/\./g, "").replace(",", ".") : t.replace(/\.(?=\d{3}\b)/g, "");
+    const n = parseFloat(pulito);
+    return Number.isFinite(n) ? n : NaN;
+  }
+
+  function salva() {
+    try { localStorage.setItem(KEY, JSON.stringify(stato)); } catch (e) { /* storage pieno o negato: il calcolo funziona comunque */ }
+  }
+  function carica() {
+    try {
+      const raw = localStorage.getItem(KEY);
+      if (raw) Object.assign(stato, JSON.parse(raw));
+    } catch (e) { /* dato illeggibile: si parte dai valori di default */ }
+  }
+
+  // ---------- calcolo ----------
+  function scalaStimata() {
+    const c = stato.comp;
+    let p = c <= 5 ? SCALA[c] : 2.85 + 0.35 * (c - 5);
+    if (stato.lav) p += 0.3;   // figli minori con almeno uno sotto i 3 anni e genitori che lavorano
+    if (stato.solo) p += 0.2;  // nucleo con un solo genitore e figli minorenni
+    return Math.round(p * 100) / 100;
+  }
+
+  function calcola() {
+    const r = {
+      isee: num(stato.isee), retta: num(stato.retta), mesi: Math.min(11, Math.max(1, stato.mesi)),
+      senzaIsee: !String(stato.isee).trim(), sconto: 0,
+    };
+    // ISEE neutralizzato dall'assegno unico (regola in vigore dal 1° gennaio 2026)
+    const auu = num(stato.auu), sc = num(stato.scala) || scalaStimata();
+    if (stato.auuOn && auu > 0 && sc > 0) r.sconto = auu / sc;
+    r.iseeUtile = r.senzaIsee || !Number.isFinite(r.isee) ? Infinity : Math.max(0, r.isee - r.sconto);
+
+    // coorte: i nati dal 1° gennaio 2024 hanno un'unica fascia alta da 3.600 €
+    const d = stato.nascita ? new Date(stato.nascita + "T00:00:00") : null;
+    r.data = d && !isNaN(d) ? d : null;
+    r.dal2024 = r.data ? r.data >= new Date("2024-01-01T00:00:00") : null;
+    const tabella = r.dal2024 ? FASCE.dal2024 : FASCE.ante2024;
+    r.fascia = tabella.find((f) => r.iseeUtile <= f.max) || tabella[tabella.length - 1];
+
+    r.rettaOk = Number.isFinite(r.retta) && r.retta > 0;
+    r.rata = r.rettaOk ? Math.min(r.fascia.rata, r.retta) : 0;
+    r.totale = Math.min(r.rata * r.mesi, r.fascia.annuo);
+    r.speso = r.rettaOk ? r.retta * r.mesi : 0;
+    r.carico = Math.max(0, r.speso - r.totale);
+    r.copertura = r.speso > 0 ? r.totale / r.speso : 0;
+    r.completo = !!r.data && r.rettaOk;
+
+    // quanto manca per la fascia superiore (il consiglio che vale di più)
+    r.gap = null;
+    const migliore = tabella[0];
+    if (r.fascia !== migliore && Number.isFinite(r.iseeUtile)) {
+      r.gap = { euro: r.iseeUtile - migliore.max, annuo: migliore.annuo - r.fascia.annuo, soglia: migliore.max };
+    }
+    return r;
+  }
+
+  // ---------- risultato ----------
+  function render() {
+    const r = calcola();
+
+    // avviso sull'età del bambino
+    let avviso = "";
+    if (r.data) {
+      const oggi = new Date();
+      if (r.data > oggi) avviso = "La data di nascita è nel futuro: il bonus si chiede dopo la nascita, con l'iscrizione al nido già attiva.";
+      else {
+        const treAnni = new Date(r.data.getFullYear() + 3, r.data.getMonth(), r.data.getDate());
+        const limite = new Date(treAnni.getFullYear(), 7, 31); // agosto dell'anno dei 3 anni
+        if (oggi > limite) avviso = "Il bambino ha superato il limite: la domanda copre le mensilità fino ad agosto dell'anno in cui compie tre anni.";
+        else if (treAnni <= oggi) avviso = "Il bambino ha già compiuto tre anni: puoi chiedere le mensilità fino ad agosto di quest'anno.";
+      }
+    }
+    el.avvisoEta.innerHTML = avviso ? '<p class="avviso">' + avviso + "</p>" : "";
+
+    el.scalaStima.textContent = "Con " + stato.comp + (stato.comp === 1 ? " componente" : " componenti")
+      + (stato.lav ? ", genitori che lavorano" : "") + (stato.solo ? ", un solo genitore" : "")
+      + " la scala stimata è " + scalaStimata().toString().replace(".", ",") + ".";
+
+    if (!r.completo) {
+      el.gripBig.textContent = "Compila i campi";
+      el.gripSub.textContent = !r.data ? "Manca la data di nascita" : "Manca la retta mensile";
+      el.righe.innerHTML = "";
+      el.barra.style.width = "0%";
+      el.copertura.textContent = "Il risultato compare appena inserisci data di nascita e retta.";
+      el.suggerimento.innerHTML = "";
+      aggiornaPro(r);
+      return;
+    }
+
+    el.gripBig.textContent = eur(r.rata) + " al mese";
+    el.gripSub.textContent = eur0(r.totale) + " in " + r.mesi + (r.mesi === 1 ? " mensilità" : " mensilità") + " · " + eur0(r.carico) + " a tuo carico";
+
+    const righe = [
+      ["Coorte del bambino", r.dal2024 ? "Nato dal 2024" : "Nato prima del 2024"],
+      ["Fascia applicata", r.fascia.et],
+      ["Tetto annuo della fascia", eur0(r.fascia.annuo)],
+      ["Rata massima della fascia", eur(r.fascia.rata)],
+      ["Retta mensile", eur(r.retta)],
+    ];
+    if (r.sconto > 0) righe.splice(1, 0, ["ISEE utile dopo l'assegno unico", eur0(r.iseeUtile) + " (−" + eur0(r.sconto) + ")"]);
+    righe.push(["Rimborso mensile", eur(r.rata)]);
+    righe.push(["Rette pagate in " + r.mesi + " mesi", eur0(r.speso)]);
+    el.righe.innerHTML = righe.map(([k, v]) => "<li><span>" + k + "</span><b>" + v + "</b></li>").join("")
+      + '<li class="tot"><span>Bonus totale dell\'anno</span><b>' + eur0(r.totale) + "</b></li>"
+      + '<li class="tot"><span>Resta a tuo carico</span><b>' + eur0(r.carico) + "</b></li>";
+
+    el.barra.style.width = Math.min(100, Math.round(r.copertura * 100)) + "%";
+    el.copertura.textContent = "Il bonus copre il " + Math.round(r.copertura * 100) + "% della spesa: "
+      + eur(r.carico / r.mesi) + " al mese restano a te.";
+
+    const note = [];
+    if (r.senzaIsee) note.push("Senza un ISEE valido l'INPS riconosce solo l'importo minimo: con la DSU aggiornata potresti salire di fascia.");
+    if (r.gap && r.gap.euro > 0) note.push("Ti separano " + eur0(r.gap.euro) + " dalla soglia di " + eur0(r.gap.soglia)
+      + ": sotto quel valore il bonus annuo cresce di " + eur0(r.gap.annuo) + ". Se percepisci l'assegno unico, attiva la correzione qui sopra.");
+    if (r.retta < r.fascia.rata) note.push("La retta è più bassa della rata massima, quindi il bonus la copre per intero: il tetto di " + eur0(r.fascia.annuo) + " non viene raggiunto.");
+    el.suggerimento.innerHTML = note.length ? '<p class="nota">' + note.join("</p><p class=\"nota\">") + "</p>" : "";
+
+    aggiornaPro(r);
+  }
+
+  // ---------- Pro 1: prospetto delle 11 mensilità ----------
+  function rettaMese(i, base) {
+    const v = num(stato.rette[i]);
+    return Number.isFinite(v) && v >= 0 ? v : base;
+  }
+  function costruisciTabella() {
+    const tb = el.tabMesi.querySelector("tbody");
+    tb.innerHTML = MESI.map((m, i) =>
+      '<tr><td>' + m + '</td><td><input type="text" inputmode="decimal" data-mese="' + i + '" aria-label="Retta di ' + m + '"></td>'
+      + '<td data-b="' + i + '">—</td><td data-c="' + i + '">—</td></tr>').join("");
+    tb.addEventListener("input", (e) => {
+      const i = e.target.dataset.mese;
+      if (i === undefined) return;
+      stato.rette[i] = e.target.value;
+      salva();
+      render();
+    });
+  }
+  function aggiornaPro(r) {
+    const base = Number.isFinite(r.retta) && r.retta > 0 ? r.retta : 0;
+    const tb = el.tabMesi.querySelector("tbody");
+    let somRetta = 0, somBonus = 0;
+    MESI.forEach((m, i) => {
+      const input = tb.querySelector('[data-mese="' + i + '"]');
+      if (document.activeElement !== input) input.value = stato.rette[i] ?? (base ? String(base) : "");
+      const attivo = i < r.mesi;
+      const retta = attivo ? rettaMese(i, base) : 0;
+      // il tetto annuo resta quello della fascia: l'ultimo mese prende solo il residuo
+      const residuo = Math.max(0, r.fascia.annuo - somBonus);
+      const bonus = attivo ? Math.min(r.fascia.rata, retta, residuo) : 0;
+      somRetta += retta; somBonus += bonus;
+      tb.querySelector('[data-b="' + i + '"]').textContent = attivo ? eur(bonus) : "—";
+      tb.querySelector('[data-c="' + i + '"]').textContent = attivo ? eur(Math.max(0, retta - bonus)) : "—";
+      input.disabled = !attivo;
+    });
+    el.tfRetta.textContent = somRetta ? eur0(somRetta) : "—";
+    el.tfBonus.textContent = somRetta ? eur0(somBonus) : "—";
+    el.tfCarico.textContent = somRetta ? eur0(Math.max(0, somRetta - somBonus)) : "—";
+
+    // ---------- Pro 2: confronto pubblico / privato ----------
+    const conto = (retta) => {
+      if (!Number.isFinite(retta) || retta <= 0) return null;
+      const rata = Math.min(r.fascia.rata, retta);
+      const bonus = Math.min(rata * r.mesi, r.fascia.annuo);
+      const speso = retta * r.mesi;
+      return { bonus, speso, carico: Math.max(0, speso - bonus) };
+    };
+    const a = conto(num(stato.rettaPub)), b = conto(num(stato.rettaPriv));
+    const mostra = (c, v, d) => {
+      el[v].textContent = c ? eur0(c.carico) : "—";
+      el[d].textContent = c ? eur0(c.speso) + " di rette − " + eur0(c.bonus) + " di bonus" : "Inserisci la retta";
+    };
+    mostra(a, "vsPub", "vsPubDet");
+    mostra(b, "vsPriv", "vsPrivDet");
+    if (a && b) {
+      const diff = Math.abs(b.carico - a.carico);
+      const piuCaro = b.carico >= a.carico ? "privato" : "pubblico";
+      el.vsDiff.textContent = "In " + r.mesi + " mesi il nido " + piuCaro + " ti costa " + eur0(diff) + " in più, cioè "
+        + eur(diff / r.mesi) + " al mese. Il bonus non riduce questa differenza: sopra la rata massima di "
+        + eur(r.fascia.rata) + " ogni euro di retta in più è interamente a tuo carico.";
+    } else {
+      el.vsDiff.textContent = "Inserisci le due rette per vedere la differenza annua reale.";
+    }
+  }
+
+  // ---------- eventi ----------
+  function lega(input, campo, dopo) {
+    input.addEventListener("input", () => { stato[campo] = input.type === "checkbox" ? input.checked : input.value; if (dopo) dopo(); salva(); render(); });
+  }
+  lega(el.nascita, "nascita");
+  lega(el.isee, "isee");
+  lega(el.auu, "auu");
+  lega(el.scala, "scala");
+  lega(el.retta, "retta");
+  lega(el.rettaPub, "rettaPub");
+  lega(el.rettaPriv, "rettaPriv");
+  el.auuOn.addEventListener("change", () => {
+    stato.auuOn = el.auuOn.checked;
+    el.auuBox.classList.toggle("on", stato.auuOn);
+    salva(); render();
+  });
+  el.mesi.addEventListener("input", () => {
+    stato.mesi = parseInt(el.mesi.value, 10);
+    el.mesiVal.textContent = stato.mesi;
+    salva(); render();
+  });
+  const passoComp = (d) => {
+    stato.comp = Math.min(12, Math.max(1, stato.comp + d));
+    el.compOut.textContent = stato.comp;
+    el.comp.value = stato.comp;
+    salva(); render();
+  };
+  el.compGiu.addEventListener("click", () => passoComp(-1));
+  el.compSu.addEventListener("click", () => passoComp(1));
+  const chip = (nodo, campo) => nodo.addEventListener("click", () => {
+    stato[campo] = !stato[campo];
+    nodo.setAttribute("aria-pressed", String(stato[campo]));
+    salva(); render();
+  });
+  chip(el.chipLav, "lav");
+  chip(el.chipSolo, "solo");
+
+  el.grip.addEventListener("click", () => {
+    const aperto = el.sheet.dataset.open === "true";
+    el.sheet.dataset.open = String(!aperto);
+    el.grip.setAttribute("aria-expanded", String(!aperto));
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && el.sheet.dataset.open === "true") {
+      el.sheet.dataset.open = "false";
+      el.grip.setAttribute("aria-expanded", "false");
+    }
+    if (e.key === "Enter" && e.target.matches("input[type=text], input[type=date]")) {
+      e.target.blur();
+      el.sheet.dataset.open = "true";
+      el.grip.setAttribute("aria-expanded", "true");
+    }
+  });
+
+  el.copia.addEventListener("click", async () => {
+    const r = calcola();
+    if (!r.completo) return;
+    const testo = "Bonus asilo nido — " + (r.dal2024 ? "nato dal 2024" : "nato prima del 2024") + ", " + r.fascia.et
+      + "\nRetta: " + eur(r.retta) + " x " + r.mesi + " mesi = " + eur0(r.speso)
+      + "\nBonus: " + eur(r.rata) + "/mese = " + eur0(r.totale)
+      + "\nA carico: " + eur0(r.carico) + " (" + Math.round((1 - r.copertura) * 100) + "%)";
+    const ok = () => { el.copia.textContent = "Copiato"; setTimeout(() => (el.copia.textContent = "Copia riepilogo"), 1600); };
+    try {
+      await navigator.clipboard.writeText(testo);
+      ok();
+    } catch (e) {
+      const ta = document.createElement("textarea");
+      ta.value = testo; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.append(ta); ta.select();
+      try { document.execCommand("copy"); ok(); } catch (e2) { el.copia.textContent = "Copia non riuscita"; }
+      ta.remove();
+    }
+  });
+
+  el.stampaPro.addEventListener("click", () => window.print());
+  el.resetPro.addEventListener("click", () => { stato.rette = {}; salva(); render(); });
+
+  // ---------- avvio ----------
+  carica();
+  costruisciTabella();
+  el.nascita.value = stato.nascita || "";
+  el.isee.value = stato.isee || "";
+  el.auu.value = stato.auu || "";
+  el.scala.value = stato.scala || "";
+  el.retta.value = stato.retta || "";
+  el.rettaPub.value = stato.rettaPub || "";
+  el.rettaPriv.value = stato.rettaPriv || "";
+  el.auuOn.checked = !!stato.auuOn;
+  el.auuBox.classList.toggle("on", !!stato.auuOn);
+  el.mesi.value = stato.mesi;
+  el.mesiVal.textContent = stato.mesi;
+  el.compOut.textContent = stato.comp;
+  el.comp.value = stato.comp;
+  el.chipLav.setAttribute("aria-pressed", String(!!stato.lav));
+  el.chipSolo.setAttribute("aria-pressed", String(!!stato.solo));
+  el.nascita.max = new Date().toISOString().slice(0, 10);
+  render();
+  if (stato.nascita && stato.retta) { el.sheet.dataset.open = "true"; el.grip.setAttribute("aria-expanded", "true"); }
+})();
+</script>
+</body>
+</html>
