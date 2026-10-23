@@ -1,7 +1,7 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 41,
+  "count": 42,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -50,6 +50,52 @@ window.__APPS__ = {
     ]
   },
   "apps": [
+    {
+      "title": "Quanto Mutuo Posso Chiedere",
+      "slug": "2026-10-23-quanto-mutuo-posso-chiedere",
+      "date": "2026-10-23",
+      "description": "Dal tuo stipendio netto alla cifra che la banca può concederti: rata sostenibile, mutuo ottenibile e prezzo di casa alla tua portata.",
+      "category": "finanza-personale",
+      "tags": [
+        "mutuo",
+        "casa",
+        "stipendio",
+        "banca"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "tabs",
+        "palette": "verde-bosco",
+        "font": "mono-tecnico"
+      },
+      "business": {
+        "keyword": "quanto mutuo posso chiedere con il mio stipendio",
+        "keywords": [
+          "quanto mutuo posso chiedere",
+          "rata mutuo in base allo stipendio",
+          "rapporto rata reddito mutuo",
+          "mutuo con 1500 euro al mese"
+        ],
+        "intent": "Chi sta cercando casa e prima di andare in banca o fare un'offerta vuole sapere quanto gli presterebbero: rata sostenibile, capitale e prezzo massimo dell'immobile.",
+        "target": "Chi compra la prima casa, 25-45 anni, con uno o due redditi da dipendente, che guarda gli annunci dal telefono.",
+        "edge": "Fa il calcolo inverso (dalla busta paga al capitale) tenendo conto di mensilità, secondo reddito, rate già in corso, anticipo e spese d'acquisto; nessuna registrazione, niente contatto commerciale, risultato in trenta secondi dal telefono.",
+        "monetization": [
+          "adsense",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto durate e tassi",
+          "Prospetto da portare in banca"
+        ],
+        "affiliate": []
+      },
+      "size": 55535
+    },
     {
       "title": "Bonus Nido",
       "slug": "2026-10-22-bonus-asilo-nido",
