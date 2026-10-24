@@ -1,6 +1,6 @@
 {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 42,
+  "count": 43,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -49,6 +49,53 @@
     ]
   },
   "apps": [
+    {
+      "title": "Quanto Possono Pignorare dallo Stipendio",
+      "slug": "2026-10-24-pignoramento-stipendio",
+      "date": "2026-10-24",
+      "description": "Calcola la quota pignorabile di stipendio o pensione: il quinto, le cartelle esattoriali, più creditori insieme e quanto ti resta in busta.",
+      "category": "finanza-personale",
+      "tags": [
+        "pignoramento",
+        "stipendio",
+        "debiti",
+        "busta paga"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "split",
+        "palette": "grigio-carta",
+        "font": "serif-editoriale"
+      },
+      "business": {
+        "keyword": "quanto possono pignorare dallo stipendio",
+        "keywords": [
+          "quanto possono pignorare dallo stipendio",
+          "calcolo pignoramento stipendio",
+          "minimo vitale pignoramento stipendio",
+          "pignoramento stipendio più creditori",
+          "quanto trattiene agenzia entrate riscossione dallo stipendio"
+        ],
+        "intent": "Chi ha ricevuto un atto di pignoramento vuole sapere subito quanto gli resta in busta il mese prossimo, e se le quote si sommano quando i creditori sono più di uno.",
+        "target": "Lavoratori dipendenti e pensionati indebitati, 30-60 anni, che cercano da telefono dopo aver ricevuto la notifica.",
+        "edge": "È l'unico che distingue i tre casi che le guide confondono: nessun minimo vitale sullo stipendio, doppio assegno sociale sulla pensione, triplo sul conto corrente. Applica le fasce dell'art. 72-ter, il tetto della metà e la cessione del quinto già in corso, e dice in che mese finisce.",
+        "monetization": [
+          "adsense",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Quando finisce: durata e piano mensile",
+          "Prospetto stampabile per il giudice"
+        ],
+        "affiliate": []
+      },
+      "size": 54941
+    },
     {
       "title": "Quanto Mutuo Posso Chiedere",
       "slug": "2026-10-23-quanto-mutuo-posso-chiedere",
