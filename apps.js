@@ -1,7 +1,7 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 43,
+  "count": 44,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -50,6 +50,74 @@ window.__APPS__ = {
     ]
   },
   "apps": [
+    {
+      "title": "Quanto Costa un Trasloco",
+      "slug": "2026-10-25-quanto-costa-un-trasloco",
+      "date": "2026-10-25",
+      "description": "Stima il costo di un trasloco da metri cubi, piani senza ascensore, distanza e servizi extra, con l'IVA al 22% già inclusa.",
+      "category": "casa-cucina",
+      "tags": [
+        "trasloco",
+        "casa",
+        "preventivo",
+        "costi"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "wizard",
+        "palette": "terracotta",
+        "font": "condensed"
+      },
+      "business": {
+        "keyword": "quanto costa un trasloco",
+        "keywords": [
+          "preventivo trasloco online",
+          "costo trasloco al metro cubo",
+          "prezzo trasloco appartamento",
+          "quanto costa un trasloco fai da te"
+        ],
+        "intent": "Chi ha trovato casa e vuole sapere stasera, prima di chiamare le ditte, se il trasloco gli costerà 600 o 1.800 euro e quali voci gli stanno nascondendo.",
+        "target": "Chi cambia casa in Italia, 25-55 anni, dal telefono, con una data già fissata e un budget da capire.",
+        "edge": "Nessun form da compilare e nessun dato girato alle ditte: calcolo immediato sui metri cubi, con piani senza ascensore, autoscala, permesso di sosta e IVA al 22% esplicitata, e una forchetta onesta invece di un prezzo finto.",
+        "monetization": [
+          "adsense",
+          "affiliate",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto fai da te e ditta di traslochi",
+          "Confronto dei preventivi e prospetto stampabile"
+        ],
+        "affiliate": [
+          {
+            "t": "Scatole per trasloco a doppia onda",
+            "q": "scatole trasloco doppia onda"
+          },
+          {
+            "t": "Pluriball a bolle grandi",
+            "q": "pluriball rotolo trasloco"
+          },
+          {
+            "t": "Nastro da imballo robusto",
+            "q": "nastro adesivo imballaggio trasloco"
+          },
+          {
+            "t": "Carrello saliscale pieghevole",
+            "q": "carrello saliscale trasloco"
+          },
+          {
+            "t": "Coprimaterasso da trasporto",
+            "q": "sacco copri materasso trasloco"
+          }
+        ]
+      },
+      "size": 70685
+    },
     {
       "title": "Quanto Possono Pignorare dallo Stipendio",
       "slug": "2026-10-24-pignoramento-stipendio",
