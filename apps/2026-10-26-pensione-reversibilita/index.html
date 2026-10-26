@@ -1,0 +1,881 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#15306b">
+  <title>Calcolo Pensione di Reversibilità 2026: Quanto Spetta</title>
+  <meta name="description" content="Calcolo della pensione di reversibilità 2026: la quota di coniuge e figli, il taglio per i tuoi redditi e quanto ti resta netto ogni mese.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-26-pensione-reversibilita/">
+  <meta property="og:title" content="Calcolo Pensione di Reversibilità 2026: Quanto Spetta">
+  <meta property="og:description" content="Inserisci la pensione del defunto e i tuoi redditi: la percentuale che ti spetta, il taglio reale dopo la clausola di salvaguardia e l'importo al mese.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-26-pensione-reversibilita/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Pensione di Reversibilità: Quanto Spetta",
+    "description": "Calcolatore gratuito della pensione ai superstiti: applica le quote di legge al coniuge e ai figli (60%, 80%, 100%), la suddivisione fra i superstiti, le fasce di riduzione per i redditi del beneficiario aggiornate al trattamento minimo 2026 di 611,85 euro, l'esenzione prevista quando nel nucleo ci sono figli aventi diritto, il tetto della sentenza della Corte costituzionale 162/2022 e la clausola di salvaguardia sulla soglia; stima inoltre l'importo netto mensile al netto di IRPEF e addizionali.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-26-pensione-reversibilita/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Quanto spetta al coniuge superstite?", "acceptedAnswer": { "@type": "Answer", "text": "Al coniuge rimasto solo spetta il 60% della pensione lorda che il defunto percepiva. Con un figlio avente diritto la quota del nucleo sale all'80%, con due o più figli arriva al 100%. La divisione interna segue la regola del 60% al coniuge e del 20% a ciascun figlio: su una pensione di 1.800 euro lordi al mese, una vedova sola prende 1.080 euro, con un figlio il nucleo prende 1.440 euro di cui 1.080 al coniuge e 360 al figlio. Le stesse quote valgono per l'unito civilmente e, alle condizioni di legge, per l'ex coniuge titolare di assegno divorzile." } },
+      { "@type": "Question", "name": "Con quale reddito mi tagliano la pensione di reversibilità?", "acceptedAnswer": { "@type": "Answer", "text": "Le soglie 2026 sono multipli del trattamento minimo INPS, che la circolare 153 del 19 dicembre 2025 ha fissato a 611,85 euro al mese, cioè 7.954,05 euro all'anno su tredici mensilità. Fino a 23.862,15 euro di reddito annuo non c'è nessuna riduzione; fra 23.862,15 e 31.816,20 euro la riduzione è del 25%; fra 31.816,20 e 39.770,25 euro è del 40%; oltre 39.770,25 euro è del 50%. Oltre la metà non si può andare: la reversibilità non si perde mai per i redditi, al massimo si dimezza." } },
+      { "@type": "Question", "name": "Se supero la soglia di pochi euro perdo il 25%?", "acceptedAnswer": { "@type": "Answer", "text": "No, ed è l'errore più diffuso. Valgono due limiti. La clausola di salvaguardia impedisce che chi supera la soglia si ritrovi con meno di chi sta esattamente al limite: la riduzione non può superare la parte di reddito che eccede la soglia. Con 24.000 euro di reddito, cioè 137,85 euro sopra i 23.862,15, il taglio è di 137,85 euro all'anno e non di 3.510. In più la sentenza della Corte costituzionale 162/2022, recepita dall'INPS con la circolare 108/2023, stabilisce che la riduzione non può mai superare l'importo dei redditi aggiuntivi del superstite." } },
+      { "@type": "Question", "name": "I figli fanno perdere il taglio per reddito?", "acceptedAnswer": { "@type": "Answer", "text": "Al contrario: lo evitano. Secondo la circolare INPS 234/1995 le riduzioni per cumulo con i redditi non si applicano quando la pensione ai superstiti spetta anche a figli minori, studenti o inabili, da soli oppure insieme al coniuge. Poiché un figlio ha diritto alla reversibilità solo se si trova in una di queste condizioni (minore di 18 anni, studente fino a 21 anni alle superiori o 26 all'università, oppure inabile al lavoro), in pratica finché c'è un figlio avente diritto nel nucleo il reddito del coniuge non conta e la quota si incassa piena." } },
+      { "@type": "Question", "name": "Sulla pensione di reversibilità si pagano le tasse?", "acceptedAnswer": { "@type": "Answer", "text": "Sì: è reddito da pensione a tutti gli effetti, quindi è soggetta a IRPEF e alle addizionali regionale e comunale, con le detrazioni per redditi da pensione previste dall'articolo 13 del TUIR. Non si pagano invece contributi previdenziali. Viene pagata su tredici mensilità, con la tredicesima a dicembre. Chi non ha altri redditi e riceve meno di 8.500 euro all'anno non paga nulla, perché la detrazione copre interamente l'imposta: la reversibilità finisce invece per essere tassata all'aliquota marginale di chi ha già uno stipendio o una pensione propria." } },
+      { "@type": "Question", "name": "Qual è la differenza fra reversibilità e pensione indiretta?", "acceptedAnswer": { "@type": "Answer", "text": "Si chiama reversibilità quando il defunto era già pensionato: la base di calcolo è la pensione che percepiva, e le percentuali si applicano a quella. Si chiama pensione indiretta quando il defunto lavorava ancora: in quel caso servono almeno 15 anni di contributi, oppure 5 anni di cui 3 versati nei cinque anni precedenti il decesso, e la base è la pensione che gli sarebbe spettata. Le quote ai superstiti, le soglie di reddito e le riduzioni sono identiche nei due casi: cambia solo come si determina l'importo di partenza." } }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #eef2fa; --paper: #ffffff; --raise: #e2eaf8; --sunk: #f6f8fd;
+      --text: #10172a; --muted: #5a6885; --line: #d5deef; --line-strong: #b4c2dd;
+      --accent: #15306b; --accent-ink: #ffffff; --accent-soft: #dde6f8;
+      --warn: #8a5410; --warn-bg: #fcf1dd; --good: #16614a; --good-bg: #dff0e8;
+      --font: "Segoe UI", -apple-system, BlinkMacSystemFont, system-ui, "Helvetica Neue", sans-serif;
+      --r: 20px; --r-sm: 14px; --r-pill: 999px;
+      --shadow: 0 1px 2px rgba(16, 23, 42, 0.05), 0 8px 24px -16px rgba(16, 23, 42, 0.3);
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #080d19; --paper: #101a2e; --raise: #18243d; --sunk: #0c1424;
+        --text: #e7ecf8; --muted: #94a2be; --line: #1f2c49; --line-strong: #394a6e;
+        --accent: #86a9f2; --accent-ink: #07101f; --accent-soft: #16233c;
+        --warn: #e8b86a; --warn-bg: #2d2314; --good: #7fd0ac; --good-bg: #122b22;
+        --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 28px -18px rgba(0, 0, 0, 0.9);
+        color-scheme: dark;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text); font-family: var(--font);
+      font-size: 1rem; line-height: 1.55; overflow-x: hidden;
+      padding: 0.9rem 0.9rem calc(5.6rem + env(safe-area-inset-bottom));
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3 { line-height: 1.25; letter-spacing: -0.012em; }
+    a { color: var(--accent); }
+    .back { margin: 0 0 1rem; font-size: 0.95rem; }
+    .back a:not(.mz-top) { display: inline-flex; align-items: center; min-height: 44px; padding: 0 0.85rem 0 0.7rem; border-radius: var(--r-pill); background: var(--paper); border: 1px solid var(--line); text-decoration: none; font-weight: 600; }
+
+    header h1 { font-size: 1.5rem; margin: 0 0 0.5rem; font-weight: 700; }
+    header .sub { margin: 0 0 0.9rem; color: var(--muted); font-size: 1rem; }
+
+    /* ---- pannello dati ---- */
+    .pannello > h2 { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--muted); margin: 0 0 0.9rem; font-weight: 700; }
+    .pannello { background: var(--paper); border: 1px solid var(--line); border-radius: var(--r); box-shadow: var(--shadow); padding: 1.1rem 1rem; margin: 0 0 1rem; }
+    .campo { margin: 0 0 1rem; }
+    .campo:last-child { margin-bottom: 0; }
+    .campo > label, .gruppo > .etichetta { display: block; font-weight: 650; font-size: 0.97rem; margin: 0 0 0.45rem; }
+    .aiuto { display: block; color: var(--muted); font-size: 0.88rem; margin: 0.4rem 0 0; }
+    .euro { position: relative; }
+    .euro input { width: 100%; font: inherit; font-size: 1.3rem; font-weight: 650; padding: 0.78rem 3.6rem 0.78rem 0.95rem; border: 2px solid var(--line-strong); border-radius: var(--r-sm); background: var(--sunk); color: var(--text); min-height: 56px; }
+    .euro input:focus-visible { outline: 3px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+    .euro .unita { position: absolute; right: 0.95rem; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 0.92rem; font-weight: 600; pointer-events: none; }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .chips input { position: absolute; opacity: 0; width: 0; height: 0; margin: 0; pointer-events: none; }
+    .chips label { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 0.95rem; border: 1.5px solid var(--line-strong); border-radius: var(--r-pill); background: var(--sunk); font-size: 0.95rem; font-weight: 600; cursor: pointer; }
+    .chips input:checked + label { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+    .chips input:focus-visible + label { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+    .stepper { display: flex; align-items: center; gap: 0.6rem; }
+    .stepper button { width: 52px; height: 52px; flex: none; border-radius: var(--r-pill); border: 1.5px solid var(--line-strong); background: var(--sunk); color: var(--text); font-size: 1.5rem; font-weight: 600; line-height: 1; cursor: pointer; font-family: inherit; }
+    .stepper button:disabled { opacity: 0.35; cursor: default; }
+    .stepper .valore { min-width: 3.4rem; text-align: center; font-size: 1.25rem; font-weight: 700; }
+    .stepper .valore small { display: block; font-size: 0.8rem; font-weight: 500; color: var(--muted); }
+
+    .nota-esente { margin: 0.7rem 0 0; padding: 0.7rem 0.85rem; border-radius: var(--r-sm); background: var(--good-bg); color: var(--good); font-size: 0.9rem; font-weight: 600; }
+
+    /* ---- dashboard risultato ---- */
+    .griglia { display: grid; gap: 0.7rem; margin: 0 0 1.1rem; }
+    .tile { background: var(--paper); border: 1px solid var(--line); border-radius: var(--r); padding: 0.95rem 1rem; box-shadow: var(--shadow); }
+    .tile .k { display: block; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); font-weight: 700; margin: 0 0 0.25rem; }
+    .tile .v { display: block; font-size: 1.45rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .tile .n { display: block; font-size: 0.85rem; color: var(--muted); margin-top: 0.15rem; }
+    .tile.hero { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+    .tile.hero .k, .tile.hero .n { color: var(--accent-ink); opacity: 0.78; }
+    .tile.hero .v { font-size: 2.5rem; letter-spacing: -0.03em; line-height: 1.05; margin-top: 0.1rem; }
+    .mini { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+    .mini .tile { padding: 0.8rem 0.85rem; }
+    .mini .tile .v { font-size: 1.2rem; }
+
+    .dettaglio { background: var(--paper); border: 1px solid var(--line); border-radius: var(--r); box-shadow: var(--shadow); padding: 0.4rem 1rem; }
+    .riga { display: flex; justify-content: space-between; align-items: baseline; gap: 0.8rem; padding: 0.7rem 0; border-bottom: 1px solid var(--line); }
+    .riga:last-child { border-bottom: 0; }
+    .riga .et { font-size: 0.95rem; }
+    .riga .et small { display: block; color: var(--muted); font-size: 0.84rem; }
+    .riga .im { font-variant-numeric: tabular-nums; font-weight: 700; white-space: nowrap; }
+    .riga.tot { border-top: 2px solid var(--line-strong); margin-top: -1px; }
+    .riga.tot .im { font-size: 1.15rem; color: var(--accent); }
+    .riga .im.neg { color: var(--warn); }
+
+    .avviso { margin: 0.9rem 0 0; padding: 0.8rem 0.9rem; border-radius: var(--r-sm); background: var(--warn-bg); color: var(--warn); font-size: 0.9rem; }
+    .avviso strong { display: block; }
+    .fonte { margin: 0.8rem 0 0; font-size: 0.84rem; color: var(--muted); }
+    .vuoto { background: var(--paper); border: 1px dashed var(--line-strong); border-radius: var(--r); padding: 1.6rem 1rem; text-align: center; color: var(--muted); }
+
+    /* ---- sezioni Pro ---- */
+    [data-pro] { background: var(--paper); border: 1px solid var(--line); border-radius: var(--r); box-shadow: var(--shadow); padding: 1rem; margin: 0 0 1.1rem; min-height: 200px; }
+    [data-pro] > h2 { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--muted); margin: 0 0 0.75rem; font-weight: 700; }
+    .fasce { list-style: none; margin: 0; padding: 0; }
+    .fasce li { display: flex; justify-content: space-between; align-items: baseline; gap: 0.7rem; padding: 0.65rem 0.7rem; border-radius: var(--r-sm); border: 1px solid var(--line); margin-bottom: 0.45rem; }
+    .fasce li.qui { border-color: var(--accent); background: var(--accent-soft); }
+    .fasce .f-et { font-size: 0.92rem; }
+    .fasce .f-et small { display: block; color: var(--muted); font-size: 0.82rem; }
+    .fasce .f-im { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .distanza { margin: 0.6rem 0 0; font-size: 0.9rem; color: var(--muted); }
+    .addiz { display: flex; align-items: center; gap: 0.6rem; margin: 0 0 0.9rem; flex-wrap: wrap; }
+    .addiz label { font-size: 0.93rem; font-weight: 600; }
+    .addiz input { width: 6.5rem; font: inherit; font-size: 1.05rem; padding: 0.6rem 0.7rem; border: 2px solid var(--line-strong); border-radius: var(--r-sm); background: var(--sunk); color: var(--text); min-height: 48px; }
+
+    /* ---- guida ---- */
+    #guida { margin: 1.6rem 0 0; }
+    #guida h2 { font-size: 1.2rem; margin: 1.8rem 0 0.6rem; }
+    #guida h3 { font-size: 1.02rem; margin: 1.3rem 0 0.35rem; }
+    #guida p, #guida li { font-size: 1rem; }
+    #guida ul, #guida ol { padding-left: 1.2rem; }
+    #guida li { margin-bottom: 0.45rem; }
+    .tabella-quote { list-style: none; margin: 0.8rem 0; padding: 0; }
+    .tabella-quote li { display: flex; justify-content: space-between; gap: 0.8rem; padding: 0.6rem 0.8rem; background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-sm); margin-bottom: 0.4rem; }
+    .tabella-quote b { white-space: nowrap; color: var(--accent); }
+
+    footer { margin: 2rem 0 0; font-size: 0.92rem; color: var(--muted); }
+    footer ul { padding-left: 1.2rem; }
+    footer a { color: var(--accent); }
+    footer li a { display: inline-flex; align-items: center; min-height: 44px; }
+    footer p a { display: inline-block; padding: 0.82rem 0.25rem; margin: -0.82rem -0.25rem; }
+
+    /* ---- barra pollice ---- */
+    .barra { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; display: flex; align-items: center; gap: 0.7rem;
+      padding: 0.6rem 0.9rem calc(0.6rem + env(safe-area-inset-bottom));
+      background: var(--paper); backdrop-filter: blur(10px);
+      border-top: 1px solid var(--line); }
+    @supports (background: color-mix(in srgb, red 50%, transparent)) {
+      .barra { background: color-mix(in srgb, var(--paper) 90%, transparent); }
+    }
+    .barra .sintesi { flex: 1; min-width: 0; }
+    .barra .sintesi .k { display: block; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-weight: 700; }
+    .barra .sintesi .v { display: block; font-size: 1.15rem; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .barra button { flex: none; min-height: 48px; padding: 0 1.1rem; border-radius: var(--r-pill); border: 0; background: var(--accent); color: var(--accent-ink); font: inherit; font-weight: 650; cursor: pointer; }
+    .barra button:focus-visible { outline: 3px solid var(--text); outline-offset: 2px; }
+
+    @media (min-width: 700px) {
+      body { max-width: 56rem; margin: 0 auto; padding: 1.8rem 1.6rem 3rem; }
+      header h1 { font-size: 2rem; }
+      .pannello { padding: 1.5rem 1.6rem; }
+      .campi-due { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+      .campi-due .campo { margin-bottom: 0; }
+      .griglia { grid-template-columns: 1.1fr 1fr; align-items: start; }
+      .griglia .tile.hero { grid-row: span 1; }
+      .mini { grid-template-columns: 1fr 1fr; }
+      .dettaglio { grid-column: 1 / -1; }
+      [data-pro] { padding: 1.4rem 1.5rem; }
+      .barra { display: none; }
+      body { padding-bottom: 3rem; }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .tile .v, .riga .im { transition: color 0.15s ease; }
+    }
+    @media print {
+      .back, .barra, [data-ad], [data-support], .chips, .stepper button, footer, #guida { display: none !important; }
+      body { padding: 0; background: #fff; color: #000; }
+      .tile.hero { background: #fff; color: #000; border: 2px solid #000; }
+    }
+  </style>
+</head>
+<body>
+  <p class="back"><a href="../../index.html">← Tutte le app</a></p>
+
+  <header>
+    <h1>Calcolo della pensione di reversibilità 2026</h1>
+    <p class="sub">La quota che spetta al nucleo e il taglio per i tuoi redditi, con le soglie 2026.</p>
+  </header>
+
+  <main>
+    <section class="pannello" aria-labelledby="t-dati">
+      <h2 id="t-dati">I tuoi dati</h2>
+
+      <div class="campo">
+        <label for="pensione">Pensione lorda del defunto</label>
+        <div class="euro">
+          <input id="pensione" type="text" inputmode="decimal" autocomplete="off" enterkeyhint="done"
+                 placeholder="1.800" aria-describedby="aiuto-pensione">
+          <span class="unita">€ / mese</span>
+        </div>
+        <small class="aiuto" id="aiuto-pensione">L'importo <strong>lordo</strong> che percepiva, come scritto sul cedolino
+          (o la pensione che gli sarebbe spettata, se lavorava ancora).</small>
+      </div>
+
+      <div class="campo gruppo">
+        <span class="etichetta" id="et-nucleo">Chi resta</span>
+        <div class="chips" role="radiogroup" aria-labelledby="et-nucleo">
+          <input type="radio" name="nucleo" id="n-coniuge" value="coniuge" checked>
+          <label for="n-coniuge">Coniuge</label>
+          <input type="radio" name="nucleo" id="n-figli" value="figli">
+          <label for="n-figli">Solo figli</label>
+          <input type="radio" name="nucleo" id="n-genitori" value="genitori">
+          <label for="n-genitori">Genitori</label>
+          <input type="radio" name="nucleo" id="n-fratelli" value="fratelli">
+          <label for="n-fratelli">Fratelli/sorelle</label>
+        </div>
+        <small class="aiuto" id="aiuto-nucleo">Genitori e fratelli entrano solo in mancanza di coniuge e figli.</small>
+      </div>
+
+      <div class="campo" id="box-conta">
+        <span class="etichetta" id="et-conta">Figli aventi diritto</span>
+        <div class="stepper">
+          <button type="button" id="meno" aria-label="Diminuisci">−</button>
+          <span class="valore" id="conta" aria-live="polite" aria-labelledby="et-conta">0<small id="conta-nota">nessuno</small></span>
+          <button type="button" id="piu" aria-label="Aumenta">+</button>
+        </div>
+        <small class="aiuto" id="aiuto-conta">Minori di 18 anni, studenti fino a 21 o 26, oppure inabili a carico.</small>
+        <p class="nota-esente" id="esente" hidden>Con un figlio avente diritto nel nucleo il taglio per reddito non si applica (circolare INPS 234/1995).</p>
+      </div>
+
+      <div class="campo" id="box-reddito">
+        <label for="reddito">Reddito annuo del superstite</label>
+        <div class="euro">
+          <input id="reddito" type="text" inputmode="decimal" autocomplete="off" enterkeyhint="done"
+                 placeholder="0" aria-describedby="aiuto-reddito">
+          <span class="unita">€ / anno</span>
+        </div>
+        <small class="aiuto" id="aiuto-reddito">Reddito imponibile IRPEF: stipendio, pensione propria, affitti, rendite.
+          <strong>Non</strong> si contano la reversibilità stessa, la casa in cui abiti e il TFR.</small>
+      </div>
+    </section>
+
+    <section class="griglia" id="esito" aria-live="polite">
+      <div class="vuoto" id="vuoto" style="grid-column: 1 / -1;">
+        Inserisci la pensione lorda del defunto per vedere quanto spetta.
+      </div>
+      <div class="tile hero" id="t-hero" hidden>
+        <span class="k">Reversibilità del nucleo</span>
+        <span class="v" id="v-mese">—</span>
+        <span class="n" id="n-mese">lordi al mese, su 13 mensilità</span>
+      </div>
+      <div class="mini" id="t-mini" hidden>
+        <div class="tile"><span class="k">Quota di legge</span><span class="v" id="v-quota">—</span><span class="n" id="n-quota">della pensione del defunto</span></div>
+        <div class="tile"><span class="k">Taglio reddito</span><span class="v" id="v-taglio">—</span><span class="n" id="n-taglio">fascia applicata</span></div>
+        <div class="tile"><span class="k">Totale annuo</span><span class="v" id="v-anno">—</span><span class="n">13 mensilità lorde</span></div>
+        <div class="tile"><span class="k">Soglia 2026</span><span class="v" id="v-soglia">23.862 €</span><span class="n">sotto cui non c'è taglio</span></div>
+      </div>
+      <div class="dettaglio" id="t-dett" hidden>
+        <div id="righe"></div>
+        <div class="avviso" id="avviso" hidden></div>
+        <p class="fonte">Soglie calcolate sul trattamento minimo INPS 2026 di 611,85 € al mese
+          (circolare INPS 153 del 19 dicembre 2025). Calcolo indicativo, non è una certificazione INPS.</p>
+      </div>
+    </section>
+
+    <div data-ad="top"></div>
+
+    <section data-pro="Confronto fra le fasce di reddito">
+      <h2>Confronto fra le fasce di reddito</h2>
+      <p id="fasce-intro">Quanto resterebbe con un reddito diverso dal tuo, a parità di pensione del defunto.</p>
+      <ul class="fasce" id="fasce"></ul>
+      <p class="distanza" id="distanza"></p>
+    </section>
+
+    <section data-pro="Netto al mese con IRPEF e tredicesima">
+      <h2>Netto al mese con IRPEF e tredicesima</h2>
+      <div class="addiz">
+        <label for="addizionali">Addizionali regionale + comunale</label>
+        <input id="addizionali" type="text" inputmode="decimal" autocomplete="off" value="2,0" aria-describedby="aiuto-addiz">
+        <span>%</span>
+      </div>
+      <div class="dettaglio" id="netto-dett"></div>
+      <p class="distanza" id="aiuto-addiz">IRPEF 2026 a tre scaglioni (23%, 33%, 43%) con la detrazione per redditi da pensione
+        dell'art. 13 TUIR. Se i tuoi altri redditi sono da lavoro la detrazione reale è più alta, quindi il netto qui è prudente.</p>
+    </section>
+
+    <section id="guida">
+      <h2>Come funziona il calcolo della pensione di reversibilità</h2>
+      <p>La pensione ai superstiti non si calcola da zero: è una percentuale della pensione che il defunto
+        percepiva, o che gli sarebbe spettata se lavorava ancora. Il conto si fa sempre in due passi, e
+        quasi tutti si fermano al primo.</p>
+      <p><strong>Primo passo: la quota di legge.</strong> Dipende solo da chi sopravvive, non dal reddito
+        di nessuno. Al coniuge rimasto solo spetta il 60% del lordo; se c'è anche un figlio avente diritto
+        il nucleo sale all'80%, con due o più figli arriva al 100%. Se il coniuge non c'è, i figli da soli
+        prendono il 70% (uno), l'80% (due) o il 100% (tre o più). Genitori a carico sopra i 65 anni e
+        fratelli o sorelle inabili a carico entrano solo in mancanza di coniuge e figli, con il 15% ciascuno.</p>
+      <ul class="tabella-quote">
+        <li><span>Coniuge solo</span><b>60%</b></li>
+        <li><span>Coniuge + 1 figlio</span><b>80%</b></li>
+        <li><span>Coniuge + 2 o più figli</span><b>100%</b></li>
+        <li><span>1 figlio solo</span><b>70%</b></li>
+        <li><span>2 figli soli</span><b>80%</b></li>
+        <li><span>3 o più figli soli</span><b>100%</b></li>
+        <li><span>Ogni genitore o fratello a carico</span><b>15%</b></li>
+      </ul>
+      <p>Dentro il nucleo la ripartizione segue la regola del 60% al coniuge e del 20% a ciascun figlio;
+        quando i figli sono tre o più, il 40% che resta si divide fra loro in parti uguali. Il calcolatore
+        qui sopra mostra la quota di ciascuno, perché l'INPS liquida assegni separati e sapere chi prende
+        cosa serve per la domanda al patronato.</p>
+
+      <h2>Secondo passo: il taglio per i tuoi redditi</h2>
+      <p>Dal 1995 la reversibilità si riduce se il beneficiario ha redditi propri. Le soglie sono multipli
+        del trattamento minimo INPS, che per il 2026 è di 611,85 € al mese, cioè 7.954,05 € all'anno su
+        tredici mensilità. Fino a 23.862,15 € di reddito annuo non c'è alcuna riduzione. Fra 23.862,15 e
+        31.816,20 € il taglio nominale è del 25%; fra 31.816,20 e 39.770,25 € del 40%; oltre 39.770,25 €
+        del 50%. Più della metà non si perde mai: la reversibilità non si azzera per i redditi.</p>
+      <p>Ma il taglio nominale non è quasi mai quello effettivo, e qui si annida l'errore che fa sbagliare
+        tutte le tabelle che girano in rete. Valgono infatti due limiti. La <strong>clausola di
+        salvaguardia</strong> impedisce che chi supera la soglia di pochi euro si trovi con meno di chi sta
+        esattamente al limite: la riduzione non può superare la parte di reddito che eccede la soglia della
+        fascia precedente. E la <strong>sentenza della Corte costituzionale 162/2022</strong>, recepita
+        dall'INPS con la circolare 108/2023, stabilisce che in nessun caso la riduzione può superare
+        l'importo dei redditi aggiuntivi del superstite. Chi aveva subito tagli maggiori negli anni passati
+        ha diritto al ricalcolo, che l'INPS ha avviato d'ufficio.</p>
+
+      <h2>Un esempio con i numeri</h2>
+      <p>Giovanni percepiva una pensione di 1.800 € lordi al mese. Sua moglie Anna, rimasta sola e senza
+        redditi propri, prende il 60%: <strong>1.080 € lordi al mese</strong>, 14.040 € all'anno su tredici
+        mensilità. Nessun taglio, perché il suo reddito è zero.</p>
+      <p>Se Anna lavora e dichiara 24.000 € all'anno, ogni tabella in rete le dirà che è nella fascia del
+        −25% e che le spettano 810 € al mese. È falso: 24.000 € superano la soglia di 23.862,15 € di soli
+        <strong>137,85 €</strong>, e la clausola di salvaguardia blocca il taglio proprio lì. La riduzione
+        è di 137,85 € <em>all'anno</em>, non di 3.510, e Anna incassa 1.069 € al mese invece di 810. Il
+        taglio pieno del 25% arriva solo oltre i 27.400 € circa di reddito.</p>
+      <p>Se invece Anna ha con sé un figlio di dieci anni, il nucleo passa all'80% — 1.440 € al mese, di cui
+        1.080 a lei e 360 al figlio — e il taglio per reddito <em>non si applica affatto</em>, qualunque sia
+        il suo stipendio, perché nel nucleo c'è un figlio avente diritto.</p>
+
+      <h2>Gli errori che costano più soldi</h2>
+      <ul>
+        <li><strong>Partire dal netto del defunto.</strong> Le percentuali si applicano al lordo. Usare il
+          netto che arrivava sul conto sottostima la reversibilità del 15-25%.</li>
+        <li><strong>Contare la reversibilità fra i propri redditi.</strong> Non va contata: il reddito
+          rilevante è quello <em>aggiuntivo</em>. Fuori anche la casa di abitazione e il TFR.</li>
+        <li><strong>Applicare il taglio pieno appena sopra la soglia.</strong> È l'errore più caro di tutti,
+          come mostra l'esempio di Anna: centinaia di euro al mese di differenza.</li>
+        <li><strong>Dimenticare l'esenzione dei figli.</strong> Finché c'è un figlio minore, studente o
+          inabile avente diritto, il reddito del coniuge è irrilevante.</li>
+        <li><strong>Non presentare la domanda subito.</strong> La pensione decorre dal primo giorno del mese
+          successivo al decesso, ma gli arretrati si prescrivono in cinque anni.</li>
+      </ul>
+
+      <h2>Domande frequenti</h2>
+      <h3>Quanto spetta al coniuge superstite?</h3>
+      <p>Il 60% della pensione lorda se resta solo, l'80% con un figlio avente diritto, il 100% con due o
+        più figli. Su 1.800 € lordi significa 1.080, 1.440 o 1.800 € al mese per il nucleo. Le stesse quote
+        valgono per l'unito civilmente e, alle condizioni di legge, per l'ex coniuge titolare di assegno
+        divorzile: se ci sono sia l'ex sia il nuovo coniuge, la ripartizione la decide il giudice tenendo
+        conto della durata dei matrimoni.</p>
+      <h3>Con quale reddito mi tagliano la reversibilità?</h3>
+      <p>Da 23.862,15 € di reddito annuo in su per il 2026. Il taglio è del 25% fino a 31.816,20 €, del 40%
+        fino a 39.770,25 € e del 50% oltre. Sono soglie lorde annue, legate al trattamento minimo: salgono
+        ogni anno con la rivalutazione, quindi un reddito che oggi sfora può rientrare l'anno dopo.</p>
+      <h3>Se supero la soglia di pochi euro perdo il 25%?</h3>
+      <p>No. La clausola di salvaguardia limita la riduzione alla parte di reddito che eccede la soglia, e
+        la sentenza 162/2022 impedisce che il taglio superi i redditi aggiuntivi. Il calcolatore applica
+        entrambi i limiti e segnala quando entrano in gioco.</p>
+      <h3>I figli fanno perdere il taglio per reddito?</h3>
+      <p>Al contrario: lo evitano. La circolare INPS 234/1995 esclude le riduzioni per cumulo quando la
+        pensione spetta anche a figli minori, studenti o inabili, da soli o insieme al coniuge. Il figlio
+        studente che lavora ha però un limite di reddito suo per restare avente diritto, pari a 10.340,27 €
+        annui per il 2026.</p>
+      <h3>Sulla reversibilità si pagano le tasse?</h3>
+      <p>Sì, è reddito da pensione: si paga IRPEF con le detrazioni dell'art. 13 TUIR, più le addizionali
+        regionale e comunale. Non si pagano contributi. Viene liquidata su tredici mensilità, con la
+        tredicesima a dicembre. Chi non ha altri redditi e sta sotto gli 8.500 € annui non paga nulla,
+        mentre chi ha già uno stipendio la vede tassata alla propria aliquota marginale: è la funzione Pro
+        qui sopra a fare questo conto.</p>
+      <h3>Reversibilità o pensione indiretta?</h3>
+      <p>Si chiama reversibilità se il defunto era già pensionato, indiretta se lavorava ancora: in questo
+        secondo caso servono 15 anni di contributi, oppure 5 anni di cui 3 versati negli ultimi cinque.
+        Quote, soglie e riduzioni sono identiche: cambia solo come si determina l'importo di partenza.</p>
+
+      <div data-ad="bottom"></div>
+    </section>
+  </main>
+
+  <footer>
+    <div data-support></div>
+    <p>Da leggere accanto a questo calcolo:</p>
+    <ul>
+      <li><a href="../2026-10-11-quando-vado-in-pensione/">Quando vado in pensione → requisiti e data di uscita aggiornati</a></li>
+      <li><a href="../2026-10-12-calcolo-isee/">Calcolo dell'ISEE → la reversibilità entra nel reddito del nucleo</a></li>
+    </ul>
+    <p>Calcolo indicativo a scopo informativo, basato sulle quote e sulle soglie di legge vigenti nel 2026:
+      non è una consulenza né una certificazione INPS. L'importo liquidato dipende dalla posizione
+      contributiva del defunto e dalla dichiarazione reddituale presentata ogni anno all'INPS.</p>
+    <p>Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a></p>
+  </footer>
+
+<script src="../../assets/monetize.js"></script>
+<script>
+/* Modello dati: un solo oggetto `stato` { pensione (€/mese lordi del defunto), nucleo
+ * ("coniuge" | "figli" | "genitori" | "fratelli"), conta (quanti figli/genitori/fratelli),
+ * reddito (€/anno del superstite), addiz (% addizionali) }. Da stato si deriva tutto con
+ * calcola(): quota di legge → riduzione per fascia di reddito, limitata dalla clausola di
+ * salvaguardia e dal tetto della Corte cost. 162/2022. Persistenza in una chiave localStorage.
+ */
+(() => {
+  "use strict";
+
+  const CHIAVE = "pensione-reversibilita:v1";
+  const MENS = 13;                     // la reversibilità si paga su 13 mensilità
+  const TM_MESE = 611.85;              // trattamento minimo INPS 2026 (circ. INPS 153/2025)
+  const TM_ANNO = TM_MESE * MENS;      // 7.954,05 €
+  // Fasce di cumulo: soglia superiore di reddito annuo del superstite → taglio nominale.
+  const FASCE = [
+    { soglia: TM_ANNO * 3, taglio: 0,    etichetta: "nessun taglio" },
+    { soglia: TM_ANNO * 4, taglio: 0.25, etichetta: "−25%" },
+    { soglia: TM_ANNO * 5, taglio: 0.40, etichetta: "−40%" },
+    { soglia: Infinity,    taglio: 0.50, etichetta: "−50%" },
+  ];
+
+  const $ = (id) => document.getElementById(id);
+  const nf = new Intl.NumberFormat("it-IT", { maximumFractionDigits: 0, useGrouping: "always" });
+  const nf2 = new Intl.NumberFormat("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: "always" });
+  const eur = (v) => nf.format(Math.round(v)) + " €";
+  const eur2 = (v) => nf2.format(v) + " €";
+  const pct = (v) => nf2.format(v * 100).replace(/,00$/, "") + "%";
+
+  // "1.800,50" / "1800.50" / "1 800" → 1800.5
+  function num(testo) {
+    const t = String(testo || "").replace(/[\s €%]/g, "");
+    if (!t) return NaN;
+    const normalizzato = t.includes(",") ? t.replace(/\./g, "").replace(",", ".") : t;
+    const v = Number(normalizzato);
+    return Number.isFinite(v) ? v : NaN;
+  }
+
+  const stato = { pensione: "", nucleo: "coniuge", conta: 0, reddito: "", addiz: "2,0" };
+
+  const LIMITI = { coniuge: [0, 6], figli: [1, 6], genitori: [1, 2], fratelli: [1, 6] };
+  const ETICHETTE = {
+    coniuge: { titolo: "Figli aventi diritto", aiuto: "Minori di 18 anni, studenti fino a 21 o 26, oppure inabili a carico." },
+    figli: { titolo: "Quanti figli", aiuto: "Minori di 18 anni, studenti fino a 21 o 26, oppure inabili a carico." },
+    genitori: { titolo: "Quanti genitori", aiuto: "Over 65, a carico del defunto e non titolari di pensione propria. Massimo due." },
+    fratelli: { titolo: "Quanti fratelli o sorelle", aiuto: "Inabili al lavoro, a carico del defunto, non coniugati e senza pensione propria." },
+  };
+
+  // ---------- calcolo ----------
+
+  // Quote di legge e ripartizione fra i superstiti (60% al coniuge, 20% a ciascun figlio).
+  function quote(s) {
+    const n = s.conta;
+    if (s.nucleo === "coniuge") {
+      if (n === 0) return [{ chi: "Coniuge superstite", pct: 0.60 }];
+      if (n <= 2) {
+        const out = [{ chi: "Coniuge superstite", pct: 0.60 }];
+        for (let i = 0; i < n; i++) out.push({ chi: "Figlio " + (i + 1), pct: 0.20 });
+        return out;
+      }
+      const out = [{ chi: "Coniuge superstite", pct: 0.60 }];
+      for (let i = 0; i < n; i++) out.push({ chi: "Figlio " + (i + 1), pct: 0.40 / n });
+      return out;
+    }
+    if (s.nucleo === "figli") {
+      const tot = n <= 1 ? 0.70 : (n === 2 ? 0.80 : 1.00);
+      const out = [];
+      for (let i = 0; i < n; i++) out.push({ chi: n === 1 ? "Figlio unico" : "Figlio " + (i + 1), pct: tot / n });
+      return out;
+    }
+    const nome = s.nucleo === "genitori" ? "Genitore " : "Fratello/sorella ";
+    const quotaTesta = Math.min(0.15, 1 / Math.max(1, n));
+    const out = [];
+    for (let i = 0; i < n; i++) out.push({ chi: nome + (i + 1), pct: quotaTesta });
+    return out;
+  }
+
+  // L'esenzione dal cumulo vale quando fra i beneficiari ci sono figli minori, studenti o
+  // inabili, da soli o insieme al coniuge (circ. INPS 234/1995).
+  const esente = (s) => s.nucleo === "figli" || (s.nucleo === "coniuge" && s.conta > 0);
+
+  function calcola(s) {
+    const mensile = num(s.pensione);
+    if (!Number.isFinite(mensile) || mensile <= 0) return null;
+    const parti = quote(s);
+    const quota = parti.reduce((t, p) => t + p.pct, 0);
+    const pienaAnno = mensile * MENS * quota;
+    const reddito = Math.max(0, num(s.reddito) || 0);
+
+    let riduzione = 0, fascia = FASCE[0], limiti = [];
+    if (!esente(s)) {
+      const i = FASCE.findIndex(f => reddito <= f.soglia);
+      fascia = FASCE[i < 0 ? FASCE.length - 1 : i];
+      if (fascia.taglio > 0) {
+        const prec = FASCE[FASCE.indexOf(fascia) - 1];
+        const nominale = pienaAnno * fascia.taglio;
+        // Clausola di salvaguardia: chi supera la soglia non può restare sotto chi sta al limite.
+        const salvaguardia = pienaAnno * prec.taglio + (reddito - prec.soglia);
+        // Corte cost. 162/2022 (circ. INPS 108/2023): il taglio non supera i redditi aggiuntivi.
+        const tettoCorte = reddito;
+        riduzione = Math.max(0, Math.min(nominale, salvaguardia, tettoCorte));
+        if (riduzione < nominale - 0.005) {
+          limiti = salvaguardia <= tettoCorte ? ["salvaguardia", nominale] : ["corte", nominale];
+        }
+      }
+    }
+    const finaleAnno = pienaAnno - riduzione;
+    return {
+      mensile, parti, quota, pienaAnno, reddito, fascia, riduzione, finaleAnno, limiti,
+      finaleMese: finaleAnno / MENS,
+      tagliEffettivo: pienaAnno > 0 ? riduzione / pienaAnno : 0,
+    };
+  }
+
+  // ---------- IRPEF (funzione Pro) ----------
+  function irpefLorda(r) {
+    let i = 0;
+    if (r > 0) i += Math.min(r, 28000) * 0.23;
+    if (r > 28000) i += (Math.min(r, 50000) - 28000) * 0.33;
+    if (r > 50000) i += (r - 50000) * 0.43;
+    return i;
+  }
+  function detrazionePensione(r) {
+    if (!(r > 0)) return 0;
+    if (r <= 8500) return 1955;
+    if (r <= 28000) return 700 + 1255 * (28000 - r) / 19500;
+    if (r <= 50000) return 700 * (50000 - r) / 22000;
+    return 0;
+  }
+  function imposta(r, aliAddiz) {
+    if (!(r > 0)) return 0;
+    const netta = Math.max(0, irpefLorda(r) - detrazionePensione(r));
+    return netta > 0 ? netta + r * aliAddiz : 0;
+  }
+
+  // ---------- resa ----------
+
+  function riga(etichetta, importo, opt) {
+    const o = opt || {};
+    const d = document.createElement("div");
+    d.className = "riga" + (o.tot ? " tot" : "");
+    const et = document.createElement("span");
+    et.className = "et";
+    et.append(document.createTextNode(etichetta));
+    if (o.nota) { const s = document.createElement("small"); s.textContent = o.nota; et.append(s); }
+    const im = document.createElement("span");
+    im.className = "im" + (o.neg ? " neg" : "");
+    im.textContent = importo;
+    d.append(et, im);
+    return d;
+  }
+
+  function mostra(r) {
+    const vuoto = $("vuoto");
+    for (const id of ["t-hero", "t-mini", "t-dett"]) $(id).hidden = !r;
+    vuoto.hidden = !!r;
+    $("fasce-intro").hidden = !r;
+
+    if (!r) {
+      $("fasce").replaceChildren();
+      $("distanza").textContent = "";
+      $("netto-dett").replaceChildren();
+      $("barra-v").textContent = "—";
+      return;
+    }
+
+    $("v-mese").textContent = eur(r.finaleMese);
+    $("n-mese").textContent = r.parti.length > 1
+      ? "lordi al mese per " + r.parti.length + " superstiti, su 13 mensilità"
+      : "lordi al mese, su 13 mensilità";
+    $("v-quota").textContent = pct(r.quota);
+    $("n-quota").textContent = "della pensione del defunto";
+    $("v-taglio").textContent = r.riduzione > 0.005 ? "− " + eur(r.riduzione / MENS) : "nessuno";
+    $("n-taglio").textContent = esente(stato)
+      ? "esente: figli aventi diritto"
+      : (r.fascia.taglio > 0 ? "fascia " + r.fascia.etichetta + ", effettivo " + pct(r.tagliEffettivo) : "sotto la prima soglia");
+    $("v-anno").textContent = eur(r.finaleAnno);
+    $("v-soglia").textContent = eur(FASCE[0].soglia);
+
+    const righe = [
+      riga("Pensione del defunto", eur(r.mensile) + " / mese"),
+      riga("Quota di legge", eur(r.pienaAnno / MENS) + " / mese", { nota: pct(r.quota) + " · " + descrizioneNucleo() }),
+    ];
+    if (r.riduzione > 0.005) {
+      righe.push(riga("Taglio per il tuo reddito", "− " + eur(r.riduzione / MENS) + " / mese",
+        { neg: true, nota: "fascia " + r.fascia.etichetta + " su " + eur(r.reddito) + " di reddito" }));
+    } else if (!esente(stato) && r.reddito > 0) {
+      righe.push(riga("Taglio per il tuo reddito", "0 €", { nota: "reddito sotto i " + eur(FASCE[0].soglia) }));
+    }
+    righe.push(riga("Reversibilità del nucleo", eur(r.finaleMese) + " / mese", { tot: true, nota: eur(r.finaleAnno) + " all'anno su 13 mensilità" }));
+    if (r.parti.length > 1) {
+      for (const p of r.parti) {
+        righe.push(riga(p.chi, eur(r.finaleMese * p.pct / r.quota) + " / mese", { nota: pct(p.pct) + " della pensione del defunto" }));
+      }
+    }
+    $("righe").replaceChildren(...righe);
+
+    const avviso = $("avviso");
+    if (esente(stato) && r.reddito > 0) {
+      avviso.hidden = false;
+      avviso.replaceChildren(forte("Nessun taglio, qualunque sia il tuo reddito."),
+        document.createTextNode("Nel nucleo c'è un figlio avente diritto: la circolare INPS 234/1995 esclude le riduzioni per cumulo. I " + eur(r.reddito) + " di reddito non contano."));
+    } else if (r.limiti.length) {
+      const nominale = r.limiti[1];
+      avviso.hidden = false;
+      const testo = r.limiti[0] === "salvaguardia"
+        ? "Hai superato la soglia di " + eur(r.reddito - sogliaPrecedente(r)) + ": la clausola di salvaguardia blocca il taglio a quella differenza. Senza di essa il taglio pieno sarebbe di " + eur(nominale) + " all'anno invece di " + eur2(r.riduzione) + "."
+        : "Il taglio è limitato all'importo dei tuoi redditi aggiuntivi (" + eur(r.reddito) + "): senza il tetto della sentenza 162/2022 sarebbe di " + eur(nominale) + " all'anno.";
+      avviso.replaceChildren(forte("Il taglio pieno non si applica."), document.createTextNode(testo));
+    } else {
+      avviso.hidden = true;
+      avviso.replaceChildren();
+    }
+
+    $("barra-v").textContent = eur(r.finaleMese) + " / mese";
+    mostraFasce(r);
+    mostraNetto(r);
+  }
+
+  function forte(t) { const b = document.createElement("strong"); b.textContent = t; return b; }
+  const sogliaPrecedente = (r) => FASCE[Math.max(0, FASCE.indexOf(r.fascia) - 1)].soglia;
+
+  function descrizioneNucleo() {
+    const n = stato.conta;
+    if (stato.nucleo === "coniuge") return n === 0 ? "coniuge solo" : "coniuge + " + n + (n === 1 ? " figlio" : " figli");
+    if (stato.nucleo === "figli") return n === 1 ? "un figlio solo" : n + " figli soli";
+    if (stato.nucleo === "genitori") return n === 1 ? "un genitore" : "due genitori";
+    return n === 1 ? "un fratello o sorella" : n + " fratelli o sorelle";
+  }
+
+  function mostraFasce(r) {
+    const lista = $("fasce");
+    if (esente(stato)) {
+      const li = document.createElement("li");
+      li.className = "qui";
+      const et = document.createElement("span");
+      et.className = "f-et";
+      et.append(document.createTextNode("Qualunque reddito"));
+      const s = document.createElement("small");
+      s.textContent = "esenzione per figli aventi diritto";
+      et.append(s);
+      const im = document.createElement("span");
+      im.className = "f-im";
+      im.textContent = eur(r.finaleMese) + " / mese";
+      li.append(et, im);
+      lista.replaceChildren(li);
+      $("distanza").textContent = "Finché un figlio resta avente diritto il reddito non incide. Quando l'ultimo figlio perde il diritto, il nucleo torna al 60% e il taglio per reddito ricomincia ad applicarsi.";
+      return;
+    }
+
+    const items = FASCE.map((f, i) => {
+      const prec = i === 0 ? 0 : FASCE[i - 1].soglia;
+      const li = document.createElement("li");
+      const corrente = f === r.fascia;
+      if (corrente) li.className = "qui";
+      const et = document.createElement("span");
+      et.className = "f-et";
+      et.append(document.createTextNode(
+        i === 0 ? "Fino a " + eur(f.soglia) : (f.soglia === Infinity ? "Oltre " + eur(prec) : "Da " + eur(prec) + " a " + eur(f.soglia))
+      ));
+      const s = document.createElement("small");
+      const pienoMese = r.pienaAnno * (1 - f.taglio) / MENS;
+      s.textContent = corrente
+        ? "il tuo caso: " + f.etichetta + (Math.abs(r.riduzione - r.pienaAnno * f.taglio) > 0.5 ? " ridotto dai limiti di legge" : "")
+        : f.etichetta + (f.taglio > 0 ? " a taglio pieno" : "");
+      et.append(s);
+      const im = document.createElement("span");
+      im.className = "f-im";
+      im.textContent = eur(corrente ? r.finaleMese : pienoMese) + " / mese";
+      li.append(et, im);
+      return li;
+    });
+    lista.replaceChildren(...items);
+
+    const i = FASCE.indexOf(r.fascia);
+    if (i === 0) {
+      const spazio = FASCE[0].soglia - r.reddito;
+      $("distanza").textContent = "Ti restano " + eur(spazio) + " di reddito annuo (" + eur(spazio / 12) + " al mese) prima della prima soglia. Superata, il taglio parte da pochi euro grazie alla salvaguardia.";
+    } else {
+      const sopra = r.reddito - FASCE[i - 1].soglia;
+      const pieno = r.pienaAnno * r.fascia.taglio;
+      $("distanza").textContent = Math.abs(pieno - r.riduzione) < 0.5
+        ? "Sei " + eur(sopra) + " sopra la soglia di " + eur(FASCE[i - 1].soglia) + ": abbastanza perché il taglio pieno della fascia si applichi per intero, " + eur(r.riduzione) + " all'anno."
+        : "Sei " + eur(sopra) + " sopra la soglia di " + eur(FASCE[i - 1].soglia) + ". Il taglio effettivo è di " + eur2(r.riduzione) + " all'anno, contro " + eur(pieno) + " del taglio pieno della fascia.";
+    }
+  }
+
+  function mostraNetto(r) {
+    const ali = Math.max(0, Math.min(10, num(stato.addiz) || 0)) / 100;
+    const base = r.reddito;
+    const tasse = imposta(base + r.finaleAnno, ali) - imposta(base, ali);
+    const nettoAnno = r.finaleAnno - tasse;
+    const rata = nettoAnno / MENS;
+    const righe = [
+      riga("Reversibilità lorda", eur(r.finaleAnno) + " / anno", { nota: eur(r.finaleMese) + " × 13 mensilità" }),
+      riga("IRPEF e addizionali in più", "− " + eur(tasse), { neg: true, nota: base > 0 ? "calcolate sull'aliquota marginale dei tuoi " + eur(base) + " di reddito" : "con la detrazione per redditi da pensione" }),
+      riga("Netto in tasca", eur(nettoAnno) + " / anno", { tot: true, nota: "prelievo effettivo " + pct(r.finaleAnno > 0 ? tasse / r.finaleAnno : 0) }),
+      riga("Ogni mese", eur(rata), { nota: "da gennaio a dicembre" }),
+      riga("Tredicesima di dicembre", eur(rata), { nota: "una rata in più, pari alle altre" }),
+    ];
+    if (tasse <= 0.5) {
+      righe.push(riga("Nessuna imposta dovuta", "0 €", { nota: "la detrazione per redditi da pensione copre tutta l'IRPEF" }));
+    }
+    $("netto-dett").replaceChildren(...righe);
+  }
+
+  // ---------- interfaccia ----------
+
+  function sincronizzaConta() {
+    const [min, max] = LIMITI[stato.nucleo];
+    stato.conta = Math.min(max, Math.max(min, stato.conta));
+    const et = ETICHETTE[stato.nucleo];
+    $("et-conta").textContent = et.titolo;
+    $("aiuto-conta").textContent = et.aiuto;
+    $("conta").firstChild.nodeValue = String(stato.conta);
+    $("conta-nota").textContent = nomeConta();
+    $("meno").disabled = stato.conta <= min;
+    $("piu").disabled = stato.conta >= max;
+    const esenzione = esente(stato);
+    $("esente").hidden = !esenzione;
+    $("box-reddito").hidden = esenzione;
+    const piuTeste = (stato.nucleo === "genitori" || stato.nucleo === "fratelli") && stato.conta > 1;
+    $("aiuto-reddito").lastChild.nodeValue = piuTeste
+      ? " si contano la reversibilità stessa, la casa in cui abiti e il TFR. Con più beneficiari l'INPS applica il taglio a ciascuno sul proprio reddito: qui il valore indicato vale per tutti."
+      : " si contano la reversibilità stessa, la casa in cui abiti e il TFR.";
+  }
+
+  function nomeConta() {
+    const n = stato.conta;
+    if (stato.nucleo === "genitori") return n === 1 ? "genitore" : "genitori";
+    if (stato.nucleo === "fratelli") return n === 1 ? "fratello o sorella" : "fratelli";
+    if (n === 0) return "nessuno";
+    return n === 1 ? "figlio" : "figli";
+  }
+
+  function aggiorna() {
+    sincronizzaConta();
+    mostra(calcola(stato));
+    salva();
+  }
+
+  function salva() {
+    try { localStorage.setItem(CHIAVE, JSON.stringify(stato)); } catch (e) { /* modalità privata: pazienza */ }
+  }
+  function ripristina() {
+    let d = null;
+    try { d = JSON.parse(localStorage.getItem(CHIAVE) || "null"); } catch (e) { d = null; }
+    if (!d || typeof d !== "object") return;
+    if (typeof d.pensione === "string") stato.pensione = d.pensione;
+    if (typeof d.reddito === "string") stato.reddito = d.reddito;
+    if (typeof d.addiz === "string") stato.addiz = d.addiz;
+    if (LIMITI[d.nucleo]) stato.nucleo = d.nucleo;
+    if (Number.isInteger(d.conta)) stato.conta = d.conta;
+    $("pensione").value = stato.pensione;
+    $("reddito").value = stato.reddito;
+    $("addizionali").value = stato.addiz;
+    const radio = document.querySelector('input[name="nucleo"][value="' + stato.nucleo + '"]');
+    if (radio) radio.checked = true;
+  }
+
+  // barra per il pollice: sintesi + copia
+  function barra() {
+    const b = document.createElement("div");
+    b.className = "barra";
+    const s = document.createElement("div");
+    s.className = "sintesi";
+    const k = document.createElement("span");
+    k.className = "k";
+    k.textContent = "Reversibilità lorda";
+    const v = document.createElement("span");
+    v.className = "v";
+    v.id = "barra-v";
+    v.textContent = "—";
+    s.append(k, v);
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.id = "copia";
+    btn.textContent = "Copia";
+    b.append(s, btn);
+    document.body.append(b);
+    btn.addEventListener("click", copia);
+  }
+
+  function riepilogo() {
+    const r = calcola(stato);
+    if (!r) return "";
+    const voci = [
+      "Pensione di reversibilità — stima " + new Date().toLocaleDateString("it-IT"),
+      "Pensione del defunto: " + eur(r.mensile) + " lordi/mese",
+      "Nucleo: " + descrizioneNucleo() + " → quota " + pct(r.quota),
+    ];
+    if (esente(stato)) voci.push("Taglio per reddito: non si applica (figli aventi diritto)");
+    else if (r.riduzione > 0.005) voci.push("Taglio per reddito " + eur(r.reddito) + ": − " + eur2(r.riduzione) + "/anno (fascia " + r.fascia.etichetta + ")");
+    else voci.push("Taglio per reddito: nessuno");
+    voci.push("Reversibilità: " + eur(r.finaleMese) + " lordi/mese, " + eur(r.finaleAnno) + "/anno su 13 mensilità");
+    if (r.parti.length > 1) for (const p of r.parti) voci.push("  · " + p.chi + ": " + eur(r.finaleMese * p.pct / r.quota) + "/mese");
+    voci.push("Soglie 2026 sul trattamento minimo di 611,85 €/mese. Stima indicativa, non è una certificazione INPS.");
+    return voci.join("\n");
+  }
+
+  async function copia() {
+    const btn = $("copia");
+    const testo = riepilogo();
+    if (!testo) { conferma(btn, "Compila"); return; }
+    let ok = false;
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) { await navigator.clipboard.writeText(testo); ok = true; }
+    } catch (e) { ok = false; }
+    if (!ok) {
+      const ta = document.createElement("textarea");
+      ta.value = testo;
+      ta.setAttribute("readonly", "");
+      ta.style.cssText = "position:fixed;left:-9999px;top:0";
+      document.body.append(ta);
+      ta.select();
+      try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+      ta.remove();
+    }
+    conferma(btn, ok ? "Copiato ✓" : "Non riesco");
+  }
+  function conferma(btn, testo) {
+    const prima = btn.dataset.testo || btn.textContent;
+    btn.dataset.testo = prima;
+    btn.textContent = testo;
+    clearTimeout(btn._t);
+    btn._t = setTimeout(() => { btn.textContent = prima; }, 1800);
+  }
+
+  // ---------- avvio ----------
+  barra();
+  ripristina();
+
+  $("pensione").addEventListener("input", (e) => { stato.pensione = e.target.value; aggiorna(); });
+  $("reddito").addEventListener("input", (e) => { stato.reddito = e.target.value; aggiorna(); });
+  $("addizionali").addEventListener("input", (e) => { stato.addiz = e.target.value; aggiorna(); });
+  for (const radio of document.querySelectorAll('input[name="nucleo"]')) {
+    radio.addEventListener("change", (e) => {
+      stato.nucleo = e.target.value;
+      stato.conta = LIMITI[stato.nucleo][0];   // cambiando nucleo si riparte dal minimo
+      aggiorna();
+    });
+  }
+  $("meno").addEventListener("click", () => { stato.conta--; aggiorna(); });
+  $("piu").addEventListener("click", () => { stato.conta++; aggiorna(); });
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") return;
+    const a = document.activeElement;
+    if (a && a.tagName === "INPUT" && a.type === "text") { a.value = ""; a.dispatchEvent(new Event("input", { bubbles: true })); }
+  });
+  for (const input of [$("pensione"), $("reddito"), $("addizionali")]) {
+    input.addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); input.blur(); } });
+  }
+
+  aggiorna();
+})();
+</script>
+</body>
+</html>

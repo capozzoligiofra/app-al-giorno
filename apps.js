@@ -1,7 +1,7 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 44,
+  "count": 45,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -50,6 +50,52 @@ window.__APPS__ = {
     ]
   },
   "apps": [
+    {
+      "title": "Pensione di Reversibilità: Quanto Spetta",
+      "slug": "2026-10-26-pensione-reversibilita",
+      "date": "2026-10-26",
+      "description": "Calcola la quota di reversibilità di coniuge e figli, il taglio per i tuoi redditi e quanto resta netto al mese.",
+      "category": "finanza-personale",
+      "tags": [
+        "pensione",
+        "inps",
+        "superstiti",
+        "reddito"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "dashboard",
+        "palette": "blu-notte",
+        "font": "rounded"
+      },
+      "business": {
+        "keyword": "calcolo pensione di reversibilità",
+        "keywords": [
+          "pensione di reversibilità quanto spetta",
+          "reversibilità limiti di reddito 2026",
+          "percentuale reversibilità coniuge e figli",
+          "reversibilità quanto mi tagliano"
+        ],
+        "intent": "Chi ha perso il coniuge (o un genitore) vuole sapere subito con quale importo mensile resta: la percentuale che gli spetta e se i propri redditi la riducono.",
+        "target": "Vedove e vedovi dai 55 anni in su, figli superstiti e chi li assiste (figli adulti, patronati); quasi sempre da telefono.",
+        "edge": "Applica le due regole che cambiano davvero l'importo e che nessuno calcola: il tetto della Corte costituzionale 162/2022 e la clausola di salvaguardia, che appena sopra i 23.862 € riduce un taglio del 25% a pochi euro. Zero registrazione, offline, risultato in 30 secondi.",
+        "monetization": [
+          "adsense",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto fra le fasce di reddito",
+          "Netto al mese con IRPEF e tredicesima"
+        ],
+        "affiliate": []
+      },
+      "size": 53733
+    },
     {
       "title": "Quanto Costa un Trasloco",
       "slug": "2026-10-25-quanto-costa-un-trasloco",
