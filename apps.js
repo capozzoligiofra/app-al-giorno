@@ -1,7 +1,7 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 45,
+  "count": 46,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -50,6 +50,53 @@ window.__APPS__ = {
     ]
   },
   "apps": [
+    {
+      "title": "Riscatto Laurea: Quanto Costa",
+      "slug": "2026-10-27-riscatto-laurea",
+      "date": "2026-10-27",
+      "description": "Costo del riscatto della laurea con metodo ordinario e agevolato, sconto IRPEF, rata mensile e anni per rientrare.",
+      "category": "finanza-personale",
+      "tags": [
+        "pensione",
+        "laurea",
+        "inps",
+        "irpef"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "card-stack",
+        "palette": "viola-elettrico",
+        "font": "sans-geometrico"
+      },
+      "business": {
+        "keyword": "riscatto laurea quanto costa",
+        "keywords": [
+          "calcolo riscatto laurea",
+          "riscatto laurea agevolato 2026",
+          "riscatto laurea conviene",
+          "quanto costa riscattare gli anni di universita"
+        ],
+        "intent": "Chi ha una laurea e un lavoro vuole sapere subito quanto gli costa riscattare gli anni di studio, quanto recupera con la deduzione IRPEF e se vale la pena.",
+        "target": "Laureati 28-50 anni con un reddito da lavoro, da telefono, spesso dopo aver guardato l'estratto conto contributivo.",
+        "edge": "Mette insieme i tre pezzi che nessuno calcola assieme: ordinario e agevolato a confronto, costo netto dopo la deduzione IRPEF 2026 (la rateizzazione spalma lo sconto su piu anni) e anni di pensione per rientrare. Senza SPID, senza registrazione, offline.",
+        "monetization": [
+          "adsense",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Piano delle rate e deduzione anno per anno",
+          "Confronto fra scenari salvati",
+          "Esporta il prospetto in CSV"
+        ],
+        "affiliate": []
+      },
+      "size": 55458
+    },
     {
       "title": "Pensione di Reversibilità: Quanto Spetta",
       "slug": "2026-10-26-pensione-reversibilita",
