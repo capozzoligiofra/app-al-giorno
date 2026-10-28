@@ -1,0 +1,934 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b5f8a">
+  <title>Calcolo Rendimento BTP Netto online gratis</title>
+  <meta name="description" content="Calcolo del rendimento netto di un BTP: metti cedola, prezzo e scadenza e vedi quanto rende davvero dopo il 12,5%, il rateo, le commissioni e il bollo.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-28-rendimento-btp-netto/">
+  <meta property="og:title" content="Calcolo Rendimento BTP Netto online gratis">
+  <meta property="og:description" content="Cedola, prezzo e scadenza: il rendimento netto a scadenza del tuo BTP con imposta al 12,5%, rateo, commissioni e imposta di bollo. E il conto deposito equivalente.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-28-rendimento-btp-netto/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Rendimento BTP Netto",
+    "description": "Calcolatore gratuito del rendimento netto a scadenza di un BTP o di una obbligazione a cedola fissa: dalla cedola annua, dal prezzo di acquisto a corso secco e dalla data di scadenza costruisce tutti i flussi di cassa semestrali, applica l'imposta sostitutiva del 12,5 per cento sulle cedole e sulla plusvalenza di rimborso, scomputa dalla prima cedola il rateo di interessi pagato al venditore, sottrae le commissioni bancarie e l'imposta di bollo dello 0,2 per cento annuo sul deposito titoli e calcola il tasso interno di rendimento annuo effettivo netto, confrontandolo con il rendimento lordo e con il tasso lordo che dovrebbe offrire un conto deposito tassato al 26 per cento per rendere la stessa cifra.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-28-rendimento-btp-netto/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Come si calcola il rendimento netto di un BTP?", "acceptedAnswer": { "@type": "Answer", "text": "Si parte dai flussi di cassa veri. Paghi il prezzo a corso secco piu il rateo di interessi maturato dall'ultima cedola, piu la commissione della banca. Poi incassi ogni sei mesi la cedola al netto del 12,5 per cento di imposta sostitutiva e, a scadenza, 100 per ogni 100 di nominale, con il 12,5 per cento sulla differenza fra 100 e il prezzo pagato se hai comprato sotto la pari. Ogni anno paghi lo 0,2 per cento di imposta di bollo sul valore in deposito. Il rendimento netto e il tasso che rende equivalenti questi incassi all'esborso iniziale, cioe il tasso interno di rendimento. La formula veloce che si trova in rete, cioe cedola piu scarto diviso prezzo, ignora rateo, costi e capitalizzazione e sbaglia di uno o due decimi di punto." } },
+      { "@type": "Question", "name": "Quanto si paga di tasse su un BTP?", "acceptedAnswer": { "@type": "Answer", "text": "Il 12,5 per cento, non il 26 per cento delle altre rendite finanziarie: e l'aliquota agevolata riservata ai titoli di Stato italiani e a quelli dei paesi in white list. Si applica alle cedole e alla plusvalenza fra prezzo di acquisto e rimborso. Se invece hai comprato sopra la pari, la differenza e una minusvalenza: non abbassa le tasse sulle cedole, ma resta a credito per quattro anni e si puo usare solo per compensare altre plusvalenze. A questo va aggiunta l'imposta di bollo dello 0,2 per cento annuo sul deposito titoli, che non e una tassa sul guadagno ma sul capitale e quindi si paga anche quando il titolo perde valore." } },
+      { "@type": "Question", "name": "Che cos'e il rateo e perche lo pago due volte?", "acceptedAnswer": { "@type": "Answer", "text": "Non lo paghi due volte, anche se nell'estratto conto sembra. Quando compri un BTP a metodo semestrale a meta periodo, al venditore spetta la parte di cedola che ha maturato: la banca te la addebita insieme al prezzo come rateo. Alla prima cedola incassi l'importo intero, ma la banca applica il 12,5 per cento solo sulla parte maturata mentre il titolo era tuo, perche il rateo pagato viene scomputato dalla base imponibile. Nel regime amministrato questo avviene in automatico e non devi fare nulla in dichiarazione. Il risultato e che la prima cedola e netta piu alta delle successive: questo calcolatore la mostra riga per riga nel piano dei flussi." } },
+      { "@type": "Question", "name": "Conviene un BTP o un conto deposito?", "acceptedAnswer": { "@type": "Answer", "text": "Il confronto va fatto sul netto, perche le aliquote sono diverse: 12,5 per cento sul BTP contro 26 per cento sugli interessi di un conto deposito. Un BTP che rende il 3,4 per cento netto equivale a un conto deposito al 4,6 per cento lordo, un tasso che oggi si trova solo su vincoli molto lunghi. Il calcolatore mostra questa equivalenza accanto al risultato. Restano due differenze che non sono numeri: il conto deposito vincolato ti restituisce sempre il capitale versato, mentre il BTP garantisce 100 solo a scadenza e nel frattempo il prezzo oscilla con i tassi; in compenso il BTP blocca il rendimento per dieci o venti anni, cosa che nessun conto deposito fa, ed e escluso dal calcolo ISEE fino a 50.000 euro per nucleo familiare." } },
+      { "@type": "Question", "name": "Il rendimento netto vale anche se vendo prima della scadenza?", "acceptedAnswer": { "@type": "Answer", "text": "No, ed e l'errore piu comune. Il rendimento a scadenza e una promessa che si realizza solo se tieni il titolo fino all'ultimo giorno: vale quel numero perche alla fine lo Stato rimborsa 100. Se vendi prima incassi il prezzo di mercato del giorno, che dipende dai tassi: se nel frattempo i tassi sono saliti, un titolo lungo puo valere 85 o 90 e la perdita cancella anni di cedole. La regola pratica e scegliere una scadenza non piu lontana del tempo per cui quei soldi ti sono inutili, e ricordare che piu lunga e la scadenza, piu violenta e l'oscillazione del prezzo." } },
+      { "@type": "Question", "name": "Devo contare anche le commissioni e il bollo?", "acceptedAnswer": { "@type": "Answer", "text": "Si, perche su un titolo breve possono valere piu delle tasse. Le banche tradizionali chiedono dallo 0,15 allo 0,50 per cento del controvalore per l'acquisto, spesso con un minimo fisso di 10 o 20 euro, mentre diversi intermediari online e le poste non applicano nulla sui titoli di Stato all'asta. L'imposta di bollo dello 0,2 per cento annuo sul deposito titoli invece la paghi in ogni caso e toglie circa due decimi di punto al rendimento annuo: su un titolo che rende il 3,5 per cento netto significa perdere un ventesimo del guadagno ogni anno. Su una scadenza a un anno una commissione dello 0,5 per cento vale mezzo punto di rendimento; su una scadenza a dieci anni, cinque centesimi." } }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #e9f3f9; --paper: #ffffff; --sunk: #f3f9fc; --raise: #dceefa;
+      --text: #0c2430; --muted: #4d6b7c; --line: #cfe3ef; --line-strong: #a9cce1;
+      --accent: #0b5f8a; --accent-ink: #ffffff; --accent-soft: #ddeefa;
+      --good: #0f6b52; --good-bg: #dcf1ea; --bad: #a3302a; --bad-bg: #fbe6e3;
+      --warn-ink: #7c4708; --warn-bg: #fcefdc;
+      --font: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+      --r: 5px; --r-sm: 3px;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #061520; --paper: #0d2331; --sunk: #0a1c28; --raise: #12303f;
+        --text: #dff0fa; --muted: #8fb2c6; --line: #1c3b4d; --line-strong: #2f5e78;
+        --accent: #63c6ef; --accent-ink: #04202e; --accent-soft: #112f3f;
+        --good: #6fd6b4; --good-bg: #0b2d25; --bad: #f09a92; --bad-bg: #331512;
+        --warn-ink: #f0bd7e; --warn-bg: #33240f;
+        color-scheme: dark;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font-family: var(--font); font-size: 16px; line-height: 1.55;
+      overflow-x: hidden; padding-bottom: calc(5rem + env(safe-area-inset-bottom));
+      font-variant-numeric: tabular-nums;
+    }
+    .guscio { width: 100%; max-width: 1080px; margin: 0 auto; padding: 0 1rem; }
+    a { color: var(--accent); }
+
+    /* ---- testa ---- */
+    .back { margin: 0.9rem 0 0.2rem; font-size: 0.85rem; }
+    .back a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; letter-spacing: 0.02em; }
+    .back a:hover { text-decoration: underline; }
+    header h1 { font-size: 1.35rem; line-height: 1.22; margin: 0.3rem 0 0.35rem; font-weight: 700; letter-spacing: -0.01em; }
+    header .sub { margin: 0 0 0.9rem; color: var(--muted); font-size: 0.93rem; line-height: 1.6; }
+
+    /* ---- impianto lista + dettaglio ---- */
+    .impianto { display: block; }
+    .lista { margin: 0 0 0.9rem; }
+    .lista-testa { display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem; margin: 0 0 0.35rem; }
+    .lista-testa h2 { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); margin: 0; font-weight: 700; }
+    .lista-corpo { display: flex; gap: 0.5rem; overflow-x: auto; padding: 0.15rem 0 0.35rem; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; }
+    .lista-corpo::-webkit-scrollbar { height: 5px; }
+    .lista-corpo::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 99px; }
+    .voce-titolo {
+      flex: 0 0 auto; scroll-snap-align: start; min-width: 10.5rem; max-width: 14rem; min-height: 56px;
+      text-align: left; font: inherit; font-size: 0.85rem; cursor: pointer;
+      background: var(--paper); color: inherit; border: 1px solid var(--line);
+      border-left: 3px solid var(--line-strong); border-radius: var(--r-sm);
+      padding: 0.4rem 0.6rem; display: grid; gap: 0.05rem; align-content: center;
+    }
+    .voce-titolo b { font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
+    .voce-titolo span { color: var(--muted); font-size: 0.76rem; }
+    .voce-titolo[aria-selected="true"] { border-left-color: var(--accent); background: var(--accent-soft); border-color: var(--line-strong); }
+    .voce-titolo .rend { color: var(--accent); font-weight: 700; }
+    .nuovo {
+      flex: 0 0 auto; min-height: 56px; min-width: 5.5rem; font: inherit; font-size: 0.85rem; cursor: pointer;
+      background: transparent; color: var(--accent); border: 1px dashed var(--line-strong);
+      border-radius: var(--r-sm); padding: 0.45rem 0.7rem; font-weight: 700;
+    }
+
+    /* ---- schede ---- */
+    .scheda { background: var(--paper); border: 1px solid var(--line); border-radius: var(--r); padding: 0.85rem 0.85rem; margin: 0 0 1rem; }
+    .scheda > h2 { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); margin: 0 0 0.7rem; font-weight: 700; }
+    .scheda > h2 .q { color: var(--accent); }
+
+    .riga-nome { display: flex; gap: 0.5rem; align-items: flex-end; flex-wrap: wrap; margin: 0; }
+    .riga-nome .campo { flex: 1 1 11rem; margin: 0; }
+    .elimina { font: inherit; font-size: 0.82rem; min-height: 44px; padding: 0 0.8rem; cursor: pointer; background: transparent; color: var(--muted); border: 1px solid var(--line); border-radius: var(--r-sm); white-space: nowrap; }
+    .elimina.armato { color: var(--bad); border-color: var(--bad); background: var(--bad-bg); font-weight: 700; }
+
+    .griglia { display: grid; gap: 0.75rem 0.7rem; }
+    @media (min-width: 360px) { .griglia { grid-template-columns: 1fr 1fr; } .griglia .larga { grid-column: 1 / -1; } }
+
+    .campo { display: grid; gap: 0.3rem; }
+    .campo > label, .etichetta { font-size: 0.72rem; line-height: 1.3; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); font-weight: 700; }
+    .misura { display: flex; align-items: center; background: var(--sunk); border: 1px solid var(--line-strong); border-radius: var(--r-sm); }
+    .misura:focus-within { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft); }
+    .misura input { flex: 1 1 auto; width: 100%; min-width: 0; font: inherit; font-size: 16px; min-height: 46px; padding: 0 0.1rem 0 0.65rem; border: 0; background: transparent; color: inherit; font-variant-numeric: tabular-nums; }
+    .misura input:focus { outline: none; }
+    .misura .u { flex: 0 0 auto; padding: 0 0.65rem; color: var(--muted); font-size: 0.85rem; white-space: nowrap; }
+    input[type="date"] { -webkit-appearance: none; appearance: none; }
+    .aiuto { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+    .errore { font-size: 0.8rem; color: var(--bad); font-weight: 700; min-height: 0; }
+
+    .chips { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .chips button {
+      font: inherit; font-size: 0.84rem; min-height: 44px; padding: 0 0.85rem; cursor: pointer;
+      background: var(--sunk); color: inherit; border: 1px solid var(--line-strong); border-radius: var(--r-sm); font-weight: 600;
+    }
+    .chips button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 700; }
+
+    details.extra { margin: 1rem 0 0; border-top: 1px solid var(--line); padding-top: 0.85rem; }
+    details.extra > summary { cursor: pointer; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); font-weight: 700; min-height: 44px; display: flex; align-items: center; }
+    details.extra > .griglia { margin-top: 0.9rem; }
+    .interruttore { display: flex; align-items: center; gap: 0.6rem; min-height: 44px; cursor: pointer; }
+    .interruttore input { width: 22px; height: 22px; accent-color: var(--accent); flex: 0 0 auto; }
+    .interruttore span { font-size: 0.87rem; }
+
+    /* ---- esito ---- */
+    .esito { border-left: 3px solid var(--accent); }
+    .cifra { display: block; font-size: 2.9rem; line-height: 1.02; font-weight: 700; letter-spacing: -0.03em; color: var(--accent); }
+    .cifra.vuota { color: var(--muted); font-size: 2rem; }
+    .cifra-nota { display: block; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin: 0.35rem 0 0; font-weight: 700; }
+    .esito .sotto { margin: 0.9rem 0 0; font-size: 0.92rem; line-height: 1.6; }
+    .coppia { display: grid; gap: 0.5rem; margin: 1rem 0 0; }
+    @media (min-width: 360px) { .coppia { grid-template-columns: 1fr 1fr; } }
+    .mini { background: var(--sunk); border: 1px solid var(--line); border-radius: var(--r-sm); padding: 0.55rem 0.7rem; }
+    .mini .k { display: block; font-size: 0.71rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); font-weight: 700; }
+    .mini .d { display: block; font-size: 1.22rem; font-weight: 700; margin-top: 0.1rem; }
+    .avviso { margin: 1rem 0 0; padding: 0.6rem 0.75rem; border-radius: var(--r-sm); background: var(--warn-bg); color: var(--warn-ink); font-size: 0.85rem; line-height: 1.55; }
+    .avviso:empty { display: none; }
+
+    /* ---- prospetto a righe ---- */
+    .prospetto { display: grid; gap: 0; }
+    .prospetto .r { display: flex; align-items: baseline; gap: 0.5rem; padding: 0.42rem 0; border-bottom: 1px dotted var(--line-strong); font-size: 0.89rem; }
+    .prospetto .r:last-child { border-bottom: 0; }
+    .prospetto .r .k { color: var(--muted); }
+    .prospetto .r .f { flex: 1 1 auto; }
+    .prospetto .r .v { font-weight: 700; white-space: nowrap; }
+    .prospetto .r.tot { border-top: 2px solid var(--line-strong); border-bottom: 0; margin-top: 0.3rem; padding-top: 0.55rem; font-size: 0.98rem; }
+    .prospetto .r.tot .k { color: var(--text); font-weight: 700; }
+    .prospetto .r.neg .v { color: var(--bad); }
+    .prospetto .r.pos .v { color: var(--good); }
+    .prospetto .r.sez { border-bottom: 0; padding: 0.8rem 0 0.1rem; font-size: 0.71rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); font-weight: 700; }
+    .prospetto .r.sez:first-child { padding-top: 0; }
+
+    /* ---- Pro ---- */
+    section[data-pro] { background: var(--paper); border: 1px solid var(--line); border-radius: var(--r); padding: 1rem 0.9rem; margin: 0 0 1.1rem; }
+    section[data-pro] > h2 { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); margin: 0 0 0.3rem; font-weight: 700; }
+    section[data-pro] > .intro { color: var(--muted); font-size: 0.85rem; line-height: 1.55; margin: 0 0 0.85rem; }
+    .scorri { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    table { border-collapse: collapse; width: 100%; font-size: 0.83rem; }
+    th, td { text-align: right; padding: 0.4rem 0.45rem; border-bottom: 1px solid var(--line); white-space: nowrap; }
+    th { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 700; }
+    th:first-child, td:first-child { text-align: left; }
+    tbody tr.anno td { background: var(--sunk); }
+    tbody tr.top td { color: var(--good); font-weight: 700; }
+    td.neg { color: var(--bad); }
+    .vuoto { color: var(--muted); font-size: 0.87rem; margin: 0; }
+    .bottoni { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .bottoni button { font: inherit; font-size: 0.86rem; min-height: 46px; padding: 0 1rem; cursor: pointer; background: var(--accent); color: var(--accent-ink); border: 1px solid var(--accent); border-radius: var(--r-sm); font-weight: 700; }
+    .bottoni button.secondo { background: transparent; color: var(--accent); }
+    .esitino { font-size: 0.82rem; color: var(--good); min-height: 1.2em; margin: 0.5rem 0 0; }
+
+    /* ---- guida ---- */
+    #guida { background: var(--paper); border: 1px solid var(--line); border-radius: var(--r); padding: 1.1rem 0.9rem 0.6rem; margin: 1.4rem 0 1.1rem; }
+    #guida h2 { font-size: 1.08rem; margin: 1.6rem 0 0.5rem; font-weight: 700; line-height: 1.3; }
+    #guida h2:first-child { margin-top: 0; }
+    #guida h3 { font-size: 0.95rem; margin: 1.2rem 0 0.3rem; font-weight: 700; color: var(--accent); }
+    #guida p, #guida li { font-size: 0.93rem; line-height: 1.72; max-width: 64ch; }
+    #guida ul { padding-left: 1.1rem; }
+    #guida li { margin-bottom: 0.5rem; }
+    .esempio { background: var(--sunk); border-left: 3px solid var(--accent); border-radius: var(--r-sm); padding: 0.8rem 0.85rem; margin: 1rem 0; }
+    .esempio p { margin: 0 0 0.6rem; }
+    .esempio p:last-child { margin-bottom: 0; }
+
+    /* ---- barra ---- */
+    .barra {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 5;
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.5rem 1rem calc(0.5rem + env(safe-area-inset-bottom));
+      background: var(--paper); border-top: 1px solid var(--line-strong);
+    }
+    .barra .q { display: flex; flex-direction: column; line-height: 1.25; min-width: 0; }
+    .barra .q b { font-size: 1.15rem; color: var(--accent); }
+    .barra .q span { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .barra a { margin-left: auto; flex: 0 0 auto; display: inline-flex; align-items: center; min-height: 44px; padding: 0 0.9rem; border: 1px solid var(--accent); border-radius: var(--r-sm); text-decoration: none; font-weight: 700; font-size: 0.85rem; }
+
+    footer { padding: 0.5rem 0 2rem; color: var(--muted); font-size: 0.85rem; line-height: 1.65; }
+    footer p { margin: 0.6rem 0; }
+    footer ul { padding-left: 1.1rem; margin: 0.4rem 0; }
+    footer li { margin-bottom: 0.4rem; }
+    footer li a { display: inline-block; padding: 0.35rem 0; }
+    [data-ad] { margin: 1.1rem 0; }
+
+    @media (min-width: 900px) {
+      .impianto { display: grid; grid-template-columns: 17rem 1fr; gap: 1.5rem; align-items: start; }
+      .lista { position: sticky; top: 1rem; margin: 0; }
+      .lista-testa { flex-direction: column; align-items: stretch; gap: 0.5rem; }
+      .nuovo { width: 100%; min-height: 48px; }
+      .lista-corpo { display: grid; grid-template-columns: 1fr; gap: 0.4rem; overflow: visible; max-height: 70dvh; overflow-y: auto; }
+      .voce-titolo, .nuovo { max-width: none; min-width: 0; width: 100%; }
+      header h1 { font-size: 1.9rem; }
+      .cifra { font-size: 3.4rem; }
+      .barra { display: none; }
+      body { padding-bottom: 0; }
+      #guida { padding: 1.4rem 1.3rem 0.8rem; }
+      .scheda { padding: 1.1rem 1.05rem; }
+    }
+    @media print {
+      .barra, .back, .lista, [data-ad], [data-support], .bottoni, .elimina { display: none; }
+      body { background: #fff; padding-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="guscio">
+    <p class="back"><a href="../../index.html">← Tutte le app</a></p>
+
+    <header>
+      <h1>Calcolo del rendimento netto di un BTP</h1>
+      <p class="sub">Quanto rende davvero il titolo dopo il 12,5%, il rateo, la commissione e il bollo.</p>
+    </header>
+
+    <main class="impianto">
+      <aside class="lista" aria-label="I tuoi titoli">
+        <div class="lista-testa">
+          <h2>I tuoi titoli</h2>
+          <button class="nuovo" id="nuovo" type="button">+ Nuovo</button>
+        </div>
+        <div class="lista-corpo" id="lista-corpo" role="tablist" aria-label="Titoli salvati"></div>
+      </aside>
+
+      <div class="dettaglio">
+        <section class="scheda" aria-labelledby="t-dati">
+          <h2 id="t-dati"><span class="q">01</span> &nbsp;Il titolo</h2>
+
+          <div class="griglia">
+            <div class="campo">
+              <label for="f-cedola">Cedola lorda annua</label>
+              <div class="misura">
+                <input id="f-cedola" type="text" inputmode="decimal" enterkeyhint="done" autocomplete="off" placeholder="3,85">
+                <span class="u">%</span>
+              </div>
+            </div>
+            <div class="campo">
+              <label for="f-scadenza">Scadenza</label>
+              <div class="misura">
+                <input id="f-scadenza" type="date" enterkeyhint="done">
+              </div>
+            </div>
+            <div class="campo">
+              <label for="f-prezzo">Prezzo, corso secco</label>
+              <div class="misura">
+                <input id="f-prezzo" type="text" inputmode="decimal" enterkeyhint="done" autocomplete="off" placeholder="98,40">
+                <span class="u">su 100</span>
+              </div>
+            </div>
+            <div class="campo">
+              <label for="f-nominale">Nominale</label>
+              <div class="misura">
+                <input id="f-nominale" type="text" inputmode="numeric" enterkeyhint="done" autocomplete="off" placeholder="10000">
+                <span class="u">€</span>
+              </div>
+            </div>
+            <span class="aiuto larga">Il prezzo è quello quotato, senza rateo: 100 = alla pari. Il nominale è il valore di rimborso, a multipli di 1.000 €.</span>
+            <div class="campo larga">
+              <span class="etichetta" id="l-passo">Cedola ogni</span>
+              <div class="chips" role="group" aria-labelledby="l-passo" id="passo">
+                <button type="button" data-v="6" aria-pressed="true">Semestrale</button>
+                <button type="button" data-v="12" aria-pressed="false">Annuale</button>
+                <button type="button" data-v="0" aria-pressed="false">Nessuna</button>
+              </div>
+              <span class="aiuto" id="a-passo">I BTP ne pagano due all'anno. «Nessuna» per BOT e zero coupon.</span>
+            </div>
+
+          </div>
+
+          <details class="extra">
+            <summary>Nome, data di acquisto, costi e bollo</summary>
+            <div class="griglia">
+              <div class="riga-nome larga">
+                <div class="campo">
+                  <label for="f-nome">Nome o ISIN, per ritrovarlo nell'elenco</label>
+                  <div class="misura">
+                    <input id="f-nome" type="text" autocomplete="off" maxlength="40" placeholder="BTP 3,85% Feb 2035">
+                  </div>
+                </div>
+                <button class="elimina" id="elimina" type="button">Elimina</button>
+              </div>
+              <div class="campo">
+                <label for="f-acquisto">Data di regolamento</label>
+                <div class="misura">
+                  <input id="f-acquisto" type="date" enterkeyhint="done">
+                </div>
+                <span class="aiuto">In borsa è il secondo giorno lavorativo dopo l'ordine: è la data da cui conta il rateo.</span>
+              </div>
+              <div class="campo">
+                <label for="f-comm">Commissione della banca</label>
+                <div class="misura">
+                  <input id="f-comm" type="text" inputmode="decimal" enterkeyhint="done" autocomplete="off" placeholder="0,20">
+                  <span class="u">%</span>
+                </div>
+                <span class="aiuto">Dallo 0,15% allo 0,50% in banca, spesso zero sui titoli di Stato comprati all'asta.</span>
+              </div>
+              <div class="campo larga">
+                <label class="interruttore" for="f-bollo">
+                  <input id="f-bollo" type="checkbox" checked>
+                  <span>Conta l'imposta di bollo dello 0,2% annuo sul deposito titoli</span>
+                </label>
+                <span class="aiuto">I titoli di Stato non ne sono esenti: si paga ogni anno sul valore in custodia e vale circa due decimi di punto di rendimento.</span>
+              </div>
+            </div>
+          </details>
+          <p class="errore" id="errore" role="status" aria-live="polite"></p>
+        </section>
+
+        <section class="scheda esito" id="esito" aria-labelledby="t-esito">
+          <h2 id="t-esito"><span class="q">02</span> &nbsp;Quanto rende davvero</h2>
+          <span class="cifra vuota" id="cifra">—</span>
+          <span class="cifra-nota" id="cifra-nota">rendimento netto annuo a scadenza</span>
+          <p class="sotto" id="sotto">Compila cedola, scadenza e prezzo per vedere il conto.</p>
+          <div class="coppia">
+            <div class="mini"><span class="k">Rendimento lordo</span><span class="d" id="m-lordo">—</span></div>
+            <div class="mini"><span class="k">Guadagno netto</span><span class="d" id="m-guadagno">—</span></div>
+            <div class="mini"><span class="k">Cedola netta incassata</span><span class="d" id="m-cedola">—</span></div>
+            <div class="mini"><span class="k">Conto deposito pari</span><span class="d" id="m-deposito">—</span></div>
+          </div>
+          <p class="avviso" id="avviso"></p>
+        </section>
+
+        <div data-ad="top"></div>
+
+        <section class="scheda" aria-labelledby="t-conto">
+          <h2 id="t-conto"><span class="q">03</span> &nbsp;Il conto, voce per voce</h2>
+          <div class="prospetto" id="prospetto">
+            <p class="vuoto">Il dettaglio compare appena il calcolo è valido.</p>
+          </div>
+        </section>
+
+        <section data-pro="Piano dei flussi di cassa netti">
+          <h2>Piano dei flussi di cassa netti</h2>
+          <p class="intro">Ogni singolo movimento fino alla scadenza: cedola lorda, imposta trattenuta, netto incassato e cassa cumulata. La prima cedola è più alta delle altre perché il rateo pagato viene scomputato dall'imponibile.</p>
+          <div class="scorri">
+            <table id="tab-flussi"><caption class="vuoto" style="text-align:left; padding:0 0 0.5rem">Nessun flusso da mostrare.</caption></table>
+          </div>
+        </section>
+
+        <section data-pro="Confronto fra i titoli salvati">
+          <h2>Confronto fra i titoli salvati</h2>
+          <p class="intro">Tutti i titoli della tua lista messi in fila per rendimento netto, con scadenza, guadagno e quanto lascia per strada ciascuno fra imposte e costi. Il migliore è evidenziato.</p>
+          <div class="scorri">
+            <table id="tab-confronto"><caption class="vuoto" style="text-align:left; padding:0 0 0.5rem">Salva almeno due titoli per confrontarli.</caption></table>
+          </div>
+        </section>
+
+        <section data-pro="Esporta il piano in CSV">
+          <h2>Esporta il piano in CSV</h2>
+          <p class="intro">Scarica il piano dei flussi o il confronto fra i titoli in un file che si apre con Excel, Numeri o Fogli Google, con il punto e virgola come separatore e la virgola decimale.</p>
+          <div class="bottoni">
+            <button type="button" id="csv-flussi">Scarica il piano</button>
+            <button type="button" class="secondo" id="csv-confronto">Scarica il confronto</button>
+          </div>
+          <p class="esitino" id="csv-esito" role="status" aria-live="polite"></p>
+        </section>
+
+        <section id="guida">
+          <h2>Come si calcola il rendimento netto di un BTP</h2>
+          <p>La cedola non è il rendimento. Un BTP con cedola 3,85% comprato a 98,40 rende più del 3,85%, perché a scadenza lo Stato rimborsa 100 e quei 1,60 di differenza sono un guadagno in più; lo stesso titolo comprato a 104 rende meno. Il numero che conta si chiama rendimento a scadenza e si ottiene in un solo modo onesto: mettere in fila tutti i soldi che escono e che entrano, con la loro data, e cercare il tasso che li rende equivalenti. È quello che fa il calcolatore qui sopra.</p>
+          <p>Dal lordo al netto ci sono quattro passaggi, e le formule veloci che si trovano in rete ne saltano almeno due.</p>
+          <ul>
+            <li><strong>L'imposta del 12,5% sulle cedole.</strong> È l'aliquota agevolata dei titoli di Stato italiani e dei paesi in white list, metà del 26% che si paga su conti deposito, azioni e obbligazioni societarie. Una cedola semestrale lorda di 192,50 € arriva sul conto a 168,44 €.</li>
+            <li><strong>Il 12,5% sulla differenza di prezzo.</strong> Se compri sotto la pari, la differenza fra 100 e il prezzo pagato è una plusvalenza tassata al rimborso: su 10.000 € nominali comprati a 98,40 sono 160 € di guadagno e 20 € di imposta. Se compri sopra la pari, la minusvalenza non ti abbassa le tasse sulle cedole: resta a credito per quattro anni e serve solo a compensare altre plusvalenze.</li>
+            <li><strong>Il rateo pagato al venditore.</strong> Comprando a metà periodo paghi anche la parte di cedola già maturata da chi ti vende. Non è una perdita: alla prima cedola la banca applica il 12,5% solo sulla parte di interessi maturata mentre il titolo era tuo, quindi la prima cedola è netta più alta delle successive.</li>
+            <li><strong>I costi, che nessuno conta.</strong> La commissione di acquisto e, soprattutto, l'imposta di bollo dello 0,2% annuo sul deposito titoli, che si paga sul capitale anche quando il titolo perde. Su un titolo che rende il 3,4% netto il bollo si porta via circa un ventesimo del guadagno ogni anno.</li>
+          </ul>
+
+          <h2>Un esempio con i numeri</h2>
+          <div class="esempio">
+            <p><strong>10.000 € su un BTP con cedola 3,85% e scadenza 1 febbraio 2035</strong>, comprato a 98,40 con regolamento il 28 ottobre 2026 e una commissione dello 0,20%.</p>
+            <p><strong>Quanto esce.</strong> 9.840 € di corso secco, più 92,07 € di rateo (l'ultima cedola era il 1 agosto: 88 giorni su 184 di periodo), più 19,86 € di commissione. In tutto 9.951,93 € addebitati, a cui si aggiungono 164 € di bollo spalmati sugli otto anni e tre mesi.</p>
+            <p><strong>Quanto entra.</strong> 17 cedole semestrali: la prima netta 179,95 € grazie allo scomputo del rateo, le altre 168,44 € ciascuna. A scadenza 10.000 € meno 20 € di imposta sulla plusvalenza, quindi 9.980 €.</p>
+            <p><strong>Il risultato.</strong> Il guadagno netto è di 2.738,92 € e il rendimento netto annuo è il <strong>3,37%</strong>, contro un lordo del 4,12%: fra imposte, bollo e commissione se ne vanno tre quarti di punto all'anno. Per incassare lo stesso netto da un conto deposito, tassato al 26%, servirebbe un tasso lordo del 4,55%.</p>
+          </div>
+
+          <h2>Gli errori che costano soldi</h2>
+          <ul>
+            <li><strong>Guardare la cedola invece del rendimento.</strong> Un titolo con cedola 4,50% che quota 112 rende molto meno di uno con cedola 2% che quota 84. Le cedole alte fanno sentire ricchi e si pagano in anticipo nel prezzo; sul netto le cedole basse sono anzi favorite, perché il guadagno arriva come differenza di prezzo tassata alla fine e non ogni sei mesi.</li>
+            <li><strong>Confrontare un BTP con un conto deposito al lordo.</strong> Le aliquote sono diverse, 12,5% contro 26%: un confronto lordo mente di circa un punto. Il calcolatore mostra il tasso lordo che dovrebbe offrire un conto deposito per pareggiare.</li>
+            <li><strong>Dare per scontato il rendimento a scadenza anche vendendo prima.</strong> Quel numero vale solo se arrivi all'ultimo giorno. Chi vende prima incassa il prezzo di mercato del momento, che sui titoli lunghi può muoversi del 10% in un anno.</li>
+            <li><strong>Dimenticare il bollo su scadenze lunghe e le commissioni su quelle corte.</strong> Lo 0,2% annuo su vent'anni pesa quanto quattro mesi di cedole; una commissione dello 0,50% su un titolo che scade fra un anno si mangia mezzo punto di rendimento in un colpo solo.</li>
+            <li><strong>Usare il conto a valori nominali e chiamarlo guadagno reale.</strong> Il 3,37% netto di questo esempio è prima dell'inflazione: con i prezzi che salgono del 2% all'anno il potere d'acquisto cresce di poco più dell'1%. Per proteggersi dall'inflazione esistono i BTP indicizzati, dove la cedola è bassa ma il capitale si rivaluta, e il conto va fatto in modo diverso.</li>
+          </ul>
+
+          <h2>Domande frequenti</h2>
+          <h3>Come si calcola il rendimento netto di un BTP?</h3>
+          <p>Costruendo i flussi di cassa reali e cercando il tasso che li azzera: esborso iniziale (corso secco più rateo più commissione), cedole al netto del 12,5%, rimborso a 100 meno l'imposta sulla plusvalenza, bollo annuo. È il tasso interno di rendimento, lo stesso metodo che usa la banca nel rendiconto. La formula sintetica «cedola più scarto diviso prezzo» ignora rateo, costi e capitalizzazione: sbaglia di uno o due decimi di punto, che su dieci anni sono centinaia di euro.</p>
+          <h3>Quanto si paga di tasse su un BTP?</h3>
+          <p>Il 12,5% su cedole e plusvalenza, invece del 26% delle altre rendite finanziarie, più lo 0,2% annuo di imposta di bollo sul deposito titoli, da cui i titoli di Stato non sono esenti. I BTP sono invece esclusi dall'imposta di successione e non entrano nel patrimonio mobiliare ISEE fino a 50.000 € per nucleo familiare.</p>
+          <h3>Che cos'è il rateo e perché me lo addebitano?</h3>
+          <p>È la parte di cedola maturata dall'ultimo stacco al giorno in cui compri, e spetta a chi ti vende il titolo. Lo recuperi alla prima cedola, che incassi intera: la banca applica il 12,5% solo sugli interessi maturati nel tuo periodo di possesso, perché il rateo pagato si scomputa dalla base imponibile. In regime amministrato è automatico e non va dichiarato.</p>
+          <h3>Conviene un BTP o un conto deposito?</h3>
+          <p>Dipende da quanto a lungo puoi rinunciare ai soldi. Il BTP blocca il rendimento per tutta la scadenza e paga meno tasse, ma garantisce il rimborso di 100 solo all'ultimo giorno; il conto deposito vincolato restituisce sempre il capitale ma nessuno te lo rinnova a quel tasso fra cinque anni. Usa il valore «conto deposito pari» qui sopra per confrontarli sullo stesso piano.</p>
+          <h3>Il calcolo vale anche per un BTP Valore o un BTP Italia?</h3>
+          <p>Solo in parte. Il BTP Valore ha cedole crescenti e un premio fedeltà finale, il BTP Italia e il BTP€i rivalutano il capitale con l'inflazione: in entrambi i casi i flussi futuri non sono noti oggi e questo calcolatore, che lavora su cedola fissa, darebbe un numero sbagliato. Va benissimo invece per tutti i BTP ordinari, per i CTZ e per le obbligazioni societarie a cedola fissa, ricordando che su queste ultime l'aliquota è il 26% e non il 12,5%.</p>
+          <h3>Dove trovo prezzo e cedola del titolo che mi interessa?</h3>
+          <p>Nella scheda del titolo sul sito di Borsa Italiana cercando l'ISIN, oppure nella piattaforma della tua banca al momento dell'ordine. Il prezzo da inserire qui è quello a corso secco, cioè senza rateo: è il valore quotato, mentre la cifra addebitata sul conto (il tel quel) comprende anche il rateo e sarebbe doppio contarla.</p>
+          <h3>I numeri di questa pagina sono garantiti?</h3>
+          <p>Sono un calcolo esatto sui dati che inserisci, non una consulenza. Il prezzo lo metti tu e cambia ogni minuto; l'importo preciso addebitato dipende dalle condizioni del tuo intermediario. Nessun dato esce da questa pagina: i titoli che salvi restano nella memoria del telefono.</p>
+
+          <div data-ad="bottom"></div>
+        </section>
+      </div>
+    </main>
+
+    <div class="barra" role="status" aria-live="polite">
+      <span class="q"><b id="b-cifra">—</b><span id="b-nota">rendimento netto annuo</span></span>
+      <a href="#esito">Vedi il conto</a>
+    </div>
+
+    <footer>
+      <div data-support></div>
+      <p><strong>Continua con:</strong></p>
+      <ul>
+        <li><a href="../2026-09-27-interessi-conto-deposito/">Calcolo degli interessi di un conto deposito</a>, per confrontare il netto del BTP con un vincolo bancario tassato al 26%.</li>
+        <li><a href="../2026-09-24-cedolare-secca-o-irpef/">Cedolare secca o IRPEF sull'affitto</a>, se stai scegliendo fra far rendere i risparmi in titoli o in mattoni.</li>
+      </ul>
+      <p>Stima basata sui dati che inserisci e sulla fiscalità italiana in vigore nel 2026 (imposta sostitutiva 12,5% sui titoli di Stato, imposta di bollo 0,2% annua): non è una consulenza finanziaria né un'offerta.</p>
+      <p>Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a></p>
+    </footer>
+  </div>
+
+<script src="../../assets/monetize.js"></script>
+<script>
+/* Modello dati: un array T di titoli in localStorage "rendimento-btp-netto:v1", ognuno
+ * { id, nome, cedola, scadenza, prezzo, nominale, acquisto, passo, comm, bollo }, piu l'id
+ * selezionato. Da un titolo la funzione calcola() genera l'elenco dei flussi di cassa datati
+ * (acquisto, rateo, commissione, cedole nette, bollo annuo, rimborso) e da quelli ricava per
+ * bisezione il TIR netto e quello lordo: tutto il resto della pagina legge solo quell'oggetto. */
+(() => {
+  "use strict";
+
+  const CHIAVE = "rendimento-btp-netto:v1";
+  const IMPOSTA = 0.125;      // imposta sostitutiva sui titoli di Stato
+  const BOLLO = 0.002;        // imposta di bollo annua sul deposito titoli
+  const IMPOSTA_DEP = 0.26;   // aliquota sugli interessi di un conto deposito
+  const GG_ANNO = 365;
+
+  const $ = (s) => document.querySelector(s);
+  const el = (tag, props, ...figli) => {
+    const n = document.createElement(tag);
+    if (props) for (const [k, v] of Object.entries(props)) {
+      if (k === "class") n.className = v; else if (k === "text") n.textContent = v; else n.setAttribute(k, v);
+    }
+    for (const f of figli.flat()) if (f != null) n.append(f instanceof Node ? f : document.createTextNode(String(f)));
+    return n;
+  };
+
+  // ---------- numeri e date ----------
+  const num = (v) => {
+    const s = String(v == null ? "" : v).trim().replace(/\s| |\./g, "").replace(",", ".");
+    if (!s || !/^-?\d*\.?\d+$/.test(s)) return NaN;
+    return parseFloat(s);
+  };
+  // it-IT non raggruppa i numeri di quattro cifre: sui soldi il punto delle migliaia serve sempre.
+  const migliaia = (s) => s.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  function decimale(n, dec) {
+    if (!isFinite(n)) return "—";
+    if (Math.abs(n) < Math.pow(10, -dec) / 2) n = 0;
+    const [i, d] = Math.abs(n).toFixed(dec).split(".");
+    return (n < 0 ? "-" : "") + migliaia(i) + (d ? "," + d : "");
+  }
+  const eur = (n, dec = 2) => decimale(n, dec) + "\u00a0€";   // spazio unificatore: l'euro non resta orfano a capo
+  const pct = (n, dec = 2) => decimale(n, dec) + "%";
+  const iso = (d) => d.toISOString().slice(0, 10);
+  const data = (s) => {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(String(s || ""))) return null;
+    const d = new Date(s + "T00:00:00Z");
+    return isNaN(d.getTime()) ? null : d;
+  };
+  const gg = (a, b) => Math.round((b - a) / 86400000);
+  const mostraData = (d) => d.toLocaleDateString("it-IT", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" });
+  function addMesi(x, m) {
+    const giorno = x.getUTCDate();
+    const t = new Date(Date.UTC(x.getUTCFullYear(), x.getUTCMonth() + m, 1));
+    const ultimo = new Date(Date.UTC(t.getUTCFullYear(), t.getUTCMonth() + 1, 0)).getUTCDate();
+    t.setUTCDate(Math.min(giorno, ultimo));
+    return t;
+  }
+  function durata(giorni) {
+    const anni = Math.floor(giorni / GG_ANNO), mesi = Math.round((giorni % GG_ANNO) / 30.44);
+    if (anni <= 0) return mesi + (mesi === 1 ? " mese" : " mesi");
+    if (mesi <= 0) return anni + (anni === 1 ? " anno" : " anni");
+    return anni + (anni === 1 ? " anno e " : " anni e ") + mesi + (mesi === 1 ? " mese" : " mesi");
+  }
+
+  // ---------- motore di calcolo ----------
+  function validazione(t) {
+    const sca = data(t.scadenza), acq = data(t.acquisto);
+    const cedola = t.passo === 0 ? 0 : num(t.cedola);
+    const prezzo = num(t.prezzo), nominale = num(t.nominale);
+    if (!acq) return "Inserisci una data di regolamento valida.";
+    if (!sca) return "Inserisci la data di scadenza del titolo.";
+    if (gg(acq, sca) < 1) return "La scadenza deve essere successiva alla data di acquisto.";
+    if (gg(acq, sca) > 365 * 60) return "La scadenza è troppo lontana: controlla l'anno.";
+    if (t.passo !== 0 && (isNaN(cedola) || cedola < 0)) return "Inserisci la cedola annua lorda, in percentuale.";
+    if (cedola > 25) return "Una cedola sopra il 25% non è realistica: controlla il valore.";
+    if (isNaN(prezzo) || prezzo <= 0) return "Inserisci il prezzo di acquisto a corso secco (100 = alla pari).";
+    if (prezzo > 300) return "Il prezzo si esprime su 100: 98,40 vuol dire 98,40%.";
+    if (isNaN(nominale) || nominale <= 0) return "Inserisci quanto nominale compri, in euro.";
+    if (nominale > 1e9) return "Importo troppo grande.";
+    return null;
+  }
+
+  function tir(flussi, t0, campo) {
+    const serie = flussi.map((r) => ({ t: gg(t0, r.data) / GG_ANNO, v: r[campo] })).filter((x) => x.v !== 0);
+    if (!serie.length) return null;
+    const vna = (r) => serie.reduce((s, x) => s + x.v / Math.pow(1 + r, x.t), 0);
+    let lo = -0.9499, hi = 3;
+    if (!(vna(lo) > 0) || !(vna(hi) < 0)) return null;
+    for (let i = 0; i < 200; i++) { const m = (lo + hi) / 2; if (vna(m) > 0) lo = m; else hi = m; }
+    return (lo + hi) / 2;
+  }
+
+  function calcola(t) {
+    const errore = validazione(t);
+    if (errore) return { errore };
+    const acq = data(t.acquisto), sca = data(t.scadenza);
+    const nominale = num(t.nominale), prezzo = num(t.prezzo);
+    const comm = isNaN(num(t.comm)) ? 0 : Math.max(0, num(t.comm));
+    const passo = t.passo, cedola = passo === 0 ? 0 : num(t.cedola);
+
+    // date delle cedole future, dalla scadenza a ritroso
+    const scadenze = [];
+    let x = sca;
+    if (passo > 0) { while (x > acq) { scadenze.push(x); x = addMesi(x, -passo); } scadenze.reverse(); }
+    const precedente = passo > 0 ? x : acq;
+
+    const perPeriodo = passo > 0 ? cedola / (12 / passo) : 0;   // % di nominale per ogni cedola
+    let rateoPct = 0;
+    if (passo > 0 && scadenze.length) {
+      const periodo = gg(precedente, scadenze[0]), maturati = gg(precedente, acq);
+      if (periodo > 0) rateoPct = perPeriodo * Math.min(1, Math.max(0, maturati / periodo));
+    }
+
+    const secco = nominale * prezzo / 100;
+    const rateo = nominale * rateoPct / 100;
+    const commEur = (secco + rateo) * comm / 100;
+
+    const f = [];
+    const spingi = (d, voce, lordo, imposta, tipo) => f.push({ data: d, voce, lordo, imposta, netto: lordo - imposta, tipo });
+    spingi(acq, "Acquisto a corso secco", -secco, 0, "acquisto");
+    if (rateo > 0) spingi(acq, "Rateo pagato al venditore", -rateo, 0, "rateo");
+    if (commEur > 0) spingi(acq, "Commissione della banca", -commEur, 0, "costo");
+
+    const cedolaEur = nominale * perPeriodo / 100;
+    let impostaCedole = 0, cedoleLorde = 0;
+    scadenze.forEach((d, i) => {
+      if (cedolaEur <= 0) return;
+      const base = i === 0 ? Math.max(0, cedolaEur - rateo) : cedolaEur;
+      const imp = base * IMPOSTA;
+      impostaCedole += imp; cedoleLorde += cedolaEur;
+      spingi(d, i === 0 ? "Cedola (rateo scomputato)" : "Cedola", cedolaEur, imp, "cedola");
+    });
+
+    const diff = nominale * (100 - prezzo) / 100;              // >0 sotto la pari
+    const impPlus = diff > 0 ? diff * IMPOSTA : 0;
+    spingi(sca, "Rimborso a 100", nominale, impPlus, "rimborso");
+
+    let bolloTot = 0;
+    if (t.bollo) {
+      const totali = gg(acq, sca);
+      let anniv = addMesi(acq, 12), ultimo = acq;
+      while (anniv < sca) {
+        const valore = nominale * (prezzo + (100 - prezzo) * gg(acq, anniv) / totali) / 100;
+        const quota = valore * BOLLO;
+        bolloTot += quota; spingi(anniv, "Imposta di bollo 0,2%", -quota, 0, "costo");
+        ultimo = anniv; anniv = addMesi(anniv, 12);
+      }
+      const resto = gg(ultimo, sca) / GG_ANNO;
+      if (resto > 0.004) {
+        const quota = nominale * BOLLO * resto;
+        bolloTot += quota; spingi(sca, "Imposta di bollo (ultimo periodo)", -quota, 0, "costo");
+      }
+    }
+
+    f.sort((a, b) => a.data - b.data || (a.netto < b.netto ? -1 : 1));
+    let cassa = 0;
+    for (const r of f) { cassa += r.netto; r.cumulato = cassa; }
+
+    const lordi = f.filter((r) => r.tipo !== "costo");
+    const trn = tir(f, acq, "netto");
+    const trl = tir(lordi, acq, "lordo");
+    const esborso = -f.filter((r) => r.netto < 0).reduce((s, r) => s + r.netto, 0);
+    const incassi = f.filter((r) => r.netto > 0).reduce((s, r) => s + r.netto, 0);
+
+    return {
+      errore: null, acq, sca, f, trn, trl, secco, rateo, rateoPct, commEur, bolloTot,
+      diff, impPlus, impostaCedole, cedoleLorde, nominale, prezzo, passo,
+      cedolaEur, cedolaNetta: cedolaEur * (1 - IMPOSTA),
+      primaNetta: scadenze.length && cedolaEur > 0 ? cedolaEur - Math.max(0, cedolaEur - rateo) * IMPOSTA : 0,
+      nCedole: cedolaEur > 0 ? scadenze.length : 0,
+      esborso, incassi, guadagno: incassi - esborso, giorni: gg(acq, sca),
+      prelievo: (trl != null && trn != null) ? trl - trn : null,
+      deposito: trn != null ? trn / (1 - IMPOSTA_DEP) : null,
+    };
+  }
+
+  // ---------- stato ----------
+  const oggi = iso(new Date());
+  const esempio = () => ({
+    id: (crypto.randomUUID ? crypto.randomUUID() : "t" + Date.now() + Math.random()),
+    nome: "BTP 3,85% Feb 2035", cedola: "3,85", scadenza: "2035-02-01", prezzo: "98,40",
+    nominale: "10000", acquisto: oggi, passo: 6, comm: "0,20", bollo: true,
+  });
+  const vuoto = () => ({
+    id: (crypto.randomUUID ? crypto.randomUUID() : "t" + Date.now() + Math.random()),
+    nome: "", cedola: "", scadenza: "", prezzo: "", nominale: "10000",
+    acquisto: oggi, passo: 6, comm: "0,20", bollo: true,
+  });
+
+  let T = [], sel = null;
+  function carica() {
+    try {
+      const salvato = JSON.parse(localStorage.getItem(CHIAVE) || "null");
+      if (salvato && Array.isArray(salvato.titoli) && salvato.titoli.length) {
+        T = salvato.titoli.map((t) => Object.assign(vuoto(), t));
+        sel = T.some((t) => t.id === salvato.sel) ? salvato.sel : T[0].id;
+        return;
+      }
+    } catch (e) { /* memoria non disponibile o dati illeggibili: si parte dall'esempio */ }
+    T = [esempio()]; sel = T[0].id;
+  }
+  function salva() {
+    try { localStorage.setItem(CHIAVE, JSON.stringify({ titoli: T, sel })); } catch (e) { /* in incognito non si salva: pazienza */ }
+  }
+  const corrente = () => T.find((t) => t.id === sel) || T[0];
+
+  // ---------- disegno ----------
+  const campi = {
+    nome: $("#f-nome"), cedola: $("#f-cedola"), scadenza: $("#f-scadenza"), prezzo: $("#f-prezzo"),
+    nominale: $("#f-nominale"), acquisto: $("#f-acquisto"), comm: $("#f-comm"), bollo: $("#f-bollo"),
+  };
+
+  function compilaForm() {
+    const t = corrente();
+    campi.nome.value = t.nome; campi.cedola.value = t.cedola; campi.scadenza.value = t.scadenza;
+    campi.prezzo.value = t.prezzo; campi.nominale.value = t.nominale; campi.acquisto.value = t.acquisto;
+    campi.comm.value = t.comm; campi.bollo.checked = !!t.bollo;
+    for (const b of $("#passo").children) b.setAttribute("aria-pressed", String(Number(b.dataset.v) === t.passo));
+    campi.cedola.disabled = t.passo === 0;
+    $("#a-passo").textContent = t.passo === 0
+      ? "Nessuna cedola: il guadagno è tutto nella differenza fra prezzo e rimborso, tassata al 12,5%."
+      : t.passo === 12
+        ? "Una cedola all'anno, pari alla cedola annua indicata: molte obbligazioni, non i BTP."
+        : "I BTP ne pagano due all'anno. «Nessuna» per BOT e zero coupon.";
+    $("#elimina").textContent = "Elimina";
+    $("#elimina").classList.remove("armato");
+    $("#elimina").disabled = T.length < 2;
+    $("#elimina").style.opacity = T.length < 2 ? "0.45" : "1";
+  }
+
+  function nomeVisibile(t) {
+    if (t.nome.trim()) return t.nome.trim();
+    const c = num(t.cedola), s = data(t.scadenza);
+    if (!isNaN(c) && s) return "Cedola " + pct(c) + " · " + s.getUTCFullYear();
+    return "Titolo senza nome";
+  }
+
+  function disegnaLista() {
+    const corpo = $("#lista-corpo");
+    corpo.textContent = "";
+    for (const t of T) {
+      const r = calcola(t);
+      const b = el("button", {
+        class: "voce-titolo", type: "button", role: "tab",
+        "aria-selected": String(t.id === sel), "data-id": t.id,
+      });
+      b.append(el("b", { text: nomeVisibile(t) }));
+      b.append(el("span", {},
+        r.errore ? "da completare" : el("span", { class: "rend", text: pct(r.trn * 100) }),
+        r.errore ? "" : " netto · " + mostraData(r.sca)));
+      b.addEventListener("click", () => { sel = t.id; salva(); compilaForm(); aggiorna(); });
+      corpo.append(b);
+    }
+  }
+
+  function prospetto(r) {
+    const box = $("#prospetto");
+    box.textContent = "";
+    if (r.errore) { box.append(el("p", { class: "vuoto", text: "Il dettaglio compare appena il calcolo è valido." })); return; }
+    const riga = (k, v, cls) => {
+      const n = el("div", { class: "r" + (cls ? " " + cls : "") });
+      n.append(el("span", { class: "k", text: k }), el("span", { class: "f" }), el("span", { class: "v", text: v }));
+      box.append(n);
+    };
+    const sez = (k) => box.append(el("div", { class: "r sez" }, el("span", { class: "k", text: k })));
+
+    sez("quello che paghi");
+    riga("Corso secco · " + decimale(r.prezzo, 2) + " su 100 di " + eur(r.nominale, 0), eur(-r.secco), "neg");
+    if (r.rateo > 0) riga("Rateo maturato · " + pct(r.rateoPct, 3) + " del nominale", eur(-r.rateo), "neg");
+    if (r.commEur > 0) riga("Commissione della banca", eur(-r.commEur), "neg");
+    riga("Addebitato in tutto", eur(-(r.secco + r.rateo + r.commEur)), "tot neg");
+
+    sez("quello che incassi, al netto");
+    if (r.nCedole > 0) {
+      riga(r.nCedole + (r.nCedole === 1 ? " cedola lorda da " : " cedole lorde da ") + eur(r.cedolaEur), eur(r.cedoleLorde), "pos");
+      riga("Imposta sostitutiva 12,5% sulle cedole", eur(-r.impostaCedole), "neg");
+    } else {
+      riga("Nessuna cedola: titolo senza interessi periodici", "—");
+    }
+    riga("Rimborso del nominale a 100", eur(r.nominale), "pos");
+    if (r.diff > 0) riga("Imposta 12,5% sulla plusvalenza di " + eur(r.diff), eur(-r.impPlus), "neg");
+    else if (r.diff < 0) riga("Minusvalenza di " + eur(-r.diff) + ", a credito 4 anni", "non conteggiata");
+    if (r.bolloTot > 0) riga("Imposta di bollo 0,2% annua sul deposito", eur(-r.bolloTot), "neg");
+    riga("Incassato in tutto", eur(r.incassi), "tot pos");
+
+    sez("il risultato");
+    riga("Guadagno netto su " + durata(r.giorni), eur(r.guadagno), "tot " + (r.guadagno >= 0 ? "pos" : "neg"));
+    if (r.trn != null) riga("Rendimento netto annuo composto", pct(r.trn * 100), "");
+    if (r.trl != null && r.trn != null) riga("Lasciato per strada ogni anno fra imposte e costi", pct(r.prelievo * 100), "neg");
+  }
+
+  function tabella(id, intestazioni, righe, vuotoTesto) {
+    const tab = $(id);
+    tab.textContent = "";
+    if (!righe.length) {
+      tab.append(el("caption", { class: "vuoto", style: "text-align:left; padding:0 0 0.5rem", text: vuotoTesto }));
+      return;
+    }
+    const thead = el("thead"), tr = el("tr");
+    for (const h of intestazioni) tr.append(el("th", { scope: "col", text: h }));
+    thead.append(tr); tab.append(thead);
+    const tbody = el("tbody");
+    for (const r of righe) {
+      const t = el("tr", { class: r.cls || "" });
+      r.celle.forEach((c, i) => {
+        const cella = el(i === 0 ? "th" : "td", i === 0 ? { scope: "row" } : (c.cls ? { class: c.cls } : null));
+        cella.textContent = typeof c === "object" ? c.t : c;
+        t.append(cella);
+      });
+      tbody.append(t);
+    }
+    tab.append(tbody);
+  }
+
+  let flussiCorrenti = [];
+  function tabFlussi(r) {
+    flussiCorrenti = [];
+    if (r.errore) { tabella("#tab-flussi", [], [], "Nessun flusso da mostrare: completa i dati del titolo."); return; }
+    const righe = [];
+    for (const f of r.f) {
+      const cella = [
+        mostraData(f.data), f.voce,
+        f.lordo === 0 ? "—" : eur(f.lordo),
+        f.imposta > 0 ? eur(-f.imposta) : "—",
+        { t: eur(f.netto), cls: f.netto < 0 ? "neg" : "" },
+        { t: eur(f.cumulato), cls: f.cumulato < 0 ? "neg" : "" },
+      ];
+      righe.push({ celle: cella, cls: f.tipo === "rimborso" ? "anno" : "" });
+      flussiCorrenti.push([mostraData(f.data), f.voce, f.lordo, -f.imposta, f.netto, f.cumulato]);
+    }
+    tabella("#tab-flussi", ["Data", "Voce", "Lordo", "Imposta", "Netto", "Cassa"], righe, "");
+  }
+
+  let confrontoCorrente = [];
+  function tabConfronto() {
+    confrontoCorrente = [];
+    const validi = T.map((t) => ({ t, r: calcola(t) })).filter((x) => !x.r.errore && x.r.trn != null);
+    if (validi.length < 2) {
+      tabella("#tab-confronto", [], [], validi.length === 1
+        ? "Salva un secondo titolo con «+ Nuovo» per vederli a confronto."
+        : "Completa almeno due titoli per confrontarli.");
+      return;
+    }
+    validi.sort((a, b) => b.r.trn - a.r.trn);
+    const righe = validi.map((x, i) => {
+      const r = x.r;
+      confrontoCorrente.push([nomeVisibile(x.t), mostraData(r.sca), durata(r.giorni), r.trn * 100, r.trl * 100, r.prelievo * 100, r.guadagno, r.deposito * 100]);
+      return {
+        cls: i === 0 ? "top" : "",
+        celle: [
+          nomeVisibile(x.t), mostraData(r.sca), durata(r.giorni),
+          pct(r.trn * 100), pct(r.trl * 100), pct(r.prelievo * 100),
+          { t: eur(r.guadagno), cls: r.guadagno < 0 ? "neg" : "" },
+          pct(r.deposito * 100),
+        ],
+      };
+    });
+    tabella("#tab-confronto", ["Titolo", "Scadenza", "Durata", "Netto", "Lordo", "Prelievo", "Guadagno", "Deposito pari"], righe, "");
+  }
+
+  function aggiorna() {
+    const t = corrente(), r = calcola(t);
+    $("#errore").textContent = r.errore || "";
+
+    if (r.errore || r.trn == null) {
+      $("#cifra").textContent = "—"; $("#cifra").classList.add("vuota");
+      $("#sotto").textContent = r.errore ? r.errore : "Con questi valori il rendimento non è calcolabile: controlla prezzo e scadenza.";
+      for (const id of ["#m-lordo", "#m-guadagno", "#m-cedola", "#m-deposito"]) $(id).textContent = "—";
+      $("#avviso").textContent = "";
+      $("#b-cifra").textContent = "—"; $("#b-nota").textContent = "rendimento netto annuo";
+    } else {
+      $("#cifra").textContent = pct(r.trn * 100); $("#cifra").classList.remove("vuota");
+      $("#sotto").textContent = "Paghi " + eur(r.secco + r.rateo + r.commEur) + " e tieni il titolo "
+        + durata(r.giorni) + ", fino al " + mostraData(r.sca) + ". "
+        + (r.nCedole > 0 ? "Incassi " + eur(r.cedoleLorde - r.impostaCedole) + " di cedole nette e " + eur(r.nominale - r.impPlus) + " al rimborso" : "Al rimborso incassi " + eur(r.nominale - r.impPlus))
+        + (r.bolloTot > 0 ? ", meno " + eur(r.bolloTot) + " di bollo" : "")
+        + ": il guadagno netto è " + eur(r.guadagno) + ".";
+      $("#m-lordo").textContent = pct(r.trl * 100);
+      $("#m-guadagno").textContent = eur(r.guadagno, 0);
+      $("#m-cedola").textContent = r.nCedole > 0 ? eur(r.cedolaNetta) : "nessuna";
+      $("#m-deposito").textContent = pct(r.deposito * 100);
+
+      const note = [];
+      if (r.nCedole > 1) note.push("La prima cedola è netta " + eur(r.primaNetta) + " invece di " + eur(r.cedolaNetta) + ", perché il rateo pagato si scomputa dall'imponibile.");
+      if (r.diff < 0) note.push("Comprando sopra la pari perdi " + eur(-r.diff) + " al rimborso: è una minusvalenza, non abbassa le tasse sulle cedole e resta a credito per quattro anni solo per compensare altre plusvalenze.");
+      if (num(t.nominale) % 1000 !== 0) note.push("I BTP si comprano a multipli di 1.000 € di nominale: con " + eur(num(t.nominale), 0) + " l'ordine non passerebbe.");
+      if (r.giorni < 400 && r.commEur > 0) note.push("Su una scadenza così corta la commissione pesa molto: vale " + pct(r.commEur / (r.secco + r.rateo) * 100 * GG_ANNO / r.giorni) + " all'anno di rendimento.");
+      if (!t.bollo) note.push("Stai escludendo l'imposta di bollo: i titoli di Stato non ne sono esenti, contarla toglie circa due decimi di punto.");
+      $("#avviso").textContent = note.slice(0, 2).join(" ");
+
+      $("#b-cifra").textContent = pct(r.trn * 100);
+      $("#b-nota").textContent = "netto annuo · " + nomeVisibile(t);
+    }
+
+    prospetto(r); tabFlussi(r); tabConfronto(); disegnaLista();
+    $("#csv-esito").textContent = "";
+  }
+
+  // ---------- eventi ----------
+  function leggiForm() {
+    const t = corrente();
+    t.nome = campi.nome.value; t.cedola = campi.cedola.value; t.scadenza = campi.scadenza.value;
+    t.prezzo = campi.prezzo.value; t.nominale = campi.nominale.value; t.acquisto = campi.acquisto.value;
+    t.comm = campi.comm.value; t.bollo = campi.bollo.checked;
+    salva(); aggiorna();
+  }
+  for (const k of Object.keys(campi)) {
+    campi[k].addEventListener("input", leggiForm);
+    campi[k].addEventListener("change", leggiForm);
+  }
+  document.addEventListener("keydown", (e) => {
+    const dentro = e.target.matches && e.target.matches("input");
+    if (!dentro) return;
+    if (e.key === "Enter") { e.preventDefault(); e.target.blur(); leggiForm(); }
+    if (e.key === "Escape") e.target.blur();
+  });
+
+  for (const b of $("#passo").children) {
+    b.addEventListener("click", () => {
+      const t = corrente();
+      t.passo = Number(b.dataset.v);
+      if (t.passo === 0) t.cedola = "0";
+      else if (num(t.cedola) === 0) t.cedola = "";
+      salva(); compilaForm(); aggiorna();
+    });
+  }
+
+  $("#nuovo").addEventListener("click", () => {
+    const t = vuoto();
+    T.push(t); sel = t.id; salva(); compilaForm(); aggiorna();
+    campi.nome.focus();
+  });
+
+  $("#elimina").addEventListener("click", (e) => {
+    const b = e.currentTarget;
+    if (T.length < 2) return;
+    if (!b.classList.contains("armato")) {
+      b.classList.add("armato"); b.textContent = "Confermi?";
+      setTimeout(() => { b.classList.remove("armato"); b.textContent = "Elimina"; }, 4000);
+      return;
+    }
+    T = T.filter((t) => t.id !== sel);
+    sel = T[0].id; salva(); compilaForm(); aggiorna();
+  });
+
+  // ---------- CSV (solo Pro) ----------
+  function scarica(nome, righe) {
+    const virgola = (v) => typeof v === "number" ? v.toFixed(2).replace(".", ",") : String(v).replace(/;/g, ",");
+    const testo = righe.map((r) => r.map(virgola).join(";")).join("\r\n");
+    const blob = new Blob(["﻿" + testo], { type: "text/csv;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = el("a", { href: url, download: nome });
+    document.body.append(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    $("#csv-esito").textContent = "Scaricato " + nome;
+  }
+  const slug = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40) || "titolo";
+
+  $("#csv-flussi").addEventListener("click", () => {
+    if (!window.Monetize || !Monetize.isPro()) { $("#csv-esito").textContent = "Serve il Pass Pro."; return; }
+    if (!flussiCorrenti.length) { $("#csv-esito").textContent = "Completa prima i dati del titolo."; return; }
+    scarica("flussi-" + slug(nomeVisibile(corrente())) + ".csv",
+      [["Data", "Voce", "Lordo", "Imposta", "Netto", "Cassa cumulata"]].concat(flussiCorrenti));
+  });
+  $("#csv-confronto").addEventListener("click", () => {
+    if (!window.Monetize || !Monetize.isPro()) { $("#csv-esito").textContent = "Serve il Pass Pro."; return; }
+    if (!confrontoCorrente.length) { $("#csv-esito").textContent = "Servono almeno due titoli completi."; return; }
+    scarica("confronto-btp.csv",
+      [["Titolo", "Scadenza", "Durata", "Netto %", "Lordo %", "Prelievo %", "Guadagno netto", "Conto deposito pari %"]].concat(confrontoCorrente));
+  });
+
+  carica(); compilaForm(); aggiorna();
+})();
+</script>
+</body>
+</html>

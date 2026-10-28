@@ -1,6 +1,6 @@
 {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 46,
+  "count": 47,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -49,6 +49,53 @@
     ]
   },
   "apps": [
+    {
+      "title": "Rendimento BTP Netto",
+      "slug": "2026-10-28-rendimento-btp-netto",
+      "date": "2026-10-28",
+      "description": "Rendimento netto a scadenza di un BTP: cedole al 12,5%, rateo, plusvalenza, commissioni e bollo, con il conto deposito equivalente.",
+      "category": "finanza-personale",
+      "tags": [
+        "btp",
+        "titoli di stato",
+        "rendimento",
+        "risparmio"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "list-detail",
+        "palette": "azzurro-cielo",
+        "font": "mono-tecnico"
+      },
+      "business": {
+        "keyword": "calcolo rendimento btp netto",
+        "keywords": [
+          "rendimento netto btp",
+          "come si calcola il rendimento di un btp",
+          "btp quanto rende davvero",
+          "calcolatore rendimento titoli di stato"
+        ],
+        "intent": "Chi ha davanti la scheda di un BTP in home banking e vuole sapere quanto rende davvero dopo tasse e costi, prima di dare l'ordine.",
+        "target": "Risparmiatori 35-70 anni che comprano titoli di Stato in banca, alle poste o sul MOT, spesso dal telefono con la quotazione sotto gli occhi.",
+        "edge": "E il solo che mette insieme i quattro pezzi veri: TIR sui flussi semestrali datati, rateo scomputato dalla prima cedola, imposta 12,5% su cedole e plusvalenza, commissione e bollo 0,2% annuo. Mostra il tasso lordo che servirebbe a un conto deposito per pareggiare.",
+        "monetization": [
+          "adsense",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Piano dei flussi di cassa netti",
+          "Confronto fra i titoli salvati",
+          "Esporta il piano in CSV"
+        ],
+        "affiliate": []
+      },
+      "size": 61836
+    },
     {
       "title": "Riscatto Laurea: Quanto Costa",
       "slug": "2026-10-27-riscatto-laurea",
