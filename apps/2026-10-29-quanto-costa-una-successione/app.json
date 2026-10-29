@@ -1,0 +1,39 @@
+{
+  "title": "Quanto Costa una Successione",
+  "slug": "2026-10-29-quanto-costa-una-successione",
+  "date": "2026-10-29",
+  "description": "Imposta di successione, ipotecaria, catastale, bollo e onorario di CAF o notaio: il costo vero di una successione, voce per voce.",
+  "category": "finanza-personale",
+  "tags": ["successione", "eredità", "imposte", "casa"],
+  "source": "autonoma",
+  "request": null,
+  "status": "pronta",
+  "version": 1,
+  "changelog": [],
+  "design": { "layout": "single-column", "palette": "giallo-senape", "font": "serif-editoriale" },
+  "business": {
+    "keyword": "quanto costa una successione",
+    "keywords": [
+      "costo dichiarazione di successione",
+      "calcolo imposta di successione",
+      "quanto si paga per la successione di una casa",
+      "quanto costa la successione dal notaio"
+    ],
+    "intent": "Chi ha appena perso un genitore o un coniuge e ha dodici mesi per presentare la dichiarazione: vuole sapere subito quanto gli costerà, prima di chiamare un notaio.",
+    "target": "Eredi di 35-65 anni, spesso figli unici o fratelli, che ereditano una casa e un conto; cercano da telefono nei giorni dopo il decesso.",
+    "competitors": [
+      "notaionline.it (preventivo via form, nessun calcolo immediato)",
+      "centrofiscale.com e CAF (articoli che vendono il servizio)",
+      "studi notarili e commercialisti con pagine che rispondono \"dipende\"",
+      "fiscomania.com (articolo normativo senza calcolatore)"
+    ],
+    "edge": "Nessuno mette insieme i quattro pezzi del conto: franchigia per erede, ipocatastali al 2% e 1% sul valore catastale (o 200 € fisse con la prima casa), bollo e tassa servizi per conservatoria, compenso del canale scelto. Qui il totale compare mentre scrivi, senza registrazione e senza preventivo.",
+    "monetization": ["adsense", "pro", "support"],
+    "pro": [
+      "Prospetto erede per erede",
+      "Confronto fra fai da te, CAF e notaio",
+      "Esporta il prospetto in CSV"
+    ],
+    "affiliate": []
+  }
+}
