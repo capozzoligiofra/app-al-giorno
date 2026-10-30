@@ -1,0 +1,29 @@
+{
+  "title": "Fotovoltaico: Quando Rientri",
+  "slug": "2026-10-30-fotovoltaico-quando-rientri",
+  "date": "2026-10-30",
+  "description": "Quanto si risparmia con il fotovoltaico e in quanti anni rientra: autoconsumo, detrazione in 10 anni, vendita del surplus e flussi fino al 25° anno.",
+  "category": "finanza-personale",
+  "tags": ["fotovoltaico", "energia", "risparmio", "investimento", "casa"],
+  "source": "autonoma",
+  "request": null,
+  "status": "pronta",
+  "version": 1,
+  "changelog": [],
+  "design": { "layout": "canvas", "palette": "arancio-caldo", "font": "sans-geometrico" },
+  "business": {
+    "keyword": "quanto si risparmia con il fotovoltaico",
+    "keywords": ["in quanti anni si ripaga il fotovoltaico", "conviene il fotovoltaico", "tempo di rientro impianto fotovoltaico", "risparmio fotovoltaico con batteria"],
+    "intent": "Chi ha in mano un preventivo da 7.000-15.000 euro e vuole sapere, con i propri consumi e la propria zona, quanto risparmia all'anno e in quanti anni recupera la spesa.",
+    "target": "Proprietari di casa 35-65 anni che stanno valutando un preventivo, da telefono, spesso con l'installatore che aspetta una risposta.",
+    "competitors": ["Pagine di installatori (Enpal, Reonic) con form di contatto e nessun calcolo vero", "Articoli di testate economiche con esempi fissi non personalizzabili", "Blog di fornitori di luce che promettono 'fino al 90% di risparmio'"],
+    "edge": "Separa l'autoconsumo (0,28 euro/kWh risparmiati) dal surplus venduto al GSE (0,07 euro/kWh), spalma la detrazione sulle 10 quote reali e mostra il cumulato anno per anno: dice anche quando la batteria non conviene.",
+    "monetization": ["adsense", "affiliate", "pro", "support"],
+    "pro": ["Confronto con e senza batteria", "Piano dei flussi anno per anno", "Esporta il piano in CSV"],
+    "affiliate": [
+      { "t": "Misuratore di consumo da presa", "q": "misuratore consumo elettrico presa wattmetro" },
+      { "t": "Presa smart con programmazione", "q": "presa smart wifi programmabile consumi" },
+      { "t": "Pannello solare da balcone plug and play", "q": "pannello solare da balcone plug and play 800w" }
+    ]
+  }
+}

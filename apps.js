@@ -1,7 +1,7 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 48,
+  "count": 49,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -50,6 +50,68 @@ window.__APPS__ = {
     ]
   },
   "apps": [
+    {
+      "title": "Fotovoltaico: Quando Rientri",
+      "slug": "2026-10-30-fotovoltaico-quando-rientri",
+      "date": "2026-10-30",
+      "description": "Quanto si risparmia con il fotovoltaico e in quanti anni rientra: autoconsumo, detrazione in 10 anni, vendita del surplus e flussi fino al 25° anno.",
+      "category": "finanza-personale",
+      "tags": [
+        "fotovoltaico",
+        "energia",
+        "risparmio",
+        "investimento",
+        "casa"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "canvas",
+        "palette": "arancio-caldo",
+        "font": "sans-geometrico"
+      },
+      "business": {
+        "keyword": "quanto si risparmia con il fotovoltaico",
+        "keywords": [
+          "in quanti anni si ripaga il fotovoltaico",
+          "conviene il fotovoltaico",
+          "tempo di rientro impianto fotovoltaico",
+          "risparmio fotovoltaico con batteria"
+        ],
+        "intent": "Chi ha in mano un preventivo da 7.000-15.000 euro e vuole sapere, con i propri consumi e la propria zona, quanto risparmia all'anno e in quanti anni recupera la spesa.",
+        "target": "Proprietari di casa 35-65 anni che stanno valutando un preventivo, da telefono, spesso con l'installatore che aspetta una risposta.",
+        "edge": "Separa l'autoconsumo (0,28 euro/kWh risparmiati) dal surplus venduto al GSE (0,07 euro/kWh), spalma la detrazione sulle 10 quote reali e mostra il cumulato anno per anno: dice anche quando la batteria non conviene.",
+        "monetization": [
+          "adsense",
+          "affiliate",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto con e senza batteria",
+          "Piano dei flussi anno per anno",
+          "Esporta il piano in CSV"
+        ],
+        "affiliate": [
+          {
+            "t": "Misuratore di consumo da presa",
+            "q": "misuratore consumo elettrico presa wattmetro"
+          },
+          {
+            "t": "Presa smart con programmazione",
+            "q": "presa smart wifi programmabile consumi"
+          },
+          {
+            "t": "Pannello solare da balcone plug and play",
+            "q": "pannello solare da balcone plug and play 800w"
+          }
+        ]
+      },
+      "size": 59588
+    },
     {
       "title": "Quanto Costa una Successione",
       "slug": "2026-10-29-quanto-costa-una-successione",
