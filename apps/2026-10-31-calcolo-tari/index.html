@@ -1,0 +1,926 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0f9d76">
+  <title>Calcolo TARI 2026: Tassa Rifiuti Online Gratis</title>
+  <meta name="description" content="Calcolo TARI 2026: metti metri quadri e occupanti e ottieni quota fissa, quota variabile, TEFA, componenti UR e bonus rifiuti, per verificare l'avviso del Comune.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-31-calcolo-tari/">
+  <meta property="og:title" content="Calcolo TARI 2026: Tassa Rifiuti Online Gratis">
+  <meta property="og:description" content="Quota fissa al metro quadro, quota variabile per occupanti, TEFA al 5%, componenti UR1-UR2-UR3 e bonus sociale rifiuti: il conto completo, voce per voce.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-31-calcolo-tari/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Calcolo TARI",
+    "description": "Calcolatore gratuito della TARI, la tassa sui rifiuti delle utenze domestiche italiane. Applica il metodo normalizzato del DPR 158/1999: quota fissa data dalla superficie calpestabile per la tariffa al metro quadro, quota variabile legata al numero di occupanti, proporzione sui giorni di possesso, riduzioni comunali per compostaggio, zona non servita e uso stagionale, tributo provinciale TEFA, componenti perequative ARERA UR1, UR2 e UR3 e bonus sociale rifiuti del 25 per cento per chi ha un ISEE sotto soglia. Permette di inserire le tariffe deliberate dal proprio Comune oppure di partire dalle medie per area geografica, e di confrontare il risultato con l'avviso di pagamento ricevuto.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-10-31-calcolo-tari/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Come si calcola la TARI per una casa?", "acceptedAnswer": { "@type": "Answer", "text": "La TARI di una utenza domestica è la somma di due pezzi diversi fra loro. La quota fissa si ottiene moltiplicando la superficie calpestabile in metri quadri per una tariffa in euro al metro quadro: copre i costi del servizio che il Comune sostiene comunque, dallo spazzamento delle strade agli ammortamenti. La quota variabile è invece un importo in euro che dipende soltanto da quante persone vivono in casa, non dai metri quadri: copre la raccolta e lo smaltimento del rifiuto che quel nucleo produce. Sulla somma delle due si applica il tributo provinciale TEFA, di norma il 5 per cento, e dal 2024 si aggiungono le componenti perequative nazionali UR. Se la casa è stata occupata solo per una parte dell'anno, quota fissa e quota variabile vanno riproporzionate sui giorni di effettivo possesso." } },
+      { "@type": "Question", "name": "Dove trovo la tariffa al metro quadro del mio Comune?", "acceptedAnswer": { "@type": "Answer", "text": "Nella delibera annuale delle tariffe TARI, che ogni Comune è obbligato a pubblicare. La trovi in tre posti: nella sezione Amministrazione trasparente o Tributi del sito comunale, cercando delibera tariffe TARI con l'anno; nel Portale del federalismo fiscale del Ministero dell'Economia, dove le delibere sono raccolte Comune per Comune; oppure, nel modo più rapido, sul retro dell'avviso di pagamento che hai ricevuto, dove quasi sempre sono riportate le due tariffe applicate e la superficie che il Comune ha in banca dati. Cerca la riga della tabella utenze domestiche corrispondente al tuo numero di occupanti: ti servono il valore in euro al metro quadro e l'importo della quota variabile." } },
+      { "@type": "Question", "name": "Perché l'avviso del Comune non coincide con il mio calcolo?", "acceptedAnswer": { "@type": "Answer", "text": "Le cause più frequenti sono cinque. La superficie che il Comune usa è quella catastale già ridotta all'80 per cento o quella dichiarata anni fa, e spesso include cantina, box e soffitta che tu non avevi contato. Il numero di occupanti registrato è quello della scheda anagrafica al primo gennaio, quindi un figlio che si è trasferito a settembre conta ancora per l'anno in corso. Il TEFA può essere già incluso nel totale esposto oppure indicato a parte. Le componenti UR sono un addebito fisso per utenza che non dipende da superficie e occupanti. Infine la riduzione che credi di avere, per esempio quella per compostaggio domestico, va richiesta con un modulo e non viene applicata in automatico. Se la differenza resta inspiegata, chiedi all'ufficio tributi il dettaglio del calcolo: è un tuo diritto." } },
+      { "@type": "Question", "name": "Cosa sono le voci UR1, UR2 e UR3 che trovo nell'avviso?", "acceptedAnswer": { "@type": "Answer", "text": "Sono le componenti perequative decise da ARERA e riscosse dal Comune per conto della CSEA, cioè la cassa di settore. Non finanziano il servizio del tuo Comune ma tre scopi nazionali: UR1 copre lo smaltimento dei rifiuti pescati accidentalmente in mare, UR2 le agevolazioni per i territori colpiti da eventi calamitosi, UR3 finanzia il bonus sociale rifiuti. Si applicano a tutte le utenze, domestiche e non domestiche, come importo fisso annuo per utenza e non in proporzione ai metri quadri. Nel 2026 i valori indicati dai gestori sono 0,10 euro per UR1, 1,50 euro per UR2 e 6,00 euro per UR3, cioè 7,60 euro in tutto: sono poche decine di centesimi al mese, ma spiegano perché due calcoli altrimenti identici non tornano." } },
+      { "@type": "Question", "name": "Come funziona il bonus sociale rifiuti del 25 per cento?", "acceptedAnswer": { "@type": "Answer", "text": "È uno sconto del 25 per cento sulla TARI dovuta, introdotto per le famiglie in difficoltà economica e partito nel 2026. Spetta alle utenze domestiche con ISEE fino a 9.530 euro, soglia che sale a 20.000 euro per i nuclei con almeno quattro figli a carico, e l'utenza deve essere intestata a una persona del nucleo ISEE. Non si presenta nessuna domanda: basta avere la DSU valida, perché l'INPS trasmette i dati ai sistemi nazionali che li incrociano con le utenze. Lo sconto viene applicato dal gestore sulla prima rata utile, con un anno di riferimento sfalsato, quindi nel 2026 contano le attestazioni ISEE del 2025. Se non lo vedi comparire nell'avviso, controlla di avere una DSU valida e che l'intestatario dell'utenza sia nel nucleo." } },
+      { "@type": "Question", "name": "La TARI si paga anche su cantina, box e seconda casa?", "acceptedAnswer": { "@type": "Answer", "text": "Sì. La TARI è dovuta da chi possiede o detiene a qualsiasi titolo locali suscettibili di produrre rifiuti, quindi anche le pertinenze coperte come cantine, box e soffitte entrano nel calcolo della quota fissa, mentre la quota variabile resta una sola per l'intera utenza e non si moltiplica per il numero di locali. Per una seconda casa a disposizione, dove nessuno è residente, i regolamenti comunali fissano un numero di occupanti convenzionale, in genere da uno a tre in base ai metri quadri, e molti prevedono una riduzione per uso stagionale o per gli immobili tenuti a disposizione. Un locale davvero inutilizzabile, per esempio senza allacci di acqua e luce e senza mobili, può essere escluso, ma va dichiarato e dimostrato all'ufficio tributi." } }
+    ]
+  }
+  </script>
+  <style>
+    /* Palette verde-menta, font condensed, layout "sheet": la pagina scorre,
+       il risultato vive in un pannello che sale dal basso ed è sempre a portata di pollice. */
+    :root {
+      --bg: #f1faf5; --card: #ffffff; --sheet: #0c3d30;
+      --text: #0f2721; --muted: #557066; --faint: #7d948b;
+      --line: #cbe7da; --hair: #e2f2ea;
+      --mint: #0f9d76; --mint-deep: #0a6f53; --mint-soft: #ddf5ea;
+      --flag: #b1540d;
+      --cond: "Arial Narrow", "Roboto Condensed", "Helvetica Neue Condensed", "Liberation Sans Narrow", sans-serif;
+      --num: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      --r: 4px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #081411; --card: #0f201b; --sheet: #13362c;
+        --text: #e4f3ec; --muted: #8fa89f; --faint: #6d857c;
+        --line: #1d362e; --hair: #152a23;
+        --mint: #2fd4a0; --mint-deep: #2fd4a0; --mint-soft: #11302a;
+        --flag: #e9a062;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font-family: var(--cond); font-size: 1.0625rem; line-height: 1.5;
+      overflow-x: hidden;
+      padding-bottom: calc(118px + env(safe-area-inset-bottom));
+    }
+    .wrap { width: 100%; max-width: 760px; margin: 0 auto; padding: 0 1rem; }
+    a { color: var(--mint-deep); }
+    h1, h2, h3, .ttl { font-family: var(--cond); text-transform: uppercase; letter-spacing: 0.045em; font-weight: 700; }
+
+    .back { font-size: 0.95rem; padding: 0.9rem 0 0.2rem; margin: 0; }
+    .back a { text-decoration: none; display: inline-block; min-height: 44px; line-height: 44px; }
+
+    header.hd { padding: 0.2rem 0 1rem; }
+    h1 { font-size: 1.95rem; line-height: 1.08; margin: 0.2rem 0 0.5rem; }
+    h1 .yr { color: var(--mint-deep); }
+    .claim { margin: 0; color: var(--muted); font-size: 1.02rem; text-transform: none; letter-spacing: 0; }
+
+    /* --- modulo --- */
+    .panel { background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 1rem; margin-bottom: 0.85rem; }
+    .panel > .ttl { font-size: 0.78rem; color: var(--muted); margin: 0 0 0.8rem; letter-spacing: 0.1em; display: flex; align-items: baseline; gap: 0.5rem; }
+    .panel > .ttl b { color: var(--mint-deep); font-size: 0.95rem; letter-spacing: 0.02em; }
+
+    label.lb { display: block; font-size: 0.84rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); margin-bottom: 0.35rem; }
+    .hint { font-size: 0.9rem; color: var(--faint); margin: 0.35rem 0 0; text-transform: none; letter-spacing: 0; }
+    .row2 { display: grid; gap: 0.85rem; }
+    @media (min-width: 560px) { .row2 { grid-template-columns: 1fr 1fr; } }
+
+    input[type=number], input[type=text], select {
+      width: 100%; font-family: var(--num); font-size: 16px; min-height: 50px;
+      padding: 0.6rem 0.7rem; color: var(--text); background: var(--bg);
+      border: 1px solid var(--line); border-bottom: 2px solid var(--mint); border-radius: var(--r);
+    }
+    select { font-family: var(--cond); font-size: 16px; letter-spacing: 0.02em; }
+    input:focus-visible, select:focus-visible, button:focus-visible { outline: 3px solid var(--mint); outline-offset: 2px; }
+    input[type=number] { -moz-appearance: textfield; appearance: textfield; }
+    input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+    /* segmenti (modalità tariffe) */
+    .seg { display: flex; gap: 0; border: 1px solid var(--mint); border-radius: var(--r); overflow: hidden; margin-bottom: 0.9rem; }
+    .seg button {
+      flex: 1; font-family: var(--cond); font-size: 0.92rem; text-transform: uppercase; letter-spacing: 0.06em;
+      font-weight: 700; min-height: 48px; padding: 0.5rem 0.4rem; border: 0; background: transparent;
+      color: var(--mint-deep); cursor: pointer; line-height: 1.15;
+    }
+    .seg button + button { border-left: 1px solid var(--mint); }
+    .seg button[aria-pressed=true] { background: var(--mint); color: #fff; }
+    @media (prefers-color-scheme: dark) { .seg button[aria-pressed=true] { color: #06231c; } }
+
+    /* stepper occupanti */
+    .step { display: flex; align-items: stretch; gap: 0.5rem; }
+    .step button {
+      width: 52px; min-height: 50px; font-size: 1.5rem; font-weight: 700; line-height: 1;
+      border: 1px solid var(--line); border-radius: var(--r); background: var(--mint-soft);
+      color: var(--mint-deep); cursor: pointer; font-family: var(--cond);
+    }
+    .step output {
+      flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+      font-family: var(--num); font-size: 1.2rem; font-weight: 700;
+      border: 1px solid var(--line); border-bottom: 2px solid var(--mint); border-radius: var(--r);
+      background: var(--bg);
+    }
+    .step output span { font-family: var(--cond); font-size: 0.8rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); }
+
+    /* riduzioni: chip a interruttore */
+    .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .chip {
+      display: inline-flex; align-items: center; gap: 0.4rem; min-height: 44px;
+      padding: 0.4rem 0.8rem; border: 1px solid var(--line); border-radius: 999px;
+      background: var(--card); color: var(--text); font-family: var(--cond); font-size: 0.95rem;
+      cursor: pointer; letter-spacing: 0.02em;
+    }
+    .chip[aria-pressed=true] { background: var(--mint-soft); border-color: var(--mint); color: var(--mint-deep); font-weight: 700; }
+    .chip .pc { font-family: var(--num); font-size: 0.85rem; opacity: 0.8; }
+    .redrow { display: flex; align-items: center; gap: 0.6rem; margin-top: 0.8rem; font-size: 0.9rem; color: var(--muted); text-transform: none; }
+    .redrow input { max-width: 92px; min-height: 44px; }
+
+    .warn { background: var(--mint-soft); border-left: 3px solid var(--mint); padding: 0.7rem 0.85rem; margin: 0.9rem 0 0; font-size: 0.95rem; border-radius: 0 var(--r) var(--r) 0; }
+    .warn.flag { background: transparent; border-left-color: var(--flag); color: var(--flag); }
+    .src { font-size: 0.86rem; color: var(--faint); margin: 0.6rem 0 0; }
+
+    /* --- il pannello che sale dal basso (layout sheet) --- */
+    .sheet {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+      background: var(--sheet); color: #eafaf3;
+      border-top-left-radius: 14px; border-top-right-radius: 14px;
+      box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.3);
+      max-height: 86dvh; display: flex; flex-direction: column;
+      padding-bottom: env(safe-area-inset-bottom);
+      transition: transform 0.22s ease;
+    }
+    .grab { display: block; width: 100%; border: 0; background: transparent; color: inherit; cursor: pointer; font-family: var(--cond); padding: 0.5rem 1rem 0.65rem; text-align: left; }
+    .grab .bar { display: block; width: 42px; height: 4px; border-radius: 2px; background: rgba(234, 250, 243, 0.4); margin: 0 auto 0.6rem; }
+    .grab .line { display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem; min-height: 44px; }
+    .grab .cap { font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.12em; opacity: 0.72; display: block; }
+    .grab .tot { font-family: var(--num); font-size: 2rem; font-weight: 700; line-height: 1.05; }
+    .grab .tot.ko { font-size: 1.15rem; opacity: 0.8; }
+    .grab .mo { text-align: right; font-size: 0.86rem; opacity: 0.78; }
+    .grab .mo b { font-family: var(--num); font-size: 1.05rem; display: block; }
+    .grab .arrow { font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.7; padding-top: 0.3rem; }
+    .sheet .body { overflow-y: auto; padding: 0 1rem 1rem; -webkit-overflow-scrolling: touch; }
+    .sheet[data-open=false] .body { display: none; }
+
+    dl.brk { margin: 0; border-top: 1px solid rgba(234, 250, 243, 0.18); }
+    dl.brk div { display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem; padding: 0.52rem 0; border-bottom: 1px solid rgba(234, 250, 243, 0.12); }
+    dl.brk dt { margin: 0; font-size: 0.95rem; }
+    dl.brk dt small { display: block; font-size: 0.82rem; opacity: 0.62; }
+    dl.brk dd { margin: 0; font-family: var(--num); font-size: 1rem; white-space: nowrap; }
+    dl.brk div.sub { border-bottom-width: 2px; }
+    dl.brk div.sub dt, dl.brk div.sub dd { font-weight: 700; }
+    dl.brk div.neg dd { color: #7ce8bd; }
+    dl.brk div.fin { border-bottom: 0; padding-top: 0.8rem; }
+    dl.brk div.fin dt { font-size: 1rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; }
+    dl.brk div.fin dd { font-size: 1.5rem; font-weight: 700; }
+    .rate { display: flex; gap: 0.5rem; margin: 0.9rem 0 0; }
+    .rate div { flex: 1; text-align: center; border: 1px solid rgba(234, 250, 243, 0.22); border-radius: var(--r); padding: 0.5rem 0.3rem; }
+    .rate span { display: block; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.7; }
+    .rate b { font-family: var(--num); font-size: 1.05rem; }
+    .sheet .note { font-size: 0.86rem; opacity: 0.72; margin: 0.9rem 0 0; }
+    .sheet .acts { display: flex; gap: 0.5rem; margin-top: 0.9rem; }
+    .sheet .acts button {
+      flex: 1; min-height: 46px; font-family: var(--cond); font-size: 0.92rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em; cursor: pointer;
+      border: 1px solid rgba(234, 250, 243, 0.45); border-radius: var(--r);
+      background: transparent; color: #eafaf3;
+    }
+    .sheet .acts button.go { background: var(--mint); border-color: var(--mint); color: #06231c; }
+
+    /* --- Pro --- */
+    section[data-pro] { background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 1rem; margin-bottom: 0.85rem; min-height: 180px; }
+    section[data-pro] > h2 { font-size: 0.95rem; margin: 0 0 0.2rem; }
+    section[data-pro] .sub { font-size: 0.9rem; color: var(--muted); margin: 0 0 0.9rem; text-transform: none; letter-spacing: 0; }
+    .verdict { margin: 0.9rem 0 0; padding: 0.8rem; border: 1px solid var(--line); border-radius: var(--r); background: var(--bg); font-size: 0.97rem; }
+    .verdict b { font-family: var(--num); }
+    .verdict ul { margin: 0.5rem 0 0; padding-left: 1.15rem; }
+    .verdict li { margin-bottom: 0.3rem; }
+    .btn {
+      min-height: 48px; padding: 0.6rem 1.1rem; font-family: var(--cond); font-size: 0.95rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em; cursor: pointer;
+      border: 1px solid var(--mint); border-radius: var(--r); background: var(--mint); color: #fff;
+    }
+    .btn.ghost { background: transparent; color: var(--mint-deep); }
+    @media (prefers-color-scheme: dark) { .btn { color: #06231c; } }
+    .btnrow { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    table.cmp { width: 100%; border-collapse: collapse; font-size: 0.95rem; margin-top: 0.8rem; }
+    table.cmp th, table.cmp td { text-align: right; padding: 0.45rem 0.3rem; border-bottom: 1px solid var(--hair); }
+    table.cmp th:first-child, table.cmp td:first-child { text-align: left; }
+    table.cmp thead th { font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); }
+    table.cmp td.n { font-family: var(--num); }
+    table.cmp td button { min-height: 36px; min-width: 36px; border: 0; background: transparent; color: var(--flag); cursor: pointer; font-size: 1.1rem; }
+    .empty { color: var(--faint); font-size: 0.95rem; margin: 0.8rem 0 0; }
+
+    /* --- guida --- */
+    #guida { padding-top: 1.4rem; }
+    #guida h2 { font-size: 1.3rem; margin: 1.8rem 0 0.6rem; padding-top: 0.6rem; border-top: 2px solid var(--line); }
+    #guida h3 { font-size: 1rem; margin: 1.3rem 0 0.35rem; color: var(--mint-deep); }
+    #guida p, #guida li { font-size: 1.0625rem; }
+    #guida p { margin: 0.6rem 0; }
+    #guida ul { padding-left: 1.2rem; }
+    #guida li { margin-bottom: 0.45rem; }
+    .formula { font-family: var(--num); font-size: 0.95rem; background: var(--mint-soft); border-radius: var(--r); padding: 0.8rem; margin: 0.9rem 0; line-height: 1.6; }
+    .ex { border: 1px solid var(--line); border-radius: var(--r); padding: 0.9rem; margin: 1rem 0; background: var(--card); }
+    .ex .ttl { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+    .ex dl { margin: 0; }
+    .ex dl div { display: flex; justify-content: space-between; gap: 0.75rem; padding: 0.3rem 0; border-bottom: 1px dashed var(--hair); }
+    .ex dl div:last-child { border-bottom: 0; font-weight: 700; }
+    .ex dt { margin: 0; } .ex dd { margin: 0; font-family: var(--num); white-space: nowrap; }
+
+    footer.ft { border-top: 2px solid var(--line); margin-top: 2rem; padding: 1.2rem 0 2rem; font-size: 0.92rem; color: var(--muted); }
+    footer.ft a { color: var(--mint-deep); }
+    footer.ft ul { padding-left: 1.2rem; }
+    footer.ft li a { display: inline-block; padding: 0.3rem 0; }
+
+    @media (min-width: 900px) {
+      body { padding-bottom: 2rem; }
+      .wrap { max-width: 1060px; display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 1.6rem; align-items: start; }
+      .wrap > .back, .wrap > header.hd, .wrap > .fullw { grid-column: 1 / -1; }
+      .wrap > .tool { grid-column: 1; }
+      .sheet {
+        position: sticky; top: 1rem; grid-column: 2; grid-row: 3;
+        border-radius: var(--r); max-height: none; box-shadow: none; align-self: start;
+      }
+      .sheet[data-open=false] .body { display: block; }
+      .grab { cursor: default; } .grab .bar, .grab .arrow { display: none; }
+      .sheet .body { padding: 0 1rem 1rem; overflow: visible; }
+    }
+    @media print {
+      .back, .sheet .acts, .seg, .step button, .chips, [data-ad], [data-support], .mz-top-row { display: none !important; }
+      body { padding-bottom: 0; background: #fff; color: #000; }
+      .sheet { position: static; background: #fff; color: #000; box-shadow: none; border: 1px solid #000; }
+      dl.brk div { border-color: #999; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <p class="back"><a href="../../index.html">← Tutte le app</a></p>
+
+  <header class="hd">
+    <h1>Calcolo TARI <span class="yr">2026</span></h1>
+    <p class="claim">Metti i metri quadri e quante persone vivono in casa: ottieni quota fissa, quota variabile, TEFA e componenti UR voce per voce, così puoi confrontare il conto con l'avviso che ti ha mandato il Comune.</p>
+  </header>
+
+  <div class="tool">
+    <div class="panel">
+      <p class="ttl">Passo 1 <b>La casa e chi la abita</b></p>
+      <div class="row2">
+        <div>
+          <label class="lb" for="mq">Superficie calpestabile</label>
+          <input id="mq" type="number" inputmode="decimal" min="1" max="2000" step="1" value="90" enterkeyhint="done" aria-describedby="mq-h">
+          <p class="hint" id="mq-h">Metri quadri di pavimento, cantina e box inclusi. Non è la superficie catastale: il Comune usa di norma l'80% di quella.</p>
+        </div>
+        <div>
+          <label class="lb" for="occ-out">Occupanti dichiarati</label>
+          <div class="step">
+            <button type="button" id="occ-giu" aria-label="Un occupante in meno">−</button>
+            <output id="occ-out" for="occ-giu occ-su">3 <span>persone</span></output>
+            <button type="button" id="occ-su" aria-label="Un occupante in più">+</button>
+          </div>
+          <p class="hint">Conta il nucleo risultante all'anagrafe. Per una casa a disposizione, metti gli occupanti convenzionali del regolamento comunale.</p>
+        </div>
+      </div>
+      <div style="margin-top:0.85rem">
+        <label class="lb" for="gg">Giorni di possesso nell'anno</label>
+        <input id="gg" type="number" inputmode="numeric" min="1" max="366" step="1" value="365" enterkeyhint="done">
+        <p class="hint">365 se l'hai tenuta tutto l'anno. Se hai comprato, venduto o disdetto a metà anno, metti i giorni effettivi: quota fissa e variabile si riducono in proporzione.</p>
+      </div>
+    </div>
+
+    <div class="panel">
+      <p class="ttl">Passo 2 <b>Le tariffe</b></p>
+      <div class="seg" role="group" aria-label="Da dove prendere le tariffe">
+        <button type="button" id="m-stima" aria-pressed="true">Non le conosco</button>
+        <button type="button" id="m-mie" aria-pressed="false">Ho l'avviso del Comune</button>
+      </div>
+
+      <div id="box-stima">
+        <label class="lb" for="zona">Stima sulla media di</label>
+        <select id="zona">
+          <optgroup label="Medie nazionali">
+            <option value="340" selected>Italia</option>
+            <option value="290">Nord</option>
+            <option value="364">Centro</option>
+            <option value="385">Sud e Isole</option>
+          </optgroup>
+          <optgroup label="Regioni più care">
+            <option value="445">Puglia</option>
+            <option value="418">Campania</option>
+            <option value="402">Sicilia</option>
+          </optgroup>
+          <optgroup label="Capoluoghi">
+            <option value="602">Catania</option>
+            <option value="557">Pisa</option>
+            <option value="509">Genova</option>
+            <option value="496">Napoli</option>
+            <option value="396">Roma</option>
+            <option value="388">Venezia</option>
+            <option value="377">Torino</option>
+            <option value="291">Milano</option>
+            <option value="199">Trento</option>
+            <option value="199">Udine</option>
+            <option value="196">Cremona</option>
+          </optgroup>
+        </select>
+        <p class="hint">Dalla media ricavo una tariffa al metro quadro e una quota variabile plausibili, poi le adatto ai tuoi occupanti con i coefficienti del DPR 158/1999.</p>
+        <p class="warn">È una stima, non il tuo importo. Le tariffe le decide il tuo Comune ogni anno con una delibera e fra due paesi vicini possono cambiare del doppio. Per il conto esatto passa a <b>Ho l'avviso del Comune</b>.</p>
+        <p class="src">Fonte delle medie: Cittadinanzattiva, Osservatorio prezzi e tariffe, Rapporto rifiuti 2025 (famiglia di 3 persone in 100 m², tutti i capoluoghi).</p>
+      </div>
+
+      <div id="box-mie" hidden>
+        <div class="row2">
+          <div>
+            <label class="lb" for="tf">Quota fissa (€ al m²)</label>
+            <input id="tf" type="number" inputmode="decimal" min="0" max="20" step="0.0001" value="1.25" enterkeyhint="done">
+          </div>
+          <div>
+            <label class="lb" for="qv">Quota variabile (€ all'anno)</label>
+            <input id="qv" type="number" inputmode="decimal" min="0" max="5000" step="0.01" value="180" enterkeyhint="done">
+          </div>
+        </div>
+        <p class="hint">Le trovi sul retro dell'avviso o nella delibera tariffe del Comune, nella tabella <i>utenze domestiche</i>, sulla riga del tuo numero di occupanti. La quota variabile è un importo per famiglia, non per metro quadro.</p>
+      </div>
+    </div>
+
+    <div class="panel">
+      <p class="ttl">Passo 3 <b>Riduzioni e bonus</b></p>
+      <div class="chips" id="chips">
+        <button type="button" class="chip" data-red="30" aria-pressed="false">Compostaggio domestico <span class="pc">−30%</span></button>
+        <button type="button" class="chip" data-red="30" aria-pressed="false">Zona non servita <span class="pc">−30%</span></button>
+        <button type="button" class="chip" data-red="25" aria-pressed="false">Uso stagionale <span class="pc">−25%</span></button>
+        <button type="button" class="chip" data-red="20" aria-pressed="false">Residente all'estero <span class="pc">−20%</span></button>
+      </div>
+      <div class="redrow">
+        <label class="lb" for="redman" style="margin:0">Riduzione totale applicata</label>
+        <input id="redman" type="number" inputmode="decimal" min="0" max="90" step="1" value="0" aria-describedby="red-h">
+        <span>%</span>
+      </div>
+      <p class="hint" id="red-h">Le percentuali dei bottoni sono quelle più diffuse nei regolamenti: correggile con la tua se la conosci. Nessuna riduzione è automatica, va chiesta con un modulo all'ufficio tributi.</p>
+      <div class="chips" style="margin-top:0.9rem">
+        <button type="button" class="chip" id="bonus" aria-pressed="false">Bonus sociale rifiuti <span class="pc">−25%</span></button>
+      </div>
+      <p class="hint">Spetta alle utenze domestiche con ISEE fino a 9.530 € (20.000 € con almeno quattro figli a carico). Non serve domanda: basta la DSU valida.</p>
+    </div>
+
+    <details class="panel" id="avanz">
+      <summary class="lb" style="cursor:pointer;min-height:44px;display:flex;align-items:center">Voci di legge: TEFA e componenti UR</summary>
+      <div class="row2" style="margin-top:0.8rem">
+        <div>
+          <label class="lb" for="tefa">Tributo provinciale TEFA</label>
+          <input id="tefa" type="number" inputmode="decimal" min="0" max="5" step="0.1" value="5" aria-describedby="tefa-h">
+          <p class="hint" id="tefa-h">Percentuale, di norma il 5%. Qualche provincia la fissa più in basso.</p>
+        </div>
+        <div>
+          <label class="lb" for="ur">Componenti UR1+UR2+UR3</label>
+          <input id="ur" type="number" inputmode="decimal" min="0" max="100" step="0.01" value="7.60" aria-describedby="ur-h">
+          <p class="hint" id="ur-h">Euro all'anno per utenza: 0,10 + 1,50 + 6,00 nei valori indicati dai gestori per il 2026. Sono fisse, non dipendono da metri quadri e occupanti.</p>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <aside class="sheet" id="sheet" data-open="false" aria-label="Risultato del calcolo">
+    <button type="button" class="grab" id="grab" aria-expanded="false" aria-controls="sheet-body">
+      <span class="bar" aria-hidden="true"></span>
+      <span class="line">
+        <span><span class="cap">TARI stimata nell'anno</span><span class="tot" id="tot">—</span></span>
+        <span class="mo"><b id="mese">—</b>al mese</span>
+      </span>
+      <span class="arrow" id="arrow">Tocca per il dettaglio voce per voce ▴</span>
+    </button>
+    <div class="body" id="sheet-body">
+      <dl class="brk" id="brk"></dl>
+      <div class="rate" id="rate"></div>
+      <p class="note" id="note"></p>
+      <div class="acts">
+        <button type="button" class="go" id="copia">Copia il riepilogo</button>
+        <button type="button" id="reset">Azzera</button>
+      </div>
+    </div>
+  </aside>
+
+  <div class="fullw">
+    <div data-ad="top"></div>
+
+    <section data-pro="Verifica l'avviso del Comune">
+      <h2>Verifica l'avviso del Comune</h2>
+      <p class="sub">Scrivi il totale che hai ricevuto: lo confronto con il calcolo e ti dico dove può essere la differenza.</p>
+      <div class="row2">
+        <div>
+          <label class="lb" for="avviso">Totale sull'avviso (€)</label>
+          <input id="avviso" type="number" inputmode="decimal" min="0" max="20000" step="0.01" placeholder="es. 356,40" enterkeyhint="done">
+        </div>
+        <div>
+          <label class="lb" for="mqcom">Superficie scritta sull'avviso (m²)</label>
+          <input id="mqcom" type="number" inputmode="decimal" min="0" max="2000" step="1" placeholder="facoltativa">
+        </div>
+      </div>
+      <div class="verdict" id="verdetto" aria-live="polite">Inserisci il totale dell'avviso per vedere il confronto.</div>
+    </section>
+
+    <section data-pro="Confronto fra più immobili">
+      <h2>Confronto fra più immobili</h2>
+      <p class="sub">Salva la prima casa, la seconda casa, quella dei tuoi: restano sul telefono e le vedi una accanto all'altra.</p>
+      <div class="btnrow">
+        <input id="nome" type="text" maxlength="28" placeholder="Nome (es. Casa al mare)" style="flex:1;min-width:170px" enterkeyhint="done">
+        <button type="button" class="btn" id="salva">Salva questo calcolo</button>
+      </div>
+      <div id="tabella"></div>
+    </section>
+
+    <section data-pro="Prospetto in CSV e stampa">
+      <h2>Prospetto in CSV e stampa</h2>
+      <p class="sub">Il dettaglio di tutte le voci in un file da aprire con Excel o Fogli, o su carta da allegare a un reclamo all'ufficio tributi.</p>
+      <div class="btnrow">
+        <button type="button" class="btn" id="csv">Scarica il CSV</button>
+        <button type="button" class="btn ghost" id="stampa">Stampa il prospetto</button>
+      </div>
+      <p class="hint" id="csv-msg" aria-live="polite"></p>
+    </section>
+
+    <div data-affiliate data-title="Per chiedere la riduzione da compostaggio" data-items='[{"t":"Compostiera da giardino","q":"compostiera domestica giardino 300 litri"},{"t":"Sacchi compostabili per l umido","q":"sacchi compostabili umido 10 litri"},{"t":"Set bidoni per la raccolta differenziata","q":"bidoni raccolta differenziata casa"}]'></div>
+
+    <section id="guida">
+      <h2>Come si calcola la TARI, in concreto</h2>
+      <p>La TARI è l'unica tassa comunale che non si calcola su un valore ma su due cose insieme: quanto è grande la casa e quante persone ci vivono. Il metodo è quello del DPR 158/1999, lo stesso per tutti i Comuni italiani; cambiano solo i numeri che ogni Comune delibera ogni anno. Per questo il <strong>calcolo TARI</strong> che trovi sui siti generici non può darti l'importo esatto: può darti la struttura, e sei tu a riempirla con le tariffe del tuo paese.</p>
+      <div class="formula">
+        quota fissa = metri quadri × tariffa al m²<br>
+        quota variabile = importo fisso per il tuo numero di occupanti<br>
+        imponibile = (quota fissa + quota variabile) × giorni/365 − riduzioni<br>
+        <b>totale = imponibile + TEFA 5% + UR1-UR2-UR3 − bonus rifiuti</b>
+      </div>
+      <p>La <strong>quota fissa</strong> paga i costi che il Comune sostiene comunque: spazzamento delle strade, isole ecologiche, ammortamento dei mezzi. Per questo si misura sui metri quadri, che sono la cosa più stabile che ci sia. La <strong>quota variabile</strong> paga invece la raccolta e lo smaltimento di quello che butti, e si lega al numero di occupanti: una persona sola in 120 m² produce meno rifiuto di cinque persone in 70 m². È il motivo per cui la quota variabile è un importo unico per famiglia e non si moltiplica per i metri quadri, errore che quasi tutti fanno la prima volta.</p>
+
+      <h3>Dove sono le tariffe del tuo Comune</h3>
+      <p>Hai tre strade, in ordine di velocità. La prima è il retro dell'avviso di pagamento: nella maggior parte dei casi riporta la superficie che il Comune ha in banca dati, il numero di occupanti registrato e le due tariffe applicate. La seconda è il sito del Comune, sezione Tributi o Amministrazione trasparente, cercando «delibera tariffe TARI» con l'anno. La terza è il Portale del federalismo fiscale del Ministero dell'Economia, dove le delibere sono archiviate Comune per Comune. Quando apri la tabella, cerca la parte <em>utenze domestiche</em> e la riga del tuo numero di occupanti: ti servono due numeri, gli euro al metro quadro e l'importo della quota variabile.</p>
+
+      <h3>Un esempio con i numeri veri</h3>
+      <p>Famiglia di tre persone, appartamento di 90 m² con cantina inclusa, tutto l'anno. Dalla delibera: quota fissa 1,25 € al m², quota variabile 180 € per i nuclei di tre componenti.</p>
+      <div class="ex">
+        <p class="ttl">Il conto, voce per voce</p>
+        <dl>
+          <div><dt>Quota fissa — 90 m² × 1,25 €</dt><dd>112,50 €</dd></div>
+          <div><dt>Quota variabile — 3 occupanti</dt><dd>180,00 €</dd></div>
+          <div><dt>Imponibile</dt><dd>292,50 €</dd></div>
+          <div><dt>TEFA 5% (tributo provinciale)</dt><dd>14,63 €</dd></div>
+          <div><dt>Componenti UR1 + UR2 + UR3</dt><dd>7,60 €</dd></div>
+          <div><dt>Totale dovuto nell'anno</dt><dd>314,73 €</dd></div>
+        </dl>
+      </div>
+      <p>Sono 26,23 € al mese, in genere divisi in tre rate. Se la stessa famiglia ottiene la riduzione del 30% per compostaggio domestico, l'imponibile scende a 204,75 €, il TEFA a 10,24 € e il totale a 222,59 €: <strong>92 € risparmiati</strong> solo per aver compilato un modulo e tenuto una compostiera in giardino. Se invece quella casa fosse stata acquistata il 1° luglio, i giorni sarebbero 184 e quota fissa e variabile si ridurrebbero in proporzione: imponibile 147,45 €, TEFA 7,37 €, totale 162,42 €. Le componenti UR invece restano intere anche su mezzo anno, perché sono un addebito per utenza e non per giorno.</p>
+
+      <h3>Le riduzioni che quasi nessuno chiede</h3>
+      <ul>
+        <li><strong>Compostaggio domestico</strong>: dal 10 al 30% se smaltisci l'umido in una compostiera. Serve una dichiarazione e il Comune può venire a controllare.</li>
+        <li><strong>Zona non servita</strong>: fino al 60% per legge, in pratica il 30-40%, se il cassonetto più vicino è oltre la distanza fissata dal regolamento.</li>
+        <li><strong>Uso stagionale o non continuativo</strong>: tipico delle case di villeggiatura occupate pochi mesi all'anno.</li>
+        <li><strong>Residenti all'estero iscritti all'AIRE</strong>: due terzi di riduzione per legge su una sola abitazione, a certe condizioni.</li>
+        <li><strong>Unico occupante</strong>: molti regolamenti prevedono uno sconto sulla quota variabile.</li>
+      </ul>
+      <p>Nessuna di queste è automatica. Vanno chieste con un modulo e, salvo poche eccezioni, valgono dall'anno della domanda: chi se ne accorge tardi non recupera gli anni passati.</p>
+
+      <h3>Le novità del 2026: componenti UR e bonus rifiuti</h3>
+      <p>Nell'avviso sono comparse tre righe nuove che non c'entrano con il tuo Comune. Sono le componenti perequative decise da ARERA e girate alla CSEA: UR1 (0,10 €) per i rifiuti pescati accidentalmente in mare, UR2 (1,50 €) per le agevolazioni ai territori colpiti da calamità, UR3 (6,00 €) per finanziare il bonus sociale rifiuti. Totale 7,60 € all'anno per utenza, uguali per tutti. Il <strong>bonus sociale rifiuti</strong> è l'altra faccia della medaglia: uno sconto del 25% sulla TARI dovuta per le utenze domestiche con ISEE fino a 9.530 €, soglia che sale a 20.000 € per i nuclei con almeno quattro figli a carico. Non si fa domanda: se hai la DSU valida, l'INPS passa i dati ai sistemi nazionali e il gestore applica lo sconto sulla prima rata utile. Vale l'ISEE dell'anno precedente, quindi per il 2026 contano le attestazioni presentate nel 2025.</p>
+
+      <h3>Gli errori che fanno sbagliare il conto</h3>
+      <ul>
+        <li><strong>Usare la superficie catastale</strong> invece di quella calpestabile: per le abitazioni il Comune applica di norma l'80% della catastale, e sbagliare qui sposta il totale del 20%.</li>
+        <li><strong>Dimenticare cantina, box e soffitta</strong>: entrano nella quota fissa, anche se non le usi mai.</li>
+        <li><strong>Moltiplicare la quota variabile per i metri quadri</strong>: è un importo per famiglia, non una tariffa unitaria.</li>
+        <li><strong>Non aggiornare gli occupanti</strong>: l'anagrafe conta al 1° gennaio, quindi un figlio che si è trasferito a marzo pesa ancora sull'anno in corso, e va comunicato.</li>
+        <li><strong>Pensare che vendere la casa basti</strong>: finché non presenti la dichiarazione di cessata occupazione, la TARI resta a tuo nome.</li>
+      </ul>
+      <p>Se dopo tutto questo il tuo calcolo e l'avviso restano lontani, chiedi all'ufficio tributi il dettaglio del calcolo: sono tenuti a fornirlo, e nove volte su dieci la differenza è una superficie mai aggiornata o un occupante di troppo in banca dati. La TARI si prescrive in cinque anni, e se hai pagato più del dovuto puoi chiedere il rimborso entro cinque anni dal versamento.</p>
+
+      <h3>Domande frequenti</h3>
+      <h3>Quando si paga la TARI?</h3>
+      <p>Le scadenze le fissa il Comune, non lo Stato: di norma due o tre rate fra la primavera e la fine dell'anno, con la possibilità di versare tutto in una volta. L'avviso arriva già compilato con i moduli pagoPA; se non arriva, non è un condono, e conviene sollecitarlo per non finire fuori termine.</p>
+      <h3>Chi paga, il proprietario o l'inquilino?</h3>
+      <p>La paga chi occupa l'immobile. In un affitto di durata superiore a sei mesi la TARI è dell'inquilino; sotto i sei mesi resta al proprietario. Nelle case vuote la deve il proprietario, salvo che l'immobile sia davvero inutilizzabile e lo si dichiari.</p>
+      <h3>Una casa vuota e senza mobili paga?</h3>
+      <p>Se è priva di allacci di acqua, luce e gas e senza arredi può essere esclusa, ma l'esclusione non è automatica: va dichiarata e documentata. Una casa arredata e allacciata, anche se nessuno ci dorme, paga con gli occupanti convenzionali previsti dal regolamento.</p>
+      <h3>Il calcolo di questa pagina ha valore legale?</h3>
+      <p>No, ed è giusto dirlo. È uno strumento per capire la struttura del tuo avviso e accorgerti di un errore. L'importo dovuto è quello che risulta dalla delibera del tuo Comune applicata ai dati della tua utenza: in caso di dubbio fa fede l'ufficio tributi.</p>
+
+      <div data-ad="bottom"></div>
+    </section>
+
+    <div data-support></div>
+
+    <footer class="ft">
+      <p>Altri strumenti utili su questo tema:</p>
+      <ul>
+        <li><a href="../2026-09-28-imu-seconda-casa/index.html">Calcolo IMU sulla seconda casa</a>, l'altra tassa che arriva sullo stesso immobile.</li>
+        <li><a href="../2026-10-12-calcolo-isee/index.html">Calcolo ISEE semplificato</a>, per sapere se rientri nella soglia del bonus rifiuti.</li>
+        <li><a href="../2026-10-03-spese-condominiali-millesimi/index.html">Spese condominiali per millesimi</a>, se la TARI ti arriva tramite l'amministratore.</li>
+      </ul>
+      <p>I calcoli seguono il metodo normalizzato del DPR 158/1999 e le componenti perequative ARERA nei valori indicati dai gestori per il 2026. Le medie per area sono del Rapporto rifiuti 2025 di Cittadinanzattiva. Nessun dato lascia il tuo telefono.</p>
+      <p>Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a></p>
+    </footer>
+  </div>
+</div>
+<script src="../../assets/monetize.js"></script>
+<script>
+/* Modello dati: un solo oggetto "calcolo" letto dal modulo (mq, occupanti, giorni, tariffe,
+   riduzioni, tefa, ur, bonus) e passato a conta(), che restituisce tutte le voci in euro.
+   Gli immobili salvati sono un array di { nome, calcolo, totale } in localStorage
+   sotto la chiave "calcolo-tari:v1"; niente va in rete. */
+(() => {
+  "use strict";
+  const CHIAVE = "calcolo-tari:v1";
+
+  // Coefficienti del DPR 158/1999: Ka pesa la quota fissa, Kb la variabile, in base agli occupanti.
+  const KA = { 1: 0.86, 2: 0.94, 3: 1.02, 4: 1.10, 5: 1.17, 6: 1.23 };
+  const KB = { 1: 0.80, 2: 1.60, 3: 2.05, 4: 2.60, 5: 3.25, 6: 3.75 };
+  // Nei piani finanziari dei Comuni la parte fissa pesa in media il 40% del gettito domestico.
+  const PESO_FISSO = 0.40;
+
+  const $ = (id) => document.getElementById(id);
+  const eur = (n) => n.toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €";
+  const num = (el, def) => { const v = parseFloat(String(el.value).replace(",", ".")); return Number.isFinite(v) ? v : def; };
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+
+  let occupanti = 3;
+  let modo = "stima";
+  let immobili = [];
+
+  // ---------- calcolo ----------
+  function leggi() {
+    const occ = clamp(occupanti, 1, 12);
+    const k = Math.min(occ, 6);
+    const tefa = clamp(num($("tefa"), 5), 0, 5);
+    let tf, qv, media = null;
+    if (modo === "stima") {
+      media = parseFloat($("zona").value);
+      const base3 = media / (1 + tefa / 100);          // le medie pubblicate comprendono il TEFA
+      tf = (base3 * PESO_FISSO / 100) * (KA[k] / KA[3]);
+      qv = (base3 * (1 - PESO_FISSO)) * (KB[k] / KB[3]);
+    } else {
+      tf = clamp(num($("tf"), 0), 0, 20);
+      qv = clamp(num($("qv"), 0), 0, 5000);
+    }
+    return {
+      mq: clamp(num($("mq"), 0), 0, 2000),
+      occ, giorni: clamp(Math.round(num($("gg"), 365)), 1, 366),
+      tf, qv, media, modo,
+      red: clamp(num($("redman"), 0), 0, 90),
+      tefa, ur: clamp(num($("ur"), 0), 0, 100),
+      bonus: $("bonus").getAttribute("aria-pressed") === "true",
+    };
+  }
+
+  function conta(c) {
+    const p = c.giorni / 365;
+    const qf = c.mq * c.tf * p;
+    const qvv = c.qv * p;
+    const lordo = qf + qvv;
+    const sconto = lordo * c.red / 100;
+    const imponibile = lordo - sconto;
+    const tefaEur = imponibile * c.tefa / 100;
+    const tassa = imponibile + tefaEur;
+    const bonusEur = c.bonus ? tassa * 0.25 : 0;
+    const totale = Math.max(0, tassa - bonusEur + c.ur);
+    return { qf, qvv, sconto, imponibile, tefaEur, tassa, bonusEur, totale };
+  }
+
+  // ---------- pannello risultato ----------
+  function righe(c, r) {
+    const out = [];
+    out.push(["Quota fissa", c.mq.toLocaleString("it-IT") + " m² × " + c.tf.toLocaleString("it-IT", { maximumFractionDigits: 4 }) + " €/m²", r.qf, ""]);
+    out.push(["Quota variabile", c.occ + (c.occ === 1 ? " occupante" : " occupanti"), r.qvv, ""]);
+    if (c.giorni !== 365) out.push(["Giorni di possesso", c.giorni + " giorni su 365, già applicati sopra", null, ""]);
+    if (r.sconto > 0) out.push(["Riduzioni", "−" + c.red.toLocaleString("it-IT") + "% su quota fissa e variabile", -r.sconto, "neg"]);
+    out.push(["Imponibile", "", r.imponibile, "sub"]);
+    out.push(["TEFA", "tributo provinciale " + c.tefa.toLocaleString("it-IT") + "%", r.tefaEur, ""]);
+    if (r.bonusEur > 0) out.push(["Bonus sociale rifiuti", "−25% sulla tassa dovuta", -r.bonusEur, "neg"]);
+    out.push(["Componenti UR1-UR2-UR3", "importo fisso per utenza", c.ur, ""]);
+    return out;
+  }
+
+  function disegna() {
+    const c = leggi(), r = conta(c);
+    const valido = c.mq > 0 && (c.tf > 0 || c.qv > 0);
+
+    const tot = $("tot"), mese = $("mese");
+    if (!valido) {
+      tot.textContent = "Metti i metri quadri";
+      tot.classList.add("ko");
+      mese.textContent = "—";
+    } else {
+      tot.textContent = eur(r.totale);
+      tot.classList.remove("ko");
+      mese.textContent = eur(r.totale / 12);
+    }
+
+    const dl = $("brk");
+    dl.textContent = "";
+    if (valido) {
+      for (const [t, s, v, cls] of righe(c, r)) {
+        const div = document.createElement("div");
+        if (cls) div.className = cls;
+        const dt = document.createElement("dt");
+        dt.append(document.createTextNode(t));
+        if (s) { const sm = document.createElement("small"); sm.textContent = s; dt.append(sm); }
+        const dd = document.createElement("dd");
+        dd.textContent = v === null ? "" : eur(v);
+        div.append(dt, dd);
+        dl.append(div);
+      }
+      const fin = document.createElement("div");
+      fin.className = "fin";
+      const dt = document.createElement("dt"); dt.textContent = "Totale nell'anno";
+      const dd = document.createElement("dd"); dd.textContent = eur(r.totale);
+      fin.append(dt, dd); dl.append(fin);
+    }
+
+    const rate = $("rate");
+    rate.textContent = "";
+    if (valido) {
+      const a = Math.round(r.totale / 3 * 100) / 100;
+      const terza = Math.round((r.totale - a * 2) * 100) / 100;
+      [["1ª rata", a], ["2ª rata", a], ["3ª rata", terza]].forEach(([lab, v]) => {
+        const d = document.createElement("div");
+        const s = document.createElement("span"); s.textContent = lab;
+        const b = document.createElement("b"); b.textContent = eur(v);
+        d.append(s, b); rate.append(d);
+      });
+    }
+
+    $("note").textContent = !valido
+      ? "Serve almeno la superficie e una tariffa."
+      : c.modo === "stima"
+        ? "Stima costruita sulla media rilevata per " + $("zona").options[$("zona").selectedIndex].text + " (" + c.media + " € per una famiglia di 3 in 100 m², Cittadinanzattiva 2025), riportata ai tuoi " + c.occ + (c.occ === 1 ? " occupante" : " occupanti") + " con i coefficienti del DPR 158/1999. L'importo esatto è quello della delibera del tuo Comune."
+        : "Calcolo sulle tariffe che hai inserito: " + c.tf.toLocaleString("it-IT", { maximumFractionDigits: 4 }) + " €/m² di quota fissa e " + eur(c.qv) + " di quota variabile per " + c.occ + (c.occ === 1 ? " occupante" : " occupanti") + ".";
+
+    verdetto(c, r);
+    salvaStato(c);
+    return { c, r, valido };
+  }
+
+  // ---------- Pro 1: verifica dell'avviso ----------
+  function verdetto(c, r) {
+    const box = $("verdetto");
+    const a = parseFloat(String($("avviso").value).replace(",", "."));
+    const mqc = parseFloat(String($("mqcom").value).replace(",", "."));
+    box.textContent = "";
+    if (!Number.isFinite(a) || a <= 0 || r.totale <= 0) {
+      box.textContent = "Inserisci il totale dell'avviso per vedere il confronto.";
+      return;
+    }
+    const diff = a - r.totale;
+    const soglia = Math.max(2, r.totale * 0.02);
+    const testa = document.createElement("p");
+    testa.style.margin = "0";
+    if (Math.abs(diff) <= soglia) {
+      testa.append("L'avviso ", b(eur(a)), " coincide con il calcolo ", b(eur(r.totale)), ": la differenza è di ", b(eur(Math.abs(diff))), ", dentro gli arrotondamenti. Niente da contestare.");
+      box.append(testa);
+      return;
+    }
+    testa.append("L'avviso chiede ", b(eur(Math.abs(diff))), diff > 0 ? " in più di quanto ho calcolato" : " in meno di quanto ho calcolato",
+      " (" + eur(a) + " contro " + eur(r.totale) + ", il " + Math.abs(diff / r.totale * 100).toFixed(1).replace(".", ",") + "%). Le spiegazioni possibili:");
+    box.append(testa);
+
+    const ul = document.createElement("ul");
+    const dice = (t) => { const li = document.createElement("li"); li.append(t); ul.append(li); };
+
+    if (Math.abs(diff - r.tefaEur) < Math.max(1.5, r.tefaEur * 0.1)) dice("La differenza vale quanto il TEFA (" + eur(r.tefaEur) + "): probabilmente l'avviso lo espone a parte e tu l'hai già contato, o viceversa.");
+    if (Math.abs(diff - c.ur) < 0.8 && c.ur > 0) dice("La differenza vale quanto le componenti UR1-UR2-UR3 (" + eur(c.ur) + "): controlla se nell'avviso sono una riga separata.");
+
+    // superficie implicita: quanti m² servirebbero per arrivare al totale dell'avviso
+    if (c.tf > 0 && c.giorni > 0) {
+      const base = (a - c.ur) / (c.bonus ? 0.75 : 1) / (1 + c.tefa / 100) / (1 - c.red / 100) / (c.giorni / 365);
+      const mqImpl = (base - c.qv) / c.tf;
+      if (mqImpl > 0 && mqImpl < 2000 && Math.abs(mqImpl - c.mq) > 1) {
+        dice("L'avviso torna con una superficie di circa " + Math.round(mqImpl) + " m², mentre tu hai messo " + c.mq.toLocaleString("it-IT") + " m². Il Comune usa la superficie dichiarata in banca dati, cantina e box compresi: chiedi la visura della tua utenza.");
+      }
+    }
+    if (Number.isFinite(mqc) && mqc > 0 && Math.abs(mqc - c.mq) >= 1) {
+      dice("Sull'avviso la superficie è " + mqc.toLocaleString("it-IT") + " m², nel calcolo " + c.mq.toLocaleString("it-IT") + " m²: già solo questo sposta il totale di circa " + eur(Math.abs((mqc - c.mq) * c.tf * (c.giorni / 365) * (1 - c.red / 100) * (1 + c.tefa / 100))) + ". Se i m² del Comune sono sbagliati si correggono con una dichiarazione di variazione.");
+    }
+    if (diff < 0) {
+      const pc = -diff / r.tassa * 100;
+      if (pc > 4 && pc < 70) dice("Potrebbe esserci una riduzione che non hai indicato: lo sconto corrisponde a circa il " + pc.toFixed(0) + "% della tassa. Guarda se l'avviso cita compostaggio, zona non servita, uso stagionale o il bonus rifiuti.");
+    } else {
+      dice("Oppure il numero di occupanti registrato all'anagrafe è più alto di quello che hai messo: conta al 1° gennaio, quindi chi si è trasferito durante l'anno pesa ancora.");
+    }
+    if (!ul.children.length) dice("Nessuna delle cause tipiche spiega lo scostamento: chiedi all'ufficio tributi il dettaglio del calcolo, sono tenuti a fornirlo.");
+    box.append(ul);
+  }
+  function b(t) { const e = document.createElement("b"); e.textContent = t; return e; }
+
+  // ---------- Pro 2: confronto fra immobili ----------
+  function tabella() {
+    const host = $("tabella");
+    host.textContent = "";
+    if (!immobili.length) {
+      const p = document.createElement("p");
+      p.className = "empty";
+      p.textContent = "Nessun immobile salvato. Compila il calcolo, dagli un nome e premi «Salva questo calcolo».";
+      host.append(p);
+      return;
+    }
+    const t = document.createElement("table");
+    t.className = "cmp";
+    const thead = document.createElement("thead");
+    const trh = document.createElement("tr");
+    ["Immobile", "m²", "Occ.", "Totale anno", ""].forEach(h => { const th = document.createElement("th"); th.textContent = h; trh.append(th); });
+    thead.append(trh); t.append(thead);
+    const tb = document.createElement("tbody");
+    const tot = immobili.reduce((s, x) => s + x.totale, 0);
+    immobili.forEach((x, i) => {
+      const tr = document.createElement("tr");
+      const c1 = document.createElement("td"); c1.textContent = x.nome;
+      const c2 = document.createElement("td"); c2.className = "n"; c2.textContent = x.calcolo.mq.toLocaleString("it-IT");
+      const c3 = document.createElement("td"); c3.className = "n"; c3.textContent = x.calcolo.occ;
+      const c4 = document.createElement("td"); c4.className = "n"; c4.textContent = eur(x.totale);
+      const c5 = document.createElement("td");
+      const del = document.createElement("button");
+      del.type = "button"; del.textContent = "✕";
+      del.setAttribute("aria-label", "Elimina " + x.nome);
+      del.addEventListener("click", () => { immobili.splice(i, 1); persisti(); tabella(); });
+      c5.append(del);
+      tr.append(c1, c2, c3, c4, c5); tb.append(tr);
+    });
+    const tr = document.createElement("tr");
+    const f1 = document.createElement("td"); f1.textContent = "Totale " + immobili.length + (immobili.length === 1 ? " immobile" : " immobili");
+    f1.colSpan = 3; f1.style.fontWeight = "700";
+    const f2 = document.createElement("td"); f2.className = "n"; f2.style.fontWeight = "700"; f2.textContent = eur(tot);
+    const f3 = document.createElement("td");
+    tr.append(f1, f2, f3); tb.append(tr);
+    t.append(tb); host.append(t);
+  }
+
+  // ---------- Pro 3: CSV e stampa ----------
+  function csv() {
+    const { c, r, valido } = disegna();
+    if (!valido) { $("csv-msg").textContent = "Completa prima il calcolo."; return; }
+    const sep = ";";
+    const linee = [["Voce", "Dettaglio", "Importo in euro"]];
+    for (const [t, s, v] of righe(c, r)) if (v !== null) linee.push([t, s, v.toFixed(2).replace(".", ",")]);
+    linee.push(["Totale nell'anno", c.modo === "stima" ? "stima su media di area" : "tariffe del Comune", r.totale.toFixed(2).replace(".", ",")]);
+    linee.push(["", "", ""]);
+    linee.push(["Superficie (m²)", "", String(c.mq)]);
+    linee.push(["Occupanti", "", String(c.occ)]);
+    linee.push(["Giorni di possesso", "", String(c.giorni)]);
+    const testo = "﻿" + linee.map(r2 => r2.map(x => '"' + String(x).replace(/"/g, '""') + '"').join(sep)).join("\r\n");
+    const blob = new Blob([testo], { type: "text/csv;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url; a.download = "calcolo-tari-" + new Date().toISOString().slice(0, 10) + ".csv";
+    document.body.append(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
+    $("csv-msg").textContent = "File scaricato: " + a.download;
+  }
+
+  function riepilogo() {
+    const { c, r, valido } = disegna();
+    if (!valido) return "";
+    const L = [];
+    L.push("TARI " + new Date().getFullYear() + " — " + c.mq + " m², " + c.occ + (c.occ === 1 ? " occupante" : " occupanti"));
+    for (const [t, s, v] of righe(c, r)) if (v !== null) L.push("• " + t + (s ? " (" + s + ")" : "") + ": " + eur(v));
+    L.push("TOTALE ANNO: " + eur(r.totale) + " — " + eur(r.totale / 12) + " al mese");
+    L.push(c.modo === "stima" ? "(stima su medie di area, non è l'importo del tuo Comune)" : "(tariffe inserite a mano dall'avviso comunale)");
+    return L.join("\n");
+  }
+
+  // ---------- persistenza ----------
+  function salvaStato(c) {
+    try {
+      localStorage.setItem(CHIAVE, JSON.stringify({
+        mq: c.mq, occ: c.occ, gg: c.giorni, modo: c.modo, zona: $("zona").selectedIndex,
+        tf: $("tf").value, qv: $("qv").value, red: c.red, tefa: c.tefa, ur: c.ur,
+        bonus: c.bonus, chips: [...document.querySelectorAll("#chips .chip")].map(x => x.getAttribute("aria-pressed")),
+        immobili,
+      }));
+    } catch (e) { /* storage pieno o disabilitato: il calcolo funziona comunque */ }
+  }
+  function persisti() { salvaStato(leggi()); }
+  function ripristina() {
+    let s = null;
+    try { s = JSON.parse(localStorage.getItem(CHIAVE) || "null"); } catch (e) { s = null; }
+    if (!s) { tabella(); return; }
+    if (Array.isArray(s.immobili)) immobili = s.immobili.filter(x => x && x.calcolo && typeof x.totale === "number");
+    if (s.mq) $("mq").value = s.mq;
+    if (s.gg) $("gg").value = s.gg;
+    if (Number.isInteger(s.zona) && s.zona >= 0 && s.zona < $("zona").options.length) $("zona").selectedIndex = s.zona;
+    if (s.tf) $("tf").value = s.tf;
+    if (s.qv) $("qv").value = s.qv;
+    if (typeof s.red === "number") $("redman").value = s.red;
+    if (typeof s.tefa === "number") $("tefa").value = s.tefa;
+    if (typeof s.ur === "number") $("ur").value = s.ur;
+    if (s.occ) { occupanti = s.occ; mostraOcc(); }
+    if (s.bonus) $("bonus").setAttribute("aria-pressed", "true");
+    if (Array.isArray(s.chips)) [...document.querySelectorAll("#chips .chip")].forEach((x, i) => { if (s.chips[i] === "true") x.setAttribute("aria-pressed", "true"); });
+    if (s.modo === "mie") setModo("mie");
+    tabella();
+  }
+
+  // ---------- interazione ----------
+  function mostraOcc() {
+    $("occ-out").textContent = "";
+    $("occ-out").append(document.createTextNode(String(occupanti) + " "));
+    const s = document.createElement("span");
+    s.textContent = occupanti === 1 ? "persona" : "persone";
+    $("occ-out").append(s);
+  }
+  function setModo(m) {
+    modo = m;
+    $("m-stima").setAttribute("aria-pressed", String(m === "stima"));
+    $("m-mie").setAttribute("aria-pressed", String(m === "mie"));
+    $("box-stima").hidden = m !== "stima";
+    $("box-mie").hidden = m !== "mie";
+  }
+  function sommaChips() {
+    let t = 0;
+    document.querySelectorAll("#chips .chip").forEach(c => { if (c.getAttribute("aria-pressed") === "true") t += parseFloat(c.dataset.red); });
+    $("redman").value = String(Math.min(90, t));
+  }
+  function apri(stato) {
+    const s = $("sheet");
+    s.dataset.open = String(stato);
+    $("grab").setAttribute("aria-expanded", String(stato));
+    $("arrow").textContent = stato ? "Tocca per chiudere il dettaglio ▾" : "Tocca per il dettaglio voce per voce ▴";
+  }
+
+  // listeners
+  ["mq", "gg", "tf", "qv", "redman", "tefa", "ur", "avviso", "mqcom"].forEach(id => {
+    $(id).addEventListener("input", disegna);
+    $(id).addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); e.target.blur(); disegna(); } });
+  });
+  $("zona").addEventListener("change", disegna);
+  $("occ-su").addEventListener("click", () => { occupanti = Math.min(12, occupanti + 1); mostraOcc(); disegna(); });
+  $("occ-giu").addEventListener("click", () => { occupanti = Math.max(1, occupanti - 1); mostraOcc(); disegna(); });
+  $("m-stima").addEventListener("click", () => { setModo("stima"); disegna(); });
+  $("m-mie").addEventListener("click", () => { setModo("mie"); disegna(); });
+  document.querySelectorAll("#chips .chip").forEach(c => c.addEventListener("click", () => {
+    c.setAttribute("aria-pressed", c.getAttribute("aria-pressed") === "true" ? "false" : "true");
+    sommaChips(); disegna();
+  }));
+  $("bonus").addEventListener("click", () => {
+    const b2 = $("bonus");
+    b2.setAttribute("aria-pressed", b2.getAttribute("aria-pressed") === "true" ? "false" : "true");
+    disegna();
+  });
+  $("grab").addEventListener("click", () => apri($("sheet").dataset.open !== "true"));
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && $("sheet").dataset.open === "true" && window.innerWidth < 900) apri(false); });
+
+  $("copia").addEventListener("click", async () => {
+    const t = riepilogo();
+    if (!t) return;
+    const btn = $("copia"), old = btn.textContent;
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) await navigator.clipboard.writeText(t);
+      else throw new Error("no clipboard");
+      btn.textContent = "Copiato ✓";
+    } catch (e) {
+      const ta = document.createElement("textarea");
+      ta.value = t; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.append(ta); ta.select();
+      let ok = false;
+      try { ok = document.execCommand("copy"); } catch (e2) { ok = false; }
+      ta.remove();
+      btn.textContent = ok ? "Copiato ✓" : "Non riesco a copiare";
+    }
+    setTimeout(() => { btn.textContent = old; }, 1800);
+  });
+
+  $("reset").addEventListener("click", () => {
+    $("mq").value = "90"; $("gg").value = "365"; $("redman").value = "0";
+    $("tefa").value = "5"; $("ur").value = "7.60"; $("tf").value = "1.25"; $("qv").value = "180";
+    $("avviso").value = ""; $("mqcom").value = ""; $("zona").selectedIndex = 0;
+    occupanti = 3; mostraOcc();
+    $("bonus").setAttribute("aria-pressed", "false");
+    document.querySelectorAll("#chips .chip").forEach(c => c.setAttribute("aria-pressed", "false"));
+    setModo("stima"); disegna();
+  });
+
+  $("salva").addEventListener("click", () => {
+    const { c, r, valido } = disegna();
+    if (!valido) { $("tabella").textContent = ""; tabella(); return; }
+    const nome = ($("nome").value || "").trim() || "Immobile " + (immobili.length + 1);
+    immobili = immobili.filter(x => x.nome !== nome);
+    immobili.push({ nome, calcolo: { mq: c.mq, occ: c.occ, giorni: c.giorni }, totale: r.totale });
+    if (immobili.length > 8) immobili = immobili.slice(-8);
+    $("nome").value = "";
+    persisti(); tabella();
+  });
+  $("nome").addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); $("salva").click(); } });
+
+  $("csv").addEventListener("click", csv);
+  $("stampa").addEventListener("click", () => { apri(true); window.print(); });
+
+  // avvio
+  mostraOcc();
+  sommaChips();
+  ripristina();
+  disegna();
+  if (window.innerWidth >= 900) apri(true);
+})();
+</script>
+</body>
+</html>

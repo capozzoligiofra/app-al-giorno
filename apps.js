@@ -1,7 +1,7 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 49,
+  "count": 50,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -50,6 +50,67 @@ window.__APPS__ = {
     ]
   },
   "apps": [
+    {
+      "title": "Calcolo TARI",
+      "slug": "2026-10-31-calcolo-tari",
+      "date": "2026-10-31",
+      "description": "Quota fissa, quota variabile, TEFA e componenti UR: il conto della tassa rifiuti voce per voce, per verificare l'avviso del Comune.",
+      "category": "finanza-personale",
+      "tags": [
+        "tari",
+        "rifiuti",
+        "tasse",
+        "casa"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "sheet",
+        "palette": "verde-menta",
+        "font": "condensed"
+      },
+      "business": {
+        "keyword": "calcolo tari",
+        "keywords": [
+          "come si calcola la tari",
+          "calcolo tari 2026",
+          "tari quanto si paga",
+          "tari metri quadri occupanti"
+        ],
+        "intent": "Ha in mano l'avviso di pagamento della tassa rifiuti, non capisce da dove esce quella cifra e vuole rifare il conto per capire se è giusta.",
+        "target": "Proprietari e inquilini 30-65 anni, spesso da telefono con l'avviso cartaceo in mano; chi ha una seconda casa e paga due volte.",
+        "edge": "Nessun altro espone le voci separate (quota fissa, quota variabile, TEFA, UR1-UR2-UR3, bonus rifiuti) e nessuno confronta il risultato con il totale dell'avviso spiegando dove sta la differenza.",
+        "monetization": [
+          "adsense",
+          "affiliate",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Verifica l'avviso del Comune",
+          "Confronto fra più immobili",
+          "Prospetto in CSV e stampa"
+        ],
+        "affiliate": [
+          {
+            "t": "Compostiera da giardino",
+            "q": "compostiera domestica giardino 300 litri"
+          },
+          {
+            "t": "Sacchi compostabili per l umido",
+            "q": "sacchi compostabili umido 10 litri"
+          },
+          {
+            "t": "Set bidoni per la raccolta differenziata",
+            "q": "bidoni raccolta differenziata casa"
+          }
+        ]
+      },
+      "size": 62314
+    },
     {
       "title": "Fotovoltaico: Quando Rientri",
       "slug": "2026-10-30-fotovoltaico-quando-rientri",
