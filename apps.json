@@ -1,6 +1,6 @@
 {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 50,
+  "count": 51,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -49,6 +49,53 @@
     ]
   },
   "apps": [
+    {
+      "title": "Calcolo TFS: la Buonuscita Statale",
+      "slug": "2026-11-01-calcolo-tfs",
+      "date": "2026-11-01",
+      "description": "Buonuscita e premio di servizio dei dipendenti pubblici: lordo, netto, in quante rate arriva e le date vere in cui l'INPS paga.",
+      "category": "finanza-personale",
+      "tags": [
+        "tfs",
+        "buonuscita",
+        "pensione",
+        "dipendenti pubblici"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "dashboard",
+        "palette": "blu-notte",
+        "font": "serif-editoriale"
+      },
+      "business": {
+        "keyword": "calcolo tfs",
+        "keywords": [
+          "calcolo buonuscita dipendenti pubblici",
+          "quando viene pagato il tfs",
+          "tfs quante rate",
+          "indennità premio di servizio calcolo"
+        ],
+        "intent": "Chi lavora nel pubblico ed è vicino alla pensione vuole sapere subito quanto prende di buonuscita, quanto gli resta al netto e soprattutto in che data arriva la prima rata.",
+        "target": "Dipendenti pubblici assunti entro il 2000 — scuola, ministeri, enti locali, sanità, forze dell'ordine — tra i 55 e i 67 anni, spesso da telefono.",
+        "edge": "È l'unico che unisce le due formule vere (÷12 statali, ÷15 enti locali e sanità) al calendario con le date di pagamento aggiornate alla circolare INPS 30/2026, senza SPID e senza registrazione.",
+        "monetization": [
+          "adsense",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Calendario delle rate con le date",
+          "Anticipo bancario: quanto costa",
+          "Confronto fra due date di uscita"
+        ],
+        "affiliate": []
+      },
+      "size": 69031
+    },
     {
       "title": "Calcolo TARI",
       "slug": "2026-10-31-calcolo-tari",
