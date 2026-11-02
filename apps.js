@@ -1,7 +1,7 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 51,
+  "count": 52,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -50,6 +50,68 @@ window.__APPS__ = {
     ]
   },
   "apps": [
+    {
+      "title": "Costo Badante",
+      "slug": "2026-11-02-quanto-costa-una-badante",
+      "date": "2026-11-02",
+      "description": "Quanto costa una badante al mese: stipendio CCNL 2026, contributi INPS, tredicesima, TFR e vitto e alloggio in un solo costo reale.",
+      "category": "finanza-personale",
+      "tags": [
+        "badante",
+        "assistenza anziani",
+        "ccnl",
+        "contributi",
+        "costi"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "wizard",
+        "palette": "rosa-cipria",
+        "font": "rounded"
+      },
+      "business": {
+        "keyword": "quanto costa una badante al mese",
+        "keywords": [
+          "costo badante convivente 2026",
+          "stipendio badante ccnl",
+          "contributi inps badante",
+          "quanto costa una badante a ore"
+        ],
+        "intent": "Chi deve far assistere un genitore non autosufficiente e ha visto solo la paga di tabella: vuole sapere subito la cifra vera che uscira dal conto ogni mese, contributi, tredicesima e TFR compresi.",
+        "target": "Figli di genitori anziani, 40-65 anni, che decidono fra assunzione diretta e cooperativa. Cercano dal telefono, spesso di sera.",
+        "edge": "Nessuno mette insieme in un unico costo mensile le cinque voci vere: paga di tabella, contributi orari INPS con la tariffa fissa oltre le 24 ore, rateo di tredicesima e TFR, vitto e alloggio e sostituzione. Qui il risultato arriva in tre tocchi, senza registrazione e con le detrazioni gia scalate.",
+        "monetization": [
+          "adsense",
+          "affiliate",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto convivente, a ore e cooperativa",
+          "Prospetto annuale con le scadenze INPS",
+          "Esporta il prospetto in CSV"
+        ],
+        "affiliate": [
+          {
+            "t": "Campanello di chiamata senza fili per anziani",
+            "q": "campanello chiamata anziani senza fili"
+          },
+          {
+            "t": "Traverse assorbenti per il letto",
+            "q": "traverse letto assorbenti anziani"
+          },
+          {
+            "t": "Deambulatore pieghevole con ruote",
+            "q": "deambulatore pieghevole anziani"
+          }
+        ]
+      },
+      "size": 61937
+    },
     {
       "title": "Calcolo TFS: la Buonuscita Statale",
       "slug": "2026-11-01-calcolo-tfs",
