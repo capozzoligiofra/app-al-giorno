@@ -1,6 +1,6 @@
 {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 52,
+  "count": 53,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -49,6 +49,52 @@
     ]
   },
   "apps": [
+    {
+      "title": "Tasse sulla Vendita di una Casa",
+      "slug": "2026-11-03-tasse-vendita-casa",
+      "date": "2026-11-03",
+      "description": "Calcola la plusvalenza sulla vendita di un immobile, scopri se sei esente e quanto paghi tra imposta sostitutiva al 26% e IRPEF.",
+      "category": "finanza-personale",
+      "tags": [
+        "casa",
+        "plusvalenza",
+        "fisco",
+        "immobili"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "tabs",
+        "palette": "grigio-carta",
+        "font": "serif-editoriale"
+      },
+      "business": {
+        "keyword": "tasse sulla vendita di una casa",
+        "keywords": [
+          "plusvalenza vendita casa",
+          "calcolo plusvalenza immobiliare",
+          "vendere casa prima dei 5 anni tasse",
+          "imposta sostitutiva 26% vendita immobile"
+        ],
+        "intent": "Chi sta per firmare il rogito e vuole sapere subito se sulla sua vendita si paga la plusvalenza, quanto, e se dire al notaio di applicare l'imposta sostitutiva.",
+        "target": "Proprietari che rivendono entro pochi anni, eredi, chi ha fatto lavori con il superbonus; 30-65 anni, quasi sempre da telefono.",
+        "edge": "È l'unico calcolatore che mette insieme le tre esenzioni (5 anni, abitazione principale, successione), i costi che abbassano davvero la plusvalenza e la regola nuova del superbonus a 10 anni, dando la data esatta oltre la quale non si paga più nulla.",
+        "monetization": [
+          "adsense",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Sostitutiva o IRPEF: cosa conviene",
+          "Prospetto spese per il notaio"
+        ],
+        "affiliate": []
+      },
+      "size": 58608
+    },
     {
       "title": "Costo Badante",
       "slug": "2026-11-02-quanto-costa-una-badante",
