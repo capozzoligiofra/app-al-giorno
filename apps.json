@@ -1,6 +1,6 @@
 {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 53,
+  "count": 54,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -49,6 +49,67 @@
     ]
   },
   "apps": [
+    {
+      "title": "Quanto Costa Ristrutturare Casa al Mq",
+      "slug": "2026-11-04-ristrutturare-casa-al-mq",
+      "date": "2026-11-04",
+      "description": "Computo in quattordici voci con prezzi unitari, IVA al 10%, pratiche tecniche e detrazione 50% già scalata: il costo reale al metro quadro.",
+      "category": "casa-cucina",
+      "tags": [
+        "ristrutturazione",
+        "preventivo",
+        "casa",
+        "metro quadro"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "split",
+        "palette": "terracotta",
+        "font": "condensed"
+      },
+      "business": {
+        "keyword": "quanto costa ristrutturare casa al mq",
+        "keywords": [
+          "costo ristrutturazione casa al metro quadro",
+          "quanto costa ristrutturare casa 100 mq",
+          "preventivo ristrutturazione appartamento",
+          "prezzi ristrutturazione completa al mq"
+        ],
+        "intent": "Chi sta per comprare casa da sistemare, o ha in mano due o tre preventivi che differiscono del doppio, e vuole un metro per capire quale cifra è plausibile e quali voci mancano.",
+        "target": "Chi compra o ristruttura casa, 30-55 anni, quasi sempre da telefono mentre confronta preventivi o visita un immobile.",
+        "edge": "I primi risultati non fanno un conto: danno un range e chiedono il contatto. Qui la cifra nasce da un computo in quattordici voci con quantità e prezzo unitario, si spegne ciò che non serve, e si stampa per portarlo in cantiere.",
+        "monetization": [
+          "adsense",
+          "affiliate",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto fra rinfresco, media e totale",
+          "Preventivo stanza per stanza",
+          "Stampa o salva il preventivo in PDF"
+        ],
+        "affiliate": [
+          {
+            "t": "Metro laser per misurare le stanze",
+            "q": "metro laser professionale"
+          },
+          {
+            "t": "Rilevatore di cavi e tubi nel muro",
+            "q": "rilevatore cavi tubi muro"
+          },
+          {
+            "t": "Teli protettivi per mobili e pavimenti",
+            "q": "teli protettivi ristrutturazione"
+          }
+        ]
+      },
+      "size": 63622
+    },
     {
       "title": "Tasse sulla Vendita di una Casa",
       "slug": "2026-11-03-tasse-vendita-casa",
