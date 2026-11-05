@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1f5131">
+  <title>Pensione Netta: pensione netta da lordo online gratis</title>
+  <meta name="description" content="Calcola la pensione netta da lordo con le aliquote IRPEF 2026, le detrazioni per pensionati e le addizionali: vedi quanto ti arriva ogni mese e a dicembre.">
+  <link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-11-05-pensione-netta/">
+  <meta property="og:title" content="Pensione Netta: pensione netta da lordo online gratis">
+  <meta property="og:description" content="Dalla pensione lorda al netto in bonifico: IRPEF a scaglioni, detrazioni da pensione, addizionali regionale e comunale, mese per mese.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-11-05-pensione-netta/">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Pensione Netta",
+    "description": "Calcolatore gratuito della pensione netta da lordo: IRPEF a scaglioni 2026, detrazioni per redditi da pensione, addizionale regionale e comunale, importo netto di ogni mensilita e della tredicesima.",
+    "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-11-05-pensione-netta/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Come si calcola la pensione netta dal lordo?", "acceptedAnswer": { "@type": "Answer", "text": "Si parte dal lordo annuo, si calcola l'IRPEF a scaglioni (23% fino a 28.000 euro, 33% fino a 50.000, 43% oltre), si sottrae la detrazione per redditi da pensione prevista dall'articolo 13 del TUIR e si tolgono le addizionali regionale e comunale. Il risultato diviso per tredici da' l'importo della singola rata." } },
+      { "@type": "Question", "name": "Sulla pensione si pagano i contributi?", "acceptedAnswer": { "@type": "Answer", "text": "No. A differenza dello stipendio, sulla pensione non si trattengono contributi previdenziali: le uniche trattenute fisse sono l'IRPEF e le addizionali regionale e comunale. Per questo il netto di una pensione e' piu' alto del netto di uno stipendio di pari importo lordo." } },
+      { "@type": "Question", "name": "La pensione ha la tredicesima?", "acceptedAnswer": { "@type": "Answer", "text": "Si'. Le pensioni INPS sono pagate in tredici rate: dodici mensilita' piu' la tredicesima, accreditata con la rata di dicembre. Chi e' andato in pensione da meno di un anno la riceve in proporzione ai mesi." } },
+      { "@type": "Question", "name": "Perche' la rata di dicembre e' piu' alta delle altre?", "acceptedAnswer": { "@type": "Answer", "text": "Perche' contiene la tredicesima e perche' le addizionali regionale e comunale vengono di norma trattenute in undici rate, da gennaio a novembre: a dicembre quelle trattenute non ci sono." } },
+      { "@type": "Question", "name": "Le detrazioni da pensione sono uguali a quelle da lavoro dipendente?", "acceptedAnswer": { "@type": "Answer", "text": "No, sono diverse e non cumulabili. Per i pensionati la detrazione vale 1.955 euro fino a 8.500 euro di reddito, poi decresce fino ad azzerarsi a 50.000 euro, con una maggiorazione di 50 euro tra 25.001 e 29.000 euro." } }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f4f6f1; --surface: #ffffff; --raised: #eef2e8;
+      --text: #15200f; --muted: #5d6b52; --line: #d6ddcb;
+      --accent: #1f5131; --accent-soft: #e2efe3; --accent-ink: #ffffff;
+      --warn: #8a4b14; --danger: #a2352f;
+      --r: 14px; --r-sm: 9px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        color-scheme: dark;
+        --bg: #11160f; --surface: #1a2117; --raised: #212a1d;
+        --text: #e8eee2; --muted: #9bab90; --line: #2e3a29;
+        --accent: #76c48c; --accent-soft: #22321f; --accent-ink: #0b1a0f;
+        --warn: #e0a46a; --danger: #f08a82;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font: 17px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      overflow-x: hidden;
+    }
+    .wrap { padding: max(10px, env(safe-area-inset-top)) 16px calc(32px + env(safe-area-inset-bottom)); margin: 0 auto; }
+    a { color: var(--accent); }
+    .back { display: inline-flex; align-items: center; min-height: 44px; font-size: .9rem; color: var(--muted); text-decoration: none; padding: .4rem .1rem; }
+    h1 { margin: .3rem 0 .3rem; font-size: 1.75rem; line-height: 1.15; letter-spacing: -.02em; }
+    h2 { font-size: 1.15rem; margin: 0 0 .7rem; letter-spacing: -.01em; }
+    h3 { font-size: 1.02rem; margin: 1.2rem 0 .3rem; }
+    .lead { color: var(--muted); margin: 0 0 1.2rem; font-size: 1rem; }
+    .muted { color: var(--muted); }
+    .small { font-size: .88rem; }
+
+    /* --- pannello input --- */
+    .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 1rem; margin-bottom: .9rem; }
+    .field { margin-bottom: .85rem; }
+    .field:last-child { margin-bottom: 0; }
+    label { display: block; font-weight: 600; font-size: .95rem; margin-bottom: .3rem; }
+    .hint { color: var(--muted); font-size: .85rem; font-weight: 400; display: block; margin-top: .15rem; }
+    input[type=number], input[type=text], select {
+      width: 100%; font: inherit; font-size: 16px; color: inherit;
+      min-height: 48px; padding: .6rem .7rem;
+      background: var(--bg); border: 1px solid var(--line); border-radius: var(--r-sm);
+    }
+    input:focus-visible, select:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+    .seg { display: flex; gap: 6px; background: var(--raised); padding: 4px; border-radius: 999px; }
+    .seg button {
+      flex: 1; min-height: 44px; border: 0; border-radius: 999px; cursor: pointer;
+      background: transparent; color: var(--muted); font: inherit; font-weight: 600; font-size: .95rem;
+    }
+    .seg button[aria-pressed="true"] { background: var(--surface); color: var(--text); box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+    .duo { display: flex; gap: .6rem; }
+    .duo > * { flex: 1 1 0; min-width: 0; }
+    .check { display: flex; align-items: center; gap: .6rem; min-height: 44px; font-weight: 600; font-size: .95rem; }
+    .check input { width: 24px; height: 24px; accent-color: var(--accent); flex: none; }
+    .err { color: var(--danger); font-size: .9rem; margin: .5rem 0 0; min-height: 1.2em; }
+
+    /* --- risultato --- */
+    .avanzate { padding: 0; }
+    .avanzate summary { min-height: 52px; display: flex; align-items: center; flex-wrap: wrap; gap: .4rem; padding: .7rem 1rem; cursor: pointer; font-weight: 600; font-size: .98rem; border-radius: var(--r); }
+    .avanzate summary::marker { color: var(--accent); }
+    .avanzate .avanzate-corpo { padding: 0 1rem 1rem; }
+    .hero { background: var(--accent); color: var(--accent-ink); border-radius: var(--r); padding: 1.1rem; margin-bottom: .9rem; }
+    .hero .big { font-size: 2.6rem; font-weight: 700; letter-spacing: -.03em; line-height: 1.05; display: block; }
+    .hero .cap { text-transform: uppercase; letter-spacing: .07em; font-size: .78rem; opacity: .85; font-weight: 600; }
+    .hero .sub { margin: .7rem 0 0; opacity: .92; font-size: .95rem; }
+    .hero.empty { background: var(--raised); color: var(--muted); }
+    .hero.empty .big { font-size: 1.1rem; font-weight: 600; }
+    .breakdown { list-style: none; margin: .9rem 0 0; padding: .8rem 0 0; border-top: 1px solid rgba(255,255,255,.28); }
+    .breakdown li { display: flex; justify-content: space-between; gap: 1rem; padding: .2rem 0; font-size: .95rem; }
+    .breakdown li b { font-variant-numeric: tabular-nums; }
+    .fonte { font-size: .82rem; color: var(--muted); margin: .5rem 0 1rem; }
+
+    /* --- list-detail: i mesi --- */
+    .ld h2 { margin-bottom: .5rem; }
+    .mesi { list-style: none; margin: 0 0 .7rem; padding: 0; border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; background: var(--surface); }
+    .mesi li + li { border-top: 1px solid var(--line); }
+    .mesi button {
+      width: 100%; display: flex; align-items: center; justify-content: space-between; gap: .8rem;
+      min-height: 52px; padding: .55rem .9rem; border: 0; background: transparent; cursor: pointer;
+      font: inherit; color: inherit; text-align: left;
+    }
+    .mesi button[aria-current="true"] { background: var(--accent-soft); box-shadow: inset 3px 0 0 var(--accent); }
+    .mesi .m-nome { font-weight: 600; }
+    .mesi .m-tag { font-size: .82rem; color: var(--warn); font-weight: 600; }
+    .mesi .m-val { font-variant-numeric: tabular-nums; font-weight: 700; }
+    .dettaglio { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 1rem; }
+    .dettaglio dl { margin: 0; display: grid; grid-template-columns: 1fr auto; gap: .35rem .8rem; }
+    .dettaglio dt { color: var(--muted); font-size: .95rem; }
+    .dettaglio dd { margin: 0; text-align: right; font-variant-numeric: tabular-nums; }
+    .dettaglio .tot { border-top: 1px solid var(--line); padding-top: .45rem; margin-top: .25rem; font-weight: 700; }
+    .dettaglio .neg dd { color: var(--danger); }
+
+    /* --- card generiche / Pro --- */
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 1rem; margin: .9rem 0; }
+    .btn { font: inherit; font-weight: 600; cursor: pointer; min-height: 48px; padding: .6rem 1.1rem; border: 0; border-radius: var(--r-sm); background: var(--accent); color: var(--accent-ink); }
+    .btn-ghost { background: var(--raised); color: var(--text); border: 1px solid var(--line); }
+    .btns { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .8rem; }
+    .cmp { display: grid; gap: .8rem; }
+    .cmp .col { background: var(--raised); border-radius: var(--r-sm); padding: .8rem; }
+    .cmp h3 { margin: 0 0 .5rem; font-size: .95rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+    .cmp .res { font-size: 1.5rem; font-weight: 700; font-variant-numeric: tabular-nums; display: block; margin-top: .5rem; }
+    .diff { margin: .8rem 0 0; padding: .7rem .9rem; background: var(--accent-soft); border-radius: var(--r-sm); font-weight: 600; }
+    table.prospetto { width: 100%; border-collapse: collapse; font-size: .92rem; font-variant-numeric: tabular-nums; }
+    table.prospetto th, table.prospetto td { padding: .4rem .3rem; text-align: right; border-bottom: 1px solid var(--line); }
+    table.prospetto th:first-child, table.prospetto td:first-child { text-align: left; }
+    table.prospetto thead th { color: var(--muted); font-size: .82rem; font-weight: 600; }
+    table.prospetto tfoot td { font-weight: 700; border-bottom: 0; }
+    .scroller { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .status { font-size: .9rem; color: var(--accent); min-height: 1.2em; margin: .5rem 0 0; }
+
+    /* --- guida --- */
+    .guida { margin-top: 1.6rem; }
+    .guida p, .guida li { font-size: 1rem; }
+    .guida ul { padding-left: 1.2rem; }
+    .guida li { margin-bottom: .35rem; }
+    .guida .esempio { background: var(--raised); border-left: 3px solid var(--accent); padding: .8rem .9rem; border-radius: 0 var(--r-sm) var(--r-sm) 0; }
+    footer { margin-top: 1.6rem; padding-top: 1rem; border-top: 1px solid var(--line); }
+
+    @media print {
+      .back, .panel, .avanzate, .hero, .ld, .guida, footer, [data-ad], [data-support], .btns, .mz-lock, #confronto { display: none !important; }
+      #stampa { border: 0; padding: 0; }
+      [data-pro] > :not(.mz-lock) { filter: none !important; }
+      body { background: #fff; color: #000; font-size: 12pt; }
+    }
+
+    @media (min-width: 760px) {
+      .wrap { max-width: 920px; padding-inline: 24px; }
+      h1 { font-size: 2.1rem; }
+      .panel:not(.avanzate) { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem 1.1rem; }
+      .panel .field.wide { grid-column: 1 / -1; }
+      .avanzate .avanzate-corpo { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+      .ld .ld-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 1rem; align-items: start; }
+      .ld .dettaglio { position: sticky; top: 16px; }
+      .cmp { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../../index.html">← Tutte le app</a>
+
+  <h1>Pensione netta da lordo</h1>
+  <p class="lead">Scrivi quanto ti risulta lordo e scopri che cifra arriva davvero sul conto: IRPEF, detrazioni da pensionato e addizionali, mese per mese e con la tredicesima di dicembre.</p>
+
+  <section class="panel" aria-label="Dati della pensione">
+    <div class="field wide">
+      <label for="lordo">Pensione lorda</label>
+      <input id="lordo" type="number" inputmode="decimal" enterkeyhint="done" min="0" max="1000000" step="1" placeholder="es. 1600">
+      <div class="seg" role="group" aria-label="Il lordo inserito è" style="margin-top:.5rem">
+        <button type="button" id="per-mese" aria-pressed="true">al mese (×13)</button>
+        <button type="button" id="per-anno" aria-pressed="false">all'anno</button>
+      </div>
+    </div>
+
+    <div class="field wide">
+      <label for="regione">Regione di residenza</label>
+      <select id="regione"></select>
+    </div>
+    <p id="errore" class="err" role="status"></p>
+  </section>
+
+  <section class="hero empty" id="risultato" aria-live="polite">
+    <span class="cap">Il tuo netto</span>
+    <strong class="big">Inserisci la pensione lorda</strong>
+    <p class="sub">Bastano l&#39;importo lordo e la regione: il calcolo è immediato e resta sul tuo telefono.</p>
+  </section>
+
+  <details class="panel avanzate">
+    <summary>Affina il calcolo <span class="small muted" id="riepilogo-aliq"></span></summary>
+    <div class="avanzate-corpo">
+      <div class="field">
+        <label for="aliq-reg">Addizionale regionale (%)
+          <span class="hint">Valore ordinario indicativo: molte regioni usano scaglioni propri, correggilo col tuo cedolino</span>
+        </label>
+        <input id="aliq-reg" type="number" inputmode="decimal" min="0" max="5" step="0.01">
+      </div>
+      <div class="field">
+        <label for="aliq-com">Addizionale comunale (%)
+          <span class="hint">Da 0 a 0,9% secondo il comune</span>
+        </label>
+        <input id="aliq-com" type="number" inputmode="decimal" min="0" max="1.5" step="0.01" value="0.8">
+      </div>
+      <div class="field">
+        <label class="check" for="coniuge"><input id="coniuge" type="checkbox"> Coniuge a carico</label>
+        <span class="hint">Coniuge con redditi propri sotto 2.840,51 € l&#39;anno</span>
+      </div>
+    </div>
+  </details>
+
+  <p class="fonte">Aliquote IRPEF 2026 (L. 199/2025: 23% – 33% – 43%) e detrazioni art. 13 TUIR. Dati aggiornati a novembre 2026.</p>
+
+  <div data-ad="top"></div>
+
+  <section class="ld" aria-label="Le rate dell'anno">
+    <h2>Mese per mese</h2>
+    <p class="small muted" id="ld-intro">Tocca un mese per vedere le trattenute di quella rata.</p>
+    <div class="ld-grid">
+      <ul class="mesi" id="mesi"></ul>
+      <div class="dettaglio" id="dettaglio"></div>
+    </div>
+  </section>
+
+  <section class="card" data-pro="Confronto fra due pensioni" id="confronto">
+    <h2>Confronto fra due pensioni</h2>
+    <p class="small muted">Due importi lordi a confronto, con la regione di ciascuno: utile per capire quanto vale davvero un assegno più alto, o quanto cambia trasferendosi.</p>
+    <div class="cmp">
+      <div class="col">
+        <h3>Ipotesi A</h3>
+        <label for="cmp-a" class="small">Lordo mensile (×13)</label>
+        <input id="cmp-a" type="number" inputmode="decimal" min="0" max="1000000" step="1" placeholder="es. 1600">
+        <label for="cmp-a-reg" class="small" style="margin-top:.5rem">Regione</label>
+        <select id="cmp-a-reg"></select>
+        <span class="res" id="cmp-a-res">—</span>
+        <span class="small muted">netto al mese (gen–nov)</span>
+      </div>
+      <div class="col">
+        <h3>Ipotesi B</h3>
+        <label for="cmp-b" class="small">Lordo mensile (×13)</label>
+        <input id="cmp-b" type="number" inputmode="decimal" min="0" max="1000000" step="1" placeholder="es. 1900">
+        <label for="cmp-b-reg" class="small" style="margin-top:.5rem">Regione</label>
+        <select id="cmp-b-reg"></select>
+        <span class="res" id="cmp-b-res">—</span>
+        <span class="small muted">netto al mese (gen–nov)</span>
+      </div>
+    </div>
+    <p class="diff" id="cmp-diff">Compila le due ipotesi per vedere la differenza.</p>
+  </section>
+
+  <section class="card" data-pro="Prospetto annuale da stampare" id="stampa">
+    <h2>Prospetto annuale da stampare</h2>
+    <p class="small muted">Le tredici rate con lordo, IRPEF e addizionali: da stampare o da copiare per il commercialista o il patronato.</p>
+    <div class="scroller">
+      <table class="prospetto" id="tab-prospetto">
+        <thead><tr><th scope="col">Mese</th><th scope="col">Lordo</th><th scope="col">IRPEF</th><th scope="col">Addiz.</th><th scope="col">Netto</th></tr></thead>
+        <tbody></tbody>
+        <tfoot></tfoot>
+      </table>
+    </div>
+    <div class="btns">
+      <button type="button" class="btn" id="btn-stampa">Stampa il prospetto</button>
+      <button type="button" class="btn btn-ghost" id="btn-copia">Copia come testo</button>
+    </div>
+    <p class="status" id="copia-stato" role="status"></p>
+  </section>
+
+  <section id="guida" class="guida">
+    <h2>Come si passa dalla pensione lorda alla pensione netta</h2>
+    <p>La lettera dell'INPS indica quasi sempre l'importo <strong>lordo</strong>, cioè la cifra prima delle tasse. Il bonifico che arriva in banca è un'altra cosa: in mezzo ci sono l'IRPEF, le detrazioni che spettano ai pensionati e le due addizionali, regionale e comunale. Il calcolo della <strong>pensione netta da lordo</strong> segue sempre gli stessi quattro passaggi, e questo strumento li esegue nell'ordine in cui li applica il sostituto d'imposta.</p>
+    <ul>
+      <li><strong>Reddito annuo.</strong> La pensione si paga in tredici rate: dodici mensilità più la tredicesima, accreditata a dicembre. Un assegno da 1.600 € lordi al mese vale quindi 20.800 € lordi l'anno, non 19.200 €.</li>
+      <li><strong>IRPEF lorda.</strong> Si applicano gli scaglioni: 23% fino a 28.000 €, 33% sulla parte tra 28.000 e 50.000 €, 43% oltre. L'aliquota più alta colpisce solo la parte eccedente, mai tutto il reddito.</li>
+      <li><strong>Detrazione da pensione.</strong> È quella dell'articolo 13 del TUIR, diversa da quella dei lavoratori dipendenti: 1.955 € fino a 8.500 € di reddito, poi decresce fino ad azzerarsi a 50.000 €, con 50 € in più tra 25.001 e 29.000 €. Si sottrae dall'IRPEF lorda e non può generare un rimborso.</li>
+      <li><strong>Addizionali.</strong> La regionale va dall'1,23% al 3,33% a seconda della regione, la comunale arriva allo 0,9%. Si calcolano sul reddito complessivo e vengono trattenute, di norma, in undici rate da gennaio a novembre.</li>
+    </ul>
+
+    <h3>Un esempio con i numeri</h3>
+    <p class="esempio">Pensione di <strong>1.600 € lordi al mese</strong>, residenza in Lombardia (aliquota regionale 1,23%), addizionale comunale 0,80%. Il lordo annuo è 20.800 €. L'IRPEF lorda è 4.784 € (23% di 20.800). La detrazione da pensione vale 1.163,38 €, quindi l'IRPEF effettiva scende a 3.620,62 €. Le addizionali pesano 255,84 € (regionale) e 166,40 € (comunale). Il netto annuo è <strong>16.757,14 €</strong>: in pratica <strong>1.283,11 € al mese</strong> da gennaio a novembre e <strong>2.642,98 € a dicembre</strong>, quando arriva la tredicesima e non ci sono le trattenute delle addizionali.</p>
+    <p>Sullo stesso lordo, un residente nel Lazio con aliquota regionale all'1,73% incassa circa 8 € al mese in meno: poco più di cento euro l'anno. È la ragione per cui un calcolatore che usa una «addizionale media nazionale» restituisce un numero che non troverai mai sul cedolino.</p>
+
+    <h3>Perché la pensione rende più di uno stipendio uguale</h3>
+    <p>Su una busta paga si trattengono circa il 9,19% di contributi a carico del lavoratore. <strong>Sulla pensione i contributi non si pagano</strong>: l'ente previdenziale eroga, non incassa. A parità di lordo il netto di un pensionato è quindi più alto di quello di un dipendente, anche se le detrazioni da pensione sono un po' meno generose di quelle da lavoro dipendente. È l'errore di valutazione più comune quando si confronta l'ultimo stipendio con il primo assegno.</p>
+
+    <h3>Gli errori che fanno sbagliare il conto</h3>
+    <ul>
+      <li><strong>Moltiplicare per 12.</strong> La tredicesima esiste anche per i pensionati: chi ragiona su dodici mensilità sottostima il reddito annuo e sovrastima l'aliquota media.</li>
+      <li><strong>Usare le detrazioni da lavoro dipendente.</strong> Sono più alte e non sono cumulabili con quelle da pensione: il risultato esce troppo generoso.</li>
+      <li><strong>Dimenticare le addizionali.</strong> Valgono spesso più di 400 € l'anno, cioè una mensilità ridotta.</li>
+      <li><strong>Aspettarsi dodici rate identiche.</strong> Fra tredicesima e addizionali concentrate su undici mesi, dicembre è quasi sempre il mese più ricco dell'anno.</li>
+      <li><strong>Confondere il reddito complessivo con la pensione.</strong> Se hai anche affitti o un secondo trattamento, l'aliquota sale e in sede di dichiarazione può emergere un conguaglio a debito.</li>
+    </ul>
+
+    <h2>Domande frequenti</h2>
+    <h3>La pensione minima paga le tasse?</h3>
+    <p>No. Fino a 8.500 € di reddito annuo la detrazione da pensione copre esattamente l'IRPEF dovuta: è la cosiddetta no tax area dei pensionati. Restano possibili le addizionali, ma quasi tutte le regioni e molti comuni prevedono esenzioni sotto certe soglie, che vanno verificate sul cedolino.</p>
+    <h3>Il calcolo vale anche per il primo anno di pensione?</h3>
+    <p>Solo in parte. Se vai in pensione a metà anno, sia il reddito sia la detrazione vanno riproporzionati ai mesi effettivi, e nello stesso anno concorre anche il reddito da lavoro percepito prima. In quel caso il conto definitivo si chiude con la dichiarazione dei redditi.</p>
+    <h3>Perché il risultato non coincide al centesimo con il cedolino INPS?</h3>
+    <p>Perché molte regioni applicano scaglioni propri invece di un'aliquota unica, perché l'addizionale comunale viene divisa fra acconto e saldo e perché possono esserci trattenute personali: ritenute per assegni divorzili, cessioni del quinto, quote sindacali o recuperi di somme. Per questo l'aliquota regionale resta modificabile a mano.</p>
+    <h3>Cosa succede se ho anche un altro reddito?</h3>
+    <p>Le aliquote si applicano alla somma dei redditi, quindi la parte eccedente sconta l'aliquota più alta e le detrazioni si riducono. Puoi stimarlo inserendo qui il totale annuo di tutti i redditi al posto della sola pensione.</p>
+    <h3>I dati che inserisco vengono salvati da qualche parte?</h3>
+    <p>No. Il calcolo avviene nel browser e gli ultimi valori restano solo nella memoria del tuo dispositivo, per ritrovarli alla visita successiva. Niente account, niente invio a un server: la pagina funziona anche senza connessione.</p>
+  </section>
+
+  <div data-ad="bottom"></div>
+  <div data-support></div>
+
+  <footer>
+    <p class="small muted">Stima indicativa a scopo informativo, non un documento ufficiale: fa fede il cedolino INPS. Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a> · Vedi anche <a href="../2026-10-11-quando-vado-in-pensione/">Quando vado in pensione</a> per la data di uscita e <a href="../2026-09-20-netto-da-lordo/">Stipendio netto da lordo</a> per confrontarla con l'ultima busta paga.</p>
+  </footer>
+</div>
+
+<script src="../../assets/monetize.js"></script>
+<script>
+// Modello dati: un unico oggetto `stato` (lordo, se mensile o annuo, aliquote, coniuge) salvato in
+// localStorage sotto "pensione-netta:v1". Da lì `calcola()` produce il quadro annuo (IRPEF lorda,
+// detrazioni, addizionali, netto) e `rate()` lo distribuisce sulle 13 rate dell'anno.
+(function () {
+  "use strict";
+
+  var REGIONI = [
+    ["Abruzzo", 1.73], ["Basilicata", 1.23], ["Calabria", 1.73], ["Campania", 2.03],
+    ["Emilia-Romagna", 1.43], ["Friuli-Venezia Giulia", 1.23], ["Lazio", 1.73], ["Liguria", 1.23],
+    ["Lombardia", 1.23], ["Marche", 1.23], ["Molise", 2.03], ["Piemonte", 1.62], ["Puglia", 1.33],
+    ["Sardegna", 1.23], ["Sicilia", 1.73], ["Toscana", 1.42], ["Provincia di Bolzano", 1.23],
+    ["Provincia di Trento", 1.23], ["Umbria", 1.23], ["Valle d'Aosta", 1.23], ["Veneto", 1.23]
+  ];
+  var MESI = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"];
+  var CHIAVE = "pensione-netta:v1";
+  var RATE = 13, RATE_ADD = 11; // 12 mensilità + tredicesima; addizionali trattenute da gennaio a novembre
+
+  var $ = function (id) { return document.getElementById(id); };
+  var euro = function (n) { return n.toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €"; };
+  var euro0 = function (n) { return Math.round(n).toLocaleString("it-IT") + " €"; };
+  var meno = function (n) { return (n >= 0.005 ? "−" : "") + euro(n); };
+
+  // --- motore fiscale ---------------------------------------------------
+  function irpefLorda(reddito) {
+    var t = Math.min(reddito, 28000) * 0.23;
+    if (reddito > 28000) t += (Math.min(reddito, 50000) - 28000) * 0.33;
+    if (reddito > 50000) t += (reddito - 50000) * 0.43;
+    return t;
+  }
+  function detrazionePensione(reddito) { // art. 13 c. 3 e 3-bis TUIR
+    var d = 0;
+    if (reddito <= 8500) d = 1955;
+    else if (reddito <= 28000) d = 700 + 1255 * ((28000 - reddito) / 19500);
+    else if (reddito <= 50000) d = 700 * ((50000 - reddito) / 22000);
+    if (reddito > 25000 && reddito <= 29000) d += 50;
+    return d;
+  }
+  function detrazioneConiuge(reddito) { // art. 12 TUIR, importo teorico
+    if (reddito <= 15000) return 800 - 110 * (reddito / 15000);
+    if (reddito <= 40000) return 690;
+    if (reddito <= 80000) return 690 * ((80000 - reddito) / 40000);
+    return 0;
+  }
+  function calcola(lordoAnnuo, aliqReg, aliqCom, coniuge) {
+    var lorda = irpefLorda(lordoAnnuo);
+    var detr = detrazionePensione(lordoAnnuo) + (coniuge ? detrazioneConiuge(lordoAnnuo) : 0);
+    var irpef = Math.max(0, lorda - detr);
+    var reg = lordoAnnuo * aliqReg / 100;
+    var com = lordoAnnuo * aliqCom / 100;
+    return {
+      lordo: lordoAnnuo, irpefLorda: lorda, detrazioni: Math.min(detr, lorda), irpef: irpef,
+      reg: reg, com: com, netto: lordoAnnuo - irpef - reg - com
+    };
+  }
+  // Distribuisce il quadro annuo sulle 13 rate: l'IRPEF segue il lordo di ogni rata,
+  // le addizionali si fermano a novembre, dicembre incassa anche la tredicesima.
+  function rate(q) {
+    var rataLorda = q.lordo / RATE;
+    var irpefRata = q.irpef / RATE;
+    var addRata = (q.reg + q.com) / RATE_ADD;
+    var out = [];
+    for (var i = 0; i < 12; i++) {
+      var dic = i === 11;
+      var lordo = dic ? rataLorda * 2 : rataLorda;
+      var irpef = dic ? irpefRata * 2 : irpefRata;
+      var reg = dic ? 0 : q.reg / RATE_ADD;
+      var com = dic ? 0 : q.com / RATE_ADD;
+      out.push({ mese: MESI[i], tredicesima: dic, lordo: lordo, irpef: irpef, reg: reg, com: com, add: dic ? 0 : addRata, netto: lordo - irpef - reg - com });
+    }
+    return out;
+  }
+
+  // --- stato ------------------------------------------------------------
+  var stato = { lordo: null, mensile: true, regione: "Lombardia", reg: 1.23, com: 0.8, coniuge: false, meseSel: 0 };
+  function carica() {
+    try {
+      var s = JSON.parse(localStorage.getItem(CHIAVE) || "null");
+      if (s && typeof s === "object") {
+        ["lordo", "reg", "com"].forEach(function (k) { if (typeof s[k] === "number" && isFinite(s[k])) stato[k] = s[k]; });
+        if (typeof s.mensile === "boolean") stato.mensile = s.mensile;
+        if (typeof s.coniuge === "boolean") stato.coniuge = s.coniuge;
+        if (typeof s.regione === "string") stato.regione = s.regione;
+      }
+    } catch (e) { /* storage non disponibile: si continua coi valori di default */ }
+  }
+  function salva() {
+    try { localStorage.setItem(CHIAVE, JSON.stringify({ lordo: stato.lordo, mensile: stato.mensile, regione: stato.regione, reg: stato.reg, com: stato.com, coniuge: stato.coniuge })); }
+    catch (e) { /* quota piena o modalità privata: il calcolo funziona comunque */ }
+  }
+
+  // --- interfaccia ------------------------------------------------------
+  function riempiRegioni(sel, scelta) {
+    REGIONI.forEach(function (r) {
+      var o = document.createElement("option");
+      o.value = r[0]; o.textContent = r[0] + " (" + r[1].toString().replace(".", ",") + "%)";
+      if (r[0] === scelta) o.selected = true;
+      sel.appendChild(o);
+    });
+  }
+  function aliquotaDi(nome) {
+    for (var i = 0; i < REGIONI.length; i++) if (REGIONI[i][0] === nome) return REGIONI[i][1];
+    return 1.23;
+  }
+
+  function lordoAnnuo() {
+    if (stato.lordo === null || !(stato.lordo > 0)) return 0;
+    return stato.mensile ? stato.lordo * RATE : stato.lordo;
+  }
+
+  function disegnaRisultato(q, r) {
+    var hero = $("risultato");
+    if (!q) {
+      hero.className = "hero empty";
+      hero.innerHTML = '<span class="cap">Il tuo netto</span><strong class="big">Inserisci la pensione lorda</strong><p class="sub">Bastano l&#39;importo lordo e la regione: il calcolo è immediato e resta sul tuo telefono.</p>';
+      return;
+    }
+    hero.className = "hero";
+    var h = '<span class="cap">Netto al mese (gennaio–novembre)</span>';
+    h += '<strong class="big">' + euro(r[0].netto) + "</strong>";
+    h += '<p class="sub">A dicembre, con la tredicesima, arrivano <strong>' + euro(r[11].netto) + "</strong>. In un anno il netto è <strong>" + euro(q.netto) + "</strong> su " + euro0(q.lordo) + " lordi.</p>";
+    h += '<ul class="breakdown">';
+    h += "<li><span>Lordo annuo (13 rate)</span><b>" + euro(q.lordo) + "</b></li>";
+    h += "<li><span>IRPEF lorda</span><b>" + meno(q.irpefLorda) + "</b></li>";
+    h += "<li><span>Detrazioni</span><b>+" + euro(q.detrazioni) + "</b></li>";
+    h += "<li><span>Addizionale regionale</span><b>" + meno(q.reg) + "</b></li>";
+    h += "<li><span>Addizionale comunale</span><b>" + meno(q.com) + "</b></li>";
+    h += "<li><span>Aliquota media effettiva</span><b>" + (100 - q.netto / q.lordo * 100).toFixed(1).replace(".", ",") + "%</b></li>";
+    h += "</ul>";
+    if (q.irpef < 0.005) h += '<p class="sub" style="margin-top:.6rem">Le detrazioni da pensione coprono per intero l&#39;IRPEF: su questo importo non si paga imposta (no tax area). Restano le sole addizionali, che molti comuni e regioni non applicano sotto certe soglie.</p>';
+    hero.innerHTML = h;
+  }
+
+  function disegnaMesi(r) {
+    var ul = $("mesi");
+    ul.innerHTML = "";
+    if (!r) { $("dettaglio").innerHTML = '<p class="muted small">Il dettaglio delle trattenute compare qui appena inserisci il lordo.</p>'; return; }
+    r.forEach(function (m, i) {
+      var li = document.createElement("li");
+      var b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("aria-current", i === stato.meseSel ? "true" : "false");
+      b.innerHTML = '<span class="m-nome">' + m.mese + (m.tredicesima ? ' <span class="m-tag">+ tredicesima</span>' : "") + '</span><span class="m-val">' + euro(m.netto) + "</span>";
+      b.addEventListener("click", function () { stato.meseSel = i; disegnaMesi(r); disegnaDettaglio(r[i]); });
+      li.appendChild(b); ul.appendChild(li);
+    });
+    disegnaDettaglio(r[stato.meseSel]);
+  }
+
+  function disegnaDettaglio(m) {
+    var d = $("dettaglio");
+    var h = "<h3 style=\"margin-top:0\">" + m.mese + (m.tredicesima ? " (con tredicesima)" : "") + "</h3><dl>";
+    h += "<dt>Lordo della rata</dt><dd>" + euro(m.lordo) + "</dd>";
+    h += '<div class="neg" style="display:contents"><dt>IRPEF</dt><dd>' + meno(m.irpef) + "</dd>";
+    h += "<dt>Addizionale regionale</dt><dd>" + meno(m.reg) + "</dd>";
+    h += "<dt>Addizionale comunale</dt><dd>" + meno(m.com) + "</dd></div>";
+    h += '<dt class="tot">Netto in banca</dt><dd class="tot">' + euro(m.netto) + "</dd></dl>";
+    h += '<p class="small muted" style="margin-bottom:0">' + (m.tredicesima
+      ? "Dicembre porta due rate lorde e nessuna addizionale: queste si trattengono in undici rate, da gennaio a novembre."
+      : "Su questa rata gravano l'IRPEF e un undicesimo delle addizionali dell'anno.") + "</p>";
+    d.innerHTML = h;
+  }
+
+  function disegnaProspetto(q, r) {
+    var tb = $("tab-prospetto").querySelector("tbody");
+    var tf = $("tab-prospetto").querySelector("tfoot");
+    tb.innerHTML = ""; tf.innerHTML = "";
+    if (!r) { tb.innerHTML = '<tr><td colspan="5" class="muted">Inserisci la pensione lorda per generare il prospetto.</td></tr>'; return; }
+    r.forEach(function (m) {
+      var tr = document.createElement("tr");
+      tr.innerHTML = "<td>" + m.mese + (m.tredicesima ? " +13ª" : "") + "</td><td>" + euro(m.lordo) + "</td><td>" + euro(m.irpef) + "</td><td>" + euro(m.add) + "</td><td>" + euro(m.netto) + "</td>";
+      tb.appendChild(tr);
+    });
+    tf.innerHTML = "<tr><td>Totale anno</td><td>" + euro(q.lordo) + "</td><td>" + euro(q.irpef) + "</td><td>" + euro(q.reg + q.com) + "</td><td>" + euro(q.netto) + "</td></tr>";
+  }
+
+  function testoProspetto(q, r) {
+    var out = ["Pensione netta — prospetto annuale", "Lordo annuo " + euro(q.lordo) + " su 13 rate", ""];
+    r.forEach(function (m) { out.push(m.mese + (m.tredicesima ? " (con tredicesima)" : "") + ": netto " + euro(m.netto) + " (lordo " + euro(m.lordo) + ", IRPEF " + euro(m.irpef) + ", addizionali " + euro(m.add) + ")"); });
+    out.push("", "Totale netto anno: " + euro(q.netto), "IRPEF " + euro(q.irpef) + " · addizionali " + euro(q.reg + q.com));
+    return out.join("\n");
+  }
+
+  // --- confronto (Pro) --------------------------------------------------
+  function aggiornaConfronto() {
+    var va = parseFloat($("cmp-a").value), vb = parseFloat($("cmp-b").value);
+    var ra = aliquotaDi($("cmp-a-reg").value), rb = aliquotaDi($("cmp-b-reg").value);
+    var com = stato.com, con = stato.coniuge;
+    var qa = va > 0 ? calcola(va * RATE, ra, com, con) : null;
+    var qb = vb > 0 ? calcola(vb * RATE, rb, com, con) : null;
+    $("cmp-a-res").textContent = qa ? euro(rate(qa)[0].netto) : "—";
+    $("cmp-b-res").textContent = qb ? euro(rate(qb)[0].netto) : "—";
+    var p = $("cmp-diff");
+    if (!qa || !qb) { p.textContent = "Compila le due ipotesi per vedere la differenza."; return; }
+    var dMese = rate(qb)[0].netto - rate(qa)[0].netto;
+    var dAnno = qb.netto - qa.netto;
+    var dLordo = qb.lordo - qa.lordo;
+    if (Math.abs(dLordo) < 0.005) { p.textContent = "Stesso lordo: la differenza di " + euro(Math.abs(dAnno)) + " l'anno dipende solo dall'addizionale regionale."; return; }
+    var quota = dAnno / dLordo * 100;
+    p.textContent = (dMese >= 0 ? "B incassa " : "A incassa ") + euro(Math.abs(dMese)) + " in più al mese, cioè " + euro(Math.abs(dAnno)) + " l'anno: di ogni euro lordo in più ne restano netti " + (quota / 100).toFixed(2).replace(".", ",") + " (" + Math.round(quota) + "%).";
+  }
+
+  // --- aggiornamento generale -------------------------------------------
+  function aggiorna() {
+    var annuo = lordoAnnuo();
+    var err = $("errore");
+    err.textContent = "";
+    if (stato.lordo !== null && !(stato.lordo > 0)) err.textContent = "Inserisci un importo lordo maggiore di zero.";
+    else if (annuo > 1000000) err.textContent = "Importo troppo alto: controlla se hai scritto il lordo mensile o quello annuo.";
+    var ok = annuo > 0 && annuo <= 1000000;
+    var q = ok ? calcola(annuo, stato.reg, stato.com, stato.coniuge) : null;
+    var r = q ? rate(q) : null;
+    disegnaRisultato(q, r);
+    disegnaMesi(r);
+    disegnaProspetto(q, r);
+    aggiornaConfronto();
+    var ri = $("riepilogo-aliq");
+    if (ri) ri.textContent = "— addizionali " + String(stato.reg).replace(".", ",") + "% + " + String(stato.com).replace(".", ",") + "%" + (stato.coniuge ? ", coniuge a carico" : "");
+    salva();
+  }
+
+  // --- avvio ------------------------------------------------------------
+  function avvia() {
+    riempiRegioni($("regione"), stato.regione);
+    riempiRegioni($("cmp-a-reg"), stato.regione);
+    riempiRegioni($("cmp-b-reg"), stato.regione);
+    if (stato.lordo !== null) $("lordo").value = stato.lordo;
+    $("aliq-reg").value = stato.reg;
+    $("aliq-com").value = stato.com;
+    $("coniuge").checked = stato.coniuge;
+    $("per-mese").setAttribute("aria-pressed", String(stato.mensile));
+    $("per-anno").setAttribute("aria-pressed", String(!stato.mensile));
+
+    $("lordo").addEventListener("input", function () {
+      var v = parseFloat(this.value);
+      stato.lordo = this.value.trim() === "" ? null : (isFinite(v) ? v : 0);
+      aggiorna();
+    });
+    $("lordo").addEventListener("keydown", function (e) { if (e.key === "Enter") this.blur(); });
+    function periodo(mensile) {
+      stato.mensile = mensile;
+      $("per-mese").setAttribute("aria-pressed", String(mensile));
+      $("per-anno").setAttribute("aria-pressed", String(!mensile));
+      aggiorna();
+    }
+    $("per-mese").addEventListener("click", function () { periodo(true); });
+    $("per-anno").addEventListener("click", function () { periodo(false); });
+    $("regione").addEventListener("change", function () {
+      stato.regione = this.value;
+      stato.reg = aliquotaDi(this.value);
+      $("aliq-reg").value = stato.reg;
+      aggiorna();
+    });
+    $("aliq-reg").addEventListener("input", function () {
+      var v = parseFloat(this.value);
+      stato.reg = isFinite(v) && v >= 0 ? Math.min(v, 5) : 0;
+      aggiorna();
+    });
+    $("aliq-com").addEventListener("input", function () {
+      var v = parseFloat(this.value);
+      stato.com = isFinite(v) && v >= 0 ? Math.min(v, 1.5) : 0;
+      aggiorna();
+    });
+    $("coniuge").addEventListener("change", function () { stato.coniuge = this.checked; aggiorna(); });
+
+    ["cmp-a", "cmp-b"].forEach(function (id) { $(id).addEventListener("input", aggiornaConfronto); });
+    ["cmp-a-reg", "cmp-b-reg"].forEach(function (id) { $(id).addEventListener("change", aggiornaConfronto); });
+
+    $("btn-stampa").addEventListener("click", function () {
+      if (!(lordoAnnuo() > 0)) { $("copia-stato").textContent = "Inserisci prima la pensione lorda."; return; }
+      window.print();
+    });
+    $("btn-copia").addEventListener("click", function () {
+      var annuo = lordoAnnuo();
+      var stat = $("copia-stato");
+      if (!(annuo > 0)) { stat.textContent = "Inserisci prima la pensione lorda."; return; }
+      var q = calcola(annuo, stato.reg, stato.com, stato.coniuge);
+      var testo = testoProspetto(q, rate(q));
+      function fallback() {
+        var ta = document.createElement("textarea");
+        ta.value = testo; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
+        document.body.appendChild(ta); ta.select();
+        var ok = false;
+        try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+        document.body.removeChild(ta);
+        stat.textContent = ok ? "Prospetto copiato." : "Copia non riuscita: usa il pulsante Stampa.";
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(testo).then(function () { stat.textContent = "Prospetto copiato."; }, fallback);
+      } else fallback();
+    });
+
+    aggiorna();
+  }
+
+  carica();
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", avvia);
+  else avvia();
+})();
+</script>
+</body>
+</html>

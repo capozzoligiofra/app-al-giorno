@@ -1,7 +1,7 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 54,
+  "count": 55,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -50,6 +50,52 @@ window.__APPS__ = {
     ]
   },
   "apps": [
+    {
+      "title": "Pensione Netta",
+      "slug": "2026-11-05-pensione-netta",
+      "date": "2026-11-05",
+      "description": "Calcola la pensione netta dal lordo: IRPEF, detrazioni da pensionato e addizionali, con il netto di ogni mese e della tredicesima.",
+      "category": "finanza-personale",
+      "tags": [
+        "pensione",
+        "irpef",
+        "inps",
+        "tasse"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "list-detail",
+        "palette": "verde-bosco",
+        "font": "sans-geometrico"
+      },
+      "business": {
+        "keyword": "pensione netta da lordo",
+        "keywords": [
+          "calcolo pensione netta",
+          "da pensione lorda a netta",
+          "quanto mi resta di pensione",
+          "pensione netta mensile"
+        ],
+        "intent": "Chi riceve dall'INPS l'importo lordo della pensione (lettera, simulazione o primo cedolino) e vuole sapere subito quanto gli arriva davvero in banca ogni mese.",
+        "target": "Pensionati e lavoratori vicini alla pensione, 55-75 anni, spesso da telefono, poco pratici di moduli fiscali.",
+        "edge": "Usa le aliquote IRPEF 2026 e le detrazioni da pensione (non quelle da lavoro dipendente), tiene conto delle 13 rate e mostra il netto di ogni singolo mese, con dicembre separato perché contiene la tredicesima e non le addizionali.",
+        "monetization": [
+          "adsense",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto fra due pensioni",
+          "Prospetto annuale da stampare"
+        ],
+        "affiliate": []
+      },
+      "size": 40418
+    },
     {
       "title": "Quanto Costa Ristrutturare Casa al Mq",
       "slug": "2026-11-04-ristrutturare-casa-al-mq",
