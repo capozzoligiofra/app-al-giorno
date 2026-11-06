@@ -1,6 +1,6 @@
 {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 55,
+  "count": 56,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -49,6 +49,67 @@
     ]
   },
   "apps": [
+    {
+      "title": "Costo Auto all'Anno",
+      "slug": "2026-11-06-costo-auto-annuo",
+      "date": "2026-11-06",
+      "description": "Somma carburante, bollo, assicurazione, manutenzione e svalutazione e dice quanto costa davvero la tua auto ogni anno.",
+      "category": "calcolatori-convertitori",
+      "tags": [
+        "auto",
+        "costi",
+        "carburante",
+        "bollo",
+        "svalutazione"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "card-stack",
+        "palette": "rosso-mattone",
+        "font": "condensed"
+      },
+      "business": {
+        "keyword": "quanto costa mantenere un'auto all'anno",
+        "keywords": [
+          "costo mantenimento auto annuo",
+          "quanto costa un'auto al mese",
+          "costo auto per chilometro",
+          "spese auto all'anno"
+        ],
+        "intent": "Chi sta decidendo se tenere l'auto, cambiarla o rinunciare alla seconda macchina e vuole il conto completo in un numero, non un articolo con una media nazionale.",
+        "target": "Automobilisti 25-60 anni, da telefono, spesso mentre valutano un usato o leggono il rinnovo dell'assicurazione.",
+        "edge": "Il totale appare subito e resta in alto mentre si cambiano i numeri. Carburante ai prezzi MIMIT della regione scelta, bollo calcolato sui kW con il coefficiente regionale e svalutazione inclusa: la voce che tutti dimenticano e che vale un terzo del conto.",
+        "monetization": [
+          "adsense",
+          "affiliate",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto fra due auto",
+          "Proiezione a 5 anni e stampa"
+        ],
+        "affiliate": [
+          {
+            "t": "Compressore portatile per gonfiare le gomme",
+            "q": "compressore portatile gonfiagomme auto"
+          },
+          {
+            "t": "Lettore OBD2 per capire la spia prima di andare dal meccanico",
+            "q": "lettore obd2 bluetooth auto"
+          },
+          {
+            "t": "Manometro digitale per la pressione delle gomme",
+            "q": "manometro digitale pressione gomme"
+          }
+        ]
+      },
+      "size": 54794
+    },
     {
       "title": "Pensione Netta",
       "slug": "2026-11-05-pensione-netta",

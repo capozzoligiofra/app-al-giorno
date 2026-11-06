@@ -1,0 +1,1063 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Costo Auto: quanto costa mantenere un'auto all'anno</title>
+<meta name="description" content="Calcola il costo annuo della tua auto: carburante ai prezzi MIMIT della tua regione, bollo sui kW, assicurazione, manutenzione e svalutazione inclusa.">
+<meta name="theme-color" content="#a8392a">
+<link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-11-06-costo-auto-annuo/">
+<meta property="og:title" content="Costo Auto: quanto costa mantenere un'auto all'anno">
+<meta property="og:description" content="Sei voci di spesa, un totale. Carburante ai prezzi MIMIT della tua regione, bollo sui kW, svalutazione: scopri il costo vero della tua auto.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-11-06-costo-auto-annuo/">
+<meta property="og:locale" content="it_IT">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Costo Auto all'Anno",
+  "description": "Calcolatore del costo annuo di mantenimento di un'auto: carburante, bollo, assicurazione, manutenzione, svalutazione e spese accessorie.",
+  "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-11-06-costo-auto-annuo/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+  "inLanguage": "it"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Quanto costa in media mantenere un'auto all'anno in Italia?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Per un'auto di media cilindrata usata per 12.000-15.000 km l'anno il conto completo sta quasi sempre fra 3.000 e 6.500 euro, cioè fra 250 e 540 euro al mese. La forbice è larga perché dipende da tre cose: i chilometri percorsi, il premio dell'assicurazione nella tua provincia e quanto vale ancora l'auto, dato che la svalutazione è la voce più pesante nei primi anni." }
+    },
+    {
+      "@type": "Question",
+      "name": "La svalutazione è un costo vero se non vendo l'auto?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sì, perché è denaro che hai già speso e che non recupererai. Ogni anno l'auto nel tuo garage vale meno: quella perdita si manifesta tutta insieme il giorno in cui la vendi o la rottami, ma si matura un anno alla volta. Un'auto da 20.000 euro che perde il 12% in un anno ti è costata 2.400 euro anche se non hai fatto un chilometro." }
+    },
+    {
+      "@type": "Question",
+      "name": "Conviene il diesel o il benzina?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Dipende dai chilometri. Il diesel consuma meno litri ma il gasolio costa circa 20 centesimi in più al litro e l'auto costa di più all'acquisto: il vantaggio si recupera solo sopra i 15.000-20.000 km l'anno. Sotto quella soglia il benzina vince quasi sempre. Con il confronto fra due auto puoi metterli affiancati con i tuoi numeri." }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanto costa mantenere un'auto elettrica?",
+      "acceptedAnswer": { "@type": "Answer", "text": "L'elettrica risparmia sulle voci correnti: niente bollo nei primi cinque anni (a vita in Lombardia e Piemonte), manutenzione ridotta perché non ha olio, filtri, frizione e candele, e un pieno che costa 4-6 euro per 100 km se carichi a casa. In cambio il prezzo di partenza è più alto e la svalutazione nei primi anni è più rapida: nel calcolo cambia il peso delle voci, non il metodo." }
+    },
+    {
+      "@type": "Question",
+      "name": "I prezzi del carburante sono aggiornati?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sì: la pagina legge le medie giornaliere dei prezzi self service che i gestori comunicano al MIMIT (Osservaprezzi carburanti), divise per regione, e mostra accanto al risultato la data del dato che sta usando. Se apri la pagina senza connessione resta attiva l'ultima tabella salvata nel file, e il prezzo si può sempre correggere a mano con quello del tuo distributore." }
+    }
+  ]
+}
+</script>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #f7f1ed;
+    --surface: #ffffff;
+    --ink: #2b1a14;
+    --ink-soft: #6d564d;
+    --line: #e2d2c9;
+    --brick: #a8392a;
+    --brick-soft: #c7604a;
+    --brick-wash: #f6e4de;
+    --totale-bg: #a8392a;
+    --totale-ink: #fff8f6;
+    --ok: #2f6b4f;
+    --radius: 4px;
+    --font: "Arial Narrow", "Roboto Condensed", "Liberation Sans Narrow", "Helvetica Neue", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #18110e;
+      --surface: #221815;
+      --ink: #f3e7e1;
+      --ink-soft: #b79c92;
+      --line: #3a2a24;
+      --brick: #e2735a;
+      --brick-soft: #c7604a;
+      --brick-wash: #31201b;
+      --totale-bg: #8c2d20;
+      --totale-ink: #fdeee9;
+      --ok: #6fbf95;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    padding: 0 0 3rem;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font);
+    font-size: 17px;
+    line-height: 1.5;
+    overflow-x: hidden;
+    font-stretch: condensed;
+  }
+  .wrap { width: 100%; max-width: 760px; margin: 0 auto; padding: 0 1rem; }
+  a { color: var(--brick); }
+
+  /* ---------- testata ---------- */
+  .top { padding: .9rem 0 .4rem; }
+  .top a.back { display: inline-flex; align-items: center; min-height: 44px; font-size: .95rem; text-decoration: none; font-weight: 700; letter-spacing: .02em; }
+  h1 {
+    font-size: 1.6rem; line-height: 1.12; margin: .5rem 0 .4rem;
+    text-transform: uppercase; letter-spacing: .01em; font-weight: 800;
+  }
+  .sub { margin: 0 0 1rem; color: var(--ink-soft); font-size: 1rem; }
+
+  /* ---------- pila di schede ---------- */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 5px solid var(--brick);
+    border-radius: var(--radius);
+    padding: .9rem 1rem 1rem;
+    margin: 0 0 .85rem;
+  }
+  .card > h2, .card > h3 {
+    margin: 0 0 .7rem;
+    font-size: .95rem; text-transform: uppercase; letter-spacing: .09em;
+    font-weight: 800; color: var(--brick);
+  }
+  .card .hint { color: var(--ink-soft); font-size: .92rem; margin: .5rem 0 0; }
+
+  /* totale appiccicato in alto: resta visibile mentre si cambiano i numeri */
+  .totale {
+    position: sticky; top: 0; z-index: 5;
+    background: var(--totale-bg); color: var(--totale-ink);
+    border: 0; border-radius: var(--radius);
+    padding: .75rem 1rem .8rem;
+    margin-bottom: .85rem;
+    box-shadow: 0 2px 14px rgba(0,0,0,.22);
+  }
+  .totale .lbl { font-size: .85rem; text-transform: uppercase; letter-spacing: .11em; opacity: .9; }
+  .totale .big { font-size: 2.6rem; line-height: 1; font-weight: 800; letter-spacing: -.01em; margin: .15rem 0 .35rem; font-variant-numeric: tabular-nums; }
+  .chips { display: flex; flex-wrap: wrap; gap: .4rem; }
+  .chips .chip {
+    background: rgba(255,255,255,.2); border-radius: 999px;
+    padding: .2rem .7rem; font-size: .95rem; font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- controlli ---------- */
+  label { display: block; font-size: .92rem; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: .25rem; }
+  .field { margin: 0 0 .85rem; }
+  .field:last-child { margin-bottom: 0; }
+  input[type="number"], input[type="text"], select {
+    font-family: var(--font); font-size: 16px; width: 100%;
+    min-height: 46px; padding: .5rem .65rem;
+    background: var(--bg); color: var(--ink);
+    border: 1.5px solid var(--line); border-radius: var(--radius);
+  }
+  input:focus-visible, select:focus-visible, button:focus-visible, .seg button:focus-visible {
+    outline: 3px solid var(--brick-soft); outline-offset: 1px;
+  }
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; }
+  .suffix { position: relative; }
+  .suffix span { position: absolute; right: .6rem; top: 50%; transform: translateY(-50%); color: var(--ink-soft); font-size: .95rem; pointer-events: none; }
+  .suffix input { padding-right: 3.6rem; }
+
+  .seg { display: flex; flex-wrap: wrap; gap: .4rem; }
+  .seg button {
+    font-family: var(--font); font-size: .98rem; font-weight: 700;
+    min-height: 44px; padding: .4rem .8rem;
+    background: var(--surface); color: var(--ink);
+    border: 1.5px solid var(--line); border-radius: 999px; cursor: pointer;
+    text-transform: uppercase; letter-spacing: .04em;
+  }
+  .seg button[aria-pressed="true"] { background: var(--brick); border-color: var(--brick); color: #fff; }
+
+  input[type="range"] { width: 100%; min-height: 44px; accent-color: var(--brick); }
+  .rangerow { display: flex; align-items: center; gap: .7rem; }
+  .rangerow .suffix { flex: 0 0 8.5rem; }
+
+  .btn {
+    font-family: var(--font); font-size: 1rem; font-weight: 800;
+    min-height: 46px; padding: .5rem 1.1rem;
+    background: var(--brick); color: #fff; border: 0; border-radius: 999px;
+    cursor: pointer; text-transform: uppercase; letter-spacing: .06em;
+  }
+  .btn.ghost { background: transparent; color: var(--brick); border: 1.5px solid var(--brick); }
+  .btnrow { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .8rem; }
+
+  /* ---------- ripartizione ---------- */
+  .voce { padding: .5rem 0; border-bottom: 1px dashed var(--line); }
+  .voce:last-of-type { border-bottom: 0; }
+  .voce .r1 { display: flex; justify-content: space-between; align-items: baseline; gap: .6rem; }
+  .voce .nome { font-weight: 700; letter-spacing: .02em; }
+  .voce .val { font-weight: 800; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .voce .pct { color: var(--ink-soft); font-size: .9rem; font-variant-numeric: tabular-nums; }
+  .bar { height: 7px; background: var(--brick-wash); border-radius: 999px; overflow: hidden; margin-top: .35rem; }
+  .bar i { display: block; height: 100%; background: var(--brick); }
+  .fonte { color: var(--ink-soft); font-size: .88rem; margin: .7rem 0 0; }
+
+  /* ---------- Pro ---------- */
+  [data-pro] {
+    background: var(--surface); border: 1px solid var(--line);
+    border-left: 5px solid var(--brick-soft); border-radius: var(--radius);
+    padding: .9rem 1rem 1rem; margin: 0 0 .85rem; min-height: 190px;
+  }
+  [data-pro] > h2 { margin: 0 0 .7rem; font-size: .95rem; text-transform: uppercase; letter-spacing: .09em; color: var(--brick-soft); }
+  .tab { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  .tab th, .tab td { text-align: right; padding: .35rem .25rem; border-bottom: 1px solid var(--line); font-size: .95rem; }
+  .tab th:first-child, .tab td:first-child { text-align: left; }
+  .tab thead th { color: var(--ink-soft); font-size: .85rem; text-transform: uppercase; letter-spacing: .05em; }
+  .tab tfoot td { font-weight: 800; border-bottom: 0; }
+  .vs { display: grid; gap: .6rem; margin-top: .8rem; }
+  .vs .box { border: 1px solid var(--line); border-radius: var(--radius); padding: .6rem .7rem; }
+  .vs .box .n { font-size: .85rem; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-soft); }
+  .vs .box .t { font-size: 1.5rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+  .verdetto { margin: .8rem 0 0; padding: .6rem .7rem; background: var(--brick-wash); border-radius: var(--radius); font-weight: 700; }
+
+  /* ---------- guida ---------- */
+  #guida { margin-top: 1.6rem; }
+  #guida h2 { font-size: 1.25rem; text-transform: uppercase; letter-spacing: .04em; margin: 1.6rem 0 .5rem; }
+  #guida h3 { font-size: 1.05rem; margin: 1.1rem 0 .3rem; }
+  #guida p, #guida li { font-size: 1rem; }
+  #guida ul { padding-left: 1.2rem; }
+  .correlate { list-style: none; padding: 0; }
+  .correlate li { margin: .2rem 0 .8rem; }
+  .correlate a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 700; }
+  .correlate span { display: block; color: var(--ink-soft); font-size: .95rem; }
+  footer a { display: inline-flex; align-items: center; min-height: 44px; }
+  footer { color: var(--ink-soft); font-size: .92rem; margin-top: 1.6rem; border-top: 1px solid var(--line); padding-top: .9rem; }
+
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* ---------- desktop: miglioramento progressivo ---------- */
+  @media (min-width: 700px) {
+    body { font-size: 18px; }
+    h1 { font-size: 2.2rem; }
+    .wrap { padding: 0 1.5rem; }
+    .totale { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; }
+    .totale .big { font-size: 3.2rem; margin: .1rem 0 0; }
+    .duo { grid-template-columns: 1fr 1fr 1fr; }
+    .vs { grid-template-columns: 1fr 1fr; }
+  }
+  @media print {
+    .totale { position: static; box-shadow: none; }
+    .seg, .btnrow, .mz-top, [data-ad], [data-support], [data-affiliate], .noprint { display: none !important; }
+    body { background: #fff; color: #000; font-size: 12pt; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top"><a class="back" href="../../index.html">← Tutte le app</a></div>
+
+  <h1>Quanto costa mantenere un'auto all'anno</h1>
+  <p class="sub">Sei voci di spesa, un totale. Carburante ai prezzi medi della tua regione, bollo sui kW del libretto, svalutazione inclusa: il conto vero, non il prezzo di listino.</p>
+
+  <!-- RISULTATO: resta in alto mentre si cambiano i numeri -->
+  <section class="totale" aria-live="polite">
+    <div>
+      <div class="lbl">Costo totale</div>
+      <div class="big" id="out-anno">—</div>
+    </div>
+    <div class="chips">
+      <span class="chip" id="out-mese">— al mese</span>
+      <span class="chip" id="out-km">— al km</span>
+    </div>
+  </section>
+
+  <!-- L'AUTO -->
+  <section class="card">
+    <h2>L'auto e i chilometri</h2>
+
+    <div class="field">
+      <label id="lab-alim">Alimentazione</label>
+      <div class="seg" id="seg-alim" role="group" aria-labelledby="lab-alim"></div>
+    </div>
+
+    <div class="field">
+      <label for="km">Chilometri all'anno</label>
+      <div class="rangerow">
+        <div class="suffix">
+          <input id="km" type="number" inputmode="numeric" min="0" max="120000" step="500" enterkeyhint="done">
+          <span>km</span>
+        </div>
+        <input id="km-range" type="range" min="0" max="50000" step="500" aria-label="Chilometri all'anno, cursore">
+      </div>
+      <p class="hint" id="hint-km"></p>
+    </div>
+
+    <div class="duo">
+      <div class="field">
+        <label for="cons" id="lab-cons">Consumo</label>
+        <div class="suffix"><input id="cons" type="number" inputmode="decimal" min="0" step="0.1"><span id="um-cons">l/100</span></div>
+      </div>
+      <div class="field">
+        <label for="prezzo" id="lab-prezzo">Prezzo carburante</label>
+        <div class="suffix"><input id="prezzo" type="number" inputmode="decimal" min="0" step="0.001"><span id="um-prezzo">€/l</span></div>
+      </div>
+    </div>
+    <p class="hint" id="hint-prezzo"></p>
+
+    <div class="field">
+      <label for="anno">Anno di immatricolazione</label>
+      <input id="anno" type="number" inputmode="numeric" min="1950" max="2026" step="1">
+      <p class="hint" id="hint-eta"></p>
+    </div>
+  </section>
+
+  <!-- RIPARTIZIONE -->
+  <section class="card">
+    <h2>Dove finiscono i soldi</h2>
+    <div id="ripartizione"></div>
+    <p class="fonte" id="fonte"></p>
+  </section>
+
+  <div data-ad="top"></div>
+
+  <!-- PRO 1 -->
+  <section data-pro="Confronto fra due auto">
+    <h2>Confronto fra due auto</h2>
+    <p class="hint">L'auto A è quella che stai calcolando sopra. Imposta qui l'auto B — un diesel, un'elettrica, l'usato che stai valutando — e guarda la differenza vera, non quella di listino.</p>
+    <div class="field">
+      <label id="lab-alimb">Alimentazione auto B</label>
+      <div class="seg" id="seg-alimb" role="group" aria-labelledby="lab-alimb"></div>
+    </div>
+    <div class="duo">
+      <div class="field">
+        <label for="consb">Consumo B</label>
+        <div class="suffix"><input id="consb" type="number" inputmode="decimal" min="0" step="0.1"><span id="um-consb">l/100</span></div>
+      </div>
+      <div class="field">
+        <label for="kwb">Potenza B</label>
+        <div class="suffix"><input id="kwb" type="number" inputmode="numeric" min="0" step="1"><span>kW</span></div>
+      </div>
+      <div class="field">
+        <label for="valoreb">Valore B</label>
+        <div class="suffix"><input id="valoreb" type="number" inputmode="numeric" min="0" step="500"><span>€</span></div>
+      </div>
+      <div class="field">
+        <label for="assicb">Assicurazione B</label>
+        <div class="suffix"><input id="assicb" type="number" inputmode="numeric" min="0" step="10"><span>€/anno</span></div>
+      </div>
+      <div class="field">
+        <label for="annob">Immatricolazione B</label>
+        <input id="annob" type="number" inputmode="numeric" min="1950" max="2026" step="1">
+      </div>
+      <div class="field">
+        <label for="manutb">Manutenzione B</label>
+        <div class="suffix"><input id="manutb" type="number" inputmode="numeric" min="0" step="10"><span>€/anno</span></div>
+      </div>
+    </div>
+    <div class="vs">
+      <div class="box"><div class="n">Auto A — <span id="nome-a">benzina</span></div><div class="t" id="tot-a">—</div><div class="pct" id="km-a"></div></div>
+      <div class="box"><div class="n">Auto B — <span id="nome-b">diesel</span></div><div class="t" id="tot-b">—</div><div class="pct" id="km-b"></div></div>
+    </div>
+    <p class="verdetto" id="verdetto">—</p>
+  </section>
+
+  <!-- PRO 2 -->
+  <section data-pro="Proiezione a 5 anni e stampa">
+    <h2>Proiezione a 5 anni e stampa</h2>
+    <p class="hint">La svalutazione segue il valore che scende anno dopo anno, le gomme e la revisione cadono negli anni in cui le paghi davvero. Ecco quanto ti costerà tenere questa auto fino alla fine.</p>
+    <table class="tab" id="proiezione">
+      <thead><tr><th>Anno</th><th>Correnti</th><th>Svalutaz.</th><th>Totale</th></tr></thead>
+      <tbody></tbody>
+      <tfoot></tfoot>
+    </table>
+    <div class="btnrow noprint">
+      <button class="btn" type="button" id="stampa">Stampa il riepilogo</button>
+      <button class="btn ghost" type="button" id="csv">Scarica CSV</button>
+    </div>
+  </section>
+
+  <!-- TASSE E ASSICURAZIONE -->
+  <section class="card">
+    <h2>Bollo e assicurazione</h2>
+    <div class="duo">
+      <div class="field">
+        <label for="kw">Potenza (libretto)</label>
+        <div class="suffix"><input id="kw" type="number" inputmode="numeric" min="0" max="900" step="1"><span>kW</span></div>
+      </div>
+      <div class="field">
+        <label for="euro">Classe ambientale</label>
+        <select id="euro">
+          <option value="6">Euro 6</option>
+          <option value="5">Euro 5</option>
+          <option value="4">Euro 4</option>
+          <option value="3">Euro 3</option>
+          <option value="2">Euro 2</option>
+          <option value="1">Euro 1</option>
+          <option value="0">Euro 0</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="regione">Regione</label>
+        <select id="regione"></select>
+      </div>
+    </div>
+    <div class="duo">
+      <div class="field">
+        <label for="bollo">Bollo</label>
+        <div class="suffix"><input id="bollo" type="number" inputmode="numeric" min="0" step="1"><span>€/anno</span></div>
+      </div>
+      <div class="field">
+        <label for="assic">Assicurazione</label>
+        <div class="suffix"><input id="assic" type="number" inputmode="numeric" min="0" step="10"><span>€/anno</span></div>
+      </div>
+    </div>
+    <p class="hint" id="hint-bollo"></p>
+  </section>
+
+  <!-- MANUTENZIONE -->
+  <section class="card">
+    <h2>Manutenzione</h2>
+    <div class="duo">
+      <div class="field">
+        <label for="tagliando">Tagliando</label>
+        <div class="suffix"><input id="tagliando" type="number" inputmode="numeric" min="0" step="10"><span>€/anno</span></div>
+      </div>
+      <div class="field">
+        <label for="gomme">Set di gomme</label>
+        <div class="suffix"><input id="gomme" type="number" inputmode="numeric" min="0" step="10"><span>€</span></div>
+      </div>
+      <div class="field">
+        <label for="durata">Durata gomme</label>
+        <div class="suffix"><input id="durata" type="number" inputmode="numeric" min="5000" max="80000" step="1000"><span>km</span></div>
+      </div>
+    </div>
+    <div class="field">
+      <label for="extra">Garage, pedaggi, lavaggi, imprevisti</label>
+      <div class="suffix"><input id="extra" type="number" inputmode="numeric" min="0" step="10"><span>€/anno</span></div>
+    </div>
+    <p class="hint">La revisione (79,02 € ogni due anni dal quarto anno di vita) è aggiunta da sola in base all'anno di immatricolazione.</p>
+  </section>
+
+  <!-- SVALUTAZIONE -->
+  <section class="card">
+    <h2>Svalutazione</h2>
+    <div class="duo">
+      <div class="field">
+        <label for="valore">Quanto vale oggi</label>
+        <div class="suffix"><input id="valore" type="number" inputmode="numeric" min="0" step="500"><span>€</span></div>
+      </div>
+      <div class="field">
+        <label for="sval">Perdita di valore</label>
+        <div class="suffix"><input id="sval" type="number" inputmode="decimal" min="0" max="40" step="0.5"><span>%/anno</span></div>
+      </div>
+    </div>
+    <p class="hint" id="hint-sval"></p>
+    <div class="btnrow noprint">
+      <button class="btn ghost" type="button" id="reset">Ricomincia da zero</button>
+    </div>
+  </section>
+
+  <div data-affiliate data-title="Per spendere meno sulle voci correnti" data-items='[{"t":"Compressore portatile per gonfiare le gomme","q":"compressore portatile gonfiagomme auto"},{"t":"Lettore OBD2 per capire la spia prima di andare dal meccanico","q":"lettore obd2 bluetooth auto"},{"t":"Manometro digitale per la pressione delle gomme","q":"manometro digitale pressione gomme"}]'></div>
+
+  <!-- GUIDA -->
+  <section id="guida">
+    <h2>Come funziona il calcolo</h2>
+    <p>Quando qualcuno chiede <strong>quanto costa mantenere un'auto all'anno</strong> si aspetta un numero solo, mentre il conto è fatto di sei pezzi che si comportano in modo diverso. Due dipendono dai chilometri (carburante e gomme), due sono fissi e arrivano puntuali anche se l'auto resta ferma (bollo e assicurazione), uno dipende dall'età del mezzo (tagliando e revisione) e l'ultimo, la svalutazione, non ti chiede mai un bonifico ma è quasi sempre il più pesante di tutti.</p>
+    <p>Il calcolatore qui sopra li tiene separati per questo motivo. Il <strong>carburante</strong> nasce dai chilometri che percorri, dal consumo reale e dal prezzo medio self service della tua regione comunicato al MIMIT: un consumo di 6,5 litri per 100 km su 12.000 km l'anno fa 780 litri, che al prezzo medio della benzina diventano circa 1.580 euro. Il <strong>bollo</strong> si costruisce sui kilowatt del libretto, con la tariffa della classe Euro moltiplicata per il coefficiente della tua regione e il secondo scaglione oltre i 100 kW. L'<strong>assicurazione</strong> non si può stimare da fuori: parte dalla media nazionale rilevata da IVASS e va sostituita con il tuo premio vero, perché fra Aosta e Napoli la differenza supera i 250 euro a parità di auto.</p>
+    <p>La <strong>svalutazione</strong> è l'unica voce che quasi nessun articolo mette nel totale. Funziona a percentuale sul valore residuo: un'auto nuova perde intorno al 20-25% il primo anno, poi il 12-15% all'anno fino al quinto, e dal decimo anno in avanti scende sotto il 5% perché resta poco da perdere. Il campo è precompilato in base all'anno di immatricolazione, ma puoi correggerlo: ci sono modelli che tengono il valore molto meglio della media e altri che lo perdono in modo brutale.</p>
+
+    <h2>Un esempio con numeri veri</h2>
+    <p>Prendiamo un'auto di segmento C a benzina del 2021, 85 kW, Euro 6, immatricolata in Lombardia, che vale oggi circa 12.000 euro e percorre 12.000 km l'anno consumando 6,5 litri per 100 km. Il carburante vale circa 1.580 euro. Il bollo: 85 kW × 2,58 € con coefficiente 1,00 fa 219 euro. L'assicurazione, ipotizzando una quattordicesima classe di merito al Nord, 420 euro. Tagliando 250 euro, un set di gomme da 400 euro che dura 40.000 km vale 120 euro l'anno, la revisione 40 euro. Garage, pedaggi e lavaggi, 250 euro. Finora siamo a 2.879 euro.</p>
+    <p>Poi arriva la svalutazione: il 12% di 12.000 euro sono 1.440 euro. Il totale sale a <strong>4.319 euro l'anno</strong>, cioè 360 euro al mese e 36 centesimi per ogni chilometro percorso. È il numero che serve davvero quando devi decidere se tenere l'auto, cambiarla o fare a meno della seconda macchina: 36 centesimi al chilometro significa che un viaggio di 600 km andata e ritorno costa 216 euro, non i 60 euro di benzina che hai in mente.</p>
+
+    <h2>Gli errori più comuni</h2>
+    <ul>
+      <li><strong>Contare solo la benzina.</strong> È la voce che si vede e paghi di tasca, ma nell'esempio sopra pesa appena il 37% del totale.</li>
+      <li><strong>Usare il consumo dichiarato.</strong> Il dato di omologazione è ottimistico del 15-25% nell'uso reale, e di più se fai città o se l'auto è ibrida ricaricabile usata senza ricaricarla. Guarda il computer di bordo sulla media lunga, non quella dell'ultimo viaggio in autostrada.</li>
+      <li><strong>Confondere il tagliando con la manutenzione.</strong> Oltre al tagliando ci sono pastiglie e dischi, batteria, ammortizzatori, climatizzatore: su un'auto oltre gli otto anni mettere 250 euro l'anno è ottimismo. Un valore prudente è il 2-3% del valore residuo, con un minimo di 300-400 euro.</li>
+      <li><strong>Dimenticare la svalutazione sull'usato appena comprato.</strong> Anche un'auto da 8.000 euro perde il suo 8-10% all'anno: sono 700 euro che spariscono senza che nessuno te li chieda.</li>
+      <li><strong>Dividere male il costo per chilometro.</strong> Se fai pochi chilometri il costo al km esplode, perché le voci fisse non si muovono: a 5.000 km l'anno la stessa auto dell'esempio costa 70 centesimi al chilometro.</li>
+    </ul>
+
+    <h2>Domande frequenti</h2>
+
+    <h3>Quanto costa in media mantenere un'auto all'anno in Italia?</h3>
+    <p>Per un'auto di media cilindrata usata per 12.000-15.000 km l'anno il conto completo sta quasi sempre fra 3.000 e 6.500 euro, cioè fra 250 e 540 euro al mese. La forbice è larga perché dipende da tre cose: i chilometri, il premio dell'assicurazione nella tua provincia e quanto vale ancora l'auto, dato che la svalutazione è la voce più pesante nei primi anni di vita.</p>
+
+    <h3>La svalutazione è un costo vero se non vendo l'auto?</h3>
+    <p>Sì, perché è denaro che hai già speso e che non recupererai. Ogni anno l'auto nel tuo garage vale meno: quella perdita si manifesta tutta insieme il giorno in cui la vendi o la rottami, ma si matura un anno alla volta. Un'auto da 20.000 euro che perde il 12% in un anno ti è costata 2.400 euro anche se non hai fatto un chilometro.</p>
+
+    <h3>Conviene il diesel o il benzina?</h3>
+    <p>Dipende dai chilometri. Il diesel consuma meno litri, ma il gasolio costa circa 20 centesimi in più al litro e l'auto parte da un prezzo più alto: il vantaggio si recupera solo sopra i 15.000-20.000 km l'anno. Sotto quella soglia il benzina vince quasi sempre. Con il confronto fra due auto puoi metterli affiancati usando i tuoi numeri invece delle medie.</p>
+
+    <h3>Quanto costa mantenere un'auto elettrica?</h3>
+    <p>L'elettrica risparmia sulle voci correnti: niente bollo nei primi cinque anni (a tempo indeterminato in Lombardia e Piemonte), manutenzione ridotta perché non ha olio, filtri, frizione e candele, e un pieno che costa 4-6 euro per 100 km se carichi a casa. In cambio il prezzo di partenza è più alto e la svalutazione dei primi anni è più rapida: cambia il peso delle voci, non il metodo del calcolo.</p>
+
+    <h3>I prezzi del carburante sono aggiornati?</h3>
+    <p>Sì: la pagina legge le medie giornaliere dei prezzi self service che i gestori comunicano al MIMIT (Osservaprezzi carburanti), divise per regione, e mostra accanto al risultato la data del dato che sta usando. Se apri la pagina senza connessione resta attiva l'ultima tabella salvata nel file, e il prezzo si può sempre correggere a mano con quello del tuo distributore di fiducia.</p>
+
+    <h3>Perché il bollo che mi esce è diverso da quello che pago?</h3>
+    <p>Le Regioni applicano coefficienti propri e alcune (Piemonte, Toscana, Trento e Bolzano) hanno tariffe tutte loro, poi ci sono le riduzioni per domiciliazione e le esenzioni per storiche, elettriche e disabilità. Il campo del bollo è modificabile: se hai la cifra esatta a portata di mano, scrivila e il totale si aggiorna.</p>
+
+    <h2>App collegate</h2>
+    <ul class="correlate">
+      <li><a href="../2026-09-25-calcolo-bollo-auto/">Calcolo del bollo auto regione per regione</a><span>Per avere la cifra esatta da mettere nel campo qui sopra.</span></li>
+      <li><a href="../2026-09-19-costo-viaggio-auto/">Costo di un viaggio in auto</a><span>Quanto spendi su una tratta precisa, fra carburante e pedaggi.</span></li>
+      <li><a href="../2026-10-08-ricarica-auto-elettrica/">Quanto costa ricaricare un'auto elettrica</a><span>Per confrontare la colonnina con la presa di casa.</span></li>
+    </ul>
+  </section>
+
+  <div data-ad="bottom"></div>
+  <div data-support></div>
+
+  <footer>
+    <p>Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a></p>
+    <p>Le stime sono indicative e servono a confrontare scenari: i costi reali dipendono dal modello, dalla provincia e dallo stato dell'auto. Prezzi carburante: MIMIT – Osservaprezzi carburanti. Premio medio RC auto: IVASS.</p>
+  </footer>
+</div>
+
+<script src="../../assets/monetize.js"></script>
+<script>
+(() => {
+  "use strict";
+  /* Modello dati: un oggetto `A` con i dati dell'auto principale e un oggetto `B` (solo i campi
+   * che cambiano, il resto eredita da A) per il confronto Pro. `calcola(stato)` restituisce le sei
+   * voci annue in euro + totale, e non ha effetti collaterali: la stessa funzione serve il risultato
+   * in alto, il confronto e la proiezione a cinque anni. Tutto in localStorage sotto una chiave. */
+
+  const STORAGE = "costo-auto-annuo:v1";
+  const ANNO_OGGI = new Date().getFullYear();
+
+  // Prezzi medi di riserva (MIMIT, media nazionale e regionale): servono quando la pagina è
+  // aperta da file:// o senza rete. Vengono sovrascritti dal file del repo se raggiungibile.
+  let PREZZI = {
+    updated: "2026-10-15",
+    italia: { benzina: 2.034, diesel: 2.252, metano: 1.87, gpl: 0.775 },
+    regioni: {
+      "Abruzzo": { benzina: 2.037, diesel: 2.248, gpl: 0.794 },
+      "Basilicata": { benzina: 2.072, diesel: 2.282, gpl: 0.786 },
+      "Calabria": { benzina: 2.052, diesel: 2.272, gpl: 0.818 },
+      "Campania": { benzina: 2.061, diesel: 2.272, metano: 1.794, gpl: 0.743 },
+      "Emilia-Romagna": { benzina: 2.032, diesel: 2.253, gpl: 0.778, metano: 1.884 },
+      "Friuli-Venezia Giulia": { benzina: 2.036, diesel: 2.265, gpl: 0.765 },
+      "Lazio": { benzina: 2.017, diesel: 2.232, gpl: 0.754, metano: 1.922 },
+      "Liguria": { benzina: 2.021, diesel: 2.242 },
+      "Lombardia": { benzina: 2.023, diesel: 2.246, metano: 1.706, gpl: 0.753 },
+      "Marche": { benzina: 2.023, diesel: 2.236, metano: 1.894 },
+      "Molise": { benzina: 2.04, diesel: 2.259 },
+      "Piemonte": { benzina: 2.028, diesel: 2.251, metano: 1.879, gpl: 0.74 },
+      "Puglia": { benzina: 2.048, diesel: 2.262, gpl: 0.724 },
+      "Sardegna": { benzina: 2.035, diesel: 2.256, gpl: 0.886 },
+      "Sicilia": { benzina: 2.04, diesel: 2.258, gpl: 0.809 },
+      "Toscana": { benzina: 2.032, diesel: 2.25, metano: 1.889, gpl: 0.767 },
+      "Trentino-Alto Adige (Bolzano)": { benzina: 2.059, diesel: 2.273, metano: 2.066, gpl: 0.859 },
+      "Trentino-Alto Adige (Trento)": { benzina: 2.038, diesel: 2.249 },
+      "Umbria": { benzina: 2.028, diesel: 2.238, metano: 1.974 },
+      "Valle d'Aosta": { benzina: 2.033, diesel: 2.262 },
+      "Veneto": { benzina: 2.028, diesel: 2.248, gpl: 0.785, metano: 1.98 },
+    },
+    live: false,
+  };
+
+  // Alimentazioni: um = unità del consumo, chiave = voce nei prezzi, def = consumo tipico.
+  const ALIM = {
+    benzina:   { n: "Benzina",   um: "l/100",   umP: "€/l",   def: 6.5,  fuel: "benzina" },
+    diesel:    { n: "Diesel",    um: "l/100",   umP: "€/l",   def: 5.2,  fuel: "diesel" },
+    gpl:       { n: "GPL",       um: "l/100",   umP: "€/l",   def: 8.4,  fuel: "gpl" },
+    metano:    { n: "Metano",    um: "kg/100",  umP: "€/kg",  def: 4.4,  fuel: "metano" },
+    ibrida:    { n: "Ibrida",    um: "l/100",   umP: "€/l",   def: 4.8,  fuel: "benzina" },
+    elettrica: { n: "Elettrica", um: "kWh/100", umP: "€/kWh", def: 17.5, fuel: null },
+  };
+  const ORDINE_ALIM = ["benzina", "diesel", "gpl", "metano", "ibrida", "elettrica"];
+  const PREZZO_KWH = 0.29; // presa domestica, tariffa tutelata media; modificabile dall'utente
+
+  // Tariffe bollo in €/kW: [fino a 100 kW, oltre 100 kW] per classe Euro.
+  const BOLLO_BASE = { 0: [3.00, 4.50], 1: [2.90, 4.35], 2: [2.80, 4.20], 3: [2.70, 4.05], 4: [2.58, 3.87], 5: [2.58, 3.87], 6: [2.58, 3.87] };
+  // m = coefficiente regionale; elet = elettriche esenti a tempo indeterminato.
+  const REGIONI = [
+    { n: "Abruzzo", m: 1.21 }, { n: "Basilicata", m: 1 }, { n: "Calabria", m: 1.10 },
+    { n: "Campania", m: 1.21 }, { n: "Emilia-Romagna", m: 1.10 }, { n: "Friuli-Venezia Giulia", m: 1 },
+    { n: "Lazio", m: 1.10 }, { n: "Liguria", m: 1.10 }, { n: "Lombardia", m: 1, elet: true },
+    { n: "Marche", m: 1 }, { n: "Molise", m: 1 }, { n: "Piemonte", m: 1, elet: true },
+    { n: "Puglia", m: 1 }, { n: "Sardegna", m: 1 }, { n: "Sicilia", m: 1 },
+    { n: "Toscana", m: 1.157 }, { n: "Trentino-Alto Adige (Bolzano)", m: 0.90 },
+    { n: "Trentino-Alto Adige (Trento)", m: 0.90 }, { n: "Umbria", m: 1 },
+    { n: "Valle d'Aosta", m: 1 }, { n: "Veneto", m: 1.10 },
+  ];
+  const regioneDi = (n) => REGIONI.find((r) => r.n === n) || REGIONI[8];
+
+  const REVISIONE = 79.02; // tariffa nei centri privati, ogni due anni dal quarto anno
+
+  // ---------- stato ----------
+  const base = () => ({
+    alim: "benzina", km: 12000, cons: 6.5, prezzo: null, anno: ANNO_OGGI - 5,
+    kw: 85, euro: "6", regione: "Lombardia", bollo: null, assic: 422,
+    tagliando: 250, gomme: 400, durata: 40000, extra: 250,
+    valore: 12000, sval: null,
+    b: { alim: "diesel", cons: 5.2, kw: 85, valore: 13000, assic: 422, anno: ANNO_OGGI - 5, manut: 400 },
+  });
+  let S = base();
+
+  const $ = (id) => document.getElementById(id);
+
+  function carica() {
+    try {
+      const v = JSON.parse(localStorage.getItem(STORAGE) || "null");
+      if (v && typeof v === "object") S = Object.assign(base(), v, { b: Object.assign(base().b, v.b || {}) });
+    } catch (_) { /* storage bloccato o dato rotto: si resta ai valori predefiniti */ }
+  }
+  function salva() {
+    try { localStorage.setItem(STORAGE, JSON.stringify(S)); } catch (_) { /* quota o modalità privata */ }
+  }
+
+  // ---------- formattazione ----------
+  const eur0 = (n) => Math.round(n).toLocaleString("it-IT", { style: "currency", currency: "EUR", maximumFractionDigits: 0, useGrouping: true });
+  const eur2 = (n) => n.toLocaleString("it-IT", { style: "currency", currency: "EUR", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const cent = (n) => n.toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const n0 = (n) => Math.round(n).toLocaleString("it-IT");
+  const pc = (n) => n.toLocaleString("it-IT", { maximumFractionDigits: 1 }) + "%";
+
+  const toNum = (v, d) => {
+    const x = Number(String(v == null ? "" : v).replace(",", "."));
+    return Number.isFinite(x) ? x : d;
+  };
+  const clamp = (x, a, b) => Math.min(b, Math.max(a, x));
+
+  // ---------- regole ----------
+  const etaDi = (anno) => {
+    const a = toNum(anno, NaN);
+    if (!Number.isFinite(a) || a < 1900 || a > ANNO_OGGI) return null;
+    return Math.max(0, ANNO_OGGI - a);
+  };
+
+  // Perdita di valore tipica sul valore residuo, per età del veicolo.
+  function svalSuggerita(eta) {
+    if (eta === null) return 10;
+    if (eta <= 0) return 22;
+    if (eta <= 2) return 15;
+    if (eta <= 5) return 12;
+    if (eta <= 9) return 9;
+    if (eta <= 14) return 6;
+    return 4;
+  }
+
+  function prezzoDi(alim, regione) {
+    const a = ALIM[alim];
+    if (!a.fuel) return { p: PREZZO_KWH, fonte: "presa domestica" };
+    const r = PREZZI.regioni[regione] || {};
+    if (Number.isFinite(r[a.fuel])) return { p: r[a.fuel], fonte: regione };
+    if (Number.isFinite(PREZZI.italia[a.fuel])) return { p: PREZZI.italia[a.fuel], fonte: "media Italia" };
+    return { p: a.fuel === "gpl" ? 0.78 : 2.05, fonte: "stima" };
+  }
+
+  // Bollo automatico: kW × tariffa della classe Euro × coefficiente regionale, due scaglioni,
+  // più il superbollo oltre i 185 kW e le esenzioni per elettriche e veicoli ultratrentennali.
+  function bolloAuto(st) {
+    const kw = clamp(toNum(st.kw, 0), 0, 900);
+    const reg = regioneDi(st.regione);
+    const eta = etaDi(st.anno);
+    if (!kw) return { euro: 0, nota: "Inserisci i kW del libretto per stimare il bollo." };
+    if (eta !== null && eta >= 30) return { euro: 28.40, nota: "Veicolo ultratrentennale: tassa di circolazione forfettaria di 28,40 € l'anno." };
+    if (st.alim === "elettrica") {
+      if (reg.elet) return { euro: 0, nota: "In " + reg.n + " le elettriche sono esenti dal bollo a tempo indeterminato." };
+      if (eta !== null && eta < 5) return { euro: 0, nota: "Elettrica entro i cinque anni: esente in tutta Italia." };
+    }
+    const t = BOLLO_BASE[String(st.euro)] || BOLLO_BASE[6];
+    const t1 = t[0] * reg.m, t2 = t[1] * reg.m;
+    let v = kw <= 100 ? kw * t1 : 100 * t1 + (kw - 100) * t2;
+    if (st.alim === "elettrica") v *= 0.25;
+    let nota = kw <= 100
+      ? n0(kw) + " kW × " + cent(t1) + " €"
+      : "100 kW × " + cent(t1) + " € + " + n0(kw - 100) + " kW × " + cent(t2) + " €";
+    if (kw > 185) {
+      const t3 = eta === null || eta < 5 ? 20 : eta < 10 ? 12 : eta < 15 ? 6 : eta < 20 ? 3 : 0;
+      if (t3) { v += (kw - 185) * t3; nota += " + superbollo " + n0(kw - 185) + " kW × " + t3 + " €"; }
+    }
+    return { euro: Math.round(v), nota: nota + " in " + reg.n };
+  }
+
+  function revisioneAnnua(eta) {
+    if (eta === null || eta < 4) return 0;
+    return REVISIONE / 2;
+  }
+
+  // Cuore del calcolo: le sei voci annue. Nessun effetto collaterale.
+  function calcola(st) {
+    const km = clamp(toNum(st.km, 0), 0, 300000);
+    const eta = etaDi(st.anno);
+    const cons = Math.max(0, toNum(st.cons, 0));
+    const pr = prezzoDi(st.alim, st.regione);
+    const prezzo = st.prezzo === null || st.prezzo === "" ? pr.p : Math.max(0, toNum(st.prezzo, pr.p));
+
+    const carburante = (km / 100) * cons * prezzo;
+    const bollo = st.bollo === null || st.bollo === "" ? bolloAuto(st).euro : Math.max(0, toNum(st.bollo, 0));
+    const assic = Math.max(0, toNum(st.assic, 0));
+
+    const durata = clamp(toNum(st.durata, 40000), 5000, 200000);
+    const gommeAnno = km > 0 ? Math.max(0, toNum(st.gomme, 0)) * (km / durata) : 0;
+    const tagliando = st.alim === "elettrica" ? Math.max(0, toNum(st.tagliando, 0)) * 0.55 : Math.max(0, toNum(st.tagliando, 0));
+    const manutenzione = tagliando + gommeAnno + revisioneAnnua(eta);
+
+    const valore = Math.max(0, toNum(st.valore, 0));
+    const pct = st.sval === null || st.sval === "" ? svalSuggerita(eta) : clamp(toNum(st.sval, 10), 0, 40);
+    const svalutazione = valore * pct / 100;
+
+    const extra = Math.max(0, toNum(st.extra, 0));
+    const totale = carburante + assic + bollo + manutenzione + svalutazione + extra;
+
+    return {
+      km, eta, prezzo, fontePrezzo: pr.fonte, pct, valore, gommeAnno, revisione: revisioneAnnua(eta),
+      voci: [
+        { k: "carburante", n: "Carburante", v: carburante },
+        { k: "svalutazione", n: "Svalutazione", v: svalutazione },
+        { k: "assic", n: "Assicurazione", v: assic },
+        { k: "manutenzione", n: "Manutenzione", v: manutenzione },
+        { k: "bollo", n: "Bollo", v: bollo },
+        { k: "extra", n: "Garage, pedaggi, extra", v: extra },
+      ],
+      correnti: carburante + assic + bollo + manutenzione + extra,
+      totale,
+    };
+  }
+
+  // Stato dell'auto B: eredita da A tutto ciò che non è stato dichiarato nel suo pannello.
+  function statoB() {
+    const b = S.b;
+    return {
+      alim: b.alim, km: S.km, cons: b.cons, prezzo: null, anno: b.anno,
+      kw: b.kw, euro: S.euro, regione: S.regione, bollo: null, assic: b.assic,
+      tagliando: b.manut, gomme: 0, durata: S.durata, extra: S.extra,
+      valore: b.valore, sval: null,
+    };
+  }
+
+  // ---------- disegno ----------
+  function segmenti(host, attivo, onPick) {
+    host.replaceChildren();
+    for (const k of ORDINE_ALIM) {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.textContent = ALIM[k].n;
+      b.setAttribute("aria-pressed", k === attivo ? "true" : "false");
+      b.addEventListener("click", () => onPick(k));
+      host.append(b);
+    }
+  }
+
+  function disegnaRipartizione(r) {
+    const host = $("ripartizione");
+    host.replaceChildren();
+    if (r.totale <= 0) {
+      const p = document.createElement("p");
+      p.className = "hint";
+      p.textContent = "Compila i campi qui sopra: appena c'è un valore, qui vedi come si divide la spesa.";
+      host.append(p);
+      return;
+    }
+    for (const v of r.voci.slice().sort((a, b) => b.v - a.v)) {
+      if (v.v <= 0) continue;
+      const pct = v.v / r.totale * 100;
+      const row = document.createElement("div");
+      row.className = "voce";
+      const r1 = document.createElement("div");
+      r1.className = "r1";
+      const nome = document.createElement("span");
+      nome.className = "nome";
+      nome.textContent = v.n;
+      const val = document.createElement("span");
+      val.className = "val";
+      val.textContent = eur0(v.v) + " · " + Math.round(pct) + "%";
+      r1.append(nome, val);
+      const bar = document.createElement("div");
+      bar.className = "bar";
+      const i = document.createElement("i");
+      i.style.width = pct.toFixed(1) + "%";
+      bar.append(i);
+      row.append(r1, bar);
+      host.append(row);
+    }
+  }
+
+  function disegnaConfronto(ra) {
+    const rb = calcola(statoB());
+    $("nome-a").textContent = ALIM[S.alim].n.toLowerCase();
+    $("nome-b").textContent = ALIM[S.b.alim].n.toLowerCase();
+    $("tot-a").textContent = ra.totale > 0 ? eur0(ra.totale) + "/anno" : "—";
+    $("tot-b").textContent = rb.totale > 0 ? eur0(rb.totale) + "/anno" : "—";
+    $("km-a").textContent = ra.km > 0 ? cent(ra.totale / ra.km) + " €/km" : "";
+    $("km-b").textContent = rb.km > 0 ? cent(rb.totale / rb.km) + " €/km" : "";
+    const d = ra.totale - rb.totale;
+    const v = $("verdetto");
+    if (ra.totale <= 0 || rb.totale <= 0) v.textContent = "Completa i dati delle due auto per vedere il confronto.";
+    else if (Math.abs(d) < 60) v.textContent = "Le due auto costano praticamente lo stesso: la differenza è sotto i 60 € l'anno.";
+    else if (d > 0) v.textContent = "L'auto B costa " + eur0(d) + " in meno all'anno, " + eur0(d * 5) + " in cinque anni.";
+    else v.textContent = "L'auto A costa " + eur0(-d) + " in meno all'anno, " + eur0(-d * 5) + " in cinque anni.";
+    return rb;
+  }
+
+  // Proiezione: la svalutazione segue il valore che scende, le gomme e la revisione cadono
+  // negli anni in cui si pagano davvero.
+  function proiezione(st) {
+    const r0 = calcola(st);
+    const righe = [];
+    let valore = r0.valore;
+    let kmTot = 0;
+    for (let a = 1; a <= 5; a++) {
+      const eta = r0.eta === null ? null : r0.eta + a - 1;
+      const pct = st.sval === null || st.sval === "" ? svalSuggerita(eta) : r0.pct;
+      const sval = valore * pct / 100;
+      // gomme: si pagano quando i km percorsi superano la durata di un set
+      kmTot += r0.km;
+      const durata = clamp(toNum(st.durata, 40000), 5000, 200000);
+      const setPagati = Math.floor(kmTot / durata) - Math.floor((kmTot - r0.km) / durata);
+      const gomme = setPagati * Math.max(0, toNum(st.gomme, 0));
+      const rev = (eta !== null && eta >= 4 && (eta - 4) % 2 === 0) ? REVISIONE : 0;
+      const correnti = r0.correnti - r0.gommeAnno - r0.revisione + gomme + rev;
+      righe.push({ a, correnti, sval, tot: correnti + sval, valore });
+      valore = Math.max(0, valore - sval);
+    }
+    return righe;
+  }
+
+  function disegnaProiezione() {
+    const righe = proiezione(S);
+    const tb = $("proiezione").querySelector("tbody");
+    const tf = $("proiezione").querySelector("tfoot");
+    tb.replaceChildren();
+    for (const r of righe) {
+      const tr = document.createElement("tr");
+      for (const txt of [String(ANNO_OGGI + r.a - 1), eur0(r.correnti), eur0(r.sval), eur0(r.tot)]) {
+        const td = document.createElement("td");
+        td.textContent = txt;
+        tr.append(td);
+      }
+      tb.append(tr);
+    }
+    const somma = righe.reduce((s, r) => s + r.tot, 0);
+    tf.replaceChildren();
+    const tr = document.createElement("tr");
+    for (const txt of ["5 anni", eur0(righe.reduce((s, r) => s + r.correnti, 0)), eur0(righe.reduce((s, r) => s + r.sval, 0)), eur0(somma)]) {
+      const td = document.createElement("td");
+      td.textContent = txt;
+      tr.append(td);
+    }
+    tf.append(tr);
+    return righe;
+  }
+
+  let ultimeRighe = [];
+
+  function aggiorna() {
+    const a = ALIM[S.alim];
+    const r = calcola(S);
+
+    // risultato principale
+    if (r.totale > 0) {
+      $("out-anno").textContent = eur0(r.totale) + " l'anno";
+      $("out-mese").textContent = eur0(r.totale / 12) + " al mese";
+      $("out-km").textContent = r.km > 0 ? cent(r.totale / r.km) + " € al km" : "nessun km inserito";
+    } else {
+      $("out-anno").textContent = "—";
+      $("out-mese").textContent = "— al mese";
+      $("out-km").textContent = "— al km";
+    }
+
+    // etichette dipendenti dall'alimentazione
+    $("um-cons").textContent = a.um;
+    $("um-prezzo").textContent = a.umP;
+    $("lab-cons").textContent = "Consumo (" + a.um + ")";
+    $("lab-prezzo").textContent = S.alim === "elettrica" ? "Prezzo energia" : "Prezzo carburante";
+    $("um-consb").textContent = ALIM[S.b.alim].um;
+
+    const auto = prezzoDi(S.alim, S.regione);
+    $("hint-prezzo").textContent = S.alim === "elettrica"
+      ? "Predefinito: " + cent(PREZZO_KWH) + " €/kWh, la presa di casa. Alle colonnine fast si arriva a 0,70-0,90 €/kWh."
+      : "Media " + (auto.fonte === "media Italia" ? "italiana" : auto.fonte) + ": " + cent(auto.p) + " " + a.umP + ". Cambiala con il prezzo del tuo distributore.";
+
+    $("hint-km").textContent = r.km > 0
+      ? "Chi fa " + n0(r.km) + " km l'anno percorre circa " + n0(r.km / 12) + " km al mese."
+      : "Senza chilometri restano solo le spese fisse: bollo, assicurazione e svalutazione.";
+
+    $("hint-eta").textContent = r.eta === null
+      ? "Serve per stimare svalutazione e revisione."
+      : "Auto di " + r.eta + " " + (r.eta === 1 ? "anno" : "anni") + (r.eta >= 4 ? ": la revisione è dovuta ogni due anni." : ": prima revisione al quarto anno.");
+
+    const ba = bolloAuto(S);
+    $("hint-bollo").textContent = (S.bollo === null || S.bollo === "" ? "Bollo stimato: " + eur0(ba.euro) + ". " : "Bollo inserito a mano. Stima automatica: " + eur0(ba.euro) + ". ")
+      + ba.nota.replace(/\.$/, "") + ". L'assicurazione è precompilata con il premio medio nazionale IVASS (422 €): sostituiscilo con il tuo.";
+
+    $("hint-sval").textContent = r.valore > 0
+      ? "Perdita applicata: " + pc(r.pct) + " di " + eur0(r.valore) + " = " + eur0(r.valore * r.pct / 100) + " quest'anno."
+        + (S.sval === null || S.sval === "" ? " Percentuale suggerita in base all'età; puoi cambiarla." : "")
+      : "Scrivi quanto vale oggi l'auto (il prezzo a cui la venderesti) per includere la voce più pesante.";
+
+    $("fonte").textContent = "Prezzi carburante: MIMIT – Osservaprezzi, medie self service"
+      + (PREZZI.updated ? " aggiornate al " + dataIt(PREZZI.updated) : "")
+      + (PREZZI.live ? "." : " (tabella inclusa nella pagina).")
+      + " Tariffe bollo per Regione e classe Euro; revisione 79,02 € ogni due anni.";
+
+    disegnaRipartizione(r);
+    disegnaConfronto(r);
+    ultimeRighe = disegnaProiezione();
+    salva();
+  }
+
+  function dataIt(iso) {
+    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso || ""));
+    if (!m) return String(iso || "");
+    return m[3] + "/" + m[2] + "/" + m[1];
+  }
+
+  // ---------- collegamento dei controlli ----------
+  function scrivi() {
+    $("km").value = S.km;
+    $("km-range").value = clamp(toNum(S.km, 0), 0, 50000);
+    $("cons").value = S.cons;
+    $("prezzo").value = S.prezzo === null || S.prezzo === "" ? "" : S.prezzo;
+    $("prezzo").placeholder = cent(prezzoDi(S.alim, S.regione).p);
+    $("anno").value = S.anno;
+    $("kw").value = S.kw;
+    $("euro").value = String(S.euro);
+    $("regione").value = S.regione;
+    $("bollo").value = S.bollo === null || S.bollo === "" ? "" : S.bollo;
+    $("bollo").placeholder = String(bolloAuto(S).euro);
+    $("assic").value = S.assic;
+    $("tagliando").value = S.tagliando;
+    $("gomme").value = S.gomme;
+    $("durata").value = S.durata;
+    $("extra").value = S.extra;
+    $("valore").value = S.valore;
+    $("sval").value = S.sval === null || S.sval === "" ? "" : S.sval;
+    $("sval").placeholder = String(svalSuggerita(etaDi(S.anno)));
+    $("consb").value = S.b.cons;
+    $("kwb").value = S.b.kw;
+    $("valoreb").value = S.b.valore;
+    $("assicb").value = S.b.assic;
+    $("annob").value = S.b.anno;
+    $("manutb").value = S.b.manut;
+    segmenti($("seg-alim"), S.alim, (k) => {
+      S.alim = k;
+      S.cons = ALIM[k].def;
+      S.prezzo = null;
+      scrivi();
+      aggiorna();
+    });
+    segmenti($("seg-alimb"), S.b.alim, (k) => {
+      S.b.alim = k;
+      S.b.cons = ALIM[k].def;
+      scrivi();
+      aggiorna();
+    });
+  }
+
+  // campi numerici semplici: id → percorso nello stato (null = vuoto ammesso)
+  const CAMPI = [
+    ["km", "km", 0], ["cons", "cons", 0], ["anno", "anno", ANNO_OGGI - 5],
+    ["kw", "kw", 0], ["assic", "assic", 0], ["tagliando", "tagliando", 0],
+    ["gomme", "gomme", 0], ["durata", "durata", 40000], ["extra", "extra", 0],
+    ["valore", "valore", 0],
+  ];
+  const VUOTI = [["prezzo", "prezzo"], ["bollo", "bollo"], ["sval", "sval"]];
+  const CAMPI_B = [["consb", "cons", 0], ["kwb", "kw", 0], ["valoreb", "valore", 0], ["assicb", "assic", 0], ["annob", "anno", ANNO_OGGI - 5], ["manutb", "manut", 0]];
+
+  function collega() {
+    for (const [id, key, d] of CAMPI) {
+      $(id).addEventListener("input", () => {
+        const el = $(id);
+        S[key] = el.value === "" ? d : toNum(el.value, d);
+        if (id === "km") $("km-range").value = clamp(toNum(el.value, 0), 0, 50000);
+        if (id === "anno") $("sval").placeholder = String(svalSuggerita(etaDi(S.anno)));
+        aggiorna();
+      });
+    }
+    for (const [id, key] of VUOTI) {
+      $(id).addEventListener("input", () => {
+        S[key] = $(id).value === "" ? null : toNum($(id).value, null);
+        aggiorna();
+      });
+    }
+    for (const [id, key, d] of CAMPI_B) {
+      $(id).addEventListener("input", () => {
+        S.b[key] = $(id).value === "" ? d : toNum($(id).value, d);
+        aggiorna();
+      });
+    }
+    $("km-range").addEventListener("input", () => {
+      S.km = toNum($("km-range").value, 0);
+      $("km").value = S.km;
+      aggiorna();
+    });
+    $("euro").addEventListener("change", () => { S.euro = $("euro").value; $("bollo").placeholder = String(bolloAuto(S).euro); aggiorna(); });
+    $("regione").addEventListener("change", () => {
+      S.regione = $("regione").value;
+      $("prezzo").placeholder = cent(prezzoDi(S.alim, S.regione).p);
+      $("bollo").placeholder = String(bolloAuto(S).euro);
+      aggiorna();
+    });
+    $("reset").addEventListener("click", () => { S = base(); scrivi(); aggiorna(); });
+    $("stampa").addEventListener("click", () => { try { window.print(); } catch (_) { /* stampa non disponibile */ } });
+    $("csv").addEventListener("click", scaricaCsv);
+
+    // Enter chiude la tastiera, Esc rimette il campo al valore salvato
+    for (const el of document.querySelectorAll("input")) {
+      el.addEventListener("keydown", (ev) => {
+        if (ev.key === "Enter") { ev.preventDefault(); el.blur(); }
+        else if (ev.key === "Escape") { el.blur(); scrivi(); aggiorna(); }
+      });
+    }
+  }
+
+  function scaricaCsv() {
+    const r = calcola(S);
+    const righe = [["Voce", "Euro all'anno"]];
+    const soldi = (x) => eur2(x).replace(/\u00a0/g, " ");
+    for (const v of r.voci) righe.push([v.n, soldi(v.v)]);
+    righe.push(["TOTALE", soldi(r.totale)]);
+    righe.push([]);
+    righe.push(["Anno", "Spese correnti", "Svalutazione", "Totale"]);
+    for (const p of ultimeRighe) righe.push([String(ANNO_OGGI + p.a - 1), soldi(p.correnti), soldi(p.sval), soldi(p.tot)]);
+    const csv = "﻿" + righe.map((r2) => r2.map((c) => '"' + String(c).replace(/"/g, '""') + '"').join(";")).join("\r\n");
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+    a.download = "costo-auto-annuo.csv";
+    document.body.append(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  }
+
+  // Prezzi aggiornati dal repo (stessa origine). Se non arrivano, resta la tabella inclusa sopra.
+  async function prezziLive() {
+    try {
+      const res = await fetch("../../data/carburanti.json", { cache: "no-cache" });
+      if (!res.ok) return;
+      const d = await res.json();
+      if (d && d.italia && d.regioni) {
+        PREZZI = { updated: d.updated || PREZZI.updated, italia: d.italia, regioni: d.regioni, live: true };
+        $("prezzo").placeholder = cent(prezzoDi(S.alim, S.regione).p);
+        aggiorna();
+      }
+    } catch (_) { /* file:// oppure offline: si usa la tabella inclusa */ }
+  }
+
+  function avvia() {
+    const sel = $("regione");
+    for (const r of REGIONI) {
+      const o = document.createElement("option");
+      o.value = r.n;
+      o.textContent = r.n;
+      sel.append(o);
+    }
+    carica();
+    scrivi();
+    collega();
+    aggiorna();
+    prezziLive();
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", avvia);
+  else avvia();
+})();
+</script>
+</body>
+</html>
