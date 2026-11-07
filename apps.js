@@ -1,7 +1,7 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 56,
+  "count": 57,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -50,6 +50,67 @@ window.__APPS__ = {
     ]
   },
   "apps": [
+    {
+      "title": "Preventivo Finestre",
+      "slug": "2026-11-07-quanto-costa-cambiare-finestre",
+      "date": "2026-11-07",
+      "description": "Calcola quanto costa cambiare le finestre con le misure vere dei tuoi vani: telaio, posa, smaltimento, IVA mista e detrazione scalata.",
+      "category": "casa-cucina",
+      "tags": [
+        "finestre",
+        "infissi",
+        "preventivo",
+        "casa",
+        "detrazione"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "single-column",
+        "palette": "azzurro-cielo",
+        "font": "rounded"
+      },
+      "business": {
+        "keyword": "quanto costa cambiare le finestre",
+        "keywords": [
+          "prezzo infissi al mq",
+          "preventivo sostituzione finestre",
+          "costo finestre in pvc al metro quadro",
+          "quanto costa cambiare gli infissi"
+        ],
+        "intent": "Chi ha in mano (o sta per chiedere) un preventivo per gli infissi e vuole capire subito se la cifra è ragionevole, voce per voce.",
+        "target": "Proprietari di casa 35-65 anni che stanno ristrutturando o vogliono isolare, da telefono, prima o dopo il sopralluogo del serramentista.",
+        "edge": "Calcola finestra per finestra con le misure vere, separa telaio, posa, smaltimento e accessori, applica l'IVA mista sui beni significativi e scala la detrazione 2026: nessun form, nessun contatto.",
+        "monetization": [
+          "adsense",
+          "affiliate",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto fra i quattro materiali",
+          "Preventivo per finestra da stampare"
+        ],
+        "affiliate": [
+          {
+            "t": "Metro laser per prendere le misure dei vani senza errori",
+            "q": "metro laser distanziometro"
+          },
+          {
+            "t": "Guarnizioni adesive per infissi che spifferano",
+            "q": "guarnizioni adesive per infissi"
+          },
+          {
+            "t": "Pellicola isolante termica per vetri singoli",
+            "q": "pellicola isolante termica finestre"
+          }
+        ]
+      },
+      "size": 48191
+    },
     {
       "title": "Costo Auto all'Anno",
       "slug": "2026-11-06-costo-auto-annuo",
