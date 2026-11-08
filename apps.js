@@ -1,7 +1,7 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 57,
+  "count": 58,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -50,6 +50,52 @@ window.__APPS__ = {
     ]
   },
   "apps": [
+    {
+      "title": "Costo Divorzio",
+      "slug": "2026-11-08-quanto-costa-il-divorzio",
+      "date": "2026-11-08",
+      "description": "Quanto costa il divorzio nel 2026: Comune, negoziazione assistita, ricorso congiunto o causa, con IVA e cassa forense già incluse.",
+      "category": "finanza-personale",
+      "tags": [
+        "divorzio",
+        "separazione",
+        "avvocato",
+        "costi"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "wizard",
+        "palette": "blu-notte",
+        "font": "serif-editoriale"
+      },
+      "business": {
+        "keyword": "quanto costa il divorzio",
+        "keywords": [
+          "quanto costa il divorzio consensuale",
+          "costo divorzio giudiziale",
+          "quanto costa divorziare senza avvocato",
+          "spese avvocato divorzio"
+        ],
+        "intent": "Chi sta per separarsi vuole sapere adesso quanto gli costerà, senza lasciare il numero di telefono a uno studio legale per avere una cifra.",
+        "target": "Coniugi fra i 30 e i 60 anni che stanno decidendo come separarsi, da telefono, spesso di sera.",
+        "edge": "Nessuno online distingue la tua parte dal totale della coppia né aggiunge al compenso le spese generali al 15%, la cassa forense al 4% e l'IVA al 22%: il moltiplicatore 1,46 è la sorpresa più grossa della pratica e qui è già dentro il totale.",
+        "monetization": [
+          "adsense",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto fra le quattro strade",
+          "Costo dei prossimi anni con l'assegno"
+        ],
+        "affiliate": []
+      },
+      "size": 64803
+    },
     {
       "title": "Preventivo Finestre",
       "slug": "2026-11-07-quanto-costa-cambiare-finestre",
