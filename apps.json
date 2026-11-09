@@ -1,6 +1,6 @@
 {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 58,
+  "count": 59,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -49,6 +49,67 @@
     ]
   },
   "apps": [
+    {
+      "title": "Budget Matrimonio",
+      "slug": "2026-11-09-quanto-costa-un-matrimonio",
+      "date": "2026-11-09",
+      "description": "Stima il costo del matrimonio voce per voce dal numero di invitati e scopri quanto resta a tuo carico dopo le buste.",
+      "category": "finanza-personale",
+      "tags": [
+        "matrimonio",
+        "budget",
+        "nozze",
+        "spese"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "dashboard",
+        "palette": "giallo-senape",
+        "font": "rounded"
+      },
+      "business": {
+        "keyword": "quanto costa un matrimonio",
+        "keywords": [
+          "costo matrimonio 100 invitati",
+          "budget matrimonio 2026",
+          "quanto costa sposarsi",
+          "costo matrimonio per invitato"
+        ],
+        "intent": "Coppia che sta decidendo se e come sposarsi e vuole un numero credibile prima di chiedere il primo preventivo, senza lasciare il contatto a un wedding planner.",
+        "target": "Coppie 25-40 anni e genitori che contribuiscono, da telefono, nei mesi di scelta della location.",
+        "edge": "Nessuno dà il conto dal basso: qui 16 voci su tre livelli con il correttivo di zona, il campo per sostituire la stima col preventivo vero e soprattutto la stima delle buste, che dice quanto resta davvero a carico degli sposi.",
+        "monetization": [
+          "adsense",
+          "affiliate",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Scenari a 60, 100 e 150 invitati",
+          "Scaletta delle caparre mese per mese",
+          "Preventivo da stampare o esportare"
+        ],
+        "affiliate": [
+          {
+            "t": "Agenda per organizzare il matrimonio",
+            "q": "agenda organizzazione matrimonio sposi"
+          },
+          {
+            "t": "Album fotografico e guestbook",
+            "q": "guestbook matrimonio album firme"
+          },
+          {
+            "t": "Scatole e confetti per bomboniere fai da te",
+            "q": "bomboniere matrimonio fai da te confetti"
+          }
+        ]
+      },
+      "size": 49989
+    },
     {
       "title": "Costo Divorzio",
       "slug": "2026-11-08-quanto-costa-il-divorzio",
