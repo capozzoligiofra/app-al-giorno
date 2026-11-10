@@ -1,0 +1,25 @@
+{
+  "title": "Quanto Costa un Funerale",
+  "slug": "2026-11-10-quanto-costa-un-funerale",
+  "date": "2026-11-10",
+  "description": "Calcola il costo di un funerale voce per voce: cofano, trasporto, diritti comunali, cremazione o loculo. Vedi cosa è trattabile e quanto detrai.",
+  "category": "finanza-personale",
+  "tags": ["funerale", "costi", "cremazione", "detrazioni"],
+  "source": "autonoma",
+  "request": null,
+  "status": "pronta",
+  "version": 1,
+  "changelog": [],
+  "design": { "layout": "list-detail", "palette": "grigio-carta", "font": "serif-editoriale" },
+  "business": {
+    "keyword": "quanto costa un funerale",
+    "keywords": ["costo funerale 2026", "prezzi onoranze funebri", "quanto costa un funerale con cremazione", "preventivo funerale"],
+    "intent": "Chi ha appena perso un familiare e deve decidere in uno o due giorni: vuole sapere subito a quanto ammonta il conto e quali voci può togliere o trattare, prima di entrare in agenzia.",
+    "target": "Figli e coniugi fra i 40 e i 70 anni che organizzano il funerale di un genitore, spesso dal telefono e di sera.",
+    "competitors": ["money.it (articolo lungo, nessun calcolatore)", "quantocosta.miofunerale.it (form di richiesta preventivo)", "siti di onoranze funebri con \"a partire da\" e modulo contatti", "blog di settore come Taffo e weareblog.it"],
+    "edge": "Nessun form e nessun contatto da lasciare: il preventivo si compone voce per voce in trenta secondi, ogni voce dice se è fissa per tariffa o trattabile con l'agenzia, e il totale mostra subito quanto si recupera con la detrazione del 19%.",
+    "monetization": ["adsense", "pro", "support"],
+    "pro": ["Preventivo stampabile voce per voce", "Confronto fra cremazione, tumulazione e inumazione"],
+    "affiliate": []
+  }
+}
