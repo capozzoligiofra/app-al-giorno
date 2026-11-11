@@ -1,6 +1,6 @@
 {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 60,
+  "count": 61,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -49,6 +49,71 @@
     ]
   },
   "apps": [
+    {
+      "title": "Preventivo Impianto Dentale",
+      "slug": "2026-11-11-quanto-costa-un-impianto-dentale",
+      "date": "2026-11-11",
+      "description": "Scompone il preventivo di un impianto dentale voce per voce e calcola il costo netto dopo la detrazione del 19%.",
+      "category": "salute-benessere",
+      "tags": [
+        "denti",
+        "impianto",
+        "preventivo",
+        "detrazione",
+        "salute"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "sheet",
+        "palette": "verde-menta",
+        "font": "rounded"
+      },
+      "business": {
+        "keyword": "quanto costa un impianto dentale",
+        "keywords": [
+          "prezzo impianto dentale singolo",
+          "costo arcata completa denti fissi",
+          "preventivo impianto dentale",
+          "impianto dentale detrazione 19%"
+        ],
+        "intent": "Chi ha perso un dente o deve rifare un'arcata e vuole sapere prima della visita quanto spenderà davvero, senza lasciare il numero di telefono a una clinica.",
+        "target": "Adulti 40-70 anni e figli che si informano per un genitore, quasi sempre da telefono, spesso con un preventivo cartaceo in mano da confrontare.",
+        "edge": "Nessun form e nessun contatto: scompone il preventivo nelle sue voci reali (vite, moncone, corona, TAC, osso), applica zona e tipo di studio e mostra il netto dopo la detrazione del 19%.",
+        "monetization": [
+          "adsense",
+          "affiliate",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto Italia e turismo dentale",
+          "Preventivo stampabile"
+        ],
+        "affiliate": [
+          {
+            "t": "Idropulsore dentale",
+            "q": "idropulsore dentale"
+          },
+          {
+            "t": "Spazzolino elettrico",
+            "q": "spazzolino elettrico"
+          },
+          {
+            "t": "Scovolini interdentali",
+            "q": "scovolini interdentali"
+          },
+          {
+            "t": "Collutorio alla clorexidina",
+            "q": "collutorio clorexidina 0,20"
+          }
+        ]
+      },
+      "size": 54287
+    },
     {
       "title": "Quanto Costa un Funerale",
       "slug": "2026-11-10-quanto-costa-un-funerale",

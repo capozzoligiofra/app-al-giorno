@@ -1,0 +1,971 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0fa47c">
+<title>Quanto Costa un Impianto Dentale: preventivo online</title>
+<meta name="description" content="Quanto costa un impianto dentale? Calcola il preventivo voce per voce: vite, moncone, corona, TAC, osso, detrazione del 19% e costo netto reale.">
+<link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-11-11-quanto-costa-un-impianto-dentale/">
+<meta property="og:title" content="Quanto costa un impianto dentale: il preventivo voce per voce">
+<meta property="og:description" content="Vite, moncone, corona, TAC, innesto osseo: la stima completa in trenta secondi, con la detrazione del 19% e il costo netto.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-11-11-quanto-costa-un-impianto-dentale/">
+<meta property="og:locale" content="it_IT">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Preventivo Impianto Dentale",
+  "description": "Calcolatore gratuito che scompone il costo di un impianto dentale voce per voce e stima il netto dopo la detrazione del 19%.",
+  "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-11-11-quanto-costa-un-impianto-dentale/",
+  "applicationCategory": "HealthApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+  "inLanguage": "it"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Quanto costa un impianto dentale singolo nel 2026?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Un impianto singolo completo di vite, moncone e corona costa in Italia fra 1.200 e 3.000 euro, con una media intorno ai 1.900-2.200 euro. Le cifre sotto i 1.000 euro pubblicizzate da alcune catene riguardano quasi sempre la sola vite in titanio, senza moncone e senza corona." }
+    },
+    {
+      "@type": "Question",
+      "name": "Il prezzo dell impianto comprende la corona?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Quasi mai. Nei listini la vite, il moncone e la corona sono tre voci distinte: la vite vale circa un terzo del totale. Chiedi sempre un preventivo scritto in cui le tre voci siano indicate separatamente, altrimenti il confronto fra studi non ha senso." }
+    },
+    {
+      "@type": "Question",
+      "name": "L impianto dentale è detraibile dalle tasse?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sì: rientra fra le spese sanitarie detraibili al 19% sulla parte che supera la franchigia di 129,11 euro, a patto che il pagamento sia tracciabile (bonifico, carta, bancomat) e che la fattura sia intestata a chi porta la spesa in dichiarazione. Oltre 15.493,71 euro la detrazione può essere ripartita in quattro quote annuali." }
+    },
+    {
+      "@type": "Question",
+      "name": "Conviene andare all estero per gli impianti dentali?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Dipende da quanti impianti servono. Su un impianto singolo il risparmio viene quasi del tutto mangiato da voli e pernottamenti di due viaggi; su un arcata completa il margine resta ampio anche contando il viaggio. Vanno messi in conto i controlli, la garanzia e chi riparerà un eventuale problema una volta tornato a casa." }
+    },
+    {
+      "@type": "Question",
+      "name": "Il Servizio sanitario nazionale copre gli impianti dentali?",
+      "acceptedAnswer": { "@type": "Answer", "text": "In generale no: l implantologia è esclusa dai LEA tranne che per categorie protette, come persone con gravi patologie, invalidi e, in alcune Regioni, nuclei sotto una certa soglia ISEE. Vale la pena verificare presso la ASL e presso gli ambulatori odontoiatrici convenzionati della propria Regione." }
+    }
+  ]
+}
+</script>
+<style>
+  :root {
+    --bg: #f1fbf7;
+    --card: #ffffff;
+    --ink: #0c2b23;
+    --muted: #4f706a;
+    --line: #d2ece2;
+    --acc: #0fa47c;
+    --acc-ink: #06624a;
+    --acc-soft: #ddf5ec;
+    --warn: #b4591a;
+    --r-lg: 22px;
+    --r-md: 16px;
+    --r-sm: 12px;
+    --shadow: 0 10px 30px rgba(10, 70, 55, .10);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #06130f;
+      --card: #0e201a;
+      --ink: #e7f6f0;
+      --muted: #9dbdb3;
+      --line: #1d3a32;
+      --acc: #3ed6a9;
+      --acc-ink: #a9f0d8;
+      --acc-soft: #0f2a22;
+      --warn: #e8a56a;
+      --shadow: 0 10px 30px rgba(0, 0, 0, .45);
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    overflow-x: hidden;
+    padding: 0 0 calc(132px + env(safe-area-inset-bottom));
+  }
+  .wrap { width: 100%; max-width: 760px; margin: 0 auto; padding: 0 1rem; }
+  a { color: var(--acc-ink); }
+  @media (prefers-color-scheme: dark) { a { color: var(--acc); } }
+
+  .back {
+    display: inline-flex; align-items: center; min-height: 44px;
+    padding: .25rem .25rem; margin-top: .5rem;
+    font-size: 1rem; text-decoration: none; color: var(--muted);
+  }
+  .back:hover, .back:focus-visible { color: var(--acc-ink); }
+
+  h1 { font-size: 1.5rem; line-height: 1.24; margin: .35rem 0 .45rem; letter-spacing: -.015em; }
+  h2 { font-size: 1.3rem; line-height: 1.3; margin: 2rem 0 .6rem; letter-spacing: -.01em; }
+  h3 { font-size: 1.08rem; margin: 1.3rem 0 .35rem; }
+  .lead { color: var(--muted); font-size: 1rem; margin: 0 0 1rem; }
+
+  .card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--r-lg); padding: 1rem 1rem 1.1rem; margin: 0 0 .9rem;
+    box-shadow: var(--shadow);
+  }
+  .card > h2:first-child, .card > h3:first-child { margin-top: 0; }
+  .step {
+    display: flex; align-items: baseline; gap: .55rem;
+    font-size: .95rem; text-transform: uppercase; letter-spacing: .07em;
+    color: var(--muted); margin: 0 0 .7rem; font-weight: 600;
+  }
+  .step b {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--acc-soft); color: var(--acc-ink);
+    font-size: .95rem; letter-spacing: 0; flex: none;
+  }
+  @media (prefers-color-scheme: dark) { .step b { color: var(--acc); } }
+
+  .chips { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 .2rem; }
+  .chip { position: relative; }
+  .chip input { position: absolute; opacity: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+  .chip span {
+    display: flex; align-items: center; justify-content: center;
+    min-height: 46px; padding: .4rem .95rem;
+    border: 1.5px solid var(--line); border-radius: 999px;
+    background: var(--bg); font-size: 1rem; line-height: 1.25; text-align: center;
+    transition: background .15s, border-color .15s, color .15s;
+  }
+  .chip input:checked + span { background: var(--acc); border-color: var(--acc); color: #fff; font-weight: 600; }
+  @media (prefers-color-scheme: dark) { .chip input:checked + span { color: #05201a; } }
+  .chip input:focus-visible + span { outline: 3px solid var(--acc); outline-offset: 2px; }
+
+  .row { display: flex; align-items: center; justify-content: space-between; gap: .75rem; padding: .55rem 0; min-height: 52px; }
+  .row + .row { border-top: 1px solid var(--line); }
+  .row[hidden], .chips[hidden] { display: none; }
+  .row .lbl { flex: 1; }
+  .row .lbl small { display: block; color: var(--muted); font-size: .92rem; line-height: 1.35; }
+
+  .stepper { display: flex; align-items: center; gap: .15rem; flex: none; }
+  .stepper button {
+    width: 46px; height: 46px; border-radius: 50%; flex: none;
+    border: 1.5px solid var(--line); background: var(--bg); color: var(--ink);
+    font-size: 1.4rem; line-height: 1; cursor: pointer;
+  }
+  .stepper button:active { background: var(--acc-soft); }
+  .stepper button:disabled { opacity: .35; cursor: default; }
+  .stepper output { min-width: 2.4ch; text-align: center; font-size: 1.15rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+  .switch { flex: none; display: inline-flex; align-items: center; }
+  .switch input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .switch span {
+    display: block; width: 60px; height: 36px; border-radius: 999px;
+    background: var(--line); position: relative; cursor: pointer; transition: background .18s;
+  }
+  .switch span::after {
+    content: ""; position: absolute; top: 3px; left: 3px; width: 30px; height: 30px;
+    border-radius: 50%; background: var(--card); transition: transform .18s;
+    box-shadow: 0 1px 3px rgba(0,0,0,.25);
+  }
+  .switch input:checked + span { background: var(--acc); }
+  .switch input:checked + span::after { transform: translateX(24px); }
+  .switch input:focus-visible + span { outline: 3px solid var(--acc); outline-offset: 2px; }
+  .switch-hit { display: inline-flex; align-items: center; justify-content: center; min-width: 60px; min-height: 48px; cursor: pointer; }
+
+  select, input[type="number"], input[type="text"] {
+    font: inherit; font-size: 1rem; color: var(--ink); background: var(--bg);
+    border: 1.5px solid var(--line); border-radius: var(--r-sm);
+    padding: .6rem .7rem; min-height: 46px; max-width: 100%;
+  }
+  select { -webkit-appearance: none; appearance: none; padding-right: 2rem;
+    background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+    background-position: calc(100% - 17px) 50%, calc(100% - 12px) 50%;
+    background-size: 5px 5px, 5px 5px; background-repeat: no-repeat; }
+  input[type="number"] { width: 7.5rem; text-align: right; font-variant-numeric: tabular-nums; }
+
+  .hint { color: var(--muted); font-size: .95rem; margin: .5rem 0 0; }
+  .nota { background: var(--acc-soft); border-radius: var(--r-md); padding: .7rem .9rem; font-size: .98rem; margin: .9rem 0 0; }
+
+  /* ---- sheet (pannello risultato che sale dal basso) ---- */
+  .sheet {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+    background: var(--card); color: var(--ink);
+    border-top: 1px solid var(--line);
+    border-radius: var(--r-lg) var(--r-lg) 0 0;
+    box-shadow: 0 -12px 34px rgba(8, 60, 48, .18);
+    padding: .35rem 0 env(safe-area-inset-bottom);
+    max-height: 88dvh; display: flex; flex-direction: column;
+    transition: max-height .25s ease;
+  }
+  .sheet-grab {
+    width: 100%; background: none; border: 0; color: inherit; font: inherit;
+    padding: .35rem 1rem .5rem; cursor: pointer; text-align: left;
+  }
+  .sheet-grab::before {
+    content: ""; display: block; width: 44px; height: 5px; border-radius: 999px;
+    background: var(--line); margin: 0 auto .5rem;
+  }
+  .sheet-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .sheet-head .tot { display: flex; flex-direction: column; }
+  .sheet-head .tot small { color: var(--muted); font-size: .95rem; }
+  .sheet-head .tot strong { font-size: 1.5rem; line-height: 1.15; font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+  .sheet-head .apri { color: var(--acc-ink); font-weight: 600; font-size: 1rem; white-space: nowrap; }
+  @media (prefers-color-scheme: dark) { .sheet-head .apri { color: var(--acc); } }
+  .sheet-body { overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 0 1rem 1rem; display: none; }
+  .sheet.open .sheet-body { display: block; }
+  .sheet.open { max-height: 88dvh; }
+
+  .voci { list-style: none; margin: .4rem 0 0; padding: 0; }
+  .voci li { display: flex; justify-content: space-between; gap: .8rem; padding: .5rem 0; border-bottom: 1px dashed var(--line); }
+  .voci li:last-child { border-bottom: 0; }
+  .voci .v { flex: 1; }
+  .voci .v small { display: block; color: var(--muted); font-size: .92rem; line-height: 1.35; }
+  .voci .p { white-space: nowrap; font-variant-numeric: tabular-nums; font-weight: 600; }
+  .tot-line { display: flex; justify-content: space-between; gap: .8rem; padding: .55rem 0; font-variant-numeric: tabular-nums; }
+  .tot-line.big { border-top: 2px solid var(--acc); margin-top: .4rem; padding-top: .7rem; font-size: 1.12rem; font-weight: 700; }
+  .tot-line.save { color: var(--acc-ink); }
+  @media (prefers-color-scheme: dark) { .tot-line.save { color: var(--acc); } }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+    min-height: 48px; padding: .6rem 1.2rem; border-radius: 999px;
+    border: 1.5px solid var(--acc); background: var(--acc); color: #fff;
+    font: inherit; font-size: 1rem; font-weight: 600; cursor: pointer; text-decoration: none;
+  }
+  @media (prefers-color-scheme: dark) { .btn { color: #05201a; } }
+  .btn.ghost { background: transparent; color: var(--acc-ink); }
+  @media (prefers-color-scheme: dark) { .btn.ghost { color: var(--acc); } }
+  .btns { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: .9rem; }
+
+  table.cmp { width: 100%; border-collapse: collapse; font-size: 1rem; display: block; }
+  table.cmp tbody { display: block; }
+  table.cmp tr { display: flex; justify-content: space-between; gap: .6rem; padding: .55rem 0; border-bottom: 1px dashed var(--line); }
+  table.cmp th { text-align: left; font-weight: 600; }
+  table.cmp td { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  table.cmp .sub { display: block; font-weight: 400; color: var(--muted); font-size: .92rem; }
+
+  #guida p, #guida li { max-width: 62ch; }
+  #guida ul { padding-left: 1.15rem; }
+  #guida li { margin: .3rem 0; }
+
+  footer { color: var(--muted); font-size: .95rem; margin: 2rem 0 1rem; }
+  footer a { color: inherit; }
+
+  #stampa { display: none; }
+
+  @media (min-width: 700px) {
+    body { font-size: 1.09rem; padding-bottom: 140px; }
+    h1 { font-size: 2.1rem; }
+    h2 { font-size: 1.5rem; }
+    .wrap { padding: 0 1.5rem; }
+    .chip span { min-height: 44px; }
+  }
+  @media (min-width: 1100px) {
+    body { padding-right: 430px; padding-bottom: 2.5rem; }
+    .sheet {
+      left: auto; right: 24px; bottom: 24px; width: 382px;
+      border-radius: var(--r-lg); border: 1px solid var(--line);
+      max-height: calc(100dvh - 48px); padding-bottom: .4rem;
+    }
+    .sheet.open { max-height: calc(100dvh - 48px); }
+  }
+  @media print {
+    body > * { display: none !important; }
+    #stampa { display: block !important; color: #000; background: #fff; font-size: 12pt; }
+    #stampa table { width: 100%; border-collapse: collapse; }
+    #stampa th, #stampa td { border: 1px solid #999; padding: 6px 8px; text-align: left; }
+    #stampa td.n { text-align: right; white-space: nowrap; }
+    #stampa .firma { margin-top: 36px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../../index.html">← Tutte le app</a>
+
+  <header>
+    <h1>Quanto costa un impianto dentale: il preventivo voce per voce</h1>
+    <p class="lead">Vite, moncone, corona, esami, osso: la stima scomposta come su un preventivo vero, con il netto
+      dopo la detrazione del 19%. Nessun form, nessun numero di telefono.</p>
+  </header>
+
+  <main>
+    <form id="form" autocomplete="off">
+
+      <section class="card">
+        <p class="step"><b>1</b> Che cosa devi rifare</p>
+        <div class="chips" role="radiogroup" aria-label="Tipo di intervento">
+          <label class="chip"><input type="radio" name="caso" value="singolo" checked><span>Un dente</span></label>
+          <label class="chip"><input type="radio" name="caso" value="ponte"><span>Più denti vicini</span></label>
+          <label class="chip"><input type="radio" name="caso" value="arcata"><span>Un'arcata intera</span></label>
+        </div>
+
+        <div id="box-ponte" hidden>
+          <div class="row">
+            <span class="lbl" id="l-denti">Denti da sostituire<small>Elementi mancanti o da estrarre, uno accanto all'altro.</small></span>
+            <span class="stepper" data-stepper="denti" role="group" aria-labelledby="l-denti">
+              <button type="button" data-d="-1" aria-label="Un dente in meno">−</button>
+              <output id="out-denti">3</output>
+              <button type="button" data-d="1" aria-label="Un dente in più">+</button>
+            </span>
+          </div>
+          <div class="row">
+            <span class="lbl" id="l-impianti">Impianti previsti<small>Su più denti vicini non serve un impianto per dente: due viti reggono un ponte di tre elementi.</small></span>
+            <span class="stepper" data-stepper="impianti" role="group" aria-labelledby="l-impianti">
+              <button type="button" data-d="-1" aria-label="Un impianto in meno">−</button>
+              <output id="out-impianti">2</output>
+              <button type="button" data-d="1" aria-label="Un impianto in più">+</button>
+            </span>
+          </div>
+        </div>
+
+        <div id="box-arcata" hidden>
+          <div class="chips" role="radiogroup" aria-label="Tecnica per l'arcata">
+            <label class="chip"><input type="radio" name="tecnica" value="4" checked><span>All-on-4 (4 impianti)</span></label>
+            <label class="chip"><input type="radio" name="tecnica" value="6"><span>All-on-6 (6 impianti)</span></label>
+          </div>
+          <div class="row">
+            <span class="lbl" id="l-arcate">Arcate da rifare<small>Una (sopra o sotto) oppure entrambe.</small></span>
+            <span class="stepper" data-stepper="arcate" role="group" aria-labelledby="l-arcate">
+              <button type="button" data-d="-1" aria-label="Un'arcata in meno">−</button>
+              <output id="out-arcate">1</output>
+              <button type="button" data-d="1" aria-label="Un'arcata in più">+</button>
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <p class="step"><b>2</b> Il dente finto</p>
+        <div id="box-corona">
+          <div class="chips" role="radiogroup" aria-label="Materiale della corona">
+            <label class="chip"><input type="radio" name="corona" value="metalloceramica"><span>Metallo-ceramica</span></label>
+            <label class="chip"><input type="radio" name="corona" value="zirconia" checked><span>Zirconia</span></label>
+            <label class="chip"><input type="radio" name="corona" value="disilicato"><span>Disilicato di litio</span></label>
+          </div>
+          <p class="hint">La metallo-ceramica costa meno e dura; zirconia e disilicato si vedono meno sui denti davanti.</p>
+        </div>
+        <div id="box-protesi" hidden>
+          <div class="chips" role="radiogroup" aria-label="Materiale della protesi">
+            <label class="chip"><input type="radio" name="protesi" value="resina" checked><span>Resina su titanio</span></label>
+            <label class="chip"><input type="radio" name="protesi" value="zirconia"><span>Zirconia monolitica</span></label>
+          </div>
+          <p class="hint">La resina su barra di titanio costa meno ma va rinnovata dopo 7-10 anni; la zirconia è più cara e più stabile nel tempo.</p>
+        </div>
+      </section>
+
+      <section class="card">
+        <p class="step"><b>3</b> Com'è l'osso</p>
+        <div class="chips" role="radiogroup" aria-label="Condizione dell'osso">
+          <label class="chip"><input type="radio" name="osso" value="ok" checked><span>Sufficiente</span></label>
+          <label class="chip"><input type="radio" name="osso" value="innesto"><span>Serve innesto</span></label>
+          <label class="chip"><input type="radio" name="osso" value="rialzoP"><span>Mini rialzo del seno</span></label>
+          <label class="chip"><input type="radio" name="osso" value="rialzoG"><span>Grande rialzo del seno</span></label>
+        </div>
+        <div class="row" id="box-zone" hidden>
+          <span class="lbl" id="l-zone">Zone da rigenerare<small>Se manca osso sia a destra sia a sinistra, l'intervento si paga due volte.</small></span>
+          <span class="stepper" data-stepper="zone" role="group" aria-labelledby="l-zone">
+            <button type="button" data-d="-1" aria-label="Una zona in meno">−</button>
+            <output id="out-zone">1</output>
+            <button type="button" data-d="1" aria-label="Una zona in più">+</button>
+          </span>
+        </div>
+        <p class="hint">Lo sai solo dopo la TAC: se il dente manca da anni, l'osso quasi sempre si è riassorbito.</p>
+      </section>
+
+      <section class="card">
+        <p class="step"><b>4</b> Esami e passaggi intermedi</p>
+        <div class="row">
+          <span class="lbl">TAC 3D (Cone Beam)<small>Quasi sempre obbligatoria prima di avvitare un impianto.</small></span>
+          <label class="switch-hit"><span class="switch"><input type="checkbox" id="tac" checked aria-label="TAC 3D inclusa"><span></span></span></label>
+        </div>
+        <div class="row">
+          <span class="lbl" id="l-estr">Denti da estrarre<small>Estrazioni semplici; una radice fratturata o un ottavo incluso costano di più.</small></span>
+          <span class="stepper" data-stepper="estrazioni" role="group" aria-labelledby="l-estr">
+            <button type="button" data-d="-1" aria-label="Un'estrazione in meno">−</button>
+            <output id="out-estrazioni">0</output>
+            <button type="button" data-d="1" aria-label="Un'estrazione in più">+</button>
+          </span>
+        </div>
+        <div class="row">
+          <span class="lbl">Provvisorio<small>Il dente di passaggio durante i 3-6 mesi di guarigione.</small></span>
+          <label class="switch-hit"><span class="switch"><input type="checkbox" id="provvisorio" checked aria-label="Provvisorio incluso"><span></span></span></label>
+        </div>
+      </section>
+
+      <section class="card">
+        <p class="step"><b>5</b> Dove ti curi</p>
+        <div class="chips" role="radiogroup" aria-label="Zona d'Italia">
+          <label class="chip"><input type="radio" name="zona" value="nord"><span>Nord</span></label>
+          <label class="chip"><input type="radio" name="zona" value="centro" checked><span>Centro</span></label>
+          <label class="chip"><input type="radio" name="zona" value="sud"><span>Sud e isole</span></label>
+        </div>
+        <div class="chips" role="radiogroup" aria-label="Tipo di studio" style="margin-top:.6rem">
+          <label class="chip"><input type="radio" name="studio" value="catena"><span>Catena low cost</span></label>
+          <label class="chip"><input type="radio" name="studio" value="tradizionale" checked><span>Studio di quartiere</span></label>
+          <label class="chip"><input type="radio" name="studio" value="specializzato"><span>Centro specializzato</span></label>
+        </div>
+      </section>
+
+      <section class="card">
+        <p class="step"><b>6</b> Fisco e pagamento</p>
+        <div class="row">
+          <span class="lbl">Detrazione del 19%<small>Spese sanitarie: 19% della parte oltre 129,11 €, con pagamento tracciabile.</small></span>
+          <label class="switch-hit"><span class="switch"><input type="checkbox" id="detrazione" checked aria-label="Calcola la detrazione del 19%"><span></span></span></label>
+        </div>
+        <div class="row">
+          <span class="lbl"><label for="finanziamento">Rateizzazione</label><small>Molti studi propongono un finanziamento tramite finanziaria.</small></span>
+          <select id="finanziamento">
+            <option value="0" selected>Pago subito</option>
+            <option value="12">12 mesi, tasso zero</option>
+            <option value="24">24 mesi (TAEG 7%)</option>
+            <option value="36">36 mesi (TAEG 8%)</option>
+            <option value="48">48 mesi (TAEG 9%)</option>
+          </select>
+        </div>
+      </section>
+    </form>
+
+    <div data-ad="top"></div>
+
+    <section class="card" data-pro="Confronto Italia e turismo dentale">
+      <h2 style="margin-top:0">Lo stesso lavoro altrove: conviene davvero?</h2>
+      <p class="hint" style="margin-top:0">Lo stesso piano di cura applicato ai listini medi di una clinica convenzionata italiana e delle mete
+        più battute dal turismo dentale, con dentro i voli e gli alberghi dei viaggi necessari — perché l'impianto e la protesi
+        si fanno in due momenti diversi, a mesi di distanza.</p>
+      <div class="row">
+        <span class="lbl"><label for="volo">Volo A/R a persona</label></span>
+        <span><input type="number" id="volo" value="160" min="0" max="2000" step="10" inputmode="numeric"> €</span>
+      </div>
+      <div class="row">
+        <span class="lbl"><label for="notti">Notti per viaggio</label></span>
+        <span><input type="number" id="notti" value="3" min="0" max="30" step="1" inputmode="numeric"></span>
+      </div>
+      <div class="row">
+        <span class="lbl"><label for="notte">Costo di una notte</label></span>
+        <span><input type="number" id="notte" value="70" min="0" max="900" step="5" inputmode="numeric"> €</span>
+      </div>
+      <div class="row">
+        <span class="lbl"><label for="viaggi">Viaggi necessari</label><small>Di norma due: chirurgia e protesi. Il terzo è il controllo.</small></span>
+        <span><input type="number" id="viaggi" value="2" min="1" max="6" step="1" inputmode="numeric"></span>
+      </div>
+      <table class="cmp" id="tabella-confronto"><tbody></tbody></table>
+      <p class="nota" id="nota-confronto"></p>
+    </section>
+
+    <section class="card" data-pro="Preventivo stampabile">
+      <h2 style="margin-top:0">Portalo in studio già scritto</h2>
+      <p class="hint" style="margin-top:0">Genera un foglio con tutte le voci e una colonna vuota accanto: lo fai compilare e firmare dal dentista.
+        È il modo più rapido per capire se un preventivo è completo o se mancano il moncone e la corona.</p>
+      <div class="btns">
+        <button type="button" class="btn" id="btn-stampa">Stampa il preventivo</button>
+        <button type="button" class="btn ghost" id="btn-copia">Copia riepilogo</button>
+      </div>
+      <p class="hint" id="esito-copia" role="status" aria-live="polite"></p>
+    </section>
+
+    <div data-affiliate data-title="Per tenerli puliti dopo" data-items='[{"t":"Idropulsore dentale","q":"idropulsore dentale"},{"t":"Spazzolino elettrico","q":"spazzolino elettrico"},{"t":"Scovolini interdentali","q":"scovolini interdentali"},{"t":"Collutorio alla clorexidina","q":"collutorio clorexidina 0,20"}]'></div>
+
+    <section id="guida">
+      <h2>Come si legge un preventivo per un impianto dentale</h2>
+      <p>La domanda «quanto costa un impianto dentale» non ha una risposta unica perché l'impianto, in senso stretto,
+        è solo la vite di titanio che viene avvitata nell'osso: vale più o meno un terzo di quello che pagherai.
+        Sopra la vite va un <strong>moncone</strong> (l'attacco che esce dalla gengiva) e sopra il moncone va la
+        <strong>corona</strong>, cioè il dente che si vede. Quando una pubblicità promette «impianto a 490 euro»
+        quasi sempre sta parlando della sola vite: con moncone e corona il conto triplica. Per questo il calcolatore
+        qui sopra tiene le tre voci separate, come fanno i preventivi scritti seri.</p>
+
+      <h3>Le voci che devono esserci</h3>
+      <ul>
+        <li><strong>Prima visita e piano di cura</strong>: da gratuita a circa 90 €, spesso scalata dal lavoro.</li>
+        <li><strong>TAC 3D (Cone Beam)</strong>: 100-250 €. Serve a misurare l'osso: senza, nessuno può dirti un prezzo serio.</li>
+        <li><strong>Estrazione</strong>: 80-200 € a dente, se il dente è ancora lì.</li>
+        <li><strong>Vite in titanio</strong>: 500-1.200 €, a seconda della marca. Le marche storiche costano di più ma hanno componenti reperibili anche fra dieci anni.</li>
+        <li><strong>Moncone</strong>: 150-400 € per impianto.</li>
+        <li><strong>Corona</strong>: 400-700 € in metallo-ceramica, 600-1.000 € in zirconia, 700-1.200 € in disilicato.</li>
+        <li><strong>Provvisorio</strong>: 100-250 €, per i mesi di attesa.</li>
+        <li><strong>Rigenerazione ossea</strong>: 400-1.200 € per un innesto localizzato, 300-900 € per un mini rialzo del seno mascellare, 800-2.000 € per un grande rialzo.</li>
+        <li><strong>Controlli e igiene del primo anno</strong>: 80-200 €, quasi sempre fuori dal preventivo.</li>
+      </ul>
+
+      <h3>Un esempio con i numeri</h3>
+      <p>Un molare superiore mancante da quattro anni, in uno studio di quartiere del Centro Italia, con osso un po'
+        riassorbito. TAC 170 €, vite 850 €, moncone 270 €, corona in zirconia 800 €, mini rialzo del seno 600 €,
+        provvisorio 170 €, controlli 140 €: siamo intorno a <strong>3.000 €</strong>. Con il pagamento tracciabile
+        la detrazione del 19% vale 19% × (3.000 − 129,11) = <strong>545 €</strong>, che tornano con la dichiarazione
+        dell'anno dopo: il costo vero scende a circa <strong>2.455 €</strong>. Nello stesso scenario, senza bisogno
+        di rigenerazione ossea e con una corona in metallo-ceramica, si resta sotto i 2.000 €.</p>
+
+      <h3>Gli errori che fanno quasi tutti</h3>
+      <ul>
+        <li><strong>Confrontare due preventivi che contengono cose diverse.</strong> Prima di guardare il totale,
+          verifica che in entrambi ci siano vite, moncone e corona, e che sia scritta la marca dell'impianto.</li>
+        <li><strong>Dimenticare l'osso.</strong> È la voce che fa saltare il budget, e si scopre solo con la TAC.
+          Diffida di chi ti dà un prezzo definitivo al telefono.</li>
+        <li><strong>Pagare in contanti.</strong> Dal 2020 le spese sanitarie sostenute presso strutture private sono
+          detraibili solo se pagate con mezzi tracciabili: bonifico, carta, bancomat, assegno. Il contante fa perdere
+          il 19%, cioè qualche centinaio di euro.</li>
+        <li><strong>Intestare la fattura alla persona sbagliata.</strong> La detrazione la prende chi sostiene la
+          spesa, purché il paziente sia fiscalmente a carico o sia lui stesso l'intestatario.</li>
+        <li><strong>Non chiedere il piano dei controlli.</strong> Un impianto dura se viene seguito: igiene
+          professionale due volte l'anno e una radiografia di controllo. Chiedi quanto costeranno.</li>
+      </ul>
+
+      <h3>La detrazione del 19%, in pratica</h3>
+      <p>Gli impianti dentali rientrano fra le spese sanitarie dell'articolo 15 del TUIR: si detrae il 19% della parte
+        che supera la franchigia di 129,11 €. A differenza di altre detrazioni, questa non viene ridotta per i redditi
+        alti, ma funziona solo se hai un'IRPEF da cui scalarla: chi è incapiente non recupera nulla.
+        Se la spesa sanitaria dell'anno supera <strong>15.493,71 €</strong> — e con un'arcata completa succede —
+        puoi scegliere di ripartire la detrazione in <strong>quattro quote annuali</strong> di pari importo, che è
+        quasi sempre la scelta giusta perché evita di sprecare la parte eccedente l'imposta dovuta. Conserva fattura
+        e ricevuta del pagamento: servono in caso di controllo.</p>
+
+      <h3>E il Servizio sanitario nazionale?</h3>
+      <p>L'implantologia è esclusa dalle prestazioni garantite a tutti. Restano però tre strade che vale la pena
+        verificare prima di firmare: gli ambulatori odontoiatrici pubblici e le cliniche universitarie, che lavorano
+        a tariffe calmierate e con liste d'attesa lunghe; i programmi regionali per persone con ISEE sotto una certa
+        soglia o con particolari patologie; e i fondi sanitari integrativi, che molti contratti di lavoro prevedono
+        e che spesso rimborsano una quota fissa per impianto.</p>
+
+      <h3>Domande frequenti</h3>
+      <h3>Quanto costa un impianto dentale singolo?</h3>
+      <p>Fra 1.200 e 3.000 € tutto compreso, con una media italiana intorno ai 1.900-2.200 €. Al Sud si spende in
+        media il 15% in meno che al Nord, e una catena low cost sta circa un quinto sotto uno studio di quartiere.</p>
+      <h3>E un'arcata completa di denti fissi?</h3>
+      <p>Una All-on-4 va da 7.000 a 13.000 € per arcata con protesi in resina su barra di titanio, e supera i 15.000 €
+        con la zirconia monolitica. Due arcate in un colpo solo raramente stanno sotto i 16.000 €.</p>
+      <h3>Quanto dura un impianto?</h3>
+      <p>La vite, se l'igiene è buona e non si fuma, può durare tutta la vita: le statistiche parlano di oltre il 90%
+        di impianti ancora in funzione dopo dieci anni. La corona sopra, invece, è un pezzo di ricambio: va messa in
+        conto una sostituzione dopo 10-15 anni.</p>
+      <h3>Posso pagare a rate?</h3>
+      <p>Quasi tutti gli studi lavorano con finanziarie. I 12 mesi a tasso zero sono reali e convenienti; sopra i 24 mesi
+        il TAEG si fa sentire, e su 48 mesi puoi pagare anche il 15-18% in più del prezzo di listino. Il calcolatore
+        mostra la rata e il costo totale del finanziamento.</p>
+      <h3>Conviene farli all'estero?</h3>
+      <p>Il conto cambia con il numero di impianti. Per un dente solo, due viaggi fra voli e alberghi mangiano quasi
+        tutto il risparmio; per un'arcata completa il margine resta di diverse migliaia di euro. Pesa però il dopo:
+        chi ti segue i controlli, chi ripara se una vite si allenta, e quanto vale la garanzia scritta che ti danno.</p>
+
+      <p class="hint">Le cifre di questo strumento sono medie di mercato italiane raccolte da listini pubblici e
+        portali di confronto, aggiornate a novembre 2026. Sono una stima per orientarsi e per leggere meglio un
+        preventivo: non sostituiscono la visita, che resta l'unico modo per avere un prezzo vero.</p>
+    </section>
+
+    <div data-ad="bottom"></div>
+    <div data-support></div>
+
+    <footer>
+      <p>Ti può servire anche: <a href="../2026-10-18-detrazione-spese-mediche/">calcolare la detrazione delle spese mediche al 19%</a>
+        oppure <a href="../2026-10-12-calcolo-isee/">stimare il tuo ISEE</a> per capire se rientri nelle esenzioni.</p>
+      <p>Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a></p>
+    </footer>
+  </main>
+</div>
+
+<aside class="sheet" id="sheet" aria-label="Stima del preventivo">
+  <button type="button" class="sheet-grab" id="grab" aria-expanded="false" aria-controls="sheet-body">
+    <span class="sheet-head">
+      <span class="tot">
+        <small id="sheet-caption">Stima per un impianto singolo</small>
+        <strong id="sheet-tot">—</strong>
+      </span>
+      <span class="apri" id="sheet-apri">Dettaglio ▲</span>
+    </span>
+  </button>
+  <div class="sheet-body" id="sheet-body">
+    <ul class="voci" id="voci"></ul>
+    <div id="totali"></div>
+  </div>
+</aside>
+
+<div id="stampa"></div>
+<script src="../../assets/monetize.js"></script>
+<script>
+/* Modello dati: S è lo stato del preventivo (caso, numero di denti/impianti, materiali, osso,
+   esami, zona e tipo di studio, fisco). calcola(S) restituisce un elenco di voci con intervallo
+   min/max in euro, già moltiplicato per i coefficienti di zona e di studio; da lì derivano totale,
+   detrazione del 19% sulla parte oltre 129,11 €, rata del finanziamento e confronto con l'estero. */
+(() => {
+  "use strict";
+  const CHIAVE = "quanto-costa-un-impianto-dentale:v1";
+  const FRANCHIGIA = 129.11;
+
+  const S = {
+    caso: "singolo", denti: 3, impianti: 2, tecnica: 4, arcate: 1,
+    corona: "zirconia", protesi: "resina",
+    osso: "ok", zone: 1, tac: true, estrazioni: 0, provvisorio: true,
+    zona: "centro", studio: "tradizionale", detrazione: true, mesi: 0,
+    volo: 160, notti: 3, notte: 70, viaggi: 2,
+  };
+
+  // Prezzi medi italiani 2026 [min, max], riferiti a uno studio tradizionale del Centro.
+  const P = {
+    visita: [0, 90],
+    tac: [100, 250],
+    estrazione: [80, 200],
+    impianto: [500, 1200],
+    moncone: [150, 400],
+    multiunit: [120, 300],
+    corona: { metalloceramica: [400, 700], zirconia: [600, 1000], disilicato: [700, 1200] },
+    provvisorio: [100, 250],
+    provArcata: [700, 1500],
+    protesi: { resina: [2500, 4000], zirconia: [4000, 7000] },
+    innesto: [400, 1200],
+    rialzoP: [300, 900],
+    rialzoG: [800, 2000],
+    controlli: [80, 200],
+  };
+  const K_ZONA = { nord: 1.10, centro: 1.00, sud: 0.85 };
+  const K_STUDIO = { catena: 0.78, tradizionale: 1.00, specializzato: 1.30 };
+  const TAEG = { 0: 0, 12: 0, 24: 0.07, 36: 0.08, 48: 0.09 };
+  const IMPIANTI_SUGGERITI = [0, 1, 2, 2, 3, 3, 4, 4, 5];
+  const NOME_CORONA = { metalloceramica: "metallo-ceramica", zirconia: "zirconia", disilicato: "disilicato" };
+  const NOME_OSSO = { innesto: "Innesto osseo", rialzoP: "Mini rialzo del seno mascellare", rialzoG: "Grande rialzo del seno mascellare" };
+
+  const nf = (() => {
+    try { return new Intl.NumberFormat("it-IT", { maximumFractionDigits: 0, useGrouping: "always" }); }
+    catch (e) { return new Intl.NumberFormat("it-IT", { maximumFractionDigits: 0 }); }
+  })();
+  const eur = (n) => nf.format(Math.round(n)) + " €";
+  const fascia = (v) => "da " + eur(v.min) + " a " + eur(v.max);
+  const stretta = (v) => eur(v.min) + "–" + eur(v.max);
+  const medio = (v) => (v.min + v.max) / 2;
+  const $ = (sel) => document.querySelector(sel);
+
+  // ---------- calcolo ----------
+  function calcola(s) {
+    const voci = [];
+    const push = (label, detail, range, volte) => {
+      const n = volte === undefined ? 1 : volte;
+      if (n <= 0 || (range[0] === 0 && range[1] === 0)) return;
+      voci.push({ label, detail, min: range[0] * n, max: range[1] * n });
+    };
+    const nImp = s.caso === "singolo" ? 1 : s.caso === "ponte" ? s.impianti : s.tecnica * s.arcate;
+    const nDenti = s.caso === "singolo" ? 1 : s.caso === "ponte" ? s.denti : 0;
+
+    push("Prima visita e piano di cura", "Spesso scalata dal lavoro", P.visita);
+    if (s.tac) push("TAC 3D (Cone Beam)", "Misura l'osso disponibile", P.tac, s.caso === "arcata" ? s.arcate : 1);
+    if (s.estrazioni > 0) push("Estrazioni", s.estrazioni + (s.estrazioni === 1 ? " dente" : " denti"), P.estrazione, s.estrazioni);
+    push("Impianti in titanio", nImp + (nImp === 1 ? " vite" : " viti"), P.impianto, nImp);
+
+    if (s.caso === "arcata") {
+      push("Monconi multi-unit", "Attacchi angolati, uno per impianto", P.multiunit, nImp);
+      push("Protesi provvisoria avvitata", "Si avvita il giorno stesso", P.provArcata, s.arcate);
+      push("Protesi definitiva", s.protesi === "resina" ? "Resina su barra di titanio" : "Zirconia monolitica", P.protesi[s.protesi], s.arcate);
+    } else {
+      push("Monconi", "Uno per impianto", P.moncone, nImp);
+      push("Corone definitive", nDenti + " in " + NOME_CORONA[s.corona], P.corona[s.corona], nDenti);
+      if (s.provvisorio) push("Provvisorio", "Durante i mesi di guarigione", P.provvisorio, nDenti);
+    }
+
+    if (s.osso !== "ok") {
+      const z = Math.max(1, s.zone);
+      push(NOME_OSSO[s.osso], z === 1 ? "Una zona" : z + " zone", P[s.osso], z);
+    }
+    push("Controlli e igiene del primo anno", "Quasi sempre fuori preventivo", P.controlli, s.caso === "arcata" ? 2 : 1);
+
+    const k = (K_ZONA[s.zona] || 1) * (K_STUDIO[s.studio] || 1);
+    for (const v of voci) { v.min *= k; v.max *= k; }
+    const tot = voci.reduce((a, v) => ({ min: a.min + v.min, max: a.max + v.max }), { min: 0, max: 0 });
+    const det = s.detrazione
+      ? { min: 0.19 * Math.max(0, tot.min - FRANCHIGIA), max: 0.19 * Math.max(0, tot.max - FRANCHIGIA) }
+      : { min: 0, max: 0 };
+    const netto = { min: tot.min - det.min, max: tot.max - det.max };
+    return { voci, tot, det, netto, nImp, nDenti };
+  }
+
+  function rata(capitale, mesi) {
+    if (!mesi) return null;
+    const t = TAEG[mesi] || 0;
+    if (t === 0) return { mesi, rata: capitale / mesi, totale: capitale, interessi: 0 };
+    const i = t / 12;
+    const r = capitale * i / (1 - Math.pow(1 + i, -mesi));
+    return { mesi, rata: r, totale: r * mesi, interessi: r * mesi - capitale };
+  }
+
+  // ---------- rendering ----------
+  function didascalia(s, r) {
+    if (s.caso === "singolo") return "Stima per un impianto singolo";
+    if (s.caso === "ponte") return "Stima per " + s.denti + " denti su " + r.nImp + (r.nImp === 1 ? " impianto" : " impianti");
+    return "Stima per " + (s.arcate === 1 ? "un'arcata" : "due arcate") + " All-on-" + s.tecnica;
+  }
+
+  function disegna() {
+    const r = calcola(S);
+    const cap = $("#sheet-caption"), tot = $("#sheet-tot");
+    if (cap) cap.textContent = didascalia(S, r);
+    if (tot) tot.textContent = fascia(r.tot);
+
+    const ul = $("#voci");
+    if (ul) {
+      ul.textContent = "";
+      for (const v of r.voci) {
+        const li = document.createElement("li");
+        const a = document.createElement("span"); a.className = "v";
+        a.append(document.createTextNode(v.label));
+        if (v.detail) { const sm = document.createElement("small"); sm.textContent = v.detail; a.append(sm); }
+        const b = document.createElement("span"); b.className = "p";
+        b.textContent = Math.round(v.min) === Math.round(v.max) ? eur(v.min) : eur(v.min) + "–" + eur(v.max);
+        li.append(a, b); ul.append(li);
+      }
+    }
+
+    const box = $("#totali");
+    if (box) {
+      box.textContent = "";
+      const linea = (etichetta, valore, cls) => {
+        const d = document.createElement("div"); d.className = "tot-line" + (cls ? " " + cls : "");
+        const a = document.createElement("span"); a.textContent = etichetta;
+        const b = document.createElement("strong"); b.textContent = valore;
+        d.append(a, b); box.append(d);
+      };
+      linea("Totale in studio", fascia(r.tot), "big");
+      linea("In media", eur(medio(r.tot)));
+      if (S.detrazione) {
+        linea("Detrazione 19%", "− " + stretta(r.det), "save");
+        linea("Costo netto", fascia(r.netto), "big");
+        if (r.tot.max > 15493.71) {
+          const p = document.createElement("p"); p.className = "nota";
+          p.textContent = "Sopra 15.493,71 € di spese sanitarie nell'anno puoi ripartire la detrazione in quattro quote annuali: con una cifra così è quasi sempre la scelta giusta, perché evita di perdere la parte che eccede l'IRPEF dovuta.";
+          box.append(p);
+        }
+      }
+      const f = rata(medio(r.tot), S.mesi);
+      if (f) {
+        linea("Rata a " + f.mesi + " mesi", eur(f.rata) + " al mese");
+        if (f.interessi > 1) linea("Interessi del finanziamento", "+ " + eur(f.interessi));
+      }
+      const avviso = document.createElement("p"); avviso.className = "hint";
+      avviso.textContent = S.detrazione
+        ? "La detrazione vale il 19% della parte oltre 129,11 €, solo con pagamento tracciabile e se hai IRPEF da cui scalarla. Stima su medie di mercato italiane: il prezzo vero si conosce dopo la TAC."
+        : "Stima su medie di mercato italiane: il prezzo vero si conosce dopo la TAC e la visita.";
+      box.append(avviso);
+    }
+
+    confronto(r);
+    preparaStampa(r);
+  }
+
+  function confronto(r) {
+    const tb = document.querySelector("#tabella-confronto tbody");
+    if (!tb) return;
+    tb.textContent = "";
+    const baseIT = medio(calcola(Object.assign({}, S, { studio: "tradizionale" })).tot);
+    const mio = medio(r.tot);
+    const viaggio = Math.max(0, S.viaggi) * (Math.max(0, S.volo) + Math.max(0, S.notti) * Math.max(0, S.notte));
+    const mete = [
+      { nome: "Come l'hai impostato", sub: "Italia, " + (S.studio === "catena" ? "catena low cost" : S.studio === "specializzato" ? "centro specializzato" : "studio di quartiere"), tot: mio },
+      { nome: "Convenzionato o catena in Italia", sub: "Nessun viaggio, controlli sotto casa", tot: baseIT * 0.72 },
+      { nome: "Croazia", sub: "Cure " + eur(baseIT * 0.60) + " + viaggi " + eur(viaggio), tot: baseIT * 0.60 + viaggio },
+      { nome: "Ungheria", sub: "Cure " + eur(baseIT * 0.55) + " + viaggi " + eur(viaggio), tot: baseIT * 0.55 + viaggio },
+      { nome: "Albania", sub: "Cure " + eur(baseIT * 0.42) + " + viaggi " + eur(viaggio), tot: baseIT * 0.42 + viaggio },
+      { nome: "Turchia", sub: "Cure " + eur(baseIT * 0.40) + " + viaggi " + eur(viaggio), tot: baseIT * 0.40 + viaggio },
+    ];
+    for (const m of mete) {
+      const tr = document.createElement("tr");
+      const th = document.createElement("th"); th.scope = "row";
+      th.append(document.createTextNode(m.nome));
+      const sub = document.createElement("span"); sub.className = "sub"; sub.textContent = m.sub; th.append(sub);
+      const td = document.createElement("td");
+      td.append(document.createTextNode(eur(m.tot)));
+      const diff = document.createElement("span"); diff.className = "sub";
+      diff.textContent = m === mete[0] ? "riferimento" : (m.tot < mio ? "−" + eur(mio - m.tot) : "+" + eur(m.tot - mio));
+      td.append(diff);
+      tr.append(th, td); tb.append(tr);
+    }
+    const migliore = mete.slice(2).reduce((a, b) => (b.tot < a.tot ? b : a));
+    const risparmio = mio - migliore.tot;
+    const nota = $("#nota-confronto");
+    if (nota) {
+      nota.textContent = risparmio > 800
+        ? "Con questo piano di cura la meta più conveniente è " + migliore.nome + ": risparmieresti circa " + eur(risparmio) +
+          " anche pagando " + S.viaggi + " viaggi. Prima di decidere, fatti mettere per iscritto chi segue i controlli in Italia e che cosa copre la garanzia."
+        : "Con questo piano di cura all'estero risparmieresti circa " + eur(Math.max(0, risparmio)) +
+          ": su pochi impianti voli e alberghi si mangiano quasi tutto il margine, e resta il problema di chi ti segue dopo. In genere il viaggio inizia a pagare da tre o quattro impianti in su.";
+    }
+  }
+
+  // ---------- preventivo stampabile ----------
+  function preparaStampa(r) {
+    const box = document.getElementById("stampa");
+    if (!box) return;
+    box.textContent = "";
+    const h = document.createElement("h1"); h.textContent = "Preventivo impianto dentale — da far compilare allo studio";
+    const sub = document.createElement("p");
+    sub.textContent = didascalia(S, r) + " · " + (S.zona === "nord" ? "Nord Italia" : S.zona === "sud" ? "Sud e isole" : "Centro Italia") +
+      " · stampato il " + new Date().toLocaleDateString("it-IT");
+    const t = document.createElement("table");
+    const thead = document.createElement("thead");
+    const trh = document.createElement("tr");
+    for (const c of ["Voce", "Dettaglio", "Stima di mercato", "Prezzo dello studio"]) {
+      const th = document.createElement("th"); th.textContent = c; trh.append(th);
+    }
+    thead.append(trh); t.append(thead);
+    const tb = document.createElement("tbody");
+    for (const v of r.voci) {
+      const tr = document.createElement("tr");
+      const c1 = document.createElement("td"); c1.textContent = v.label;
+      const c2 = document.createElement("td"); c2.textContent = v.detail || "";
+      const c3 = document.createElement("td"); c3.className = "n";
+      c3.textContent = Math.round(v.min) === Math.round(v.max) ? eur(v.min) : eur(v.min) + "–" + eur(v.max);
+      const c4 = document.createElement("td"); c4.textContent = " ";
+      tr.append(c1, c2, c3, c4); tb.append(tr);
+    }
+    const trt = document.createElement("tr");
+    const t1 = document.createElement("td"); t1.textContent = "TOTALE"; t1.colSpan = 2;
+    const t2 = document.createElement("td"); t2.className = "n"; t2.textContent = fascia(r.tot);
+    const t3 = document.createElement("td"); t3.textContent = " ";
+    trt.append(t1, t2, t3); tb.append(trt);
+    t.append(tb);
+    const note = document.createElement("p");
+    note.textContent = "Marca e modello degli impianti: ______________________   Garanzia scritta: ______ anni   " +
+      "Numero di sedute previste: ______   Costo dei controlli successivi: ______ €";
+    const firma = document.createElement("p"); firma.className = "firma";
+    firma.textContent = "Data ____________   Timbro e firma dello studio ______________________________";
+    box.append(h, sub, t, note, firma);
+  }
+
+  function riepilogo(r) {
+    const righe = [didascalia(S, r), ""];
+    for (const v of r.voci) righe.push("• " + v.label + ": " + (Math.round(v.min) === Math.round(v.max) ? eur(v.min) : eur(v.min) + "–" + eur(v.max)));
+    righe.push("", "Totale in studio: " + fascia(r.tot) + " (in media " + eur(medio(r.tot)) + ")");
+    if (S.detrazione) righe.push("Detrazione 19%: −" + stretta(r.det), "Costo netto: " + fascia(r.netto));
+    const f = rata(medio(r.tot), S.mesi);
+    if (f) righe.push("Rata a " + f.mesi + " mesi: " + eur(f.rata));
+    righe.push("", "Stima da un'app al giorno — quanto costa un impianto dentale");
+    return righe.join("\n");
+  }
+
+  // ---------- interfaccia ----------
+  function mostraBox() {
+    const set = (id, on) => { const n = document.getElementById(id); if (n) n.hidden = !on; };
+    set("box-ponte", S.caso === "ponte");
+    set("box-arcata", S.caso === "arcata");
+    set("box-corona", S.caso !== "arcata");
+    set("box-protesi", S.caso === "arcata");
+    set("box-zone", S.osso !== "ok");
+  }
+
+  const LIMITI = { denti: [2, 8], impianti: [1, 8], arcate: [1, 2], zone: [1, 4], estrazioni: [0, 8] };
+  function aggiornaStepper(nome) {
+    const out = document.getElementById("out-" + nome);
+    if (out) out.textContent = String(S[nome]);
+    const gruppo = document.querySelector('[data-stepper="' + nome + '"]');
+    if (!gruppo) return;
+    const [lo, hi] = LIMITI[nome];
+    const max = nome === "impianti" ? Math.min(hi, S.denti) : hi;
+    gruppo.querySelectorAll("button").forEach((b) => {
+      const d = Number(b.dataset.d);
+      b.disabled = d < 0 ? S[nome] <= lo : S[nome] >= max;
+    });
+  }
+
+  function salva() {
+    try { localStorage.setItem(CHIAVE, JSON.stringify(S)); } catch (e) { /* storage non disponibile */ }
+  }
+  function ripristina() {
+    let dati = null;
+    try { dati = JSON.parse(localStorage.getItem(CHIAVE) || "null"); } catch (e) { dati = null; }
+    if (!dati || typeof dati !== "object") return;
+    for (const k of Object.keys(S)) if (dati[k] !== undefined && typeof dati[k] === typeof S[k]) S[k] = dati[k];
+    document.querySelectorAll('input[type="radio"]').forEach((i) => { if (S[i.name] !== undefined) i.checked = String(S[i.name]) === i.value; });
+    for (const id of ["tac", "provvisorio", "detrazione"]) { const n = document.getElementById(id); if (n) n.checked = !!S[id]; }
+    const fin = document.getElementById("finanziamento"); if (fin) fin.value = String(S.mesi);
+    for (const id of ["volo", "notti", "notte", "viaggi"]) { const n = document.getElementById(id); if (n) n.value = String(S[id]); }
+  }
+
+  function tuttoAggiornato() {
+    mostraBox();
+    ["denti", "impianti", "arcate", "zone", "estrazioni"].forEach(aggiornaStepper);
+    disegna();
+    salva();
+  }
+
+  document.querySelectorAll('input[type="radio"]').forEach((input) => {
+    input.addEventListener("change", () => {
+      if (!input.checked) return;
+      S[input.name] = input.name === "tecnica" ? Number(input.value) : input.value;
+      if (input.name === "caso" && input.value === "ponte") S.impianti = Math.min(IMPIANTI_SUGGERITI[S.denti] || 2, S.denti);
+      tuttoAggiornato();
+    });
+  });
+
+  for (const id of ["tac", "provvisorio", "detrazione"]) {
+    const n = document.getElementById(id);
+    if (n) n.addEventListener("change", () => { S[id] = n.checked; tuttoAggiornato(); });
+  }
+
+  const fin = document.getElementById("finanziamento");
+  if (fin) fin.addEventListener("change", () => { S.mesi = Number(fin.value) || 0; tuttoAggiornato(); });
+
+  for (const id of ["volo", "notti", "notte", "viaggi"]) {
+    const n = document.getElementById(id);
+    if (!n) continue;
+    n.addEventListener("input", () => {
+      const v = Number(n.value);
+      S[id] = Number.isFinite(v) && v >= 0 ? v : 0;
+      disegna(); salva();
+    });
+  }
+
+  document.querySelectorAll("[data-stepper]").forEach((gruppo) => {
+    const nome = gruppo.dataset.stepper;
+    gruppo.querySelectorAll("button").forEach((b) => {
+      b.addEventListener("click", () => {
+        const [lo, hi] = LIMITI[nome];
+        const max = nome === "impianti" ? Math.min(hi, S.denti) : hi;
+        S[nome] = Math.min(max, Math.max(lo, S[nome] + Number(b.dataset.d)));
+        if (nome === "denti") S.impianti = Math.min(IMPIANTI_SUGGERITI[S.denti] || 2, S.denti);
+        tuttoAggiornato();
+      });
+    });
+  });
+
+  const sheet = document.getElementById("sheet"), grab = document.getElementById("grab"), apri = document.getElementById("sheet-apri");
+  function apriChiudi(forza) {
+    if (!sheet) return;
+    const aperto = forza === undefined ? !sheet.classList.contains("open") : forza;
+    sheet.classList.toggle("open", aperto);
+    if (grab) grab.setAttribute("aria-expanded", String(aperto));
+    if (apri) apri.textContent = aperto ? "Chiudi ▼" : "Dettaglio ▲";
+  }
+  if (grab) grab.addEventListener("click", () => apriChiudi());
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") apriChiudi(false); });
+
+  const btnStampa = document.getElementById("btn-stampa");
+  if (btnStampa) btnStampa.addEventListener("click", () => { preparaStampa(calcola(S)); window.print(); });
+
+  const btnCopia = document.getElementById("btn-copia"), esito = document.getElementById("esito-copia");
+  if (btnCopia) btnCopia.addEventListener("click", async () => {
+    const testo = riepilogo(calcola(S));
+    let ok = false;
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) { await navigator.clipboard.writeText(testo); ok = true; }
+    } catch (e) { ok = false; }
+    if (!ok) {
+      const ta = document.createElement("textarea");
+      ta.value = testo; ta.setAttribute("readonly", "");
+      ta.style.cssText = "position:fixed;top:0;left:-9999px";
+      document.body.append(ta); ta.select();
+      try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+      ta.remove();
+    }
+    if (esito) esito.textContent = ok ? "Riepilogo copiato: incollalo dove vuoi." : "Non riesco a copiare da qui: usa «Stampa il preventivo».";
+  });
+
+  ripristina();
+  tuttoAggiornato();
+})();
+</script>
+</body>
+</html>
