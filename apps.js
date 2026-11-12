@@ -1,7 +1,7 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 61,
+  "count": 62,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -50,6 +50,53 @@ window.__APPS__ = {
     ]
   },
   "apps": [
+    {
+      "title": "Quanto Costa un Avvocato",
+      "slug": "2026-11-12-quanto-costa-un-avvocato",
+      "date": "2026-11-12",
+      "description": "Calcola la parcella di un avvocato con i parametri forensi: compenso per fase, spese forfettarie, CPA, IVA e contributo unificato.",
+      "category": "finanza-personale",
+      "tags": [
+        "avvocato",
+        "parcella",
+        "causa",
+        "parametri forensi",
+        "spese legali"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "tabs",
+        "palette": "rosso-mattone",
+        "font": "serif-editoriale"
+      },
+      "business": {
+        "keyword": "quanto costa un avvocato",
+        "keywords": [
+          "parcella avvocato come si calcola",
+          "quanto costa una causa civile",
+          "quanto costa una consulenza legale",
+          "compenso avvocato parametri forensi"
+        ],
+        "intent": "Chi deve avviare o subire una causa, o chiedere solo un parere, e vuole sapere in anticipo la cifra che uscirà dal conto, prima di entrare in uno studio legale.",
+        "target": "Adulti 30-65 anni con un problema legale concreto (credito da recuperare, sfratto, incidente, separazione, licenziamento), quasi sempre da telefono e di sera.",
+        "edge": "Nessun contatto da lasciare: applica le tabelle del DM 55/2014 nel testo del DM 147/2022 fase per fase, aggiunge 15% di spese forfettarie, CPA 4%, IVA 22%, contributo unificato e bollo, e mostra il totale che il cliente paga davvero.",
+        "monetization": [
+          "adsense",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Scenari vinco, perdo o spese compensate",
+          "Preventivo stampabile"
+        ],
+        "affiliate": []
+      },
+      "size": 45921
+    },
     {
       "title": "Preventivo Impianto Dentale",
       "slug": "2026-11-11-quanto-costa-un-impianto-dentale",
