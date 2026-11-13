@@ -1,0 +1,29 @@
+{
+  "title": "Quanto Costa Cambiare la Caldaia",
+  "slug": "2026-11-13-quanto-costa-cambiare-la-caldaia",
+  "date": "2026-11-13",
+  "description": "Preventivo voce per voce per sostituire la caldaia: apparecchio, posa, scarico fumi, IVA al 10% o 22% e detrazione 2026.",
+  "category": "finanza-personale",
+  "tags": ["caldaia", "casa", "riscaldamento", "detrazioni", "preventivo"],
+  "source": "autonoma",
+  "request": null,
+  "status": "pronta",
+  "version": 1,
+  "changelog": [],
+  "design": { "layout": "split", "palette": "arancio-caldo", "font": "condensed" },
+  "business": {
+    "keyword": "quanto costa cambiare la caldaia",
+    "keywords": ["sostituzione caldaia prezzi", "quanto costa una caldaia a condensazione installata", "detrazione caldaia 2026", "preventivo sostituzione caldaia"],
+    "intent": "La caldaia si è rotta e serve sapere subito una cifra credibile, voce per voce, per capire se il preventivo dell'idraulico è onesto e quanto resta dopo le detrazioni.",
+    "target": "Proprietari di casa e inquilini 30-65 anni, spesso in emergenza d'inverno, da telefono.",
+    "competitors": ["Portali di preventivi (Cronoshare, Facile.it): form che chiede il contatto prima di dare una cifra", "Guide dei fornitori di luce e gas: articoli lunghi con una forbice vaga e un'offerta commerciale in fondo", "Forum e blog con prezzi vecchi di anni e senza IVA né detrazione"],
+    "edge": "Nessun contatto da lasciare: preventivo voce per voce in 20 secondi, con la regola dei beni significativi che decide se l'IVA è al 10% o al 22% e con lo stop 2026 alle detrazioni sulle caldaie a gas spiegato chiaramente.",
+    "monetization": ["adsense", "affiliate", "pro", "support"],
+    "pro": ["Confronto fra i tre impianti", "Preventivo stampabile"],
+    "affiliate": [
+      { "t": "Cronotermostato wifi", "q": "cronotermostato wifi caldaia" },
+      { "t": "Valvole termostatiche", "q": "valvole termostatiche radiatori" },
+      { "t": "Rilevatore di monossido di carbonio", "q": "rilevatore monossido di carbonio casa" }
+    ]
+  }
+}
