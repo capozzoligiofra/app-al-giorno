@@ -1,7 +1,7 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 63,
+  "count": 64,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -50,6 +50,68 @@ window.__APPS__ = {
     ]
   },
   "apps": [
+    {
+      "title": "Quanto Costa una Casa di Riposo",
+      "slug": "2026-11-14-quanto-costa-una-casa-di-riposo",
+      "date": "2026-11-14",
+      "description": "Scompone la retta di RSA e case di riposo in quota sanitaria, quota alberghiera, pensione e contributo del Comune: quanto paga la famiglia.",
+      "category": "finanza-personale",
+      "tags": [
+        "rsa",
+        "anziani",
+        "retta",
+        "isee",
+        "assistenza"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "card-stack",
+        "palette": "rosa-cipria",
+        "font": "sans-geometrico"
+      },
+      "business": {
+        "keyword": "quanto costa una casa di riposo al mese",
+        "keywords": [
+          "retta rsa quanto costa",
+          "quota alberghiera rsa",
+          "chi paga la retta della casa di riposo",
+          "contributo comune retta rsa"
+        ],
+        "intent": "Chi deve sistemare un genitore non più autosufficiente e vuole sapere subito quanto esce ogni mese dalle tasche della famiglia, dopo la quota dell'ASL, la pensione e l'eventuale integrazione del Comune.",
+        "target": "Figli adulti fra 45 e 65 anni che stanno cercando una struttura per un genitore, spesso di corsa dopo un ricovero, da telefono.",
+        "edge": "È l'unico strumento che separa quota sanitaria, quota alberghiera, pensione e integrazione comunale e arriva al numero che nessuno scrive: quanto resta davvero a carico della famiglia. Nessun contatto da lasciare, funziona offline, prospetto stampabile da portare ai servizi sociali.",
+        "monetization": [
+          "adsense",
+          "affiliate",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto fra RSA, casa famiglia e badante a domicilio",
+          "Quota a carico con e senza il contributo comunale",
+          "Prospetto stampabile per il Comune"
+        ],
+        "affiliate": [
+          {
+            "t": "Etichette termoadesive con il nome",
+            "q": "etichette termoadesive nome vestiti"
+          },
+          {
+            "t": "Pigiama per anziani con apertura facile",
+            "q": "pigiama anziani apertura posteriore"
+          },
+          {
+            "t": "Cuscino antidecubito per sedia",
+            "q": "cuscino antidecubito seduta"
+          }
+        ]
+      },
+      "size": 55174
+    },
     {
       "title": "Quanto Costa Cambiare la Caldaia",
       "slug": "2026-11-13-quanto-costa-cambiare-la-caldaia",
