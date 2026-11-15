@@ -1,7 +1,7 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 64,
+  "count": 65,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -50,6 +50,67 @@ window.__APPS__ = {
     ]
   },
   "apps": [
+    {
+      "title": "Quanto Costa la Patente B",
+      "slug": "2026-11-15-quanto-costa-la-patente",
+      "date": "2026-11-15",
+      "description": "Il conto vero della patente B: 58,40 € di tasse, visita medica, iscrizione e ore di guida, con confronto autoscuola o privatista.",
+      "category": "finanza-personale",
+      "tags": [
+        "patente",
+        "autoscuola",
+        "guida",
+        "giovani",
+        "preventivo"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "dashboard",
+        "palette": "viola-elettrico",
+        "font": "condensed"
+      },
+      "business": {
+        "keyword": "quanto costa la patente",
+        "keywords": [
+          "quanto costa la patente b",
+          "costo patente b 2026",
+          "patente da privatista quanto costa",
+          "quante ore di guida sono obbligatorie"
+        ],
+        "intent": "Un ragazzo che compie diciotto anni, o il genitore che paga, vuole sapere prima di entrare in autoscuola quanto gli costerà davvero la patente e se il preventivo che gli hanno fatto è onesto.",
+        "target": "Neo-diciottenni e genitori 17-55 anni, da telefono, spesso mentre confrontano due o tre autoscuole della zona.",
+        "edge": "Separa le tre cose che nessuno separa: 58,40 € di tasse di Stato fisse, il prezzo libero dell'autoscuola e le ore di guida che valgono metà del totale. Calcola le ore di pareggio del pacchetto e fino a quante ore il privatista conviene davvero, e tiene conto delle 8 ore obbligatorie del DM 294/2025.",
+        "monetization": [
+          "adsense",
+          "affiliate",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto autoscuola e privatista",
+          "Preventivo stampabile"
+        ],
+        "affiliate": [
+          {
+            "t": "Manuale per la patente B aggiornato",
+            "q": "manuale patente B 2026"
+          },
+          {
+            "t": "Schede di quiz ministeriali patente B",
+            "q": "schede quiz ministeriali patente B"
+          },
+          {
+            "t": "Kit foglio rosa per neopatentati",
+            "q": "kit neopatentato foglio rosa"
+          }
+        ]
+      },
+      "size": 50333
+    },
     {
       "title": "Quanto Costa una Casa di Riposo",
       "slug": "2026-11-14-quanto-costa-una-casa-di-riposo",
