@@ -1,6 +1,6 @@
 {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 65,
+  "count": 66,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -49,6 +49,67 @@
     ]
   },
   "apps": [
+    {
+      "title": "Quanto Costa il Commercialista",
+      "slug": "2026-11-16-quanto-costa-il-commercialista",
+      "date": "2026-11-16",
+      "description": "Calcola la parcella del commercialista per regime, fatture e dipendenti, con cassa 4%, IVA 22% e costo reale dopo le tasse.",
+      "category": "finanza-personale",
+      "tags": [
+        "commercialista",
+        "partita iva",
+        "parcella",
+        "forfettario",
+        "fisco"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "single-column",
+        "palette": "grigio-carta",
+        "font": "mono-tecnico"
+      },
+      "business": {
+        "keyword": "quanto costa il commercialista",
+        "keywords": [
+          "costo commercialista all'anno",
+          "parcella commercialista forfettario",
+          "quanto costa un commercialista per partita iva",
+          "tariffe commercialista 2026"
+        ],
+        "intent": "Chi apre o ha una partita IVA e vuole sapere subito se la cifra che gli hanno chiesto è in linea col mercato, prima di firmare l'incarico o di cambiare studio.",
+        "target": "Partite IVA individuali, professionisti e piccoli imprenditori 25-55 anni, spesso da telefono mentre valutano un preventivo.",
+        "edge": "È l'unico che scompone la parcella voce per voce sui tuoi numeri reali e poi mostra le due cose che nessuno dice: la cassa 4% più IVA che gonfiano la fattura, e il fatto che in forfettario il costo non si deduce mentre altrove pesa un terzo in meno.",
+        "monetization": [
+          "adsense",
+          "affiliate",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto studio, online e CAF",
+          "Preventivo stampabile"
+        ],
+        "affiliate": [
+          {
+            "t": "Guida pratica al regime forfettario aggiornata",
+            "q": "guida regime forfettario 2026 libro"
+          },
+          {
+            "t": "Manuale per aprire e gestire la partita IVA",
+            "q": "manuale partita iva libro"
+          },
+          {
+            "t": "Raccoglitore per l'archivio fiscale (10 anni di documenti)",
+            "q": "raccoglitore documenti fiscali archivio"
+          }
+        ]
+      },
+      "size": 49334
+    },
     {
       "title": "Quanto Costa la Patente B",
       "slug": "2026-11-15-quanto-costa-la-patente",
