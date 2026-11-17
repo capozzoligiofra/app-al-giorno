@@ -1,6 +1,6 @@
 {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 66,
+  "count": 67,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -49,6 +49,67 @@
     ]
   },
   "apps": [
+    {
+      "title": "Quanto Costa l'Agenzia Immobiliare",
+      "slug": "2026-11-17-quanto-costa-agenzia-immobiliare",
+      "date": "2026-11-17",
+      "description": "Calcola la provvigione dell'agenzia su vendita o affitto: quanto paghi tu, quanto l'altra parte, IVA al 22% e detrazione prima casa.",
+      "category": "finanza-personale",
+      "tags": [
+        "casa",
+        "provvigione",
+        "immobiliare",
+        "compravendita"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "wizard",
+        "palette": "blu-notte",
+        "font": "serif-editoriale"
+      },
+      "business": {
+        "keyword": "quanto costa l'agenzia immobiliare",
+        "keywords": [
+          "provvigione agenzia immobiliare",
+          "percentuale agenzia immobiliare vendita casa",
+          "chi paga l'agenzia immobiliare venditore o acquirente",
+          "quanto costa l'agenzia immobiliare per affitto"
+        ],
+        "intent": "Chi sta per firmare un incarico di vendita o una proposta d'acquisto e vuole sapere la cifra esatta della provvigione, IVA compresa, prima di impegnarsi.",
+        "target": "Chi vende o compra casa e chi cerca un affitto tramite agenzia, 30-60 anni, da telefono mentre valuta l'incarico.",
+        "edge": "Nessun concorrente ha un calcolatore: tutti scrivono «dal 2% al 4% più IVA» e si fermano lì. Qui in tre passi escono la cifra in fattura, la quota dell'altra parte, l'incasso totale dell'agenzia e la detrazione prima casa, senza registrazione.",
+        "monetization": [
+          "adsense",
+          "affiliate",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto con la vendita da privato",
+          "Simulazione della trattativa",
+          "Riepilogo stampabile"
+        ],
+        "affiliate": [
+          {
+            "t": "Guida pratica alla compravendita immobiliare",
+            "q": "guida compravendita immobiliare libro"
+          },
+          {
+            "t": "Metro laser per misurare i metri quadri reali",
+            "q": "metro laser distanziometro"
+          },
+          {
+            "t": "Cartello vendesi da finestra o cancello",
+            "q": "cartello vendesi immobile"
+          }
+        ]
+      },
+      "size": 53422
+    },
     {
       "title": "Quanto Costa il Commercialista",
       "slug": "2026-11-16-quanto-costa-il-commercialista",

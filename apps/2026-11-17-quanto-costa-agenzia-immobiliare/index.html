@@ -1,0 +1,858 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#101a2e">
+<title>Quanto Costa l'Agenzia Immobiliare: calcolo provvigione</title>
+<meta name="description" content="Quanto costa vendere o comprare casa con agenzia: calcola la provvigione con IVA al 22%, la quota a carico della controparte e la detrazione prima casa.">
+<link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-11-17-quanto-costa-agenzia-immobiliare/">
+<meta property="og:title" content="Quanto Costa l'Agenzia Immobiliare: calcolo provvigione">
+<meta property="og:description" content="La provvigione dell'agenzia immobiliare calcolata davvero: percentuale, IVA al 22%, quota dell'altra parte, minimo garantito e detrazione del 19% sulla prima casa.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-11-17-quanto-costa-agenzia-immobiliare/">
+<meta property="og:locale" content="it_IT">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Quanto Costa l'Agenzia Immobiliare",
+  "description": "Calcolatore della provvigione dell'agenzia immobiliare: dal prezzo di vendita o dal canone di affitto ricava quanto paghi tu, quanto paga l'altra parte e quanto incassa l'agenzia, con IVA al 22%, minimo garantito e detrazione del 19% per l'acquisto della prima casa.",
+  "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-11-17-quanto-costa-agenzia-immobiliare/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+  "inLanguage": "it"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Quanto costa l'agenzia immobiliare per vendere casa?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Nella compravendita residenziale la provvigione si colloca di norma fra il 2% e il 4% del prezzo, con il 3% come valore più diffuso, e va aggiunta l'IVA al 22%. Su una casa venduta a 220.000 euro al 3% il compenso è 6.600 euro, che con l'IVA diventano 8.052 euro. La stessa cifra è chiesta anche all'acquirente, quindi sull'operazione l'agenzia incassa circa 16.100 euro. Nessuna legge fissa la percentuale: è liberamente pattuita e si tratta prima di firmare l'incarico." }
+    },
+    {
+      "@type": "Question",
+      "name": "La provvigione la paga il venditore o l'acquirente?",
+      "acceptedAnswer": { "@type": "Answer", "text": "La pagano entrambi. L'articolo 1755 del Codice civile prevede che il mediatore abbia diritto alla provvigione da ciascuna delle parti, perché ha messo in contatto due persone che senza di lui non si sarebbero incontrate. In pratica il venditore paga per la promozione e la ricerca dell'acquirente, l'acquirente per l'assistenza nella trattativa. Le parti possono accordarsi diversamente, ma deve risultare per iscritto nell'incarico o nella proposta: la frase \"le spese di agenzia sono a carico del venditore\" ha valore solo se è scritta." }
+    },
+    {
+      "@type": "Question",
+      "name": "Quando si paga la provvigione all'agenzia immobiliare?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Il diritto al compenso matura quando l'affare si conclude, e per la giurisprudenza l'affare si conclude con l'accettazione della proposta d'acquisto, non con il rogito. È il punto che sorprende quasi tutti: se dopo la proposta accettata la compravendita salta per un ripensamento o per un mutuo negato senza una clausola che lo preveda, la provvigione resta dovuta. Per questo conviene inserire nella proposta la condizione sospensiva dell'ottenimento del mutuo e concordare che il compenso si paghi al preliminare o al rogito." }
+    },
+    {
+      "@type": "Question",
+      "name": "La provvigione dell'agenzia è detraibile?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Solo per chi compra, e solo per l'abitazione principale. L'articolo 15 del TUIR consente di detrarre il 19% degli oneri di intermediazione immobiliare su un importo massimo di 1.000 euro: il risparmio IRPEF si ferma quindi a 190 euro, una volta sola e da ripartire fra i comproprietari. Serve la fattura dell'agenzia e il pagamento tracciabile, e la provvigione va dichiarata davanti al notaio nell'atto di acquisto. Per il venditore, invece, la provvigione non si detrae ma riduce l'eventuale plusvalenza tassabile." }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanto costa l'agenzia immobiliare per un affitto?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Nella locazione l'uso più comune è una mensilità di canone più IVA a carico di ciascuna parte, in alternativa una percentuale del canone annuo che va dal 10% al 15%. Su un appartamento affittato a 650 euro al mese, una mensilità significa 650 euro più 143 di IVA, cioè 793 euro per l'inquilino e altrettanti per il proprietario. Alcune agenzie chiedono due mensilità per i contratti a canone libero di lunga durata: è pattuibile, e come per la vendita l'importo va messo per iscritto prima di visitare l'immobile." }
+    }
+  ]
+}
+</script>
+<style>
+  :root{
+    --bg:#f6f4ef; --card:#fffdf8; --ink:#14203a; --muted:#5d6880; --rule:#ddd6c8;
+    --accent:#1b3a6b; --accent-soft:#e7edf7; --accent-ink:#fffdf8;
+    --gold:#9a7b2f; --ok:#1e6a46; --warn:#8a4a1d;
+    --serif:Georgia,"Times New Roman","Liberation Serif",serif;
+    --r:6px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#0b1322; --card:#101a2e; --ink:#e8e4da; --muted:#9aa4b8; --rule:#24314c;
+      --accent:#8fb3e8; --accent-soft:#17243c; --accent-ink:#0b1322;
+      --gold:#d9b55f; --ok:#6fc49a; --warn:#e0a071;
+    }
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--serif); font-size:17px; line-height:1.65;
+    padding:0 1.05rem 7.5rem;
+  }
+  .wrap{max-width:46rem; margin:0 auto}
+  a{color:var(--accent)}
+  .back{display:inline-block; padding:.85rem .1rem .55rem; font-size:.92rem; color:var(--muted); text-decoration:none}
+  .back:hover{color:var(--accent)}
+  h1{font-size:1.6rem; line-height:1.2; margin:.2rem 0 .4rem; font-weight:700; letter-spacing:-.01em}
+  .sub{color:var(--muted); font-size:.98rem; margin:0 0 1.3rem}
+
+  /* --- wizard: un passo alla volta, barra di avanzamento in testa --- */
+  .avanz{display:flex; align-items:center; gap:.6rem; margin:0 0 1rem}
+  .avanz .et{font-size:.8rem; letter-spacing:.09em; text-transform:uppercase; color:var(--muted); white-space:nowrap; font-family:system-ui,sans-serif}
+  .tacche{display:flex; gap:.3rem; flex:1}
+  .tacche i{flex:1; height:4px; background:var(--rule); border-radius:2px}
+  .tacche i.on{background:var(--accent)}
+  .passo{display:none; background:var(--card); border:1px solid var(--rule); border-radius:var(--r); padding:1.15rem 1.05rem 1.3rem}
+  .passo.attivo{display:block}
+  .passo h2{font-size:1.18rem; margin:0 0 .2rem; font-weight:700}
+  .passo.fascia{padding:.85rem 1.05rem .95rem}
+  .passo.fascia h2{margin:0}
+  .azioni{display:flex; gap:.6rem; flex-wrap:wrap; margin:.9rem 0 0}
+  .passo .occhiello{font-family:system-ui,sans-serif; font-size:.74rem; letter-spacing:.11em; text-transform:uppercase; color:var(--gold); margin:0 0 .45rem}
+  .passo .intro{color:var(--muted); font-size:.93rem; margin:0 0 1.15rem}
+
+  .campo{margin:0 0 1.15rem}
+  .campo > label, .gruppo > .lab{display:block; font-size:.95rem; font-weight:700; margin:0 0 .45rem}
+  .aiuto{display:block; color:var(--muted); font-size:.85rem; font-weight:400; margin:.2rem 0 0; line-height:1.45}
+  input[type=number], input[type=text], select{
+    width:100%; font:inherit; font-size:17px; padding:.72rem .8rem;
+    background:var(--bg); color:var(--ink); border:1px solid var(--rule); border-radius:var(--r);
+    min-height:46px;
+  }
+  input:focus-visible, select:focus-visible, button:focus-visible, .chip:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+  .conval{position:relative}
+  .conval .u{position:absolute; right:.75rem; top:50%; transform:translateY(-50%); color:var(--muted); font-size:.95rem; pointer-events:none}
+  .conval input{padding-right:2.6rem}
+
+  /* scelte a chip: niente hover come unica affordance */
+  .chips{display:flex; flex-wrap:wrap; gap:.5rem}
+  .chip{position:relative; flex:1 1 auto}
+  .chip input{position:absolute; opacity:0; width:1px; height:1px}
+  .chip span{
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    min-height:46px; padding:.6rem .8rem; cursor:pointer;
+    border:1px solid var(--rule); border-radius:var(--r); background:var(--bg);
+    font-size:.95rem; line-height:1.25;
+  }
+  .chip input:checked + span{background:var(--accent); border-color:var(--accent); color:var(--accent-ink); font-weight:700}
+  .chips.perc .chip{flex:0 0 auto; min-width:4.6rem}
+  button.chip{border:0; background:none; padding:0; font:inherit; color:inherit}
+
+  .interr{display:flex; align-items:flex-start; gap:.7rem; padding:.55rem 0; min-height:46px}
+  .interr input{width:24px; height:24px; margin:.35rem 0 0; accent-color:var(--accent); flex:0 0 auto}
+  .interr .t{font-size:.95rem}
+  .interr .t b{display:block; font-weight:700}
+
+  /* --- risultato --- */
+  #risultato{margin:1.3rem 0 0}
+  .vuoto{background:var(--card); border:1px dashed var(--rule); border-radius:var(--r); padding:1.3rem 1.1rem; color:var(--muted); font-size:.95rem}
+  .esito{background:var(--accent); color:var(--accent-ink); border-radius:var(--r); padding:1.2rem 1.1rem}
+  .esito .et{font-family:system-ui,sans-serif; font-size:.76rem; letter-spacing:.11em; text-transform:uppercase; opacity:.85; margin:0 0 .2rem}
+  .esito .big{font-size:2.5rem; line-height:1.05; font-weight:700; letter-spacing:-.02em; margin:0}
+  .esito .nota{font-size:.9rem; opacity:.9; margin:.5rem 0 0; line-height:1.5}
+  .righe{background:var(--card); border:1px solid var(--rule); border-top:0; border-radius:0 0 var(--r) var(--r); padding:.3rem 1.1rem .9rem}
+  .esito{border-radius:var(--r) var(--r) 0 0}
+  .riga{display:flex; justify-content:space-between; gap:1rem; padding:.62rem 0; border-bottom:1px solid var(--rule); font-size:.95rem}
+  .riga:last-child{border-bottom:0}
+  .riga .v{font-weight:700; white-space:nowrap; font-variant-numeric:tabular-nums}
+  .riga .v.testo{white-space:normal; text-align:right; font-weight:400; max-width:14rem}
+  .riga.tot{font-weight:700}
+  .riga small{display:block; color:var(--muted); font-size:.82rem; font-weight:400}
+  .riga .v.giu{color:var(--ok)}
+  .avviso{margin:.9rem 0 0; padding:.8rem .95rem; background:var(--accent-soft); border-left:3px solid var(--gold); border-radius:0 var(--r) var(--r) 0; font-size:.9rem; line-height:1.55}
+
+  /* --- Pro --- */
+  [data-pro]{background:var(--card); border:1px solid var(--rule); border-radius:var(--r); padding:1.05rem 1rem 1.15rem; margin:1.1rem 0 0}
+  [data-pro] > h2{font-size:1.08rem; margin:0 0 .2rem}
+  [data-pro] .perche{color:var(--muted); font-size:.87rem; margin:0 0 .95rem}
+  .mini{width:100%; border-collapse:collapse; font-size:.93rem}
+  .mini th, .mini td{text-align:right; padding:.5rem .35rem; border-bottom:1px solid var(--rule); font-variant-numeric:tabular-nums}
+  .mini th{font-size:.82rem; color:var(--muted); font-weight:400; font-family:system-ui,sans-serif}
+  .mini td:first-child, .mini th:first-child{text-align:left}
+  .mini tr.qui td{font-weight:700; color:var(--accent)}
+  .duecol{display:grid; gap:.8rem}
+  .conf{display:grid; gap:.6rem; margin:.9rem 0 0}
+  .conf .box{border:1px solid var(--rule); border-radius:var(--r); padding:.8rem .9rem}
+  .conf .box .et{font-family:system-ui,sans-serif; font-size:.76rem; letter-spacing:.09em; text-transform:uppercase; color:var(--muted)}
+  .conf .box .n{font-size:1.5rem; font-weight:700; letter-spacing:-.01em; font-variant-numeric:tabular-nums}
+  .conf .box.vince{border-color:var(--accent); background:var(--accent-soft)}
+  .verdetto{margin:.8rem 0 0; font-size:.95rem; line-height:1.6}
+  .stampa{margin:.9rem 0 0}
+  #preventivo .riga{font-size:.93rem}
+
+  /* --- guida --- */
+  #guida{margin:2.4rem 0 0}
+  #guida h2{font-size:1.22rem; margin:1.8rem 0 .45rem; font-weight:700}
+  #guida h3{font-size:1.02rem; margin:1.25rem 0 .3rem; font-weight:700}
+  #guida p, #guida li{font-size:1rem; line-height:1.7}
+  #guida ul{padding-left:1.15rem}
+  #guida li{margin:.3rem 0}
+  .fonte{color:var(--muted); font-size:.85rem; line-height:1.6; margin:1.4rem 0 0}
+  footer{margin:2.2rem 0 0; padding:1.2rem 0 0; border-top:1px solid var(--rule); color:var(--muted); font-size:.87rem}
+  footer a{color:var(--accent)}
+  footer p{margin:.4rem 0}
+  .correlate{margin:1.2rem 0 0; font-size:.93rem}
+
+  /* --- barra inferiore (pollice) --- */
+  .barra{
+    position:fixed; left:0; right:0; bottom:0; z-index:20;
+    background:var(--card); border-top:1px solid var(--rule);
+    padding:.6rem 1.05rem calc(.6rem + env(safe-area-inset-bottom));
+  }
+  .barra .in{max-width:46rem; margin:0 auto; display:flex; gap:.6rem}
+  button{font:inherit; cursor:pointer}
+  .btn{
+    flex:1; min-height:50px; padding:.7rem 1rem; border-radius:var(--r);
+    border:1px solid var(--accent); background:var(--accent); color:var(--accent-ink);
+    font-size:1rem; font-weight:700;
+  }
+  .btn.ghost{background:transparent; color:var(--accent); flex:0 0 auto; min-width:7.5rem}
+  .btn.piccolo{min-height:46px; font-size:.95rem; flex:0 0 auto}
+  .btn[disabled]{opacity:.45; cursor:not-allowed}
+  .errore{color:var(--warn); font-size:.88rem; margin:.4rem 0 0; min-height:1.2em}
+
+  @media (min-width:700px){
+    body{font-size:18px; padding-bottom:6.5rem}
+    h1{font-size:2.05rem}
+    .passo{padding:1.5rem 1.4rem 1.6rem}
+    .duecol{grid-template-columns:1fr 1fr; gap:1rem}
+    .conf{grid-template-columns:1fr 1fr}
+    .esito .big{font-size:3rem}
+  }
+  @media print{
+    .back,.barra,.avanz,.passo,[data-ad],[data-affiliate],[data-support],.noprint,.mz-lock{display:none !important}
+    body{padding-bottom:0; background:#fff; color:#000}
+    [data-pro],[data-pro] > *{filter:none !important}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../../index.html">&larr; Tutte le app</a>
+
+  <h1>Quanto costa l'agenzia immobiliare</h1>
+  <p class="sub">Tre passi e sai quanto paghi tu, quanto paga l'altra parte e quanto incassa l'agenzia sull'operazione. Con IVA, minimo garantito e detrazione prima casa.</p>
+
+  <div class="avanz">
+    <span class="et" id="etPasso">Passo 1 di 3</span>
+    <div class="tacche" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+  </div>
+
+  <form id="form" autocomplete="off">
+
+    <!-- PASSO 1 -->
+    <section class="passo attivo" data-passo="1" aria-labelledby="h1p">
+      <p class="occhiello">L'operazione</p>
+      <h2 id="h1p">Che cosa stai facendo</h2>
+      <p class="intro">Serve per capire su quale importo si calcola la provvigione.</p>
+
+      <div class="gruppo campo">
+        <span class="lab">L'immobile si vende o si affitta?</span>
+        <div class="chips" role="radiogroup" aria-label="Tipo di operazione">
+          <label class="chip"><input type="radio" name="op" value="vendita" checked><span>Vendita</span></label>
+          <label class="chip"><input type="radio" name="op" value="affitto"><span>Affitto</span></label>
+        </div>
+      </div>
+
+      <div class="gruppo campo">
+        <span class="lab" id="labRuolo">E tu da che parte stai?</span>
+        <div class="chips" role="radiogroup" aria-labelledby="labRuolo">
+          <label class="chip"><input type="radio" name="ruolo" value="offre" checked><span id="ruoloA">Vendo casa</span></label>
+          <label class="chip"><input type="radio" name="ruolo" value="cerca"><span id="ruoloB">Compro casa</span></label>
+        </div>
+      </div>
+
+      <div class="campo" id="boxPrezzo">
+        <label for="prezzo">Prezzo di vendita concordato</label>
+        <div class="conval">
+          <input type="number" id="prezzo" inputmode="numeric" min="1000" max="20000000" step="1000" value="220000" enterkeyhint="next">
+          <span class="u">&euro;</span>
+        </div>
+        <span class="aiuto">Il prezzo su cui si chiude, non quello del primo annuncio: la provvigione si calcola sul prezzo effettivo di vendita.</span>
+      </div>
+
+      <div class="campo" id="boxCanone" hidden>
+        <label for="canone">Canone mensile di affitto</label>
+        <div class="conval">
+          <input type="number" id="canone" inputmode="numeric" min="50" max="20000" step="10" value="650" enterkeyhint="next">
+          <span class="u">&euro;</span>
+        </div>
+        <span class="aiuto">Il canone pattuito al mese, senza le spese condominiali.</span>
+      </div>
+      <p class="errore" id="err1" role="alert"></p>
+    </section>
+
+    <!-- PASSO 2 -->
+    <section class="passo" data-passo="2" aria-labelledby="h2p">
+      <p class="occhiello">La provvigione</p>
+      <h2 id="h2p">Quanto chiede l'agenzia</h2>
+      <p class="intro">Nessuna legge fissa la percentuale: metti quella scritta nell'incarico o quella che ti hanno detto a voce.</p>
+
+      <div class="gruppo campo" id="boxModo">
+        <span class="lab">Come è pattuito il compenso</span>
+        <div class="chips" role="radiogroup" aria-label="Modalità del compenso">
+          <label class="chip"><input type="radio" name="modo" value="perc" checked><span id="modoA">Percentuale</span></label>
+          <label class="chip" id="chipMens"><input type="radio" name="modo" value="mens"><span>Mensilità</span></label>
+          <label class="chip"><input type="radio" name="modo" value="fisso"><span>Importo fisso</span></label>
+        </div>
+      </div>
+
+      <div class="campo" id="boxPerc">
+        <label for="perc">Percentuale a carico tuo</label>
+        <div class="chips perc" id="chipsPerc" role="group" aria-label="Percentuali più comuni"></div>
+        <div class="conval" style="margin-top:.5rem">
+          <input type="number" id="perc" inputmode="decimal" min="0" max="20" step="0.1" value="3" enterkeyhint="next">
+          <span class="u">%</span>
+        </div>
+        <span class="aiuto" id="aiutoPerc">Nella compravendita l'uso corrente è fra il 2% e il 4%, con il 3% come valore più diffuso.</span>
+      </div>
+
+      <div class="campo" id="boxMens" hidden>
+        <label for="mens">Mensilità a carico tuo</label>
+        <div class="conval">
+          <input type="number" id="mens" inputmode="decimal" min="0" max="6" step="0.5" value="1">
+          <span class="u">mens.</span>
+        </div>
+        <span class="aiuto">Negli affitti l'uso più comune è una mensilità per parte; alcune agenzie ne chiedono due sui contratti a canone libero.</span>
+      </div>
+
+      <div class="campo" id="boxFisso" hidden>
+        <label for="fisso">Compenso fisso a carico tuo</label>
+        <div class="conval">
+          <input type="number" id="fisso" inputmode="numeric" min="0" max="500000" step="100" value="4000">
+          <span class="u">&euro;</span>
+        </div>
+        <span class="aiuto">Al netto di IVA, come compare nel preventivo dell'agenzia.</span>
+      </div>
+
+      <div class="campo">
+        <label for="percAltra" id="labAltra">Percentuale a carico dell'altra parte</label>
+        <div class="conval">
+          <input type="number" id="percAltra" inputmode="decimal" min="0" max="20" step="0.1" value="3">
+          <span class="u">%</span>
+        </div>
+        <span class="aiuto">Quasi sempre l'agenzia chiede lo stesso compenso a entrambi: è il dato che serve per sapere quanto incassa davvero sull'operazione. Metti 0 se nell'incarico è scritto che paga una parte sola.</span>
+      </div>
+
+      <div class="campo">
+        <label for="minimo">Minimo garantito <span style="font-weight:400;color:var(--muted)">(se c'è)</span></label>
+        <div class="conval">
+          <input type="number" id="minimo" inputmode="numeric" min="0" max="200000" step="100" value="0">
+          <span class="u">&euro;</span>
+        </div>
+        <span class="aiuto">Molti incarichi aggiungono una clausola tipo &laquo;3% con un minimo di 4.000 euro&raquo;: sugli immobili sotto i 150.000 euro è il minimo a decidere il conto.</span>
+      </div>
+
+      <div class="campo">
+        <label class="interr" for="iva">
+          <input type="checkbox" id="iva" checked>
+          <span class="t"><b>Aggiungi l'IVA al 22%</b>Lasciala attiva: si toglie solo se l'agente è in regime forfettario e lo dichiara in fattura.</span>
+        </label>
+        <label class="interr" for="primaCasa" id="boxPrimaCasa">
+          <input type="checkbox" id="primaCasa">
+          <span class="t"><b>È l'acquisto della mia prima casa</b>Applica la detrazione IRPEF del 19% sugli oneri di intermediazione, entro il tetto di 1.000 euro di spesa.</span>
+        </label>
+      </div>
+      <p class="errore" id="err2" role="alert"></p>
+    </section>
+
+    <!-- PASSO 3 -->
+    <section class="passo fascia" data-passo="3" aria-labelledby="h3p">
+      <p class="occhiello">Il conto</p>
+      <h2 id="h3p">Ecco quanto costa</h2>
+    </section>
+
+  </form>
+
+  <section id="risultato" aria-live="polite">
+    <div class="vuoto" id="vuoto">Compila i due passi e qui compare il conto completo: quanto paghi tu, quanto paga l'altra parte e quanto incassa l'agenzia.</div>
+    <div id="esitoBox" hidden>
+      <div class="esito">
+        <p class="et" id="esitoEt">Paghi tu, IVA compresa</p>
+        <p class="big" id="esitoBig">&mdash;</p>
+        <p class="nota" id="esitoNota"></p>
+      </div>
+      <div class="righe" id="dettaglio"></div>
+      <div class="avviso" id="avviso"></div>
+    </div>
+  </section>
+
+  <div class="azioni noprint" id="azioni" hidden>
+    <button type="button" class="btn ghost piccolo" id="btnCopia">Copia riepilogo</button>
+    <button type="button" class="btn ghost piccolo" id="btnReset">Azzera</button>
+  </div>
+  <p class="errore noprint" id="esitoCopia" role="status" style="color:var(--ok)"></p>
+
+  <div data-ad="top" class="noprint"></div>
+
+  <section data-pro="Confronto con la vendita da privato" aria-labelledby="hp1">
+    <h2 id="hp1">Confronto con la vendita da privato</h2>
+    <p class="perche">Quanto ti resta davvero in tasca passando dall'agenzia, e quanto ti resterebbe trattando da solo accettando un prezzo più basso.</p>
+    <div class="duecol">
+      <div class="campo" style="margin:0">
+        <label for="sconto">Prezzo che ottieni da privato</label>
+        <div class="conval">
+          <input type="number" id="sconto" inputmode="decimal" min="-20" max="30" step="0.5" value="3">
+          <span class="u">% in meno</span>
+        </div>
+        <span class="aiuto">Senza agenzia la trattativa parte in genere da un prezzo più basso: il 2-5% è la forchetta realistica.</span>
+      </div>
+      <div class="campo" style="margin:0">
+        <label for="speseDirette" id="labSpese">Spese che ti accolli da solo</label>
+        <div class="conval">
+          <input type="number" id="speseDirette" inputmode="numeric" min="0" max="20000" step="50" value="250">
+          <span class="u">&euro;</span>
+        </div>
+        <span class="aiuto" id="aiutoSpese">Annunci a pagamento, servizio fotografico, planimetrie, tempo per le visite.</span>
+      </div>
+    </div>
+    <div class="conf" id="confBox"></div>
+    <p class="verdetto" id="verdetto"></p>
+  </section>
+
+  <section data-pro="Simulazione della trattativa" aria-labelledby="hp2">
+    <h2 id="hp2">Simulazione della trattativa</h2>
+    <p class="perche">Quanto vale ogni mezzo punto percentuale strappato prima di firmare l'incarico. È la tabella da guardare quando l'agente dice &laquo;la nostra è il 3%, non si tratta&raquo;.</p>
+    <div style="overflow-x:auto">
+      <table class="mini" id="tabTrattativa">
+        <thead><tr><th>Provvigione</th><th>Paghi tu</th><th>Rispetto a ora</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p class="verdetto" id="verdettoTratt"></p>
+  </section>
+
+  <section data-pro="Riepilogo stampabile" aria-labelledby="hp3">
+    <h2 id="hp3">Riepilogo stampabile</h2>
+    <p class="perche">Il conto voce per voce da stampare o salvare in PDF e portare all'appuntamento in agenzia, per far mettere nero su bianco quello che è stato detto a voce.</p>
+    <div id="preventivo"></div>
+    <button type="button" class="btn piccolo stampa" id="btnStampa">Stampa o salva in PDF</button>
+  </section>
+
+  <div class="noprint" data-affiliate data-title="Se vendi o compri casa da solo" data-items='[{"t":"Guida pratica alla compravendita immobiliare","q":"guida compravendita immobiliare libro"},{"t":"Metro laser per misurare i metri quadri reali","q":"metro laser distanziometro"},{"t":"Cartello vendesi da finestra o cancello","q":"cartello vendesi immobile"}]'></div>
+
+  <section id="guida">
+    <h2>Come si calcola la provvigione</h2>
+    <p>La domanda &laquo;quanto costa l'agenzia immobiliare&raquo; non ha una risposta scritta nella legge: nessuna norma fissa una percentuale, un tetto o un tariffario. La provvigione è liberamente pattuita fra le parti e l'unico vincolo serio è che sia messa per iscritto prima, nell'incarico di vendita o nella proposta d'acquisto. Da quel momento diventa un debito, e discuterla dopo serve a poco.</p>
+    <p>Il calcolo in sé è banale: si applica la percentuale concordata al prezzo effettivo di vendita. Sono gli altri tre pezzi a spostare il conto, e sono quelli che nessuno ti anticipa. Il primo è l'IVA al 22%, che si aggiunge sempre al compenso dichiarato, perché le agenzie parlano quasi sempre di percentuale al netto. Il secondo è che la provvigione la pagano entrambe le parti: l'articolo 1755 del Codice civile dà al mediatore il diritto al compenso da ciascuno dei due, quindi sull'operazione l'agenzia incassa il doppio di quello che hai in mente tu. Il terzo è il minimo garantito, la clausola &laquo;il 3% con un minimo di 4.000 euro&raquo; che sugli immobili economici fa saltare completamente il ragionamento in percentuale.</p>
+
+    <h2>Un esempio con i numeri</h2>
+    <p>Casa venduta a 220.000 euro, provvigione del 3% per parte, agenzia con partita IVA ordinaria. Il compenso del venditore è 6.600 euro, l'IVA al 22% aggiunge 1.452 euro: la fattura è di 8.052 euro. L'acquirente riceve una fattura identica, quindi l'agenzia incassa 13.200 euro di compenso e 16.104 euro in tutto. Chi compra quella casa come prima abitazione recupera il 19% degli oneri di intermediazione, ma su un massimo di 1.000 euro di spesa: 190 euro di IRPEF in meno, una volta sola. Il costo netto per l'acquirente scende così a 7.862 euro.</p>
+    <p>Lo stesso immobile con una provvigione trattata al 2,5% costa al venditore 6.710 euro invece di 8.052: 1.342 euro risparmiati in una telefonata, prima di firmare. Se invece nell'incarico c'è un minimo garantito di 6.000 euro e la casa si vende a 150.000, il 3% darebbe 4.500 euro ma tu ne paghi 6.000 più IVA, cioè 7.320: la percentuale sulla carta diventa il 4%.</p>
+
+    <h2>Gli errori che costano di più</h2>
+    <ul>
+      <li><b>Credere che si paghi al rogito.</b> Il diritto alla provvigione nasce quando l'affare si conclude, e per la giurisprudenza l'affare si conclude con l'accettazione della proposta d'acquisto. Se poi la compravendita salta, il compenso resta dovuto: va chiesto per iscritto che si paghi al preliminare o al rogito, e che la proposta sia condizionata all'ottenimento del mutuo.</li>
+      <li><b>Fermarsi alla percentuale.</b> Due agenzie al 3% possono costare cifre diverse per il minimo garantito, la durata dell'esclusiva e il rinnovo tacito dell'incarico, che in alcuni mandati scatta da solo se non disdici per iscritto.</li>
+      <li><b>Non chiedere se la percentuale è lorda o netta.</b> Fra &laquo;3%&raquo; e &laquo;3% più IVA&raquo; ballano 1.452 euro sull'esempio sopra.</li>
+      <li><b>Non verificare l'iscrizione.</b> Chi esercita la mediazione deve essere iscritto al registro delle imprese nella sezione degli agenti d'affari in mediazione: un intermediario non iscritto non ha diritto ad alcuna provvigione, e l'iscrizione si controlla gratis alla Camera di commercio.</li>
+      <li><b>Dimenticare la dichiarazione al notaio.</b> Nell'atto di acquisto le parti devono dichiarare l'importo della provvigione e come l'hanno pagata: è obbligatorio, e senza fattura la detrazione del 19% non si può chiedere.</li>
+    </ul>
+
+    <h2>Vendita e affitto: gli usi correnti</h2>
+    <p>Nella compravendita residenziale la forchetta reale va dal 2% al 4% per parte più IVA, con il 3% come valore più diffuso. Sulle case di valore alto si tratta spesso al 2% o meno, perché la percentuale si applica a una base grande; sugli immobili sotto i 100.000 euro, al contrario, l'agenzia tende a lavorare a importo fisso o con un minimo garantito. Nella locazione l'uso prevalente è una mensilità di canone più IVA a carico di ciascuna parte, oppure una percentuale del canone annuo fra il 10% e il 15%.</p>
+    <p>Una percentuale alta non è di per sé un cattivo affare: un'agenzia che ti porta tre acquirenti in un mese e ti fa chiudere al prezzo di richiesta vale più di una che ti fa risparmiare mezzo punto e ti lascia l'annuncio fermo per un anno. Il punto è sapere la cifra esatta prima di firmare, e questo calcolatore serve esattamente a quello.</p>
+
+    <h2>Domande frequenti</h2>
+    <h3>Quanto costa l'agenzia immobiliare per vendere casa?</h3>
+    <p>Di norma fra il 2% e il 4% del prezzo più IVA al 22%, con il 3% come valore più comune. Su 220.000 euro al 3% sono 6.600 euro di compenso che diventano 8.052 euro in fattura. La stessa cifra è chiesta anche all'acquirente.</p>
+    <h3>La provvigione la paga il venditore o l'acquirente?</h3>
+    <p>Entrambi, per l'articolo 1755 del Codice civile. Le parti possono accordarsi diversamente, ma deve risultare per iscritto nell'incarico o nella proposta: la frase &laquo;le spese di agenzia sono a carico del venditore&raquo; vale solo se è scritta.</p>
+    <h3>Quando si paga la provvigione?</h3>
+    <p>Quando l'affare si conclude, cioè con l'accettazione della proposta d'acquisto, non con il rogito. È il punto che sorprende quasi tutti: se la compravendita salta dopo, la provvigione resta dovuta a meno che la proposta non contenga una condizione che lo escluda.</p>
+    <h3>La provvigione è detraibile?</h3>
+    <p>Solo per chi compra l'abitazione principale: il 19% su un massimo di 1.000 euro di spesa, quindi non più di 190 euro di IRPEF risparmiata, una volta sola e da ripartire fra i comproprietari. Servono la fattura e il pagamento tracciabile. Per il venditore la provvigione non si detrae, ma riduce l'eventuale plusvalenza tassabile.</p>
+    <h3>Si può trattare la percentuale?</h3>
+    <p>Sì, e il momento è prima di firmare l'incarico, quando l'agenzia non ha ancora investito nulla. Le leve che funzionano sono l'esclusiva, una durata più breve del mandato e un immobile facile da vendere. Dopo la proposta accettata non c'è più margine.</p>
+
+    <p class="fonte">Il calcolatore applica gli usi correnti di mercato (2-4% nella compravendita, una mensilità nella locazione), l'IVA ordinaria al 22% e la detrazione del 19% su massimo 1.000 euro prevista dall'articolo 15 del TUIR per gli oneri di intermediazione sull'abitazione principale. Le percentuali di provvigione non sono fissate per legge: sono liberamente pattuite, quindi il risultato vale per i valori che inserisci tu. Per il caso concreto fanno fede l'incarico firmato e, per la parte fiscale, il tuo commercialista o il notaio che stipula l'atto.</p>
+  </section>
+
+  <div data-ad="bottom" class="noprint"></div>
+  <div data-support class="noprint"></div>
+
+  <nav class="correlate noprint">
+    Da leggere prima di firmare: <a href="../2026-10-10-spese-notaio-acquisto-casa/index.html">quanto costa il notaio per l'acquisto della casa</a>, <a href="../2026-11-03-tasse-vendita-casa/index.html">le tasse sulla vendita di una casa</a> e <a href="../2026-10-23-quanto-mutuo-posso-chiedere/index.html">quanto mutuo posso chiedere con il mio stipendio</a>.
+  </nav>
+
+  <footer>
+    <p><a href="../../index.html">&larr; Tutte le app</a></p>
+    <p>Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a></p>
+  </footer>
+</div>
+
+<div class="barra noprint">
+  <div class="in">
+    <button type="button" class="btn ghost" id="btnIndietro" hidden>Indietro</button>
+    <button type="button" class="btn" id="btnAvanti">Avanti</button>
+  </div>
+</div>
+
+<script src="../../assets/monetize.js"></script>
+<script>
+/* Modello dati: un solo oggetto `S` con l'operazione (vendita|affitto), il ruolo (offre|cerca),
+   la base di calcolo (prezzo o canone), il modo di pattuizione (perc|mens|fisso) con i rispettivi
+   valori, la quota dell'altra parte, il minimo garantito, IVA e prima casa. `calcola(S)` è puro e
+   restituisce tutti gli importi; la UI (wizard a 3 passi) legge solo quel risultato. Persistenza in
+   localStorage sotto "quanto-costa-agenzia-immobiliare:v1". */
+(function(){
+  "use strict";
+  var CHIAVE = "quanto-costa-agenzia-immobiliare:v1";
+  var IVA_AL = 0.22, DETR_AL = 0.19, DETR_TETTO = 1000;
+  var $ = function(id){ return document.getElementById(id); };
+
+  var num = new Intl.NumberFormat("it-IT", { maximumFractionDigits:2 });
+  // Intl non raggruppa i numeri di 4 cifre in it-IT ("8052"): qui le migliaia si separano sempre.
+  function euro(v, dec){
+    var s = Math.abs(v).toFixed(dec).split(".");
+    s[0] = s[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    return (v < -0.004 ? "\u2212" : "") + s.join(",") + "\u00a0\u20ac";
+  }
+  function e(v){ return euro(Math.round(v), 0); }
+  function e2(v){ return euro(v, 2); }
+
+  var S = {
+    op:"vendita", ruolo:"offre", prezzo:220000, canone:650,
+    modo:"perc", perc:3, mens:1, fisso:4000,
+    percAltra:3, minimo:0, iva:true, primaCasa:false,
+    sconto:3, speseDirette:250
+  };
+  var passo = 1;
+
+  /* ---------- calcolo ---------- */
+  function calcola(s){
+    var base = s.op === "vendita" ? s.prezzo : s.canone * 12;
+    var compenso;
+    if(s.modo === "perc") compenso = base * s.perc / 100;
+    else if(s.modo === "mens") compenso = (s.op === "affitto" ? s.canone : s.prezzo / 12) * s.mens;
+    else compenso = s.fisso;
+    var minimoAttivo = s.minimo > 0 && s.minimo > compenso;
+    if(minimoAttivo) compenso = s.minimo;
+
+    var ivaTua = s.iva ? compenso * IVA_AL : 0;
+    var tua = compenso + ivaTua;
+
+    var compAltra;
+    if(s.modo === "perc") compAltra = base * s.percAltra / 100;
+    else compAltra = s.percAltra > 0 ? compenso : 0;   // fisso/mensilità: stessa cifra se l'altra parte paga
+    if(s.minimo > 0 && compAltra > 0 && compAltra < s.minimo) compAltra = s.minimo;
+    var altra = compAltra + (s.iva ? compAltra * IVA_AL : 0);
+
+    var detrazione = 0;
+    if(s.op === "vendita" && s.ruolo === "cerca" && s.primaCasa) detrazione = Math.min(tua, DETR_TETTO) * DETR_AL;
+
+    return {
+      base: base, compenso: compenso, ivaTua: ivaTua, tua: tua,
+      compAltra: compAltra, altra: altra,
+      agenzia: compenso + compAltra, agenziaIva: tua + altra,
+      detrazione: detrazione, netto: tua - detrazione,
+      percEffettiva: base > 0 ? compenso / base * 100 : 0,
+      minimoAttivo: minimoAttivo
+    };
+  }
+
+  /* ---------- etichette che cambiano con l'operazione ---------- */
+  function etichette(){
+    var vendita = S.op === "vendita";
+    $("ruoloA").textContent = vendita ? "Vendo casa" : "Affitto il mio immobile";
+    $("ruoloB").textContent = vendita ? "Compro casa" : "Cerco casa in affitto";
+    $("boxPrezzo").hidden = !vendita;
+    $("boxCanone").hidden = vendita;
+    $("modoA").textContent = vendita ? "Percentuale" : "% canone annuo";
+    $("aiutoPerc").textContent = vendita
+      ? "Nella compravendita l'uso corrente è fra il 2% e il 4%, con il 3% come valore più diffuso."
+      : "Negli affitti, se non si ragiona a mensilità, l'uso è fra il 10% e il 15% del canone annuo.";
+    $("boxPrimaCasa").hidden = !(vendita && S.ruolo === "cerca");
+    $("labAltra").textContent = S.modo === "perc"
+      ? "Percentuale a carico dell'altra parte"
+      : "L'altra parte paga lo stesso compenso?";
+    $("labSpese").textContent = S.ruolo === "offre" ? "Spese che ti accolli da solo" : "Verifiche che paghi di tasca tua";
+    $("aiutoSpese").textContent = S.ruolo === "offre"
+      ? "Annunci a pagamento, servizio fotografico, planimetrie, tempo per le visite."
+      : "Visure ipotecarie e catastali, perizia tecnica, assistenza di un professionista sulla proposta.";
+    // chip percentuali tipiche, diverse fra vendita e affitto
+    var valori = vendita ? [1.5, 2, 2.5, 3, 3.5, 4] : [8, 10, 12, 15];
+    var box = $("chipsPerc");
+    if(box.dataset.set !== valori.join(",")){
+      box.dataset.set = valori.join(",");
+      box.innerHTML = "";
+      valori.forEach(function(v){
+        var b = document.createElement("button");
+        b.type = "button"; b.className = "chip"; b.dataset.val = String(v);
+        b.innerHTML = '<span>' + num.format(v) + '%</span>';
+        box.appendChild(b);
+      });
+    }
+    Array.prototype.forEach.call(box.children, function(b){
+      var attivo = Math.abs(parseFloat(b.dataset.val) - S.perc) < 0.001;
+      b.querySelector("span").style.background = attivo ? "var(--accent)" : "var(--bg)";
+      b.querySelector("span").style.color = attivo ? "var(--accent-ink)" : "var(--ink)";
+      b.querySelector("span").style.borderColor = attivo ? "var(--accent)" : "var(--rule)";
+      b.querySelector("span").style.fontWeight = attivo ? "700" : "400";
+      b.setAttribute("aria-pressed", attivo ? "true" : "false");
+    });
+    $("chipMens").hidden = vendita;   // le mensilità sono un uso della locazione
+    $("boxPerc").hidden = S.modo !== "perc";
+    $("boxMens").hidden = S.modo !== "mens";
+    $("boxFisso").hidden = S.modo !== "fisso";
+  }
+
+  /* ---------- validazione ---------- */
+  function problema(n){
+    if(n === 1){
+      if(S.op === "vendita" && !(S.prezzo >= 1000)) return "Inserisci il prezzo di vendita (almeno 1.000 €).";
+      if(S.op === "affitto" && !(S.canone >= 50)) return "Inserisci il canone mensile (almeno 50 €).";
+    }
+    if(n === 2){
+      if(S.modo === "perc" && !(S.perc >= 0)) return "Inserisci la percentuale di provvigione.";
+      if(S.modo === "mens" && !(S.mens >= 0)) return "Inserisci quante mensilità.";
+      if(S.modo === "fisso" && !(S.fisso >= 0)) return "Inserisci il compenso fisso.";
+      var r = calcola(S);
+      if(r.tua <= 0) return "Con questi valori la provvigione è zero: controlla percentuale o importo.";
+    }
+    return "";
+  }
+
+  /* ---------- risultato ---------- */
+  function mostraRisultato(){
+    var completo = passo > 1 && !problema(1) && !problema(2);
+    $("vuoto").hidden = completo;
+    $("esitoBox").hidden = !completo;
+    if(!completo) return;
+
+    var r = calcola(S), vendita = S.op === "vendita";
+    var ioOffro = S.ruolo === "offre";
+    var iomi = vendita ? (ioOffro ? "chi vende" : "chi compra") : (ioOffro ? "il proprietario" : "l'inquilino");
+    var altroDi = vendita ? (ioOffro ? "di chi compra" : "di chi vende") : (ioOffro ? "dell'inquilino" : "del proprietario");
+
+    $("esitoEt").textContent = S.iva ? "Paghi tu, IVA compresa" : "Paghi tu";
+    $("esitoBig").textContent = e(r.tua);
+    var nota = "Come " + iomi + ", su " + (vendita ? "un prezzo di " + e(S.prezzo) : "un canone di " + e(S.canone) + " al mese");
+    nota += S.modo === "perc" ? " con una provvigione del " + num.format(S.perc) + "%." : ".";
+    if(r.detrazione > 0) nota += " Dopo la detrazione prima casa il costo scende a " + e(r.netto) + ".";
+    $("esitoNota").textContent = nota;
+
+    var righe = [];
+    righe.push(["Compenso dell'agenzia (netto)", e2(r.compenso), r.minimoAttivo ? "Scatta il minimo garantito: la percentuale effettiva diventa il " + num.format(r.percEffettiva) + "%" : (S.modo === "perc" ? num.format(S.perc) + "% di " + e(r.base) : "")]);
+    if(S.iva) righe.push(["IVA 22%", e2(r.ivaTua), ""]);
+    righe.push(["Totale a carico tuo", e2(r.tua), "", true]);
+    if(r.altra > 0) righe.push(["A carico " + altroDi, e2(r.altra), S.modo === "perc" ? num.format(S.percAltra) + "% di " + e(r.base) : "stesso compenso"]);
+    righe.push(["Incasso totale dell'agenzia", e2(r.agenziaIva), r.altra > 0 ? "le due fatture insieme, IVA compresa" : "una sola parte paga"]);
+    if(r.detrazione > 0){
+      righe.push(["Detrazione IRPEF 19%", "− " + e2(r.detrazione), "19% su massimo " + e(DETR_TETTO) + " di spesa, una volta sola"]);
+      righe.push(["Costo netto per te", e2(r.netto), "", true]);
+    }
+    $("dettaglio").innerHTML = righe.map(function(x){
+      var cls = "riga" + (x[3] ? " tot" : "");
+      var v = x[1].indexOf("−") === 0 ? '<span class="v giu">' + x[1] + '</span>' : '<span class="v">' + x[1] + '</span>';
+      return '<div class="' + cls + '"><span>' + x[0] + (x[2] ? '<small>' + x[2] + '</small>' : '') + '</span>' + v + '</div>';
+    }).join("");
+
+    var avvisi = [];
+    if(r.minimoAttivo) avvisi.push("Il minimo garantito di " + e(S.minimo) + " è più alto della percentuale: stai pagando in pratica il " + num.format(r.percEffettiva) + "%.");
+    avvisi.push("La provvigione è dovuta dal momento in cui la proposta d'acquisto viene accettata, non dal rogito: fai scrivere nell'incarico quando si paga.");
+    if(vendita && S.ruolo === "cerca" && !S.primaCasa) avvisi.push("Se è la tua abitazione principale, spunta &laquo;prima casa&raquo;: recuperi fino a 190 € di IRPEF.");
+    if(!S.iva) avvisi.push("Hai escluso l'IVA: verificalo in fattura, fuori dal regime forfettario il 22% si applica sempre.");
+    $("avviso").innerHTML = avvisi.join("<br><br>");
+
+    aggiornaPro(r);
+  }
+
+  /* ---------- sezioni Pro ---------- */
+  function aggiornaPro(r){
+    var vendita = S.op === "vendita", ioOffro = S.ruolo === "offre";
+
+    // 1) confronto con il privato
+    var conf = $("confBox"), verdetto = $("verdetto");
+    if(!vendita){
+      conf.innerHTML = '<div class="box"><span class="et">Solo per la vendita</span><p style="margin:.3rem 0 0;font-size:.93rem">Il confronto con il &laquo;fai da te&raquo; ha senso sulla compravendita. Passa a <b>Vendita</b> nel primo passo per vederlo.</p></div>';
+      verdetto.textContent = "";
+    } else {
+      var prezzoPrivato = S.prezzo * (1 - S.sconto / 100);
+      var conAg = ioOffro ? S.prezzo - r.tua : S.prezzo + r.netto;
+      var daPriv = ioOffro ? prezzoPrivato - S.speseDirette : prezzoPrivato + S.speseDirette;
+      var megl = ioOffro ? (daPriv > conAg) : (daPriv < conAg);
+      var diff = Math.abs(daPriv - conAg);
+      var et = ioOffro ? "ti resta in tasca" : "ti costa in tutto";
+      conf.innerHTML =
+        '<div class="box' + (megl ? "" : " vince") + '"><span class="et">Con l\'agenzia, ' + et + '</span><div class="n">' + e(conAg) + '</div></div>' +
+        '<div class="box' + (megl ? " vince" : "") + '"><span class="et">Da privato, ' + et + '</span><div class="n">' + e(daPriv) + '</div></div>';
+      verdetto.innerHTML = megl
+        ? "Vendendo " + (ioOffro ? "da solo" : "da un privato") + " a un prezzo inferiore del " + num.format(S.sconto) + "% " + (ioOffro ? "ti resterebbero" : "spenderesti") + " <b>" + e(diff) + "</b> " + (ioOffro ? "in più" : "in meno") + ". Il margine esiste, ma va pesato: senza agenzia gestisci annunci, visite, verifiche ipotecarie e la stesura della proposta."
+        : "L'agenzia qui conviene: anche pagando " + e(r.tua) + " di provvigione, " + (ioOffro ? "incassi" : "spendi") + " <b>" + e(diff) + "</b> " + (ioOffro ? "in più" : "in meno") + " rispetto a trattare da privato con uno sconto del " + num.format(S.sconto) + "%. Basta che il prezzo tenga: il punto di pareggio è uno sconto del " + num.format(Math.max(0, r.tua / S.prezzo * 100 + (ioOffro ? -S.speseDirette : S.speseDirette) / S.prezzo * 100)) + "%.";
+    }
+
+    // 2) simulazione della trattativa
+    var corpo = $("tabTrattativa").querySelector("tbody");
+    var scala = vendita ? [1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5] : [8, 10, 12, 15];
+    if(S.modo !== "perc"){
+      corpo.innerHTML = '<tr><td colspan="3" style="text-align:left">La simulazione lavora sulla percentuale. Torna al secondo passo e scegli <b>' + (vendita ? "Percentuale" : "% canone annuo") + '</b> per vedere la tabella.</td></tr>';
+      $("verdettoTratt").textContent = "";
+    } else {
+      corpo.innerHTML = scala.map(function(p){
+        var alt = calcola(Object.assign({}, S, { perc: p }));
+        var d = alt.tua - r.tua;
+        var qui = Math.abs(p - S.perc) < 0.001;
+        var segno = d === 0 ? "&mdash;" : (d < 0 ? "− " + e(-d) : "+ " + e(d));
+        return '<tr' + (qui ? ' class="qui"' : '') + '><td>' + num.format(p) + '%' + (qui ? " (la tua)" : "") + '</td><td>' + e(alt.tua) + '</td><td>' + segno + '</td></tr>';
+      }).join("");
+      var mezzoPunto = calcola(Object.assign({}, S, { perc: Math.max(0, S.perc - 0.5) }));
+      $("verdettoTratt").innerHTML = "Ogni mezzo punto in meno vale <b>" + e(r.tua - mezzoPunto.tua) + "</b> su questa operazione. La trattativa si fa prima di firmare l'incarico: dopo la proposta accettata il compenso è dovuto così com'è scritto.";
+    }
+
+    // 3) riepilogo stampabile
+    var vendita2 = S.op === "vendita";
+    var voci = [
+      ["Operazione", vendita2 ? "Vendita" : "Affitto"],
+      ["La tua posizione", vendita2 ? (ioOffro ? "Venditore" : "Acquirente") : (ioOffro ? "Proprietario" : "Inquilino")],
+      [vendita2 ? "Prezzo concordato" : "Canone mensile", e(vendita2 ? S.prezzo : S.canone)],
+      ["Compenso pattuito", S.modo === "perc" ? num.format(S.perc) + "% " + (vendita2 ? "del prezzo" : "del canone annuo") : (S.modo === "mens" ? num.format(S.mens) + " mensilità" : "importo fisso " + e(S.fisso))],
+      ["Minimo garantito", S.minimo > 0 ? e(S.minimo) : "nessuno"],
+      ["Compenso netto", e2(r.compenso)],
+      ["IVA 22%", S.iva ? e2(r.ivaTua) : "non applicata (forfettario)"],
+      ["TOTALE A CARICO TUO", e2(r.tua)],
+      ["A carico dell'altra parte", r.altra > 0 ? e2(r.altra) : "nulla"],
+      ["Incasso totale dell'agenzia", e2(r.agenziaIva)]
+    ];
+    if(r.detrazione > 0){
+      voci.push(["Detrazione IRPEF 19% (prima casa)", "− " + e2(r.detrazione)]);
+      voci.push(["COSTO NETTO", e2(r.netto)]);
+    }
+    voci.push(["Quando si paga", "da concordare per iscritto: alla proposta accettata, al preliminare o al rogito"]);
+    $("preventivo").innerHTML = '<div class="righe" style="border-radius:var(--r);border-top:1px solid var(--rule)">' + voci.map(function(v){
+      var tot = v[0] === v[0].toUpperCase();
+      var lungo = v[1].length > 22 ? " testo" : "";
+      return '<div class="riga' + (tot ? " tot" : "") + '"><span>' + v[0] + '</span><span class="v' + lungo + '">' + v[1] + '</span></div>';
+    }).join("") + '</div>';
+  }
+
+  function testoRiepilogo(){
+    var r = calcola(S), vendita = S.op === "vendita";
+    var t = [];
+    t.push("Provvigione agenzia immobiliare — " + (vendita ? "vendita" : "affitto"));
+    t.push((vendita ? "Prezzo: " : "Canone mensile: ") + e(vendita ? S.prezzo : S.canone));
+    t.push("Compenso pattuito: " + (S.modo === "perc" ? num.format(S.perc) + "%" : (S.modo === "mens" ? num.format(S.mens) + " mensilità" : e(S.fisso) + " fissi")));
+    t.push("Compenso netto: " + e2(r.compenso) + (S.iva ? " + IVA " + e2(r.ivaTua) : " (IVA non applicata)"));
+    t.push("A carico tuo: " + e2(r.tua));
+    if(r.altra > 0) t.push("A carico dell'altra parte: " + e2(r.altra));
+    t.push("Incasso totale agenzia: " + e2(r.agenziaIva));
+    if(r.detrazione > 0) t.push("Detrazione prima casa: -" + e2(r.detrazione) + " → costo netto " + e2(r.netto));
+    t.push("La provvigione è dovuta dall'accettazione della proposta, non dal rogito.");
+    return t.join("\n");
+  }
+
+  /* ---------- wizard ---------- */
+  function vaiA(n){
+    passo = Math.min(3, Math.max(1, n));
+    Array.prototype.forEach.call(document.querySelectorAll(".passo"), function(s){
+      s.classList.toggle("attivo", s.dataset.passo === String(passo));
+    });
+    Array.prototype.forEach.call(document.querySelectorAll(".tacche i"), function(t, i){
+      t.classList.toggle("on", i < passo);
+    });
+    $("etPasso").textContent = "Passo " + passo + " di 3";
+    $("btnIndietro").hidden = passo === 1;
+    $("btnAvanti").textContent = passo === 3 ? "Ricomincia" : "Avanti";
+    $("err1").textContent = ""; $("err2").textContent = ""; $("esitoCopia").textContent = "";
+    $("azioni").hidden = passo !== 3;
+    mostraRisultato();
+  }
+
+  function avanti(){
+    if(passo === 3){ vaiA(1); window.scrollTo({ top:0, behavior:"smooth" }); return; }
+    var p = problema(passo);
+    if(p){ $("err" + passo).textContent = p; return; }
+    vaiA(passo + 1);
+    window.scrollTo({ top:0, behavior:"smooth" });
+  }
+
+  /* ---------- lettura dei campi ---------- */
+  function leggiNum(id, def){
+    var v = parseFloat(String($(id).value).replace(",", "."));
+    return isFinite(v) ? v : def;
+  }
+  function leggi(){
+    var op = document.querySelector('input[name=op]:checked');
+    var ruolo = document.querySelector('input[name=ruolo]:checked');
+    var modo = document.querySelector('input[name=modo]:checked');
+    S.op = op ? op.value : "vendita";
+    S.ruolo = ruolo ? ruolo.value : "offre";
+    S.modo = modo ? modo.value : "perc";
+    if(S.op === "vendita" && S.modo === "mens"){        // uscendo dall'affitto il modo non resta incoerente
+      S.modo = "perc";
+      var rp = document.querySelector('input[name=modo][value="perc"]'); if(rp) rp.checked = true;
+    }
+    S.prezzo = leggiNum("prezzo", 0);
+    S.canone = leggiNum("canone", 0);
+    S.perc = leggiNum("perc", 0);
+    S.mens = leggiNum("mens", 0);
+    S.fisso = leggiNum("fisso", 0);
+    S.percAltra = leggiNum("percAltra", 0);
+    S.minimo = leggiNum("minimo", 0);
+    S.iva = $("iva").checked;
+    S.primaCasa = $("primaCasa").checked;
+    S.sconto = leggiNum("sconto", 0);
+    S.speseDirette = leggiNum("speseDirette", 0);
+    etichette();
+    mostraRisultato();
+    salva();
+  }
+
+  function scrivi(){
+    var r1 = document.querySelector('input[name=op][value="' + S.op + '"]'); if(r1) r1.checked = true;
+    var r2 = document.querySelector('input[name=ruolo][value="' + S.ruolo + '"]'); if(r2) r2.checked = true;
+    var r3 = document.querySelector('input[name=modo][value="' + S.modo + '"]'); if(r3) r3.checked = true;
+    $("prezzo").value = S.prezzo; $("canone").value = S.canone;
+    $("perc").value = S.perc; $("mens").value = S.mens; $("fisso").value = S.fisso;
+    $("percAltra").value = S.percAltra; $("minimo").value = S.minimo;
+    $("iva").checked = !!S.iva; $("primaCasa").checked = !!S.primaCasa;
+    $("sconto").value = S.sconto; $("speseDirette").value = S.speseDirette;
+    etichette();
+  }
+
+  /* ---------- persistenza ---------- */
+  function salva(){
+    try{ localStorage.setItem(CHIAVE, JSON.stringify(S)); }catch(err){ /* modalità privata: si continua senza salvare */ }
+  }
+  function carica(){
+    try{
+      var raw = localStorage.getItem(CHIAVE);
+      if(!raw) return;
+      var o = JSON.parse(raw);
+      Object.keys(S).forEach(function(k){ if(o[k] !== undefined && o[k] !== null) S[k] = o[k]; });
+    }catch(err){ /* dato illeggibile: si parte dai valori predefiniti */ }
+  }
+
+  /* ---------- eventi ---------- */
+  document.getElementById("form").addEventListener("input", leggi);
+  document.getElementById("form").addEventListener("change", leggi);
+  document.querySelector('[data-pro="Confronto con la vendita da privato"]').addEventListener("input", leggi);
+
+  $("chipsPerc").addEventListener("click", function(ev){
+    var b = ev.target.closest(".chip");
+    if(!b || !b.dataset.val) return;
+    $("perc").value = b.dataset.val;
+    if(S.percAltra === S.perc) $("percAltra").value = b.dataset.val;
+    leggi();
+  });
+
+  $("btnAvanti").addEventListener("click", avanti);
+  $("btnIndietro").addEventListener("click", function(){ vaiA(passo - 1); window.scrollTo({ top:0, behavior:"smooth" }); });
+  $("btnReset").addEventListener("click", function(){
+    try{ localStorage.removeItem(CHIAVE); }catch(err){}
+    S = { op:"vendita", ruolo:"offre", prezzo:220000, canone:650, modo:"perc", perc:3, mens:1, fisso:4000,
+          percAltra:3, minimo:0, iva:true, primaCasa:false, sconto:3, speseDirette:250 };
+    scrivi(); vaiA(1); window.scrollTo({ top:0, behavior:"smooth" });
+  });
+  $("btnStampa").addEventListener("click", function(){ window.print(); });
+  $("btnCopia").addEventListener("click", function(){
+    var t = testoRiepilogo(), msg = $("esitoCopia");
+    function ok(){ msg.textContent = "Riepilogo copiato."; setTimeout(function(){ msg.textContent = ""; }, 2500); }
+    function ko(){ msg.style.color = "var(--warn)"; msg.textContent = "Non riesco a copiare: seleziona il riepilogo a mano."; }
+    if(navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(ok, ko);
+    else ko();
+  });
+
+  document.addEventListener("keydown", function(ev){
+    if(ev.key === "Enter" && ev.target.tagName === "INPUT" && ev.target.type !== "checkbox"){
+      ev.preventDefault(); avanti();
+    }
+    if(ev.key === "Escape" && passo > 1) vaiA(passo - 1);
+  });
+
+  carica(); scrivi(); vaiA(1);
+})();
+</script>
+</body>
+</html>
