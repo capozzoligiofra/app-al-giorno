@@ -1,7 +1,7 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 67,
+  "count": 68,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -50,6 +50,72 @@ window.__APPS__ = {
     ]
   },
   "apps": [
+    {
+      "title": "Quanto Costa Rifare il Tetto",
+      "slug": "2026-11-18-quanto-costa-rifare-il-tetto",
+      "date": "2026-11-18",
+      "description": "Il preventivo del tetto voce per voce: ponteggio, smaltimento, amianto, coibentazione, tegole, gronde, IVA e detrazione.",
+      "category": "calcolatori-convertitori",
+      "tags": [
+        "tetto",
+        "casa",
+        "ristrutturazione",
+        "preventivo",
+        "detrazioni"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "list-detail",
+        "palette": "terracotta",
+        "font": "condensed"
+      },
+      "business": {
+        "keyword": "quanto costa rifare il tetto",
+        "keywords": [
+          "quanto costa rifare il tetto al mq",
+          "quanto costa rifare un tetto di 100 mq",
+          "costo rifacimento tetto",
+          "preventivo rifacimento tetto"
+        ],
+        "intent": "Chi ha un'infiltrazione o un tetto a fine vita e deve capire l'ordine di grandezza della spesa prima di chiamare le imprese, e poi confrontare i preventivi che riceve.",
+        "target": "Proprietari di casa indipendente o ultimo piano, 35-65 anni, spesso da telefono mentre guardano la macchia di umidità sul soffitto.",
+        "edge": "Nessuno dei primi risultati calcola niente: danno una forbice al metro quadro che esclude ponteggio e spese tecniche, cioe il 25-30% del conto. Qui il preventivo si costruisce voce per voce, ogni voce si corregge col prezzo dell'impresa, IVA 10/22 giusta e detrazione 2026 gia scalata.",
+        "monetization": [
+          "adsense",
+          "affiliate",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto fra i tre scenari di intervento",
+          "Preventivo stampabile voce per voce",
+          "Esporta il preventivo in CSV"
+        ],
+        "affiliate": [
+          {
+            "t": "Metro laser per misurare la falda da terra",
+            "q": "metro laser distanziometro"
+          },
+          {
+            "t": "Termometro a infrarossi per trovare i punti freddi del tetto",
+            "q": "termometro infrarossi laser"
+          },
+          {
+            "t": "Telo impermeabile pesante per coprire la falda durante i lavori",
+            "q": "telo impermeabile occhiellato pesante"
+          },
+          {
+            "t": "Guaina liquida per tamponare un'infiltrazione in attesa dei lavori",
+            "q": "guaina liquida impermeabilizzante tetto"
+          }
+        ]
+      },
+      "size": 73807
+    },
     {
       "title": "Quanto Costa l'Agenzia Immobiliare",
       "slug": "2026-11-17-quanto-costa-agenzia-immobiliare",
