@@ -1,7 +1,7 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 68,
+  "count": 69,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -50,6 +50,72 @@ window.__APPS__ = {
     ]
   },
   "apps": [
+    {
+      "title": "Quanto Costa Rifare l'Impianto Elettrico",
+      "slug": "2026-11-19-rifare-impianto-elettrico",
+      "date": "2026-11-19",
+      "description": "Il preventivo dell'impianto elettrico stanza per stanza: punti, quadro, tracce, conformità, IVA e detrazione.",
+      "category": "calcolatori-convertitori",
+      "tags": [
+        "impianto elettrico",
+        "casa",
+        "ristrutturazione",
+        "preventivo",
+        "detrazioni"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "tabs",
+        "palette": "giallo-senape",
+        "font": "sans-geometrico"
+      },
+      "business": {
+        "keyword": "quanto costa rifare l'impianto elettrico",
+        "keywords": [
+          "quanto costa rifare l'impianto elettrico al mq",
+          "costo rifacimento impianto elettrico 80 mq",
+          "quanto costa un punto luce",
+          "preventivo impianto elettrico casa"
+        ],
+        "intent": "Chi ha comprato una casa da ristrutturare o un impianto vecchio senza messa a terra e deve capire la cifra prima di chiamare gli elettricisti, e poi confrontare i preventivi che riceve.",
+        "target": "Proprietari e acquirenti di casa, 30-60 anni, spesso da telefono durante o subito dopo la visita all'immobile.",
+        "edge": "I primi risultati danno una forbice al metro quadro e si fermano lì. Qui si contano i punti stanza per stanza, come fa l'elettricista: preventivo scomposto con tracce e ripristino, IVA 10/22 corretta, detrazione già scalata e prezzi unitari correggibili.",
+        "monetization": [
+          "adsense",
+          "affiliate",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto fra rifacimento completo, parziale e canaline",
+          "Preventivo stampabile voce per voce",
+          "Esporta il computo in CSV"
+        ],
+        "affiliate": [
+          {
+            "t": "Cercafase e tester per prese",
+            "q": "tester prese cercafase 230v"
+          },
+          {
+            "t": "Rilevatore di cavi e tubi nel muro",
+            "q": "rilevatore cavi elettrici muro"
+          },
+          {
+            "t": "Metro laser per misurare le stanze",
+            "q": "metro laser distanziometro"
+          },
+          {
+            "t": "Canaline in PVC adesive per impianti a vista",
+            "q": "canalina pvc passacavi adesiva"
+          }
+        ]
+      },
+      "size": 60180
+    },
     {
       "title": "Quanto Costa Rifare il Tetto",
       "slug": "2026-11-18-quanto-costa-rifare-il-tetto",
