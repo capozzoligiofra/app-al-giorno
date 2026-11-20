@@ -1,0 +1,844 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Quanto Costa l'Università: calcolo online gratis 2026/27</title>
+<meta name="description" content="Quanto costa l’università in un anno: tasse per fascia ISEE, affitto, vitto e viaggi, con borsa di studio 2026/27 e detrazione IRPEF già sottratte.">
+<link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-11-20-quanto-costa-universita/">
+<meta name="theme-color" content="#eaf3fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d1a26" media="(prefers-color-scheme: dark)">
+<meta property="og:title" content="Quanto Costa l'Università: il conto completo di un anno">
+<meta property="og:description" content="Tasse per fascia ISEE, affitto della tua città, vitto e rientri a casa. Borsa DSU 2026/27 e detrazione 19% già scalate.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-11-20-quanto-costa-universita/">
+<meta property="og:locale" content="it_IT">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Quanto Costa l'Università",
+  "description": "Calcola il costo di un anno di università: tasse per fascia ISEE, alloggio, vitto, trasporti, libri, con borsa di studio e detrazioni sottratte.",
+  "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-11-20-quanto-costa-universita/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+  "inLanguage": "it"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Quanto costa l'università in media in un anno?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Chi resta a casa e studia in un'università statale con ISEE basso se la cava con 500-2.500 euro l'anno fra tasse, libri e trasporti. Chi va fuori sede parte da 8.000 euro e supera i 13.000 nelle città più care: la differenza non sono le tasse, è l'affitto." }
+    },
+    {
+      "@type": "Question",
+      "name": "Con quale ISEE non si pagano le tasse universitarie?",
+      "acceptedAnswer": { "@type": "Answer", "text": "La no tax area nazionale arriva a 22.000 euro di ISEE: sotto quella soglia il contributo è azzerato e restano solo tassa regionale e bollo. Fra 22.000 e 30.000 euro si paga una quota crescente, e molti atenei alzano la propria soglia fino a 28.000 o 30.000 euro." }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanto vale la borsa di studio universitaria 2026/27?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Gli importi minimi fissati per l'anno accademico 2026/27 sono 7.171,11 euro per gli studenti fuori sede, 4.190,71 per i pendolari e 2.890,16 per chi studia in sede, con ISEE fino a 28.339,88 euro. Chi prende la borsa non paga nemmeno il contributo." }
+    },
+    {
+      "@type": "Question",
+      "name": "L'affitto dello studente fuori sede si può detrarre?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sì: il 19% del canone, su una spesa massima di 2.633 euro l'anno, quindi fino a circa 500 euro di IRPEF in meno. Servono un contratto registrato, il pagamento tracciabile e un ateneo in un comune diverso da quello di residenza, distante almeno 100 chilometri e in un'altra provincia." }
+    },
+    {
+      "@type": "Question",
+      "name": "Conviene il pendolarismo o andare fuori sede?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sul puro costo il pendolarismo vince quasi sempre: un abbonamento annuale costa meno di due mesi di stanza singola. Il conto cambia se il viaggio supera l'ora e mezza per tratta, perché il tempo perso incide sugli esami, e se la borsa da fuori sede copre buona parte dell'affitto." }
+    }
+  ]
+}
+</script>
+<style>
+  :root {
+    --bg: #eaf3fb;
+    --card: #ffffff;
+    --ink: #10242f;
+    --soft: #5b7383;
+    --line: #cfe1ef;
+    --accent: #0f6fb8;
+    --accent-ink: #ffffff;
+    --accent-soft: #dceaf6;
+    --good: #1a7a5e;
+    --warn: #9a5b12;
+    --r: 14px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0d1a26;
+      --card: #14242f;
+      --ink: #e8f2f8;
+      --soft: #9ab3c2;
+      --line: #27404f;
+      --accent: #5cb4f0;
+      --accent-ink: #06202e;
+      --accent-soft: #1b3344;
+      --good: #6fd3ae;
+      --warn: #e6b36b;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: 17px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    padding-bottom: calc(132px + env(safe-area-inset-bottom));
+  }
+  .wrap { max-width: 44rem; margin: 0 auto; padding: 0 1rem 2rem; }
+  .top { display: flex; align-items: center; gap: .75rem; padding: .9rem 0 .25rem; flex-wrap: wrap; }
+  .top a { color: var(--accent); text-decoration: none; font-size: 1rem; min-height: 44px; display: inline-flex; align-items: center; }
+  h1 { font-size: 1.65rem; line-height: 1.22; margin: .5rem 0 .4rem; letter-spacing: -.01em; }
+  .lead { margin: 0 0 1.1rem; color: var(--soft); font-size: 1.02rem; }
+  h2 { font-size: 1.3rem; line-height: 1.3; margin: 2rem 0 .6rem; }
+  h3 { font-size: 1.08rem; margin: 1.4rem 0 .35rem; }
+  p { margin: 0 0 .85rem; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 1rem; margin: 0 0 .9rem; }
+  .card > h2:first-child, .card > h3:first-child { margin-top: 0; }
+  .eyebrow { font-family: system-ui, sans-serif; font-size: .78rem; text-transform: uppercase; letter-spacing: .09em; color: var(--soft); margin: 0 0 .6rem; }
+  fieldset { border: 0; margin: 0; padding: 0; }
+  legend { padding: 0; font-weight: 700; }
+  .chips { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; margin: .5rem 0 0; }
+  .chip:last-child { grid-column: 1 / -1; }
+  .chip input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .chip span {
+    display: flex; flex-direction: column; justify-content: center; gap: .1rem;
+    min-height: 54px; padding: .5rem .7rem; border: 1.5px solid var(--line); border-radius: 12px;
+    background: var(--card); cursor: pointer; text-align: left; font-size: 1rem;
+  }
+  .chip span small { font-family: system-ui, sans-serif; font-size: .78rem; color: var(--soft); }
+  .chip input:checked + span { border-color: var(--accent); background: var(--accent-soft); box-shadow: inset 0 0 0 1px var(--accent); }
+  .chip input:focus-visible + span { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .field { margin: .85rem 0 0; }
+  .field label, .field > .lbl { display: block; font-size: .98rem; margin-bottom: .3rem; }
+  .field .hint { display: block; font-family: system-ui, sans-serif; font-size: .8rem; color: var(--soft); margin-top: .25rem; }
+  input[type="number"], input[type="text"], select, textarea {
+    width: 100%; font-family: inherit; font-size: 16px; min-height: 48px;
+    padding: .55rem .7rem; border: 1.5px solid var(--line); border-radius: 11px;
+    background: var(--card); color: var(--ink);
+  }
+  textarea { resize: vertical; line-height: 1.45; }
+  input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .row2 { display: grid; gap: .6rem; }
+  .row2[hidden], .field[hidden], .switch[hidden] { display: none; }
+  .suffix { position: relative; }
+  .suffix input { padding-right: 3.4rem; }
+  .suffix b { position: absolute; right: .8rem; top: 50%; transform: translateY(-50%); font-family: system-ui, sans-serif; font-size: .85rem; color: var(--soft); font-weight: 600; }
+  .switch { display: flex; align-items: flex-start; gap: .7rem; min-height: 44px; padding: .5rem 0; cursor: pointer; }
+  .switch input { width: 24px; height: 24px; margin: .15rem 0 0; accent-color: var(--accent); flex: none; }
+  .switch .txt { font-size: .98rem; }
+  .switch .txt small { display: block; font-family: system-ui, sans-serif; font-size: .82rem; color: var(--soft); }
+  details.more { margin-top: .9rem; border-top: 1px solid var(--line); padding-top: .6rem; }
+  details.more summary { cursor: pointer; font-family: system-ui, sans-serif; font-size: .92rem; color: var(--accent); min-height: 44px; display: flex; align-items: center; }
+  .note { font-family: system-ui, sans-serif; font-size: .84rem; color: var(--soft); }
+  .flag { font-family: system-ui, sans-serif; font-size: .88rem; border-left: 3px solid var(--warn); padding: .3rem 0 .3rem .6rem; color: var(--warn); margin: .7rem 0 0; }
+  .btn {
+    font-family: system-ui, sans-serif; font-size: 1rem; font-weight: 600;
+    min-height: 48px; padding: .6rem 1.1rem; border-radius: 999px;
+    border: 1.5px solid var(--accent); background: transparent; color: var(--accent); cursor: pointer;
+  }
+  .btn.solid { background: var(--accent); color: var(--accent-ink); }
+  .btns { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .9rem; }
+  /* ---- pannello che sale dal basso (layout sheet) ---- */
+  .sheet {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
+    background: var(--card); border-top: 1px solid var(--line);
+    border-radius: 18px 18px 0 0; box-shadow: 0 -8px 28px rgba(5, 32, 50, .18);
+    padding-bottom: env(safe-area-inset-bottom);
+    max-height: 72dvh; display: flex; flex-direction: column;
+  }
+  .sheet-grip { position: relative;
+    width: 100%; border: 0; background: transparent; color: inherit; font: inherit;
+    display: flex; align-items: center; gap: .75rem; text-align: left;
+    padding: .7rem 1rem .8rem; cursor: pointer; min-height: 60px;
+  }
+  .sheet-grip::before {
+    content: ""; position: absolute; top: .35rem; left: 50%; transform: translateX(-50%);
+    width: 42px; height: 4px; border-radius: 2px; background: var(--line);
+  }
+  .sheet-grip .tot { flex: 1; }
+  .sheet-grip .tot .k { display: block; font-family: system-ui, sans-serif; font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; color: var(--soft); }
+  .sheet-grip .tot .v { display: block; font-size: 1.75rem; font-weight: 700; line-height: 1.1; }
+  .sheet-grip .tot .m { display: block; font-family: system-ui, sans-serif; font-size: .84rem; color: var(--soft); }
+  .sheet-grip .arrow { font-size: 1.1rem; color: var(--accent); flex: none; }
+  .sheet-body { overflow-y: auto; padding: 0 1rem 1rem; -webkit-overflow-scrolling: touch; }
+  .sheet[data-open="false"] .sheet-body { display: none; }
+  .voci { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+  .voci li { display: flex; justify-content: space-between; gap: 1rem; padding: .5rem 0; border-bottom: 1px solid var(--line); font-size: .98rem; }
+  .voci li span:last-child { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .voci li.sub { color: var(--soft); font-size: .9rem; }
+  .voci li.plus span:last-child { color: var(--good); }
+  .voci li.tot-row { font-weight: 700; font-size: 1.08rem; border-bottom: 0; padding-top: .7rem; }
+  .sheet h3 { margin: 1rem 0 .3rem; font-size: 1rem; }
+  /* ---- Pro ---- */
+  section[data-pro] { background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 1rem; margin: 0 0 .9rem; min-height: 150px; }
+  section[data-pro] h2 { margin-top: 0; font-size: 1.14rem; }
+  .cmp { list-style: none; margin: .6rem 0 0; padding: 0; display: grid; gap: .5rem; }
+  .cmp li { display: flex; justify-content: space-between; align-items: baseline; gap: .8rem; border: 1px solid var(--line); border-radius: 11px; padding: .55rem .75rem; }
+  .cmp li b { font-variant-numeric: tabular-nums; }
+  .cmp li.best { border-color: var(--good); }
+  .cmp li small { display: block; font-family: system-ui, sans-serif; font-size: .8rem; color: var(--soft); }
+  .big { font-size: 1.9rem; font-weight: 700; line-height: 1.15; font-variant-numeric: tabular-nums; }
+  table.anni { width: 100%; border-collapse: collapse; margin-top: .6rem; font-size: .95rem; }
+  table.anni th, table.anni td { text-align: right; padding: .35rem .2rem; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+  table.anni th:first-child, table.anni td:first-child { text-align: left; }
+  table.anni thead th { font-family: system-ui, sans-serif; font-size: .8rem; color: var(--soft); font-weight: 600; }
+  #guida ul, #guida ol { margin: 0 0 .9rem; padding-left: 1.2rem; }
+  #guida li { margin-bottom: .4rem; }
+  .fonti { font-family: system-ui, sans-serif; font-size: .84rem; color: var(--soft); }
+  footer { margin-top: 2rem; border-top: 1px solid var(--line); padding-top: 1rem; font-family: system-ui, sans-serif; font-size: .85rem; color: var(--soft); }
+  footer a { color: var(--accent); }
+  .correlate { list-style: none; padding: 0; margin: .4rem 0 1rem; }
+  .correlate li { margin-bottom: .45rem; }
+  .correlate a { color: var(--accent); }
+  @media print {
+    .sheet, .top, [data-ad], [data-support], [data-affiliate], .btns, #guida { display: none !important; }
+    body { padding-bottom: 0; background: #fff; color: #000; }
+  }
+  @media (min-width: 760px) {
+    body { padding-bottom: 2rem; font-size: 18px; }
+    .wrap { display: grid; grid-template-columns: 1fr 20rem; gap: 1.5rem; align-items: start; max-width: 62rem; padding-bottom: 3rem; }
+    .wrap > *:not(.sheet) { grid-column: 1; }
+    h1 { font-size: 2.1rem; }
+    .row2 { grid-template-columns: 1fr 1fr; }
+    .chips { grid-template-columns: repeat(3, 1fr); }
+    .chip:last-child { grid-column: auto; }
+    .sheet {
+      position: sticky; top: 1rem; grid-column: 2; grid-row: 1 / span 40;
+      border-radius: var(--r); border: 1px solid var(--line); box-shadow: none; max-height: calc(100dvh - 2rem);
+    }
+    .sheet-grip { position: relative; cursor: default; }
+    .sheet-grip::before { display: none; }
+    .sheet-grip .arrow { display: none; }
+    .sheet[data-open="false"] .sheet-body { display: block; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="top"><a href="../../index.html">← Tutte le app</a></div>
+
+<h1>Quanto costa l'università: il conto completo di un anno</h1>
+<p class="lead">Tasse secondo il tuo ISEE, affitto della città dove studi, vitto, rientri a casa e libri. Poi la borsa di studio e la detrazione IRPEF scalate dal totale. Nessuna registrazione.</p>
+
+<form class="card" id="form" novalidate>
+  <fieldset>
+    <legend class="eyebrow" style="margin-bottom:0">Dove vivrai durante l'anno</legend>
+    <div class="chips" role="radiogroup" aria-label="Dove vivrai durante l'anno">
+      <label class="chip"><input type="radio" name="status" value="sede" checked><span>Resto a casa<small>ateneo in città</small></span></label>
+      <label class="chip"><input type="radio" name="status" value="pendolare"><span>Pendolare<small>treno o bus ogni giorno</small></span></label>
+      <label class="chip"><input type="radio" name="status" value="fuori"><span>Fuori sede<small>stanza in affitto</small></span></label>
+    </div>
+  </fieldset>
+
+  <div class="field">
+    <label for="isee">ISEE per le prestazioni universitarie</label>
+    <div class="suffix">
+      <input id="isee" name="isee" type="number" inputmode="decimal" min="0" max="200000" step="100" value="23500" enterkeyhint="done" autocomplete="off">
+      <b>€</b>
+    </div>
+    <span class="hint">È l'ISEE dedicato all'università, di solito più basso di quello ordinario. Se non lo hai ancora, metti una stima.</span>
+  </div>
+
+  <div class="row2">
+    <div class="field">
+      <label for="ateneo">Tipo di ateneo</label>
+      <select id="ateneo" name="ateneo">
+        <option value="statale" selected>Statale</option>
+        <option value="privata">Privata o telematica</option>
+        <option value="custom">Inserisco io il contributo</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="contributo">Contributo pieno dell'anno</label>
+      <div class="suffix">
+        <input id="contributo" name="contributo" type="number" inputmode="decimal" min="0" max="30000" step="50" value="1500">
+        <b>€</b>
+      </div>
+      <span class="hint">Quanto chiede l'ateneo alla fascia più alta, prima degli sconti ISEE. Lo trovi nel regolamento tasse.</span>
+    </div>
+  </div>
+
+  <div class="field" id="cittaWrap" hidden>
+    <label for="citta">Città dove studi (affitto medio di una stanza singola)</label>
+    <select id="citta" name="citta"></select>
+    <span class="hint" id="cittaNota">Medie 2026 di una singola: sono un punto di partenza, cambiale appena hai un'offerta vera.</span>
+  </div>
+
+  <div class="row2" id="alloggioWrap" hidden>
+    <div class="field">
+      <label for="affitto">Affitto al mese</label>
+      <div class="suffix"><input id="affitto" name="affitto" type="number" inputmode="decimal" min="0" max="3000" step="10" value="632"><b>€</b></div>
+    </div>
+    <div class="field">
+      <label for="utenze">Bollette e condominio al mese</label>
+      <div class="suffix"><input id="utenze" name="utenze" type="number" inputmode="decimal" min="0" max="600" step="5" value="60"><b>€</b></div>
+      <span class="hint">Metti 0 se il canone è tutto compreso.</span>
+    </div>
+  </div>
+
+  <div class="row2">
+    <div class="field">
+      <label for="vitto" id="vittoLbl">Mangiare al mese</label>
+      <div class="suffix"><input id="vitto" name="vitto" type="number" inputmode="decimal" min="0" max="2000" step="10" value="60"><b>€</b></div>
+      <span class="hint" id="vittoHint">Solo i pasti fuori casa: mensa, bar, panini fra due lezioni.</span>
+    </div>
+    <div class="field" id="viaggiWrap">
+      <label for="viaggi" id="viaggiLbl">Trasporti al mese</label>
+      <div class="suffix"><input id="viaggi" name="viaggi" type="number" inputmode="decimal" min="0" max="1500" step="5" value="35"><b>€</b></div>
+      <span class="hint" id="viaggiHint">Abbonamento urbano o biglietti per raggiungere le lezioni.</span>
+    </div>
+  </div>
+
+  <div class="row2">
+    <div class="field">
+      <label for="libri">Libri e materiale all'anno</label>
+      <div class="suffix"><input id="libri" name="libri" type="number" inputmode="decimal" min="0" max="5000" step="10" value="350"><b>€</b></div>
+    </div>
+    <div class="field">
+      <label for="mesi">Mesi di attività</label>
+      <div class="suffix"><input id="mesi" name="mesi" type="number" inputmode="numeric" min="1" max="12" step="1" value="10"><b>mesi</b></div>
+      <span class="hint">Dieci mesi è il calendario tipico fra lezioni ed esami.</span>
+    </div>
+  </div>
+
+  <label class="switch">
+    <input type="checkbox" id="borsa" checked>
+    <span class="txt">Chiedo la borsa di studio regionale<small>Importi minimi 2026/27: 7.171 € fuori sede, 4.191 € pendolare, 2.890 € in sede, con ISEE fino a 28.339,88 €.</small></span>
+  </label>
+  <label class="switch">
+    <input type="checkbox" id="detr" checked>
+    <span class="txt">Scala la detrazione IRPEF del 19%<small>Su tasse e contributi universitari e, per i fuori sede, sull'affitto fino a 2.633 € l'anno.</small></span>
+  </label>
+
+  <details class="more">
+    <summary>Voci avanzate: tassa regionale, no tax area, extra</summary>
+    <div class="row2">
+      <div class="field">
+        <label for="regionale">Tassa regionale per il diritto allo studio</label>
+        <div class="suffix"><input id="regionale" name="regionale" type="number" inputmode="decimal" min="0" max="500" step="10" value="140"><b>€</b></div>
+        <span class="hint">140, 160 o 200 € secondo la fascia e la regione. Si aggiungono 16 € di bollo.</span>
+      </div>
+      <div class="field">
+        <label for="soglia">No tax area del tuo ateneo</label>
+        <div class="suffix"><input id="soglia" name="soglia" type="number" inputmode="decimal" min="0" max="60000" step="500" value="22000"><b>€</b></div>
+        <span class="hint">Soglia nazionale 22.000 €; Torino 26.000, Brescia 28.000, Milano-Bicocca 30.000.</span>
+      </div>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label for="extra">Vita, svago e imprevisti al mese</label>
+        <div class="suffix"><input id="extra" name="extra" type="number" inputmode="decimal" min="0" max="2000" step="10" value="80"><b>€</b></div>
+      </div>
+      <div class="field">
+        <label for="unatantum">Spese una tantum dell'anno</label>
+        <div class="suffix"><input id="unatantum" name="unatantum" type="number" inputmode="decimal" min="0" max="20000" step="50" value="0"><b>€</b></div>
+        <span class="hint">Caparra della stanza, PC nuovo, trasloco, agenzia.</span>
+      </div>
+    </div>
+    <label class="switch" id="distWrap" hidden>
+      <input type="checkbox" id="dist" checked>
+      <span class="txt">L'ateneo è a più di 100 km da casa, in un'altra provincia<small>Serve per detrarre l'affitto: senza questa condizione la detrazione vale solo sulle tasse.</small></span>
+    </label>
+  </details>
+
+  <div class="btns">
+    <button type="button" class="btn" id="copia">Copia il riepilogo</button>
+    <button type="button" class="btn" id="azzera">Azzera</button>
+  </div>
+  <p class="note" id="copiaEsito" role="status" aria-live="polite"></p>
+  <label class="field" id="manualeWrap" hidden><span class="lbl">Riepilogo da copiare a mano</span><textarea id="manuale" rows="10" readonly></textarea></label>
+</form>
+
+<div data-ad="top"></div>
+
+<section data-pro="Confronto fra casa, pendolare e fuori sede">
+  <h2>Casa, pendolare o fuori sede</h2>
+  <p class="note">Gli stessi dati applicati ai tre scenari, con l'affitto della città scelta e la borsa che cambia importo secondo lo status.</p>
+  <ul class="cmp" id="cmp"></ul>
+  <p class="note" id="cmpDelta"></p>
+</section>
+
+<section data-pro="Costo dell'intero corso di laurea">
+  <h2>Quanto costa tutto il corso di laurea</h2>
+  <div class="row2">
+    <div class="field">
+      <label for="anni">Durata del corso</label>
+      <select id="anni">
+        <option value="3" selected>Triennale, 3 anni</option>
+        <option value="2">Magistrale, 2 anni</option>
+        <option value="5">Ciclo unico, 5 anni</option>
+        <option value="6">Medicina, 6 anni</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="infl">Aumento annuo dei costi</label>
+      <div class="suffix"><input id="infl" type="number" inputmode="decimal" min="0" max="15" step="0.5" value="2"><b>%</b></div>
+    </div>
+  </div>
+  <p class="big" id="totCorso">—</p>
+  <table class="anni"><thead><tr><th>Anno</th><th>Spesa</th><th>Aiuti</th><th>Resta a voi</th></tr></thead><tbody id="tbAnni"></tbody></table>
+</section>
+
+<section data-pro="Riepilogo stampabile ed esportabile in CSV">
+  <h2>Porta il conto fuori da qui</h2>
+  <p class="note">Il riepilogo voce per voce da stampare o da salvare, per confrontarlo con il preventivo di un altro ateneo o per allegarlo alla domanda di borsa.</p>
+  <div class="btns">
+    <button type="button" class="btn solid" id="stampa">Stampa il riepilogo</button>
+    <button type="button" class="btn" id="csv">Scarica il CSV</button>
+  </div>
+</section>
+
+<div data-affiliate data-title="Serve comunque" data-items='[{"t":"Tablet per prendere appunti a lezione","q":"tablet per appunti universita"},{"t":"Zaino porta PC per l&apos;università","q":"zaino porta pc 15 pollici universita"},{"t":"Kit pentole base per la stanza fuori sede","q":"set pentole piccolo monolocale"},{"t":"Lampada da scrivania a luce regolabile","q":"lampada da scrivania led studio"}]'></div>
+<section id="guida">
+  <h2>Come si calcola quanto costa l'università</h2>
+  <p>La cifra che gira nelle conversazioni in famiglia — «l'università costa duemila euro l'anno» — è il costo delle tasse di un ateneo statale, non il costo dell'università. Il conto vero si compone di due blocchi che non hanno niente a che vedere l'uno con l'altro. Il primo è la contribuzione: il contributo onnicomprensivo deciso dall'ateneo e scontato in base all'ISEE, più la tassa regionale per il diritto allo studio e i 16 euro di imposta di bollo. Il secondo blocco è il costo della vita dello studente, e pesa da tre a venti volte il primo: alloggio, pasti, trasporti, libri, tutto il resto.</p>
+  <p>Il calcolatore qui sopra parte dalla domanda che decide tutto, cioè dove dormirai. Chi resta a casa paga le tasse, i libri, qualche pranzo e un abbonamento urbano. Il pendolare aggiunge il treno o il bus, che però costa meno di due mensilità di stanza. Il fuori sede si carica l'affitto per dieci mesi, le bollette, la spesa alimentare e i rientri a casa: è lì che il totale passa da qualche migliaio di euro a oltre diecimila.</p>
+  <h3>Le tasse: la no tax area e le fasce</h3>
+  <p>Con un ISEE universitario fino a 22.000 euro il contributo onnicomprensivo è azzerato per legge: restano solo tassa regionale e bollo, cioè circa 156 euro l'anno. Sopra quella soglia si paga una quota crescente del contributo pieno: a grandi linee il 20% fino a 24.000 euro di ISEE, il 50% fino a 26.000, il 75% fino a 28.000, il 90% fino a 30.000 e l'intero importo oltre. Molti atenei sono più generosi del minimo nazionale e hanno alzato la propria soglia: Torino a 26.000 euro, Brescia a 28.000, Milano-Bicocca a 30.000. Per questo il campo «no tax area del tuo ateneo» si può modificare: cambiarlo di duemila euro può spostare il conto di centinaia. Attenzione a un dettaglio che vale soldi veri: dal secondo anno gli esoneri chiedono anche il merito, tipicamente 10 CFU entro il primo anno e 25 CFU negli anni successivi.</p>
+  <h3>Un esempio con i numeri</h3>
+  <p>Giulia ha un ISEE di 23.500 euro e si iscrive a una statale che chiede 1.500 euro di contributo pieno. Rientra nella prima fascia ridotta, quindi paga il 20%: 300 euro, più 140 di tassa regionale e 16 di bollo, totale 456 euro di tasse. Va fuori sede a Bologna, dove una singola costa in media 632 euro al mese: per dieci mesi sono 6.320 euro, più 600 di bollette, 2.800 di spesa e mensa, 700 di rientri a casa, 350 di libri e 800 di vita quotidiana. Il primo numero è 12.026 euro.</p>
+  <p>Poi però arrivano gli aiuti. Con quell'ISEE Giulia sta sotto il limite di 28.339,88 euro e prende la borsa da fuori sede, 7.171,11 euro, che porta con sé anche l'esonero totale dal contributo: via altri 300 euro. La detrazione IRPEF del 19% recupera il 19% della tassa regionale e il 19% di 2.633 euro di affitto, cioè altri 527 euro circa. Quello che resta davvero sulle spalle della famiglia sono poco più di 4.000 euro. Se invece la borsa non arriva — graduatoria, scadenze mancate, ISEE un po' più alto — la stessa Giulia costa 11.400 euro l'anno. Il peso di quella domanda di borsa, presentata entro la scadenza del bando regionale, è tutto qui.</p>
+  <p>E se restasse a casa, con gli stessi 456 euro di tasse, 600 euro di pranzi fuori, 350 di abbonamento, 350 di libri e 800 di extra? Duemilacinquecentocinquantasei euro. La differenza fra il suo ateneo sotto casa e Bologna è di quasi 9.500 euro l'anno, quasi 30.000 su una triennale: è la cifra su cui conviene ragionare, non sulle tasse.</p>
+  <h3>Le voci che tutti dimenticano</h3>
+  <ul>
+    <li><strong>La caparra e l'agenzia:</strong> due o tre mensilità anticipate più la provvigione, che a Milano o Firenze fanno tranquillamente 2.000 euro prima di aver dormito una notte. Vanno nel campo «spese una tantum».</li>
+    <li><strong>I mesi estivi:</strong> molti contratti per studenti durano dodici mesi, non dieci. Se il tuo è annuale, alza i «mesi di attività» o aggiungi due mensilità negli extra.</li>
+    <li><strong>I rientri a casa:</strong> due viaggi al mese su una tratta media valgono 700 euro l'anno, più di un mese di affitto.</li>
+    <li><strong>Il materiale per corso:</strong> architettura, medicina e i corsi di laboratorio hanno costi di materiale che non assomigliano a quelli di una triennale umanistica.</li>
+    <li><strong>Le tasse regionali diverse:</strong> 140, 160 o 200 euro secondo la fascia ISEE e la regione, con qualche regione che ha appena rivisto gli scaglioni.</li>
+  </ul>
+  <h3>Errori comuni</h3>
+  <p>Il primo è confondere l'ISEE ordinario con quello per le prestazioni universitarie: il secondo considera lo studente come nucleo a sé solo a certe condizioni di residenza e di reddito proprio, e di solito esce più basso. Chiedere il «solo» ISEE ordinario e metterlo nel calcolo gonfia le tasse. Il secondo errore è dare per scontata la borsa: si richiede con un bando regionale che scade spesso ad agosto o settembre, prima che l'anno accademico cominci, e chi la chiede in ritardo paga tutto. Il terzo è ignorare la detrazione dell'affitto: serve un contratto registrato ai sensi della legge 431/1998, un pagamento tracciabile e un ateneo in un comune diverso dal proprio, distante almeno 100 chilometri e in un'altra provincia. Chi paga in contanti perde il diritto. Il quarto, il più costoso, è scegliere la città prima di fare questo conto.</p>
+  <h2>Domande frequenti</h2>
+  <h3>Quanto costa l'università in media in un anno?</h3>
+  <p>Chi resta a casa e frequenta una statale con ISEE basso se la cava con 500-2.500 euro l'anno. Chi va fuori sede parte da 8.000 euro e supera i 13.000 nelle città più care. La forbice non dipende dall'ateneo, dipende dall'affitto.</p>
+  <h3>Con quale ISEE non si pagano le tasse?</h3>
+  <p>Fino a 22.000 euro il contributo è azzerato per legge e restano tassa regionale e bollo. Fra 22.000 e 30.000 si paga una quota crescente, e diversi atenei applicano soglie più alte. Verifica sempre il regolamento tasse del tuo ateneo: è l'unico documento che conta.</p>
+  <h3>La borsa di studio copre tutto?</h3>
+  <p>Gli importi minimi 2026/27 sono 7.171,11 euro per i fuori sede, 4.190,71 per i pendolari e 2.890,16 per chi studia in sede, con un limite ISEE di 28.339,88 euro. A Milano o Firenze la borsa da fuori sede viene quasi interamente assorbita dall'affitto; a Pisa o Bari copre anche la spesa alimentare. Molte regioni erogano importi superiori al minimo.</p>
+  <h3>Un ateneo privato conviene mai?</h3>
+  <p>Sul costo delle tasse no: si parla di 4.000-16.000 euro l'anno contro i 156-2.500 di una statale. Però le private hanno sistemi di borse interne spesso molto generosi sotto una certa soglia ISEE, e se la sede è sotto casa può accadere che una privata in città costi meno di una statale a 500 chilometri. Metti i due numeri nel calcolatore prima di decidere.</p>
+  <h3>Questi importi valgono per il 2026/27?</h3>
+  <p>Sì: borse e limiti ISEE vengono dai decreti direttoriali n. 175 e n. 176 del 10 febbraio 2026, gli affitti dalle rilevazioni 2026 sulle stanze singole. I valori di contributo, tassa regionale e affitto restano modificabili perché cambiano da ateneo a ateneo e da città a città.</p>
+  <p class="fonti">Fonti: decreti direttoriali MUR n. 175 e 176 del 10 febbraio 2026 (importi minimi delle borse e limiti ISEE/ISPE 2026/27); legge di bilancio 2017 e decreti attuativi per la no tax area; d.lgs. 68/2012 per la tassa regionale; art. 15 del TUIR per le detrazioni; medie 2026 degli affitti per studenti rilevate da Immobiliare.it Insights e HousingAnywhere. Il calcolo è una stima: l'importo esatto delle tasse lo fissa il regolamento del tuo ateneo.</p>
+</section>
+
+<h2>App correlate</h2>
+<ul class="correlate">
+  <li><a href="../2026-10-12-calcolo-isee/index.html">Calcola l'ISEE della tua famiglia</a>, il numero da cui dipendono tasse e borsa.</li>
+  <li><a href="../2026-10-27-riscatto-laurea/index.html">Quanto costa il riscatto della laurea</a>, se guardi già oltre il titolo.</li>
+  <li><a href="../2026-10-05-quanto-costa-un-figlio/index.html">Quanto costa un figlio</a>, il conto dei diciotto anni prima di questo.</li>
+</ul>
+
+<div data-ad="bottom"></div>
+<div data-support></div>
+
+<footer>
+  <p>Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a></p>
+  <p>Strumento informativo, non sostituisce il regolamento tasse del tuo ateneo né il bando della tua regione.</p>
+</footer>
+
+<aside class="sheet" id="sheet" data-open="false">
+  <button type="button" class="sheet-grip" id="grip" aria-expanded="false" aria-controls="sheetBody">
+    <span class="tot">
+      <span class="k">Resta a carico vostro</span>
+      <span class="v" id="netto">—</span>
+      <span class="m" id="mensile"></span>
+    </span>
+    <span class="arrow" id="arrow" aria-hidden="true">▲</span>
+  </button>
+  <div class="sheet-body" id="sheetBody">
+    <ul class="voci" id="voci"></ul>
+    <p class="flag" id="avviso" hidden></p>
+  </div>
+</aside>
+
+</div>
+<script src="../../assets/monetize.js"></script>
+<script>
+/* Modello dati: un solo oggetto `stato` letto dai campi del form (status, isee, contributo,
+ * affitto/utenze/vitto/viaggi mensili, libri e una tantum annuali, mesi, toggle borsa/detrazione).
+ * `calcola(stato)` restituisce { voci[], lordo, borsa, detrazione, netto } e tutto il resto
+ * (pannello, confronto, corso, CSV) si limita a disegnare quel risultato. Persistenza: una chiave
+ * localStorage "quanto-costa-universita:v1" con i valori dei campi. */
+(() => {
+  "use strict";
+
+  const KEY = "quanto-costa-universita:v1";
+  const BOLLO = 16;
+  const LIMITE_ISEE_BORSA = 28339.88;
+  const BORSE = { fuori: 7171.11, pendolare: 4190.71, sede: 2890.16 };
+  const TETTO_AFFITTO_DETR = 2633;
+  // Affitto medio di una stanza singola, rilevazioni 2026 (Bologna: ultimo dato 2025).
+  const CITTA = [
+    ["Milano", 704], ["Bologna", 632], ["Firenze", 627], ["Roma", 615],
+    ["Padova", 490], ["Torino", 477], ["Bari", 426], ["Pisa", 364],
+    ["Altra città (media italiana)", 575],
+  ];
+  // Valori di partenza che cambiano con lo status: pasti e trasporti al mese.
+  const DEF = {
+    sede: { vitto: 60, viaggi: 35 },
+    pendolare: { vitto: 90, viaggi: 90 },
+    fuori: { vitto: 280, viaggi: 70 },
+  };
+  const CONTRIBUTO_DEF = { statale: 1500, privata: 6000 };
+
+  const $ = (id) => document.getElementById(id);
+  const form = $("form");
+  const num = (id) => {
+    const el = $(id);
+    const v = parseFloat(String(el.value).replace(",", "."));
+    return Number.isFinite(v) && v >= 0 ? v : 0;
+  };
+  const eur = (n) => new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(Math.round(n));
+  const eur2 = (n) => new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR", minimumFractionDigits: 2 }).format(n);
+  const toccati = new Set();
+
+  // ---------- quota di contributo dovuta secondo l'ISEE ----------
+  function quotaContributo(isee, soglia) {
+    if (isee <= soglia) return 0;
+    const extra = isee - soglia;           // scaglioni da 2.000 € sopra la no tax area
+    if (extra <= 2000) return 0.20;
+    if (extra <= 4000) return 0.50;
+    if (extra <= 6000) return 0.75;
+    if (extra <= 8000) return 0.90;
+    return 1;
+  }
+
+  function leggiStato() {
+    const status = (form.querySelector('input[name="status"]:checked') || {}).value || "sede";
+    return {
+      status,
+      isee: num("isee"),
+      iseeVuoto: String($("isee").value).trim() === "",
+      contributo: num("contributo"),
+      affitto: status === "fuori" ? num("affitto") : 0,
+      utenze: status === "fuori" ? num("utenze") : 0,
+      vitto: num("vitto"),
+      viaggi: num("viaggi"),
+      libri: num("libri"),
+      extra: num("extra"),
+      unatantum: num("unatantum"),
+      mesi: Math.min(12, Math.max(1, Math.round(num("mesi")) || 10)),
+      regionale: num("regionale"),
+      soglia: num("soglia"),
+      borsa: $("borsa").checked,
+      detr: $("detr").checked,
+      dist: $("dist").checked,
+    };
+  }
+
+  function calcola(s) {
+    const mesi = s.mesi;
+    const borsista = s.borsa && s.isee <= LIMITE_ISEE_BORSA;
+    const quota = quotaContributo(s.isee, s.soglia);
+    const contributo = borsista ? 0 : s.contributo * quota;
+    const tasseDetraibili = contributo + s.regionale;
+    const voci = [];
+    voci.push({ k: "Contributo onnicomprensivo", v: contributo, n: borsista ? "azzerato: i borsisti sono esonerati" : (quota === 0 ? "azzerato dalla no tax area" : "il " + Math.round(quota * 100) + "% del contributo pieno") });
+    voci.push({ k: "Tassa regionale e bollo", v: s.regionale + BOLLO, n: eur(s.regionale) + " + " + eur(BOLLO) + " di bollo" });
+    if (s.status === "fuori") {
+      voci.push({ k: "Affitto", v: s.affitto * mesi, n: eur(s.affitto) + " × " + mesi + " mesi" });
+      voci.push({ k: "Bollette e condominio", v: s.utenze * mesi, n: eur(s.utenze) + " al mese" });
+    }
+    voci.push({ k: s.status === "fuori" ? "Spesa e mensa" : "Pasti fuori casa", v: s.vitto * mesi, n: eur(s.vitto) + " al mese" });
+    voci.push({ k: s.status === "fuori" ? "Rientri a casa" : "Trasporti", v: s.viaggi * mesi, n: eur(s.viaggi) + " al mese" });
+    voci.push({ k: "Libri e materiale", v: s.libri, n: "all'anno" });
+    voci.push({ k: "Vita e imprevisti", v: s.extra * mesi, n: eur(s.extra) + " al mese" });
+    if (s.unatantum > 0) voci.push({ k: "Spese una tantum", v: s.unatantum, n: "caparra, agenzia, attrezzatura" });
+
+    const lordo = voci.reduce((t, v) => t + v.v, 0);
+    const borsa = borsista ? BORSE[s.status] : 0;
+    let detrazione = 0;
+    if (s.detr) {
+      detrazione = 0.19 * tasseDetraibili;
+      if (s.status === "fuori" && s.dist) detrazione += 0.19 * Math.min(s.affitto * mesi, TETTO_AFFITTO_DETR);
+    }
+    const saldo = lordo - borsa - detrazione;
+    const netto = Math.max(0, saldo);
+    const avanzo = Math.max(0, -saldo);
+    return { voci, lordo, borsa, detrazione, netto, avanzo, borsista, quota, mesi };
+  }
+
+  // ---------- pannello che sale dal basso ----------
+  function disegna(s, r) {
+    $("netto").textContent = eur(r.netto);
+    $("mensile").textContent = r.avanzo > 0
+      ? "la borsa copre tutte le spese e avanzano circa " + eur(r.avanzo)
+      : "circa " + eur(r.netto / r.mesi) + " al mese su " + r.mesi + " mesi";
+    const ul = $("voci");
+    ul.replaceChildren();
+    const riga = (k, v, cls, nota) => {
+      const li = document.createElement("li");
+      if (cls) li.className = cls;
+      const a = document.createElement("span");
+      a.textContent = k;
+      if (nota) {
+        const small = document.createElement("small");
+        small.style.cssText = "display:block;font-family:system-ui,sans-serif;font-size:.8rem;opacity:.75";
+        small.textContent = nota;
+        a.append(small);
+      }
+      const b = document.createElement("span");
+      b.textContent = v;
+      li.append(a, b);
+      ul.append(li);
+    };
+    for (const v of r.voci) riga(v.k, eur(v.v), null, v.n);
+    riga("Totale delle spese", eur(r.lordo), "sub");
+    if (r.borsa > 0) riga("Borsa di studio", "− " + eur(r.borsa), "plus", "importo minimo 2026/27 per lo status " + (s.status === "fuori" ? "fuori sede" : s.status === "pendolare" ? "pendolare" : "in sede"));
+    if (r.detrazione > 0) riga("Detrazione IRPEF 19%", "− " + eur(r.detrazione), "plus", "recuperata con il 730 dell'anno dopo");
+    riga("Resta a carico vostro", eur(r.netto), "tot-row");
+
+    const msg = [];
+    if (s.iseeVuoto) msg.push("Manca l'ISEE: il conto è fatto come se fosse zero, quindi con tasse e borsa al massimo favore.");
+    if (s.borsa && s.isee > LIMITE_ISEE_BORSA) msg.push("Con un ISEE di " + eur(s.isee) + " la borsa non spetta: il limite 2026/27 è " + eur2(LIMITE_ISEE_BORSA) + ".");
+    if (r.quota === 1 && !r.borsista) msg.push("Sopra i " + eur(s.soglia + 8000) + " di ISEE si paga il contributo pieno: controlla se il tuo ateneo ha una soglia più alta.");
+    if (s.status === "fuori" && !s.dist) msg.push("Senza i 100 km e la provincia diversa l'affitto non è detraibile: la detrazione vale solo sulle tasse.");
+    const box = $("avviso");
+    box.hidden = msg.length === 0;
+    box.textContent = msg.join(" ");
+  }
+
+  // ---------- Pro 1: confronto fra i tre scenari ----------
+  function confronto(s) {
+    const nomi = { sede: "Resto a casa", pendolare: "Pendolare", fuori: "Fuori sede" };
+    const esiti = ["sede", "pendolare", "fuori"].map((st) => {
+      const alt = Object.assign({}, s, { status: st });
+      if (st !== s.status) { alt.vitto = DEF[st].vitto; alt.viaggi = DEF[st].viaggi; }
+      if (st === "fuori") { alt.affitto = num("affitto") || 575; alt.utenze = num("utenze"); }
+      return { st, nome: nomi[st], r: calcola(alt) };
+    });
+    const minimo = Math.min.apply(null, esiti.map((e) => e.r.netto));
+    const ul = $("cmp");
+    ul.replaceChildren();
+    for (const e of esiti) {
+      const li = document.createElement("li");
+      if (e.r.netto === minimo) li.className = "best";
+      const left = document.createElement("span");
+      left.textContent = e.nome;
+      const small = document.createElement("small");
+      small.textContent = e.r.avanzo > 0
+        ? "la borsa da " + eur(e.r.borsa) + " copre tutto e avanzano " + eur(e.r.avanzo)
+        : e.r.borsa > 0 ? "con borsa da " + eur(e.r.borsa) : "senza borsa";
+      left.append(small);
+      const b = document.createElement("b");
+      b.textContent = eur(e.r.netto);
+      li.append(left, b);
+      ul.append(li);
+    }
+    const fuori = esiti.find((e) => e.st === "fuori").r.netto;
+    const casa = esiti.find((e) => e.st === "sede").r.netto;
+    $("cmpDelta").textContent = fuori > casa
+      ? "Andare fuori sede costa " + eur(fuori - casa) + " in più all'anno, cioè " + eur((fuori - casa) * 3) + " su una triennale."
+      : "Con questi numeri restare a casa non fa risparmiare: controlla affitto e trasporti.";
+  }
+
+  // ---------- Pro 2: il corso intero ----------
+  function corso(r) {
+    const anni = parseInt($("anni").value, 10) || 3;
+    const infl = num("infl") / 100;
+    const tb = $("tbAnni");
+    tb.replaceChildren();
+    let totale = 0;
+    for (let i = 0; i < anni; i++) {
+      const f = Math.pow(1 + infl, i);
+      const spesa = r.lordo * f, aiuti = (r.borsa + r.detrazione) * f, resta = Math.max(0, spesa - aiuti);
+      totale += resta;
+      const tr = document.createElement("tr");
+      for (const t of [(i + 1) + "º anno", eur(spesa), aiuti > 0 ? "− " + eur(aiuti) : "—", eur(resta)]) {
+        const td = document.createElement("td");
+        td.textContent = t;
+        tr.append(td);
+      }
+      tb.append(tr);
+    }
+    $("totCorso").textContent = eur(totale);
+  }
+
+  // ---------- riepilogo testuale, condiviso da copia, stampa e CSV ----------
+  function righe(s, r) {
+    return r.voci.map((v) => [v.k, Math.round(v.v)])
+      .concat([["Totale spese", Math.round(r.lordo)]])
+      .concat(r.borsa > 0 ? [["Borsa di studio", -Math.round(r.borsa)]] : [])
+      .concat(r.detrazione > 0 ? [["Detrazione IRPEF 19%", -Math.round(r.detrazione)]] : [])
+      .concat([["Resta a carico", Math.round(r.netto)]]);
+  }
+  function testo(s, r) {
+    const nome = s.status === "fuori" ? "fuori sede" : s.status === "pendolare" ? "pendolare" : "in sede";
+    let out = "Quanto costa l'università — studente " + nome + ", ISEE " + eur(s.isee) + ", " + r.mesi + " mesi\n";
+    for (const [k, v] of righe(s, r)) out += k + ": " + eur(v) + "\n";
+    return out + "Calcolato con un-app-al-giorno";
+  }
+
+  async function copia() {
+    const s = leggiStato(), r = calcola(s), t = testo(s, r);
+    const esito = $("copiaEsito");
+    try {
+      let fatto = false;
+      if (navigator.clipboard && window.isSecureContext) { await navigator.clipboard.writeText(t); fatto = true; }
+      else {
+        const ta = document.createElement("textarea");
+        ta.value = t;
+        ta.setAttribute("readonly", "");
+        ta.style.cssText = "position:fixed;opacity:0;top:0";
+        document.body.append(ta);
+        ta.select();
+        fatto = document.execCommand("copy");
+        ta.remove();
+      }
+      if (fatto) { esito.textContent = "Riepilogo copiato: incollalo dove ti serve."; $("manualeWrap").hidden = true; }
+      else mostraManuale(t, esito);
+    } catch (_) {
+      mostraManuale(t, esito);
+    }
+  }
+
+  function mostraManuale(t, esito) {
+    esito.textContent = "Questo browser non consente la copia automatica: il testo è qui sotto, già selezionato.";
+    const wrap = $("manualeWrap"), ta = $("manuale");
+    wrap.hidden = false;
+    ta.value = t;
+    ta.focus();
+    ta.select();
+  }
+
+  function scaricaCsv() {
+    if (window.Monetize && !Monetize.isPro()) { Monetize.unlock(); return; }
+    const s = leggiStato(), r = calcola(s);
+    const csv = "Voce;Euro\n" + righe(s, r).map(([k, v]) => '"' + k.replace(/"/g, '""') + '";' + v).join("\n") + "\n";
+    const blob = new Blob(["﻿" + csv], { type: "text/csv;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "costo-universita.csv";
+    document.body.append(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
+  }
+
+  // ---------- campi che dipendono dallo status ----------
+  function adatta(s) {
+    const fuori = s.status === "fuori";
+    $("cittaWrap").hidden = !fuori;
+    $("alloggioWrap").hidden = !fuori;
+    $("distWrap").hidden = !fuori;
+    $("vittoLbl").textContent = fuori ? "Spesa e mensa al mese" : "Pasti fuori casa al mese";
+    $("vittoHint").textContent = fuori ? "Supermercato più qualche pasto alla mensa universitaria." : "Mensa, bar, panini fra due lezioni.";
+    $("viaggiLbl").textContent = fuori ? "Rientri a casa al mese" : s.status === "pendolare" ? "Abbonamento al mese" : "Trasporti al mese";
+    $("viaggiHint").textContent = fuori ? "Due viaggi al mese su una tratta media valgono più di un mese di affitto."
+      : s.status === "pendolare" ? "Abbonamento regionale treno o bus, spesso scontato per gli studenti." : "Abbonamento urbano o biglietti per raggiungere le lezioni.";
+    for (const campo of ["vitto", "viaggi"]) {
+      if (!toccati.has(campo)) $(campo).value = DEF[s.status][campo];
+    }
+  }
+
+  function aggiorna() {
+    let s = leggiStato();
+    adatta(s);
+    s = leggiStato();
+    const r = calcola(s);
+    disegna(s, r);
+    confronto(s);
+    corso(r);
+    salva();
+  }
+
+  // ---------- persistenza ----------
+  const CAMPI = ["isee", "contributo", "citta", "affitto", "utenze", "vitto", "viaggi", "libri", "mesi", "regionale", "soglia", "extra", "unatantum", "ateneo", "anni", "infl"];
+  function salva() {
+    try {
+      const d = { status: (form.querySelector('input[name="status"]:checked') || {}).value, borsa: $("borsa").checked, detr: $("detr").checked, dist: $("dist").checked, toccati: Array.from(toccati) };
+      for (const c of CAMPI) d[c] = $(c).value;
+      localStorage.setItem(KEY, JSON.stringify(d));
+    } catch (_) { /* storage non disponibile */ }
+  }
+  function ripristina() {
+    let d = null;
+    try { d = JSON.parse(localStorage.getItem(KEY) || "null"); } catch (_) { d = null; }
+    if (!d) return;
+    for (const c of CAMPI) if (typeof d[c] === "string" && d[c] !== "") $(c).value = d[c];
+    const radio = form.querySelector('input[name="status"][value="' + (d.status || "sede") + '"]');
+    if (radio) radio.checked = true;
+    for (const [id, v] of [["borsa", d.borsa], ["detr", d.detr], ["dist", d.dist]]) if (typeof v === "boolean") $(id).checked = v;
+    for (const t of d.toccati || []) toccati.add(t);
+  }
+
+  // ---------- avvio ----------
+  for (const [nome, prezzo] of CITTA) {
+    const o = document.createElement("option");
+    o.value = String(prezzo);
+    o.textContent = nome + " — " + eur(prezzo) + " al mese";
+    if (nome === "Bologna") o.selected = true;
+    $("citta").append(o);
+  }
+  ripristina();
+
+  $("citta").addEventListener("change", () => { $("affitto").value = $("citta").value; toccati.add("affitto"); aggiorna(); });
+  $("ateneo").addEventListener("change", () => {
+    const v = $("ateneo").value;
+    if (CONTRIBUTO_DEF[v] !== undefined) $("contributo").value = CONTRIBUTO_DEF[v];
+    aggiorna();
+  });
+  form.addEventListener("input", (ev) => {
+    const id = ev.target.id;
+    if (id === "vitto" || id === "viaggi" || id === "affitto") toccati.add(id);
+    $("copiaEsito").textContent = "";
+    aggiorna();
+  });
+  form.addEventListener("change", aggiorna);
+  form.addEventListener("submit", (ev) => ev.preventDefault());
+  form.addEventListener("keydown", (ev) => {
+    if (ev.key === "Enter" && ev.target.tagName === "INPUT") { ev.preventDefault(); ev.target.blur(); apri(true); }
+    if (ev.key === "Escape" && ev.target.tagName === "INPUT") { ev.target.blur(); }
+  });
+  $("anni").addEventListener("change", aggiorna);
+  $("infl").addEventListener("input", aggiorna);
+  $("copia").addEventListener("click", copia);
+  $("csv").addEventListener("click", scaricaCsv);
+  $("stampa").addEventListener("click", () => {
+    if (window.Monetize && !Monetize.isPro()) { Monetize.unlock(); return; }
+    window.print();
+  });
+  $("azzera").addEventListener("click", () => {
+    try { localStorage.removeItem(KEY); } catch (_) { /* niente */ }
+    toccati.clear();
+    form.reset();
+    $("citta").value = "632";
+    $("affitto").value = "632";
+    $("copiaEsito").textContent = "Campi riportati ai valori di partenza.";
+    aggiorna();
+  });
+
+  // pannello: aperto/chiuso su telefono
+  function apri(stato) {
+    $("sheet").dataset.open = stato ? "true" : "false";
+    $("grip").setAttribute("aria-expanded", stato ? "true" : "false");
+    $("arrow").textContent = stato ? "▼" : "▲";
+  }
+  $("grip").addEventListener("click", () => apri($("sheet").dataset.open !== "true"));
+  document.addEventListener("keydown", (ev) => { if (ev.key === "Escape" && $("sheet").dataset.open === "true") apri(false); });
+  if (window.matchMedia && window.matchMedia("(min-width: 760px)").matches) apri(true);
+
+  aggiorna();
+})();
+</script>
+</body>
+</html>

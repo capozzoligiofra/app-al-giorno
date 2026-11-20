@@ -1,7 +1,7 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 69,
+  "count": 70,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -50,6 +50,72 @@ window.__APPS__ = {
     ]
   },
   "apps": [
+    {
+      "title": "Quanto Costa l'Università",
+      "slug": "2026-11-20-quanto-costa-universita",
+      "date": "2026-11-20",
+      "description": "Il costo vero di un anno di università: tasse per fascia ISEE, affitto, vitto, viaggi, con borsa e detrazioni già scalate.",
+      "category": "finanza-personale",
+      "tags": [
+        "universita",
+        "isee",
+        "fuori sede",
+        "borsa di studio",
+        "studenti"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "sheet",
+        "palette": "azzurro-cielo",
+        "font": "serif-editoriale"
+      },
+      "business": {
+        "keyword": "quanto costa l'università",
+        "keywords": [
+          "quanto costa l'università all'anno",
+          "quanto costa l'università fuori sede",
+          "tasse universitarie in base all'isee",
+          "quanto costa mantenere uno studente fuori sede"
+        ],
+        "intent": "Famiglie e maturandi che fra l'estate e l'immatricolazione devono capire la cifra reale di un anno, soprattutto il salto fra restare a casa e andare fuori sede, e sapere quanto resta in tasca dopo borsa e detrazioni.",
+        "target": "Genitori 40-60 anni e studenti 18-25, spesso da telefono mentre confrontano due atenei.",
+        "edge": "I primi risultati parlano solo di tasse oppure solo di affitti. Qui il conto è completo e nell'altro verso: tasse per fascia ISEE, affitto medio della città, vitto, rientri a casa, libri, e poi borsa DSU 2026/27 e detrazione IRPEF 19% già sottratte, con il confronto fra casa, pendolare e fuori sede.",
+        "monetization": [
+          "adsense",
+          "affiliate",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto fra casa, pendolare e fuori sede",
+          "Costo dell'intero corso di laurea",
+          "Riepilogo stampabile ed esportabile in CSV"
+        ],
+        "affiliate": [
+          {
+            "t": "Tablet per prendere appunti a lezione",
+            "q": "tablet per appunti universita"
+          },
+          {
+            "t": "Zaino porta PC per l'università",
+            "q": "zaino porta pc 15 pollici universita"
+          },
+          {
+            "t": "Kit pentole base per la stanza fuori sede",
+            "q": "set pentole piccolo monolocale"
+          },
+          {
+            "t": "Lampada da scrivania a luce regolabile",
+            "q": "lampada da scrivania led studio"
+          }
+        ]
+      },
+      "size": 49841
+    },
     {
       "title": "Quanto Costa Rifare l'Impianto Elettrico",
       "slug": "2026-11-19-rifare-impianto-elettrico",
