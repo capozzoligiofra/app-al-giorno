@@ -1,7 +1,7 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 70,
+  "count": 71,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -50,6 +50,73 @@ window.__APPS__ = {
     ]
   },
   "apps": [
+    {
+      "title": "Quanto Costa Aprire un Bar",
+      "slug": "2026-11-21-quanto-costa-aprire-un-bar",
+      "date": "2026-11-21",
+      "description": "Investimento voce per voce, costi fissi al mese e quanti caffè al giorno servono per andare in pari.",
+      "category": "finanza-personale",
+      "tags": [
+        "bar",
+        "aprire attivita",
+        "business plan",
+        "costi",
+        "pareggio"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "dashboard",
+        "palette": "nero-neon",
+        "font": "condensed"
+      },
+      "business": {
+        "keyword": "quanto costa aprire un bar",
+        "keywords": [
+          "aprire un bar costi",
+          "quanto costa aprire un bar da zero",
+          "quanto costa rilevare un bar",
+          "costi fissi mensili di un bar",
+          "quanti caffè al giorno per andare in pari"
+        ],
+        "intent": "Chi valuta di mettersi in proprio con un bar e vuole sapere adesso quanto gli serve: l'esborso del giorno zero voce per voce, quanto esce ogni mese a locale vuoto e l'incasso minimo per non perdere soldi.",
+        "target": "Aspiranti titolari 25-55 anni, spesso dipendenti del settore o coppie che valutano il salto, in gran parte da telefono mentre guardano annunci di locali.",
+        "edge": "Nessuno dei primi risultati calcola niente: danno intervalli enormi e poi vendono un software o chiedono un contatto. Qui ogni voce è un campo modificabile e soprattutto esce il numero che gli articoli non danno mai: l'incasso di pareggio tradotto in scontrini e caffè al giorno.",
+        "monetization": [
+          "adsense",
+          "affiliate",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto fra aprire da zero e rilevare",
+          "Piano di cassa dei primi 12 mesi",
+          "Preventivo stampabile ed esportabile in CSV"
+        ],
+        "affiliate": [
+          {
+            "t": "Macchina da caffè professionale a 2 gruppi",
+            "q": "macchina caffe professionale 2 gruppi bar"
+          },
+          {
+            "t": "Macinadosatore professionale da banco",
+            "q": "macinadosatore professionale bar"
+          },
+          {
+            "t": "Lavabicchieri da bar",
+            "q": "lavabicchieri professionale bar"
+          },
+          {
+            "t": "Registratore di cassa telematico",
+            "q": "registratore di cassa telematico"
+          }
+        ]
+      },
+      "size": 64249
+    },
     {
       "title": "Quanto Costa l'Università",
       "slug": "2026-11-20-quanto-costa-universita",
