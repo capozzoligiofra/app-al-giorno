@@ -1,7 +1,7 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 71,
+  "count": 72,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -50,6 +50,68 @@ window.__APPS__ = {
     ]
   },
   "apps": [
+    {
+      "title": "Quanto Costa una Sanatoria Edilizia",
+      "slug": "2026-11-22-quanto-costa-una-sanatoria",
+      "date": "2026-11-22",
+      "description": "Quattro domande sulla difformità e sai quale pratica ti tocca: oblazione, tecnico, catasto, bolli e diritti, voce per voce.",
+      "category": "calcolatori-convertitori",
+      "tags": [
+        "sanatoria",
+        "abuso edilizio",
+        "salva casa",
+        "oblazione",
+        "casa"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "wizard",
+        "palette": "verde-bosco",
+        "font": "mono-tecnico"
+      },
+      "business": {
+        "keyword": "quanto costa una sanatoria edilizia",
+        "keywords": [
+          "quanto costa sanare un abuso edilizio",
+          "costo sanatoria edilizia 2026",
+          "quanto costa una cila in sanatoria",
+          "oblazione sanatoria edilizia calcolo",
+          "quanto costa il permesso in sanatoria"
+        ],
+        "intent": "Chi scopre una difformità in casa propria, quasi sempre perché il notaio o la banca chiedono la conformità urbanistica prima del rogito, e vuole sapere adesso in che pratica ricade e quanto gli costa in tutto.",
+        "target": "Proprietari 30-65 anni che stanno vendendo, comprando o ereditando casa, e chi ha ristrutturato senza titoli negli anni passati; in gran parte da telefono.",
+        "edge": "Nessuno dei primi risultati classifica il caso: danno una forchetta unica. Qui quattro domande individuano l'articolo applicabile (34-bis, CILA, 36-bis lett. b, 36-bis lett. a, 36), e l'oblazione di legge resta separata dall'onorario del tecnico, che è la voce che pesa di più.",
+        "monetization": [
+          "adsense",
+          "affiliate",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto fra i tre percorsi di sanatoria",
+          "Preventivo stampabile e CSV per il tecnico"
+        ],
+        "affiliate": [
+          {
+            "t": "Misuratore laser per distanze e altezze",
+            "q": "misuratore laser distanze 50 metri"
+          },
+          {
+            "t": "Rotella metrica da 20 metri",
+            "q": "rotella metrica 20 metri edilizia"
+          },
+          {
+            "t": "Testo Unico Edilizia commentato, edizione aggiornata",
+            "q": "testo unico edilizia commentato dpr 380 2001"
+          }
+        ]
+      },
+      "size": 63743
+    },
     {
       "title": "Quanto Costa Aprire un Bar",
       "slug": "2026-11-21-quanto-costa-aprire-un-bar",
