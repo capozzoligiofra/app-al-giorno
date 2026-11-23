@@ -1,7 +1,7 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 72,
+  "count": 73,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -50,6 +50,66 @@ window.__APPS__ = {
     ]
   },
   "apps": [
+    {
+      "title": "Consumo Stufa a Pellet",
+      "slug": "2026-11-23-consumo-stufa-a-pellet",
+      "date": "2026-11-23",
+      "description": "Quanto consuma una stufa a pellet: kg all'ora, al giorno, sacchi al mese e spesa della stagione dai kW della tua stufa e dalle ore di accensione.",
+      "category": "casa-cucina",
+      "tags": [
+        "pellet",
+        "riscaldamento",
+        "consumi",
+        "bolletta"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "split",
+        "palette": "arancio-caldo",
+        "font": "rounded"
+      },
+      "business": {
+        "keyword": "quanto consuma una stufa a pellet",
+        "keywords": [
+          "consumo stufa a pellet kg ora",
+          "quanti sacchi di pellet al mese",
+          "quanto costa una stufa a pellet al giorno",
+          "stufa a pellet o metano quale conviene"
+        ],
+        "intent": "Chi ha una stufa a pellet (o sta per comprarla) e vuole sapere adesso quanti chili brucia all'ora, quanti sacchi finisce al mese e quanto gli costa la stagione, senza leggere un articolo di mille parole.",
+        "target": "Proprietari di casa e inquilini con stufa o termostufa a pellet, 30-70 anni, da telefono, fra novembre e marzo.",
+        "edge": "Parte dai kW della tua stufa e dal livello di lavoro, non da una media inventata: calcola kg/ora, kg/giorno, sacchi e spesa di stagione, aggiunge la corrente che la stufa consuma e dice il costo per kWh di calore, l'unico numero che si puo confrontare con il metano.",
+        "monetization": [
+          "adsense",
+          "affiliate",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto con metano, GPL, legna e pompa di calore",
+          "Piano sacchi fino a fine stagione con la scorta da comprare"
+        ],
+        "affiliate": [
+          {
+            "t": "Bidone aspiracenere per stufa a pellet",
+            "q": "bidone aspiracenere stufa pellet"
+          },
+          {
+            "t": "Termoigrometro da interno per controllare i gradi veri",
+            "q": "termoigrometro ambiente interno digitale"
+          },
+          {
+            "t": "Kit spazzole per la pulizia della canna fumaria",
+            "q": "kit spazzole pulizia canna fumaria pellet"
+          }
+        ]
+      },
+      "size": 51919
+    },
     {
       "title": "Quanto Costa una Sanatoria Edilizia",
       "slug": "2026-11-22-quanto-costa-una-sanatoria",

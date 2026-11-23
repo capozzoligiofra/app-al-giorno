@@ -1,0 +1,858 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Quanto Consuma una Stufa a Pellet: calcolo gratis</title>
+<meta name="description" content="Quanto consuma una stufa a pellet: calcola i kg per ora, i kg al giorno, i sacchi al mese e la spesa di stagione dai kW della stufa e dalle ore accesa.">
+<link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-11-23-consumo-stufa-a-pellet/">
+<meta name="theme-color" content="#fff6ef" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#17100b" media="(prefers-color-scheme: dark)">
+<meta property="og:title" content="Quanto consuma una stufa a pellet: kg, sacchi e spesa di stagione">
+<meta property="og:description" content="Dai kW della tua stufa e dalle ore di accensione: chili all'ora, sacchi al mese, euro di stagione, corrente inclusa, e il costo per kWh di calore.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-11-23-consumo-stufa-a-pellet/">
+<meta property="og:locale" content="it_IT">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Consumo Stufa a Pellet",
+  "description": "Calcolatore del consumo di una stufa a pellet: dai kW resi, dal livello di lavoro e dalle ore di accensione ricava i chili all'ora, i chili al giorno, i sacchi da 15 kg al mese, la spesa della stagione, il consumo elettrico della stufa e il costo per kWh di calore.",
+  "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-11-23-consumo-stufa-a-pellet/",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+  "inLanguage": "it"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Quanto consuma una stufa a pellet da 9 kW?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Al massimo della potenza una stufa da 9 kW resi brucia circa 2,1 kg di pellet all'ora: 9 kW diviso il potere calorifico del pellet (4,8 kWh/kg) e diviso il rendimento della stufa (0,90). Nessuno però la tiene al massimo: a meta potenza, che e il regime normale quando la casa e in temperatura, il consumo scende a circa 1 kg all'ora. Con 8 ore di accensione al giorno sono 8,3 kg, cioe poco piu di mezzo sacco da 15 kg, e a 7,30 euro il sacco fanno circa 4 euro al giorno." }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanti sacchi di pellet servono al mese?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Per una stufa da 9 kW tenuta a meta potenza 8 ore al giorno servono circa 250 kg al mese, cioe 17 sacchi da 15 kg. Chi la accende tutto il giorno in una casa poco isolata arriva a 30-35 sacchi, chi la usa solo la sera in un appartamento sta sotto i 10. La regola del sacco al giorno, che si legge dappertutto, descrive solo il caso di una stufa media accesa 10-12 ore: sotto quelle ore e troppo, in una villetta in zona F e troppo poco." }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanto costa riscaldare una casa con il pellet per una stagione?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Con 150 giorni di stagione, 8 ore al giorno e una stufa da 9 kW a meta potenza si bruciano circa 1.250 kg di pellet, 83 sacchi: a 7,30 euro il sacco sono circa 610 euro, piu una sessantina di euro di corrente elettrica per ventilatore, coclea e accensioni. Il conto cambia molto con le ore: raddoppiando le ore si raddoppia tutto, mentre comprare il pellet a bancale in prestagione fa risparmiare il 10-15 per cento." }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanta corrente elettrica consuma una stufa a pellet?",
+      "acceptedAnswer": { "@type": "Answer", "text": "In funzione una stufa assorbe fra 50 e 100 watt per ventilatore, coclea ed estrattore dei fumi, mentre nei primi minuti la candeletta di accensione sale a 300-500 watt. Con 70 watt medi, 8 ore al giorno, una accensione al giorno e 150 giorni di stagione si arriva a circa 90 kWh, cioe 25-30 euro all'anno a 0,30 euro per kWh. E una voce piccola ma esiste, e nessun articolo la somma al pellet: qui e inclusa nel totale." }
+    },
+    {
+      "@type": "Question",
+      "name": "Conviene il pellet o il metano?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Si confrontano sul costo per kWh di calore effettivamente prodotto, non sul prezzo del combustibile. A 7,30 euro il sacco il pellet costa circa 11 centesimi per kWh utile, il metano a 1,30 euro per Smc con una caldaia a condensazione costa circa 13,5 centesimi, il GPL supera i 20, una pompa di calore con COP 3,2 e corrente a 0,30 euro per kWh sta intorno a 9,4. Il pellet resta conveniente sul gas, ma il margine si e ridotto molto da quando il sacco e passato da 4 a oltre 7 euro, e va pesato con il lavoro di carico e pulizia che la stufa richiede ogni giorno." }
+    },
+    {
+      "@type": "Question",
+      "name": "Il pellet di qualita scadente fa consumare di piu?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Si, e il conto si ribalta. Un pellet certificato ENplus A1 ha un potere calorifico intorno a 4,8-5,0 kWh/kg e meno dell'1 per cento di cenere; un pellet umido o con molta corteccia scende a 4,2-4,4 kWh/kg, quindi per la stessa quantita di calore ne serve il 10-15 per cento in piu, sporca il braciere e obbliga a pulizie piu frequenti. Un sacco che costa un euro in meno ma rende il 12 per cento in meno non fa risparmiare niente: nel calcolatore puoi cambiare il potere calorifico e vedere la differenza in euro." }
+    }
+  ]
+}
+</script>
+<style>
+  :root{
+    --bg:#fff6ef; --card:#ffffff; --line:#f0d8c6; --ink:#2b1a11; --ink2:#7a5d4c;
+    --acc:#cf4f16; --acc2:#f08c4a; --acc-ink:#ffffff; --ok:#2f7a4f; --warn:#9a5b00;
+    --r:20px; --r2:14px; --sh:0 2px 10px rgba(118,62,24,.08);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#17100b; --card:#231812; --line:#3b2a1f; --ink:#f8ece4; --ink2:#c0a494;
+      --acc:#ff8b47; --acc2:#b35a21; --acc-ink:#1a1008; --ok:#7ad39a; --warn:#f0b35e;
+      --sh:0 2px 10px rgba(0,0,0,.35);
+    }
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0; padding:0}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,system-ui,sans-serif;
+    font-size:1.02rem; line-height:1.55; -webkit-text-size-adjust:100%;
+  }
+  a{color:var(--acc)}
+  .back{display:inline-flex; align-items:center; min-height:44px; padding:.6rem .1rem .2rem; font-size:.95rem; text-decoration:none}
+  .back:hover{text-decoration:underline}
+  .wrap{max-width:46rem; margin:0 auto; padding:0 1rem 2rem}
+
+  /* --- pannello fisso in alto (layout split): gli ingressi che contano + la risposta --- */
+  .pannello{
+    position:sticky; top:0; z-index:5; margin:0 -1rem .9rem; padding:.7rem 1rem .6rem;
+    background:var(--bg); border-bottom:1px solid var(--line);
+    box-shadow:0 6px 12px -10px rgba(0,0,0,.45);
+  }
+  .pannello .riga{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:.6rem}
+  .campo{background:var(--card); border:1px solid var(--line); border-radius:var(--r2); padding:.45rem .55rem; box-shadow:var(--sh)}
+  .campo label{display:block; font-size:.8rem; color:var(--ink2); margin-bottom:.15rem; font-weight:600}
+  .stepper{display:flex; align-items:center; gap:.3rem}
+  .stepper button{
+    flex:0 0 auto; width:44px; height:44px; border-radius:50%; border:1px solid var(--line);
+    background:var(--bg); color:var(--ink); font-size:1.3rem; line-height:1; cursor:pointer;
+  }
+  .stepper button:active{background:var(--acc); color:var(--acc-ink)}
+  .stepper input{
+    flex:1 1 auto; width:100%; min-width:0; border:0; background:transparent; color:var(--ink);
+    font:inherit; font-size:1.25rem; font-weight:700; text-align:center; padding:.55rem 0; min-height:44px;
+  }
+  .stepper input:focus{outline:2px solid var(--acc); outline-offset:2px; border-radius:8px}
+  .um{font-size:.85rem; color:var(--ink2); font-weight:600}
+  .chips{display:flex; gap:.4rem; overflow-x:auto; padding:.55rem .1rem .1rem; scrollbar-width:none}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{
+    flex:0 0 auto; min-height:44px; padding:.5rem .95rem; border-radius:999px; cursor:pointer;
+    border:1px solid var(--line); background:var(--card); color:var(--ink); font:inherit; font-size:.92rem;
+  }
+  .chip[aria-pressed="true"]{background:var(--acc); color:var(--acc-ink); border-color:var(--acc); font-weight:700}
+  .testata{display:flex; align-items:baseline; gap:.5rem; flex-wrap:wrap; padding:.6rem .2rem .1rem}
+  .testata .big{font-size:1.8rem; font-weight:800; letter-spacing:-.02em; color:var(--acc)}
+  .testata .sep{display:none; color:var(--ink2)}
+  .testata .med{font-size:1.1rem; font-weight:700}
+  .testata small{display:block; width:100%; color:var(--ink2); font-size:.85rem}
+  /* quando la pagina scorre il pannello si accorcia: restano i due comandi e la risposta */
+  .pannello.compatta{padding-top:.4rem}
+  .pannello.compatta .campo label{display:none}
+  .pannello.compatta .campo{padding:.2rem .5rem .3rem}
+  .pannello.compatta .um{font-size:.78rem}
+  .pannello.compatta .chips{padding:.4rem .1rem 0}
+  .pannello.compatta .testata{padding:.35rem .2rem 0}
+  .pannello.compatta .testata .big{font-size:1.3rem}
+  .pannello.compatta .testata .med{font-size:1rem}
+  .pannello.compatta .testata small{font-size:.8rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+
+  h1{font-size:1.55rem; line-height:1.2; margin:.3rem 0 .4rem; letter-spacing:-.02em}
+  .intro{color:var(--ink2); margin:0 0 .9rem}
+  h2{font-size:1.2rem; margin:1.6rem 0 .6rem; letter-spacing:-.01em}
+  h3{font-size:1.03rem; margin:1.2rem 0 .3rem}
+
+  .griglia{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:.6rem}
+  .dato{background:var(--card); border:1px solid var(--line); border-radius:var(--r2); padding:.65rem .7rem; box-shadow:var(--sh)}
+  .dato .v{font-size:1.3rem; font-weight:800; letter-spacing:-.02em}
+  .dato .k{font-size:.84rem; color:var(--ink2)}
+  .dato.larga{grid-column:1 / -1}
+  .dato.forte{background:linear-gradient(135deg,var(--acc),var(--acc2)); border-color:transparent; color:var(--acc-ink)}
+  .dato.forte .k{color:var(--acc-ink); opacity:.9}
+
+  .nota{font-size:.9rem; color:var(--ink2); margin:.6rem 0}
+  .avviso{
+    display:none; margin:.7rem 0; padding:.6rem .75rem; border-radius:var(--r2);
+    border:1px solid var(--warn); color:var(--warn); background:transparent; font-size:.92rem;
+  }
+  .avviso.on{display:block}
+
+  details.extra{background:var(--card); border:1px solid var(--line); border-radius:var(--r); margin:1rem 0; box-shadow:var(--sh)}
+  details.extra>summary{padding:.9rem 1rem; cursor:pointer; font-weight:700; list-style:none; min-height:44px}
+  details.extra>summary::-webkit-details-marker{display:none}
+  details.extra>summary::after{content:" +"; color:var(--acc); font-weight:800}
+  details.extra[open]>summary::after{content:" −"}
+  details.extra .corpo{padding:0 1rem 1rem}
+  .coppia{display:grid; grid-template-columns:minmax(0,1fr); gap:.7rem}
+  .coppia label{display:block; font-size:.9rem; font-weight:600; margin-bottom:.2rem}
+  .coppia .hint{font-size:.85rem; color:var(--ink2); margin:.25rem 0 0}
+  .suffix{display:flex; align-items:center; gap:.4rem}
+  .suffix input, .suffix select{
+    flex:1 1 auto; min-width:0; max-width:100%; font-size:16px; font-family:inherit; color:var(--ink);
+    background:var(--bg); border:1px solid var(--line); border-radius:12px; padding:.6rem .7rem; min-height:44px;
+  }
+  .suffix span{flex:0 0 auto; font-size:.9rem; color:var(--ink2); font-weight:600}
+  .suffix input:focus, .suffix select:focus{outline:2px solid var(--acc); outline-offset:1px}
+
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:.4rem; min-height:46px;
+    padding:.6rem 1.1rem; border-radius:999px; border:1px solid var(--acc); background:var(--acc);
+    color:var(--acc-ink); font:inherit; font-weight:700; cursor:pointer; text-decoration:none;
+  }
+  .btn.vuoto{background:transparent; color:var(--acc)}
+  .azioni{display:flex; gap:.5rem; flex-wrap:wrap; margin:1rem 0}
+
+  section[data-pro]{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--r);
+    padding:.9rem 1rem 1rem; margin:1.1rem 0; box-shadow:var(--sh); min-height:160px;
+  }
+  section[data-pro]>h2{margin-top:0}
+  table.conf{width:100%; border-collapse:collapse; font-size:.95rem}
+  table.conf th, table.conf td{text-align:left; padding:.45rem .3rem; border-bottom:1px solid var(--line)}
+  table.conf td.n{text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap}
+  table.conf tr.noi{font-weight:700; color:var(--acc)}
+  ul.mesi{list-style:none; margin:.6rem 0 0; padding:0}
+  ul.mesi li{display:flex; justify-content:space-between; gap:.6rem; padding:.45rem .1rem; border-bottom:1px solid var(--line)}
+  ul.mesi li b{font-variant-numeric:tabular-nums}
+
+  #guida p, #guida li{font-size:1.02rem}
+  #guida ul, #guida ol{padding-left:1.15rem}
+  #guida li{margin:.4rem 0}
+  .fonte{font-size:.86rem; color:var(--ink2); border-top:1px solid var(--line); padding-top:.8rem; margin-top:1.2rem}
+  .correlate{list-style:none; padding:0}
+  .correlate li{margin:.5rem 0}
+  footer{margin-top:1.6rem; padding-top:.9rem; border-top:1px solid var(--line); font-size:.88rem; color:var(--ink2)}
+  footer a{color:var(--acc)}
+
+  @media (min-width: 700px){
+    .wrap{padding:0 1.5rem 3rem}
+    h1{font-size:2rem}
+    .pannello{margin:0 -1.5rem 1.2rem; padding:.9rem 1.5rem .8rem}
+    .pannello .riga{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .testata .big{font-size:2.2rem}
+    .testata .sep{display:inline}
+    .griglia{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .coppia{grid-template-columns:repeat(2,minmax(0,1fr))}
+  }
+  @media print{
+    .pannello,.chips,.azioni,.back,[data-ad],[data-support],[data-affiliate],details.extra,#guida,.altro,footer{display:none !important}
+    body{background:#fff; color:#000}
+    section[data-pro],.dato{border-color:#999; background:#fff; break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../../index.html">← Tutte le app</a>
+  <h1>Quanto consuma una stufa a pellet</h1>
+  <p class="intro">Il consumo della <strong>tua</strong> stufa, non una media copiata da un articolo: chili all'ora, sacchi al mese ed euro di stagione, corrente inclusa.</p>
+
+  <div class="pannello">
+    <div class="riga">
+      <div class="campo">
+        <label for="kw">Potenza della stufa</label>
+        <div class="stepper">
+          <button type="button" data-step="kw" data-d="-1" aria-label="Diminuisci la potenza">−</button>
+          <input id="kw" type="number" inputmode="decimal" min="2" max="40" step="0.5" value="9" enterkeyhint="done" autocomplete="off">
+          <button type="button" data-step="kw" data-d="1" aria-label="Aumenta la potenza">+</button>
+        </div>
+        <span class="um">kW resi</span>
+      </div>
+      <div class="campo">
+        <label for="ore">Ore accesa al giorno</label>
+        <div class="stepper">
+          <button type="button" data-step="ore" data-d="-1" aria-label="Diminuisci le ore">−</button>
+          <input id="ore" type="number" inputmode="decimal" min="0.5" max="24" step="0.5" value="8" enterkeyhint="done" autocomplete="off">
+          <button type="button" data-step="ore" data-d="1" aria-label="Aumenta le ore">+</button>
+        </div>
+        <span class="um">ore al giorno</span>
+      </div>
+    </div>
+
+    <div class="chips" role="group" aria-label="A che livello lavora la stufa">
+      <button type="button" class="chip" data-quota="0.3" aria-pressed="false">Minimo</button>
+      <button type="button" class="chip" data-quota="0.5" aria-pressed="true">Medio</button>
+      <button type="button" class="chip" data-quota="0.7" aria-pressed="false">Alto</button>
+      <button type="button" class="chip" data-quota="1" aria-pressed="false">Massimo</button>
+    </div>
+
+    <div class="testata" aria-live="polite">
+      <span class="big" id="t-kg">—</span>
+      <span class="sep">·</span>
+      <span class="med" id="t-eur">—</span>
+      <small id="t-sacchi">—</small>
+    </div>
+  </div>
+
+  <p class="avviso" id="avviso"></p>
+
+  <h2>Il consumo, voce per voce</h2>
+  <div class="griglia">
+    <div class="dato"><div class="v" id="r-kgh">—</div><div class="k">kg di pellet all'ora</div></div>
+    <div class="dato"><div class="v" id="r-kgg">—</div><div class="k">kg al giorno</div></div>
+    <div class="dato"><div class="v" id="r-sacsett">—</div><div class="k">sacchi da 15 kg a settimana</div></div>
+    <div class="dato"><div class="v" id="r-sacmese">—</div><div class="k">sacchi al mese</div></div>
+    <div class="dato"><div class="v" id="r-eurmese">—</div><div class="k">pellet al mese</div></div>
+    <div class="dato"><div class="v" id="r-luce">—</div><div class="k">corrente a stagione</div></div>
+    <div class="dato larga forte"><div class="v" id="r-stagione">—</div><div class="k" id="r-stagione-k">spesa della stagione, corrente inclusa</div></div>
+    <div class="dato"><div class="v" id="r-kgstag">—</div><div class="k">kg di pellet in tutta la stagione</div></div>
+    <div class="dato"><div class="v" id="r-sacstag">—</div><div class="k">sacchi, cioè <span id="r-bancali">—</span></div></div>
+    <div class="dato"><div class="v" id="r-ckwh">—</div><div class="k">costo per kWh di calore prodotto</div></div>
+  </div>
+  <p class="nota" id="n-regola">—</p>
+
+  <div class="azioni">
+    <button type="button" class="btn" id="bCopia">Copia il riepilogo</button>
+    <button type="button" class="btn vuoto" id="bReset">Rimetti i valori di partenza</button>
+  </div>
+
+  <details class="extra" id="ex-pellet">
+    <summary>Pellet e stufa: prezzo, qualità, rendimento</summary>
+    <div class="corpo">
+      <div class="coppia">
+        <div>
+          <label for="prezzo">Quanto paghi un sacco da 15 kg</label>
+          <div class="suffix"><input id="prezzo" type="number" inputmode="decimal" min="2" max="25" step="0.1" value="7.3" enterkeyhint="done" autocomplete="off"><span>€/sacco</span></div>
+          <p class="hint">Media nazionale AIEL per il pellet certificato ENplus A1: 7,14 € ad aprile 2026, in salita verso i 7,60 € in autunno. Al banco di un consorzio si trova a meno, spedito a casa costa molto di più.</p>
+        </div>
+        <div>
+          <label for="pci">Potere calorifico del pellet</label>
+          <div class="suffix"><input id="pci" type="number" inputmode="decimal" min="3.8" max="5.3" step="0.1" value="4.8" enterkeyhint="done" autocomplete="off"><span>kWh/kg</span></div>
+          <p class="hint">4,8-5,0 per un ENplus A1 asciutto; 4,2-4,4 per un pellet umido o con molta corteccia. È il numero che fa la differenza fra un sacco buono e uno scadente.</p>
+        </div>
+        <div>
+          <label for="rend">Rendimento della stufa</label>
+          <div class="suffix"><input id="rend" type="number" inputmode="decimal" min="65" max="96" step="1" value="90" enterkeyhint="done" autocomplete="off"><span>%</span></div>
+          <p class="hint">Lo trovi sul libretto: le stufe moderne dichiarano 88-93%, le termostufe un punto o due in meno. Un braciere sporco toglie 5-10 punti reali.</p>
+        </div>
+        <div>
+          <label for="giorni">Giorni di stagione</label>
+          <div class="suffix"><input id="giorni" type="number" inputmode="numeric" min="10" max="240" step="1" value="150" enterkeyhint="done" autocomplete="off"><span>giorni</span></div>
+          <p class="hint">Quanti giorni accendi in tutto l'inverno. Scegliendo la zona climatica qui sotto il valore si aggiorna da solo.</p>
+        </div>
+        <div>
+          <label for="zona">Zona climatica del comune</label>
+          <div class="suffix"><select id="zona">
+            <option value="A">A — Lampedusa (1 dic-15 mar)</option>
+            <option value="B">B — Palermo, Catania (1 dic-31 mar)</option>
+            <option value="C">C — Napoli, Bari (15 nov-31 mar)</option>
+            <option value="D">D — Roma, Firenze (1 nov-15 apr)</option>
+            <option value="E" selected>E — Milano, Torino (15 ott-15 apr)</option>
+            <option value="F">F — Cuneo, Belluno (nessun limite)</option>
+          </select></div>
+          <p class="hint">Periodi del DPR 74/2013. Imposta i giorni di stagione e la data di fine usata dal piano sacchi.</p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="extra" id="ex-luce">
+    <summary>La corrente che consuma la stufa</summary>
+    <div class="corpo">
+      <div class="coppia">
+        <div>
+          <label for="wf">Assorbimento in funzione</label>
+          <div class="suffix"><input id="wf" type="number" inputmode="numeric" min="0" max="500" step="5" value="70" enterkeyhint="done" autocomplete="off"><span>W</span></div>
+          <p class="hint">Ventilatore, coclea ed estrattore fumi: fra 50 e 100 W nella maggior parte dei modelli.</p>
+        </div>
+        <div>
+          <label for="wa">Assorbimento in accensione</label>
+          <div class="suffix"><input id="wa" type="number" inputmode="numeric" min="0" max="900" step="10" value="350" enterkeyhint="done" autocomplete="off"><span>W</span></div>
+          <p class="hint">La candeletta tira 300-500 W, ma solo per i primi minuti.</p>
+        </div>
+        <div>
+          <label for="ma">Durata dell'accensione</label>
+          <div class="suffix"><input id="ma" type="number" inputmode="numeric" min="0" max="30" step="1" value="8" enterkeyhint="done" autocomplete="off"><span>minuti</span></div>
+        </div>
+        <div>
+          <label for="na">Accensioni al giorno</label>
+          <div class="suffix"><input id="na" type="number" inputmode="numeric" min="0" max="10" step="1" value="1" enterkeyhint="done" autocomplete="off"><span>volte</span></div>
+          <p class="hint">Chi la spegne a mezzogiorno e la riaccende la sera ne fa due.</p>
+        </div>
+        <div>
+          <label for="luce">Prezzo dell'energia elettrica</label>
+          <div class="suffix"><input id="luce" type="number" inputmode="decimal" min="0.05" max="1" step="0.01" value="0.30" enterkeyhint="done" autocomplete="off"><span>€/kWh</span></div>
+          <p class="hint">Totale della bolletta diviso i kWh fatturati, imposte incluse.</p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <div data-ad="top"></div>
+
+  <section data-pro="Confronto con metano, GPL, legna e pompa di calore">
+    <h2>Conviene ancora, rispetto alle alternative?</h2>
+    <p class="nota">Stesso calore utile della tua stufa (<span id="c-kwh">—</span> kWh in tutta la stagione), prodotto con gli altri combustibili. I prezzi sono modificabili: usa quelli che paghi tu.</p>
+    <table class="conf">
+      <thead><tr><th>Come scaldi</th><th class="n">€/kWh</th><th class="n">Stagione</th></tr></thead>
+      <tbody id="c-corpo"></tbody>
+    </table>
+    <div class="coppia" style="margin-top:.8rem">
+      <div>
+        <label for="pMetano">Metano in bolletta</label>
+        <div class="suffix"><input id="pMetano" type="number" inputmode="decimal" min="0.2" max="4" step="0.01" value="1.30" enterkeyhint="done" autocomplete="off"><span>€/Smc</span></div>
+      </div>
+      <div>
+        <label for="pGpl">GPL</label>
+        <div class="suffix"><input id="pGpl" type="number" inputmode="decimal" min="0.3" max="4" step="0.01" value="1.20" enterkeyhint="done" autocomplete="off"><span>€/litro</span></div>
+      </div>
+      <div>
+        <label for="pLegna">Legna da ardere</label>
+        <div class="suffix"><input id="pLegna" type="number" inputmode="decimal" min="5" max="60" step="0.5" value="22" enterkeyhint="done" autocomplete="off"><span>€/quintale</span></div>
+      </div>
+      <div>
+        <label for="cop">COP della pompa di calore</label>
+        <div class="suffix"><input id="cop" type="number" inputmode="decimal" min="1.5" max="6" step="0.1" value="3.2" enterkeyhint="done" autocomplete="off"><span>medio stagionale</span></div>
+      </div>
+    </div>
+    <p class="nota" id="c-verdetto">—</p>
+  </section>
+
+  <section data-pro="Piano sacchi fino a fine stagione con la scorta da comprare">
+    <h2>Quanti sacchi ti servono da oggi a fine stagione</h2>
+    <div class="coppia">
+      <div>
+        <label for="scorta">Sacchi che hai già in casa</label>
+        <div class="suffix"><input id="scorta" type="number" inputmode="numeric" min="0" max="999" step="1" value="0" enterkeyhint="done" autocomplete="off"><span>sacchi</span></div>
+      </div>
+      <div>
+        <label for="fine">Fine della stagione</label>
+        <div class="suffix"><input id="fine" type="date" enterkeyhint="done"></div>
+      </div>
+    </div>
+    <div class="griglia" style="margin-top:.8rem">
+      <div class="dato"><div class="v" id="p-giorni">—</div><div class="k">giorni di accensione che restano</div></div>
+      <div class="dato"><div class="v" id="p-serve">—</div><div class="k">sacchi che serviranno</div></div>
+      <div class="dato larga forte"><div class="v" id="p-comprare">—</div><div class="k" id="p-comprare-k">da comprare, al prezzo di oggi</div></div>
+    </div>
+    <ul class="mesi" id="p-mesi"></ul>
+    <p class="nota" id="p-nota">—</p>
+    <div class="azioni">
+      <button type="button" class="btn vuoto" id="bStampa">Stampa il piano</button>
+      <button type="button" class="btn vuoto" id="bCsv">Scarica in CSV</button>
+    </div>
+  </section>
+
+  <div data-affiliate data-title="Quello che serve davvero per tenerla in ordine" data-items='[{"t":"Bidone aspiracenere per stufa a pellet","q":"bidone aspiracenere stufa pellet"},{"t":"Termoigrometro da interno, per sapere i gradi veri","q":"termoigrometro ambiente interno digitale"},{"t":"Kit spazzole per la pulizia della canna fumaria","q":"kit spazzole pulizia canna fumaria pellet"}]'></div>
+
+  <section id="guida">
+    <h2>Come si calcola quanto consuma una stufa a pellet</h2>
+    <p>Il consumo di una stufa a pellet non è un numero che si legge: si ricava da tre dati che hai già in casa. Il primo è la <strong>potenza termica resa</strong>, i kW scritti sul libretto o sulla targhetta dietro la stufa (attenzione: non la potenza al focolare, che è più alta). Il secondo è il <strong>livello a cui lavora davvero</strong>: la stufa va al massimo solo nella mezz'ora in cui scalda una casa fredda, poi il termostato la riporta al minimo o a metà potenza, ed è lì che passa l'inverno. Il terzo sono le <strong>ore di accensione</strong> al giorno.</p>
+    <p>Da qui la formula è una divisione: i chili all'ora sono i kW effettivamente resi divisi per il potere calorifico del pellet (4,8 kWh per chilo in un sacco certificato ENplus A1) e divisi per il rendimento della stufa (0,90 per un modello moderno). Il resto è aritmetica: per le ore si ottengono i chili al giorno, per i giorni della stagione quelli dell'inverno, diviso 15 i sacchi, per il prezzo del sacco gli euro. A questo si aggiunge l'unica voce che quasi nessuno conta, la <strong>corrente elettrica</strong> della stufa, e si ottiene il numero che conta per confrontarla con qualunque altro impianto: il costo di ogni kWh di calore che finisce davvero nelle stanze.</p>
+
+    <h3>Un esempio con i numeri</h3>
+    <p>Stufa a pellet da 9 kW resi, appartamento in zona E, accesa 8 ore al giorno a metà potenza, pellet a 7,30 euro il sacco. I kW resi effettivi sono 4,5; divisi per 4,8 kWh/kg e per il rendimento 0,90 fanno <strong>1,04 kg all'ora</strong>, cioè 8,3 kg al giorno: poco più di mezzo sacco, 3,9 kg in più o in meno a seconda di come gira il termostato. Al mese sono 250 kg, <strong>17 sacchi</strong>, circa 122 euro. Su 150 giorni di stagione si arriva a 1.250 kg, 83 sacchi e <strong>608 euro di pellet</strong>, ai quali si aggiungono circa 90 kWh di elettricità fra ventilatore e accensioni, altri 27 euro. Totale 636 euro per 5.400 kWh di calore, cioè <strong>11,8 centesimi per kWh utile</strong>. La stessa casa scaldata a metano, con il gas a 1,30 euro per Smc e una caldaia a condensazione, spenderebbe circa 730 euro: il pellet conviene ancora, ma il margine è un quarto, non la metà come quando il sacco costava quattro euro.</p>
+
+    <h3>Gli errori che fanno sbagliare il conto</h3>
+    <ul>
+      <li><strong>Usare la potenza al focolare invece di quella resa.</strong> Una stufa venduta come «10 kW» spesso rende 8,8 kW: il libretto riporta entrambi i valori e il consumo si calcola sul primo, altrimenti si sovrastima del 15 per cento.</li>
+      <li><strong>Calcolare tutto al massimo della potenza.</strong> È l'errore più comune e gonfia il risultato del doppio. Una stufa modulante sta al massimo pochi minuti all'avvio, poi scende: il regime medio reale di un inverno è fra il 40 e il 60 per cento.</li>
+      <li><strong>Fidarsi della regola del sacco al giorno.</strong> Descrive una stufa media accesa 10-12 ore in una casa normale. Chi la accende solo la sera ne consuma la metà, chi scalda una villetta non isolata in zona F ne brucia due.</li>
+      <li><strong>Dimenticare la qualità del pellet.</strong> Passare da 4,8 a 4,3 kWh/kg significa bruciare l'11 per cento in più di sacchi: un pellet che costa 60 centesimi in meno al sacco ma rende l'11 per cento in meno non fa risparmiare nulla, e lascia più cenere da pulire.</li>
+      <li><strong>Non contare la corrente.</strong> Sono 25-40 euro a stagione, non cambiano la vita, ma vanno nel conto se stai confrontando il pellet con il metano al centesimo.</li>
+      <li><strong>Confrontare il prezzo del combustibile e non quello del calore.</strong> Un chilo di pellet e un metro cubo di gas non sono paragonabili: l'unico confronto onesto è quello per kWh di calore prodotto, che è il numero in fondo alla griglia.</li>
+    </ul>
+
+    <h2>Domande frequenti</h2>
+    <h3>Quanto consuma una stufa a pellet da 9 kW?</h3>
+    <p>Al massimo circa 2,1 kg all'ora, ma a metà potenza — il regime normale quando la casa è in temperatura — scende intorno a 1 kg all'ora. Con 8 ore di accensione sono 8,3 kg al giorno, poco più di mezzo sacco, circa 4 euro.</p>
+    <h3>Quanti sacchi di pellet servono al mese?</h3>
+    <p>Per una stufa da 9 kW a metà potenza, 8 ore al giorno, circa 17 sacchi da 15 kg. Chi la tiene accesa tutto il giorno in una casa poco isolata arriva a 30-35, chi la usa solo la sera sta sotto i 10.</p>
+    <h3>Quanto costa una stagione di pellet?</h3>
+    <p>Nell'esempio sopra, 83 sacchi e circa 610 euro di pellet più 27 di corrente. Comprare a bancale in prestagione, fra maggio e luglio, fa risparmiare il 10-15 per cento: su una stagione intera sono 60-90 euro, a patto di avere un posto asciutto dove tenere quasi una tonnellata.</p>
+    <h3>Quanta corrente consuma?</h3>
+    <p>Fra 50 e 100 W in funzione e 300-500 W nei primi minuti dell'accensione. Con 70 W medi, 8 ore al giorno e 150 giorni si arriva a circa 90 kWh, 25-30 euro a stagione.</p>
+    <h3>Conviene il pellet o il metano?</h3>
+    <p>Dipende dai prezzi del momento, ed è per questo che nel confronto Pro puoi mettere i tuoi. Con il sacco a 7,30 euro il pellet sta intorno agli 11 centesimi per kWh utile, il metano a 1,30 €/Smc intorno ai 13,5, il GPL oltre i 20 e una pompa di calore con COP 3,2 intorno ai 9,4. Il pellet resta più economico del gas, ma chiede carico e pulizia ogni giorno: è un risparmio che si paga in lavoro.</p>
+    <h3>Perché la mia stufa consuma più di quanto dice il calcolatore?</h3>
+    <p>Nell'ordine: la tieni a una potenza più alta di quella che hai scelto qui, il pellet rende meno di 4,8 kWh/kg, il braciere e lo scambiatore sono sporchi (fino a 10 punti di rendimento), oppure la casa disperde tanto e la stufa non scende mai al minimo. Se la differenza supera il 20 per cento, prova a rifare il conto con il livello «alto» e un potere calorifico di 4,4.</p>
+
+    <p class="fonte">Metodo: potenza termica resa diviso potere calorifico inferiore del pellet per rendimento della stufa. Potere calorifico di riferimento 4,8 kWh/kg per pellet ENplus A1 (intervallo 4,6-5,0); periodi di accensione per zona climatica dal DPR 74/2013. Prezzo del pellet: rilevazione AIEL, 7,14 € per sacco da 15 kg ad aprile 2026 (7,10 € al Nord, 7,34 € al Sud e Isole), in aumento nel corso del 2026. Prezzi di confronto indicativi di novembre 2026: gas 1,30 €/Smc tutto compreso con potere calorifico 10,69 kWh/Smc, energia elettrica 0,30 €/kWh, GPL 1,20 €/litro, legna da ardere 22 €/quintale. Il risultato è una stima: il consumo reale dipende dalla casa, dal termostato e dalla qualità del sacco.</p>
+  </section>
+
+  <div class="altro">
+    <h2>App correlate</h2>
+    <ul class="correlate">
+      <li><a href="../2026-10-09-costo-riscaldamento-metano/index.html">Quanto costa riscaldare casa a metano</a>, per avere il conto dell'alternativa con lo stesso metodo.</li>
+      <li><a href="../2026-11-13-quanto-costa-cambiare-la-caldaia/index.html">Quanto costa cambiare la caldaia</a>, se il pellet serve solo a non accendere un impianto vecchio.</li>
+      <li><a href="../2026-10-30-fotovoltaico-quando-rientri/index.html">Quando si rientra della spesa del fotovoltaico</a>, l'altra strada per abbassare la bolletta dell'inverno.</li>
+    </ul>
+  </div>
+
+  <div data-ad="bottom"></div>
+  <div data-support></div>
+
+  <footer>
+    <p>Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a></p>
+  </footer>
+</div>
+<script src="../../assets/monetize.js"></script>
+<script>
+/* Modello dati: l'oggetto S tiene tutti gli ingressi (potenza resa in kW, quota di lavoro 0-1,
+   ore al giorno, giorni di stagione, prezzo del sacco, potere calorifico, rendimento, dati
+   elettrici, prezzi per il confronto). Tutto il resto si ricava a cascata da
+   kgOra = kW * quota / (potere calorifico * rendimento). Persistenza: una sola chiave
+   localStorage "consumo-stufa-a-pellet:v1" con lo stesso oggetto S. */
+(() => {
+  "use strict";
+
+  const KEY = "consumo-stufa-a-pellet:v1";
+  const KG_SACCO = 15, SACCHI_BANCALE = 65, GIORNI_MESE = 30.4, PCS_METANO = 10.69;
+
+  const BASE = {
+    kw: 9, quota: .5, ore: 8, giorni: 150, zona: "E",
+    prezzo: 7.3, pci: 4.8, rend: 90,
+    wf: 70, wa: 350, ma: 8, na: 1, luce: .30,
+    scorta: 0, fine: "",
+    pMetano: 1.30, pGpl: 1.20, pLegna: 22, cop: 3.2,
+  };
+  const LIM = {
+    kw: [2, 40], ore: [.5, 24], giorni: [10, 240], prezzo: [2, 25], pci: [3.8, 5.3], rend: [65, 96],
+    wf: [0, 500], wa: [0, 900], ma: [0, 30], na: [0, 10], luce: [.05, 1], scorta: [0, 999],
+    pMetano: [.2, 4], pGpl: [.3, 4], pLegna: [5, 60], cop: [1.5, 6],
+  };
+  const PASSO = { kw: .5, ore: .5 };
+  const ZONE = {
+    A: { g: 105, fine: "03-15" }, B: { g: 121, fine: "03-31" }, C: { g: 137, fine: "03-31" },
+    D: { g: 166, fine: "04-15" }, E: { g: 183, fine: "04-15" }, F: { g: 200, fine: "04-30" },
+  };
+  // Peso del freddo mese per mese (gennaio..dicembre): serve a distribuire i sacchi nel piano.
+  const PESO = [1.2, 1.05, .85, .6, .4, .3, .3, .3, .4, .7, .95, 1.15];
+  const MESI = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"];
+
+  const S = Object.assign({}, BASE);
+  const E = (id) => document.getElementById(id);
+  const nf = (n, d) => new Intl.NumberFormat("it-IT", { minimumFractionDigits: d, maximumFractionDigits: d }).format(n);
+  const eur2 = (n) => nf(n, 2) + " €";
+  const eur0 = (n) => nf(Math.round(n), 0) + " €";
+  const eurAuto = (n) => (n < 20 ? eur2(n) : eur0(n));
+  const cent = (n) => nf(n * 100, 1) + " c€";
+
+  // ---------- stato ----------
+  function carica() {
+    try {
+      const raw = localStorage.getItem(KEY);
+      if (!raw) return;
+      const d = JSON.parse(raw);
+      for (const k of Object.keys(BASE)) if (d[k] !== undefined && typeof d[k] === typeof BASE[k]) S[k] = d[k];
+    } catch (e) { /* storage non disponibile: si parte dai valori di default */ }
+  }
+  function salva() {
+    try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { /* ignora */ }
+  }
+  function clamp(k, v) {
+    const l = LIM[k];
+    if (!l || !Number.isFinite(v)) return null;
+    return Math.min(l[1], Math.max(l[0], v));
+  }
+  function fineDefault(zona) {
+    const oggi = new Date();
+    const [m, g] = (ZONE[zona] || ZONE.E).fine.split("-").map(Number);
+    let anno = oggi.getFullYear();
+    const prova = new Date(anno, m - 1, g);
+    if (prova < oggi) anno += 1;
+    return anno + "-" + String(m).padStart(2, "0") + "-" + String(g).padStart(2, "0");
+  }
+
+  // ---------- calcolo ----------
+  function calc() {
+    const eta = S.rend / 100;
+    const reso = S.kw * S.quota;
+    const kgOra = reso / (S.pci * eta);
+    const kgGiorno = kgOra * S.ore;
+    const kgStag = kgGiorno * S.giorni;
+    const prezzoKg = S.prezzo / KG_SACCO;
+    const kwhGiorno = reso * S.ore;
+    const kwhStag = kwhGiorno * S.giorni;
+    const elGiorno = (S.wf * S.ore + S.wa * (S.ma / 60) * S.na) / 1000;
+    const elStag = elGiorno * S.giorni;
+    const eurLuce = elStag * S.luce;
+    const eurPellet = kgStag * prezzoKg;
+    const tot = eurPellet + eurLuce;
+    return {
+      reso, kgOra, kgGiorno, kgStag, prezzoKg,
+      eurGiorno: kgGiorno * prezzoKg, eurMese: kgGiorno * GIORNI_MESE * prezzoKg,
+      sacchiGiorno: kgGiorno / KG_SACCO, sacchiSett: kgGiorno * 7 / KG_SACCO,
+      sacchiMese: kgGiorno * GIORNI_MESE / KG_SACCO, sacchiStag: kgStag / KG_SACCO,
+      kwhGiorno, kwhStag, elStag, eurLuce, eurPellet, tot,
+      cKwh: kwhStag > 0 ? tot / kwhStag : 0,
+    };
+  }
+
+  // ---------- disegno ----------
+  function testo(id, v) { const n = E(id); if (n) n.textContent = v; }
+
+  function render() {
+    const c = calc();
+
+    testo("t-kg", nf(c.kgGiorno, 1) + " kg al giorno");
+    testo("t-eur", eur2(c.eurGiorno) + " al giorno");
+    testo("t-sacchi", nf(c.kgOra, 2) + " kg all'ora · " + nf(c.sacchiMese, 0) + " sacchi al mese · " + eur0(c.tot) + " in tutta la stagione");
+
+    testo("r-kgh", nf(c.kgOra, 2) + " kg");
+    testo("r-kgg", nf(c.kgGiorno, 1) + " kg");
+    testo("r-sacsett", nf(c.sacchiSett, 1));
+    testo("r-sacmese", nf(c.sacchiMese, 0));
+    testo("r-eurmese", eur0(c.eurMese));
+    testo("r-luce", eur0(c.eurLuce));
+    testo("r-stagione", eur0(c.tot));
+    testo("r-stagione-k", "spesa della stagione: " + eur0(c.eurPellet) + " di pellet e " + eur0(c.eurLuce) + " di corrente");
+    testo("r-kgstag", nf(c.kgStag, 0) + " kg");
+    testo("r-sacstag", nf(c.sacchiStag, 0));
+    testo("r-bancali", nf(c.sacchiStag / SACCHI_BANCALE, 1) + " bancali");
+    testo("r-ckwh", cent(c.cKwh) + "/kWh");
+
+    const giorniSacco = c.kgGiorno > 0 ? KG_SACCO / c.kgGiorno : 0;
+    let regola;
+    if (c.sacchiGiorno >= 1) {
+      regola = "Con questi dati bruci " + nf(c.sacchiGiorno, 2) + " sacchi al giorno: più del sacco al giorno che si legge negli articoli, perché " +
+        (S.ore >= 14 ? "la tieni accesa molte ore." : "lavora a una potenza alta.");
+    } else {
+      const gg = Math.floor(giorniSacco);
+      const ore = Math.round((giorniSacco - gg) * 24);
+      const durata = gg === 0 ? ore + (ore === 1 ? " ora" : " ore")
+        : gg + (gg === 1 ? " giorno" : " giorni") + (ore > 0 ? " e " + ore + (ore === 1 ? " ora" : " ore") : "");
+      regola = "Un sacco da 15 kg ti dura " + durata + ". La regola del «sacco al giorno» che si legge in rete vale per una stufa accesa " +
+        "10-12 ore a potenza media: nel tuo caso conterebbe un " + nf((1 / c.sacchiGiorno - 1) * 100, 0) + " per cento di pellet in più del necessario.";
+    }
+    testo("n-regola", regola);
+
+    confronto(c);
+    piano(c);
+  }
+
+  function confronto(c) {
+    const righe = [
+      { n: "Pellet, la tua stufa", c: c.cKwh, noi: true },
+      { n: "Metano, caldaia a condensazione", c: S.pMetano / (PCS_METANO * .90) },
+      { n: "GPL, caldaia", c: S.pGpl / (6.6 * .90) },
+      { n: "Legna da ardere, stufa moderna", c: (S.pLegna / 100) / (4.0 * .75) },
+      { n: "Pompa di calore aria-acqua", c: S.luce / S.cop },
+      { n: "Stufetta elettrica", c: S.luce },
+    ];
+    const corpo = E("c-corpo");
+    corpo.textContent = "";
+    const minimo = Math.min.apply(null, righe.map(r => r.c));
+    for (const r of righe) {
+      const tr = document.createElement("tr");
+      if (r.noi) tr.className = "noi";
+      const td1 = document.createElement("th");
+      td1.setAttribute("scope", "row");
+      td1.textContent = r.n + (r.c === minimo ? " ✓" : "");
+      const td2 = document.createElement("td"); td2.className = "n"; td2.textContent = cent(r.c);
+      const td3 = document.createElement("td"); td3.className = "n"; td3.textContent = eur0(r.c * c.kwhStag);
+      tr.append(td1, td2, td3);
+      corpo.append(tr);
+    }
+    testo("c-kwh", nf(c.kwhStag, 0));
+
+    const metano = righe[1], pdc = righe[4];
+    const dMetano = (metano.c - c.cKwh) * c.kwhStag;
+    let v = dMetano > 0
+      ? "Con i prezzi che hai messo il pellet ti fa risparmiare " + eur0(dMetano) + " a stagione rispetto al metano"
+      : "Con i prezzi che hai messo il metano costerebbe " + eur0(-dMetano) + " in meno a stagione del pellet";
+    v += pdc.c < c.cKwh
+      ? ", mentre una pompa di calore con COP " + nf(S.cop, 1) + " scenderebbe ancora di " + eur0((c.cKwh - pdc.c) * c.kwhStag) + " (ma va installata, e qui si confrontano solo i costi d'uso)."
+      : ". La pompa di calore, a questo prezzo della corrente, non sarebbe più conveniente del pellet.";
+    testo("c-verdetto", v);
+  }
+
+  function piano(c) {
+    const oggi = new Date(); oggi.setHours(0, 0, 0, 0);
+    const parti = (S.fine || "").split("-").map(Number);
+    const fine = parti.length === 3 ? new Date(parti[0], parti[1] - 1, parti[2]) : null;
+    const lista = E("p-mesi");
+    lista.textContent = "";
+
+    if (!fine || isNaN(fine.getTime()) || fine < oggi) {
+      testo("p-giorni", "—"); testo("p-serve", "—"); testo("p-comprare", "—");
+      testo("p-comprare-k", "da comprare, al prezzo di oggi");
+      testo("p-nota", "La data di fine stagione è già passata o non è valida: spostala in avanti per avere il piano.");
+      return;
+    }
+
+    const giorni = Math.round((fine - oggi) / 86400000) + 1;
+    const kg = c.kgGiorno * giorni;
+    const sacchi = Math.ceil(kg / KG_SACCO);
+    const comprare = Math.max(0, sacchi - S.scorta);
+    testo("p-giorni", nf(giorni, 0));
+    testo("p-serve", nf(sacchi, 0) + " sacchi");
+    testo("p-comprare", nf(comprare, 0) + " sacchi · " + eur0(comprare * S.prezzo));
+    testo("p-comprare-k", comprare === 0
+      ? "hai già scorta sufficiente fino al " + fine.toLocaleDateString("it-IT")
+      : "da comprare entro fine stagione, a " + nf(S.prezzo, 2) + " € il sacco");
+
+    // distribuzione mese per mese, pesata sul freddo e normalizzata sul totale
+    const blocchi = [];
+    let cur = new Date(oggi.getFullYear(), oggi.getMonth(), oggi.getDate());
+    while (cur <= fine) {
+      const ultimo = new Date(cur.getFullYear(), cur.getMonth() + 1, 0);
+      const fin = ultimo < fine ? ultimo : fine;
+      const gg = Math.round((fin - cur) / 86400000) + 1;
+      blocchi.push({ m: cur.getMonth(), a: cur.getFullYear(), gg, peso: gg * PESO[cur.getMonth()] });
+      cur = new Date(cur.getFullYear(), cur.getMonth() + 1, 1);
+    }
+    const somma = blocchi.reduce((t, b) => t + b.peso, 0) || 1;
+    for (const b of blocchi) {
+      const kgM = kg * b.peso / somma;
+      const sM = kgM / KG_SACCO;
+      const li = document.createElement("li");
+      const sx = document.createElement("span");
+      sx.textContent = MESI[b.m] + " " + b.a + " (" + b.gg + " giorni)";
+      const dx = document.createElement("b");
+      dx.textContent = nf(sM, 1) + " sacchi · " + eurAuto(kgM * c.prezzoKg);
+      li.append(sx, dx);
+      lista.append(li);
+    }
+
+    const bancali = comprare / SACCHI_BANCALE;
+    testo("p-nota", comprare === 0
+      ? "I sacchi in casa coprono tutta la stagione. Tienili al chiuso e sollevati da terra: il pellet che prende umidità perde potere calorifico e sporca il braciere."
+      : "Sono " + nf(bancali, 1) + " bancali (" + SACCHI_BANCALE + " sacchi ciascuno, circa un metro quadro di spazio a terra). " +
+        "Comprati tutti insieme a bancale invece che a sacco singolo si risparmia in genere il 10-15 per cento, cioè " +
+        eur0(comprare * S.prezzo * .12) + ", ma serve un posto asciutto per " + nf(comprare * KG_SACCO, 0) + " kg.");
+  }
+
+  // ---------- avvisi ----------
+  let timerAvviso = 0;
+  function avvisa(msg) {
+    const n = E("avviso");
+    n.textContent = msg;
+    n.classList.add("on");
+    clearTimeout(timerAvviso);
+    timerAvviso = setTimeout(() => n.classList.remove("on"), 5000);
+  }
+
+  // ---------- collegamento dei controlli ----------
+  function scriviCampi() {
+    for (const k of ["kw", "ore", "giorni", "prezzo", "pci", "rend", "wf", "wa", "ma", "na", "luce", "scorta", "pMetano", "pGpl", "pLegna", "cop"]) {
+      const n = E(k);
+      if (n) n.value = String(S[k]);
+    }
+    E("zona").value = S.zona;
+    E("fine").value = S.fine;
+    for (const chip of document.querySelectorAll(".chip")) {
+      chip.setAttribute("aria-pressed", String(Number(chip.dataset.quota) === S.quota));
+    }
+  }
+
+  function leggi(k, nodo) {
+    const grezzo = nodo.value.replace(",", ".").trim();
+    if (grezzo === "") { nodo.value = String(S[k]); return; }   // campo svuotato: si rimette il valore in uso
+    const v = clamp(k, parseFloat(grezzo));
+    if (v === null) return;
+    if (v !== parseFloat(grezzo)) avvisa("Ho riportato il valore entro i limiti ragionevoli: " + nf(v, v < 10 ? 1 : 0) + " (ammesso da " + LIM[k][0] + " a " + LIM[k][1] + ").");
+    S[k] = v;
+    nodo.value = String(v);
+    salva();
+    render();
+  }
+
+  for (const k of ["kw", "ore", "giorni", "prezzo", "pci", "rend", "wf", "wa", "ma", "na", "luce", "scorta", "pMetano", "pGpl", "pLegna", "cop"]) {
+    const nodo = E(k);
+    if (!nodo) continue;
+    nodo.addEventListener("input", () => {
+      const v = parseFloat(nodo.value.replace(",", "."));
+      if (!Number.isFinite(v)) return;
+      const l = LIM[k];
+      if (v < l[0] || v > l[1]) return;      // fuori scala: si corregge all'uscita dal campo
+      S[k] = v; salva(); render();
+    });
+    nodo.addEventListener("change", () => leggi(k, nodo));
+    nodo.addEventListener("keydown", (ev) => { if (ev.key === "Enter") { nodo.blur(); } });
+  }
+
+  for (const b of document.querySelectorAll("[data-step]")) {
+    b.addEventListener("click", () => {
+      const k = b.dataset.step;
+      const v = clamp(k, S[k] + Number(b.dataset.d) * (PASSO[k] || 1));
+      if (v === null) return;
+      S[k] = v; E(k).value = String(v); salva(); render();
+    });
+  }
+
+  for (const chip of document.querySelectorAll(".chip")) {
+    chip.addEventListener("click", () => {
+      S.quota = Number(chip.dataset.quota);
+      for (const c of document.querySelectorAll(".chip")) c.setAttribute("aria-pressed", String(c === chip));
+      salva(); render();
+    });
+  }
+
+  E("zona").addEventListener("change", () => {
+    S.zona = E("zona").value;
+    const z = ZONE[S.zona] || ZONE.E;
+    S.giorni = z.g;
+    S.fine = fineDefault(S.zona);
+    E("giorni").value = String(S.giorni);
+    E("fine").value = S.fine;
+    salva(); render();
+    avvisa("Zona " + S.zona + ": stagione impostata a " + z.g + " giorni, con fine al " + new Date(S.fine).toLocaleDateString("it-IT") + ". Se accendi meno giorni cambia il valore a mano.");
+  });
+
+  E("fine").addEventListener("change", () => { S.fine = E("fine").value; salva(); render(); });
+
+  E("bReset").addEventListener("click", () => {
+    Object.assign(S, BASE);
+    S.fine = fineDefault(S.zona);
+    scriviCampi(); salva(); render();
+    avvisa("Rimessi i valori di partenza: stufa da 9 kW a metà potenza, 8 ore al giorno, pellet a 7,30 € il sacco.");
+  });
+
+  // ---------- riepilogo e piano ----------
+  function riepilogo() {
+    const c = calc();
+    const liv = { "0.3": "minimo", "0.5": "medio", "0.7": "alto", "1": "massimo" }[String(S.quota)] || "medio";
+    return [
+      "Consumo stufa a pellet",
+      "Stufa da " + nf(S.kw, 1) + " kW resi, livello " + liv + ", " + nf(S.ore, 1) + " ore al giorno",
+      "Consumo: " + nf(c.kgOra, 2) + " kg/ora, " + nf(c.kgGiorno, 1) + " kg al giorno (" + nf(c.sacchiGiorno, 2) + " sacchi)",
+      "Sacchi: " + nf(c.sacchiSett, 1) + " a settimana, " + nf(c.sacchiMese, 0) + " al mese, " + nf(c.sacchiStag, 0) + " nella stagione di " + S.giorni + " giorni",
+      "Spesa: " + eur2(c.eurGiorno) + " al giorno, " + eur0(c.eurMese) + " al mese, " + eur0(c.eurPellet) + " di pellet a stagione",
+      "Corrente della stufa: " + nf(c.elStag, 0) + " kWh, " + eur0(c.eurLuce),
+      "Totale stagione: " + eur0(c.tot) + " per " + nf(c.kwhStag, 0) + " kWh di calore (" + cent(c.cKwh) + "/kWh)",
+      "Pellet a " + nf(S.prezzo, 2) + " €/sacco, " + nf(S.pci, 1) + " kWh/kg, rendimento " + S.rend + "%",
+    ].join("\n");
+  }
+
+  E("bCopia").addEventListener("click", async (ev) => {
+    const b = ev.currentTarget, testoOrig = b.textContent;
+    const t = riepilogo();
+    let fatto = false;
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) { await navigator.clipboard.writeText(t); fatto = true; }
+    } catch (e) { fatto = false; }
+    if (!fatto) {
+      try {
+        const ta = document.createElement("textarea");
+        ta.value = t; ta.setAttribute("readonly", "");
+        ta.style.cssText = "position:fixed;top:-1000px;left:0;opacity:0";
+        document.body.append(ta); ta.select();
+        fatto = document.execCommand("copy");
+        ta.remove();
+      } catch (e) { fatto = false; }
+    }
+    b.textContent = fatto ? "Copiato ✓" : "Non riesco a copiare";
+    if (!fatto) avvisa("Il browser non consente la copia automatica: il riepilogo è qui sotto, selezionalo a mano. " + t.replace(/\n/g, " · "));
+    setTimeout(() => { b.textContent = testoOrig; }, 2000);
+  });
+
+  function pro() { return !!(window.Monetize && window.Monetize.isPro()); }
+
+  E("bStampa").addEventListener("click", () => { if (pro()) window.print(); });
+
+  E("bCsv").addEventListener("click", () => {
+    if (!pro()) return;
+    const c = calc();
+    let csv = "sep=;\n";
+    csv += "Consumo stufa a pellet;" + nf(S.kw, 1) + " kW;" + nf(S.ore, 1) + " ore al giorno\n";
+    csv += "kg al giorno;" + nf(c.kgGiorno, 2) + "\n";
+    csv += "sacchi nella stagione;" + nf(c.sacchiStag, 1) + "\n";
+    csv += "spesa di stagione (euro);" + nf(c.tot, 2) + "\n\n";
+    csv += "mese;sacchi e spesa\n";
+    for (const li of E("p-mesi").children) csv += li.firstChild.textContent + ";" + li.lastChild.textContent + "\n";
+    try {
+      const url = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+      const a = document.createElement("a");
+      a.href = url; a.download = "piano-pellet.csv";
+      document.body.append(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    } catch (e) { avvisa("Il browser ha bloccato il download del CSV: prova con «Stampa il piano»."); }
+  });
+
+  // il pannello si accorcia appena la pagina scorre, per lasciare spazio ai risultati
+  const pannello = document.querySelector(".pannello");
+  let compatta = false;
+  const aggiornaPannello = () => {
+    const giu = window.scrollY > 60;
+    if (giu !== compatta) { compatta = giu; pannello.classList.toggle("compatta", giu); }
+  };
+  window.addEventListener("scroll", aggiornaPannello, { passive: true });
+
+  // ---------- avvio ----------
+  carica();
+  if (!S.fine) S.fine = fineDefault(S.zona);
+  scriviCampi();
+  render();
+  aggiornaPannello();
+  if (window.Monetize && window.Monetize.onPro) window.Monetize.onPro(() => render());
+})();
+</script>
+</body>
+</html>
