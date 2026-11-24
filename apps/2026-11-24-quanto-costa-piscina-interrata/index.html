@@ -1,0 +1,954 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Quanto Costa una Piscina Interrata: calcolo online gratis</title>
+<meta name="description" content="Quanto costa una piscina interrata: scavo, smaltimento della terra, vasca, impianto, bordo, permessi e costi annui di gestione, voce per voce e senza preventivo.">
+<link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-11-24-quanto-costa-piscina-interrata/">
+<meta name="theme-color" content="#f1fbf6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0a1714" media="(prefers-color-scheme: dark)">
+<meta property="og:title" content="Quanto costa una piscina interrata: il conto voce per voce">
+<meta property="og:description" content="Dalle misure del tuo giardino: scavo, terra da smaltire, vasca, rivestimento, impianto, bordo, permessi e quanto costa tenerla ogni anno.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-11-24-quanto-costa-piscina-interrata/">
+<meta property="og:locale" content="it_IT">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Quanto Costa una Piscina Interrata",
+  "description": "Calcolatore del costo di una piscina interrata: scavo, smaltimento della terra di scavo, struttura della vasca, rivestimento, impianto di filtrazione, bordo, pratica edilizia e costi annui di gestione.",
+  "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-11-24-quanto-costa-piscina-interrata/",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+  "inLanguage": "it"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Quanto costa una piscina interrata 8x4 chiavi in mano?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Con struttura a pannelli d'acciaio e liner, terreno normale, terra portata in discarica e un contorno in gres da 1,2 metri, una 8x4 profonda 1,5 metri si colloca intorno ai 31.000 euro chiavi in mano, cioè circa 950-1.000 euro per metro quadro di specchio d'acqua. In cemento armato con rivestimento in piastrelle e bordo a sfioro la stessa vasca supera i 45.000 euro." }
+    },
+    {
+      "@type": "Question",
+      "name": "Lo smaltimento della terra di scavo quanto pesa sul totale?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Molto più di quanto si pensi. Una 8x4 produce circa 78 metri cubi di scavo che, una volta mosso, aumentano di volume di circa un quarto: portarli in discarica costa intorno ai 3.500-4.000 euro comprese le analisi chimiche obbligatorie. Se parte della terra resta in giardino come rilevato o aiuola, la voce si dimezza." }
+    },
+    {
+      "@type": "Question",
+      "name": "Serve il permesso di costruire per una piscina interrata?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Nella maggior parte dei casi sì: una vasca interrata incide stabilmente sul suolo e viene trattata come nuova costruzione, quindi serve il permesso di costruire con progetto di un tecnico abilitato. Le soglie e i casi di SCIA cambiano da regione a regione e da comune a comune, e in zona vincolata serve anche l'autorizzazione paesaggistica. L'unica risposta che conta è quella dell'ufficio tecnico del tuo comune." }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanto costa mantenere una piscina interrata ogni anno?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Per una 8x4 da 48 metri cubi con quattro mesi di stagione si spendono circa 300 euro di prodotti chimici, 190 euro di corrente per la pompa di filtrazione, 40 euro di acqua di rabbocco e 450 euro se apertura e svernamento li fa la ditta: in tutto circa 1.000 euro l'anno. Con il riscaldamento a pompa di calore si aggiungono 250-400 euro di corrente a stagione." }
+    },
+    {
+      "@type": "Question",
+      "name": "Conviene il bordo a sfioro o lo skimmer?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Lo sfioro è più bello e tiene l'acqua più pulita in superficie, ma richiede una vasca di compenso, una canaletta grigliata su tutto il perimetro e pompe maggiorate: su una 8x4 sono circa 7.000-8.000 euro in piu, oltre a un consumo elettrico e a una manutenzione superiori. Lo skimmer costa molto meno e per una piscina di famiglia funziona benissimo." }
+    }
+  ]
+}
+</script>
+<style>
+  /* Palette verde-menta, font condensed, layout card-stack: una pila di schede numerate
+     collegate da una linea, con il totale sempre visibile nella barra in basso. */
+  :root{
+    --bg:#f1fbf6; --card:#ffffff; --ink:#0f2620; --ink-soft:#4b6b61;
+    --acc:#0b8f66; --acc-ink:#ffffff; --acc-soft:#dcf5ea; --acc-2:#0a6e8f;
+    --line:#cde9dc; --line-2:#9fd8bf;
+    --warn:#9a5b00; --ok:#0b8f66;
+    --r:14px; --pad:1rem;
+    --font:"Arial Narrow","Roboto Condensed","Helvetica Neue Condensed",Arial,sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0a1714; --card:#11241f; --ink:#e8f6f0; --ink-soft:#9dbdb2;
+      --acc:#4fd6a6; --acc-ink:#06201a; --acc-soft:#153229; --acc-2:#6fd0ea;
+      --line:#1e3b33; --line-2:#2d574a;
+      --warn:#f0b865; --ok:#4fd6a6;
+    }
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--font); font-size:17px; line-height:1.5;
+    padding:0 1rem calc(5.5rem + env(safe-area-inset-bottom));
+    overflow-x:hidden;
+  }
+  .wrap{max-width:720px; margin:0 auto}
+  a{color:var(--acc)}
+  .back{
+    display:inline-block; margin:.9rem 0 .2rem; color:var(--ink-soft);
+    text-decoration:none; font-size:16px; min-height:44px; line-height:44px;
+  }
+  .back:hover,.back:focus{color:var(--acc)}
+  h1{
+    font-size:1.85rem; line-height:1.1; margin:.2rem 0 .4rem;
+    text-transform:uppercase; letter-spacing:.01em; font-weight:800;
+  }
+  h1 small{display:block; text-transform:none; letter-spacing:0; font-size:.95rem; font-weight:500; color:var(--ink-soft); margin-top:.5rem; line-height:1.45}
+  h2{font-size:1.25rem; text-transform:uppercase; letter-spacing:.03em; margin:1.8rem 0 .5rem; font-weight:800}
+  h3{font-size:1.05rem; margin:1.2rem 0 .3rem; font-weight:700}
+
+  /* --- pila di schede --- */
+  .pila{position:relative; margin:1.2rem 0 0; padding-left:2.2rem}
+  .pila::before{
+    content:""; position:absolute; left:.85rem; top:1.4rem; bottom:1.4rem;
+    width:2px; background:repeating-linear-gradient(to bottom,var(--line-2) 0 6px,transparent 6px 12px);
+  }
+  .scheda{
+    position:relative; background:var(--card); border:1px solid var(--line);
+    border-radius:var(--r); padding:var(--pad); margin:0 0 .9rem;
+    box-shadow:0 1px 0 var(--line), 0 6px 18px -14px rgba(0,0,0,.35);
+  }
+  .scheda > h2{margin:0 0 .2rem; font-size:1.02rem; letter-spacing:.06em}
+  .scheda .hint{color:var(--ink-soft); font-size:15px; margin:.1rem 0 .8rem}
+  .num{
+    position:absolute; left:-2.2rem; top:var(--pad);
+    width:1.7rem; height:1.7rem; border-radius:999px;
+    background:var(--acc); color:var(--acc-ink);
+    display:flex; align-items:center; justify-content:center;
+    font-weight:800; font-size:15px; box-shadow:0 0 0 4px var(--bg);
+  }
+
+  /* --- controlli --- */
+  .campi{display:grid; gap:.8rem}
+  .campi.tre{grid-template-columns:repeat(3,1fr); gap:.5rem; align-items:end}
+  label.f{display:block}
+  label.f > span{display:block; font-size:15px; color:var(--ink-soft); margin-bottom:.25rem; text-transform:uppercase; letter-spacing:.04em}
+  input[type=number],select,input[type=text]{
+    width:100%; font:inherit; font-size:17px; min-height:48px;
+    padding:.55rem .7rem; border:1.5px solid var(--line-2); border-radius:10px;
+    background:var(--bg); color:var(--ink); -moz-appearance:textfield; appearance:textfield;
+  }
+  input[type=number]:focus,select:focus{outline:3px solid var(--acc-soft); border-color:var(--acc)}
+  .suff{position:relative}
+  .suff input{padding-right:2.6rem}
+  input[type=number]::-webkit-outer-spin-button,
+  input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none; appearance:none; margin:0}
+  .suff em{position:absolute; right:.7rem; top:50%; transform:translateY(-50%); font-style:normal; color:var(--ink-soft); font-size:15px; text-transform:none; pointer-events:none}
+
+  .chips{display:flex; flex-wrap:wrap; gap:.4rem; margin:.1rem 0 0}
+  .chip{
+    font:inherit; font-size:16px; min-height:44px; padding:.4rem .85rem;
+    border:1.5px solid var(--line-2); border-radius:999px; background:var(--card);
+    color:var(--ink); cursor:pointer; text-align:center;
+  }
+  .chip[aria-pressed=true],.chip.on{background:var(--acc); border-color:var(--acc); color:var(--acc-ink); font-weight:700}
+  .chips.griglia{display:grid; grid-template-columns:1fr 1fr; gap:.4rem}
+  .chips.griglia .chip{border-radius:10px; padding:.55rem .6rem; line-height:1.25}
+  .chip b{display:block; font-weight:700}
+  .chip small{display:block; text-decoration:none; font-size:15px; opacity:.75; font-weight:400}
+
+  details.extra{border-top:1px dashed var(--line-2); margin-top:.9rem; padding-top:.6rem}
+  details.extra > summary{cursor:pointer; font-size:16px; color:var(--acc); min-height:44px; line-height:1.9; list-style:none}
+  details.extra > summary::-webkit-details-marker{display:none}
+  details.extra > summary::before{content:"▸ "}
+  details.extra[open] > summary::before{content:"▾ "}
+
+  /* --- risultato --- */
+  .esito{
+    background:var(--card); border:2px solid var(--acc); border-radius:var(--r);
+    padding:1.1rem var(--pad); margin:1.4rem 0 0;
+  }
+  .esito .etich{font-size:15px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft)}
+  .totale{font-size:2.6rem; line-height:1; font-weight:800; margin:.2rem 0; letter-spacing:-.01em}
+  .forb{color:var(--ink-soft); font-size:16px}
+  .mini{display:grid; grid-template-columns:1fr 1fr; gap:.5rem; margin-top:.9rem}
+  .dato{border:1px solid var(--line); border-radius:10px; padding:.55rem .65rem; background:var(--bg)}
+  .dato b{display:block; font-size:1.25rem; font-weight:800}
+  .dato small{display:block; text-decoration:none; font-size:15px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.04em}
+
+  .voci{list-style:none; margin:1rem 0 0; padding:0}
+  .voci li{display:flex; gap:.6rem; align-items:baseline; padding:.5rem 0; border-bottom:1px dotted var(--line-2)}
+  .voci li:last-child{border-bottom:0}
+  .voci .v-nome{flex:1}
+  .voci .v-nome small{display:block; text-decoration:none; font-size:15px; color:var(--ink-soft)}
+  .voci .v-val{font-weight:700; white-space:nowrap; font-variant-numeric:tabular-nums}
+  .voci li.grossa .v-val{color:var(--acc)}
+  .voci li.tot{border-top:2px solid var(--line-2); margin-top:.4rem; padding-top:.7rem; font-size:1.1rem}
+  .voci li.tot .v-val{font-size:1.2rem}
+
+  .nota{font-size:15px; color:var(--ink-soft); margin:.8rem 0 0}
+  .fonte{font-size:15px; color:var(--ink-soft); border-left:3px solid var(--line-2); padding-left:.7rem; margin:.9rem 0 0}
+  .avviso{background:var(--acc-soft); border-radius:10px; padding:.6rem .7rem; font-size:16px; margin:.8rem 0 0}
+
+  .azioni{display:flex; flex-wrap:wrap; gap:.5rem; margin:1rem 0 0}
+  .btn{
+    font:inherit; font-size:16px; min-height:48px; padding:.55rem 1.1rem;
+    border-radius:999px; border:1.5px solid var(--acc); background:var(--card);
+    color:var(--acc); font-weight:700; cursor:pointer; text-decoration:none;
+    display:inline-flex; align-items:center; justify-content:center;
+  }
+  .btn.pieno{background:var(--acc); color:var(--acc-ink)}
+  .msg{font-size:16px; color:var(--ok); min-height:1.4em; margin:.5rem 0 0}
+
+  /* --- barra totale fissa (pollice) --- */
+  .barra{
+    position:fixed; left:0; right:0; bottom:0; z-index:5;
+    background:var(--card); border-top:1px solid var(--line-2);
+    padding:.55rem 1rem calc(.55rem + env(safe-area-inset-bottom));
+    box-shadow:0 -6px 20px -16px rgba(0,0,0,.6);
+  }
+  .barra .in{max-width:720px; margin:0 auto; display:flex; align-items:center; gap:.8rem}
+  .barra small{display:block; text-decoration:none; font-size:15px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.05em}
+  .barra b{font-size:1.5rem; font-weight:800; line-height:1.1; font-variant-numeric:tabular-nums}
+  .barra .btn{margin-left:auto; min-height:44px; padding:.4rem .9rem}
+
+  /* --- tabelle/liste dati --- */
+  .anni{list-style:none; margin:.8rem 0 0; padding:0}
+  .anni li{display:grid; grid-template-columns:3.2rem 1fr auto; gap:.5rem; align-items:baseline; padding:.45rem 0; border-bottom:1px dotted var(--line-2)}
+  .anni li b{font-weight:800}
+  .anni li span{font-size:15px; color:var(--ink-soft)}
+  .anni li .e{font-weight:700; font-variant-numeric:tabular-nums; text-align:right}
+  .conf{display:grid; gap:.7rem; margin-top:.8rem}
+  .conf .c{border:1px solid var(--line); border-radius:10px; padding:.7rem; background:var(--bg)}
+  .conf .c.vince{border-color:var(--acc); border-width:2px}
+  .conf .c h4{margin:0 0 .2rem; font-size:1rem; text-transform:uppercase; letter-spacing:.04em}
+  .conf .c .big{font-size:1.5rem; font-weight:800}
+  .conf .c p{margin:.3rem 0 0; font-size:15px; color:var(--ink-soft)}
+
+  section[data-pro]{border:1px dashed var(--line-2); border-radius:var(--r); padding:var(--pad); margin:1.4rem 0 0; background:var(--card); min-height:9rem}
+  section[data-pro] > h2{margin-top:0; font-size:1.05rem; letter-spacing:.05em}
+
+  #guida{margin-top:2.2rem}
+  #guida p,#guida li{font-size:17px}
+  #guida ul,#guida ol{padding-left:1.2rem}
+  #guida li{margin:.35rem 0}
+  .tabellina{list-style:none; padding:0; margin:.6rem 0}
+  .tabellina li{display:flex; justify-content:space-between; gap:.8rem; border-bottom:1px dotted var(--line-2); padding:.4rem 0}
+  .tabellina li b{white-space:nowrap}
+  footer{margin:2.4rem 0 1rem; color:var(--ink-soft); font-size:15px; border-top:1px solid var(--line); padding-top:1rem}
+  footer a{color:var(--acc); display:inline-block; padding:.45rem 0}
+  .correlate{margin:1.4rem 0 0; padding:0; list-style:none}
+  .correlate li{margin:.4rem 0}
+
+  @media (min-width:700px){
+    body{font-size:18px; padding-bottom:calc(6rem + env(safe-area-inset-bottom))}
+    h1{font-size:2.4rem}
+    .campi.due{grid-template-columns:1fr 1fr}
+    .mini{grid-template-columns:repeat(4,1fr)}
+    .conf{grid-template-columns:repeat(3,1fr)}
+    .chips.griglia{grid-template-columns:repeat(2,1fr)}
+  }
+  @media print{
+    .back,.barra,.chips,.azioni,details.extra,[data-ad],[data-support],[data-affiliate],.btn{display:none !important}
+    body{padding:0; background:#fff; color:#000}
+    .scheda,.esito,section[data-pro]{border-color:#999; break-inside:avoid}
+    .pila{padding-left:0}
+    .pila::before,.num{display:none}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="../../index.html">← Tutte le app</a>
+
+<h1>Quanto costa una piscina interrata
+  <small>Il conto vero, voce per voce: scavo, terra da portare in discarica, vasca, rivestimento, impianto, bordo, permessi. E quanto ti costa ogni anno tenerla. Senza lasciare il numero di telefono a nessuno.</small>
+</h1>
+
+<div class="pila">
+
+  <div class="scheda">
+    <span class="num" aria-hidden="true">1</span>
+    <h2>Le misure</h2>
+    <p class="hint">Parti da una misura tipica, poi correggi.</p>
+    <div class="chips" id="preset" role="group" aria-label="Misure tipiche"></div>
+    <div class="campi tre" style="margin-top:.8rem">
+      <label class="f"><span>Lungh.</span><span class="suff"><input id="lun" type="number" inputmode="decimal" min="2" max="25" step="0.5" value="8" enterkeyhint="done"><em>m</em></span></label>
+      <label class="f"><span>Largh.</span><span class="suff"><input id="lar" type="number" inputmode="decimal" min="2" max="15" step="0.5" value="4" enterkeyhint="done"><em>m</em></span></label>
+      <label class="f"><span>Prof. media</span><span class="suff"><input id="pro" type="number" inputmode="decimal" min="0.8" max="3" step="0.1" value="1.5" enterkeyhint="done"><em>m</em></span></label>
+    </div>
+    <p class="nota" id="geo"></p>
+  </div>
+
+  <div class="scheda">
+    <span class="num" aria-hidden="true">2</span>
+    <h2>La vasca</h2>
+    <p class="hint">È la voce più grossa del preventivo: cambia il totale di diverse migliaia di euro.</p>
+    <div class="chips griglia" id="struttura" role="group" aria-label="Tipo di struttura"></div>
+    <label class="f" style="margin-top:.9rem"><span>Rivestimento</span>
+      <select id="rivestimento"></select>
+    </label>
+    <p class="nota" id="notaRiv"></p>
+    <div class="chips" id="bordoTipo" role="group" aria-label="Tipo di bordo" style="margin-top:.9rem"></div>
+  </div>
+
+  <div class="scheda">
+    <span class="num" aria-hidden="true">3</span>
+    <h2>Il terreno e la terra di scavo</h2>
+    <p class="hint">La voce che nessun preventivo pubblicizza: la terra che esce dal buco va pagata due volte, per tirarla fuori e per portarla via.</p>
+    <div class="chips" id="terreno" role="group" aria-label="Tipo di terreno"></div>
+    <label class="f" style="margin-top:.9rem"><span>Dove finisce la terra</span>
+      <select id="terra"></select>
+    </label>
+    <p class="nota" id="notaTerra"></p>
+  </div>
+
+  <div class="scheda">
+    <span class="num" aria-hidden="true">4</span>
+    <h2>Il contorno</h2>
+    <p class="hint">Bordo della vasca e fascia calpestabile intorno: pesa più di quanto sembri.</p>
+    <label class="f"><span>Larghezza della fascia intorno</span>
+      <span class="suff"><input id="fascia" type="number" inputmode="decimal" min="0" max="4" step="0.1" value="1.2" enterkeyhint="done"><em>m</em></span></label>
+    <label class="f" style="margin-top:.8rem"><span>Come la pavimenti</span>
+      <select id="pavimento"></select>
+    </label>
+    <details class="extra">
+      <summary>Impianti e locale tecnico</summary>
+      <label class="f" style="margin-top:.6rem"><span>Locale tecnico (pompa e filtro)</span>
+        <select id="locale"></select>
+      </label>
+      <label class="f" style="margin-top:.8rem"><span>Distanza dalla casa (acqua e corrente)</span>
+        <span class="suff"><input id="dist" type="number" inputmode="numeric" min="0" max="120" step="1" value="10" enterkeyhint="done"><em>m</em></span></label>
+      <label class="f" style="margin-top:.8rem"><span>Primo riempimento</span>
+        <select id="acqua"></select>
+      </label>
+    </details>
+  </div>
+
+  <div class="scheda">
+    <span class="num" aria-hidden="true">5</span>
+    <h2>Gli extra</h2>
+    <p class="hint">Tocca quelli che vuoi davvero. Ognuno aggiunge il suo prezzo al totale.</p>
+    <div class="chips griglia" id="extra" role="group" aria-label="Extra"></div>
+  </div>
+
+  <div class="scheda">
+    <span class="num" aria-hidden="true">6</span>
+    <h2>Permessi e pratica</h2>
+    <p class="hint">Progetto di un tecnico abilitato, diritti e oneri comunali. Gli importi cambiano molto da comune a comune: qui c'è una media, modificabile.</p>
+    <div class="campi due">
+      <label class="f"><span>Tecnico e progetto</span><span class="suff"><input id="tecnico" type="number" inputmode="numeric" min="0" max="10000" step="50" value="1800" enterkeyhint="done"><em>€</em></span></label>
+      <label class="f"><span>Oneri e diritti</span><span class="suff"><input id="oneri" type="number" inputmode="numeric" min="0" max="10000" step="50" value="900" enterkeyhint="done"><em>€</em></span></label>
+    </div>
+    <div class="chips" id="vincolo" role="group" aria-label="Vincolo paesaggistico" style="margin-top:.8rem"></div>
+  </div>
+
+</div>
+
+<div class="esito" id="esito">
+  <span class="etich">Costo stimato chiavi in mano</span>
+  <div class="totale" id="totale" aria-live="polite">—</div>
+  <div class="forb" id="forbice"></div>
+  <div class="mini">
+    <div class="dato"><b id="mq">—</b><small>per m² d'acqua</small></div>
+    <div class="dato"><b id="vol">—</b><small>acqua in vasca</small></div>
+    <div class="dato"><b id="scavoMc">—</b><small>terra scavata</small></div>
+    <div class="dato"><b id="annuo">—</b><small>gestione all'anno</small></div>
+  </div>
+  <ul class="voci" id="voci"></ul>
+  <p class="fonte" id="fonte"></p>
+  <div class="azioni">
+    <button class="btn pieno" type="button" id="copia">Copia il riepilogo</button>
+    <button class="btn" type="button" id="stampa">Stampa</button>
+    <button class="btn" type="button" id="reset">Azzera</button>
+  </div>
+  <p class="msg" id="msg" role="status"></p>
+</div>
+
+<div data-ad="top"></div>
+
+<div class="scheda" style="margin-top:1.4rem">
+  <h2>Quanto costa tenerla, ogni anno</h2>
+  <p class="hint">Il prezzo di costruzione si paga una volta. Questo si paga per sempre.</p>
+  <ul class="voci" id="vociAnno"></ul>
+  <details class="extra">
+    <summary>Cambia i parametri della gestione</summary>
+    <div class="campi due" style="margin-top:.6rem">
+      <label class="f"><span>Giorni di stagione</span><span class="suff"><input id="giorni" type="number" inputmode="numeric" min="30" max="365" step="5" value="120" enterkeyhint="done"><em>gg</em></span></label>
+      <label class="f"><span>Giorni di uso reale</span><span class="suff"><input id="usi" type="number" inputmode="numeric" min="1" max="365" step="1" value="45" enterkeyhint="done"><em>gg</em></span></label>
+      <label class="f"><span>Prezzo elettricità</span><span class="suff"><input id="kwh" type="number" inputmode="decimal" min="0.05" max="1" step="0.01" value="0.28" enterkeyhint="done"><em>€/kWh</em></span></label>
+      <label class="f"><span>Prezzo acqua</span><span class="suff"><input id="pacqua" type="number" inputmode="decimal" min="0.2" max="15" step="0.1" value="2.8" enterkeyhint="done"><em>€/m³</em></span></label>
+    </div>
+    <label class="f" style="margin-top:.8rem"><span>Chi se ne occupa</span>
+      <select id="manut"></select>
+    </label>
+  </details>
+</div>
+
+<section data-pro="Confronto interrata, seminterrata e fuori terra">
+  <h2>Interrata, seminterrata o fuori terra</h2>
+  <p class="hint">Le stesse misure, le stesse finiture, tre modi di metterla in giardino. Fra la più cara e la più economica ci sono spesso più di diecimila euro, e quasi nessuno lo mette per iscritto.</p>
+  <div class="conf" id="confronto"></div>
+  <p class="nota" id="confrontoNota"></p>
+</section>
+
+<section data-pro="Costo di gestione e di proprietà a dieci anni">
+  <h2>Dieci anni di piscina</h2>
+  <p class="hint">Gestione anno per anno con l'inflazione, più le spese che tornano a scadenza: sabbia del filtro, pompa, liner. In fondo, quanto ti è costato ogni giorno di bagno.</p>
+  <ul class="anni" id="dieci"></ul>
+  <div class="mini" style="margin-top:.8rem">
+    <div class="dato"><b id="tco">—</b><small>costo in 10 anni</small></div>
+    <div class="dato"><b id="perBagno">—</b><small>per giorno di bagno</small></div>
+  </div>
+  <label class="f" style="margin-top:.9rem"><span>Inflazione annua stimata</span>
+    <span class="suff"><input id="infl" type="number" inputmode="decimal" min="0" max="15" step="0.1" value="2.5" enterkeyhint="done"><em>%</em></span></label>
+</section>
+
+<div data-affiliate data-title="Quello che serve davvero, dal secondo anno in poi" data-items='[{"t":"Robot pulitore per piscina interrata","q":"robot pulitore piscina interrata"},{"t":"Tester elettronico per cloro e pH","q":"tester elettronico cloro ph piscina"},{"t":"Telo di copertura invernale su misura","q":"telo copertura invernale piscina"},{"t":"Kit retino, spazzola e asta telescopica","q":"kit pulizia piscina retino spazzola asta"}]'></div>
+
+<section id="guida">
+  <h2>Come funziona questo calcolo</h2>
+  <p>Chi cerca <strong>quanto costa una piscina interrata</strong> trova due cose: le pagine dei costruttori, che scrivono «a partire da 15.000 euro» e poi chiedono il numero di telefono, e gli articoli che buttano lì una forbice da 15.000 a 50.000 euro senza spiegare da dove nasce. Nessuna delle due risponde alla domanda vera, che è: <em>nel mio giardino, con le misure che ho in mente, quanto mi viene?</em></p>
+  <p>Questo strumento costruisce il totale dal basso, come fa un'impresa quando compila un computo. Dalle tre misure che inserisci ricava la superficie dello specchio d'acqua, la superficie delle pareti, il volume d'acqua e il volume di scavo; poi applica a ciascuna voce un prezzo unitario di mercato. Il risultato non è un prezzo di vendita: è l'ordine di grandezza con cui andare a leggere i preventivi, scoprendo quali voci dentro mancano.</p>
+
+  <h2>Le voci che spostano davvero il preventivo</h2>
+  <p><strong>La terra.</strong> È la sorpresa di quasi tutti. Una vasca 8 × 4 profonda 1,5 metri richiede uno scavo di circa 78 metri cubi, perché bisogna lavorare 40 centimetri più larghi per lato e mezzo metro più in basso per magrone e platea. Quella terra, una volta mossa, aumenta di volume di circa un quarto: diventano quasi 98 metri cubi da caricare, trasportare e conferire in discarica, con le analisi chimiche obbligatorie. Sono 3.500-4.000 euro che molti preventivi mettono «a parte» o escludono con la formula «scavo e smaltimento a carico del committente». Se invece una parte della terra resta in giardino, modellata come rilevato o aiuola, la voce si dimezza: per questo è la prima domanda da fare a chi progetta.</p>
+  <p><strong>La struttura.</strong> I pannelli d'acciaio con liner sono la soluzione più diffusa nelle case private e la più economica a parità di misure. I casseri a perdere costano poco più. Il cemento armato gettato in opera è la scelta più solida e la più libera nelle forme, ma costa circa il 50% in più. Il monoblocco in vetroresina si posa in pochi giorni e arriva già rivestito, ma ha un costo fisso alto di trasporto eccezionale e gru, e misure non modificabili.</p>
+  <p><strong>Il rivestimento.</strong> Fra un liner in PVC e un mosaico vetroso ci sono cinque volte di differenza al metro quadro, su una superficie bagnata che in una 8 × 4 è di circa 68 metri quadri. Il liner va messo in conto come materiale di consumo: dura dieci anni buoni, poi si sostituisce.</p>
+  <p><strong>Lo sfioro.</strong> Il bordo a sfioro è bellissimo e tiene l'acqua pulita in superficie, ma impone una vasca di compenso, una canaletta grigliata su tutto il perimetro e pompe più potenti: su una 8 × 4 sono 7.000-8.000 euro in più, oltre a corrente e manutenzione maggiori. Con lo skimmer si rinuncia all'effetto, non alla qualità dell'acqua.</p>
+  <p><strong>Il contorno.</strong> Bordo perimetrale e fascia calpestabile sono quasi sempre fuori dal «chiavi in mano». Una fascia di 1,2 metri intorno a una 8 × 4 sono 35 metri quadri di pavimentazione, più 24 metri lineari di bordo: con il gres posato siamo intorno ai 4.700 euro. Senza di essi la piscina non si usa.</p>
+
+  <h2>Un esempio con i numeri</h2>
+  <p>Vasca 8 × 4 profonda 1,5 metri, pannelli d'acciaio con liner, skimmer, terreno normale, tutta la terra in discarica, fascia in gres da 1,2 metri, pozzetto tecnico prefabbricato, casa a 10 metri:</p>
+  <ul class="tabellina">
+    <li><span>Scavo (78 m³)</span><b>1.690 €</b></li>
+    <li><span>Trasporto e smaltimento della terra</span><b>3.720 €</b></li>
+    <li><span>Struttura della vasca</span><b>10.800 €</b></li>
+    <li><span>Liner in PVC (68 m²)</span><b>1.900 €</b></li>
+    <li><span>Impianto di filtrazione</span><b>2.460 €</b></li>
+    <li><span>Pozzetto tecnico</span><b>1.300 €</b></li>
+    <li><span>Impianto idraulico ed elettrico</span><b>1.600 €</b></li>
+    <li><span>Bordo e pavimentazione (35 m²)</span><b>4.670 €</b></li>
+    <li><span>Tecnico, oneri e diritti</span><b>2.700 €</b></li>
+    <li><span>Primo riempimento (48 m³)</span><b>130 €</b></li>
+    <li><span><strong>Totale</strong></span><b>≈ 31.000 €</b></li>
+  </ul>
+  <p>Sono circa 970 euro per metro quadro di specchio d'acqua. La stessa vasca in cemento armato, rivestita in piastrelle e con bordo a sfioro, supera i 45.000 euro. La gestione annua, con quattro mesi di stagione, è di circa 1.000 euro: 310 di prodotti chimici, 190 di corrente per la pompa, 40 di acqua di rabbocco e 450 per apertura e svernamento affidati alla ditta.</p>
+
+  <h2>Gli errori che si fanno sempre</h2>
+  <ul>
+    <li><strong>Confrontare preventivi che non contengono le stesse voci.</strong> Prima di guardare il totale, verifica se dentro ci sono scavo, smaltimento, bordo, pavimentazione, locale tecnico, allacci e pratica edilizia. Due offerte a 24.000 euro possono differire di 8.000 euro di lavoro.</li>
+    <li><strong>Dimenticare i costi annui.</strong> In dieci anni la gestione pesa quanto un decimo della piscina, e il liner da sostituire è una spesa certa, non un'ipotesi.</li>
+    <li><strong>Partire con i lavori prima del titolo edilizio.</strong> Una vasca interrata incide stabilmente sul suolo: nella maggior parte dei comuni è nuova costruzione e serve il permesso di costruire, in zona vincolata anche l'autorizzazione paesaggistica. Costruire senza titolo espone a sanzioni che partono da qualche migliaio di euro e alla demolizione.</li>
+    <li><strong>Scegliere la profondità per abitudine.</strong> Ogni 10 centimetri in più su una 8 × 4 sono circa 3 metri cubi d'acqua da riscaldare e trattare, più superficie di pareti da costruire e rivestire. Per nuotare e giocare, 1,40-1,50 metri bastano.</li>
+    <li><strong>Non chiedere come si accede al cantiere.</strong> Se l'escavatore non passa dal cancello, lo scavo si fa a mano o con mezzi piccoli e la voce raddoppia.</li>
+  </ul>
+
+  <h2>Domande frequenti</h2>
+  <h3>Quanto costa una piscina interrata 8 × 4 chiavi in mano?</h3>
+  <p>Con pannelli d'acciaio e liner, terreno normale, terra in discarica e contorno in gres, intorno ai 31.000 euro, cioè 950-1.000 euro per metro quadro d'acqua. In cemento armato, con piastrelle e sfioro, si superano i 45.000 euro. Sotto i 20.000 euro si sta parlando di un'altra cosa: tipicamente solo la vasca, senza scavo, contorno e pratica.</p>
+  <h3>Lo smaltimento della terra si può evitare?</h3>
+  <p>Si può ridurre. Se il terreno è idoneo e il progetto lo prevede, una parte della terra si riutilizza in sito per rilevati, aiuole o riempimenti: resta il costo di movimentazione e modellazione, molto più basso di quello di conferimento. Il riutilizzo in sito va dichiarato nella pratica.</p>
+  <h3>Serve il permesso di costruire?</h3>
+  <p>Di regola sì, perché la vasca interrata è considerata nuova costruzione. Soglie, casi di SCIA e importi di oneri e diritti variano da regione a regione e da comune a comune, e in zona vincolata serve anche l'autorizzazione paesaggistica. L'unica risposta che vale è quella dell'ufficio tecnico del tuo comune, da chiedere prima del preventivo.</p>
+  <h3>La piscina fa aumentare le tasse sulla casa?</h3>
+  <p>Una piscina interrata è una pertinenza che di norma incide sulla rendita catastale dell'immobile, con effetti su IMU e, per immobili di pregio, sulla classificazione. Vale la pena farsi fare due conti dal tecnico insieme alla pratica, non dopo.</p>
+  <h3>Meglio il riscaldamento o una buona copertura?</h3>
+  <p>Prima la copertura. Una copertura a bolle o a tapparella riduce di molto l'evaporazione notturna, che è la prima causa di perdita di calore: se poi si aggiunge la pompa di calore, consuma dal 30 al 40% in meno. Riscaldare una vasca scoperta è il modo più caro di non sentire la differenza.</p>
+  <p class="nota">Prezzi unitari di mercato aggiornati a novembre 2026, elaborati da prezzari regionali delle opere edili e da preventivi di installatori italiani. Sono stime orientative per capire l'ordine di grandezza e leggere i preventivi: non sostituiscono il computo di un tecnico, che è l'unico a poter valutare accesso al cantiere, falda, roccia e regole del tuo comune.</p>
+</section>
+
+<ul class="correlate">
+  <li>Ti serve anche: <a href="../2026-11-04-ristrutturare-casa-al-mq/index.html">quanto costa ristrutturare casa al metro quadro</a></li>
+  <li>Prima dei lavori: <a href="../2026-11-22-quanto-costa-una-sanatoria/index.html">quanto costa una sanatoria edilizia</a></li>
+  <li>Sulla bolletta della pompa: <a href="../2026-10-30-fotovoltaico-quando-rientri/index.html">quanto si risparmia con il fotovoltaico</a></li>
+</ul>
+
+<div data-ad="bottom"></div>
+<div data-support></div>
+
+<footer>
+  <p>Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a></p>
+  <p><a href="../../index.html">← Tutte le app</a></p>
+</footer>
+</div>
+
+<div class="barra">
+  <div class="in">
+    <div>
+      <small>Totale stimato</small>
+      <b id="barraTot">—</b>
+    </div>
+    <button class="btn pieno" type="button" id="vaiEsito">Dettaglio</button>
+  </div>
+</div>
+
+<script src="../../assets/monetize.js"></script>
+<script>
+/* Modello dati: l'oggetto S tiene le misure della vasca in metri, le scelte costruttive
+ * (struttura, rivestimento, bordo, terreno, destino della terra di scavo, contorno, extra,
+ * pratica) e i parametri di gestione. geometria(S) ne deriva aree e volumi; calcola(S, modo)
+ * costruisce l'elenco delle voci di spesa in euro per i tre modi (interrata, seminterrata,
+ * fuori terra). Niente valore derivato viene memorizzato: si ricalcola tutto a ogni modifica.
+ * Persistenza: una sola chiave localStorage "quanto-costa-piscina-interrata:v1". */
+(() => {
+  "use strict";
+  const CHIAVE = "quanto-costa-piscina-interrata:v1";
+  const AGGIORNATO = "novembre 2026";
+
+  // ---------- prezzi unitari di mercato (euro) ----------
+  const TERRENI = [
+    { id: "normale", nome: "Terra normale", sotto: "argilla, sabbia", p: 14 },
+    { id: "compatto", nome: "Compatto o tufo", sotto: "serve martello", p: 20 },
+    { id: "roccia", nome: "Roccia", sotto: "demolizione", p: 55 },
+  ];
+  const SCAVO_FISSO = 600;        // trasferimento del mezzo, tracciamento, livellazione
+  const SMALT_MC = 35;            // trasporto + conferimento in discarica, per m3 di terra mossa
+  const SMALT_ANALISI = 300;      // analisi chimiche obbligatorie sulle terre da scavo
+  const RIUSO_MC = 12;            // movimentazione e modellazione della terra che resta in giardino
+  const RIGONFIO = 1.25;          // la terra scavata occupa circa un quarto di volume in più
+
+  const STRUTTURE = [
+    { id: "pannelli", nome: "Pannelli d'acciaio", sotto: "con liner, la più diffusa", pareti: 180, fondo: 110, fisso: 800, rivIncluso: false },
+    { id: "casseri", nome: "Casseri a perdere", sotto: "blocchi da riempire", pareti: 215, fondo: 115, fisso: 900, rivIncluso: false },
+    { id: "cemento", nome: "Cemento armato", sotto: "gettato in opera", pareti: 310, fondo: 155, fisso: 1500, rivIncluso: false, strutturale: true },
+    { id: "monoblocco", nome: "Vetroresina", sotto: "monoblocco, già rivestita", pareti: 150, fondo: 95, fisso: 4200, rivIncluso: true },
+  ];
+  const RIVESTIMENTI = [
+    { id: "liner", nome: "Liner in PVC 0,85 mm", p: 28, durata: 10 },
+    { id: "armato", nome: "PVC armato 150/100", p: 48, durata: 15 },
+    { id: "piastrelle", nome: "Piastrelle in gres", p: 95, durata: 0 },
+    { id: "mosaico", nome: "Mosaico vetroso", p: 150, durata: 0 },
+  ];
+  const BORDI = [
+    { id: "skimmer", nome: "Skimmer", sotto: "bordo classico" },
+    { id: "sfioro", nome: "A sfioro", sotto: "vasca di compenso" },
+  ];
+  const SFIORO_COMPENSO = 3500, SFIORO_CANALETTA = 130, SFIORO_POMPE = 1200;
+  const FILTR_FISSO = 1400, FILTR_MC = 22;
+
+  const TERRE = [
+    { id: "tutta", nome: "Tutta in discarica", q: 1 },
+    { id: "meta", nome: "Metà riutilizzata in giardino", q: 0.5 },
+    { id: "nessuna", nome: "Tutta riutilizzata in sito", q: 0 },
+  ];
+  const PAVIMENTI = [
+    { id: "prato", nome: "Sottofondo e prato", p: 35 },
+    { id: "gres", nome: "Gres o pietra ricostruita", p: 90 },
+    { id: "pietra", nome: "Pietra naturale", p: 150 },
+  ];
+  const BORDO_ML = 65;            // scossalina/bordo perimetrale, per metro lineare
+  const LOCALI = [
+    { id: "vano", nome: "In un vano che ho gia (garage, cantina)", p: 450 },
+    { id: "pozzetto", nome: "Pozzetto tecnico prefabbricato", p: 1300 },
+    { id: "muratura", nome: "Locale tecnico interrato in muratura", p: 3800 },
+  ];
+  const IMP_FISSO = 1200, IMP_ML = 40;
+  const ACQUE = [
+    { id: "acquedotto", nome: "Dall'acquedotto di casa", p: 2.8 },
+    { id: "autobotte", nome: "Con autobotte", p: 11 },
+  ];
+  const VINCOLO_COSTO = 900, STRUTTURALE_COSTO = 1200;
+
+  const EXTRA = [
+    { id: "pdc", nome: "Pompa di calore", sotto: "riscaldamento", c: g => 2600 + g.acqua * 14, ft: true },
+    { id: "tapparella", nome: "Copertura a tapparella", sotto: "automatica", c: g => 2800 + g.area * 95, ft: false },
+    { id: "teli", nome: "Telo invernale e bolle", sotto: "copertura manuale", c: g => 180 + g.area * 17, ft: true },
+    { id: "led", nome: "Fari LED subacquei", sotto: "", c: g => 420 + Math.max(1, Math.ceil(g.perim / 12)) * 230, ft: true },
+    { id: "sale", nome: "Trattamento a sale", sotto: "elettrolisi", c: () => 1400, ft: true },
+    { id: "robot", nome: "Robot pulitore", sotto: "", c: () => 950, ft: true },
+    { id: "scala", nome: "Scala romana", sotto: "gradini in muratura", c: () => 1700, ft: false },
+    { id: "controcorrente", nome: "Nuoto controcorrente", sotto: "", c: () => 4200, ft: false },
+  ];
+  const MANUTENZIONI = [
+    { id: "io", nome: "Me ne occupo io", p: 0 },
+    { id: "aperture", nome: "Apertura e svernamento dalla ditta", p: 450 },
+    { id: "contratto", nome: "Contratto di manutenzione stagionale", p: 1200 },
+  ];
+  const PRESET = [
+    { nome: "6 × 3", lun: 6, lar: 3, pro: 1.4 },
+    { nome: "8 × 4", lun: 8, lar: 4, pro: 1.5 },
+    { nome: "10 × 5", lun: 10, lar: 5, pro: 1.5 },
+    { nome: "12 × 6", lun: 12, lar: 6, pro: 1.6 },
+  ];
+
+  // ---------- stato ----------
+  const DEFAULT = {
+    lun: 8, lar: 4, pro: 1.5,
+    struttura: "pannelli", rivestimento: "liner", bordo: "skimmer",
+    terreno: "normale", terra: "tutta",
+    fascia: 1.2, pavimento: "gres", locale: "pozzetto", dist: 10, acqua: "acquedotto",
+    extra: [], tecnico: 1800, oneri: 900, vincolo: false,
+    giorni: 120, usi: 45, kwh: 0.28, pacqua: 2.8, manut: "aperture", infl: 2.5,
+  };
+  let S = Object.assign({}, DEFAULT);
+
+  // ---------- utilita ----------
+  const $ = id => document.getElementById(id);
+  const eur = new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR", maximumFractionDigits: 0, useGrouping: true });
+  const eur2 = new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const num = new Intl.NumberFormat("it-IT", { maximumFractionDigits: 1 });
+  const d10 = v => Math.round(v / 10) * 10;
+  const trova = (arr, id) => arr.find(x => x.id === id) || arr[0];
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+
+  // ---------- geometria ----------
+  function geometria(S) {
+    const L = clamp(+S.lun || 8, 2, 25), W = clamp(+S.lar || 4, 2, 15), H = clamp(+S.pro || 1.5, 0.8, 3);
+    const area = L * W, perim = 2 * (L + W), pareti = perim * H;
+    return { L, W, H, area, perim, pareti, bagnata: area + pareti, acqua: area * H, volScavo: (L + 0.8) * (W + 0.8) * (H + 0.35) };
+  }
+
+  // ---------- costi di costruzione ----------
+  function calcola(S, modo) {
+    const g = geometria(S);
+    const st = trova(STRUTTURE, S.struttura), riv = trova(RIVESTIMENTI, S.rivestimento);
+    const ter = trova(TERRENI, S.terreno), des = trova(TERRE, S.terra);
+    const pav = trova(PAVIMENTI, S.pavimento), loc = trova(LOCALI, S.locale), acq = trova(ACQUE, S.acqua);
+    const fascia = clamp(+S.fascia || 0, 0, 4), dist = clamp(+S.dist || 0, 0, 120);
+    const voci = [];
+    const add = (n, v, s, big) => { if (v > 0.5) voci.push({ n, v, s: s || "", big: !!big }); };
+    const areaPav = Math.max(0, (g.L + 2 * fascia) * (g.W + 2 * fascia) - g.area);
+    let rivCosto = 0;
+
+    if (modo === "fuoriterra") {
+      add("Platea in cemento", g.area * 1.3 * 58, num.format(g.area * 1.3) + " m² di appoggio");
+      add("Vasca fuori terra con liner", 1200 + g.area * 210, "struttura autoportante", true);
+      add("Impianto di filtrazione", 900 + g.acqua * 12, "pompa e filtro base");
+      add("Pedana perimetrale in legno", g.perim * 185, num.format(g.perim) + " m lineari");
+      add("Riparo per la pompa", 350, "");
+      add("Allacci acqua e corrente", 600 + dist * 25, dist + " m dalla casa");
+      add("Pratica edilizia", 400, "comunicazione, se amovibile");
+    } else {
+      const quotaInterrata = modo === "seminterrata" ? 0.5 : 1;
+      const volScavo = modo === "seminterrata" ? (g.L + 0.8) * (g.W + 0.8) * (g.H * 0.5 + 0.35) : g.volScavo;
+      add("Scavo e sbancamento", SCAVO_FISSO + volScavo * ter.p, num.format(volScavo) + " m³ · " + ter.nome.toLowerCase());
+      const mosso = volScavo * RIGONFIO;
+      const smalt = mosso * des.q * SMALT_MC + (des.q > 0 ? SMALT_ANALISI : 0) + mosso * (1 - des.q) * RIUSO_MC;
+      add("Terra di scavo", smalt, des.q > 0
+        ? num.format(mosso * des.q) + " m³ in discarica, analisi incluse"
+        : num.format(mosso) + " m³ modellati in giardino", des.q > 0);
+      add("Struttura della vasca", g.pareti * st.pareti + g.area * st.fondo + st.fisso,
+        st.nome.toLowerCase() + " · " + num.format(g.pareti) + " m² di pareti", true);
+      if (!st.rivIncluso) {
+        rivCosto = g.bagnata * riv.p;
+        add("Rivestimento", rivCosto, riv.nome + " · " + num.format(g.bagnata) + " m² bagnati");
+      }
+      if (modo === "seminterrata") add("Rivestimento esterno del fuori terra", g.perim * (g.H * 0.5) * 110, "muratura a vista o pietra");
+      add("Impianto di filtrazione", FILTR_FISSO + g.acqua * FILTR_MC, "pompa, filtro, bocchette e tubazioni");
+      if (S.bordo === "sfioro") add("Bordo a sfioro", SFIORO_COMPENSO + g.perim * SFIORO_CANALETTA + SFIORO_POMPE,
+        "vasca di compenso, canaletta e pompe maggiorate", true);
+      add("Locale tecnico", loc.p, loc.nome.toLowerCase());
+      add("Impianto idraulico ed elettrico", IMP_FISSO + dist * IMP_ML, dist + " m dalla casa, quadro e messa a terra");
+      add("Bordo e pavimentazione", g.perim * BORDO_ML + areaPav * pav.p * (modo === "seminterrata" ? 0.6 : 1),
+        num.format(areaPav) + " m² di " + pav.nome.toLowerCase() + " · " + num.format(g.perim) + " m di bordo");
+      const pratica = clamp(+S.tecnico || 0, 0, 10000) + clamp(+S.oneri || 0, 0, 10000)
+        + (S.vincolo ? VINCOLO_COSTO : 0) + (st.strutturale ? STRUTTURALE_COSTO : 0);
+      add("Tecnico, oneri e permessi", pratica, (S.vincolo ? "con autorizzazione paesaggistica" : "progetto, diritti e oneri comunali"));
+    }
+
+    for (const e of EXTRA) {
+      if (!S.extra.includes(e.id)) continue;
+      if (modo === "fuoriterra" && !e.ft) continue;
+      add(e.nome, e.c(g), e.sotto);
+    }
+    add("Primo riempimento", g.acqua * acq.p, num.format(g.acqua) + " m³ · " + acq.nome.toLowerCase());
+
+    const totale = voci.reduce((a, v) => a + v.v, 0);
+    return { g, voci, totale, min: totale * 0.88, max: totale * 1.22, rivCosto, riv, st };
+  }
+
+  // ---------- costi annui ----------
+  function gestione(S, modo) {
+    const g = geometria(S);
+    const kwh = clamp(+S.kwh || 0.28, 0.05, 1), pa = clamp(+S.pacqua || 2.8, 0.2, 15);
+    const giorni = clamp(+S.giorni || 120, 30, 365);
+    const coperta = S.extra.includes("tapparella") || S.extra.includes("teli");
+    const kwPompa = clamp((modo === "fuoriterra" ? 0.3 : 0.37) + g.acqua / (modo === "fuoriterra" ? 200 : 140), 0.3, 2.2);
+    const kWhPompa = kwPompa * 8 * giorni;
+    const kWhRisc = S.extra.includes("pdc") ? g.acqua * 22 * (coperta ? 0.6 : 1) : 0;
+    const kWhSale = S.extra.includes("sale") ? g.acqua * 1.2 : 0;
+    const voci = [];
+    voci.push({ n: "Prodotti chimici", v: 180 + g.acqua * 2.8, s: "cloro, correttori di pH, antialghe" });
+    voci.push({ n: "Elettricità", v: (kWhPompa + kWhRisc + kWhSale) * kwh, s: num.format(kWhPompa + kWhRisc + kWhSale) + " kWh · pompa " + num.format(kwPompa) + " kW per 8 h al giorno" });
+    voci.push({ n: "Acqua di rabbocco", v: g.acqua * 0.28 * pa, s: "circa un quarto del volume in una stagione" });
+    const man = trova(MANUTENZIONI, S.manut);
+    if (man.p > 0) voci.push({ n: man.nome, v: man.p, s: "apertura, chiusura e controlli" });
+    const totale = voci.reduce((a, v) => a + v.v, 0);
+    return { voci, totale };
+  }
+
+  // ---------- dieci anni ----------
+  function dieciAnni(S, costruzione, rivCosto, riv) {
+    const base = gestione(S, "interrata").totale;
+    const infl = clamp(+S.infl || 0, 0, 15) / 100;
+    const righe = []; let cum = 0;
+    for (let y = 1; y <= 10; y++) {
+      const corrente = base * Math.pow(1 + infl, y - 1);
+      let str = 0; const note = [];
+      if (y === 4 || y === 8) { str += 380; note.push("sabbia del filtro"); }
+      if (y === 7) { str += 480; note.push("pompa di filtrazione"); }
+      if (y === 9 && riv && riv.durata && riv.durata <= 10 && rivCosto > 0) { str += rivCosto * 1.15; note.push("sostituzione del " + riv.nome.split(" ")[0].toLowerCase()); }
+      cum += corrente + str;
+      righe.push({ y, corrente, str, note, cum });
+    }
+    const usi = clamp(+S.usi || 45, 1, 365);
+    return { righe, dieci: cum, tco: costruzione + cum, perBagno: (costruzione + cum) / (usi * 10) };
+  }
+
+  // ---------- costruzione dei controlli ----------
+  function chips(host, voci, attivo, onPick) {
+    host.textContent = "";
+    for (const v of voci) {
+      const b = document.createElement("button");
+      b.type = "button"; b.className = "chip";
+      b.dataset.id = v.id || v.nome;
+      const t = document.createElement("b"); t.textContent = v.nome; b.append(t);
+      if (v.sotto) { const s = document.createElement("small"); s.textContent = v.sotto; b.append(s); }
+      b.setAttribute("aria-pressed", String(attivo(v)));
+      b.addEventListener("click", () => { onPick(v); salva(); render(); });
+      host.append(b);
+    }
+  }
+  function opzioni(sel, voci, scelto) {
+    sel.textContent = "";
+    for (const v of voci) {
+      const o = document.createElement("option");
+      o.value = v.id; o.textContent = v.nome + (v.sotto ? " — " + v.sotto : "");
+      if (v.id === scelto) o.selected = true;
+      sel.append(o);
+    }
+  }
+  function sincronizzaChips(host, attivo) {
+    for (const b of host.querySelectorAll(".chip")) b.setAttribute("aria-pressed", String(attivo(b.dataset.id)));
+  }
+
+  function montaControlli() {
+    chips($("preset"), PRESET.map(p => ({ id: p.nome, nome: p.nome, sotto: "prof. " + num.format(p.pro) + " m" })),
+      v => +S.lun === PRESET.find(p => p.nome === v.id).lun && +S.lar === PRESET.find(p => p.nome === v.id).lar,
+      v => { const p = PRESET.find(x => x.nome === v.id); S.lun = p.lun; S.lar = p.lar; S.pro = p.pro; scriviCampi(); });
+    chips($("struttura"), STRUTTURE, v => S.struttura === v.id, v => { S.struttura = v.id; });
+    chips($("bordoTipo"), BORDI, v => S.bordo === v.id, v => { S.bordo = v.id; });
+    chips($("terreno"), TERRENI, v => S.terreno === v.id, v => { S.terreno = v.id; });
+    chips($("extra"), EXTRA, v => S.extra.includes(v.id), v => {
+      S.extra = S.extra.includes(v.id) ? S.extra.filter(x => x !== v.id) : S.extra.concat(v.id);
+    });
+    chips($("vincolo"), [{ id: "no", nome: "Zona libera" }, { id: "si", nome: "Zona vincolata", sotto: "paesaggistica" }],
+      v => (v.id === "si") === !!S.vincolo, v => { S.vincolo = v.id === "si"; });
+    opzioni($("rivestimento"), RIVESTIMENTI, S.rivestimento);
+    opzioni($("terra"), TERRE, S.terra);
+    opzioni($("pavimento"), PAVIMENTI, S.pavimento);
+    opzioni($("locale"), LOCALI, S.locale);
+    opzioni($("acqua"), ACQUE, S.acqua);
+    opzioni($("manut"), MANUTENZIONI, S.manut);
+  }
+
+  const LIMITI = {
+    lun: [2, 25], lar: [2, 15], pro: [0.8, 3], fascia: [0, 4], dist: [0, 120],
+    tecnico: [0, 10000], oneri: [0, 10000], giorni: [30, 365], usi: [1, 365],
+    kwh: [0.05, 1], pacqua: [0.2, 15], infl: [0, 15],
+  };
+  const CAMPI = Object.keys(LIMITI);
+  const SELECT = ["rivestimento", "terra", "pavimento", "locale", "acqua", "manut"];
+  function scriviCampi() { for (const k of CAMPI) if ($(k)) $(k).value = S[k]; }
+  function leggiCampi() {
+    for (const k of CAMPI) {
+      if (!$(k)) continue;
+      const v = parseFloat(String($(k).value).replace(",", "."));
+      if (Number.isFinite(v)) S[k] = clamp(v, LIMITI[k][0], LIMITI[k][1]);
+    }
+    for (const k of SELECT) if ($(k)) S[k] = $(k).value;
+  }
+
+  // ---------- resa ----------
+  function listaVoci(host, voci, totale, etichetta, arrot) {
+    const r = arrot || d10;
+    host.textContent = "";
+    for (const v of voci) {
+      const li = document.createElement("li");
+      if (v.big) li.className = "grossa";
+      const n = document.createElement("span"); n.className = "v-nome";
+      const b = document.createElement("span"); b.textContent = v.n; n.append(b);
+      if (v.s) { const s = document.createElement("small"); s.textContent = v.s; n.append(s); }
+      const val = document.createElement("span"); val.className = "v-val"; val.textContent = eur.format(r(v.v));
+      li.append(n, val); host.append(li);
+    }
+    const li = document.createElement("li"); li.className = "tot";
+    const n = document.createElement("span"); n.className = "v-nome"; n.textContent = etichetta;
+    const val = document.createElement("span"); val.className = "v-val"; val.textContent = eur.format(r(totale));
+    li.append(n, val); host.append(li);
+  }
+
+  let ultimo = null;
+  function render() {
+    const r = calcola(S, "interrata");
+    const gest = gestione(S, "interrata");
+    const g = r.g;
+    ultimo = { r, gest };
+
+    $("totale").textContent = eur.format(d10(r.totale));
+    $("barraTot").textContent = eur.format(d10(r.totale));
+    $("forbice").textContent = "Fra " + eur.format(d10(r.min)) + " e " + eur.format(d10(r.max)) + ", secondo l'impresa e l'accesso al cantiere.";
+    $("mq").textContent = eur.format(Math.round(r.totale / g.area));
+    $("vol").textContent = num.format(g.acqua) + " m³";
+    $("scavoMc").textContent = num.format(g.volScavo) + " m³";
+    $("annuo").textContent = eur.format(Math.round(gest.totale));
+    $("geo").textContent = "Specchio d'acqua " + num.format(g.area) + " m², perimetro " + num.format(g.perim)
+      + " m, pareti " + num.format(g.pareti) + " m², superficie da rivestire " + num.format(g.bagnata)
+      + " m², acqua " + num.format(g.acqua) + " m³.";
+
+    listaVoci($("voci"), r.voci, r.totale, "Totale chiavi in mano");
+    listaVoci($("vociAnno"), gest.voci, gest.totale, "Totale all'anno", Math.round);
+
+    const st = trova(STRUTTURE, S.struttura);
+    $("notaRiv").textContent = st.rivIncluso
+      ? "Il monoblocco in vetroresina arriva già rivestito di fabbrica: la voce del rivestimento non si paga e la scelta qui sopra non viene conteggiata."
+      : "La superficie da rivestire è " + num.format(g.bagnata) + " m²: fondo più pareti.";
+    $("rivestimento").disabled = !!st.rivIncluso;
+
+    const des = trova(TERRE, S.terra);
+    const mosso = g.volScavo * RIGONFIO;
+    $("notaTerra").textContent = des.q > 0
+      ? "Dallo scavo escono " + num.format(g.volScavo) + " m³ che, una volta mossi, diventano " + num.format(mosso)
+        + " m³: " + num.format(mosso * des.q) + " m³ vanno portati via, al prezzo di " + eur.format(SMALT_MC)
+        + " il m³ più " + eur.format(SMALT_ANALISI) + " di analisi."
+      : "Tutta la terra resta in giardino: paghi solo movimentazione e modellazione, " + eur.format(RIUSO_MC)
+        + " il m³. Il riutilizzo in sito va dichiarato nella pratica edilizia.";
+
+    $("fonte").textContent = "Prezzi unitari di mercato aggiornati a " + AGGIORNATO
+      + ", da prezzari regionali delle opere edili e preventivi di installatori italiani. Stima orientativa: il computo di un tecnico resta indispensabile.";
+
+    sincronizzaChips($("preset"), id => { const p = PRESET.find(x => x.nome === id); return p && +S.lun === p.lun && +S.lar === p.lar; });
+    sincronizzaChips($("struttura"), id => S.struttura === id);
+    sincronizzaChips($("bordoTipo"), id => S.bordo === id);
+    sincronizzaChips($("terreno"), id => S.terreno === id);
+    sincronizzaChips($("extra"), id => S.extra.includes(id));
+    sincronizzaChips($("vincolo"), id => (id === "si") === !!S.vincolo);
+
+    renderPro(r);
+    $("msg").textContent = "";
+  }
+
+  function renderPro(r) {
+    // Pro 1 — confronto fra i tre modi di installazione
+    const modi = [
+      { id: "interrata", nome: "Interrata", nota: "Il risultato migliore e il valore aggiunto sulla casa. Permesso di costruire, scavo e terra da smaltire." },
+      { id: "seminterrata", nome: "Seminterrata", nota: "Metà scavo e metà terra da portare via, ma il fuori terra va rivestito. Ottima sui terreni in pendenza." },
+      { id: "fuoriterra", nome: "Fuori terra", nota: "Niente scavo, niente discarica e, se resta amovibile, spesso niente permesso di costruire. Non aumenta il valore dell'immobile." },
+    ].map(m => {
+      const c = calcola(S, m.id);
+      return Object.assign({}, m, { tot: c.totale, mq: c.totale / c.g.area, anno: gestione(S, m.id).totale });
+    });
+    const minTot = Math.min.apply(null, modi.map(m => m.tot));
+    const host = $("confronto"); host.textContent = "";
+    for (const m of modi) {
+      const d = document.createElement("div"); d.className = "c" + (m.tot === minTot ? " vince" : "");
+      const h = document.createElement("h4"); h.textContent = m.nome;
+      const b = document.createElement("div"); b.className = "big"; b.textContent = eur.format(d10(m.tot));
+      const p1 = document.createElement("p");
+      p1.textContent = eur.format(Math.round(m.mq)) + " per m² d'acqua · " + eur.format(Math.round(m.anno)) + " l'anno di gestione"
+        + (m.tot > minTot ? " · " + eur.format(d10(m.tot - minTot)) + " in più" : " · la più economica");
+      const p2 = document.createElement("p"); p2.textContent = m.nota;
+      d.append(h, b, p1, p2); host.append(d);
+    }
+    $("confrontoNota").textContent = "Stesse misure (" + num.format(r.g.L) + " × " + num.format(r.g.W)
+      + " m, profondità " + num.format(r.g.H) + " m) e stessi extra compatibili. Nel fuori terra la profondità reale è spesso minore,"
+      + " quindi acqua e gestione scendono ancora: qui sono tenute uguali per confrontare solo il modo di installazione.";
+
+    // Pro 2 — dieci anni di proprieta
+    const da = dieciAnni(S, r.totale, r.rivCosto, r.riv);
+    const lista = $("dieci"); lista.textContent = "";
+    for (const row of da.righe) {
+      const li = document.createElement("li");
+      const a = document.createElement("b"); a.textContent = "Anno " + row.y;
+      const s = document.createElement("span");
+      s.textContent = row.note.length ? "gestione + " + row.note.join(" e ") : "gestione ordinaria";
+      const e = document.createElement("span"); e.className = "e"; e.textContent = eur.format(Math.round(row.corrente + row.str));
+      li.append(a, s, e); lista.append(li);
+    }
+    const li = document.createElement("li");
+    const a = document.createElement("b"); a.textContent = "10 anni";
+    const s = document.createElement("span"); s.textContent = "solo gestione e ricambi";
+    const e = document.createElement("span"); e.className = "e"; e.textContent = eur.format(d10(da.dieci));
+    li.append(a, s, e); lista.append(li);
+    $("tco").textContent = eur.format(d10(da.tco));
+    $("perBagno").textContent = eur2.format(da.perBagno);
+  }
+
+  // ---------- riepilogo da copiare ----------
+  function riepilogo() {
+    const { r, gest } = ultimo;
+    const g = r.g;
+    const righe = ["PISCINA INTERRATA — stima di spesa",
+      "Vasca " + num.format(g.L) + " × " + num.format(g.W) + " m, profondità media " + num.format(g.H) + " m",
+      "Acqua in vasca " + num.format(g.acqua) + " m³ · scavo " + num.format(g.volScavo) + " m³", ""];
+    for (const v of r.voci) righe.push("• " + v.n + ": " + eur.format(d10(v.v)));
+    righe.push("", "TOTALE chiavi in mano: " + eur.format(d10(r.totale)),
+      "Forbice realistica: " + eur.format(d10(r.min)) + " – " + eur.format(d10(r.max)),
+      eur.format(Math.round(r.totale / g.area)) + " per m² di specchio d'acqua", "",
+      "GESTIONE ANNUA: " + eur.format(Math.round(gest.totale)));
+    for (const v of gest.voci) righe.push("• " + v.n + ": " + eur.format(Math.round(v.v)));
+    righe.push("", "Stima orientativa su prezzi di mercato di " + AGGIORNATO + ". Da verificare con il computo di un tecnico.");
+    return righe.join("\n");
+  }
+
+  async function copia() {
+    const testo = riepilogo();
+    try {
+      if (navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(testo);
+      else {
+        const ta = document.createElement("textarea");
+        ta.value = testo; ta.setAttribute("readonly", "");
+        ta.style.cssText = "position:fixed;left:-9999px;top:0";
+        document.body.append(ta); ta.select(); document.execCommand("copy"); ta.remove();
+      }
+      $("msg").textContent = "Riepilogo copiato: incollalo dove ti serve.";
+    } catch (err) {
+      $("msg").textContent = "Non riesco a copiare da qui: seleziona a mano il dettaglio qui sopra.";
+    }
+  }
+
+  // ---------- persistenza ----------
+  function salva() {
+    try { localStorage.setItem(CHIAVE, JSON.stringify(S)); } catch (err) { /* spazio esaurito o cookie bloccati: pazienza */ }
+  }
+  function carica() {
+    try {
+      const raw = localStorage.getItem(CHIAVE);
+      if (!raw) return;
+      const v = JSON.parse(raw);
+      if (v && typeof v === "object") {
+        for (const k of Object.keys(DEFAULT)) if (v[k] !== undefined && v[k] !== null) S[k] = v[k];
+        if (!Array.isArray(S.extra)) S.extra = [];
+        S.extra = S.extra.filter(id => EXTRA.some(e => e.id === id));
+      }
+    } catch (err) { S = Object.assign({}, DEFAULT); }
+  }
+
+  // ---------- avvio ----------
+  carica();
+  montaControlli();
+  scriviCampi();
+  render();
+
+  for (const k of CAMPI) {
+    const el = $(k); if (!el) continue;
+    el.addEventListener("input", () => { leggiCampi(); salva(); render(); });
+    el.addEventListener("blur", () => { leggiCampi(); scriviCampi(); salva(); render(); });
+    el.addEventListener("keydown", ev => { if (ev.key === "Enter") { ev.preventDefault(); el.blur(); } });
+  }
+  for (const k of SELECT) {
+    const el = $(k); if (!el) continue;
+    el.addEventListener("change", () => { leggiCampi(); salva(); render(); });
+  }
+  $("copia").addEventListener("click", copia);
+  $("stampa").addEventListener("click", () => window.print());
+  $("reset").addEventListener("click", () => {
+    S = Object.assign({}, DEFAULT);
+    montaControlli(); scriviCampi(); salva(); render();
+    $("msg").textContent = "Rimesso tutto come all'inizio.";
+  });
+  $("vaiEsito").addEventListener("click", () => {
+    $("esito").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+  document.addEventListener("keydown", ev => {
+    if (ev.key === "Escape" && document.activeElement && document.activeElement.blur) document.activeElement.blur();
+  });
+})();
+</script>
+</body>
+</html>

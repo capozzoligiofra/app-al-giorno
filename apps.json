@@ -1,6 +1,6 @@
 {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 73,
+  "count": 74,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -49,6 +49,70 @@
     ]
   },
   "apps": [
+    {
+      "title": "Quanto Costa una Piscina Interrata",
+      "slug": "2026-11-24-quanto-costa-piscina-interrata",
+      "date": "2026-11-24",
+      "description": "Il costo di una piscina interrata voce per voce: scavo, terra da smaltire, vasca, rivestimento, impianto, bordo, permessi e gestione annua.",
+      "category": "casa-cucina",
+      "tags": [
+        "piscina",
+        "giardino",
+        "preventivo",
+        "costi casa"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "card-stack",
+        "palette": "verde-menta",
+        "font": "condensed"
+      },
+      "business": {
+        "keyword": "quanto costa una piscina interrata",
+        "keywords": [
+          "prezzo piscina interrata 8x4",
+          "costo scavo piscina interrata",
+          "quanto costa mantenere una piscina all'anno",
+          "piscina interrata o fuori terra quale conviene"
+        ],
+        "intent": "Chi ha un giardino e sta valutando la piscina vuole sapere adesso a quanto ammonta il conto completo, non la frase \"a partire da 15.000 euro\" seguita da un form per il preventivo.",
+        "target": "Proprietari di casa con giardino, 35-60 anni, che stanno decidendo in autunno o inverno per costruire in primavera.",
+        "edge": "Costruisce il computo dal basso partendo dalle misure: calcola i metri cubi di scavo e la terra rigonfiata da portare in discarica (3.500-4.000 euro che nessuno nomina), separa struttura, rivestimento, sfioro, contorno e pratica, e aggiunge il costo annuo di gestione. Nessun form, nessun contatto.",
+        "monetization": [
+          "adsense",
+          "affiliate",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto interrata, seminterrata e fuori terra",
+          "Costo di gestione e di proprietà a dieci anni"
+        ],
+        "affiliate": [
+          {
+            "t": "Robot pulitore per piscina interrata",
+            "q": "robot pulitore piscina interrata"
+          },
+          {
+            "t": "Tester elettronico per cloro e pH",
+            "q": "tester elettronico cloro ph piscina"
+          },
+          {
+            "t": "Telo di copertura invernale su misura",
+            "q": "telo copertura invernale piscina"
+          },
+          {
+            "t": "Kit retino, spazzola e asta telescopica",
+            "q": "kit pulizia piscina retino spazzola asta"
+          }
+        ]
+      },
+      "size": 59176
+    },
     {
       "title": "Consumo Stufa a Pellet",
       "slug": "2026-11-23-consumo-stufa-a-pellet",
