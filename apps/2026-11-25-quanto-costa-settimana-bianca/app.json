@@ -1,0 +1,30 @@
+{
+  "title": "Quanto Costa una Settimana Bianca",
+  "slug": "2026-11-25-quanto-costa-settimana-bianca",
+  "date": "2026-11-25",
+  "description": "Il conto di una settimana sulla neve voce per voce: alloggio, skipass ridotti, noleggio, maestro, pranzi in quota, assicurazione e viaggio.",
+  "category": "calcolatori-convertitori",
+  "tags": ["settimana bianca", "sci", "montagna", "vacanze", "budget"],
+  "source": "autonoma",
+  "request": null,
+  "status": "pronta",
+  "version": 1,
+  "changelog": [],
+  "design": { "layout": "tabs", "palette": "azzurro-cielo", "font": "rounded" },
+  "business": {
+    "keyword": "quanto costa una settimana bianca",
+    "keywords": ["costo settimana bianca famiglia", "quanto costa lo skipass settimanale", "budget vacanza sulla neve", "quanto costa una settimana sulla neve"],
+    "intent": "Da novembre a febbraio chi deve decidere se partire cerca una cifra: vuole sapere quanto gli costa davvero la settimana sulla neve per il suo gruppo, prima di chiedere un preventivo.",
+    "target": "Famiglie e gruppi di amici che pianificano la settimana bianca in Italia, 30-55 anni, da telefono, spesso la sera mentre guardano le offerte.",
+    "competitors": ["Articoli di giornale che danno solo medie nazionali senza scomporre", "Landing page dei tour operator con il form di richiesta preventivo", "Indagini Altroconsumo e Federconsumatori (dati, non strumenti)", "Calcolatori ufficiali dei comprensori, limitati al solo skipass"],
+    "edge": "Nessun calcolatore generale esiste: qui le otto voci stanno insieme, con lo sconto del plurigiornaliero, le riduzioni per ragazzi e over 65, l'assicurazione obbligatoria e il carburante ai prezzi MIMIT del giorno.",
+    "monetization": ["adsense", "affiliate", "pro", "support"],
+    "pro": ["Confronto fra due o tre località", "Noleggio o acquisto dell'attrezzatura"],
+    "affiliate": [
+      { "t": "Casco da sci (obbligatorio per tutti)", "q": "casco da sci adulto" },
+      { "t": "Maschera da sci antiappannamento", "q": "maschera da sci antiappannamento" },
+      { "t": "Intimo termico di prima pelle", "q": "intimo termico sci uomo donna" },
+      { "t": "Sacca porta sci e scarponi", "q": "sacca porta sci e scarponi" }
+    ]
+  }
+}
