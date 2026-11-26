@@ -1,6 +1,6 @@
 {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 75,
+  "count": 76,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -49,6 +49,71 @@
     ]
   },
   "apps": [
+    {
+      "title": "Quanto Costa un Trapianto di Capelli",
+      "slug": "2026-11-26-quanto-costa-trapianto-capelli",
+      "date": "2026-11-26",
+      "description": "Il conto di un trapianto di capelli a partire dalle unità follicolari: intervento, esami, farmaci, controlli, viaggio e seconda sessione.",
+      "category": "salute-benessere",
+      "tags": [
+        "capelli",
+        "trapianto",
+        "preventivo",
+        "salute",
+        "estetica"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "dashboard",
+        "palette": "grigio-carta",
+        "font": "sans-geometrico"
+      },
+      "business": {
+        "keyword": "quanto costa un trapianto di capelli",
+        "keywords": [
+          "prezzo trapianto capelli a innesto",
+          "trapianto capelli turchia quanto costa",
+          "costo trapianto capelli italia",
+          "quanto costa un trapianto di capelli in turchia"
+        ],
+        "intent": "Chi ha deciso di informarsi vuole una cifra prima di lasciare il numero di telefono a una clinica: parte dal proprio stadio di calvizie e vuole sapere il totale, non il prezzo di listino di una voce sola.",
+        "target": "Uomini 25-50 anni che stanno valutando l'intervento, spesso di sera da telefono, dopo aver visto i preventivi delle cliniche italiane e dei pacchetti turchi.",
+        "edge": "Nessun numero di telefono: si parte dallo stadio Norwood, si arriva al costo per singola unità follicolare e il totale include esami, farmaci, controlli, mantenimento, volo e la seconda sessione che quasi nessun preventivo mette in prima pagina.",
+        "monetization": [
+          "adsense",
+          "affiliate",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto Italia e Turchia",
+          "Lettura dei preventivi ricevuti"
+        ],
+        "affiliate": [
+          {
+            "t": "Cuscino da viaggio a ferro di cavallo (per dormire senza toccare la zona)",
+            "q": "cuscino da viaggio ferro di cavallo memory"
+          },
+          {
+            "t": "Shampoo delicato senza solfati",
+            "q": "shampoo delicato senza solfati e parabeni"
+          },
+          {
+            "t": "Soluzione fisiologica spray",
+            "q": "soluzione fisiologica spray flacone"
+          },
+          {
+            "t": "Cappello a tesa larga con protezione solare",
+            "q": "cappello tesa larga protezione solare upf"
+          }
+        ]
+      },
+      "size": 62903
+    },
     {
       "title": "Quanto Costa una Settimana Bianca",
       "slug": "2026-11-25-quanto-costa-settimana-bianca",
