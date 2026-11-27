@@ -1,0 +1,30 @@
+{
+  "title": "Quanto Costa il Cappotto Termico al Mq",
+  "slug": "2026-11-27-cappotto-termico-al-mq",
+  "date": "2026-11-27",
+  "description": "Dai metri di facciata al totale del cappotto termico: pannello, posa, ponteggio, tecnico, IVA, detrazione e anni di rientro.",
+  "category": "casa-cucina",
+  "tags": ["cappotto termico", "isolamento", "casa", "bonus", "preventivo"],
+  "source": "autonoma",
+  "request": null,
+  "status": "pronta",
+  "version": 1,
+  "changelog": [],
+  "design": { "layout": "single-column", "palette": "rosso-mattone", "font": "mono-tecnico" },
+  "business": {
+    "keyword": "quanto costa il cappotto termico al mq",
+    "keywords": ["prezzo cappotto termico metro quadro", "costo cappotto termico 100 mq", "quanto costa fare il cappotto a una villetta", "cappotto termico quanto si risparmia"],
+    "intent": "Chi ha la casa fredda e le bollette alte vuole una cifra prima di chiamare un'impresa: parte dalle misure delle sue facciate e vuole il totale con ponteggio, IVA e detrazione, non una forbice da 80 a 150 euro al metro quadro.",
+    "target": "Proprietari di villette e piccole palazzine fra i 35 e i 65 anni, e amministratori o condomini che devono portare un numero in assemblea; quasi sempre da telefono, d'inverno.",
+    "competitors": ["Siti delle imprese di cappotto, che danno la forbice 80-150 €/mq e poi chiedono il contatto per il preventivo", "Guide dei fornitori di luce e gas (Facile.it, luce-gas.it), che parlano di risparmio generico senza calcolo", "Articoli di testate economiche tipo money.it, che elencano i materiali ma non li mettono in un conto", "Portali di preventivi che rivendono il contatto a tre imprese"],
+    "edge": "Nessun contatto da lasciare: calcola i metri quadri veri di facciata (non quelli di casa), separa il ponteggio e la parcella del tecnico che nei preventivi stanno in fondo, mostra la trasmittanza prima e dopo con i centimetri minimi di legge e chiude con gli anni di rientro.",
+    "monetization": ["adsense", "affiliate", "pro", "support"],
+    "pro": ["Confronto fra isolanti a pari trasmittanza", "Piano della detrazione in dieci anni", "Esporta il computo in CSV"],
+    "affiliate": [
+      { "t": "Termometro a infrarossi per misurare le pareti fredde", "q": "termometro infrarossi pareti edilizia" },
+      { "t": "Termocamera per smartphone", "q": "termocamera per smartphone android iphone" },
+      { "t": "Termoigrometro per umidità e condensa negli angoli", "q": "termoigrometro digitale umidita interna casa" },
+      { "t": "Metro laser per misurare le facciate da terra", "q": "metro laser distanziometro 50 metri" }
+    ]
+  }
+}
