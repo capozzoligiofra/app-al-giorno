@@ -1,0 +1,1002 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cessione del Quinto: calcolo rata e costo reale</title>
+<meta name="description" content="Cessione del quinto, calcolo rata: quanto ti trattengono, quanto ti resta in busta, quanto ricevi davvero e il TAEG vero con assicurazione e commissioni.">
+<link rel="canonical" href="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-11-28-cessione-del-quinto/">
+<meta name="theme-color" content="#f5f6f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0a1322" media="(prefers-color-scheme: dark)">
+<meta property="og:title" content="Cessione del quinto: calcolo della rata e del costo reale">
+<meta property="og:description" content="Metti il netto mensile e la durata: rata trattenuta, quanto ti resta in busta, somma che ricevi davvero sul conto, costo totale del credito e TAEG reale con assicurazione e commissioni.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://capozzoligiofra.github.io/app-al-giorno/apps/2026-11-28-cessione-del-quinto/">
+<meta property="og:locale" content="it_IT">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Cessione del Quinto: calcolo rata",
+  "description": "Calcolatore della cessione del quinto per dipendenti statali, dipendenti privati e pensionati INPS: quota cedibile dal netto mensile e dalle mensilità, rata trattenuta, residuo in busta paga, importo netto erogato al netto dell'assicurazione obbligatoria vita e impiego, delle commissioni di istruttoria e intermediazione e delle spese fisse, totale rimborsato, costo del credito e TAEG reale calcolato per bisezione, con piano di ammortamento alla francese, confronto fra tre preventivi e conteggio di estinzione anticipata con rimborso della quota di costi non goduta.",
+  "url": "https://capozzoligiofra.github.io/app-al-giorno/apps/2026-11-28-cessione-del-quinto/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+  "inLanguage": "it"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Come si calcola la rata della cessione del quinto?",
+      "acceptedAnswer": { "@type": "Answer", "text": "La rata non si calcola dalla somma che chiedi: si calcola dal tuo stipendio, perché è un tetto. Si prende il netto mensile che leggi in busta paga, lo si riporta su dodici mesi tenendo conto delle mensilità (netto per 13 o per 14, diviso 12) e si divide per cinque. Con 1.500 euro netti su 14 mensilità il reddito medio mensile è 1.750 euro e la rata massima cedibile è 350 euro. Quella è la rata, sempre, qualunque cifra tu chieda: cambia solo la somma che la banca ti dà in cambio, perché dipende dalla durata e dal tasso. Per i pensionati il conto è diverso: la quota cedibile è il valore più basso fra un quinto della pensione netta e la parte di pensione che eccede il trattamento minimo, indicato in 611,85 euro al mese per il 2026, perché una quota di pensione resta per legge intoccabile." }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanto posso ottenere con la cessione del quinto?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Si ricava al contrario: dalla rata massima, dalla durata e dal tasso. La rata di 350 euro per 120 mesi al TAN del 7,70 per cento vale un capitale di circa 29.200 euro, ma non è la cifra che arriva sul conto: da lì la finanziaria trattiene l'assicurazione obbligatoria e le commissioni, e quello che ti viene liquidato scende intorno ai 27.000 euro. In dieci anni restituisci 42.000 euro. Allungare la durata aumenta la somma ottenibile ma non in modo proporzionale: raddoppiare gli anni non raddoppia il capitale, perché la quota di interessi cresce. Il massimo di legge è 120 mesi, cioè dieci anni, e il minimo praticato è di 24 mesi." }
+    },
+    {
+      "@type": "Question",
+      "name": "Perché nella cessione del quinto il TAEG è molto più alto del TAN?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Perché il TAN misura solo gli interessi sul capitale, mentre il TAEG comprende tutto quello che paghi per avere quei soldi: l'assicurazione obbligatoria vita e impiego, che in questa forma di prestito è imposta dal DPR 180/1950 ed è la voce più pesante, le commissioni di istruttoria e di intermediazione e le spese fisse. Nella cessione del quinto queste voci sono quasi sempre finanziate dentro il prestito, cioè non le paghi a parte: vengono scalate dalla somma che ricevi. Così gli interessi corrono su un capitale più grande di quello che hai in mano. Nell'esempio di questa pagina un TAN del 7,70 per cento diventa un TAEG reale vicino al 10 per cento. È normale che fra TAN e TAEG ci sia più distanza che in un prestito personale: se nel preventivo la differenza è minima, probabilmente l'assicurazione non è stata conteggiata." }
+    },
+    {
+      "@type": "Question",
+      "name": "La cessione del quinto si può avere da pensionato? Fino a che età?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sì, ed è uno dei casi più frequenti, perché la pensione INPS è una garanzia stabile e il tasso è stabilito dalle convenzioni INPS. La regola che conta è l'età a fine piano, non quella di oggi: la maggior parte degli istituti vuole che l'ultima rata cada entro gli 85 anni, quindi a 75 anni si arriva ai 120 mesi pieni, a 80 anni la durata massima scende intorno ai 60 mesi. Non è una norma di legge ma una politica di ciascun istituto: alcuni arrivano a 87-88 anni e qualcuno dichiara di valutare richieste fino a 91 anni meno un giorno a fine piano, con un costo assicurativo più alto. Per i pensionati la polizza copre il solo rischio vita, perché il rischio di perdere il posto non esiste." }
+    },
+    {
+      "@type": "Question",
+      "name": "Conviene estinguere in anticipo la cessione del quinto o rinnovarla?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Estinguere in anticipo conviene quasi sempre, e conviene più di quanto la finanziaria faccia capire, perché non paghi solo meno interessi: hai diritto al rimborso della quota di costi che non hai goduto. Dopo la sentenza Lexitor della Corte di giustizia UE e la riscrittura dell'articolo 125-sexies del Testo Unico Bancario, dal conteggio va scomputata la parte non maturata dei premi assicurativi e, per i contratti recenti, anche delle commissioni pagate in anticipo. L'indennizzo per il rimborso anticipato non può superare l'1 per cento dell'importo restituito, scende allo 0,5 per cento se mancano meno di dodici mesi alla fine e non è dovuto se nei dodici mesi rimborsi meno di 10.000 euro. Il rinnovo, possibile dopo aver pagato i due quinti delle rate, è un'altra cosa: estingue il vecchio prestito e ne apre uno nuovo, con nuove spese e nuova assicurazione, e quasi sempre costa più che tenere il vecchio fino alla fine." }
+    },
+    {
+      "@type": "Question",
+      "name": "Si può superare il quinto dello stipendio?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Si può arrivare al doppio, ma non con la stessa operazione. Sopra la cessione del quinto si può aggiungere una delega di pagamento, chiamata anche secondo quinto, che porta la trattenuta complessiva al 40 per cento del netto. La delega però non è un diritto: va autorizzata dal datore di lavoro, che può rifiutarla, e nel settore privato il rifiuto è frequente. Resta comunque il limite generale della quota impignorabile dello stipendio, e sommare due trattenute significa restare con il 60 per cento del netto per dieci anni: il calcolo di quanto resta in busta, in quel caso, va fatto prima di firmare e non dopo." }
+    }
+  ]
+}
+</script>
+<style>
+  /* ── palette blu-notte, font serif-editoriale, layout split (pannello input in alto, prospetto sotto) ── */
+  :root{
+    --bg:#f5f6f9; --paper:#ffffff; --ink:#131f36; --muted:#5b6678; --line:#dbe0e9;
+    --navy:#0e2a52; --navy-2:#16406f; --navy-ink:#eaf0fa;
+    --gold:#9a7b1f; --gold-soft:#f6efd9;
+    --ok:#1b6b47; --bad:#8f2d1b; --bad-soft:#fbeeea;
+    --r:4px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0a1322; --paper:#101b2e; --ink:#e7eef9; --muted:#9babc4; --line:#223550;
+      --navy:#0b1d36; --navy-2:#13335c; --navy-ink:#e7eef9;
+      --gold:#d9b84a; --gold-soft:#241f0f; --ok:#5fc295; --bad:#f0907c; --bad-soft:#2a1613;
+    }
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%; scroll-padding-top:5.5rem}
+  .foglio, section[data-pro], details.spese, #guida h2, #guida h3{scroll-margin-top:5.5rem}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:Georgia,"Times New Roman","Liberation Serif",serif;
+    font-size:1.0625rem; line-height:1.6;
+  }
+  .wrap{max-width:46rem; margin:0 auto; padding:0 1rem 3rem}
+  a{color:var(--navy-2)}
+  @media (prefers-color-scheme: dark){ a{color:#8fb6e8} }
+
+  .backrow{margin:.9rem 0 .4rem; font-size:.95rem}
+  .back{text-decoration:none; font-weight:700}
+  h1{font-size:1.6rem; line-height:1.22; margin:.4rem 0 .5rem; letter-spacing:-.01em}
+  .lead{margin:0 0 1rem; color:var(--muted); font-size:1rem}
+
+  /* ── pannello input: sticky in alto, si richiude a barra quando scorri ── */
+  #sentinella{height:1px}
+  .pannello{
+    background:var(--navy); color:var(--navy-ink);
+    border-radius:var(--r); padding:.65rem .85rem .75rem;
+    margin:0 -1rem; box-shadow:0 6px 18px rgba(6,16,33,.28);
+  }
+  .pannello label:not([hidden]){display:block}
+  .flab{display:block; font-size:.9rem; margin-bottom:.2rem; opacity:.85}
+  .chips{display:flex; gap:.35rem; margin:0 0 .55rem}
+  .chips button{
+    font:inherit; font-size:.95rem; min-height:44px; padding:.3rem .35rem;
+    border:1.5px solid rgba(234,240,250,.42); background:transparent; color:inherit;
+    border-radius:999px; cursor:pointer; flex:1 1 0; min-width:0;
+  }
+  .chips button[aria-pressed="true"]{background:var(--navy-ink); color:var(--navy); border-color:var(--navy-ink); font-weight:700}
+  .riga{display:grid; grid-template-columns:1fr 8.6rem; gap:.5rem; align-items:end}
+  .campo{position:relative; display:flex; align-items:center}
+  .pannello input[type=number], .pannello select{
+    font-family:inherit; font-size:16px; width:100%; min-height:50px;
+    padding:.35rem 2.2rem .35rem .6rem; border-radius:var(--r);
+    border:1.5px solid rgba(234,240,250,.42); background:rgba(255,255,255,.07); color:inherit;
+    font-variant-numeric:tabular-nums;
+  }
+  .pannello select{padding-right:.5rem}
+  .campo .u{position:absolute; right:.6rem; opacity:.7; font-size:.95rem; pointer-events:none}
+  .campo.conmax input{padding-right:5.3rem}
+  .campo.conmax .u{right:4.4rem}
+  .slider{display:flex; align-items:center; gap:.6rem; margin-top:.5rem}
+  .slider input[type=range]{flex:1; min-height:44px; font-size:16px; accent-color:var(--gold)}
+  .mesi{min-width:5.2rem; text-align:right; font-variant-numeric:tabular-nums; font-size:1.02rem; font-weight:700}
+  .mesi small{display:block; font-size:.86rem; font-weight:400; opacity:.75}
+  .seg{display:flex; gap:0; margin:.6rem 0 .5rem; border:1.5px solid rgba(234,240,250,.42); border-radius:999px; overflow:hidden}
+  .seg button{
+    font:inherit; font-size:.95rem; flex:1; min-height:44px; padding:.3rem .5rem;
+    border:0; background:transparent; color:inherit; cursor:pointer;
+  }
+  .seg button[aria-pressed="true"]{background:var(--navy-ink); color:var(--navy); font-weight:700}
+  .maxbtn{
+    position:absolute; right:.3rem; font:inherit; font-size:.9rem; font-weight:700;
+    min-height:44px; min-width:3.8rem; padding:.2rem .6rem;
+    border:1.5px solid rgba(234,240,250,.5); background:transparent; color:inherit;
+    border-radius:999px; cursor:pointer;
+  }
+  .esito{
+    display:grid; grid-template-columns:1fr 1fr; gap:.2rem .8rem;
+    margin:.6rem 0 0; padding:.5rem .7rem; border-radius:var(--r);
+    background:rgba(255,255,255,.1); border-left:3px solid var(--gold);
+  }
+  .esito b{display:block; font-size:1.3rem; line-height:1.2; font-variant-numeric:tabular-nums}
+  .esito i{display:block; font-style:normal; font-size:.88rem; opacity:.8}
+  .esito .attesa{grid-column:1 / -1; font-size:1rem}
+  .pannello .avviso{margin:.4rem 0 0; font-size:.9rem; opacity:.82; line-height:1.4}
+  /* barra di riepilogo: fissa, fuori dal flusso, così comparire non sposta nulla nella pagina */
+  .barra{
+    position:fixed; top:0; left:0; right:0; z-index:40;
+    background:var(--navy); color:var(--navy-ink);
+    box-shadow:0 4px 14px rgba(6,16,33,.3);
+    padding-top:env(safe-area-inset-top);
+    transform:translateY(-100%); visibility:hidden;
+    transition:transform .18s ease, visibility .18s;
+  }
+  .barra.on{transform:none; visibility:visible}
+  @media (prefers-reduced-motion: reduce){ .barra{transition:none} }
+  .barra-in{
+    max-width:46rem; margin:0 auto; padding:.4rem 1rem;
+    display:flex; align-items:center; gap:.7rem; min-height:56px;
+  }
+  .barra b{font-size:1.15rem; font-variant-numeric:tabular-nums; white-space:nowrap}
+  .barra .nota-barra{font-size:.9rem; opacity:.8; flex:1; min-width:0}
+  .barra button{
+    font:inherit; font-size:.92rem; min-height:44px; padding:.3rem .9rem; border-radius:999px;
+    border:1.5px solid rgba(234,240,250,.5); background:transparent; color:inherit; cursor:pointer; white-space:nowrap;
+  }
+
+  /* ── prospetto: foglio di carta con righe puntinate ── */
+  .foglio{
+    background:var(--paper); border:1px solid var(--line); border-radius:var(--r);
+    padding:1.1rem 1rem; margin:1.1rem 0;
+  }
+  .foglio > h2{font-size:1.2rem; margin:0 0 .2rem}
+  .occhiello{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin:0 0 .5rem; font-weight:700}
+  .hero{display:grid; grid-template-columns:1fr; gap:.1rem; margin:.4rem 0 .9rem}
+  @media (min-width:540px){ .hero{grid-template-columns:1fr 1fr; gap:1rem} }
+  .hero .box{padding:.55rem 0}
+  .hero .n{font-size:2.1rem; line-height:1.1; font-weight:700; font-variant-numeric:tabular-nums; letter-spacing:-.02em; display:block}
+  .hero .n.sec{font-size:1.6rem; color:var(--navy-2)}
+  @media (prefers-color-scheme: dark){ .hero .n.sec{color:#8fb6e8} }
+  .hero .d{font-size:.92rem; color:var(--muted)}
+
+  dl.prosp{margin:.2rem 0 0; font-size:1rem}
+  dl.prosp div{display:flex; align-items:baseline; gap:.3rem; padding:.42rem 0; border-bottom:1px dotted var(--line)}
+  dl.prosp div:last-child{border-bottom:0}
+  dl.prosp dt{margin:0; flex:1 1 auto; min-width:0}
+  dl.prosp dd{margin:0; font-weight:700; font-variant-numeric:tabular-nums; white-space:nowrap}
+  dl.prosp .sub{font-size:.9rem; color:var(--muted); display:block; font-weight:400}
+  dl.prosp div.tot{border-top:2px solid var(--ink); border-bottom:0; margin-top:.3rem; padding-top:.5rem}
+  dl.prosp div.tot dd{font-size:1.15rem}
+  .segno{color:var(--bad)}
+
+  .taeg{
+    display:flex; flex-wrap:wrap; align-items:baseline; gap:.5rem 1rem;
+    margin:.9rem 0 0; padding:.7rem .8rem; background:var(--gold-soft);
+    border-radius:var(--r); border-left:3px solid var(--gold);
+  }
+  .taeg b{font-size:1.5rem; font-variant-numeric:tabular-nums}
+  .taeg span{font-size:.95rem; color:var(--muted)}
+  @media (prefers-color-scheme: dark){ .taeg span{color:#b9c6da} }
+
+  .barre{margin:1rem 0 .3rem}
+  .barre .riga2{display:flex; height:1.6rem; border-radius:var(--r); overflow:hidden; border:1px solid var(--line)}
+  .barre .riga2 i{display:block}
+  .legenda{list-style:none; padding:0; margin:.6rem 0 0; font-size:.94rem; display:grid; gap:.25rem}
+  .legenda li{display:flex; align-items:center; gap:.5rem}
+  .legenda i{width:.85rem; height:.85rem; border-radius:2px; flex:0 0 auto}
+  .legenda b{margin-left:auto; font-variant-numeric:tabular-nums}
+  .q1{background:#16406f} .q2{background:#9a7b1f} .q3{background:#7a8ba3} .q4{background:#c2ccda}
+  @media (prefers-color-scheme: dark){ .q1{background:#4b86d1} .q3{background:#6d7e97} .q4{background:#3a4761} }
+
+  .nota{font-size:.94rem; color:var(--muted); margin:.7rem 0 0}
+  .allarme{
+    margin:.9rem 0 0; padding:.6rem .75rem; border-radius:var(--r);
+    background:var(--bad-soft); border-left:3px solid var(--bad); font-size:.96rem; color:var(--ink);
+  }
+  .vuoto{margin:.9rem 0 0; padding:.7rem .8rem; border:1px dashed var(--line); border-radius:var(--r); color:var(--muted); font-size:.96rem}
+
+  /* ── sezione tassi e spese ── */
+  details.spese{background:var(--paper); border:1px solid var(--line); border-radius:var(--r); margin:1.1rem 0; overflow:hidden}
+  details.spese > summary{
+    padding:.9rem 1rem; cursor:pointer; font-weight:700; list-style:none;
+    display:flex; align-items:center; gap:.5rem; min-height:48px;
+  }
+  details.spese > summary::-webkit-details-marker{display:none}
+  details.spese > summary::after{content:"＋"; margin-left:auto; font-weight:400; color:var(--muted)}
+  details.spese[open] > summary::after{content:"−"}
+  details.spese .dentro{padding:0 1rem 1.1rem}
+  .griglia{display:grid; grid-template-columns:1fr 1fr; gap:.7rem}
+  .griglia .wide{grid-column:1 / -1}
+  .griglia label{display:block}
+  .griglia .flab{color:var(--muted); font-size:.9rem}
+  .griglia .campo input{
+    font-family:inherit; font-size:16px; width:100%; min-height:48px;
+    padding:.4rem 2.4rem .4rem .7rem; border-radius:var(--r);
+    border:1.5px solid var(--line); background:transparent; color:inherit; font-variant-numeric:tabular-nums;
+  }
+  .griglia .campo .u{color:var(--muted)}
+  .eqv{font-size:.9rem; color:var(--muted); margin:.3rem 0 0}
+  .preset{
+    font:inherit; font-size:.92rem; min-height:44px; padding:.35rem .9rem; margin-top:.9rem;
+    border:1.5px solid var(--line); background:transparent; color:inherit; border-radius:999px; cursor:pointer;
+  }
+
+  /* ── Pro ── */
+  section[data-pro]{
+    background:var(--paper); border:1px solid var(--line); border-radius:var(--r);
+    padding:1.05rem 1rem; margin:1.1rem 0; min-height:14rem;
+  }
+  section[data-pro] > h2{font-size:1.15rem; margin:0 0 .2rem}
+  .tre{display:grid; grid-template-columns:1fr; gap:.8rem}
+  @media (min-width:700px){ .tre{grid-template-columns:repeat(3,1fr)} }
+  .prev{border:1px solid var(--line); border-radius:var(--r); padding:.75rem}
+  .prev.vince{border-color:var(--ok); border-width:2px}
+  .prev h3{margin:0 0 .5rem; font-size:1rem; display:flex; align-items:center; gap:.4rem}
+  .prev .tag{font-size:.8rem; background:var(--ok); color:#fff; border-radius:999px; padding:.05rem .5rem; font-weight:700}
+  .prev .mini{display:grid; grid-template-columns:1fr 1fr; gap:.5rem}
+  .prev .mini label{display:block}
+  .prev .mini .flab{font-size:.88rem; color:var(--muted)}
+  .prev input{
+    font-family:inherit; font-size:16px; width:100%; min-height:46px; padding:.3rem .5rem;
+    border-radius:var(--r); border:1.5px solid var(--line); background:transparent; color:inherit; font-variant-numeric:tabular-nums;
+  }
+  .prev dl.prosp{margin-top:.6rem; font-size:.96rem}
+  .cta{
+    font:inherit; font-size:1rem; font-weight:700; min-height:48px; padding:.5rem 1.1rem;
+    border-radius:999px; border:1.5px solid var(--navy-2); background:var(--navy-2); color:#fff; cursor:pointer;
+  }
+  .cta.vuota{background:transparent; color:inherit; border-color:var(--line)}
+  .azioni{display:flex; gap:.6rem; flex-wrap:wrap; margin-top:.9rem}
+  table.piano{width:100%; border-collapse:collapse; font-size:.94rem; font-variant-numeric:tabular-nums; margin-top:.8rem}
+  table.piano th, table.piano td{padding:.35rem .25rem; text-align:right; border-bottom:1px dotted var(--line)}
+  table.piano th:first-child, table.piano td:first-child{text-align:left}
+  table.piano th{font-size:.86rem; color:var(--muted); font-weight:700}
+  .scorri{overflow-x:auto; -webkit-overflow-scrolling:touch}
+
+  /* ── guida ── */
+  #guida{margin-top:2rem}
+  #guida h2{font-size:1.35rem; margin:1.8rem 0 .5rem; line-height:1.25}
+  #guida h3{font-size:1.1rem; margin:1.3rem 0 .35rem}
+  #guida p, #guida li{font-size:1.0625rem}
+  #guida ul{padding-left:1.15rem}
+  #guida li{margin:.35rem 0}
+  .esempio{background:var(--paper); border:1px solid var(--line); border-left:3px solid var(--navy-2); border-radius:var(--r); padding:.9rem 1rem; margin:1rem 0}
+  .esempio p{margin:.35rem 0}
+  .correlate{list-style:none; padding:0; margin:1.2rem 0 0}
+  .correlate li{margin:.5rem 0}
+  footer{margin-top:2rem; padding-top:1rem; border-top:1px solid var(--line); color:var(--muted); font-size:.95rem}
+  footer a{color:inherit}
+  @media print{ .pannello,.backrow,.azioni,.preset,[data-ad],[data-support]{display:none !important} .foglio,section[data-pro]{break-inside:avoid} }
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="backrow"><a class="back" href="../../index.html">← Tutte le app</a></p>
+
+<h1>Cessione del quinto: calcolo della rata</h1>
+<p class="lead">La rata non la decidi tu: è un quinto del tuo netto. Quello che puoi decidere è quanto ti costa. Qui vedi la trattenuta, la somma che arriva davvero sul conto e il TAEG vero, assicurazione compresa.</p>
+
+<!-- ══════════ pannello input (layout split: input in alto, prospetto sotto) ══════════ -->
+<div class="pannello" id="pannello">
+  <div class="corpo">
+    <div class="chips" role="group" aria-label="Chi sei">
+      <button type="button" data-prof="statale" aria-pressed="false">Statale</button>
+      <button type="button" data-prof="privato" aria-pressed="true">Privato</button>
+      <button type="button" data-prof="pensionato" aria-pressed="false">Pensionato</button>
+    </div>
+
+    <div class="riga">
+      <label><span class="flab" id="labNetto">Netto mensile in busta</span>
+        <span class="campo"><input type="number" id="netto" inputmode="decimal" min="0" max="20000" step="10" value="1500" enterkeyhint="done" aria-describedby="avvisoQuinto"><span class="u">€</span></span>
+      </label>
+      <label id="wrapMens"><span class="flab">Mensilità</span>
+        <span class="campo"><select id="mens">
+          <option value="12">12</option>
+          <option value="13">13</option>
+          <option value="14" selected>14</option>
+        </select></span>
+      </label>
+      <label id="wrapEta" hidden><span class="flab">La tua età</span>
+        <span class="campo"><input type="number" id="eta" inputmode="numeric" min="50" max="95" step="1" value="72" enterkeyhint="done"><span class="u">anni</span></span>
+      </label>
+    </div>
+
+    <div class="slider">
+      <label class="flab" for="durata" style="margin:0">Durata</label>
+      <input type="range" id="durata" min="24" max="120" step="12" value="120" aria-describedby="mesiTesto">
+      <span class="mesi" id="mesiTesto">120 <small>mesi</small></span>
+    </div>
+
+    <div class="seg" role="group" aria-label="Da dove parti">
+      <button type="button" id="mRata" aria-pressed="true">Parto dalla rata</button>
+      <button type="button" id="mSomma" aria-pressed="false">Mi serve una somma</button>
+    </div>
+
+    <div id="boxRata">
+      <span class="campo conmax">
+        <input type="number" id="rata" inputmode="decimal" min="0" max="5000" step="5" value="350" enterkeyhint="done" aria-label="Rata mensile che vuoi pagare">
+        <span class="u">€</span>
+        <button type="button" class="maxbtn" id="btnMax" title="Porta la rata al massimo cedibile">max</button>
+      </span>
+    </div>
+
+    <div id="boxSomma" hidden>
+      <span class="campo">
+        <input type="number" id="somma" inputmode="decimal" min="0" max="200000" step="500" value="27000" enterkeyhint="done" aria-label="Somma netta che ti serve sul conto">
+        <span class="u">€</span>
+      </span>
+    </div>
+
+    <div class="esito" id="esito">—</div>
+    <p class="avviso" id="avvisoQuinto">—</p>
+  </div>
+</div>
+<div id="sentinella" aria-hidden="true"></div>
+
+<div class="barra" id="barra">
+  <div class="barra-in">
+    <b id="bRata">—</b>
+    <span class="nota-barra" id="bNota">rata trattenuta</span>
+    <button type="button" id="bMod">Modifica i dati</button>
+  </div>
+</div>
+
+<!-- ══════════ prospetto ══════════ -->
+<section class="foglio" id="risultato" aria-live="polite">
+  <p class="occhiello">Il conto</p>
+  <div class="hero">
+    <div class="box">
+      <span class="n" id="hRata">—</span>
+      <span class="d">rata trattenuta ogni mese, per <span id="hMesi">—</span></span>
+    </div>
+    <div class="box">
+      <span class="n sec" id="hResta">—</span>
+      <span class="d" id="hRestaD">ti resta in busta ogni mese</span>
+    </div>
+  </div>
+
+  <div id="allarmi"></div>
+
+  <dl class="prosp">
+    <div><dt>Capitale finanziato <span class="sub">su cui corrono gli interessi al TAN</span></dt><dd id="vLordo">—</dd></div>
+    <div><dt>Assicurazione obbligatoria <span class="sub" id="dAss">vita e impiego, trattenuta subito</span></dt><dd class="segno" id="vAss">—</dd></div>
+    <div><dt>Commissioni <span class="sub">istruttoria e intermediazione</span></dt><dd class="segno" id="vComm">—</dd></div>
+    <div><dt>Spese fisse <span class="sub">bolli e incasso rata</span></dt><dd class="segno" id="vSpese">—</dd></div>
+    <div class="tot"><dt>Quello che ricevi sul conto</dt><dd id="vNetto">—</dd></div>
+  </dl>
+
+  <dl class="prosp" style="margin-top:1rem">
+    <div><dt>Quello che rimborsi <span class="sub" id="dTot">rata per numero di mesi</span></dt><dd id="vTot">—</dd></div>
+    <div class="tot"><dt>Costo del credito <span class="sub" id="dCosto">interessi, assicurazione, commissioni e spese</span></dt><dd id="vCosto">—</dd></div>
+  </dl>
+
+  <div class="taeg">
+    <b id="vTaeg">—</b>
+    <span id="dTaeg">TAEG reale, cioè quanto costa davvero</span>
+  </div>
+
+  <div class="barre" id="barre">
+    <div class="riga2" id="rigaBarre" role="img" aria-label="Composizione di quello che rimborsi"></div>
+    <ul class="legenda" id="legenda"></ul>
+  </div>
+
+  <p class="nota">Il calcolo usa l'ammortamento alla francese a tasso fisso e tratta assicurazione e commissioni come trattenute iniziali, come avviene quasi sempre nella cessione del quinto. È una stima: i numeri che fanno fede sono quelli del foglio informativo e del documento SECCI che la finanziaria deve consegnarti <em>prima</em> della firma.</p>
+</section>
+
+<div data-ad="top"></div>
+
+<!-- ══════════ tassi e spese ══════════ -->
+<details class="spese" id="dettSpese">
+  <summary>Tasso, assicurazione e spese del preventivo</summary>
+  <div class="dentro">
+    <p class="nota" style="margin:0 0 .9rem">Parti dai valori di mercato, poi copia quelli del tuo preventivo: sono le quattro righe che decidono il costo. L'assicurazione e le commissioni si indicano in percentuale del capitale finanziato, come fanno i fogli informativi.</p>
+    <div class="griglia">
+      <label><span class="flab">TAN</span>
+        <span class="campo"><input type="number" id="tan" inputmode="decimal" min="0" max="25" step="0.05" value="7.70" enterkeyhint="done"><span class="u">%</span></span>
+      </label>
+      <label><span class="flab">Spese fisse</span>
+        <span class="campo"><input type="number" id="spese" inputmode="decimal" min="0" max="2000" step="1" value="16" enterkeyhint="done"><span class="u">€</span></span>
+      </label>
+      <label><span class="flab">Assicurazione</span>
+        <span class="campo"><input type="number" id="pAss" inputmode="decimal" min="0" max="60" step="0.1" value="5" enterkeyhint="done"><span class="u">%</span></span>
+        <p class="eqv" id="eqAss">—</p>
+      </label>
+      <label><span class="flab">Commissioni</span>
+        <span class="campo"><input type="number" id="pComm" inputmode="decimal" min="0" max="60" step="0.1" value="2.5" enterkeyhint="done"><span class="u">%</span></span>
+        <p class="eqv" id="eqComm">—</p>
+      </label>
+    </div>
+    <button type="button" class="preset" id="btnPreset">Rimetti i valori tipici del mio profilo</button>
+    <p class="nota" id="notaPreset">—</p>
+  </div>
+</details>
+
+<!-- ══════════ Pro 1 ══════════ -->
+<section data-pro="Confronto fra tre preventivi">
+  <h2>Confronto fra tre preventivi</h2>
+  <p class="nota" style="margin-top:0">A parità di somma ricevuta — <b id="cfSomma">—</b> — ogni preventivo chiede una rata diversa. Vince chi ti fa pagare meno in tutto, non chi ha il TAN più basso.</p>
+  <div class="tre" id="tre"></div>
+  <p class="nota" id="cfVerdetto">—</p>
+</section>
+
+<!-- ══════════ Pro 2 ══════════ -->
+<section data-pro="Estinzione anticipata: quanto recuperi">
+  <h2>Estinzione anticipata: quanto recuperi</h2>
+  <p class="nota" style="margin-top:0">Se chiudi in anticipo non paghi solo meno interessi: hai diritto al rimborso della quota di assicurazione e commissioni che non hai goduto. Sposta il cursore sulle rate già pagate.</p>
+  <div class="slider" style="margin-top:.8rem">
+    <label class="flab" for="pagate" style="margin:0; color:var(--muted)">Rate pagate</label>
+    <input type="range" id="pagate" min="1" max="119" step="1" value="48">
+    <span class="mesi" id="pagateTesto" style="color:var(--ink)">48 <small>rate</small></span>
+  </div>
+  <dl class="prosp" id="estinzione"></dl>
+  <p class="nota" id="notaEst">—</p>
+</section>
+
+<!-- ══════════ Pro 3 ══════════ -->
+<section data-pro="Piano di ammortamento in CSV">
+  <h2>Piano di ammortamento in CSV</h2>
+  <p class="nota" style="margin-top:0">Rata per rata: quanta parte sono interessi, quanta capitale e quanto resta da pagare. Utile per controllare il conteggio della finanziaria, che nei primi anni è quasi tutto interessi.</p>
+  <div class="azioni">
+    <button type="button" class="cta" id="btnCsv">Scarica il piano in CSV</button>
+    <button type="button" class="cta vuota" id="btnTab">Mostra le prime 12 rate</button>
+  </div>
+  <div class="scorri"><table class="piano" id="tabPiano" hidden></table></div>
+  <p class="nota" id="notaCsv"></p>
+</section>
+
+<!-- ══════════ guida ══════════ -->
+<section id="guida">
+  <h2>Come funziona la cessione del quinto, e cosa guardare prima di firmare</h2>
+  <p>La cessione del quinto è un prestito con una garanzia particolare: la rata non te la chiede nessuno, viene trattenuta direttamente dallo stipendio o dalla pensione da chi te li paga, e versata alla finanziaria. Per questo la concedono anche a chi ha avuto problemi di credito in passato, anche a chi è segnalato in centrale rischi: la banca non si fida di te, si fida del tuo datore di lavoro o dell'INPS. Ed è anche per questo che il <strong>calcolo della rata</strong> parte dalla parte sbagliata rispetto a un prestito normale. Non chiedi una somma e scopri la rata: hai una rata massima fissata per legge, e da quella si ricava quanto puoi ottenere.</p>
+
+  <h3>Il quinto si calcola sul netto, con le mensilità</h3>
+  <p>Il tetto è un quinto del reddito mensile netto. Se hai 13 o 14 mensilità, la tredicesima e la quattordicesima entrano nel conto: si moltiplica il netto per il numero di mensilità, si divide per dodici e poi per cinque. Con 1.500 euro netti su 14 mensilità il reddito medio mensile è 1.750 euro e la rata massima cedibile è 350 euro, non 300. Sono 600 euro in più di capacità di rimborso ogni anno, e su dieci anni cambiano la somma ottenibile di qualche migliaio di euro. Per i pensionati la regola è un'altra e più severa: la quota cedibile è il minore fra un quinto della pensione netta e la parte che supera il trattamento minimo, indicato in 611,85 euro al mese per il 2026. Una pensione netta da 700 euro non lascia 140 euro di quinto, ne lascia 88, perché il resto è intoccabile. La quota esatta la certifica l'INPS con una comunicazione che il consulente richiede per tuo conto.</p>
+
+  <h3>La somma che ti liquidano non è il capitale finanziato</h3>
+  <p>Qui sta la differenza fra questo calcolo e quasi tutti i simulatori. Il contratto parla di un capitale, su cui corrono gli interessi al TAN. Ma da quel capitale la finanziaria trattiene subito tre voci: l'assicurazione obbligatoria, le commissioni e le spese. L'assicurazione non è un'opzione che puoi rifiutare: nella cessione del quinto è imposta dal DPR 180/1950 e copre il rischio vita e, per i dipendenti, il rischio di perdere il lavoro. È anche la voce più pesante, spesso fra il 4 e il 7 per cento del capitale, e quasi nessun preventivo la mostra come riga separata. Risultato: gli interessi corrono su una cifra più grande di quella che ti arriva sul conto.</p>
+
+  <div class="esempio">
+    <p><strong>Un esempio con i numeri.</strong> Dipendente privato, 1.500 € netti su 14 mensilità: rata massima 350 €. Dieci anni, TAN 7,70%, assicurazione al 5%, commissioni al 2,5%, 16 € di spese.</p>
+    <p>Il capitale finanziato è circa <strong>29.200 €</strong>. Tolti 1.460 € di assicurazione, 730 € di commissioni e le spese, sul conto ne arrivano circa <strong>27.000 €</strong>. In dieci anni rimborsi <strong>42.000 €</strong>: 350 per 120. Il costo del credito è quindi di circa <strong>15.000 €</strong>, più della metà di quello che hai ricevuto, e il TAEG reale è intorno al <strong>9,9%</strong> contro un TAN del 7,70%. In busta ti restano 1.150 € al mese per dieci anni.</p>
+  </div>
+
+  <h3>Come si legge il TAEG, e perché è il solo numero che serve</h3>
+  <p>Il TAN serve a calcolare gli interessi, il TAEG serve a confrontare le offerte: comprende interessi, assicurazione, commissioni e spese, ed è espresso come tasso annuo effettivo. Nella cessione del quinto la distanza fra i due è strutturalmente più ampia che in un prestito personale, un paio di punti o più, proprio per il peso della polizza. Il modo giusto di usare un preventivo è questo: guarda il TAEG, non il TAN; chiedi che l'assicurazione sia indicata come importo in euro e non nascosta nel tasso; confronta due offerte solo a parità di somma netta ricevuta e di durata, perché una rata più bassa ottenuta allungando il piano non è un risparmio. E ricorda il limite dei tassi usurari: ogni trimestre il Ministero dell'Economia pubblica i tassi soglia per categoria, e la cessione del quinto ha una sua categoria con soglie proprie.</p>
+
+  <h3>Gli errori che costano di più</h3>
+  <ul>
+    <li><strong>Guardare solo la rata.</strong> È il tetto, è quasi sempre la stessa in tutti i preventivi: non dice niente su quale offerta sia migliore.</li>
+    <li><strong>Allungare a dieci anni per avere di più.</strong> Passare da 60 a 120 mesi non raddoppia la somma ricevuta, ma raddoppia gli anni in cui hai il quinto bloccato e fa crescere molto gli interessi.</li>
+    <li><strong>Non chiedere il costo dell'assicurazione in euro.</strong> Se nel preventivo non c'è, non è gratis: è dentro il capitale.</li>
+    <li><strong>Firmare il rinnovo appena diventa possibile.</strong> Dopo aver pagato i due quinti delle rate la finanziaria può proporti di rifinanziare: nuove spese, nuova polizza, nuovi dieci anni. Si fa solo se servono davvero altri soldi.</li>
+    <li><strong>Dimenticare il TFR.</strong> Per i dipendenti privati il trattamento di fine rapporto accantonato è parte della garanzia: se è poco, perché sei stato assunto di recente o lo hai destinato a un fondo pensione, l'importo concedibile scende o l'istituto chiede garanzie in più. Le aziende molto piccole, sotto i cinque dipendenti, spesso non vengono accettate.</li>
+    <li><strong>Sommare un secondo quinto senza fare il conto di quanto resta.</strong> Con cessione più delega la trattenuta arriva al 40 per cento del netto: va calcolato prima se con il 60 per cento ci si vive.</li>
+  </ul>
+
+  <h3>Se chiudi prima, ti devono dei soldi</h3>
+  <p>L'estinzione anticipata non è solo meno interessi. Dopo la sentenza Lexitor della Corte di giustizia europea e la riscrittura dell'articolo 125-sexies del Testo Unico Bancario, dal conteggio va scomputata la quota di costi non goduta: i premi assicurativi non maturati senz'altro, e per i contratti stipulati dopo il luglio 2021 anche le commissioni pagate in anticipo. Su alcune voci, come l'istruttoria, l'Arbitro Bancario Finanziario ha deciso in modo non uniforme, quindi vale la pena controllare il conteggio e, se non torna, presentare reclamo e poi ricorso all'ABF, che è gratuito. L'indennizzo che la banca può chiedere è al massimo l'1 per cento della somma restituita, 0,5 per cento se mancano meno di dodici mesi, e non è dovuto se nei dodici mesi rimborsi meno di 10.000 euro.</p>
+
+  <h2>Domande frequenti</h2>
+
+  <h3>Come si calcola la rata della cessione del quinto?</h3>
+  <p>Si parte dal netto mensile in busta, lo si riporta su dodici mesi tenendo conto delle mensilità (netto per 13 o per 14, diviso 12) e si divide per cinque. Con 1.500 euro netti su 14 mensilità la rata massima è 350 euro. Quella rata è un tetto: resta la stessa qualunque cifra tu chieda, cambia solo la somma che ricevi in cambio, perché dipende da durata e tasso.</p>
+
+  <h3>Quanto posso ottenere con la cessione del quinto?</h3>
+  <p>Si ricava al contrario, dalla rata massima, dalla durata e dal tasso. Una rata di 350 euro per 120 mesi al 7,70 per cento vale un capitale di circa 29.200 euro, che al netto di assicurazione e commissioni diventano circa 27.000 euro liquidati. Il massimo di legge è 120 mesi; il minimo praticato è 24.</p>
+
+  <h3>Perché il TAEG è molto più alto del TAN?</h3>
+  <p>Perché il TAN conta solo gli interessi, il TAEG conta anche l'assicurazione obbligatoria, le commissioni e le spese, che qui sono finanziate dentro il prestito. Un TAN del 7,70 per cento, con una polizza al 5 per cento e commissioni al 2,5, diventa un TAEG vicino al 10. Se in un preventivo TAN e TAEG quasi coincidono, chiedi dov'è finita l'assicurazione.</p>
+
+  <h3>La cessione del quinto si può avere da pensionato? Fino a che età?</h3>
+  <p>Sì, con tassi stabiliti dalle convenzioni INPS. Conta l'età a fine piano, non quella di oggi: la soglia più diffusa è 85 anni all'ultima rata, quindi a 75 anni si arriva a dieci anni di durata e a 80 anni a cinque. Non è una norma di legge ma una politica di ciascun istituto: alcuni arrivano a 87-88 anni, qualcuno dichiara di valutare fino a 91 anni meno un giorno, con un costo assicurativo più alto.</p>
+
+  <h3>Conviene estinguere in anticipo o rinnovare?</h3>
+  <p>Estinguere conviene quasi sempre, perché oltre agli interessi recuperi la quota non goduta di polizza e commissioni e l'indennizzo è al massimo l'1 per cento. Il rinnovo è un'altra operazione: chiude il vecchio prestito e ne apre uno nuovo, con nuove spese e nuova assicurazione. Si valuta solo se hai bisogno di liquidità aggiuntiva, mai come modo per "risparmiare".</p>
+
+  <h3>Si può superare il quinto dello stipendio?</h3>
+  <p>Si arriva al doppio, ma con due contratti: alla cessione si aggiunge una delega di pagamento, il cosiddetto secondo quinto, fino al 40 per cento del netto. La delega però deve autorizzarla il datore di lavoro, che può rifiutare, e nel privato succede spesso.</p>
+
+  <ul class="correlate">
+    <li>Prima di decidere, guarda quanto ti resta davvero: <a href="../2026-09-20-netto-da-lordo/">calcolo dello stipendio netto dal lordo</a> e <a href="../2026-11-05-pensione-netta/">calcolo della pensione netta</a>.</li>
+    <li>Se il prestito ti serve per la casa, confronta con un mutuo: <a href="../2026-09-21-rata-mutuo/">calcolo della rata del mutuo</a> e <a href="../2026-10-23-quanto-mutuo-posso-chiedere/">quanto mutuo posso chiedere con il mio stipendio</a>.</li>
+    <li>Se la trattenuta non è volontaria ma arriva da un debito: <a href="../2026-10-24-pignoramento-stipendio/">quanto possono pignorare dallo stipendio</a>.</li>
+  </ul>
+</section>
+
+<div data-ad="bottom"></div>
+<div data-support></div>
+
+<footer>
+  <p><a href="../../index.html">← Tutte le app</a></p>
+  <p>Strumento di calcolo indipendente, a scopo informativo: non è una proposta di finanziamento e non raccoglie i tuoi dati, che restano sul telefono. I tassi preimpostati sono medie di mercato indicative per il 2026 e vanno sostituiti con quelli del foglio informativo del tuo preventivo. La quota cedibile della pensione la certifica l'INPS; il trattamento minimo e i tassi soglia antiusura si verificano sulle fonti ufficiali prima di firmare.</p>
+  <p>Questa pagina può contenere annunci e link di affiliazione. <a href="../../privacy.html">Privacy</a></p>
+</footer>
+</div>
+
+<script src="../../assets/monetize.js"></script>
+<script>
+/* Modello dati: un oggetto piatto `S` con profilo (statale|privato|pensionato), netto mensile,
+ * mensilità, età, durata in mesi, modo (rata|somma), rata o somma desiderata, TAN e le tre voci
+ * di costo (assicurazione %, commissioni %, spese fisse €). Salvato in localStorage sotto
+ * "cessione-del-quinto:v1". Tutto il resto è derivato: quinto cedibile, capitale, netto erogato,
+ * totale, costo, TAEG (per bisezione) e piano di ammortamento alla francese.
+ */
+(() => {
+  "use strict";
+  const CHIAVE = "cessione-del-quinto:v1";
+  const TRATT_MIN = 611.85;        // trattamento minimo INPS mensile indicato per il 2026
+  const ETA_FINE = 85;             // età a fine piano accettata dalla maggior parte degli istituti
+  const $ = (id) => document.getElementById(id);
+
+  const PRESET = {
+    statale:    { tan: 5.70, pAss: 4.0, pComm: 2.0, nome: "dipendenti statali e pubblici in convenzione" },
+    privato:    { tan: 7.70, pAss: 5.0, pComm: 2.5, nome: "dipendenti di aziende private" },
+    pensionato: { tan: 7.70, pAss: 5.5, pComm: 2.0, nome: "pensionati INPS in convenzione" },
+  };
+
+  const S = {
+    profilo: "privato", netto: 1500, mens: 14, eta: 72, durata: 120,
+    modo: "rata", rata: 350, somma: 27000,
+    tan: 7.70, pAss: 5, pComm: 2.5, spese: 16,
+    toccato: false,   // true = l'utente ha scritto i valori del suo preventivo: non sovrascriverli
+    pagate: 48,
+    prev: [
+      { tan: 5.70, pAss: 4.0, pComm: 2.0, durata: 120 },
+      { tan: 7.70, pAss: 5.0, pComm: 2.5, durata: 120 },
+      { tan: 9.50, pAss: 3.0, pComm: 1.5, durata: 96  },
+    ],
+  };
+
+  // ───────── formato ─────────
+  const fEur = new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR", minimumFractionDigits: 0, maximumFractionDigits: 0, useGrouping: true });
+  const fEur2 = new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR", minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: true });
+  const fPc = new Intl.NumberFormat("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const eur = (v) => Number.isFinite(v) ? fEur.format(v) : "—";
+  const eur2 = (v) => Number.isFinite(v) ? fEur2.format(v) : "—";
+  const pc = (v) => Number.isFinite(v) ? fPc.format(v) + " %" : "—";
+  const mesiTxt = (n) => {
+    const a = Math.floor(n / 12), m = n % 12;
+    if (a && m) return `${a} ${a === 1 ? "anno" : "anni"} e ${m} mes${m === 1 ? "e" : "i"}`;
+    if (a) return `${a} ${a === 1 ? "anno" : "anni"}`;
+    return `${m} mes${m === 1 ? "e" : "i"}`;
+  };
+  const num = (el, min, max, fallback) => {
+    const v = parseFloat(String(el.value).replace(",", "."));
+    if (!Number.isFinite(v)) return fallback;
+    return Math.min(max, Math.max(min, v));
+  };
+
+  // ───────── matematica ─────────
+  // fattore di annualità: valore attuale di n rate da 1 al tasso mensile i
+  function annuita(n, i) {
+    if (n <= 0) return 0;
+    if (Math.abs(i) < 1e-12) return n;
+    return (1 - Math.pow(1 + i, -n)) / i;
+  }
+  // quota cedibile mensile
+  function quinto() {
+    const n = S.netto;
+    if (!(n > 0)) return 0;
+    if (S.profilo === "pensionato") return Math.max(0, Math.min(n / 5, n - TRATT_MIN));
+    return (n * S.mens / 12) / 5;
+  }
+  function durataMax() {
+    if (S.profilo !== "pensionato") return 120;
+    return Math.max(0, Math.min(120, Math.round((ETA_FINE - S.eta) * 12)));
+  }
+  // TAEG: tasso mensile che rende il netto erogato pari al valore attuale delle rate, poi annualizzato
+  function taeg(netto, rata, n) {
+    if (!(netto > 0) || !(rata > 0) || n <= 0) return NaN;
+    if (rata * n <= netto) return 0;
+    let lo = 0, hi = 1;
+    for (let k = 0; k < 90; k++) {
+      const mid = (lo + hi) / 2;
+      if (rata * annuita(n, mid) > netto) lo = mid; else hi = mid;
+    }
+    const i = (lo + hi) / 2;
+    return (Math.pow(1 + i, 12) - 1) * 100;
+  }
+  // il conto completo, da una rata o da una somma netta desiderata
+  function conto(opt) {
+    const n = Math.round(opt.durata);
+    const i = opt.tan / 100 / 12;
+    const a = annuita(n, i);
+    const quota = Math.min(0.95, (opt.pAss + opt.pComm) / 100);   // oltre il 95% il prestito non ha senso
+    let rata, lordo;
+    if (opt.modo === "somma") {
+      lordo = (Math.max(0, opt.somma) + opt.spese) / (1 - quota);
+      rata = a > 0 ? lordo / a : 0;
+    } else {
+      rata = Math.max(0, opt.rata);
+      lordo = rata * a;
+    }
+    const ass = lordo * opt.pAss / 100;
+    const comm = lordo * opt.pComm / 100;
+    const netto = lordo - ass - comm - opt.spese;
+    const tot = rata * n;
+    return { n, i, a, rata, lordo, ass, comm, spese: opt.spese, netto, tot, costo: tot - netto, interessi: tot - lordo, taeg: taeg(netto, rata, n) };
+  }
+  function piano(c) {
+    const righe = [];
+    let saldo = c.lordo;
+    for (let k = 1; k <= c.n; k++) {
+      const qi = saldo * c.i;
+      let qc = c.rata - qi;
+      if (k === c.n) qc = saldo;
+      saldo = Math.max(0, saldo - qc);
+      righe.push({ k, qi, qc, saldo });
+    }
+    return righe;
+  }
+
+  // ───────── stato ⇄ interfaccia ─────────
+  function leggi() {
+    S.netto = num($("netto"), 0, 20000, 0);
+    S.mens = parseInt($("mens").value, 10) || 12;
+    S.eta = Math.round(num($("eta"), 50, 95, 72));
+    S.durata = Math.round(num($("durata"), 24, 120, 120));
+    S.rata = num($("rata"), 0, 5000, 0);
+    S.somma = num($("somma"), 0, 200000, 0);
+    S.tan = num($("tan"), 0, 25, 0);
+    S.pAss = num($("pAss"), 0, 60, 0);
+    S.pComm = num($("pComm"), 0, 60, 0);
+    S.spese = num($("spese"), 0, 2000, 0);
+  }
+  function salva() {
+    try { localStorage.setItem(CHIAVE, JSON.stringify(S)); } catch (_) { /* storage bloccato */ }
+  }
+  function carica() {
+    let s = null;
+    try { s = JSON.parse(localStorage.getItem(CHIAVE) || "null"); } catch (_) { /* dato corrotto */ }
+    if (!s || typeof s !== "object") return;
+    for (const k of Object.keys(S)) if (s[k] !== undefined && typeof s[k] === typeof S[k]) S[k] = s[k];
+    if (!PRESET[S.profilo]) S.profilo = "privato";
+    if (!Array.isArray(S.prev) || S.prev.length !== 3) S.prev = [{ tan: 5.7, pAss: 4, pComm: 2, durata: 120 }, { tan: 7.7, pAss: 5, pComm: 2.5, durata: 120 }, { tan: 9.5, pAss: 3, pComm: 1.5, durata: 96 }];
+    $("netto").value = S.netto; $("mens").value = S.mens; $("eta").value = S.eta;
+    $("durata").value = S.durata; $("rata").value = S.rata; $("somma").value = S.somma;
+    $("tan").value = S.tan; $("pAss").value = S.pAss; $("pComm").value = S.pComm; $("spese").value = S.spese;
+    for (const b of document.querySelectorAll("[data-prof]")) b.setAttribute("aria-pressed", String(b.dataset.prof === S.profilo));
+    modo(S.modo, true);
+    profiloUI();
+  }
+  function profiloUI() {
+    const pens = S.profilo === "pensionato";
+    $("wrapMens").hidden = pens;
+    $("wrapEta").hidden = !pens;
+    $("labNetto").textContent = pens ? "Pensione netta mensile" : "Netto mensile in busta";
+    $("dAss").textContent = pens ? "rischio vita, trattenuta subito" : "vita e impiego, trattenuta subito";
+    $("hRestaD").textContent = pens ? "ti resta di pensione ogni mese" : "ti resta in busta ogni mese";
+    const dMax = durataMax();
+    $("durata").max = Math.max(24, Math.floor(dMax / 12) * 12 || 24);
+    if (S.durata > dMax) { S.durata = Math.max(24, Math.floor(dMax / 12) * 12); $("durata").value = S.durata; }
+    $("notaPreset").textContent = `Valori indicativi 2026 per ${PRESET[S.profilo].nome}: TAN ${fPc.format(PRESET[S.profilo].tan)} %, assicurazione ${fPc.format(PRESET[S.profilo].pAss)} %, commissioni ${fPc.format(PRESET[S.profilo].pComm)} %.`;
+  }
+  function modo(m, soloUI) {
+    S.modo = m === "somma" ? "somma" : "rata";
+    const r = S.modo === "rata";
+    $("mRata").setAttribute("aria-pressed", String(r));
+    $("mSomma").setAttribute("aria-pressed", String(!r));
+    $("boxRata").hidden = !r;
+    $("boxSomma").hidden = r;
+    if (!soloUI) disegna();
+  }
+
+  // ───────── disegno ─────────
+  function disegna() {
+    const q = quinto();
+    const c = conto(S);
+    const over = c.rata > q + 0.005;
+    const dMax = durataMax();
+
+    // pannello
+    $("mesiTesto").innerHTML = `${S.durata} <small>mesi · ${mesiTxt(S.durata)}</small>`;
+    $("bRata").textContent = c.rata > 0 ? eur2(c.rata) : "—";
+    $("bNota").textContent = S.netto > 0 ? `rata · ti restano ${eur(Math.max(0, S.netto - c.rata))}` : "metti il tuo netto mensile";
+
+    const parola = S.profilo === "pensionato" ? "ti restano di pensione" : "ti restano in busta";
+    $("esito").innerHTML = (S.netto > 0 && c.rata > 0)
+      ? `<span><b>${eur2(c.rata)}</b><i>trattenuti al mese</i></span><span><b>${eur(Math.max(0, S.netto - c.rata))}</b><i>${parola}</i></span>`
+      : `<span class="attesa">Metti il netto mensile: da lì si ricava tutto il resto.</span>`;
+
+    const av = [];
+    if (!(S.netto > 0)) av.push("La rata massima è un quinto del tuo netto.");
+    else if (q <= 0) av.push(S.profilo === "pensionato"
+      ? `Con una pensione netta di ${eur(S.netto)} non c'è quota cedibile: sotto il trattamento minimo di ${eur2(TRATT_MIN)} al mese la pensione non è cedibile.`
+      : "Con questo netto non risulta quota cedibile.");
+    else av.push(`Quota massima cedibile: <b>${eur2(q)}</b> al mese${S.profilo === "pensionato" ? " (il minore fra un quinto e la parte oltre il trattamento minimo)" : ` (un quinto di ${eur(S.netto * S.mens / 12)} di reddito medio mensile)`}.`);
+    if (S.profilo === "pensionato" && dMax < 120) av.push(`A ${S.eta} anni la durata massima è di circa ${dMax} mesi, perché l'ultima rata deve cadere entro gli ${ETA_FINE} anni.`);
+    $("avvisoQuinto").innerHTML = av.join("<br>");
+
+    // prospetto
+    const vuoto = !(S.netto > 0) || !(c.rata > 0) || !(c.netto > 0);
+    $("hRata").textContent = c.rata > 0 ? eur2(c.rata) : "—";
+    $("hMesi").textContent = `${S.durata} mesi`;
+    $("hResta").textContent = S.netto > 0 ? eur(Math.max(0, S.netto - c.rata)) : "—";
+
+    const al = [];
+    if (q <= 0 && S.netto > 0 && c.rata > 0) {
+      al.push(S.profilo === "pensionato"
+        ? `<div class="allarme">Con una pensione netta di ${eur(S.netto)} la quota cedibile è zero: la parte di pensione fino al trattamento minimo (${eur2(TRATT_MIN)} al mese) non si può cedere, quindi questo prestito non è ottenibile. Il conto qui sotto resta solo come esempio.</div>`
+        : `<div class="allarme">Con questo netto non risulta quota cedibile: il conto qui sotto resta solo come esempio.</div>`);
+    }
+    if (over && q > 0) {
+      const max = conto(Object.assign({}, S, { modo: "rata", rata: q }));
+      al.push(`<div class="allarme">Questa rata supera il quinto cedibile di ${eur2(c.rata - q)}. Al massimo puoi avere <b>${eur(max.netto)}</b> in ${S.durata} mesi, con una rata di ${eur2(q)}. ${S.modo === "somma" ? "Abbassa la somma, allunga la durata o cerca un tasso più basso." : ""}</div>`);
+    }
+    if (S.pAss + S.pComm >= 95) al.push(`<div class="allarme">Assicurazione e commissioni insieme arrivano al ${fPc.format(S.pAss + S.pComm)} % del capitale: a quel punto del prestito non ti resta quasi niente. Ricontrolla le percentuali del foglio informativo.</div>`);
+    else if (S.pAss + S.pComm >= 50) al.push(`<div class="allarme">Attenzione: fra assicurazione e commissioni se ne va il ${fPc.format(S.pAss + S.pComm)} % del capitale finanziato. Su un preventivo vero queste due voci stanno insieme fra il 5 e il 12 per cento: se il tuo è molto più alto, fatti spiegare per iscritto da cosa dipende.</div>`);
+    if (vuoto && !over) al.push(`<div class="vuoto">Compila il netto mensile e la rata (oppure la somma che ti serve) e qui compare il conto completo: quanto ricevi, quanto rimborsi e il TAEG reale.</div>`);
+    $("allarmi").innerHTML = al.join("");
+
+    $("vLordo").textContent = vuoto ? "—" : eur(c.lordo);
+    $("vAss").textContent = vuoto ? "—" : "− " + eur(c.ass);
+    $("vComm").textContent = vuoto ? "—" : "− " + eur(c.comm);
+    $("vSpese").textContent = vuoto ? "—" : "− " + eur(c.spese);
+    $("vNetto").textContent = vuoto ? "—" : eur(c.netto);
+    $("vTot").textContent = vuoto ? "—" : eur(c.tot);
+    $("dTot").textContent = vuoto ? "rata per numero di mesi" : `${eur2(c.rata)} × ${c.n} rate`;
+    $("vCosto").textContent = vuoto ? "—" : eur(c.costo);
+    $("dCosto").textContent = vuoto ? "interessi, assicurazione, commissioni e spese"
+      : `${eur(c.interessi)} di interessi + ${eur(c.ass + c.comm + c.spese)} di assicurazione, commissioni e spese`;
+    $("vTaeg").textContent = vuoto ? "—" : pc(c.taeg);
+    $("dTaeg").textContent = vuoto ? "TAEG reale, cioè quanto costa davvero"
+      : `TAEG reale contro un TAN del ${fPc.format(S.tan)} %: ogni 100 € ricevuti ne restituisci ${fPc.format(c.tot / c.netto * 100)}.`;
+
+    $("eqAss").textContent = vuoto ? "—" : `≈ ${eur(c.ass)} sul tuo preventivo`;
+    $("eqComm").textContent = vuoto ? "—" : `≈ ${eur(c.comm)} sul tuo preventivo`;
+
+    // composizione di quello che rimborsi
+    if (vuoto) { $("rigaBarre").innerHTML = ""; $("legenda").innerHTML = ""; }
+    else {
+      const voci = [
+        { cl: "q1", t: "Quello che ricevi", v: c.netto },
+        { cl: "q3", t: "Interessi", v: c.interessi },
+        { cl: "q2", t: "Assicurazione obbligatoria", v: c.ass },
+        { cl: "q4", t: "Commissioni e spese", v: c.comm + c.spese },
+      ].filter(v => v.v > 0);
+      const somma = voci.reduce((s, v) => s + v.v, 0) || 1;
+      $("rigaBarre").innerHTML = voci.map(v => `<i class="${v.cl}" style="width:${(v.v / somma * 100).toFixed(2)}%"></i>`).join("");
+      $("legenda").innerHTML = voci.map(v => `<li><i class="${v.cl}"></i>${v.t}<b>${eur(v.v)} · ${fPc.format(v.v / somma * 100)} %</b></li>`).join("");
+    }
+
+    disegnaPrev(c);
+    disegnaEstinzione(c);
+    if (!$("tabPiano").hidden) disegnaTab(c);
+    ultimo = c;
+    salva();
+  }
+
+  let ultimo = null;
+
+  // ───────── Pro 1: confronto fra tre preventivi ─────────
+  function disegnaPrev(c) {
+    const base = c.netto > 0 ? c.netto : 0;
+    $("cfSomma").textContent = base > 0 ? eur(base) : "la somma del conto qui sopra";
+    const box = $("tre");
+    if (!box.children.length) {
+      box.innerHTML = S.prev.map((p, k) => `
+        <div class="prev" data-k="${k}">
+          <h3>Preventivo ${k + 1}<span class="tag" hidden>il migliore</span></h3>
+          <div class="mini">
+            <label><span class="flab">TAN</span><input type="number" data-f="tan" inputmode="decimal" min="0" max="25" step="0.05" value="${p.tan}"></label>
+            <label><span class="flab">Mesi</span><input type="number" data-f="durata" inputmode="numeric" min="24" max="120" step="12" value="${p.durata}"></label>
+            <label><span class="flab">Assic. %</span><input type="number" data-f="pAss" inputmode="decimal" min="0" max="60" step="0.1" value="${p.pAss}"></label>
+            <label><span class="flab">Commiss. %</span><input type="number" data-f="pComm" inputmode="decimal" min="0" max="60" step="0.1" value="${p.pComm}"></label>
+          </div>
+          <dl class="prosp"></dl>
+        </div>`).join("");
+      box.addEventListener("input", (ev) => {
+        const inp = ev.target.closest("input[data-f]");
+        if (!inp) return;
+        const k = Number(inp.closest(".prev").dataset.k);
+        const f = inp.dataset.f;
+        const lim = { tan: [0, 25], durata: [24, 120], pAss: [0, 60], pComm: [0, 60] }[f];
+        S.prev[k][f] = num(inp, lim[0], lim[1], S.prev[k][f]);
+        disegnaPrev(ultimo || conto(S));
+        salva();
+      });
+    }
+    if (base <= 0) {
+      for (const el of box.querySelectorAll("dl")) el.innerHTML = `<div><dt>Serve prima il conto qui sopra</dt><dd>—</dd></div>`;
+      $("cfVerdetto").textContent = "Compila i tuoi dati: il confronto si fa a parità di somma ricevuta.";
+      return;
+    }
+    const esiti = S.prev.map(p => conto({ modo: "somma", somma: base, durata: Math.round(p.durata), tan: p.tan, pAss: p.pAss, pComm: p.pComm, spese: S.spese }));
+    const min = Math.min(...esiti.map(e => e.costo));
+    const q = quinto();
+    esiti.forEach((e, k) => {
+      const card = box.querySelector(`.prev[data-k="${k}"]`);
+      const vince = Math.abs(e.costo - min) < 0.5;
+      card.classList.toggle("vince", vince);
+      card.querySelector(".tag").hidden = !vince;
+      const fuori = q > 0 && e.rata > q + 0.005;
+      card.querySelector("dl").innerHTML = `
+        <div><dt>Rata${fuori ? ' <span class="sub segno">oltre il tuo quinto</span>' : ""}</dt><dd${fuori ? ' class="segno"' : ""}>${eur2(e.rata)}</dd></div>
+        <div><dt>Rimborsi in tutto</dt><dd>${eur(e.tot)}</dd></div>
+        <div><dt>TAEG reale</dt><dd>${pc(e.taeg)}</dd></div>
+        <div class="tot"><dt>Costo del credito</dt><dd>${eur(e.costo)}</dd></div>`;
+    });
+    const iMin = esiti.findIndex(e => Math.abs(e.costo - min) < 0.5);
+    const peggio = Math.max(...esiti.map(e => e.costo));
+    $("cfVerdetto").innerHTML = `Sulla stessa somma ricevuta, il preventivo ${iMin + 1} costa ${eur(min)} e il più caro ${eur(peggio)}: <b>${eur(peggio - min)}</b> di differenza. Confronta sempre il costo del credito, non la rata: una rata più bassa ottenuta allungando il piano fa pagare di più.`;
+  }
+
+  // ───────── Pro 2: estinzione anticipata ─────────
+  function disegnaEstinzione(c) {
+    const sl = $("pagate");
+    const kMax = Math.max(1, c.n - 1);
+    sl.max = kMax;
+    // se la durata si accorcia, riporta il cursore sui due quinti del piano (la soglia del rinnovo)
+    if (S.pagate > kMax) { S.pagate = Math.min(kMax, Math.max(1, Math.ceil(c.n * 2 / 5))); sl.value = S.pagate; }
+    const k = Math.min(Math.max(1, Math.round(S.pagate)), kMax);
+    $("pagateTesto").innerHTML = `${k} <small>${k === 1 ? "rata" : "rate"} · ${mesiTxt(k)}</small>`;
+
+    if (!(c.rata > 0) || !(c.netto > 0)) {
+      $("estinzione").innerHTML = `<div><dt>Serve prima il conto qui sopra</dt><dd>—</dd></div>`;
+      $("notaEst").textContent = "";
+      return;
+    }
+    const residue = c.n - k;
+    const debito = c.rata * annuita(residue, c.i);
+    const nonGoduta = (c.ass + c.comm) * residue / c.n;
+    const capitale = Math.max(0, debito - nonGoduta);
+    const aliquota = residue > 12 ? 0.01 : 0.005;
+    const indennizzo = capitale <= 10000 ? 0 : capitale * aliquota;
+    const conteggio = capitale + indennizzo;
+    const senzaEstinguere = c.rata * residue;
+    const risparmio = senzaEstinguere - conteggio;
+    const rinnovo = Math.ceil(c.n * 2 / 5);
+
+    $("estinzione").innerHTML = `
+      <div><dt>Quello che ti resta da pagare <span class="sub">${residue} ${residue === 1 ? "rata" : "rate"} da ${eur2(c.rata)}</span></dt><dd>${eur(senzaEstinguere)}</dd></div>
+      <div><dt>Debito residuo in capitale <span class="sub">valore attuale delle rate al TAN</span></dt><dd>${eur(debito)}</dd></div>
+      <div><dt>Quota di costi non goduta <span class="sub">assicurazione e commissioni, pro rata temporis</span></dt><dd class="segno">− ${eur(nonGoduta)}</dd></div>
+      <div><dt>Indennizzo alla banca <span class="sub">${indennizzo > 0 ? `${aliquota * 100 === 1 ? "1" : "0,5"} % perché mancano ${residue} mesi` : "non dovuto sotto i 10.000 € nei 12 mesi"}</span></dt><dd>${indennizzo > 0 ? "+ " + eur(indennizzo) : eur(0)}</dd></div>
+      <div class="tot"><dt>Quanto dovresti pagare oggi per chiudere</dt><dd>${eur(conteggio)}</dd></div>
+      <div class="tot"><dt>Quello che risparmi chiudendo adesso</dt><dd>${eur(risparmio)}</dd></div>`;
+    $("notaEst").innerHTML = `Dopo ${k} ${k === 1 ? "rata" : "rate"} hai già versato ${eur(c.rata * k)} e il capitale residuo è ancora ${eur(debito)}: nei primi anni la rata è quasi tutta interessi, perciò il debito scende lentamente. Chiedi per iscritto il conteggio di estinzione e controlla che la quota non goduta di polizza e commissioni sia stata scomputata: se non c'è, è un reclamo da fare. Il rinnovo invece è possibile dalla ${rinnovo}ª rata, cioè dopo i due quinti del piano, ma riparte da zero con nuove spese.`;
+  }
+
+  // ───────── Pro 3: piano di ammortamento ─────────
+  function disegnaTab(c) {
+    const t = $("tabPiano");
+    if (!(c.rata > 0) || !(c.netto > 0)) { t.hidden = true; return; }
+    const righe = piano(c).slice(0, 12);
+    t.innerHTML = `<thead><tr><th>Rata</th><th>Interessi</th><th>Capitale</th><th>Debito residuo</th></tr></thead><tbody>` +
+      righe.map(r => `<tr><td>${r.k}</td><td>${eur2(r.qi)}</td><td>${eur2(r.qc)}</td><td>${eur(r.saldo)}</td></tr>`).join("") +
+      `</tbody>`;
+    t.hidden = false;
+  }
+  function scaricaCsv() {
+    const c = ultimo || conto(S);
+    if (!(c.rata > 0) || !(c.netto > 0)) { $("notaCsv").textContent = "Compila prima il netto mensile e la rata."; return; }
+    const v = (x) => x.toFixed(2).replace(".", ",");
+    const righe = [
+      "Cessione del quinto - piano di ammortamento",
+      `Capitale finanziato;${v(c.lordo)}`,
+      `Netto erogato;${v(c.netto)}`,
+      `Rata;${v(c.rata)}`,
+      `Durata (mesi);${c.n}`,
+      `TAN (%);${v(S.tan)}`,
+      `TAEG reale (%);${v(c.taeg)}`,
+      "",
+      "Rata;Quota interessi;Quota capitale;Debito residuo",
+      ...piano(c).map(r => `${r.k};${v(r.qi)};${v(r.qc)};${v(r.saldo)}`),
+    ].join("\r\n");
+    try {
+      const blob = new Blob(["﻿" + righe], { type: "text/csv;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url; a.download = `cessione-del-quinto-${c.n}-mesi.csv`;
+      document.body.append(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+      $("notaCsv").textContent = `Scaricato: ${c.n} rate, separatore punto e virgola, già pronto per Excel e LibreOffice.`;
+    } catch (_) {
+      $("notaCsv").textContent = "Il browser ha bloccato il download: prova ad aprire la pagina da un sito invece che da file.";
+    }
+  }
+
+  // ───────── eventi ─────────
+  for (const b of document.querySelectorAll("[data-prof]")) {
+    b.addEventListener("click", () => {
+      S.profilo = b.dataset.prof;
+      for (const o of document.querySelectorAll("[data-prof]")) o.setAttribute("aria-pressed", String(o === b));
+      if (!S.toccato) {   // se non ha ancora copiato il suo preventivo, mette i valori tipici del profilo
+        const p = PRESET[S.profilo];
+        S.tan = p.tan; S.pAss = p.pAss; S.pComm = p.pComm;
+        $("tan").value = p.tan; $("pAss").value = p.pAss; $("pComm").value = p.pComm;
+      }
+      profiloUI();
+      if (S.modo === "rata") { const q = quinto(); if (q > 0) { S.rata = Math.round(q * 100) / 100; $("rata").value = S.rata; } }
+      disegna();
+    });
+  }
+  for (const id of ["netto", "mens", "eta", "durata", "rata", "somma", "tan", "pAss", "pComm", "spese"]) {
+    $(id).addEventListener("input", () => {
+      leggi();
+      if (["tan", "pAss", "pComm", "spese"].includes(id)) S.toccato = true;
+      if (id === "eta" || id === "netto" || id === "mens") profiloUI();
+      disegna();
+    });
+    // a campo lasciato, riporta nel riquadro il valore davvero usato (niente scarti silenziosi)
+    $(id).addEventListener("change", () => {
+      if (id === "mens") return;
+      const v = S[id === "durata" ? "durata" : id];
+      if (String(v) !== $(id).value && $(id).value !== "") $(id).value = v;
+    });
+  }
+  $("pagate").addEventListener("input", () => { S.pagate = Math.round(num($("pagate"), 1, 119, 48)); disegnaEstinzione(ultimo || conto(S)); salva(); });
+  $("mRata").addEventListener("click", () => modo("rata"));
+  $("mSomma").addEventListener("click", () => modo("somma"));
+  $("btnMax").addEventListener("click", () => {
+    const q = quinto();
+    if (q <= 0) return;
+    S.rata = Math.round(q * 100) / 100; $("rata").value = S.rata; disegna();
+  });
+  $("btnPreset").addEventListener("click", () => {
+    const p = PRESET[S.profilo];
+    S.tan = p.tan; S.pAss = p.pAss; S.pComm = p.pComm; S.toccato = false;
+    $("tan").value = p.tan; $("pAss").value = p.pAss; $("pComm").value = p.pComm;
+    disegna();
+  });
+  $("btnCsv").addEventListener("click", scaricaCsv);
+  $("btnTab").addEventListener("click", () => {
+    const t = $("tabPiano");
+    if (t.hidden) { disegnaTab(ultimo || conto(S)); $("btnTab").textContent = "Nascondi la tabella"; }
+    else { t.hidden = true; $("btnTab").textContent = "Mostra le prime 12 rate"; }
+  });
+  document.addEventListener("keydown", (ev) => {
+    if (ev.key === "Escape" && document.activeElement && document.activeElement.blur) document.activeElement.blur();
+    if (ev.key === "Enter" && document.activeElement && document.activeElement.tagName === "INPUT") {
+      ev.preventDefault(); document.activeElement.blur();
+      document.getElementById("risultato").scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  });
+  $("bMod").addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+  // pannello che si richiude a barra quando resta incollato in alto (layout split)
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(
+      (voci) => { for (const v of voci) $("barra").classList.toggle("on", !v.isIntersecting && v.boundingClientRect.top < 0); },
+      { threshold: 0 }
+    ).observe($("sentinella"));
+  }
+
+  // le funzioni Pro restano calcolate: monetize.js le oscura finché non c'è il Pass
+  if (window.Monetize && window.Monetize.onPro) window.Monetize.onPro(() => { if (ultimo) { disegnaPrev(ultimo); disegnaEstinzione(ultimo); } });
+
+  carica();
+  leggi();
+  disegna();
+})();
+</script>
+</body>
+</html>

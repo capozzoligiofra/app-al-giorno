@@ -1,7 +1,7 @@
 // GENERATO da tools/build.mjs — non modificare a mano.
 window.__APPS__ = {
   "repo": "https://github.com/capozzoligiofra/app-al-giorno",
-  "count": 77,
+  "count": 78,
   "categories": [
     "produttivita",
     "salute-benessere",
@@ -50,6 +50,54 @@ window.__APPS__ = {
     ]
   },
   "apps": [
+    {
+      "title": "Cessione del Quinto",
+      "slug": "2026-11-28-cessione-del-quinto",
+      "date": "2026-11-28",
+      "description": "Calcola la rata della cessione del quinto, quanto ti resta in busta, la somma che ricevi davvero e il TAEG reale con l'assicurazione.",
+      "category": "finanza-personale",
+      "tags": [
+        "prestiti",
+        "busta paga",
+        "pensione",
+        "taeg",
+        "rata"
+      ],
+      "source": "autonoma",
+      "request": null,
+      "status": "pronta",
+      "version": 1,
+      "changelog": [],
+      "design": {
+        "layout": "split",
+        "palette": "blu-notte",
+        "font": "serif-editoriale"
+      },
+      "business": {
+        "keyword": "cessione del quinto calcolo rata",
+        "keywords": [
+          "calcolo rata cessione del quinto",
+          "quinto dello stipendio quanto posso avere",
+          "cessione del quinto pensionati calcolo",
+          "quanto mi resta in busta con la cessione del quinto"
+        ],
+        "intent": "Chi ha già deciso di chiedere il prestito e vuole sapere prima quanto gli trattengono, quanto gli resta in busta e quanto ricevirà davvero, senza lasciare nome e telefono a una finanziaria.",
+        "target": "Dipendenti pubblici e privati e pensionati INPS, 30-75 anni, quasi sempre da telefono.",
+        "edge": "È l'unico conto che separa l'assicurazione obbligatoria e le commissioni dal capitale e mostra il TAEG reale: la somma che ricevi sul conto, non quella del contratto. Zero dati lasciati, funziona offline.",
+        "monetization": [
+          "adsense",
+          "pro",
+          "support"
+        ],
+        "pro": [
+          "Confronto fra tre preventivi",
+          "Estinzione anticipata: quanto recuperi",
+          "Piano di ammortamento in CSV"
+        ],
+        "affiliate": []
+      },
+      "size": 66374
+    },
     {
       "title": "Quanto Costa il Cappotto Termico al Mq",
       "slug": "2026-11-27-cappotto-termico-al-mq",
